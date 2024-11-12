@@ -3,31 +3,22 @@
 let runtime : String =
   #|struct Lexbuf {
   #|  content : Bytes
-  #|  mut ptr : Int
+  #|  mut pos : Int
   #|}
   #|
   #|pub fn Lexbuf::from_bytes(bytes : Bytes) -> Lexbuf {
-  #|  { content: bytes, ptr: 0 }
+  #|  { content: bytes, pos: 0 }
   #|}
   #|
-  #|fn is_empty(self : Lexbuf) -> Bool {
-  #|  self.ptr == self.content.length()
-  #|}
-  #|
-  #|fn unsafe_peek(self : Lexbuf) -> Byte {
-  #|  self.content[self.ptr]
-  #|}
-  #|
-  #|fn peek(self : Lexbuf) -> Byte? {
-  #|  if self.is_empty() {
-  #|    None
+  #|// NOTE: MoonBit do have unboxed Option[Byte] optimization
+  #|fn next(self : Lexbuf) -> Byte? {
+  #|  if self.pos < self.content.length() {
+  #|    let b = self.content[self.pos]
+  #|    self.pos += 1
+  #|    Some(b)
   #|  } else {
-  #|    Some(self.unsafe_peek())
+  #|    None
   #|  }
-  #|}
-  #|
-  #|fn step(self : Lexbuf) -> Unit {
-  #|  self.ptr += 1
   #|}
   #|
   #|fn subbytes(self : Lexbuf, head : Int, tail : Int) -> Bytes {
@@ -53,18 +44,15 @@ let runtime : String =
   #|    while tagState.length() <= tag {
   #|      tagState.push([])
   #|    }
-  #|    tagState[tag].push(lexbuf.ptr)
+  #|    tagState[tag].push(lexbuf.pos)
   #|  }
   #|  while state != 0 {
   #|    match self.end_nodes[state] {
-  #|      Some(t) => backtrace[t.0] = Some((lexbuf.ptr, state, tagState))
+  #|      Some(t) => backtrace[t.0] = Some((lexbuf.pos, state, tagState))
   #|      _ => ()
   #|    }
-  #|    if lexbuf.is_empty() {
-  #|      break
-  #|    }
-  #|    let next = self.graph[state][lexbuf.unsafe_peek().to_int()]
-  #|    lexbuf.step()
+  #|    guard let Some(b) = lexbuf.next() else { None => break }
+  #|    let next = self.graph[state][b.to_int()]
   #|    state = next.0
   #|    let new_tagState : Array[Array[Int]] = []
   #|    for i = 0; i < next.1.length(); i = i + 1 {
@@ -72,7 +60,7 @@ let runtime : String =
   #|      for j = 0; j < next.1[i].length(); j = j + 1 {
   #|        let t = next.1[i][j]
   #|        if t == -1 {
-  #|          new_tagState[i].push(lexbuf.ptr)
+  #|          new_tagState[i].push(lexbuf.pos)
   #|        } else {
   #|          new_tagState[i].push(tagState[i][t])
   #|        }
@@ -83,7 +71,7 @@ let runtime : String =
   #|  for index, b in backtrace {
   #|    match b {
   #|      Some((p, state, tagState)) => {
-  #|        lexbuf.ptr = p
+  #|        lexbuf.pos = p
   #|        let captures = self.end_nodes[state].unwrap().1.map(
   #|          fn {
   #|            ((b_t, b_r), (e_t, e_r)) =>
