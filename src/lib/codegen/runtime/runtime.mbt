@@ -1,4 +1,4 @@
-pub struct Lexbuf {
+struct Lexbuf {
   content : Bytes
   mut ptr : Int
 }
@@ -23,19 +23,11 @@ fn peek(self : Lexbuf) -> Byte? {
   }
 }
 
-pub fn cur_ptr(self : Lexbuf) -> Int {
-  self.ptr
-}
-
-pub fn set_ptr(self : Lexbuf, ptr : Int) -> Unit {
-  self.ptr = ptr
-}
-
-pub fn step(self : Lexbuf) -> Unit {
+fn step(self : Lexbuf) -> Unit {
   self.ptr += 1
 }
 
-pub fn subbytes(self : Lexbuf, head : Int, tail : Int) -> Bytes {
+fn subbytes(self : Lexbuf, head : Int, tail : Int) -> Bytes {
   let bytes = Bytes::new(tail - head)
   for p = head; p < tail; p = p + 1 {
     bytes[p - head] = self.content[p]
@@ -58,11 +50,11 @@ pub fn run(self : Engine, lexbuf : Lexbuf) -> (Int, Array[Bytes]) {
     while tagState.length() <= tag {
       tagState.push([])
     }
-    tagState[tag].push(lexbuf.cur_ptr())
+    tagState[tag].push(lexbuf.ptr)
   }
   while state != 0 {
     match self.end_nodes[state] {
-      Some(t) => backtrace[t.0] = Some((lexbuf.cur_ptr(), state, tagState))
+      Some(t) => backtrace[t.0] = Some((lexbuf.ptr, state, tagState))
       _ => ()
     }
     if lexbuf.is_empty() {
@@ -77,7 +69,7 @@ pub fn run(self : Engine, lexbuf : Lexbuf) -> (Int, Array[Bytes]) {
       for j = 0; j < next.1[i].length(); j = j + 1 {
         let t = next.1[i][j]
         if t == -1 {
-          new_tagState[i].push(lexbuf.cur_ptr())
+          new_tagState[i].push(lexbuf.ptr)
         } else {
           new_tagState[i].push(tagState[i][t])
         }
@@ -88,7 +80,7 @@ pub fn run(self : Engine, lexbuf : Lexbuf) -> (Int, Array[Bytes]) {
   for index, b in backtrace {
     match b {
       Some((p, state, tagState)) => {
-        lexbuf.set_ptr(p)
+        lexbuf.ptr = p
         let captures = self.end_nodes[state].unwrap().1.map(
           fn {
             ((b_t, b_r), (e_t, e_r)) =>
