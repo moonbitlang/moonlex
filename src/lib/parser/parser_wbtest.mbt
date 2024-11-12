@@ -1,6 +1,6 @@
 test "parse regex" {
   let parser_buf = ParserBuf::from_string(
-    "(\"x\"*|'\"'+) ['a'- 'z' '_' ] [^ 'a' 'b'] eof  ",
+    "(\"x\"*|'\"'+) ['a'- 'z' '_' ] [^ 'a' 'b'] eof '\'' '\r' '\x00'",
   )
   let result = parser_buf.regex().map(fn { (_, r) => r })
   @json.inspect!(
@@ -13,31 +13,43 @@ test "parse regex" {
           "0": {
             "$tag": "Concat",
             "0": {
-              "$tag": "Alter",
+              "$tag": "Concat",
               "0": {
-                "$tag": "Option",
+                "$tag": "Concat",
                 "0": {
-                  "$tag": "Repetition",
-                  "0": { "$tag": "ReStr", "0": "x" },
+                  "$tag": "Concat",
+                  "0": {
+                    "$tag": "Alter",
+                    "0": {
+                      "$tag": "Option",
+                      "0": {
+                        "$tag": "Repetition",
+                        "0": { "$tag": "ReStr", "0": "x" },
+                      },
+                    },
+                    "1": {
+                      "$tag": "Repetition",
+                      "0": { "$tag": "ReChar", "0": "\"" },
+                    },
+                  },
+                  "1": {
+                    "$tag": "CharSet",
+                    "0": [
+                      "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l",
+                      "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x",
+                      "y", "z", "_",
+                    ],
+                  },
                 },
+                "1": { "$tag": "RevCharSet", "0": ["a", "b"] },
               },
-              "1": {
-                "$tag": "Repetition",
-                "0": { "$tag": "ReChar", "0": "\"" },
-              },
+              "1": { "$tag": "EOF" },
             },
-            "1": {
-              "$tag": "CharSet",
-              "0": [
-                "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m",
-                "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",
-                "_",
-              ],
-            },
+            "1": { "$tag": "ReChar", "0": "'" },
           },
-          "1": { "$tag": "RevCharSet", "0": ["a", "b"] },
+          "1": { "$tag": "ReChar", "0": "\r" },
         },
-        "1": { "$tag": "EOF" },
+        "1": { "$tag": "ReChar", "0": "\u0000" },
       },
     ],
   )

@@ -131,12 +131,28 @@ fn skip_ws(self : ParserBuf) -> ParserBuf {
   }
 }
 
+let digit_re : Regex = CharSet(ch_range('0', '9'))
+
+let hex_digit_re : Regex = Alter(
+  digit_re,
+  Alter(CharSet(ch_range('a', 'f')), CharSet(ch_range('A', 'F'))),
+)
+
 // parser
 let char_re : Regex = Concat(
   ReChar('\''),
   Alter(
     Concat(Underscore, ReChar('\'')),
-    Concat(Concat(ReChar('\\'), Underscore), ReChar('\'')),
+    Concat(
+      Concat(
+        ReChar('\\'),
+        Alter(
+          Concat(ReChar('x'), Concat(hex_digit_re, hex_digit_re)),
+          Underscore,
+        ),
+      ),
+      ReChar('\''),
+    ),
   ),
 )
 
@@ -151,10 +167,29 @@ fn char(self : ParserBuf) -> (ParserBuf, Char)? {
         } else if str.length() == 4 {
           match str.get(2) {
             't' => '\t'
+            'r' => '\r'
             'n' => '\n'
             '\\' => '\\'
+            '\'' => '\''
             _ => abort("unsupported escaped char")
           }
+        } else if str.length() == 6 {
+          fn hex_char_to_int(c : Char) -> Int {
+            let c = c.to_int()
+            if c >= '0'.to_int() && c <= '9'.to_int() {
+              c - '0'.to_int()
+            } else if c >= 'a'.to_int() && c <= 'f'.to_int() {
+              c - 'a'.to_int() + 10
+            } else if c >= 'A'.to_int() && c <= 'F'.to_int() {
+              c - 'A'.to_int() + 10
+            } else {
+              abort("illegal hex char")
+            }
+          }
+
+          let c1 = hex_char_to_int(str.get(3))
+          let c2 = hex_char_to_int(str.get(4))
+          Char::from_int(c1 * 16 + c2)
         } else {
           abort("illegal char")
         }
