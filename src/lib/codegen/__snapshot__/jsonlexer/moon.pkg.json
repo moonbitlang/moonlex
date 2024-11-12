@@ -1,0 +1,9 @@
+{
+    "pre-build": [
+        {
+            "input": ["json_lexer_test.mbt.inc"],
+            "output": ["json_lexer_test.mbt"],
+            "command": "moonfmt $input -o $output"
+        }
+    ]
+}
