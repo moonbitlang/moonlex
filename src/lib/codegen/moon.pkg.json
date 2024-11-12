@@ -5,7 +5,7 @@
   ],
   "pre-build": [
     {
-      "input": ["runtime.mbt.inc"],
+      "input": ["runtime/runtime.mbt"],
       "output": ["runtime.mbt"],
       "command": ":embed --name runtime -i $input -o $output"
     }
