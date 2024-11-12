@@ -46,13 +46,13 @@ pub fn subbytes(self : Lexbuf, head : Int, tail : Int) -> Bytes {
 pub struct Engine {
   graph : Array[Array[(Int, Array[Array[Int]])]]
   end_nodes : Array[(Int, Array[((Int, Int), (Int, Int))])?]
-  start_tags: Array[Int]
+  start_tags : Array[Int]
   code_blocks_n : Int
 }
 
 pub fn run(self : Engine, lexbuf : Lexbuf) -> (Int, Array[Bytes]) {
   let mut state = 1
-  let mut tagState: Array[Array[Int]] = []
+  let mut tagState : Array[Array[Int]] = []
   let backtrace = Array::make(self.code_blocks_n, None)
   for tag in self.start_tags {
     while tagState.length() <= tag {
@@ -70,9 +70,8 @@ pub fn run(self : Engine, lexbuf : Lexbuf) -> (Int, Array[Bytes]) {
     }
     let next = self.graph[state][lexbuf.unsafe_peek().to_int()]
     lexbuf.step()
-    
     state = next.0
-    let new_tagState: Array[Array[Int]] = []
+    let new_tagState : Array[Array[Int]] = []
     for i = 0; i < next.1.length(); i = i + 1 {
       new_tagState.push([])
       for j = 0; j < next.1[i].length(); j = j + 1 {
@@ -84,16 +83,18 @@ pub fn run(self : Engine, lexbuf : Lexbuf) -> (Int, Array[Bytes]) {
         }
       }
     }
-
     tagState = new_tagState
   }
   for index, b in backtrace {
     match b {
       Some((p, state, tagState)) => {
         lexbuf.set_ptr(p)
-        let captures = self.end_nodes[state].unwrap().1.map(fn { ((b_t, b_r), (e_t, e_r)) => {
-          lexbuf.subbytes(tagState[b_t][b_r], tagState[e_t][e_r])
-        } })
+        let captures = self.end_nodes[state].unwrap().1.map(
+          fn {
+            ((b_t, b_r), (e_t, e_r)) =>
+              lexbuf.subbytes(tagState[b_t][b_r], tagState[e_t][e_r])
+          },
+        )
         break (index, captures)
       }
       None => ()
