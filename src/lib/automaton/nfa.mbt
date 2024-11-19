@@ -72,10 +72,10 @@ fn register_regex(
   code_block : CodeBlock,
   name2tag : (String) -> (Tag, Tag)
 ) -> Unit {
-  let final = self.register_regex_rec(node, re, name2tag)
+  let final_ = self.register_regex_rec(node, re, name2tag)
   let id = self.code_blocks.length()
   self.code_blocks.push(code_block)
-  self.end_nodes.set(final, id)
+  self.end_nodes.set(final_, id)
 }
 
 fn register_regex_rec(
@@ -84,7 +84,7 @@ fn register_regex_rec(
   re : Regex,
   name2tag : (String) -> (Tag, Tag)
 ) -> Int {
-  // return the final point of re for convience in building
+  // return the final_ point of re for convience in building
   match re {
     Underscore => {
       let next_node = self.new_node()
@@ -133,35 +133,35 @@ fn register_regex_rec(
       next_node
     }
     Option(re) => {
-      let final = self.register_regex_rec(node, re, name2tag)
-      self.add_edge(node, Eps, final)
-      final
+      let final_ = self.register_regex_rec(node, re, name2tag)
+      self.add_edge(node, Eps, final_)
+      final_
     }
     Repetition(re) => {
-      let final = self.register_regex_rec(node, re, name2tag)
-      self.add_edge(final, Eps, node)
-      final
+      let final_ = self.register_regex_rec(node, re, name2tag)
+      self.add_edge(final_, Eps, node)
+      final_
     }
     Concat(re1, re2) => {
       let mid = self.register_regex_rec(node, re1, name2tag)
       self.register_regex_rec(mid, re2, name2tag)
     }
     Alter(re1, re2) => {
-      let final1 = self.register_regex_rec(node, re1, name2tag)
-      let final2 = self.register_regex_rec(node, re2, name2tag)
-      let final = self.new_node()
-      self.add_edge(final1, Eps, final)
-      self.add_edge(final2, Eps, final)
-      final
+      let final_1 = self.register_regex_rec(node, re1, name2tag)
+      let final_2 = self.register_regex_rec(node, re2, name2tag)
+      let final_ = self.new_node()
+      self.add_edge(final_1, Eps, final_)
+      self.add_edge(final_2, Eps, final_)
+      final_
     }
     Capture(re, name) => {
       let start = self.new_node()
-      let final = self.new_node()
+      let final_ = self.new_node()
       let tail = self.register_regex_rec(start, re, name2tag)
       let (begin_tag, end_tag) = name2tag(name)
       self.add_edge(node, Eps, start, tag=Some(begin_tag))
-      self.add_edge(tail, Eps, final, tag=Some(end_tag))
-      final
+      self.add_edge(tail, Eps, final_, tag=Some(end_tag))
+      final_
     }
   }
 }
