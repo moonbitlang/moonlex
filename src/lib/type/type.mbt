@@ -32,7 +32,7 @@ fn check_legal_rec(
       } else if names.contains(name) {
         false
       } else {
-        names.insert(name)
+        names.add(name)
         re.check_legal_rec(names, ban_capture)
       }
     ReChar(_) | ReStr(_) | CharSet(_) | RevCharSet(_) | EOF | Underscore => true
