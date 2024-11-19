@@ -4,8 +4,8 @@ fn simple_rule(re_str : String) -> @type.Rule {
   { name: "", return_type: "", vars: [], patterns: [(re, "")] }
 }
 
-fn nfa2dots(nfa : @automaton.NFA, ~name : String = "nfa") -> DotGraph {
-  let dots = DotGraph::new(~name)
+fn nfa2dots(nfa : @automaton.NFA, name~ : String = "nfa") -> DotGraph {
+  let dots = DotGraph::new(name~)
   for node, edges in nfa.graph {
     for edge in edges {
       let (ch, targets) = edge
@@ -25,10 +25,10 @@ fn nfa2dots(nfa : @automaton.NFA, ~name : String = "nfa") -> DotGraph {
     }
     let end_node = nfa.end_nodes.get(node)
     if end_node.is_empty() {
-      dots.set_node(~node, nodeType=Normal)
+      dots.set_node(node~, nodeType=Normal)
     } else {
       let pattern = end_node.unwrap()
-      dots.set_node(~node, nodeType=Accepted, label="\"\{node}(\{pattern})\"")
+      dots.set_node(node~, nodeType=Accepted, label="\"\{node}(\{pattern})\"")
     }
   }
   dots
@@ -66,8 +66,8 @@ test "nfa a_star_capture mermaid" (it : @test.T) {
   it.snapshot!(filename="nfa_a_star_capture.md")
 }
 
-fn dfa2dots(dfa : @automaton.DFA, ~name : String = "dfa") -> DotGraph {
-  let dots = DotGraph::new(~name)
+fn dfa2dots(dfa : @automaton.DFA, name~ : String = "dfa") -> DotGraph {
+  let dots = DotGraph::new(name~)
   for node, edges in dfa.graph {
     for edge in edges {
       let (ch, (target, action)) = edge
@@ -82,14 +82,14 @@ fn dfa2dots(dfa : @automaton.DFA, ~name : String = "dfa") -> DotGraph {
     }
     let end_node = dfa.end_nodes.get(node)
     if end_node.is_empty() {
-      dots.set_node(~node, nodeType=Normal)
+      dots.set_node(node~, nodeType=Normal)
     } else {
       let (pattern, tags) = end_node.unwrap()
       let mut label = "\{node}(\{pattern})"
       if not(tags.is_empty()) {
         label = label + "/\{tags}"
       }
-      dots.set_node(~node, nodeType=Accepted, label="\"\{label}\"")
+      dots.set_node(node~, nodeType=Accepted, label="\"\{label}\"")
     }
   }
   dots

@@ -8,11 +8,11 @@ pub fn ParserBuf::from_string(content : String) -> ParserBuf {
   { ptr: 0, content }
 }
 
-fn step(self : ParserBuf, ~i : Int = 1) -> ParserBuf {
+fn step(self : ParserBuf, i~ : Int = 1) -> ParserBuf {
   { ptr: self.ptr + i, content: self.content }
 }
 
-fn peek(self : ParserBuf, ~i : Int = 0) -> Char? {
+fn peek(self : ParserBuf, i~ : Int = 0) -> Char? {
   if self.ptr + i >= self.content.length() {
     None
   } else {
@@ -30,7 +30,7 @@ fn get_str(self : ParserBuf, i : Int) -> String? {
 
 fn match_str(self : ParserBuf, pattern : String) -> ParserBuf? {
   for i = 0; i < pattern.length(); i = i + 1 {
-    if self.peek(~i) != Some(pattern.get(i)) {
+    if self.peek(i~) != Some(pattern.get(i)) {
       break None
     }
   } else {
@@ -312,22 +312,22 @@ fn ty(self : ParserBuf) -> (ParserBuf, String)? {
   let p = self
   let stack : Array[Char] = []
   for i = 0; ; i = i + 1 {
-    match p.peek(~i) {
+    match p.peek(i~) {
       None => break None // in lex, var_definition're unpossiable to appear on the end
       Some('[' as c) | Some('(' as c) => stack.push(c)
       Some(',') =>
         if stack.is_empty() {
-          break Some((p.step(~i), p.get_str(i).unwrap()))
+          break Some((p.step(i~), p.get_str(i).unwrap()))
         }
       Some('{') =>
         if stack.is_empty() {
-          break Some((p.step(~i), p.get_str(i).unwrap()))
+          break Some((p.step(i~), p.get_str(i).unwrap()))
         } else {
           break None
         }
       Some(')') =>
         if stack.is_empty() {
-          break Some((p.step(~i), p.get_str(i).unwrap()))
+          break Some((p.step(i~), p.get_str(i).unwrap()))
         } else if stack.pop() != Some('(') {
           break None
         }

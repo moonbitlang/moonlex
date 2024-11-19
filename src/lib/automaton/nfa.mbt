@@ -1,11 +1,11 @@
-pub enum Symbol {
+pub(all) enum Symbol {
   Eps
   EChar(Char)
 } derive(Eq, Hash, Show)
 
 typealias Tag = Int
 
-pub struct NFA {
+pub(all) struct NFA {
   graph : Array[Map[Symbol, Array[(Int, Tag?)]]] // indexed by node_id * char
   end_nodes : Map[Int, Int] // from node_id to pattern_id
   code_blocks : Array[CodeBlock] // indexed by pattern_id
@@ -59,7 +59,7 @@ fn add_edge(
   self : NFA,
   from : Int,
   s : Symbol,
-  ~tag : Tag? = None,
+  tag~ : Tag? = None,
   to : Int
 ) -> Unit {
   self.graph[from].get_or_init(s, fn() { [] }).push((to, tag))

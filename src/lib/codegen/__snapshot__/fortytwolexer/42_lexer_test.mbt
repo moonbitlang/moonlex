@@ -19,10 +19,10 @@ fn next(self : Lexbuf) -> Char? {
 }
 
 fn substring(self : Lexbuf, start : Int, end : Int) -> String {
-  self.content.substring(~start, ~end)
+  self.content.substring(start~, end~)
 }
 
-pub struct Engine {
+pub(all) struct Engine {
   graph : Array[Array[(Int, Array[Array[Int]])]]
   end_nodes : Array[(Int, Array[((Int, Int), (Int, Int))])?]
   start_tags : Array[Int]

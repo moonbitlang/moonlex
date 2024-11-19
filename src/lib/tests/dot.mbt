@@ -5,30 +5,30 @@ enum NodeType {
   Accepted
 }
 
-pub struct DotGraph {
+pub(all) struct DotGraph {
   edges : Array[Edge]
   nodes : Map[Int, (NodeType, String?)]
   name : String
 }
 
-pub fn DotGraph::new(~name : String = "graph") -> DotGraph {
+pub fn DotGraph::new(name~ : String = "graph") -> DotGraph {
   { edges: [], nodes: Map::new(), name }
 }
 
 pub fn add_edge(
   self : DotGraph,
-  ~from : Int,
-  ~to : Int,
-  ~edge_info? : String
+  from~ : Int,
+  to~ : Int,
+  edge_info? : String
 ) -> Unit {
   self.edges.push((from, to, edge_info))
 }
 
 fn set_node(
   self : DotGraph,
-  ~node : Int,
-  ~nodeType : NodeType,
-  ~label? : String
+  node~ : Int,
+  nodeType~ : NodeType,
+  label? : String
 ) -> Unit {
   self.nodes.set(node, (nodeType, label))
 }

@@ -1,7 +1,7 @@
 // paper: NFAs with Tagged Transitions, their Conversion to Deterministic 
 //        Automata and Application to Regular Expressions
 
-pub type TagAction Array[Array[Int]] derive(Show) // indexed by tag_id, rank
+pub(all) type TagAction Array[Array[Int]] derive(Show) // indexed by tag_id, rank
 // tag_i <- tag_{mat[tag][i]}, tag_{-1} = cur_pos
 
 type TagState Array[Int?] derive(Eq, Show) // indexed by tag_id
@@ -51,7 +51,7 @@ fn tagState_min(self : TagState, other : TagState) -> TagState {
   }
 }
 
-pub struct DFA {
+pub(all) struct DFA {
   graph : Array[Map[Char, (Int, TagAction)]] // indexed by node_id
   end_nodes : Map[Int, (Int, Array[((Tag, Int), (Tag, Int))])]
   // (pattern_id, [(begin_tag, rank), (end_tag, rank))])
