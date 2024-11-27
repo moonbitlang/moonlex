@@ -1,0 +1,20 @@
+{
+}
+
+rule scan_newline() -> Int {
+  parse {
+    ('\r'? '\n' | '\r') as t => {
+      $startpos(t)
+    }
+    _ => { scan_newline(lexbuf) }
+    "" => { -1 }
+  }
+}
+
+{
+test {
+  let lexbuf = Lexbuf::from_string("Hello\nworld!")
+  let pos = scan_newline(lexbuf)
+  assert_eq!(pos, 5)
+}
+}

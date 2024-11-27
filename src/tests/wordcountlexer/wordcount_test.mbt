@@ -96,9 +96,9 @@ fn count( lines :  Int, words :  Int, chars :  Int, lexbuf : Lexbuf ) ->  (Int, 
  let word: String = lexbuf.substring(_start_pos_of_word, _end_pos_of_word)
  
  
-      let new_chars = chars + word.length()
-      count(lines, words + 1, new_chars, lexbuf)
-    
+       let new_chars = chars + word.length()
+       count(lines, words + 1, new_chars, lexbuf)
+     
  }
  (2, __mbtlex_captures) => {
   count(lines, words, chars + 1, lexbuf) 
@@ -112,7 +112,7 @@ fn count( lines :  Int, words :  Int, chars :  Int, lexbuf : Lexbuf ) ->  (Int, 
 
 
 test {
-    let str = "Hi\nWelcome to MoonbitLex\n"
-    let lexbuf = Lexbuf::from_string(str)
-    inspect!(count(0, 0, 0, lexbuf), content="(2, 4, 25)")
-  }
+   let str = "Hi\nWelcome to MoonbitLex\n"
+   let lexbuf = Lexbuf::from_string(str)
+   inspect!(count(0, 0, 0, lexbuf), content="(2, 4, 25)")
+ }

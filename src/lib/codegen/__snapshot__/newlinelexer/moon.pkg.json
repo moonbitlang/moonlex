@@ -1,9 +1,0 @@
-{
-    "pre-build": [
-        {
-            "input": ["newlinelexer_test.mbt.inc"],
-            "output": ["newlinelexer_test.mbt"],
-            "command": "moonfmt $input -o $output"
-        }
-    ]
-}

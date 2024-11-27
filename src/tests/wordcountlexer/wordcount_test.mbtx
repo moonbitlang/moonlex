@@ -1,0 +1,23 @@
+{
+// translate from https://ohama.github.io/ocaml/ocamllex-tutorial/examples/wordcount/
+}
+
+rule count(lines : Int, words : Int, chars : Int) -> (Int, Int, Int) {
+  parse {
+    '\n' => { count(lines + 1, words, chars + 1, lexbuf) }
+    [^ ' ' '\t' '\n' ]+ as word => {
+      let new_chars = chars + word.length()
+      count(lines, words + 1, new_chars, lexbuf)
+    }
+    _ => { count(lines, words, chars + 1, lexbuf) }
+    "" => { (lines, words, chars) }
+  }
+}
+
+{
+test {
+  let str = "Hi\nWelcome to MoonbitLex\n"
+  let lexbuf = Lexbuf::from_string(str)
+  inspect!(count(0, 0, 0, lexbuf), content="(2, 4, 25)")
+}
+}
