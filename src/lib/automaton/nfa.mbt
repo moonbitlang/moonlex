@@ -133,14 +133,22 @@ fn register_regex_rec(
       next_node
     }
     Option(re) => {
-      let final_ = self.register_regex_rec(node, re, name2tag)
-      self.add_edge(node, Eps, final_)
-      final_
+      let new_node = self.new_node()
+      let final_ = self.register_regex_rec(new_node, re, name2tag)
+      let new_final = self.new_node()
+      self.add_edge(node, Eps, new_node)
+      self.add_edge(final_, Eps, new_final)
+      self.add_edge(node, Eps, new_final)
+      new_final
     }
     Repetition(re) => {
-      let final_ = self.register_regex_rec(node, re, name2tag)
-      self.add_edge(final_, Eps, node)
-      final_
+      let new_node = self.new_node()
+      let final_ = self.register_regex_rec(new_node, re, name2tag)
+      let new_final = self.new_node()
+      self.add_edge(node, Eps, new_node)
+      self.add_edge(final_, Eps, new_final)
+      self.add_edge(new_final, Eps, node)
+      new_final
     }
     Concat(re1, re2) => {
       let mid = self.register_regex_rec(node, re1, name2tag)
