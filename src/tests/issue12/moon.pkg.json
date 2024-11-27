@@ -1,0 +1,9 @@
+{
+    "pre-build": [
+        {
+            "command": "node boot/snapshot/moonlex.js $input -o $output",
+            "input": "issue12.mbtx",
+            "output": "issue12.mbt"
+        }
+    ]
+}
