@@ -9,8 +9,5 @@
     "moonbitlang/x/fs"
   ],
   "link": {
-    "js": {
-      "format": "iife"
-    }
   }
 }
