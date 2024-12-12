@@ -1,3 +1,4 @@
+///|
 pub fn codegen_lex(lex : Lex) -> String {
   [
     runtime,
@@ -9,6 +10,7 @@ pub fn codegen_lex(lex : Lex) -> String {
   |> fix_indent
 }
 
+///|
 fn rewrite_codeblock(
   codeblock : @type.CodeBlock,
   subst : Array[@codeblock_parser.SubstItem]
@@ -30,25 +32,80 @@ fn rewrite_codeblock(
   buf.to_string()
 }
 
+///|
 fn codegen_rule(rule : Rule) -> String {
   let dfa = @automaton.DFA::from_rule(rule)
   let engine = "__mbtlex_engine_\{rule.name}"
-  let graph : Array[Array[(Int, Array[Array[Int]])]] = dfa.graph.map(
-    fn(mp) {
-      Array::makei(
-        128,
-        fn(i) {
-          mp
-          .get(Char::from_int(i))
-          .map_or((0, []), fn(pair) { (pair.0, pair.1._) })
-        },
+  let mut next_tag_action_id = 0
+  let tag_action_dedup = @sorted_map.new()
+  fn get_tag_action_id(tag_action : @automaton.TagAction) -> Int {
+    match tag_action_dedup[tag_action._] {
+      Some(id) => id
+      None => {
+        let id = next_tag_action_id
+        tag_action_dedup[tag_action._] = id
+        next_tag_action_id += 1
+        id
+      }
+    }
+  }
+
+  let states_code = StringBuilder::new()
+  let graph_code = StringBuilder::new()
+  graph_code.write_string("[\n")
+  for state_num, trans in dfa.graph {
+    states_code.write_string(
+      $|fn \{rule.name}_state_\{state_num}(input : Input) -> (State, TagAction) {
+      $|  match input {
+      $|
+      ,
+    )
+    for tran in trans {
+      let (char, (next_state, tag_action)) = tran
+      states_code.write_string(
+        $|    \{char.to_int()} => (\{next_state}, \{rule.name}_tag_action_\{get_tag_action_id(tag_action)})
+        $|
+        ,
       )
-    },
-  )
+    }
+    if trans.size() < 128 {
+      states_code.write_string(
+        $|    _ => (0, [])
+        $|
+        ,
+      )
+    } else {
+      states_code.write_string(
+        $|    _ => panic()
+        $|
+        ,
+      )
+    }
+    states_code.write_string(
+      $|  }
+      $|}
+      $|
+      ,
+    )
+    graph_code.write_string(
+      $|  \{rule.name}_state_\{state_num},
+      $|
+      ,
+    )
+  }
+  graph_code.write_string("]\n")
   let end_nodes : Array[(Int, Array[((Int, Int), (Int, Int))])?] = Array::makei(
     dfa.node_count,
     fn(i) { dfa.end_nodes.get(i) },
   )
+  let tag_actions_code = StringBuilder::new()
+  for tag_action, id in tag_action_dedup {
+    tag_actions_code.write_string(
+      $|let \{rule.name}_tag_action_\{id} : Array[Array[Int]] = \{tag_action}
+      $|
+      ,
+    )
+  }
   let start_tags : Array[Int] = []
   for index, action in dfa.start_action._ {
     if not(action.is_empty()) {
@@ -56,7 +113,9 @@ fn codegen_rule(rule : Rule) -> String {
     }
   }
   [
-    "let \{engine}: Engine = { graph: \{graph}, end_nodes: \{end_nodes}, start_tags: \{start_tags}, code_blocks_n: \{dfa.code_blocks.length()} }",
+    tag_actions_code.to_string(),
+    states_code.to_string(),
+    "let \{engine}: Engine = { graph: \{graph_code}, end_nodes: \{end_nodes}, start_tags: \{start_tags}, code_blocks_n: \{dfa.code_blocks.length()} }",
     [
       "fn \{rule.name}(",
       [..rule.vars, { identifier: "lexbuf", ty: "Lexbuf" }].map(
@@ -116,6 +175,7 @@ fn codegen_rule(rule : Rule) -> String {
   |> String::concat(separator="\n")
 }
 
+///|
 fn fix_indent(code : String) -> String {
   // fix indent for the generated code
   // since moonbit require the toplevel definition at the head of line 

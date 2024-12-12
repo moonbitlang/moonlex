@@ -1,13 +1,16 @@
+///|
 struct Lexbuf {
   content : String
   mut pos : Int
 }
 
+///|
 pub fn Lexbuf::from_string(content : String) -> Lexbuf {
   { content, pos: 0 }
 }
 
 // NOTE: MoonBit do have unboxed Option[Char] optimization
+///|
 fn next(self : Lexbuf) -> Char? {
   if self.pos < self.content.length() {
     let ch = self.content[self.pos]
@@ -18,17 +21,29 @@ fn next(self : Lexbuf) -> Char? {
   }
 }
 
+///|
 fn substring(self : Lexbuf, start : Int, end : Int) -> String {
   self.content.substring(start~, end~)
 }
 
+///|
+typealias TagAction = Array[Array[Int]]
+
+///|
+typealias State = Int
+
+///|
+typealias Input = Int
+
+///|
 pub(all) struct Engine {
-  graph : Array[Array[(Int, Array[Array[Int]])]]
+  graph : Array[(State) -> (State, TagAction)]
   end_nodes : Array[(Int, Array[((Int, Int), (Int, Int))])?]
   start_tags : Array[Int]
   code_blocks_n : Int
 }
 
+///|
 pub fn run(self : Engine, lexbuf : Lexbuf) -> (Int, Array[(Int, Int)]) {
   let mut state = 1
   let mut tagState : Array[Array[Int]] = []
@@ -48,7 +63,7 @@ pub fn run(self : Engine, lexbuf : Lexbuf) -> (Int, Array[(Int, Int)]) {
       Some(b) => b
       None => '\x00'
     }
-    let next = self.graph[state][b.to_int()]
+    let next = self.graph[state](b.to_int())
     state = next.0
     let new_tagState : Array[Array[Int]] = []
     for i = 0; i < next.1.length(); i = i + 1 {
