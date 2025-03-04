@@ -5,7 +5,6 @@ pub(all) enum Regex {
   ReStr(String)
   ReChar(Char)
   CharSet(@char_set.T)
-  RevCharSet(@char_set.T)
   Repetition(Regex) // repeat at least once
   Option(Regex)
   Alter(Regex, Regex)
@@ -39,7 +38,7 @@ fn check_legal_rec(
         names.add(name)
         re.check_legal_rec(names, ban_capture)
       }
-    ReChar(_) | ReStr(_) | CharSet(_) | RevCharSet(_) | EOF | Underscore => true
+    ReChar(_) | ReStr(_) | CharSet(_) | EOF | Underscore => true
     Concat(re1, re2) =>
       re1.check_legal_rec(names, ban_capture) &&
       re2.check_legal_rec(names, ban_capture)
@@ -108,7 +107,7 @@ pub fn eliminate_named(self : Lex) -> Lex {
   let named_regexes = Map::from_array(self.named_regexes)
   fn eliminate_named_regex(re : Regex) -> Regex {
     match re {
-      Underscore | EOF | ReStr(_) | ReChar(_) | CharSet(_) | RevCharSet(_) => re
+      Underscore | EOF | ReStr(_) | ReChar(_) | CharSet(_)  => re
       Repetition(re) => Repetition(eliminate_named_regex(re))
       Option(re) => Option(eliminate_named_regex(re))
       Alter(re1, re2) =>

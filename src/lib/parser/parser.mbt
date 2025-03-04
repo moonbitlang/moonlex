@@ -78,14 +78,6 @@ fn match_re(self : ParserBuf, re : Regex) -> (ParserBuf, String)? {
           (self.step(), String::from_array([c]))
         })
       })
-    RevCharSet(ch_set) =>
-      self
-      .peek()
-      .bind(fn(c) {
-        @option.unless(ch_set.contains(c), fn() {
-          (self.step(), String::from_array([c]))
-        })
-      })
     Repetition(re) =>
       match self.match_re(re) {
         None => None
@@ -209,7 +201,9 @@ let string_re : Regex = Concat(
   ReChar('"'),
   Concat(
     Option(
-      Repetition(Alter(ReStr("\\\""), RevCharSet(@char_set.singleton('"')))),
+      Repetition(
+        Alter(ReStr("\\\""), CharSet(@char_set.singleton('"').complement())),
+      ),
     ),
     ReChar('"'),
   ),
@@ -248,8 +242,8 @@ fn regex_nonleftrec(self : ParserBuf) -> (ParserBuf, Regex)? {
     (Some('\''), _) => p.char().map(fn { (p, ch) => (p, ReChar(ch)) })
     (Some('"'), _) => p.string().map(fn { (p, str) => (p, ReStr(str)) })
     (Some('['), Some('^')) => {
-      let (p, arr) = p.step(i=2).charset_inside()
-      p.match_str("]").map(fn(p) { (p, RevCharSet(arr)) })
+      let (p, cset) = p.step(i=2).charset_inside()
+      p.match_str("]").map(fn(p) { (p, CharSet(cset.complement())) })
     }
     (Some('['), _) => {
       let (p, arr) = p.step().charset_inside()
@@ -373,7 +367,7 @@ fn code_block(self : ParserBuf) -> (ParserBuf, CodeBlock)? {
   let re : Regex = Option(
     Repetition(
       Alter(
-        RevCharSet(@char_set.from_string("{}'\"")),
+        CharSet(@char_set.from_string("{}'\"").complement()),
         Alter(char_re, string_re),
       ),
     ),
