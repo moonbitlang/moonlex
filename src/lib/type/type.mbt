@@ -4,8 +4,8 @@ pub(all) enum Regex {
   EOF
   ReStr(String)
   ReChar(Char)
-  CharSet(Array[Char])
-  RevCharSet(Array[Char])
+  CharSet(@char_set.T)
+  RevCharSet(@char_set.T)
   Repetition(Regex) // repeat at least once
   Option(Regex)
   Alter(Regex, Regex)

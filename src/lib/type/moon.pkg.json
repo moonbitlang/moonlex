@@ -1,1 +1,5 @@
-{}
+{
+  "import": [
+    "moonbitlang/lex/lib/util/char_set"
+  ]
+}

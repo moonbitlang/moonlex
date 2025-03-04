@@ -1,5 +1,6 @@
 {
   "import": [
-    "moonbitlang/lex/lib/type"
+    "moonbitlang/lex/lib/type",
+    "moonbitlang/lex/lib/util/char_set"
   ]
 }

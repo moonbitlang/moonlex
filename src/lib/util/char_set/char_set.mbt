@@ -20,6 +20,11 @@ pub fn range(min : Char, max : Char) -> CharSet {
 }
 
 ///|
+pub fn from_string(x : String) -> CharSet {
+  @diet.of(x.iter().to_array())
+}
+
+///|
 pub fn slice(self : CharSet, min? : Char, max? : Char) -> CharSet {
   self._.slice(min?, max?)
 }
