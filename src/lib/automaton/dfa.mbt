@@ -66,7 +66,7 @@ fn tagState_min(self : TagState, other : TagState) -> TagState {
 
 ///|
 pub(all) struct DFA {
-  graph : Array[Array[(@char_set.T, (Int, TagAction))]] // indexed by node_id
+  graph : Array[Array[(@eof_char_set.T, (Int, TagAction))]] // indexed by node_id
   end_nodes : Map[Int, (Int, Array[((Tag, Int), (Tag, Int))])]
   // (pattern_id, [(begin_tag, rank), (end_tag, rank))])
   code_blocks : Array[CodeBlock] // indexed by pattern_id
@@ -103,7 +103,7 @@ fn DFA::new_node(self : DFA) -> Int {
 fn DFA::add_edge(
   self : DFA,
   from : Int,
-  e : @char_set.T,
+  e : @eof_char_set.T,
   action : TagAction,
   to : Int
 ) -> Unit {
@@ -195,7 +195,7 @@ fn DFA::from_nfa(nfa : NFA) -> DFA {
     })
   }
 
-  fn transitions(cur_state : State) -> Array[(@char_set.T, State)] {
+  fn transitions(cur_state : State) -> Array[(@eof_char_set.T, State)] {
     let nfa_trans = cur_state
       .iter()
       .flat_map(fn(p) {
@@ -217,11 +217,11 @@ fn DFA::from_nfa(nfa : NFA) -> DFA {
 
     // Split char_sets to disjoint sets
     let mut nfa_trans = []
-    let mut all_char_set = @char_set.empty()
+    let mut all_char_set = @eof_char_set.empty
     for target, char_set in char_set_by_nfa_target {
       let targets = @immut/sorted_set.singleton(target)
       let new_nfa_trans = []
-      fn add_tran(cset : @char_set.T, targets) {
+      fn add_tran(cset : @eof_char_set.T, targets) {
         if not(cset.is_empty()) {
           new_nfa_trans.push((cset, targets))
         }
@@ -238,7 +238,7 @@ fn DFA::from_nfa(nfa : NFA) -> DFA {
     }
 
     // Compute next states
-    let next_states : Map[@char_set.T, State] = Map::new()
+    let next_states : Map[@eof_char_set.T, State] = Map::new()
     for tran in nfa_trans {
       let (cset, targets) = tran
       for target in targets {

@@ -34,7 +34,7 @@ fn rewrite_codeblock(
 
 ///|
 fn group_trans(
-  trans : Array[(@char_set.CharSet, (Int, @automaton.TagAction))]
+  trans : Array[(@eof_char_set.T, (Int, @automaton.TagAction))]
 ) -> Array[((Int, Int), (Int, Array[Array[Int]]))] {
   let char_set_by_state = {}
   let tag_action_by_state = {}
@@ -55,7 +55,20 @@ fn group_trans(
         char_set
         .iter_ranges()
         .map(fn {
-          (min, max) => ((min.to_int(), max.to_int()), (state, action._))
+          (min, max) =>
+            (
+              (
+                match min.repr() {
+                  Eof => -1
+                  Char(c) => c.to_int()
+                },
+                match max.repr() {
+                  Eof => -1
+                  Char(c) => c.to_int()
+                },
+              ),
+              (state, action._),
+            )
         })
       }
     })
@@ -122,23 +135,11 @@ fn codegen_rule(rule : Rule) -> String {
         )
       }
     }
-    let covered_char_set = trans
-      .iter()
-      .map(fn(it) { it.0 })
-      .fold(init=@char_set.empty(), fn(a, b) { a.union(b) })
-    if (@char_set.range('\x00', '\x7F') - covered_char_set).is_empty() {
-      states_code.write_string(
-        $|    _ => panic()
-        $|
-        ,
-      )
-    } else {
-      states_code.write_string(
-        $|    _ => (-1, [])
-        $|
-        ,
-      )
-    }
+    states_code.write_string(
+      $|    _ => (-1, [])
+      $|
+      ,
+    )
     states_code.write_string(
       $|  }
       $|}

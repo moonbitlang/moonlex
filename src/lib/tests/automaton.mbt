@@ -19,7 +19,10 @@ fn nfa2dots(nfa : @automaton.NFA, name~ : String = "nfa") -> DotGraph {
     for edge in node.trans {
       let (cset, target) = edge
       for ch in cset {
-        let mut edge_info = "\{ch}"
+        let mut edge_info = match ch.repr() {
+          Eof => "$"
+          Char(c) => "\{c}"
+        }
         if not(target.1.is_empty()) {
           edge_info = edge_info + "/\{target.1.unwrap()}"
         }
@@ -84,7 +87,10 @@ fn dfa2dots(dfa : @automaton.DFA, name~ : String = "dfa") -> DotGraph {
     for edge in edges {
       let (cset, (target, action)) = edge
       for ch in cset {
-        let mut edge_info = "\{ch}"
+        let mut edge_info = match ch.repr() {
+          Eof => "$"
+          Char(c) => "\{c}"
+        }
         if action._.length() != 0 {
           edge_info = edge_info + "\{action._}"
         }

@@ -61,10 +61,10 @@ pub fn run(self : LexEngine, lexbuf : Lexbuf) -> (Int, Array[(Int, Int)]) {
        _ => ()
      }
      let b = match lexbuf.next() {
-       Some(b) => b
-       None => '\x00'
+       Some(b) => b.to_int()
+       None => -1
      }
-     let next = self.graph[state](b.to_int())
+     let next = self.graph[state](b)
      state = next.0
      let new_tagState : Array[Array[Int]] = []
      for i = 0; i < next.1.length(); i = i + 1 {
@@ -134,7 +134,7 @@ let token_tag_action_3 : Array[Array[Int]] = [token_tag_action_row_1, token_tag_
 
 fn token_state_0(input : LexInput) -> (LexState, LexTagAction) {
    match input {
-     1..=8 => (2, token_tag_action_0)
+     0..=8 => (2, token_tag_action_0)
      9..=10 => (12, token_tag_action_0)
      11..=12 => (2, token_tag_action_0)
      13 => (12, token_tag_action_0)
@@ -163,7 +163,7 @@ fn token_state_0(input : LexInput) -> (LexState, LexTagAction) {
      123 => (11, token_tag_action_0)
      124 => (2, token_tag_action_0)
      125 => (10, token_tag_action_0)
-     126..=127 => (2, token_tag_action_0)
+     126..=1114111 => (2, token_tag_action_0)
      _ => (-1, [])
    }
  }
@@ -445,13 +445,14 @@ let lex_string_tag_action_2 : Array[Array[Int]] = [lex_string_tag_action_row_1, 
 
 fn lex_string_state_0(input : LexInput) -> (LexState, LexTagAction) {
    match input {
-     1..=31 => (3, lex_string_tag_action_0)
+     0..=31 => (3, lex_string_tag_action_0)
      32..=33 => (2, lex_string_tag_action_1)
      34 => (1, lex_string_tag_action_2)
      35..=91 => (2, lex_string_tag_action_1)
      92 => (4, lex_string_tag_action_3)
      93..=126 => (2, lex_string_tag_action_1)
      127 => (3, lex_string_tag_action_0)
+     128..=1114111 => (2, lex_string_tag_action_1)
      _ => (-1, [])
    }
  }

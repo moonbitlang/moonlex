@@ -1,5 +1,5 @@
 ///|
-pub trait BoundedEnum: Compare {
+pub(open) trait BoundedEnum: Compare {
   pred(Self) -> Self
   succ(Self) -> Self
   lower_bound() -> Self

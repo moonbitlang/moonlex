@@ -61,10 +61,10 @@ pub fn run(self : LexEngine, lexbuf : Lexbuf) -> (Int, Array[(Int, Int)]) {
        _ => ()
      }
      let b = match lexbuf.next() {
-       Some(b) => b
-       None => '\x00'
+       Some(b) => b.to_int()
+       None => -1
      }
-     let next = self.graph[state](b.to_int())
+     let next = self.graph[state](b)
      state = next.0
      let new_tagState : Array[Array[Int]] = []
      for i = 0; i < next.1.length(); i = i + 1 {
@@ -125,13 +125,13 @@ let scan_codeblock_rbrace_tag_action_7 : Array[Array[Int]] = [scan_codeblock_rbr
 
 fn scan_codeblock_rbrace_state_0(input : LexInput) -> (LexState, LexTagAction) {
    match input {
-     1..=35 => (1, scan_codeblock_rbrace_tag_action_0)
+     0..=35 => (1, scan_codeblock_rbrace_tag_action_0)
      36 => (2, scan_codeblock_rbrace_tag_action_1)
      37..=122 => (1, scan_codeblock_rbrace_tag_action_0)
      123 => (4, scan_codeblock_rbrace_tag_action_0)
      124 => (1, scan_codeblock_rbrace_tag_action_0)
      125 => (3, scan_codeblock_rbrace_tag_action_0)
-     126..=127 => (1, scan_codeblock_rbrace_tag_action_0)
+     126..=1114111 => (1, scan_codeblock_rbrace_tag_action_0)
      _ => (-1, [])
    }
  }

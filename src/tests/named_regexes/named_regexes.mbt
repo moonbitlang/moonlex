@@ -61,10 +61,10 @@ pub fn run(self : LexEngine, lexbuf : Lexbuf) -> (Int, Array[(Int, Int)]) {
        _ => ()
      }
      let b = match lexbuf.next() {
-       Some(b) => b
-       None => '\x00'
+       Some(b) => b.to_int()
+       None => -1
      }
-     let next = self.graph[state](b.to_int())
+     let next = self.graph[state](b)
      state = next.0
      let new_tagState : Array[Array[Int]] = []
      for i = 0; i < next.1.length(); i = i + 1 {
@@ -104,10 +104,10 @@ let lex_is_number_tag_action_0 : Array[Array[Int]] = []
 
 fn lex_is_number_state_0(input : LexInput) -> (LexState, LexTagAction) {
    match input {
-     1..=47 => (1, lex_is_number_tag_action_0)
+     0..=47 => (1, lex_is_number_tag_action_0)
      48 => (3, lex_is_number_tag_action_0)
      49..=57 => (2, lex_is_number_tag_action_0)
-     58..=127 => (1, lex_is_number_tag_action_0)
+     58..=1114111 => (1, lex_is_number_tag_action_0)
      _ => (-1, [])
    }
  }

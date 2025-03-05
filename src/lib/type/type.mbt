@@ -4,7 +4,7 @@ pub(all) enum Regex {
   EOF
   ReStr(String)
   ReChar(Char)
-  CharSet(@char_set.T)
+  CharSet(@eof_char_set.T)
   Repetition(Regex) // repeat at least once
   Option(Regex)
   Alter(Regex, Regex)

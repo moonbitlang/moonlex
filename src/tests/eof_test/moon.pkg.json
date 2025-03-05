@@ -1,10 +1,10 @@
 {
     "pre-build": [
-        // {
-        //     "command": "node $mod_dir/boot/snapshot/moonlex.js $input -o $output",
-        //     "input": "eof.mbtx",
-        //     "output": "eof.mbt"
-        // }
+        {
+            "command": "node $mod_dir/boot/snapshot/moonlex.js $input -o $output",
+            "input": "eof.mbtx",
+            "output": "eof.mbt"
+        }
     ],
     "warn-list": "-1"
 }

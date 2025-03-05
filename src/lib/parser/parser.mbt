@@ -127,12 +127,15 @@ fn skip_ws(self : ParserBuf) -> ParserBuf {
 }
 
 ///|
-let digit_re : Regex = CharSet(@char_set.range('0', '9'))
+let digit_re : Regex = CharSet(@eof_char_set.range('0', '9'))
 
 ///|
 let hex_digit_re : Regex = Alter(
   digit_re,
-  Alter(CharSet(@char_set.range('a', 'f')), CharSet(@char_set.range('A', 'F'))),
+  Alter(
+    CharSet(@eof_char_set.range('a', 'f')),
+    CharSet(@eof_char_set.range('A', 'F')),
+  ),
 )
 
 // parser
@@ -202,7 +205,7 @@ let string_re : Regex = Concat(
   Concat(
     Option(
       Repetition(
-        Alter(ReStr("\\\""), CharSet(@char_set.singleton('"').complement())),
+        Alter(ReStr("\\\""), CharSet(@eof_char_set.singleton('"').negated())),
       ),
     ),
     ReChar('"'),
@@ -217,7 +220,7 @@ fn string(self : ParserBuf) -> (ParserBuf, String)? {
 }
 
 ///|
-fn charset_inside(self : ParserBuf) -> (ParserBuf, @char_set.T) {
+fn charset_inside(self : ParserBuf) -> (ParserBuf, @eof_char_set.T) {
   let (p, arr) = self.repeat_match(fn(p) {
     let c = p.skip_ws().char()
     c.bind(fn {
@@ -225,14 +228,14 @@ fn charset_inside(self : ParserBuf) -> (ParserBuf, @char_set.T) {
         let p = p.skip_ws()
         if p.peek() == Some('-') {
           let ch_end = p.step().skip_ws().char()
-          ch_end.map(fn { (p, ch_end) => (p, @char_set.range(ch, ch_end)) })
+          ch_end.map(fn { (p, ch_end) => (p, @eof_char_set.range(ch, ch_end)) })
         } else {
-          Some((p, @char_set.singleton(ch)))
+          Some((p, @eof_char_set.singleton(ch)))
         }
       }
     })
   })
-  (p, arr.fold(init=@char_set.empty(), @char_set.union))
+  (p, arr.fold(init=@eof_char_set.empty, @eof_char_set.union))
 }
 
 ///|
@@ -243,7 +246,7 @@ fn regex_nonleftrec(self : ParserBuf) -> (ParserBuf, Regex)? {
     (Some('"'), _) => p.string().map(fn { (p, str) => (p, ReStr(str)) })
     (Some('['), Some('^')) => {
       let (p, cset) = p.step(i=2).charset_inside()
-      p.match_str("]").map(fn(p) { (p, CharSet(cset.complement())) })
+      p.match_str("]").map(fn(p) { (p, CharSet(cset.negated())) })
     }
     (Some('['), _) => {
       let (p, arr) = p.step().charset_inside()
@@ -299,14 +302,14 @@ pub fn regex(self : ParserBuf) -> (ParserBuf, Regex)? {
 ///|
 fn identifier(self : ParserBuf) -> (ParserBuf, String)? {
   let re : Regex = Concat(
-    CharSet(@char_set.range('a', 'z')),
+    CharSet(@eof_char_set.range('a', 'z')),
     Option(
       Repetition(
         CharSet(
-          @char_set.range('a', 'z') +
-          @char_set.range('A', 'Z') +
-          @char_set.range('0', '9') +
-          @char_set.singleton('_'),
+          @eof_char_set.range('a', 'z') +
+          @eof_char_set.range('A', 'Z') +
+          @eof_char_set.range('0', '9') +
+          @eof_char_set.singleton('_'),
         ),
       ),
     ),
@@ -367,7 +370,7 @@ fn code_block(self : ParserBuf) -> (ParserBuf, CodeBlock)? {
   let re : Regex = Option(
     Repetition(
       Alter(
-        CharSet(@char_set.from_string("{}'\"").complement()),
+        CharSet(@eof_char_set.of_array(['{', '}', '\'', '"']).negated()),
         Alter(char_re, string_re),
       ),
     ),

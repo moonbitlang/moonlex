@@ -61,10 +61,10 @@ pub fn run(self : LexEngine, lexbuf : Lexbuf) -> (Int, Array[(Int, Int)]) {
        _ => ()
      }
      let b = match lexbuf.next() {
-       Some(b) => b
-       None => '\x00'
+       Some(b) => b.to_int()
+       None => -1
      }
-     let next = self.graph[state](b.to_int())
+     let next = self.graph[state](b)
      state = next.0
      let new_tagState : Array[Array[Int]] = []
      for i = 0; i < next.1.length(); i = i + 1 {
@@ -110,12 +110,12 @@ let count_tag_action_0 : Array[Array[Int]] = [count_tag_action_row_1, count_tag_
 
 fn count_state_0(input : LexInput) -> (LexState, LexTagAction) {
    match input {
-     1..=8 => (3, count_tag_action_0)
+     0..=8 => (3, count_tag_action_0)
      9 => (1, count_tag_action_1)
      10 => (2, count_tag_action_1)
      11..=31 => (3, count_tag_action_0)
      32 => (1, count_tag_action_1)
-     33..=127 => (3, count_tag_action_0)
+     33..=1114111 => (3, count_tag_action_0)
      _ => (-1, [])
    }
  }
@@ -131,17 +131,17 @@ fn count_state_2(input : LexInput) -> (LexState, LexTagAction) {
  }
 fn count_state_3(input : LexInput) -> (LexState, LexTagAction) {
    match input {
-     1..=8 => (4, count_tag_action_0)
+     0..=8 => (4, count_tag_action_0)
      11..=31 => (4, count_tag_action_0)
-     33..=127 => (4, count_tag_action_0)
+     33..=1114111 => (4, count_tag_action_0)
      _ => (-1, [])
    }
  }
 fn count_state_4(input : LexInput) -> (LexState, LexTagAction) {
    match input {
-     1..=8 => (4, count_tag_action_0)
+     0..=8 => (4, count_tag_action_0)
      11..=31 => (4, count_tag_action_0)
-     33..=127 => (4, count_tag_action_0)
+     33..=1114111 => (4, count_tag_action_0)
      _ => (-1, [])
    }
  }

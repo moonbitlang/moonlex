@@ -64,10 +64,10 @@ let runtime : String =
   #|      _ => ()
   #|    }
   #|    let b = match lexbuf.next() {
-  #|      Some(b) => b
-  #|      None => '\x00'
+  #|      Some(b) => b.to_int()
+  #|      None => -1
   #|    }
-  #|    let next = self.graph[state](b.to_int())
+  #|    let next = self.graph[state](b)
   #|    state = next.0
   #|    let new_tagState : Array[Array[Int]] = []
   #|    for i = 0; i < next.1.length(); i = i + 1 {
