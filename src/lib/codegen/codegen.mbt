@@ -1,7 +1,6 @@
 ///|
 pub fn codegen_lex(lex : Lex) -> String {
   [
-    runtime,
     lex.header,
     lex.rules.map(codegen_rule) |> String::concat(separator="\n"),
     lex.trailer,
@@ -113,7 +112,7 @@ fn codegen_rule(rule : Rule) -> String {
   graph_code.write_string("[")
   for state_num, trans in dfa.graph {
     states_code.write_string(
-      $|fn \{rule.name}_state_\{state_num}(input : LexInput) -> (LexState, LexTagAction) {
+      $|fn \{rule.name}_state_\{state_num}(input : Int) -> (Int, Array[Array[Int]]) {
       $|  match input {
       $|
       ,
@@ -189,7 +188,7 @@ fn codegen_rule(rule : Rule) -> String {
     shared_tag_action_rows_code.to_string(),
     shared_tag_actions_code.to_string(),
     states_code.to_string(),
-    "let \{engine}: LexEngine = { graph: \{graph_code}, end_nodes: \{end_nodes}, start_tags: \{start_tags}, code_blocks_n: \{dfa.code_blocks.length()} }",
+    "let \{engine}: @lexengine.T = { graph: \{graph_code}, end_nodes: \{end_nodes}, start_tags: \{start_tags}, code_blocks_n: \{dfa.code_blocks.length()} }",
     ["fn \{rule.signature} {"] |> String::concat(separator=" "),
     [
       ["  match \{engine}.run(lexbuf) {"],
@@ -214,7 +213,7 @@ fn codegen_rule(rule : Rule) -> String {
               ""
             }
             $|  let (_start_pos_of_\{name}, _end_pos_of_\{name}) = __mbtlex_captures[\{i}]
-            $|  let \{name}: String = lexbuf.substring(_start_pos_of_\{name}, _end_pos_of_\{name})
+            $|  let \{name} = lexbuf.sub_lexeme(_start_pos_of_\{name}, _end_pos_of_\{name})
             $|  \{inject_ignore}
           }),
           [rewrite_codeblock(codeblock, subst)],

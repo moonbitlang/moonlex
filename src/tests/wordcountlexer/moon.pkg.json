@@ -5,5 +5,9 @@
             "input": "wordcountlexer.mbtx",
             "output": "wordcountlexer.mbt"
         }
+    ],
+    "import": [
+      "moonbitlang/lex-runtime/lexengine",
+      "moonbitlang/lex-runtime/lexbuf"
     ]
 }

@@ -6,5 +6,9 @@
             "output": "named_regexes.mbt"
         }
     ],
-    "warn-list": "-1"
+    "warn-list": "-1",
+    "import": [
+      "moonbitlang/lex-runtime/lexengine",
+      "moonbitlang/lex-runtime/lexbuf"
+    ]
 }

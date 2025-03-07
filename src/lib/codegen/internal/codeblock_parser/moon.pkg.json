@@ -5,5 +5,9 @@
             "input": "codeblock_parser.mbtx",
             "output": "codeblock_parser.mbt"
         }
+    ],
+    "import": [
+      "moonbitlang/lex-runtime/lexbuf",
+      "moonbitlang/lex-runtime/lexengine"
     ]
 }

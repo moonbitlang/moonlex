@@ -1,6 +1,6 @@
 {}
 
-rule test_func(lexbuf : Lexbuf) -> String {
+rule test_func[T](lexbuf : @lexbuf.T[T, String, Int]) -> String {
   parse {
     ((['a'] (['a' 'b']+ ['a'])?) as t2) => {
       t2

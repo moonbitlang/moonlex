@@ -33,7 +33,7 @@ test {
     "rules": [
       {
         "name": "token",
-        "signature": "token(lexbuf : Lexbuf) -> Token ",
+        "signature": "token[T](lexbuf : @lexbuf.T[T, String, Int]) -> Token ",
         "patterns": [
           [{ "$tag": "Named", "0": "ws" }, " token(lexbuf) "],
           [
@@ -332,7 +332,7 @@ test {
       },
       {
         "name": "string_inner_rquote",
-        "signature": "string_inner_rquote(buffer : StringBuilder, lexbuf : Lexbuf) -> Unit ",
+        "signature": "string_inner_rquote[T](buffer : StringBuilder, lexbuf : @lexbuf.T[T, String, Int]) -> Unit ",
         "patterns": [
           [{ "$tag": "ReChar", "0": "\"" }, " () "],
           [
@@ -443,7 +443,7 @@ test {
       },
       {
         "name": "code_rbrace",
-        "signature": "code_rbrace(buffer : StringBuilder, lexbuf : Lexbuf) -> Unit ",
+        "signature": "code_rbrace[T](buffer : StringBuilder, lexbuf : @lexbuf.T[T, String, Int]) -> Unit ",
         "patterns": [
           [
             {

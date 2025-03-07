@@ -2,7 +2,7 @@
 test {
   let json_str =
     #|{"cities":["New York","Bangalore","San Francisco"],"name":"Pankaj Kumar","age":32}
-  let lexbuf = Lexbuf::from_string(json_str)
+  let lexbuf = @lexbuf.from_string(json_str)
   let tokens = []
   while true {
     try {

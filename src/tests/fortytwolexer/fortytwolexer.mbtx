@@ -1,7 +1,7 @@
 {
 }
 
-rule scan_newline(lexbuf : Lexbuf) -> Int {
+rule scan_newline[T](lexbuf : @lexbuf.T[T, String, Int]) -> Int {
   parse {
     ('\r'? '\n' | '\r') as t => {
       $startpos(t)

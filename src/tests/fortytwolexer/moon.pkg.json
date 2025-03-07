@@ -5,5 +5,9 @@
             "input": "fortytwolexer.mbtx",
             "output": "fortytwolexer.mbt"
         }
+    ],
+    "import": [
+      "moonbitlang/lex-runtime/lexengine",
+      "moonbitlang/lex-runtime/lexbuf"
     ]
 }

@@ -11,7 +11,7 @@ pub(all) struct SubstItem {
 }
 }
 
-rule scan_codeblock_rbrace(subst : Array[SubstItem], lexbuf : Lexbuf) -> Unit {
+rule scan_codeblock_rbrace[T](subst : Array[SubstItem], lexbuf : @lexbuf.T[T, String, Int]) -> Unit {
   parse {
     "{" => {
       scan_codeblock_rbrace(subst, lexbuf)
@@ -40,7 +40,7 @@ rule scan_codeblock_rbrace(subst : Array[SubstItem], lexbuf : Lexbuf) -> Unit {
 
 {
 pub fn parse_codeblock(str : String) -> Array[SubstItem] {
-  let lexbuf = Lexbuf::from_string(str)
+  let lexbuf = @lexbuf.from_string(str)
   let subst = []
   scan_codeblock_rbrace(subst, lexbuf)
   subst

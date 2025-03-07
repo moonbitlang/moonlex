@@ -2,7 +2,7 @@
 // translate from https://ohama.github.io/ocaml/ocamllex-tutorial/examples/wordcount/
 }
 
-rule count(lines : Int, words : Int, chars : Int, lexbuf : Lexbuf) -> (Int, Int, Int) {
+rule count[T](lines : Int, words : Int, chars : Int, lexbuf : @lexbuf.T[T, String, Int]) -> (Int, Int, Int) {
   parse {
     '\n' => { count(lines + 1, words, chars + 1, lexbuf) }
     [^ ' ' '\t' '\n' ]+ as word => {

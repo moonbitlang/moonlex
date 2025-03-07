@@ -1,7 +1,9 @@
 {
   "import": [
     "moonbitlang/lex/lib/type",
-    "moonbitlang/lex/lib/util/eof_char_set"
+    "moonbitlang/lex/lib/util/eof_char_set",
+    "moonbitlang/lex-runtime/lexbuf",
+    "moonbitlang/lex-runtime/lexengine"
   ],
   "pre-build": [
     {

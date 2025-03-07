@@ -8,7 +8,7 @@ let lexer_src : String =
   #|let hex_digit = ['0'-'9' 'A'-'F' 'a'-'f'];
   #|let lc_ident = ['a'-'z' '_'] ['A'-'Z' 'a'-'z' '_' '0'-'9']*;
   #|
-  #|rule token(lexbuf : Lexbuf) -> Token {
+  #|rule token[T](lexbuf : @lexbuf.T[T, String, Int]) -> Token {
   #|  parse {
   #|    ws => { token(lexbuf) }
   #|    "//" [^ '\n']* '\n'? => { token(lexbuf) }
@@ -69,7 +69,7 @@ let lexer_src : String =
   #|  }
   #|}
   #|
-  #|rule string_inner_rquote(buffer : StringBuilder, lexbuf : Lexbuf) -> Unit {
+  #|rule string_inner_rquote[T](buffer : StringBuilder, lexbuf : @lexbuf.T[T, String, Int]) -> Unit {
   #|  parse {
   #|    '"' => { () }
   #|    "\\b" => {
@@ -120,7 +120,7 @@ let lexer_src : String =
   #|  }
   #|}
   #|
-  #|rule code_rbrace(buffer : StringBuilder, lexbuf : Lexbuf) -> Unit {
+  #|rule code_rbrace[T](buffer : StringBuilder, lexbuf : @lexbuf.T[T, String, Int]) -> Unit {
   #|  parse {
   #|    ("//" [^ '\n']+ '\n') as t => {
   #|      buffer.write_string(t)
