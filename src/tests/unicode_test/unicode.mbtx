@@ -1,0 +1,16 @@
+rule lex_unicode[T](lexbuf : @lexbuf.T[T, String, Int]) -> Int {
+  parse {
+    "我爱中国" => { 1 }
+    '𠮷' => { 2 }
+    // Hiragana
+    ['\u3041'-'\u3096' '\u3099'-'\u309F' ] => { 3 }
+    _ => { 4 }
+  }
+}
+
+{
+fn classify(str : String) -> Int {
+  let lexbuf = @lexbuf.from_string(str)
+  lex_unicode(lexbuf)
+}
+}

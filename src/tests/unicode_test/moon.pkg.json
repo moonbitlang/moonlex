@@ -1,0 +1,14 @@
+{
+    "pre-build": [
+        {
+            "command": "node $mod_dir/boot/snapshot/moonlex.js $input -o $output",
+            "input": "unicode.mbtx",
+            "output": "unicode.mbt"
+        }
+    ],
+    "warn-list": "-1",
+    "import": [
+      "moonbitlang/lex-runtime/lexbuf",
+      "moonbitlang/lex-runtime/lexengine"
+    ]
+}
