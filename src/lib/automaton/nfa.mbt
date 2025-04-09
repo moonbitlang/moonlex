@@ -12,7 +12,7 @@ pub(all) struct NFA {
   graph : Array[NFANode]
   end_nodes : Map[Int, Int] // from node_id to pattern_id
   code_blocks : Array[CodeBlock] // indexed by pattern_id
-  captures : Array[Array[(String, (Tag, Tag))]] // indexed_by pattern_id
+  captures : Array[Array[((String, @type.VarType), (Tag, Tag))]] // indexed_by pattern_id
   mut node_count : Int
   mut tag_count : Int
 } derive(Show)
@@ -59,13 +59,20 @@ pub fn NFA::from_rule(rule : Rule) -> NFA {
     let (re, code_block) = pattern
     let capture_names = re
       .get_capture_names()
-      .map(fn(name) {
+      .map(fn(var) {
         let begin_tag = nfa.tag_count
         let end_tag = nfa.tag_count + 1
         nfa.tag_count += 2
-        (name, (begin_tag, end_tag))
+        (var, (begin_tag, end_tag))
       })
-    let map = Map::from_array(capture_names)
+    let map = Map::from_iter(
+      capture_names
+      .iter()
+      .map(fn {
+        ((name, _var_type), (begin_tag, end_tag)) =>
+          (name, (begin_tag, end_tag))
+      }),
+    )
     nfa.register_regex(node, re, code_block, fn(x) { map.get(x).unwrap() })
     nfa.captures.push(capture_names)
   }

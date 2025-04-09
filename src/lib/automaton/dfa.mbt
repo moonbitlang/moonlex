@@ -70,7 +70,7 @@ pub(all) struct DFA {
   end_nodes : Map[Int, (Int, Array[((Tag, Int), (Tag, Int))])]
   // (pattern_id, [(begin_tag, rank), (end_tag, rank))])
   code_blocks : Array[CodeBlock] // indexed by pattern_id
-  captures : Array[Array[String]] // indexed by pattern_id
+  captures : Array[Array[(String, @type.VarType)]] // indexed by pattern_id
   start_action : TagAction
   mut node_count : Int
 } derive(Show)
@@ -78,7 +78,7 @@ pub(all) struct DFA {
 ///|
 fn DFA::new(
   code_blocks : Array[CodeBlock],
-  captures : Array[Array[String]],
+  captures : Array[Array[(String, @type.VarType)]],
   start_action : TagAction
 ) -> DFA {
   {

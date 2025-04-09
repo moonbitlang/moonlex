@@ -10,6 +10,12 @@ pub(all) enum Regex {
 } derive(Show, Eq, ToJson)
 
 ///|
+pub(all) enum VarType {
+  Char
+  String
+} derive(Show)
+
+///|
 pub fn check_legal(self : Regex) -> Bool {
   // there're two special rules for our regex
   // 1. Capture can't be inside of Option/Repetition/Alter
@@ -108,16 +114,19 @@ pub fn get_char_vars(re : Regex) -> @immut/sorted_set.T[String] {
 }
 
 ///|
-pub fn get_capture_names(self : Regex) -> Array[String] {
-  let result = self.get_capture_names_rec().collect()
-  result.sort()
-  for i = 1; i < result.length(); i = i + 1 {
-    if result[i - 1] == result[i] {
-      // TODO: use Result to collect error message
-      abort("duplicated capture var")
-      // duplicated var is forbidded, if you want to capture var like
-      // `(42 as a | 21 as a)`, use `(42 | 21) as a`
-    }
+pub fn get_capture_names(self : Regex) -> Array[(String, VarType)] {
+  let char_vars = get_char_vars(self)
+  let result = self
+    .get_capture_names_rec()
+    .map(fn(var) {
+      match char_vars.contains(var) {
+        true => (var, Char)
+        false => (var, String)
+      }
+    })
+    .to_array()
+  if Map::from_array(result).size() != result.length() {
+    abort("Duplicate capture names")
   }
   result
 }

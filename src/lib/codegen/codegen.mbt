@@ -206,7 +206,8 @@ fn codegen_rule(rule : Rule) -> String {
 
         [
           ["    (\{i}, __mbtlex_captures) => {"],
-          dfa.captures[i].mapi(fn(i, name) {
+          dfa.captures[i].mapi(fn(i, var) {
+            let (name, _var_type) = var
             let inject_ignore = if name_used_in_subst(name) {
               "ignore(\{name})"
             } else {
