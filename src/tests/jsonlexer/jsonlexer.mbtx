@@ -27,7 +27,7 @@ rule token[T](lexbuf : @lexbuf.T[T, Char, String, Int]) -> Token!LexError {
     ('-'? ('0' | ['1'-'9'] ['0'-'9']* ('.' ['0'-'9']+)?) (['E' 'e'] ['+' '-']? ['0'-'9']+)?) as t => { NUMBER(t) }
     '"' as t => {
       let buf = StringBuilder::new()
-      buf.write_string(t)
+      buf.write_char(t)
       lex_string!(buf, lexbuf)
       STRING(buf.to_string())
     }
@@ -40,14 +40,14 @@ rule token[T](lexbuf : @lexbuf.T[T, Char, String, Int]) -> Token!LexError {
     "true" => { TRUE }
     "false" => { FALSE }
     "null" => { NULL }
-    _ as t => { raise(Unrecognized(t)) }
+    _ as t => { raise(Unrecognized(String::make(1, t))) }
     "" => { raise(EndOfFile) }
   }
 }
 
 rule lex_string[T](buf : StringBuilder, lexbuf : @lexbuf.T[T, Char, String, Int]) -> Unit!LexError {
   parse {
-    '"' as t => { buf.write_string(t) }
+    '"' as t => { buf.write_char(t) }
     ( '\\' '"'
     | '\\' '\\'
     | '\\' '/'
@@ -61,10 +61,10 @@ rule lex_string[T](buf : StringBuilder, lexbuf : @lexbuf.T[T, Char, String, Int]
       lex_string!(buf, lexbuf)
     }
     [^ '"' '\\' '\x00'-'\x1F' '\x7f'] as t => { 
-      buf.write_string(t)
+      buf.write_char(t)
       lex_string!(buf, lexbuf)
     }
-    _ as t => { raise(Unrecognized(t)) }
+    _ as t => { raise(Unrecognized(String::make(1, t))) }
     "" => { raise(UnexpectedEndOfFile) }
   }
 }

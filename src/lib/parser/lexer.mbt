@@ -710,9 +710,9 @@ fn token[T](lexbuf : @lexbuf.T[T, Char, String, Int]) -> Token  {
     }
     (21, __mbtlex_captures) => {
   let (_start_pos_of_t, _end_pos_of_t) = __mbtlex_captures[0]
-  let t = lexbuf.sub_lexeme(_start_pos_of_t, _end_pos_of_t)
+  let t = lexbuf.unsafe_get(_start_pos_of_t)
   
- CHAR(t.char_at(0)) 
+ CHAR(t) 
     }
     (22, __mbtlex_captures) => {
  CHAR('\u{08}') 
@@ -1055,10 +1055,10 @@ fn string_inner_rquote[T](buffer : StringBuilder, lexbuf : @lexbuf.T[T, Char, St
     }
     (11, __mbtlex_captures) => {
   let (_start_pos_of_t, _end_pos_of_t) = __mbtlex_captures[0]
-  let t = lexbuf.sub_lexeme(_start_pos_of_t, _end_pos_of_t)
+  let t = lexbuf.unsafe_get(_start_pos_of_t)
   
 
-      buffer.write_string(t)
+      buffer.write_char(t)
       string_inner_rquote(buffer, lexbuf)
     
     }
@@ -1251,10 +1251,10 @@ fn code_rbrace[T](buffer : StringBuilder, lexbuf : @lexbuf.T[T, Char, String, In
     }
     (5, __mbtlex_captures) => {
   let (_start_pos_of_t, _end_pos_of_t) = __mbtlex_captures[0]
-  let t = lexbuf.sub_lexeme(_start_pos_of_t, _end_pos_of_t)
+  let t = lexbuf.unsafe_get(_start_pos_of_t)
   
 
-      buffer.write_string(t)
+      buffer.write_char(t)
       code_rbrace(buffer, lexbuf)
     
     }

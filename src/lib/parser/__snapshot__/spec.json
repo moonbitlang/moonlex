@@ -760,7 +760,7 @@
               }
             }
           },
-          " CHAR(t.char_at(0)) "
+          " CHAR(t) "
         ],
         [
           {
@@ -2093,7 +2093,7 @@
             },
             "1": "t"
           },
-          "\n      buffer.write_string(t)\n      string_inner_rquote(buffer, lexbuf)\n    "
+          "\n      buffer.write_char(t)\n      string_inner_rquote(buffer, lexbuf)\n    "
         ],
         [
           {
@@ -2351,7 +2351,7 @@
             },
             "1": "t"
           },
-          "\n      buffer.write_string(t)\n      code_rbrace(buffer, lexbuf)\n    "
+          "\n      buffer.write_char(t)\n      code_rbrace(buffer, lexbuf)\n    "
         ],
         [
           {

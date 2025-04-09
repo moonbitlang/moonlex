@@ -37,7 +37,7 @@ let lexer_src : String =
   #|    "?" => { QUESTION }
   #|    "-" => { MINUS }
   #|    "^" => { CARET }
-  #|    '\'' ([^ '\'' '\\'] as t) '\'' => { CHAR(t.char_at(0)) }
+  #|    '\'' ([^ '\'' '\\'] as t) '\'' => { CHAR(t) }
   #|    '\'' "\\b" '\'' => { CHAR('\u{08}') }
   #|    '\'' "\\t" '\'' => { CHAR('\t') }
   #|    '\'' "\\v" '\'' => { CHAR('\u{0b}') }
@@ -117,7 +117,7 @@ let lexer_src : String =
   #|      buffer.write_char(Char::from_int(code))
   #|    }
   #|    _ as t => {
-  #|      buffer.write_string(t)
+  #|      buffer.write_char(t)
   #|      string_inner_rquote(buffer, lexbuf)
   #|    }
   #|    eof => { abort("Unexpected end of input") }
@@ -146,7 +146,7 @@ let lexer_src : String =
   #|    }
   #|    "}" => { () }
   #|    _ as t => {
-  #|      buffer.write_string(t)
+  #|      buffer.write_char(t)
   #|      code_rbrace(buffer, lexbuf)
   #|    }
   #|    eof => { abort("Unexpected end of input") }

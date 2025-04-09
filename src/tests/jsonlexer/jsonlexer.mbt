@@ -285,11 +285,11 @@ fn token[T](lexbuf : @lexbuf.T[T, Char, String, Int]) -> Token!LexError  {
     }
     (2, __mbtlex_captures) => {
   let (_start_pos_of_t, _end_pos_of_t) = __mbtlex_captures[0]
-  let t = lexbuf.sub_lexeme(_start_pos_of_t, _end_pos_of_t)
+  let t = lexbuf.unsafe_get(_start_pos_of_t)
   
 
       let buf = StringBuilder::new()
-      buf.write_string(t)
+      buf.write_char(t)
       lex_string!(buf, lexbuf)
       STRING(buf.to_string())
     
@@ -323,9 +323,9 @@ fn token[T](lexbuf : @lexbuf.T[T, Char, String, Int]) -> Token!LexError  {
     }
     (12, __mbtlex_captures) => {
   let (_start_pos_of_t, _end_pos_of_t) = __mbtlex_captures[0]
-  let t = lexbuf.sub_lexeme(_start_pos_of_t, _end_pos_of_t)
+  let t = lexbuf.unsafe_get(_start_pos_of_t)
   
- raise(Unrecognized(t)) 
+ raise(Unrecognized(String::make(1, t))) 
     }
     (13, __mbtlex_captures) => {
  raise(EndOfFile) 
@@ -469,9 +469,9 @@ fn lex_string[T](buf : StringBuilder, lexbuf : @lexbuf.T[T, Char, String, Int]) 
   match __mbtlex_engine_lex_string.run(lexbuf) {
     (0, __mbtlex_captures) => {
   let (_start_pos_of_t, _end_pos_of_t) = __mbtlex_captures[0]
-  let t = lexbuf.sub_lexeme(_start_pos_of_t, _end_pos_of_t)
+  let t = lexbuf.unsafe_get(_start_pos_of_t)
   
- buf.write_string(t) 
+ buf.write_char(t) 
     }
     (1, __mbtlex_captures) => {
   let (_start_pos_of_t, _end_pos_of_t) = __mbtlex_captures[0]
@@ -484,18 +484,18 @@ fn lex_string[T](buf : StringBuilder, lexbuf : @lexbuf.T[T, Char, String, Int]) 
     }
     (2, __mbtlex_captures) => {
   let (_start_pos_of_t, _end_pos_of_t) = __mbtlex_captures[0]
-  let t = lexbuf.sub_lexeme(_start_pos_of_t, _end_pos_of_t)
+  let t = lexbuf.unsafe_get(_start_pos_of_t)
   
  
-      buf.write_string(t)
+      buf.write_char(t)
       lex_string!(buf, lexbuf)
     
     }
     (3, __mbtlex_captures) => {
   let (_start_pos_of_t, _end_pos_of_t) = __mbtlex_captures[0]
-  let t = lexbuf.sub_lexeme(_start_pos_of_t, _end_pos_of_t)
+  let t = lexbuf.unsafe_get(_start_pos_of_t)
   
- raise(Unrecognized(t)) 
+ raise(Unrecognized(String::make(1, t))) 
     }
     (4, __mbtlex_captures) => {
  raise(UnexpectedEndOfFile) 

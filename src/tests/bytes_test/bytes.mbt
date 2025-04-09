@@ -105,58 +105,58 @@ fn lex_utf8[T](lexbuf : @lexbuf.T[T, Byte, @bytes.View, Int], buf : StringBuilde
     }
     (1, __mbtlex_captures) => {
   let (_start_pos_of_t, _end_pos_of_t) = __mbtlex_captures[0]
-  let t = lexbuf.sub_lexeme(_start_pos_of_t, _end_pos_of_t)
+  let t = lexbuf.unsafe_get(_start_pos_of_t)
   
  
-      let c = Char::from_int(t[0].to_int())
+      let c = Char::from_int(t.to_int())
       buf.write_char(c)
       lex_utf8!(lexbuf, buf)
     
     }
     (2, __mbtlex_captures) => {
   let (_start_pos_of_t1, _end_pos_of_t1) = __mbtlex_captures[0]
-  let t1 = lexbuf.sub_lexeme(_start_pos_of_t1, _end_pos_of_t1)
+  let t1 = lexbuf.unsafe_get(_start_pos_of_t1)
   
   let (_start_pos_of_t2, _end_pos_of_t2) = __mbtlex_captures[1]
-  let t2 = lexbuf.sub_lexeme(_start_pos_of_t2, _end_pos_of_t2)
+  let t2 = lexbuf.unsafe_get(_start_pos_of_t2)
   
 
-      let c = Char::from_int((t1[0].to_int() & 0x1f) << 6 | (t2[0].to_int() & 0x3f))
+      let c = Char::from_int((t1.to_int() & 0x1f) << 6 | (t2.to_int() & 0x3f))
       buf.write_char(c)
       lex_utf8!(lexbuf, buf)
     
     }
     (3, __mbtlex_captures) => {
   let (_start_pos_of_t1, _end_pos_of_t1) = __mbtlex_captures[0]
-  let t1 = lexbuf.sub_lexeme(_start_pos_of_t1, _end_pos_of_t1)
+  let t1 = lexbuf.unsafe_get(_start_pos_of_t1)
   
   let (_start_pos_of_t2, _end_pos_of_t2) = __mbtlex_captures[1]
-  let t2 = lexbuf.sub_lexeme(_start_pos_of_t2, _end_pos_of_t2)
+  let t2 = lexbuf.unsafe_get(_start_pos_of_t2)
   
   let (_start_pos_of_t3, _end_pos_of_t3) = __mbtlex_captures[2]
-  let t3 = lexbuf.sub_lexeme(_start_pos_of_t3, _end_pos_of_t3)
+  let t3 = lexbuf.unsafe_get(_start_pos_of_t3)
   
 
-      let c = Char::from_int((t1[0].to_int() & 0x0f) << 12 | (t2[0].to_int() & 0x3f) << 6 | (t3[0].to_int() & 0x3f))
+      let c = Char::from_int((t1.to_int() & 0x0f) << 12 | (t2.to_int() & 0x3f) << 6 | (t3.to_int() & 0x3f))
       buf.write_char(c)
       lex_utf8!(lexbuf, buf)
     
     }
     (4, __mbtlex_captures) => {
   let (_start_pos_of_t1, _end_pos_of_t1) = __mbtlex_captures[0]
-  let t1 = lexbuf.sub_lexeme(_start_pos_of_t1, _end_pos_of_t1)
+  let t1 = lexbuf.unsafe_get(_start_pos_of_t1)
   
   let (_start_pos_of_t2, _end_pos_of_t2) = __mbtlex_captures[1]
-  let t2 = lexbuf.sub_lexeme(_start_pos_of_t2, _end_pos_of_t2)
+  let t2 = lexbuf.unsafe_get(_start_pos_of_t2)
   
   let (_start_pos_of_t3, _end_pos_of_t3) = __mbtlex_captures[2]
-  let t3 = lexbuf.sub_lexeme(_start_pos_of_t3, _end_pos_of_t3)
+  let t3 = lexbuf.unsafe_get(_start_pos_of_t3)
   
   let (_start_pos_of_t4, _end_pos_of_t4) = __mbtlex_captures[3]
-  let t4 = lexbuf.sub_lexeme(_start_pos_of_t4, _end_pos_of_t4)
+  let t4 = lexbuf.unsafe_get(_start_pos_of_t4)
   
 
-      let c = Char::from_int((t1[0].to_int() & 0x07) << 18 | (t2[0].to_int() & 0x3f) << 12 | (t3[0].to_int() & 0x3f) << 6 | (t4[0].to_int() & 0x3f))
+      let c = Char::from_int((t1.to_int() & 0x07) << 18 | (t2.to_int() & 0x3f) << 12 | (t3.to_int() & 0x3f) << 6 | (t4.to_int() & 0x3f))
       buf.write_char(c)
       lex_utf8!(lexbuf, buf)
     
