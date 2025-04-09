@@ -207,15 +207,22 @@ fn codegen_rule(rule : Rule) -> String {
         [
           ["    (\{i}, __mbtlex_captures) => {"],
           dfa.captures[i].mapi(fn(i, var) {
-            let (name, _var_type) = var
+            let (name, var_type) = var
             let inject_ignore = if name_used_in_subst(name) {
               "ignore(\{name})"
             } else {
               ""
             }
-            $|  let (_start_pos_of_\{name}, _end_pos_of_\{name}) = __mbtlex_captures[\{i}]
-            $|  let \{name} = lexbuf.sub_lexeme(_start_pos_of_\{name}, _end_pos_of_\{name})
-            $|  \{inject_ignore}
+            match var_type {
+              Char =>
+                $|  let (_start_pos_of_\{name}, _end_pos_of_\{name}) = __mbtlex_captures[\{i}]
+                $|  let \{name} = lexbuf.unsafe_get(_start_pos_of_\{name})
+                $|  \{inject_ignore}
+              String =>
+                $|  let (_start_pos_of_\{name}, _end_pos_of_\{name}) = __mbtlex_captures[\{i}]
+                $|  let \{name} = lexbuf.sub_lexeme(_start_pos_of_\{name}, _end_pos_of_\{name})
+                $|  \{inject_ignore}
+            }
           }),
           [rewrite_codeblock(codeblock, subst)],
           ["    }"],
