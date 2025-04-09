@@ -46,6 +46,68 @@ fn check_legal_rec(
 }
 
 ///|
+priv enum ReLen {
+  Zero
+  One
+  Many
+}
+
+///|
+pub fn get_char_vars(re : Regex) -> @immut/sorted_set.T[String] {
+  fn analyze(
+    re : Regex
+  ) -> (@immut/sorted_set.T[String], @immut/sorted_set.T[String], ReLen) {
+    match re {
+      Epsilon | EOF => (@immut/sorted_set.new(), @immut/sorted_set.new(), Zero)
+      Character(_) => (@immut/sorted_set.new(), @immut/sorted_set.new(), One)
+      Repetition(re) => {
+        let (char_vars, str_vars, len) = analyze(re)
+        match len {
+          Zero => (char_vars, str_vars, Zero)
+          One => (char_vars, str_vars, Many)
+          Many => (char_vars, str_vars, Many)
+        }
+      }
+      Concat(re1, re2) => {
+        let (char_vars1, str_vars1, len1) = analyze(re1)
+        let (char_vars2, str_vars2, len2) = analyze(re2)
+        (
+          char_vars1.union(char_vars2),
+          str_vars1.union(str_vars2),
+          match (len1, len2) {
+            (Zero, len) | (len, Zero) => len
+            (Many, _) | (_, Many) => Many
+            (One, One) => Many
+          },
+        )
+      }
+      Alter(re1, re2) => {
+        let (char_vars1, str_vars1, len1) = analyze(re1)
+        let (char_vars2, str_vars2, len2) = analyze(re2)
+        (
+          char_vars1.union(char_vars2),
+          str_vars1.union(str_vars2),
+          match (len1, len2) {
+            (One, One) => One
+            (Zero | Many, _) | (_, Zero | Many) => Many
+          },
+        )
+      }
+      Capture(re, var) => {
+        let (char_vars, str_vars, len) = analyze(re)
+        match len {
+          One => (char_vars.add(var), str_vars, One)
+          Zero | Many => (char_vars, str_vars.add(var), len)
+        }
+      }
+    }
+  }
+
+  let (char_vars, str_vars, _len) = analyze(re)
+  char_vars.difference(str_vars)
+}
+
+///|
 pub fn get_capture_names(self : Regex) -> Array[String] {
   let result = self.get_capture_names_rec().collect()
   result.sort()
