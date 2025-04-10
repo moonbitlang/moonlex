@@ -8,7 +8,6 @@
     ],
     "warn-list": "-1",
     "import": [
-      "moonbitlang/ulex/tests/bytes_test/lexbuf",
-      "moonbitlang/ulex/tests/bytes_test/lexengine"
+      "moonbitlang/ulex/tests/bytes_test/lexbuf"
     ]
 }

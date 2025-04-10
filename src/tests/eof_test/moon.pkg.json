@@ -6,9 +6,8 @@
             "output": "eof.mbt"
         }
     ],
-    "warn-list": "-1",
+    "warn-list": "-1-13",
     "import": [
-      "moonbitlang/ulex-runtime/lexbuf",
-      "moonbitlang/ulex-runtime/lexengine"
+      "moonbitlang/ulex-runtime/lexbuf"
     ]
 }

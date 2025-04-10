@@ -21,272 +21,814 @@ pub type! LexError {
 }
 
 
-let token_tag_action_row_0 : Array[Int] = []
-let token_tag_action_row_2 : Array[Int] = [-1]
-let token_tag_action_row_1 : Array[Int] = [0]
-
-let token_tag_action_4 : Array[Array[Int]] = [token_tag_action_row_0, token_tag_action_row_0, token_tag_action_row_0, token_tag_action_row_0, token_tag_action_row_0, token_tag_action_row_0]
-let token_tag_action_0 : Array[Array[Int]] = [token_tag_action_row_0, token_tag_action_row_0, token_tag_action_row_0, token_tag_action_row_0, token_tag_action_row_1, token_tag_action_row_2]
-let token_tag_action_1 : Array[Array[Int]] = [token_tag_action_row_0, token_tag_action_row_0, token_tag_action_row_1, token_tag_action_row_2, token_tag_action_row_1, token_tag_action_row_2]
-let token_tag_action_6 : Array[Array[Int]] = [token_tag_action_row_1, token_tag_action_row_0, token_tag_action_row_0, token_tag_action_row_0, token_tag_action_row_0, token_tag_action_row_0]
-let token_tag_action_2 : Array[Array[Int]] = [token_tag_action_row_1, token_tag_action_row_0, token_tag_action_row_0, token_tag_action_row_0, token_tag_action_row_1, token_tag_action_row_2]
-let token_tag_action_5 : Array[Array[Int]] = [token_tag_action_row_1, token_tag_action_row_2, token_tag_action_row_0, token_tag_action_row_0, token_tag_action_row_0, token_tag_action_row_0]
-let token_tag_action_3 : Array[Array[Int]] = [token_tag_action_row_1, token_tag_action_row_2, token_tag_action_row_0, token_tag_action_row_0, token_tag_action_row_1, token_tag_action_row_2]
-
-fn token_state_0(input : Int) -> (Int, Array[Array[Int]]) {
-  match input {
-    0..=8 => (13, token_tag_action_0)
-    9..=10 => (8, token_tag_action_0)
-    11..=12 => (13, token_tag_action_0)
-    13 => (8, token_tag_action_0)
-    14..=31 => (13, token_tag_action_0)
-    32 => (8, token_tag_action_0)
-    33 => (13, token_tag_action_0)
-    34 => (11, token_tag_action_1)
-    35..=43 => (13, token_tag_action_0)
-    44 => (12, token_tag_action_0)
-    45 => (3, token_tag_action_2)
-    46..=47 => (13, token_tag_action_0)
-    48 => (4, token_tag_action_3)
-    49..=57 => (15, token_tag_action_3)
-    58 => (5, token_tag_action_0)
-    59..=90 => (13, token_tag_action_0)
-    91 => (14, token_tag_action_0)
-    92 => (13, token_tag_action_0)
-    93 => (10, token_tag_action_0)
-    94..=101 => (13, token_tag_action_0)
-    102 => (9, token_tag_action_0)
-    103..=109 => (13, token_tag_action_0)
-    110 => (1, token_tag_action_0)
-    111..=115 => (13, token_tag_action_0)
-    116 => (7, token_tag_action_0)
-    117..=122 => (13, token_tag_action_0)
-    123 => (6, token_tag_action_0)
-    124 => (13, token_tag_action_0)
-    125 => (2, token_tag_action_0)
-    126..=1114111 => (13, token_tag_action_0)
-    _ => (-1, [])
-  }
-}
-fn token_state_1(input : Int) -> (Int, Array[Array[Int]]) {
-  match input {
-    117 => (16, token_tag_action_4)
-    _ => (-1, [])
-  }
-}
-fn token_state_2(input : Int) -> (Int, Array[Array[Int]]) {
-  match input {
-    _ => (-1, [])
-  }
-}
-fn token_state_3(input : Int) -> (Int, Array[Array[Int]]) {
-  match input {
-    48 => (17, token_tag_action_5)
-    49..=57 => (18, token_tag_action_5)
-    _ => (-1, [])
-  }
-}
-fn token_state_4(input : Int) -> (Int, Array[Array[Int]]) {
-  match input {
-    69 => (19, token_tag_action_6)
-    101 => (19, token_tag_action_6)
-    _ => (-1, [])
-  }
-}
-fn token_state_5(input : Int) -> (Int, Array[Array[Int]]) {
-  match input {
-    _ => (-1, [])
-  }
-}
-fn token_state_6(input : Int) -> (Int, Array[Array[Int]]) {
-  match input {
-    _ => (-1, [])
-  }
-}
-fn token_state_7(input : Int) -> (Int, Array[Array[Int]]) {
-  match input {
-    114 => (20, token_tag_action_4)
-    _ => (-1, [])
-  }
-}
-fn token_state_8(input : Int) -> (Int, Array[Array[Int]]) {
-  match input {
-    _ => (-1, [])
-  }
-}
-fn token_state_9(input : Int) -> (Int, Array[Array[Int]]) {
-  match input {
-    97 => (21, token_tag_action_4)
-    _ => (-1, [])
-  }
-}
-fn token_state_10(input : Int) -> (Int, Array[Array[Int]]) {
-  match input {
-    _ => (-1, [])
-  }
-}
-fn token_state_11(input : Int) -> (Int, Array[Array[Int]]) {
-  match input {
-    _ => (-1, [])
-  }
-}
-fn token_state_12(input : Int) -> (Int, Array[Array[Int]]) {
-  match input {
-    _ => (-1, [])
-  }
-}
-fn token_state_13(input : Int) -> (Int, Array[Array[Int]]) {
-  match input {
-    _ => (-1, [])
-  }
-}
-fn token_state_14(input : Int) -> (Int, Array[Array[Int]]) {
-  match input {
-    _ => (-1, [])
-  }
-}
-fn token_state_15(input : Int) -> (Int, Array[Array[Int]]) {
-  match input {
-    46 => (23, token_tag_action_6)
-    48..=57 => (22, token_tag_action_5)
-    69 => (19, token_tag_action_6)
-    101 => (19, token_tag_action_6)
-    _ => (-1, [])
-  }
-}
-fn token_state_16(input : Int) -> (Int, Array[Array[Int]]) {
-  match input {
-    108 => (24, token_tag_action_4)
-    _ => (-1, [])
-  }
-}
-fn token_state_17(input : Int) -> (Int, Array[Array[Int]]) {
-  match input {
-    69 => (19, token_tag_action_6)
-    101 => (19, token_tag_action_6)
-    _ => (-1, [])
-  }
-}
-fn token_state_18(input : Int) -> (Int, Array[Array[Int]]) {
-  match input {
-    46 => (23, token_tag_action_6)
-    48..=57 => (22, token_tag_action_5)
-    69 => (19, token_tag_action_6)
-    101 => (19, token_tag_action_6)
-    _ => (-1, [])
-  }
-}
-fn token_state_19(input : Int) -> (Int, Array[Array[Int]]) {
-  match input {
-    43 => (26, token_tag_action_6)
-    45 => (26, token_tag_action_6)
-    48..=57 => (25, token_tag_action_5)
-    _ => (-1, [])
-  }
-}
-fn token_state_20(input : Int) -> (Int, Array[Array[Int]]) {
-  match input {
-    117 => (27, token_tag_action_4)
-    _ => (-1, [])
-  }
-}
-fn token_state_21(input : Int) -> (Int, Array[Array[Int]]) {
-  match input {
-    108 => (28, token_tag_action_4)
-    _ => (-1, [])
-  }
-}
-fn token_state_22(input : Int) -> (Int, Array[Array[Int]]) {
-  match input {
-    46 => (23, token_tag_action_6)
-    48..=57 => (22, token_tag_action_5)
-    69 => (19, token_tag_action_6)
-    101 => (19, token_tag_action_6)
-    _ => (-1, [])
-  }
-}
-fn token_state_23(input : Int) -> (Int, Array[Array[Int]]) {
-  match input {
-    48..=57 => (29, token_tag_action_5)
-    _ => (-1, [])
-  }
-}
-fn token_state_24(input : Int) -> (Int, Array[Array[Int]]) {
-  match input {
-    108 => (30, token_tag_action_4)
-    _ => (-1, [])
-  }
-}
-fn token_state_25(input : Int) -> (Int, Array[Array[Int]]) {
-  match input {
-    48..=57 => (25, token_tag_action_5)
-    _ => (-1, [])
-  }
-}
-fn token_state_26(input : Int) -> (Int, Array[Array[Int]]) {
-  match input {
-    48..=57 => (25, token_tag_action_5)
-    _ => (-1, [])
-  }
-}
-fn token_state_27(input : Int) -> (Int, Array[Array[Int]]) {
-  match input {
-    101 => (31, token_tag_action_4)
-    _ => (-1, [])
-  }
-}
-fn token_state_28(input : Int) -> (Int, Array[Array[Int]]) {
-  match input {
-    115 => (32, token_tag_action_4)
-    _ => (-1, [])
-  }
-}
-fn token_state_29(input : Int) -> (Int, Array[Array[Int]]) {
-  match input {
-    48..=57 => (29, token_tag_action_5)
-    69 => (19, token_tag_action_6)
-    101 => (19, token_tag_action_6)
-    _ => (-1, [])
-  }
-}
-fn token_state_30(input : Int) -> (Int, Array[Array[Int]]) {
-  match input {
-    _ => (-1, [])
-  }
-}
-fn token_state_31(input : Int) -> (Int, Array[Array[Int]]) {
-  match input {
-    _ => (-1, [])
-  }
-}
-fn token_state_32(input : Int) -> (Int, Array[Array[Int]]) {
-  match input {
-    101 => (33, token_tag_action_4)
-    _ => (-1, [])
-  }
-}
-fn token_state_33(input : Int) -> (Int, Array[Array[Int]]) {
-  match input {
-    _ => (-1, [])
-  }
-}
-
-let __mbtlex_engine_token: @lexengine.T = { graph: [token_state_0, token_state_1, token_state_2, token_state_3, token_state_4, token_state_5, token_state_6, token_state_7, token_state_8, token_state_9, token_state_10, token_state_11, token_state_12, token_state_13, token_state_14, token_state_15, token_state_16, token_state_17, token_state_18, token_state_19, token_state_20, token_state_21, token_state_22, token_state_23, token_state_24, token_state_25, token_state_26, token_state_27, token_state_28, token_state_29, token_state_30, token_state_31, token_state_32, token_state_33, ], end_nodes: [Some((13, [])), Some((12, [((4, 0), (5, 0))])), Some((4, [])), Some((12, [((4, 0), (5, 0))])), Some((1, [((0, 0), (1, 0))])), Some((8, [])), Some((3, [])), Some((12, [((4, 0), (5, 0))])), Some((0, [])), Some((12, [((4, 0), (5, 0))])), Some((6, [])), Some((2, [((2, 0), (3, 0))])), Some((7, [])), Some((12, [((4, 0), (5, 0))])), Some((5, [])), Some((1, [((0, 0), (1, 0))])), None, Some((1, [((0, 0), (1, 0))])), Some((1, [((0, 0), (1, 0))])), None, None, None, Some((1, [((0, 0), (1, 0))])), None, None, Some((1, [((0, 0), (1, 0))])), None, None, None, Some((1, [((0, 0), (1, 0))])), Some((11, [])), Some((9, [])), None, Some((10, []))], start_tags: [0, 2, 4], code_blocks_n: 14 }
 fn token[T](lexbuf : @lexbuf.T[T, Char, String, Int]) -> Token!LexError  {
-  match __mbtlex_engine_token.run(lexbuf) {
-    (0, __mbtlex_captures) => {
+  let mut matched = None
+  let mut state = 0
+  let mut _tag_0 = -1
+  let mut _tag_1 = -1
+  let mut _tag_2 = -1
+  let mut _tag_3 = -1
+  let mut _tag_4 = -1
+  let mut _tag_5 = -1
+  _tag_0 = lexbuf.curr_pos()
+  _tag_2 = lexbuf.curr_pos()
+  _tag_4 = lexbuf.curr_pos()
+  while state != -1 {
+    let mut tag_action = -1
+    match state {
+      0 => {
+        if matched is Some((prev_pattern_id, _, _)) && 13 <= prev_pattern_id || matched is None {
+          matched = Some((13, lexbuf.curr_pos(), []))
+        }
+        let c = match lexbuf.next() {
+          Some(c) => c.to_int()
+          None => -1
+        }
+        match c {
+          0..=8 => {
+            state = 13
+            tag_action = 0
+          }
+          9..=10 => {
+            state = 8
+            tag_action = 0
+          }
+          11..=12 => {
+            state = 13
+            tag_action = 0
+          }
+          13 => {
+            state = 8
+            tag_action = 0
+          }
+          14..=31 => {
+            state = 13
+            tag_action = 0
+          }
+          32 => {
+            state = 8
+            tag_action = 0
+          }
+          33 => {
+            state = 13
+            tag_action = 0
+          }
+          34 => {
+            state = 11
+            tag_action = 3
+          }
+          35..=43 => {
+            state = 13
+            tag_action = 0
+          }
+          44 => {
+            state = 12
+            tag_action = 0
+          }
+          45 => {
+            state = 3
+            tag_action = 1
+          }
+          46..=47 => {
+            state = 13
+            tag_action = 0
+          }
+          48 => {
+            state = 4
+            tag_action = 2
+          }
+          49..=57 => {
+            state = 15
+            tag_action = 2
+          }
+          58 => {
+            state = 5
+            tag_action = 0
+          }
+          59..=90 => {
+            state = 13
+            tag_action = 0
+          }
+          91 => {
+            state = 14
+            tag_action = 0
+          }
+          92 => {
+            state = 13
+            tag_action = 0
+          }
+          93 => {
+            state = 10
+            tag_action = 0
+          }
+          94..=101 => {
+            state = 13
+            tag_action = 0
+          }
+          102 => {
+            state = 9
+            tag_action = 0
+          }
+          103..=109 => {
+            state = 13
+            tag_action = 0
+          }
+          110 => {
+            state = 1
+            tag_action = 0
+          }
+          111..=115 => {
+            state = 13
+            tag_action = 0
+          }
+          116 => {
+            state = 7
+            tag_action = 0
+          }
+          117..=122 => {
+            state = 13
+            tag_action = 0
+          }
+          123 => {
+            state = 6
+            tag_action = 0
+          }
+          124 => {
+            state = 13
+            tag_action = 0
+          }
+          125 => {
+            state = 2
+            tag_action = 0
+          }
+          126..=1114111 => {
+            state = 13
+            tag_action = 0
+          }
+          _ => {
+            state = -1
+            tag_action = -1
+          }
+        }
+      }
+      1 => {
+        if matched is Some((prev_pattern_id, _, _)) && 12 <= prev_pattern_id || matched is None {
+          matched = Some((12, lexbuf.curr_pos(), [(_tag_4, _tag_5)]))
+        }
+        let c = match lexbuf.next() {
+          Some(c) => c.to_int()
+          None => -1
+        }
+        match c {
+          117 => {
+            state = 16
+            tag_action = 4
+          }
+          _ => {
+            state = -1
+            tag_action = -1
+          }
+        }
+      }
+      2 => {
+        if matched is Some((prev_pattern_id, _, _)) && 4 <= prev_pattern_id || matched is None {
+          matched = Some((4, lexbuf.curr_pos(), []))
+        }
+        let c = match lexbuf.next() {
+          Some(c) => c.to_int()
+          None => -1
+        }
+        match c {
+          _ => {
+            state = -1
+            tag_action = -1
+          }
+        }
+      }
+      3 => {
+        if matched is Some((prev_pattern_id, _, _)) && 12 <= prev_pattern_id || matched is None {
+          matched = Some((12, lexbuf.curr_pos(), [(_tag_4, _tag_5)]))
+        }
+        let c = match lexbuf.next() {
+          Some(c) => c.to_int()
+          None => -1
+        }
+        match c {
+          48 => {
+            state = 17
+            tag_action = 5
+          }
+          49..=57 => {
+            state = 18
+            tag_action = 5
+          }
+          _ => {
+            state = -1
+            tag_action = -1
+          }
+        }
+      }
+      4 => {
+        if matched is Some((prev_pattern_id, _, _)) && 1 <= prev_pattern_id || matched is None {
+          matched = Some((1, lexbuf.curr_pos(), [(_tag_0, _tag_1)]))
+        }
+        let c = match lexbuf.next() {
+          Some(c) => c.to_int()
+          None => -1
+        }
+        match c {
+          69 => {
+            state = 19
+            tag_action = 6
+          }
+          101 => {
+            state = 19
+            tag_action = 6
+          }
+          _ => {
+            state = -1
+            tag_action = -1
+          }
+        }
+      }
+      5 => {
+        if matched is Some((prev_pattern_id, _, _)) && 8 <= prev_pattern_id || matched is None {
+          matched = Some((8, lexbuf.curr_pos(), []))
+        }
+        let c = match lexbuf.next() {
+          Some(c) => c.to_int()
+          None => -1
+        }
+        match c {
+          _ => {
+            state = -1
+            tag_action = -1
+          }
+        }
+      }
+      6 => {
+        if matched is Some((prev_pattern_id, _, _)) && 3 <= prev_pattern_id || matched is None {
+          matched = Some((3, lexbuf.curr_pos(), []))
+        }
+        let c = match lexbuf.next() {
+          Some(c) => c.to_int()
+          None => -1
+        }
+        match c {
+          _ => {
+            state = -1
+            tag_action = -1
+          }
+        }
+      }
+      7 => {
+        if matched is Some((prev_pattern_id, _, _)) && 12 <= prev_pattern_id || matched is None {
+          matched = Some((12, lexbuf.curr_pos(), [(_tag_4, _tag_5)]))
+        }
+        let c = match lexbuf.next() {
+          Some(c) => c.to_int()
+          None => -1
+        }
+        match c {
+          114 => {
+            state = 20
+            tag_action = 4
+          }
+          _ => {
+            state = -1
+            tag_action = -1
+          }
+        }
+      }
+      8 => {
+        if matched is Some((prev_pattern_id, _, _)) && 0 <= prev_pattern_id || matched is None {
+          matched = Some((0, lexbuf.curr_pos(), []))
+        }
+        let c = match lexbuf.next() {
+          Some(c) => c.to_int()
+          None => -1
+        }
+        match c {
+          _ => {
+            state = -1
+            tag_action = -1
+          }
+        }
+      }
+      9 => {
+        if matched is Some((prev_pattern_id, _, _)) && 12 <= prev_pattern_id || matched is None {
+          matched = Some((12, lexbuf.curr_pos(), [(_tag_4, _tag_5)]))
+        }
+        let c = match lexbuf.next() {
+          Some(c) => c.to_int()
+          None => -1
+        }
+        match c {
+          97 => {
+            state = 21
+            tag_action = 4
+          }
+          _ => {
+            state = -1
+            tag_action = -1
+          }
+        }
+      }
+      10 => {
+        if matched is Some((prev_pattern_id, _, _)) && 6 <= prev_pattern_id || matched is None {
+          matched = Some((6, lexbuf.curr_pos(), []))
+        }
+        let c = match lexbuf.next() {
+          Some(c) => c.to_int()
+          None => -1
+        }
+        match c {
+          _ => {
+            state = -1
+            tag_action = -1
+          }
+        }
+      }
+      11 => {
+        if matched is Some((prev_pattern_id, _, _)) && 2 <= prev_pattern_id || matched is None {
+          matched = Some((2, lexbuf.curr_pos(), [(_tag_2, _tag_3)]))
+        }
+        let c = match lexbuf.next() {
+          Some(c) => c.to_int()
+          None => -1
+        }
+        match c {
+          _ => {
+            state = -1
+            tag_action = -1
+          }
+        }
+      }
+      12 => {
+        if matched is Some((prev_pattern_id, _, _)) && 7 <= prev_pattern_id || matched is None {
+          matched = Some((7, lexbuf.curr_pos(), []))
+        }
+        let c = match lexbuf.next() {
+          Some(c) => c.to_int()
+          None => -1
+        }
+        match c {
+          _ => {
+            state = -1
+            tag_action = -1
+          }
+        }
+      }
+      13 => {
+        if matched is Some((prev_pattern_id, _, _)) && 12 <= prev_pattern_id || matched is None {
+          matched = Some((12, lexbuf.curr_pos(), [(_tag_4, _tag_5)]))
+        }
+        let c = match lexbuf.next() {
+          Some(c) => c.to_int()
+          None => -1
+        }
+        match c {
+          _ => {
+            state = -1
+            tag_action = -1
+          }
+        }
+      }
+      14 => {
+        if matched is Some((prev_pattern_id, _, _)) && 5 <= prev_pattern_id || matched is None {
+          matched = Some((5, lexbuf.curr_pos(), []))
+        }
+        let c = match lexbuf.next() {
+          Some(c) => c.to_int()
+          None => -1
+        }
+        match c {
+          _ => {
+            state = -1
+            tag_action = -1
+          }
+        }
+      }
+      15 => {
+        if matched is Some((prev_pattern_id, _, _)) && 1 <= prev_pattern_id || matched is None {
+          matched = Some((1, lexbuf.curr_pos(), [(_tag_0, _tag_1)]))
+        }
+        let c = match lexbuf.next() {
+          Some(c) => c.to_int()
+          None => -1
+        }
+        match c {
+          46 => {
+            state = 23
+            tag_action = 6
+          }
+          48..=57 => {
+            state = 22
+            tag_action = 5
+          }
+          69 => {
+            state = 19
+            tag_action = 6
+          }
+          101 => {
+            state = 19
+            tag_action = 6
+          }
+          _ => {
+            state = -1
+            tag_action = -1
+          }
+        }
+      }
+      16 => {
+        let c = match lexbuf.next() {
+          Some(c) => c.to_int()
+          None => -1
+        }
+        match c {
+          108 => {
+            state = 24
+            tag_action = 4
+          }
+          _ => {
+            state = -1
+            tag_action = -1
+          }
+        }
+      }
+      17 => {
+        if matched is Some((prev_pattern_id, _, _)) && 1 <= prev_pattern_id || matched is None {
+          matched = Some((1, lexbuf.curr_pos(), [(_tag_0, _tag_1)]))
+        }
+        let c = match lexbuf.next() {
+          Some(c) => c.to_int()
+          None => -1
+        }
+        match c {
+          69 => {
+            state = 19
+            tag_action = 6
+          }
+          101 => {
+            state = 19
+            tag_action = 6
+          }
+          _ => {
+            state = -1
+            tag_action = -1
+          }
+        }
+      }
+      18 => {
+        if matched is Some((prev_pattern_id, _, _)) && 1 <= prev_pattern_id || matched is None {
+          matched = Some((1, lexbuf.curr_pos(), [(_tag_0, _tag_1)]))
+        }
+        let c = match lexbuf.next() {
+          Some(c) => c.to_int()
+          None => -1
+        }
+        match c {
+          46 => {
+            state = 23
+            tag_action = 6
+          }
+          48..=57 => {
+            state = 22
+            tag_action = 5
+          }
+          69 => {
+            state = 19
+            tag_action = 6
+          }
+          101 => {
+            state = 19
+            tag_action = 6
+          }
+          _ => {
+            state = -1
+            tag_action = -1
+          }
+        }
+      }
+      19 => {
+        let c = match lexbuf.next() {
+          Some(c) => c.to_int()
+          None => -1
+        }
+        match c {
+          43 => {
+            state = 26
+            tag_action = 6
+          }
+          45 => {
+            state = 26
+            tag_action = 6
+          }
+          48..=57 => {
+            state = 25
+            tag_action = 5
+          }
+          _ => {
+            state = -1
+            tag_action = -1
+          }
+        }
+      }
+      20 => {
+        let c = match lexbuf.next() {
+          Some(c) => c.to_int()
+          None => -1
+        }
+        match c {
+          117 => {
+            state = 27
+            tag_action = 4
+          }
+          _ => {
+            state = -1
+            tag_action = -1
+          }
+        }
+      }
+      21 => {
+        let c = match lexbuf.next() {
+          Some(c) => c.to_int()
+          None => -1
+        }
+        match c {
+          108 => {
+            state = 28
+            tag_action = 4
+          }
+          _ => {
+            state = -1
+            tag_action = -1
+          }
+        }
+      }
+      22 => {
+        if matched is Some((prev_pattern_id, _, _)) && 1 <= prev_pattern_id || matched is None {
+          matched = Some((1, lexbuf.curr_pos(), [(_tag_0, _tag_1)]))
+        }
+        let c = match lexbuf.next() {
+          Some(c) => c.to_int()
+          None => -1
+        }
+        match c {
+          46 => {
+            state = 23
+            tag_action = 6
+          }
+          48..=57 => {
+            state = 22
+            tag_action = 5
+          }
+          69 => {
+            state = 19
+            tag_action = 6
+          }
+          101 => {
+            state = 19
+            tag_action = 6
+          }
+          _ => {
+            state = -1
+            tag_action = -1
+          }
+        }
+      }
+      23 => {
+        let c = match lexbuf.next() {
+          Some(c) => c.to_int()
+          None => -1
+        }
+        match c {
+          48..=57 => {
+            state = 29
+            tag_action = 5
+          }
+          _ => {
+            state = -1
+            tag_action = -1
+          }
+        }
+      }
+      24 => {
+        let c = match lexbuf.next() {
+          Some(c) => c.to_int()
+          None => -1
+        }
+        match c {
+          108 => {
+            state = 30
+            tag_action = 4
+          }
+          _ => {
+            state = -1
+            tag_action = -1
+          }
+        }
+      }
+      25 => {
+        if matched is Some((prev_pattern_id, _, _)) && 1 <= prev_pattern_id || matched is None {
+          matched = Some((1, lexbuf.curr_pos(), [(_tag_0, _tag_1)]))
+        }
+        let c = match lexbuf.next() {
+          Some(c) => c.to_int()
+          None => -1
+        }
+        match c {
+          48..=57 => {
+            state = 25
+            tag_action = 5
+          }
+          _ => {
+            state = -1
+            tag_action = -1
+          }
+        }
+      }
+      26 => {
+        let c = match lexbuf.next() {
+          Some(c) => c.to_int()
+          None => -1
+        }
+        match c {
+          48..=57 => {
+            state = 25
+            tag_action = 5
+          }
+          _ => {
+            state = -1
+            tag_action = -1
+          }
+        }
+      }
+      27 => {
+        let c = match lexbuf.next() {
+          Some(c) => c.to_int()
+          None => -1
+        }
+        match c {
+          101 => {
+            state = 31
+            tag_action = 4
+          }
+          _ => {
+            state = -1
+            tag_action = -1
+          }
+        }
+      }
+      28 => {
+        let c = match lexbuf.next() {
+          Some(c) => c.to_int()
+          None => -1
+        }
+        match c {
+          115 => {
+            state = 32
+            tag_action = 4
+          }
+          _ => {
+            state = -1
+            tag_action = -1
+          }
+        }
+      }
+      29 => {
+        if matched is Some((prev_pattern_id, _, _)) && 1 <= prev_pattern_id || matched is None {
+          matched = Some((1, lexbuf.curr_pos(), [(_tag_0, _tag_1)]))
+        }
+        let c = match lexbuf.next() {
+          Some(c) => c.to_int()
+          None => -1
+        }
+        match c {
+          48..=57 => {
+            state = 29
+            tag_action = 5
+          }
+          69 => {
+            state = 19
+            tag_action = 6
+          }
+          101 => {
+            state = 19
+            tag_action = 6
+          }
+          _ => {
+            state = -1
+            tag_action = -1
+          }
+        }
+      }
+      30 => {
+        if matched is Some((prev_pattern_id, _, _)) && 11 <= prev_pattern_id || matched is None {
+          matched = Some((11, lexbuf.curr_pos(), []))
+        }
+        let c = match lexbuf.next() {
+          Some(c) => c.to_int()
+          None => -1
+        }
+        match c {
+          _ => {
+            state = -1
+            tag_action = -1
+          }
+        }
+      }
+      31 => {
+        if matched is Some((prev_pattern_id, _, _)) && 9 <= prev_pattern_id || matched is None {
+          matched = Some((9, lexbuf.curr_pos(), []))
+        }
+        let c = match lexbuf.next() {
+          Some(c) => c.to_int()
+          None => -1
+        }
+        match c {
+          _ => {
+            state = -1
+            tag_action = -1
+          }
+        }
+      }
+      32 => {
+        let c = match lexbuf.next() {
+          Some(c) => c.to_int()
+          None => -1
+        }
+        match c {
+          101 => {
+            state = 33
+            tag_action = 4
+          }
+          _ => {
+            state = -1
+            tag_action = -1
+          }
+        }
+      }
+      33 => {
+        if matched is Some((prev_pattern_id, _, _)) && 10 <= prev_pattern_id || matched is None {
+          matched = Some((10, lexbuf.curr_pos(), []))
+        }
+        let c = match lexbuf.next() {
+          Some(c) => c.to_int()
+          None => -1
+        }
+        match c {
+          _ => {
+            state = -1
+            tag_action = -1
+          }
+        }
+      }
+      _ => panic()
+    }
+    match tag_action {
+      0 => {
+        _tag_5 = lexbuf.curr_pos()
+      }
+      1 => {
+        _tag_5 = lexbuf.curr_pos()
+      }
+      2 => {
+        _tag_1 = lexbuf.curr_pos()
+        _tag_5 = lexbuf.curr_pos()
+      }
+      3 => {
+        _tag_3 = lexbuf.curr_pos()
+        _tag_5 = lexbuf.curr_pos()
+      }
+      5 => {
+        _tag_1 = lexbuf.curr_pos()
+      }
+      6 => {
+        ()
+      }
+      _ => ()
+    }
+  }
+
+  guard matched is Some((pattern_id, marked_pos, _captures)) else {
+    // No pattern matched
+    panic()
+  }
+
+  lexbuf.reset(marked_pos)
+  match pattern_id {
+    0 => {
  WHITESPACE 
     }
-    (1, __mbtlex_captures) => {
-  let (_start_pos_of_t, _end_pos_of_t) = __mbtlex_captures[0]
-  let t = lexbuf.sub_lexeme(_start_pos_of_t, _end_pos_of_t)
-  
+    1 => {
+      let (_start_pos_of_t, _end_pos_of_t) = _captures[0]
+      let t = lexbuf.sub_lexeme(_start_pos_of_t, _end_pos_of_t)
  NUMBER(t) 
     }
-    (2, __mbtlex_captures) => {
-  let (_start_pos_of_t, _end_pos_of_t) = __mbtlex_captures[0]
-  let t = lexbuf.unsafe_get(_start_pos_of_t)
-  
+    2 => {
+      let _start_pos_of_t = _captures[0].0
+      let t = lexbuf.unsafe_get(_start_pos_of_t)
 
       let buf = StringBuilder::new()
       buf.write_char(t)
@@ -294,214 +836,505 @@ fn token[T](lexbuf : @lexbuf.T[T, Char, String, Int]) -> Token!LexError  {
       STRING(buf.to_string())
     
     }
-    (3, __mbtlex_captures) => {
+    3 => {
  LBRACE 
     }
-    (4, __mbtlex_captures) => {
+    4 => {
  RBRACE 
     }
-    (5, __mbtlex_captures) => {
+    5 => {
  LBRACKET 
     }
-    (6, __mbtlex_captures) => {
+    6 => {
  RBRACKET 
     }
-    (7, __mbtlex_captures) => {
+    7 => {
  COMMA 
     }
-    (8, __mbtlex_captures) => {
+    8 => {
  COLON 
     }
-    (9, __mbtlex_captures) => {
+    9 => {
  TRUE 
     }
-    (10, __mbtlex_captures) => {
+    10 => {
  FALSE 
     }
-    (11, __mbtlex_captures) => {
+    11 => {
  NULL 
     }
-    (12, __mbtlex_captures) => {
-  let (_start_pos_of_t, _end_pos_of_t) = __mbtlex_captures[0]
-  let t = lexbuf.unsafe_get(_start_pos_of_t)
-  
+    12 => {
+      let _start_pos_of_t = _captures[0].0
+      let t = lexbuf.unsafe_get(_start_pos_of_t)
  raise(Unrecognized(String::make(1, t))) 
     }
-    (13, __mbtlex_captures) => {
+    13 => {
  raise(EndOfFile) 
     }
-    _ => abort("lex: fail to match")
-  }
-}
-let lex_string_tag_action_row_0 : Array[Int] = []
-let lex_string_tag_action_row_2 : Array[Int] = [-1]
-let lex_string_tag_action_row_1 : Array[Int] = [0]
-
-let lex_string_tag_action_0 : Array[Array[Int]] = [lex_string_tag_action_row_0, lex_string_tag_action_row_0, lex_string_tag_action_row_0, lex_string_tag_action_row_0, lex_string_tag_action_row_0, lex_string_tag_action_row_0, lex_string_tag_action_row_1, lex_string_tag_action_row_2]
-let lex_string_tag_action_1 : Array[Array[Int]] = [lex_string_tag_action_row_0, lex_string_tag_action_row_0, lex_string_tag_action_row_0, lex_string_tag_action_row_0, lex_string_tag_action_row_1, lex_string_tag_action_row_2, lex_string_tag_action_row_1, lex_string_tag_action_row_2]
-let lex_string_tag_action_5 : Array[Array[Int]] = [lex_string_tag_action_row_0, lex_string_tag_action_row_0, lex_string_tag_action_row_1, lex_string_tag_action_row_0, lex_string_tag_action_row_0, lex_string_tag_action_row_0, lex_string_tag_action_row_0, lex_string_tag_action_row_0]
-let lex_string_tag_action_3 : Array[Array[Int]] = [lex_string_tag_action_row_0, lex_string_tag_action_row_0, lex_string_tag_action_row_1, lex_string_tag_action_row_0, lex_string_tag_action_row_0, lex_string_tag_action_row_0, lex_string_tag_action_row_1, lex_string_tag_action_row_2]
-let lex_string_tag_action_4 : Array[Array[Int]] = [lex_string_tag_action_row_0, lex_string_tag_action_row_0, lex_string_tag_action_row_1, lex_string_tag_action_row_2, lex_string_tag_action_row_0, lex_string_tag_action_row_0, lex_string_tag_action_row_0, lex_string_tag_action_row_0]
-let lex_string_tag_action_2 : Array[Array[Int]] = [lex_string_tag_action_row_1, lex_string_tag_action_row_2, lex_string_tag_action_row_0, lex_string_tag_action_row_0, lex_string_tag_action_row_0, lex_string_tag_action_row_0, lex_string_tag_action_row_1, lex_string_tag_action_row_2]
-
-fn lex_string_state_0(input : Int) -> (Int, Array[Array[Int]]) {
-  match input {
-    0..=31 => (2, lex_string_tag_action_0)
-    32..=33 => (1, lex_string_tag_action_1)
-    34 => (4, lex_string_tag_action_2)
-    35..=91 => (1, lex_string_tag_action_1)
-    92 => (3, lex_string_tag_action_3)
-    93..=126 => (1, lex_string_tag_action_1)
-    127 => (2, lex_string_tag_action_0)
-    128..=1114111 => (1, lex_string_tag_action_1)
-    _ => (-1, [])
-  }
-}
-fn lex_string_state_1(input : Int) -> (Int, Array[Array[Int]]) {
-  match input {
-    _ => (-1, [])
-  }
-}
-fn lex_string_state_2(input : Int) -> (Int, Array[Array[Int]]) {
-  match input {
-    _ => (-1, [])
-  }
-}
-fn lex_string_state_3(input : Int) -> (Int, Array[Array[Int]]) {
-  match input {
-    34 => (11, lex_string_tag_action_4)
-    47 => (12, lex_string_tag_action_4)
-    92 => (8, lex_string_tag_action_4)
-    98 => (13, lex_string_tag_action_4)
-    102 => (9, lex_string_tag_action_4)
-    110 => (10, lex_string_tag_action_4)
-    114 => (5, lex_string_tag_action_4)
-    116 => (6, lex_string_tag_action_4)
-    117 => (7, lex_string_tag_action_5)
-    _ => (-1, [])
-  }
-}
-fn lex_string_state_4(input : Int) -> (Int, Array[Array[Int]]) {
-  match input {
-    _ => (-1, [])
-  }
-}
-fn lex_string_state_5(input : Int) -> (Int, Array[Array[Int]]) {
-  match input {
-    _ => (-1, [])
-  }
-}
-fn lex_string_state_6(input : Int) -> (Int, Array[Array[Int]]) {
-  match input {
-    _ => (-1, [])
-  }
-}
-fn lex_string_state_7(input : Int) -> (Int, Array[Array[Int]]) {
-  match input {
-    48..=57 => (14, lex_string_tag_action_5)
-    65..=70 => (14, lex_string_tag_action_5)
-    97..=102 => (14, lex_string_tag_action_5)
-    _ => (-1, [])
-  }
-}
-fn lex_string_state_8(input : Int) -> (Int, Array[Array[Int]]) {
-  match input {
-    _ => (-1, [])
-  }
-}
-fn lex_string_state_9(input : Int) -> (Int, Array[Array[Int]]) {
-  match input {
-    _ => (-1, [])
-  }
-}
-fn lex_string_state_10(input : Int) -> (Int, Array[Array[Int]]) {
-  match input {
-    _ => (-1, [])
-  }
-}
-fn lex_string_state_11(input : Int) -> (Int, Array[Array[Int]]) {
-  match input {
-    _ => (-1, [])
-  }
-}
-fn lex_string_state_12(input : Int) -> (Int, Array[Array[Int]]) {
-  match input {
-    _ => (-1, [])
-  }
-}
-fn lex_string_state_13(input : Int) -> (Int, Array[Array[Int]]) {
-  match input {
-    _ => (-1, [])
-  }
-}
-fn lex_string_state_14(input : Int) -> (Int, Array[Array[Int]]) {
-  match input {
-    48..=57 => (15, lex_string_tag_action_5)
-    65..=70 => (15, lex_string_tag_action_5)
-    97..=102 => (15, lex_string_tag_action_5)
-    _ => (-1, [])
-  }
-}
-fn lex_string_state_15(input : Int) -> (Int, Array[Array[Int]]) {
-  match input {
-    48..=57 => (16, lex_string_tag_action_5)
-    65..=70 => (16, lex_string_tag_action_5)
-    97..=102 => (16, lex_string_tag_action_5)
-    _ => (-1, [])
-  }
-}
-fn lex_string_state_16(input : Int) -> (Int, Array[Array[Int]]) {
-  match input {
-    48..=57 => (17, lex_string_tag_action_4)
-    65..=70 => (17, lex_string_tag_action_4)
-    97..=102 => (17, lex_string_tag_action_4)
-    _ => (-1, [])
-  }
-}
-fn lex_string_state_17(input : Int) -> (Int, Array[Array[Int]]) {
-  match input {
-    _ => (-1, [])
+    _ => panic()
   }
 }
 
-let __mbtlex_engine_lex_string: @lexengine.T = { graph: [lex_string_state_0, lex_string_state_1, lex_string_state_2, lex_string_state_3, lex_string_state_4, lex_string_state_5, lex_string_state_6, lex_string_state_7, lex_string_state_8, lex_string_state_9, lex_string_state_10, lex_string_state_11, lex_string_state_12, lex_string_state_13, lex_string_state_14, lex_string_state_15, lex_string_state_16, lex_string_state_17, ], end_nodes: [Some((4, [])), Some((2, [((4, 0), (5, 0))])), Some((3, [((6, 0), (7, 0))])), Some((3, [((6, 0), (7, 0))])), Some((0, [((0, 0), (1, 0))])), Some((1, [((2, 0), (3, 0))])), Some((1, [((2, 0), (3, 0))])), None, Some((1, [((2, 0), (3, 0))])), Some((1, [((2, 0), (3, 0))])), Some((1, [((2, 0), (3, 0))])), Some((1, [((2, 0), (3, 0))])), Some((1, [((2, 0), (3, 0))])), Some((1, [((2, 0), (3, 0))])), None, None, None, Some((1, [((2, 0), (3, 0))]))], start_tags: [0, 2, 4, 6], code_blocks_n: 5 }
+
 fn lex_string[T](buf : StringBuilder, lexbuf : @lexbuf.T[T, Char, String, Int]) -> Unit!LexError  {
-  match __mbtlex_engine_lex_string.run(lexbuf) {
-    (0, __mbtlex_captures) => {
-  let (_start_pos_of_t, _end_pos_of_t) = __mbtlex_captures[0]
-  let t = lexbuf.unsafe_get(_start_pos_of_t)
-  
+  let mut matched = None
+  let mut state = 0
+  let mut _tag_0 = -1
+  let mut _tag_1 = -1
+  let mut _tag_2 = -1
+  let mut _tag_3 = -1
+  let mut _tag_4 = -1
+  let mut _tag_5 = -1
+  let mut _tag_6 = -1
+  let mut _tag_7 = -1
+  _tag_0 = lexbuf.curr_pos()
+  _tag_2 = lexbuf.curr_pos()
+  _tag_4 = lexbuf.curr_pos()
+  _tag_6 = lexbuf.curr_pos()
+  while state != -1 {
+    let mut tag_action = -1
+    match state {
+      0 => {
+        if matched is Some((prev_pattern_id, _, _)) && 4 <= prev_pattern_id || matched is None {
+          matched = Some((4, lexbuf.curr_pos(), []))
+        }
+        let c = match lexbuf.next() {
+          Some(c) => c.to_int()
+          None => -1
+        }
+        match c {
+          0..=31 => {
+            state = 2
+            tag_action = 1
+          }
+          32..=33 => {
+            state = 1
+            tag_action = 0
+          }
+          34 => {
+            state = 4
+            tag_action = 3
+          }
+          35..=91 => {
+            state = 1
+            tag_action = 0
+          }
+          92 => {
+            state = 3
+            tag_action = 2
+          }
+          93..=126 => {
+            state = 1
+            tag_action = 0
+          }
+          127 => {
+            state = 2
+            tag_action = 1
+          }
+          128..=1114111 => {
+            state = 1
+            tag_action = 0
+          }
+          _ => {
+            state = -1
+            tag_action = -1
+          }
+        }
+      }
+      1 => {
+        if matched is Some((prev_pattern_id, _, _)) && 2 <= prev_pattern_id || matched is None {
+          matched = Some((2, lexbuf.curr_pos(), [(_tag_4, _tag_5)]))
+        }
+        let c = match lexbuf.next() {
+          Some(c) => c.to_int()
+          None => -1
+        }
+        match c {
+          _ => {
+            state = -1
+            tag_action = -1
+          }
+        }
+      }
+      2 => {
+        if matched is Some((prev_pattern_id, _, _)) && 3 <= prev_pattern_id || matched is None {
+          matched = Some((3, lexbuf.curr_pos(), [(_tag_6, _tag_7)]))
+        }
+        let c = match lexbuf.next() {
+          Some(c) => c.to_int()
+          None => -1
+        }
+        match c {
+          _ => {
+            state = -1
+            tag_action = -1
+          }
+        }
+      }
+      3 => {
+        if matched is Some((prev_pattern_id, _, _)) && 3 <= prev_pattern_id || matched is None {
+          matched = Some((3, lexbuf.curr_pos(), [(_tag_6, _tag_7)]))
+        }
+        let c = match lexbuf.next() {
+          Some(c) => c.to_int()
+          None => -1
+        }
+        match c {
+          34 => {
+            state = 11
+            tag_action = 4
+          }
+          47 => {
+            state = 12
+            tag_action = 4
+          }
+          92 => {
+            state = 8
+            tag_action = 4
+          }
+          98 => {
+            state = 13
+            tag_action = 4
+          }
+          102 => {
+            state = 9
+            tag_action = 4
+          }
+          110 => {
+            state = 10
+            tag_action = 4
+          }
+          114 => {
+            state = 5
+            tag_action = 4
+          }
+          116 => {
+            state = 6
+            tag_action = 4
+          }
+          117 => {
+            state = 7
+            tag_action = 5
+          }
+          _ => {
+            state = -1
+            tag_action = -1
+          }
+        }
+      }
+      4 => {
+        if matched is Some((prev_pattern_id, _, _)) && 0 <= prev_pattern_id || matched is None {
+          matched = Some((0, lexbuf.curr_pos(), [(_tag_0, _tag_1)]))
+        }
+        let c = match lexbuf.next() {
+          Some(c) => c.to_int()
+          None => -1
+        }
+        match c {
+          _ => {
+            state = -1
+            tag_action = -1
+          }
+        }
+      }
+      5 => {
+        if matched is Some((prev_pattern_id, _, _)) && 1 <= prev_pattern_id || matched is None {
+          matched = Some((1, lexbuf.curr_pos(), [(_tag_2, _tag_3)]))
+        }
+        let c = match lexbuf.next() {
+          Some(c) => c.to_int()
+          None => -1
+        }
+        match c {
+          _ => {
+            state = -1
+            tag_action = -1
+          }
+        }
+      }
+      6 => {
+        if matched is Some((prev_pattern_id, _, _)) && 1 <= prev_pattern_id || matched is None {
+          matched = Some((1, lexbuf.curr_pos(), [(_tag_2, _tag_3)]))
+        }
+        let c = match lexbuf.next() {
+          Some(c) => c.to_int()
+          None => -1
+        }
+        match c {
+          _ => {
+            state = -1
+            tag_action = -1
+          }
+        }
+      }
+      7 => {
+        let c = match lexbuf.next() {
+          Some(c) => c.to_int()
+          None => -1
+        }
+        match c {
+          48..=57 => {
+            state = 14
+            tag_action = 5
+          }
+          65..=70 => {
+            state = 14
+            tag_action = 5
+          }
+          97..=102 => {
+            state = 14
+            tag_action = 5
+          }
+          _ => {
+            state = -1
+            tag_action = -1
+          }
+        }
+      }
+      8 => {
+        if matched is Some((prev_pattern_id, _, _)) && 1 <= prev_pattern_id || matched is None {
+          matched = Some((1, lexbuf.curr_pos(), [(_tag_2, _tag_3)]))
+        }
+        let c = match lexbuf.next() {
+          Some(c) => c.to_int()
+          None => -1
+        }
+        match c {
+          _ => {
+            state = -1
+            tag_action = -1
+          }
+        }
+      }
+      9 => {
+        if matched is Some((prev_pattern_id, _, _)) && 1 <= prev_pattern_id || matched is None {
+          matched = Some((1, lexbuf.curr_pos(), [(_tag_2, _tag_3)]))
+        }
+        let c = match lexbuf.next() {
+          Some(c) => c.to_int()
+          None => -1
+        }
+        match c {
+          _ => {
+            state = -1
+            tag_action = -1
+          }
+        }
+      }
+      10 => {
+        if matched is Some((prev_pattern_id, _, _)) && 1 <= prev_pattern_id || matched is None {
+          matched = Some((1, lexbuf.curr_pos(), [(_tag_2, _tag_3)]))
+        }
+        let c = match lexbuf.next() {
+          Some(c) => c.to_int()
+          None => -1
+        }
+        match c {
+          _ => {
+            state = -1
+            tag_action = -1
+          }
+        }
+      }
+      11 => {
+        if matched is Some((prev_pattern_id, _, _)) && 1 <= prev_pattern_id || matched is None {
+          matched = Some((1, lexbuf.curr_pos(), [(_tag_2, _tag_3)]))
+        }
+        let c = match lexbuf.next() {
+          Some(c) => c.to_int()
+          None => -1
+        }
+        match c {
+          _ => {
+            state = -1
+            tag_action = -1
+          }
+        }
+      }
+      12 => {
+        if matched is Some((prev_pattern_id, _, _)) && 1 <= prev_pattern_id || matched is None {
+          matched = Some((1, lexbuf.curr_pos(), [(_tag_2, _tag_3)]))
+        }
+        let c = match lexbuf.next() {
+          Some(c) => c.to_int()
+          None => -1
+        }
+        match c {
+          _ => {
+            state = -1
+            tag_action = -1
+          }
+        }
+      }
+      13 => {
+        if matched is Some((prev_pattern_id, _, _)) && 1 <= prev_pattern_id || matched is None {
+          matched = Some((1, lexbuf.curr_pos(), [(_tag_2, _tag_3)]))
+        }
+        let c = match lexbuf.next() {
+          Some(c) => c.to_int()
+          None => -1
+        }
+        match c {
+          _ => {
+            state = -1
+            tag_action = -1
+          }
+        }
+      }
+      14 => {
+        let c = match lexbuf.next() {
+          Some(c) => c.to_int()
+          None => -1
+        }
+        match c {
+          48..=57 => {
+            state = 15
+            tag_action = 5
+          }
+          65..=70 => {
+            state = 15
+            tag_action = 5
+          }
+          97..=102 => {
+            state = 15
+            tag_action = 5
+          }
+          _ => {
+            state = -1
+            tag_action = -1
+          }
+        }
+      }
+      15 => {
+        let c = match lexbuf.next() {
+          Some(c) => c.to_int()
+          None => -1
+        }
+        match c {
+          48..=57 => {
+            state = 16
+            tag_action = 5
+          }
+          65..=70 => {
+            state = 16
+            tag_action = 5
+          }
+          97..=102 => {
+            state = 16
+            tag_action = 5
+          }
+          _ => {
+            state = -1
+            tag_action = -1
+          }
+        }
+      }
+      16 => {
+        let c = match lexbuf.next() {
+          Some(c) => c.to_int()
+          None => -1
+        }
+        match c {
+          48..=57 => {
+            state = 17
+            tag_action = 4
+          }
+          65..=70 => {
+            state = 17
+            tag_action = 4
+          }
+          97..=102 => {
+            state = 17
+            tag_action = 4
+          }
+          _ => {
+            state = -1
+            tag_action = -1
+          }
+        }
+      }
+      17 => {
+        if matched is Some((prev_pattern_id, _, _)) && 1 <= prev_pattern_id || matched is None {
+          matched = Some((1, lexbuf.curr_pos(), [(_tag_2, _tag_3)]))
+        }
+        let c = match lexbuf.next() {
+          Some(c) => c.to_int()
+          None => -1
+        }
+        match c {
+          _ => {
+            state = -1
+            tag_action = -1
+          }
+        }
+      }
+      _ => panic()
+    }
+    match tag_action {
+      0 => {
+        _tag_5 = lexbuf.curr_pos()
+        _tag_7 = lexbuf.curr_pos()
+      }
+      1 => {
+        _tag_7 = lexbuf.curr_pos()
+      }
+      2 => {
+        _tag_7 = lexbuf.curr_pos()
+      }
+      3 => {
+        _tag_1 = lexbuf.curr_pos()
+        _tag_7 = lexbuf.curr_pos()
+      }
+      4 => {
+        _tag_3 = lexbuf.curr_pos()
+      }
+      5 => {
+        ()
+      }
+      _ => ()
+    }
+  }
+
+  guard matched is Some((pattern_id, marked_pos, _captures)) else {
+    // No pattern matched
+    panic()
+  }
+
+  lexbuf.reset(marked_pos)
+  match pattern_id {
+    0 => {
+      let _start_pos_of_t = _captures[0].0
+      let t = lexbuf.unsafe_get(_start_pos_of_t)
  buf.write_char(t) 
     }
-    (1, __mbtlex_captures) => {
-  let (_start_pos_of_t, _end_pos_of_t) = __mbtlex_captures[0]
-  let t = lexbuf.sub_lexeme(_start_pos_of_t, _end_pos_of_t)
-  
+    1 => {
+      let (_start_pos_of_t, _end_pos_of_t) = _captures[0]
+      let t = lexbuf.sub_lexeme(_start_pos_of_t, _end_pos_of_t)
  
       buf.write_string(t)
       lex_string!(buf, lexbuf)
     
     }
-    (2, __mbtlex_captures) => {
-  let (_start_pos_of_t, _end_pos_of_t) = __mbtlex_captures[0]
-  let t = lexbuf.unsafe_get(_start_pos_of_t)
-  
+    2 => {
+      let _start_pos_of_t = _captures[0].0
+      let t = lexbuf.unsafe_get(_start_pos_of_t)
  
       buf.write_char(t)
       lex_string!(buf, lexbuf)
     
     }
-    (3, __mbtlex_captures) => {
-  let (_start_pos_of_t, _end_pos_of_t) = __mbtlex_captures[0]
-  let t = lexbuf.unsafe_get(_start_pos_of_t)
-  
+    3 => {
+      let _start_pos_of_t = _captures[0].0
+      let t = lexbuf.unsafe_get(_start_pos_of_t)
  raise(Unrecognized(String::make(1, t))) 
     }
-    (4, __mbtlex_captures) => {
+    4 => {
  raise(UnexpectedEndOfFile) 
     }
-    _ => abort("lex: fail to match")
+    _ => panic()
   }
 }
+
+
 
 

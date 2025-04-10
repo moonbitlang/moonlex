@@ -308,12 +308,6 @@ fn codegen_rule(rule : Rule) -> String {
         false
       }
 
-      if name_used_in_subst(name) {
-        out.write_string(
-          $|      let _ = \{name}
-          $|
-        )
-      }
       match var_type {
         Char =>
           out.write_string(
@@ -329,6 +323,13 @@ fn codegen_rule(rule : Rule) -> String {
             $|
             ,
           )
+      }
+      if name_used_in_subst(name) {
+        out.write_string(
+          $|      let _ = \{name}
+          $|
+          ,
+        )
       }
     }
     out.write_string(
