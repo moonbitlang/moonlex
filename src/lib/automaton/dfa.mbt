@@ -2,21 +2,27 @@
 //        Automata and Application to Regular Expressions
 
 ///|
-pub(all) type TagAction Array[Array[Int]] derive(Show) // indexed by tag_id, rank
-// tag_i <- tag_{mat[tag][i]}, tag_{-1} = cur_pos
+pub(all) type TagAction Array[TagOp] derive(Show, Eq, Compare) // sorted
 
 ///|
-priv type TagState Array[Int?] derive(Eq, Show) // indexed by tag_id
+pub typealias TagIndex = Int
 
 ///|
-impl Hash for TagState with hash_combine(self, hasher) {
-  self._.each(fn(x) { hasher.combine(x) })
-}
+pub typealias TagRank = Int
 
 ///|
-impl Compare for TagState with compare(self, other) {
-  self._.compare(other._)
-}
+pub typealias TagVar = (TagIndex, TagRank)
+
+///|
+pub(all) enum TagOp {
+  Set(dest~ : TagVar) // set tag variable's value to lexbuf.curr_pos()
+  // In fact, dest.0 == src.0
+  // But, for simplicity
+  Copy(dest~ : TagVar, src~ : TagVar) // dest != src
+} derive(Show, Eq, Compare)
+
+///|
+priv type TagState Array[Int?] derive(Eq, Show, Hash, Compare) // indexed by tag_id
 
 ///|
 fn TagState::new(size : Int) -> TagState {
@@ -143,7 +149,20 @@ fn state_canonicalize(state : State, tag_count : Int) -> (State, TagAction) {
       (pair.0, tags)
     })
     |> @immut/hashmap.from_iter
-  (new_state, mat)
+  let tag_action = []
+  for tag_index, ops in mat {
+    for dest_rank, src_rank in ops {
+      if src_rank == -1 {
+        tag_action.push(Set(dest=(tag_index, dest_rank)))
+      } else if dest_rank != src_rank {
+        tag_action.push(
+          Copy(dest=(tag_index, dest_rank), src=(tag_index, src_rank)),
+        )
+      }
+    }
+  }
+  tag_action.sort()
+  (new_state, tag_action)
 }
 
 ///|

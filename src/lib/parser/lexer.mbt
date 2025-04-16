@@ -855,8 +855,8 @@ fn token[T](lexbuf : @lexbuf.T[T, Char, String, Int]) -> Token  {
           }
           48..=57 => {
             _tag_1 = lexbuf.curr_pos()
-            _tag_1_1 = _tag_1
             _tag_3 = lexbuf.curr_pos()
+            _tag_1_1 = _tag_1
             69
           }
           58..=64 => {
@@ -865,8 +865,8 @@ fn token[T](lexbuf : @lexbuf.T[T, Char, String, Int]) -> Token  {
           }
           65..=90 => {
             _tag_1 = lexbuf.curr_pos()
-            _tag_1_1 = _tag_1
             _tag_3 = lexbuf.curr_pos()
+            _tag_1_1 = _tag_1
             69
           }
           91..=94 => {
@@ -875,8 +875,8 @@ fn token[T](lexbuf : @lexbuf.T[T, Char, String, Int]) -> Token  {
           }
           95 => {
             _tag_1 = lexbuf.curr_pos()
-            _tag_1_1 = _tag_1
             _tag_3 = lexbuf.curr_pos()
+            _tag_1_1 = _tag_1
             69
           }
           96 => {
@@ -885,8 +885,8 @@ fn token[T](lexbuf : @lexbuf.T[T, Char, String, Int]) -> Token  {
           }
           97..=122 => {
             _tag_1 = lexbuf.curr_pos()
-            _tag_1_1 = _tag_1
             _tag_3 = lexbuf.curr_pos()
+            _tag_1_1 = _tag_1
             69
           }
           124..=1114111 => {
@@ -975,8 +975,8 @@ fn token[T](lexbuf : @lexbuf.T[T, Char, String, Int]) -> Token  {
           }
           48..=57 => {
             _tag_1 = lexbuf.curr_pos()
-            _tag_1_1 = _tag_1
             _tag_3 = lexbuf.curr_pos()
+            _tag_1_1 = _tag_1
             69
           }
           58..=64 => {
@@ -985,8 +985,8 @@ fn token[T](lexbuf : @lexbuf.T[T, Char, String, Int]) -> Token  {
           }
           65..=90 => {
             _tag_1 = lexbuf.curr_pos()
-            _tag_1_1 = _tag_1
             _tag_3 = lexbuf.curr_pos()
+            _tag_1_1 = _tag_1
             69
           }
           91..=94 => {
@@ -995,8 +995,8 @@ fn token[T](lexbuf : @lexbuf.T[T, Char, String, Int]) -> Token  {
           }
           95 => {
             _tag_1 = lexbuf.curr_pos()
-            _tag_1_1 = _tag_1
             _tag_3 = lexbuf.curr_pos()
+            _tag_1_1 = _tag_1
             69
           }
           96 => {
@@ -1005,8 +1005,8 @@ fn token[T](lexbuf : @lexbuf.T[T, Char, String, Int]) -> Token  {
           }
           97..=122 => {
             _tag_1 = lexbuf.curr_pos()
-            _tag_1_1 = _tag_1
             _tag_3 = lexbuf.curr_pos()
+            _tag_1_1 = _tag_1
             69
           }
           123 => {

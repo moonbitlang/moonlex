@@ -1,5 +1,5 @@
-digraph a_star_capture {	0 -> 1[label="a[[-1, 0], [-1]]"]
-	1 -> 2[label="a[[-1, 0, 1], [-1, 0]]"]
-	2 -> 2[label="a[[-1, 0, 1], [-1, 0]]"]0[shape=circle,label=0]
+digraph a_star_capture {	0 -> 1[label="a[Set(dest=(0, 0)), Set(dest=(1, 0)), Copy(dest=(0, 1), src=(0, 0))]"]
+	1 -> 2[label="a[Set(dest=(0, 0)), Set(dest=(1, 0)), Copy(dest=(0, 1), src=(0, 0)), Copy(dest=(0, 2), src=(0, 1)), Copy(dest=(1, 1), src=(1, 0))]"]
+	2 -> 2[label="a[Set(dest=(0, 0)), Set(dest=(1, 0)), Copy(dest=(0, 1), src=(0, 0)), Copy(dest=(0, 2), src=(0, 1)), Copy(dest=(1, 1), src=(1, 0))]"]0[shape=circle,label=0]
 1[shape=circle,label=1]
 2[shape=box,label="2(0)/[((0, 2), (1, 1))]"]}

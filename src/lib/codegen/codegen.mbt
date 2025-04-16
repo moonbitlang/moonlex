@@ -38,7 +38,7 @@ fn rewrite_codeblock(
 ///|
 fn group_trans(
   trans : Array[(@eof_char_set.T, (Int, @automaton.TagAction))]
-) -> Array[((Int, Int), (Int, Array[Array[Int]]))] {
+) -> Array[((Int, Int), (Int, @automaton.TagAction))] {
   let char_set_by_state = {}
   let tag_action_by_state = {}
   for tran in trans {
@@ -70,7 +70,7 @@ fn group_trans(
                   Char(c) => c.to_int()
                 },
               ),
-              (state, action._),
+              (state, action),
             )
         })
       }
@@ -92,22 +92,6 @@ fn codegen_rule(
     CodeUnit2 | CodeUnit4 => None
   }
   let dfa = @automaton.DFA::from_rule(rule, encoding~)
-
-  // get_tag_action_id
-  let mut next_tag_action_id = 0
-  let tag_action_dedup = @sorted_map.new()
-  fn get_tag_action_id(tag_action : @automaton.TagAction) -> Int {
-    match tag_action_dedup[tag_action._] {
-      Some(id) => id
-      None => {
-        let id = next_tag_action_id
-        tag_action_dedup[tag_action._] = id
-        next_tag_action_id += 1
-        id
-      }
-    }
-  }
-
   out.write_string(
     $|fn \{rule.signature} {
     $|  let mut matched = None
@@ -115,24 +99,24 @@ fn codegen_rule(
     $|
     ,
   )
+  let all_tag_actions = @sorted_set.new()
+  all_tag_actions.add(dfa.start_action)
   for _, trans in dfa.graph {
     for tran in trans {
       let (_, (_, tag_action)) = tran
-      ignore(get_tag_action_id(tag_action))
+      all_tag_actions.add(tag_action)
     }
   }
-  let tag_actions = @sorted_map.from_iter(
-    tag_action_dedup.iter().map(fn { (x, y) => (y, x) }),
-  )
-  let max_rank_map = {}
-  let mut num_tags = 0
-  for _, tag_action in tag_actions {
-    num_tags = @math.maximum(num_tags, tag_action.length())
-    for tag_id, actions in tag_action {
-      max_rank_map[tag_id] = @math.maximum(
-        max_rank_map[tag_id].or(-1),
-        actions.length() - 1,
-      )
+  let all_tag_vars = @sorted_set.new()
+  for tag_action in all_tag_actions {
+    for op in tag_action._ {
+      match op {
+        Set(dest~) => all_tag_vars.add(dest)
+        Copy(dest~, src~) => {
+          all_tag_vars.add(dest)
+          all_tag_vars.add(src)
+        }
+      }
     }
   }
   fn gen_tag_var(tag_id : Int, rank : Int) -> String {
@@ -143,20 +127,21 @@ fn codegen_rule(
     }
   }
 
-  for tag_id in 0..<num_tags {
-    let max_rank = max_rank_map[tag_id].or(-1)
-    for rank in 0..=max_rank {
-      out.write_string(
-        $|  let mut \{gen_tag_var(tag_id, rank)} = -1
-        $|
-        ,
-      )
-    }
+  for tag_var in all_tag_vars {
+    out.write_string(
+      $|  let mut \{gen_tag_var(tag_var.0, tag_var.1)} = -1
+      $|
+      ,
+    )
   }
-  let start_tags : Array[Int] = []
-  for index, action in dfa.start_action._ {
-    if not(action.is_empty()) {
-      start_tags.push(index)
+  let start_tags = @sorted_set.new()
+  for op in dfa.start_action._ {
+    match op {
+      Set(dest~) => start_tags.add(dest.0)
+      Copy(dest~, src~) => {
+        start_tags.add(dest.0)
+        start_tags.add(src.0)
+      }
     }
   }
   for tag in start_tags {
@@ -202,17 +187,16 @@ fn codegen_rule(
         ,
       )
     }
-    fn gen_inline_tag_action(tag_action : Array[Array[Int]]) -> String? {
+    fn gen_inline_tag_action(tag_action : @automaton.TagAction) -> String? {
       let buf = []
-      for tag_id, actions_per_tag in tag_action {
-        for rank, src_rank in actions_per_tag {
-          if src_rank is -1 {
-            buf.push("\{gen_tag_var(tag_id, rank)} = lexbuf.curr_pos()")
-          } else if src_rank != rank {
+      for op in tag_action._ {
+        match op {
+          Set(dest~) =>
+            buf.push("\{gen_tag_var(dest.0, dest.1)} = lexbuf.curr_pos()")
+          Copy(dest~, src~) =>
             buf.push(
-              "\{gen_tag_var(tag_id, rank)} = \{gen_tag_var(tag_id, src_rank)}",
+              "\{gen_tag_var(dest.0, dest.1)} = \{gen_tag_var(src.0, src.1)}",
             )
-          }
         }
       }
       if buf.is_empty() {
