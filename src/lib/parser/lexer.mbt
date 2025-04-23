@@ -1,6 +1,6 @@
 
 
-fn token[T : @lexbuf.IStringLexbuf](lexbuf : T) -> Token  {
+fn token[T : @lexbuf.IStringLexbuf](lexbuf : T) -> (Token, Int, Int)  {
   // The matched pattern id
   let mut matched = @int.max_value
   let mut _end_pos = -1
@@ -799,7 +799,7 @@ fn token[T : @lexbuf.IStringLexbuf](lexbuf : T) -> Token  {
     }
     2 => {
       ()
- EOI 
+ (EOI, _start_pos, _end_pos) 
     }
     3 => {
       ()
@@ -810,119 +810,119 @@ fn token[T : @lexbuf.IStringLexbuf](lexbuf : T) -> Token  {
       let _end_pos_of_t2 = _capture_1_end
       let t2 = lexbuf.get_string(_start_pos_of_t2, _end_pos_of_t2)
 
-      RULE_LC_IDENT_LPAREN_CODE_RPAREN_ARROW_CODE_LBRACE((t1, t2))
+      (RULE_LC_IDENT_LPAREN_CODE_RPAREN_ARROW_CODE_LBRACE((t1, t2)), _start_pos, _end_pos)
     
     }
     4 => {
       ()
- PARSE_LBRACE 
+ (PARSE_LBRACE, _start_pos, _end_pos) 
     }
     5 => {
       ()
- FAT_ARROW 
+ (FAT_ARROW, _start_pos, _end_pos) 
     }
     6 => {
       ()
- UNDERSCORE 
+ (UNDERSCORE, _start_pos, _end_pos) 
     }
     7 => {
       ()
  
       let buffer = StringBuilder::new()
-      code_rbrace(buffer, lexbuf)
-      LBRACE_CODE_RBRACE(buffer.to_string())
+      let end_pos = code_rbrace(buffer, lexbuf)
+      (LBRACE_CODE_RBRACE(buffer.to_string()), _start_pos, end_pos)
     
     }
     8 => {
       ()
- RBRACE 
+ (RBRACE, _start_pos, _end_pos) 
     }
     9 => {
       ()
- LPAREN 
+ (LPAREN, _start_pos, _end_pos) 
     }
     10 => {
       ()
- RPAREN 
+ (RPAREN, _start_pos, _end_pos) 
     }
     11 => {
       ()
- LBRACKET 
+ (LBRACKET, _start_pos, _end_pos) 
     }
     12 => {
       ()
- RBRACKET 
+ (RBRACKET, _start_pos, _end_pos) 
     }
     13 => {
       ()
- EQ 
+ (EQ, _start_pos, _end_pos) 
     }
     14 => {
       ()
- COLON 
+ (COLON, _start_pos, _end_pos) 
     }
     15 => {
       ()
- SEMICOLON 
+ (SEMICOLON, _start_pos, _end_pos) 
     }
     16 => {
       ()
- BAR 
+ (BAR, _start_pos, _end_pos) 
     }
     17 => {
       ()
- STAR 
+ (STAR, _start_pos, _end_pos) 
     }
     18 => {
       ()
- PLUS 
+ (PLUS, _start_pos, _end_pos) 
     }
     19 => {
       ()
- QUESTION 
+ (QUESTION, _start_pos, _end_pos) 
     }
     20 => {
       ()
- MINUS 
+ (MINUS, _start_pos, _end_pos) 
     }
     21 => {
       ()
- CARET 
+ (CARET, _start_pos, _end_pos) 
     }
     22 => {
       ()
       let _start_pos_of_t = _capture_0_start
       let _end_pos_of_t = _capture_0_end
       let t = lexbuf.get_char(_start_pos_of_t, _end_pos_of_t)
- CHAR(t) 
+ (CHAR(t), _start_pos, _end_pos) 
     }
     23 => {
       ()
- CHAR('\u{08}') 
+ (CHAR('\u{08}'), _start_pos, _end_pos) 
     }
     24 => {
       ()
- CHAR('\t') 
+ (CHAR('\t'), _start_pos, _end_pos) 
     }
     25 => {
       ()
- CHAR('\u{0b}') 
+ (CHAR('\u{0b}'), _start_pos, _end_pos) 
     }
     26 => {
       ()
- CHAR('\r') 
+ (CHAR('\r'), _start_pos, _end_pos) 
     }
     27 => {
       ()
- CHAR('\n') 
+ (CHAR('\n'), _start_pos, _end_pos) 
     }
     28 => {
       ()
- CHAR('\\') 
+ (CHAR('\\'), _start_pos, _end_pos) 
     }
     29 => {
       ()
- CHAR('\'') 
+ (CHAR('\''), _start_pos, _end_pos) 
     }
     30 => {
       ()
@@ -931,7 +931,7 @@ fn token[T : @lexbuf.IStringLexbuf](lexbuf : T) -> Token  {
       let t = lexbuf.get_string(_start_pos_of_t, _end_pos_of_t)
 
       let code = @strconv.parse_int?(t, base=16).unwrap()
-      CHAR(Char::from_int(code))
+      (CHAR(Char::from_int(code)), _start_pos, _end_pos)
     
     }
     31 => {
@@ -941,7 +941,7 @@ fn token[T : @lexbuf.IStringLexbuf](lexbuf : T) -> Token  {
       let t = lexbuf.get_string(_start_pos_of_t, _end_pos_of_t)
 
       let code = @strconv.parse_int?(t, base=16).unwrap()
-      CHAR(Char::from_int(code))
+      (CHAR(Char::from_int(code)), _start_pos, _end_pos)
     
     }
     32 => {
@@ -951,15 +951,15 @@ fn token[T : @lexbuf.IStringLexbuf](lexbuf : T) -> Token  {
       let t = lexbuf.get_string(_start_pos_of_t, _end_pos_of_t)
 
       let code = @strconv.parse_int?(t, base=16).unwrap()
-      CHAR(Char::from_int(code))
+      (CHAR(Char::from_int(code)), _start_pos, _end_pos)
     
     }
     33 => {
       ()
 
       let buffer = StringBuilder::new()
-      string_inner_rquote(buffer, lexbuf)
-      STRING(buffer.to_string())
+      let end_pos = string_inner_rquote(buffer, lexbuf)
+      (STRING(buffer.to_string()), _start_pos, end_pos)
     
     }
     34 => {
@@ -968,12 +968,12 @@ fn token[T : @lexbuf.IStringLexbuf](lexbuf : T) -> Token  {
       let _end_pos_of_t = _capture_0_end
       let t = lexbuf.get_string(_start_pos_of_t, _end_pos_of_t)
 
-      match t {
+      (match t {
         "eof" => EOF
         "regex" => REGEX
         "as" => AS
         _ => LC_IDENT(t)
-      }
+      }, _start_pos, _end_pos)
     
     }
     _ => panic()
@@ -981,7 +981,7 @@ fn token[T : @lexbuf.IStringLexbuf](lexbuf : T) -> Token  {
 }
 
 
-fn string_inner_rquote[T : @lexbuf.IStringLexbuf](buffer : StringBuilder, lexbuf : T) -> Unit  {
+fn string_inner_rquote[T : @lexbuf.IStringLexbuf](buffer : StringBuilder, lexbuf : T) -> Int  {
   // The matched pattern id
   let mut matched = @int.max_value
   let mut _end_pos = -1
@@ -1235,7 +1235,7 @@ fn string_inner_rquote[T : @lexbuf.IStringLexbuf](buffer : StringBuilder, lexbuf
   match matched {
     0 => {
       ()
- () 
+ _end_pos 
     }
     1 => {
       ()
@@ -1294,6 +1294,7 @@ fn string_inner_rquote[T : @lexbuf.IStringLexbuf](buffer : StringBuilder, lexbuf
 
       let code = @strconv.parse_int?(t, base=16).unwrap()
       buffer.write_char(Char::from_int(code))
+      string_inner_rquote(buffer, lexbuf)
     
     }
     9 => {
@@ -1304,6 +1305,7 @@ fn string_inner_rquote[T : @lexbuf.IStringLexbuf](buffer : StringBuilder, lexbuf
 
       let code = @strconv.parse_int?(t, base=16).unwrap()
       buffer.write_char(Char::from_int(code))
+      string_inner_rquote(buffer, lexbuf)
     
     }
     10 => {
@@ -1314,6 +1316,7 @@ fn string_inner_rquote[T : @lexbuf.IStringLexbuf](buffer : StringBuilder, lexbuf
 
       let code = @strconv.parse_int?(t, base=16).unwrap()
       buffer.write_char(Char::from_int(code))
+      string_inner_rquote(buffer, lexbuf)
     
     }
     11 => {
@@ -1335,7 +1338,7 @@ fn string_inner_rquote[T : @lexbuf.IStringLexbuf](buffer : StringBuilder, lexbuf
 }
 
 
-fn code_rbrace[T : @lexbuf.IStringLexbuf](buffer : StringBuilder, lexbuf : T) -> Unit  {
+fn code_rbrace[T : @lexbuf.IStringLexbuf](buffer : StringBuilder, lexbuf : T) -> Int  {
   // The matched pattern id
   let mut matched = @int.max_value
   let mut _end_pos = -1
@@ -1563,14 +1566,14 @@ fn code_rbrace[T : @lexbuf.IStringLexbuf](buffer : StringBuilder, lexbuf : T) ->
       ()
 
       buffer.write_string("{")
-      code_rbrace(buffer, lexbuf)
+      let _ = code_rbrace(buffer, lexbuf)
       buffer.write_string("}")
       code_rbrace(buffer, lexbuf)
     
     }
     4 => {
       ()
- () 
+ _end_pos 
     }
     5 => {
       ()

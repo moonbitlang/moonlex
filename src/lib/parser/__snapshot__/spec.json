@@ -3,7 +3,7 @@
   "rules": [
     {
       "name": "token",
-      "signature": "token[T : @lexbuf.IStringLexbuf](lexbuf : T) -> Token ",
+      "signature": "token[T : @lexbuf.IStringLexbuf](lexbuf : T) -> (Token, Int, Int) ",
       "patterns": [
         [
           {
@@ -105,7 +105,7 @@
           {
             "$tag": "EOF"
           },
-          " EOI "
+          " (EOI, $startpos, $endpos) "
         ],
         [
           {
@@ -299,7 +299,7 @@
               }
             }
           },
-          "\n      RULE_LC_IDENT_LPAREN_CODE_RPAREN_ARROW_CODE_LBRACE((t1, t2))\n    "
+          "\n      (RULE_LC_IDENT_LPAREN_CODE_RPAREN_ARROW_CODE_LBRACE((t1, t2)), $startpos, $endpos)\n    "
         ],
         [
           {
@@ -412,7 +412,7 @@
               }
             }
           },
-          " PARSE_LBRACE "
+          " (PARSE_LBRACE, $startpos, $endpos) "
         ],
         [
           {
@@ -442,7 +442,7 @@
               ]
             }
           },
-          " FAT_ARROW "
+          " (FAT_ARROW, $startpos, $endpos) "
         ],
         [
           {
@@ -460,7 +460,7 @@
               ]
             }
           },
-          " UNDERSCORE "
+          " (UNDERSCORE, $startpos, $endpos) "
         ],
         [
           {
@@ -478,7 +478,7 @@
               ]
             }
           },
-          " \n      let buffer = StringBuilder::new()\n      code_rbrace(buffer, lexbuf)\n      LBRACE_CODE_RBRACE(buffer.to_string())\n    "
+          " \n      let buffer = StringBuilder::new()\n      let end_pos = code_rbrace(buffer, lexbuf)\n      (LBRACE_CODE_RBRACE(buffer.to_string()), $startpos, end_pos)\n    "
         ],
         [
           {
@@ -496,7 +496,7 @@
               ]
             }
           },
-          " RBRACE "
+          " (RBRACE, $startpos, $endpos) "
         ],
         [
           {
@@ -514,7 +514,7 @@
               ]
             }
           },
-          " LPAREN "
+          " (LPAREN, $startpos, $endpos) "
         ],
         [
           {
@@ -532,7 +532,7 @@
               ]
             }
           },
-          " RPAREN "
+          " (RPAREN, $startpos, $endpos) "
         ],
         [
           {
@@ -550,7 +550,7 @@
               ]
             }
           },
-          " LBRACKET "
+          " (LBRACKET, $startpos, $endpos) "
         ],
         [
           {
@@ -568,7 +568,7 @@
               ]
             }
           },
-          " RBRACKET "
+          " (RBRACKET, $startpos, $endpos) "
         ],
         [
           {
@@ -586,7 +586,7 @@
               ]
             }
           },
-          " EQ "
+          " (EQ, $startpos, $endpos) "
         ],
         [
           {
@@ -604,7 +604,7 @@
               ]
             }
           },
-          " COLON "
+          " (COLON, $startpos, $endpos) "
         ],
         [
           {
@@ -622,7 +622,7 @@
               ]
             }
           },
-          " SEMICOLON "
+          " (SEMICOLON, $startpos, $endpos) "
         ],
         [
           {
@@ -640,7 +640,7 @@
               ]
             }
           },
-          " BAR "
+          " (BAR, $startpos, $endpos) "
         ],
         [
           {
@@ -658,7 +658,7 @@
               ]
             }
           },
-          " STAR "
+          " (STAR, $startpos, $endpos) "
         ],
         [
           {
@@ -676,7 +676,7 @@
               ]
             }
           },
-          " PLUS "
+          " (PLUS, $startpos, $endpos) "
         ],
         [
           {
@@ -694,7 +694,7 @@
               ]
             }
           },
-          " QUESTION "
+          " (QUESTION, $startpos, $endpos) "
         ],
         [
           {
@@ -712,7 +712,7 @@
               ]
             }
           },
-          " MINUS "
+          " (MINUS, $startpos, $endpos) "
         ],
         [
           {
@@ -730,7 +730,7 @@
               ]
             }
           },
-          " CARET "
+          " (CARET, $startpos, $endpos) "
         ],
         [
           {
@@ -778,7 +778,7 @@
               }
             }
           },
-          " CHAR(t) "
+          " (CHAR(t), $startpos, $endpos) "
         ],
         [
           {
@@ -832,7 +832,7 @@
               }
             }
           },
-          " CHAR('\\u{08}') "
+          " (CHAR('\\u{08}'), $startpos, $endpos) "
         ],
         [
           {
@@ -886,7 +886,7 @@
               }
             }
           },
-          " CHAR('\\t') "
+          " (CHAR('\\t'), $startpos, $endpos) "
         ],
         [
           {
@@ -940,7 +940,7 @@
               }
             }
           },
-          " CHAR('\\u{0b}') "
+          " (CHAR('\\u{0b}'), $startpos, $endpos) "
         ],
         [
           {
@@ -994,7 +994,7 @@
               }
             }
           },
-          " CHAR('\\r') "
+          " (CHAR('\\r'), $startpos, $endpos) "
         ],
         [
           {
@@ -1048,7 +1048,7 @@
               }
             }
           },
-          " CHAR('\\n') "
+          " (CHAR('\\n'), $startpos, $endpos) "
         ],
         [
           {
@@ -1102,7 +1102,7 @@
               }
             }
           },
-          " CHAR('\\\\') "
+          " (CHAR('\\\\'), $startpos, $endpos) "
         ],
         [
           {
@@ -1156,7 +1156,7 @@
               }
             }
           },
-          " CHAR('\\'') "
+          " (CHAR('\\''), $startpos, $endpos) "
         ],
         [
           {
@@ -1254,7 +1254,7 @@
               }
             }
           },
-          "\n      let code = @strconv.parse_int?(t, base=16).unwrap()\n      CHAR(Char::from_int(code))\n    "
+          "\n      let code = @strconv.parse_int?(t, base=16).unwrap()\n      (CHAR(Char::from_int(code)), $startpos, $endpos)\n    "
         ],
         [
           {
@@ -1392,7 +1392,7 @@
               }
             }
           },
-          "\n      let code = @strconv.parse_int?(t, base=16).unwrap()\n      CHAR(Char::from_int(code))\n    "
+          "\n      let code = @strconv.parse_int?(t, base=16).unwrap()\n      (CHAR(Char::from_int(code)), $startpos, $endpos)\n    "
         ],
         [
           {
@@ -1497,7 +1497,7 @@
               }
             }
           },
-          "\n      let code = @strconv.parse_int?(t, base=16).unwrap()\n      CHAR(Char::from_int(code))\n    "
+          "\n      let code = @strconv.parse_int?(t, base=16).unwrap()\n      (CHAR(Char::from_int(code)), $startpos, $endpos)\n    "
         ],
         [
           {
@@ -1509,7 +1509,7 @@
               ]
             ]
           },
-          "\n      let buffer = StringBuilder::new()\n      string_inner_rquote(buffer, lexbuf)\n      STRING(buffer.to_string())\n    "
+          "\n      let buffer = StringBuilder::new()\n      let end_pos = string_inner_rquote(buffer, lexbuf)\n      (STRING(buffer.to_string()), $startpos, end_pos)\n    "
         ],
         [
           {
@@ -1562,13 +1562,13 @@
             },
             "1": "t"
           },
-          "\n      match t {\n        \"eof\" => EOF\n        \"regex\" => REGEX\n        \"as\" => AS\n        _ => LC_IDENT(t)\n      }\n    "
+          "\n      (match t {\n        \"eof\" => EOF\n        \"regex\" => REGEX\n        \"as\" => AS\n        _ => LC_IDENT(t)\n      }, $startpos, $endpos)\n    "
         ]
       ]
     },
     {
       "name": "string_inner_rquote",
-      "signature": "string_inner_rquote[T : @lexbuf.IStringLexbuf](buffer : StringBuilder, lexbuf : T) -> Unit ",
+      "signature": "string_inner_rquote[T : @lexbuf.IStringLexbuf](buffer : StringBuilder, lexbuf : T) -> Int ",
       "patterns": [
         [
           {
@@ -1580,7 +1580,7 @@
               ]
             ]
           },
-          " () "
+          " $endpos "
         ],
         [
           {
@@ -1876,7 +1876,7 @@
               }
             }
           },
-          "\n      let code = @strconv.parse_int?(t, base=16).unwrap()\n      buffer.write_char(Char::from_int(code))\n    "
+          "\n      let code = @strconv.parse_int?(t, base=16).unwrap()\n      buffer.write_char(Char::from_int(code))\n      string_inner_rquote(buffer, lexbuf)\n    "
         ],
         [
           {
@@ -2002,7 +2002,7 @@
               }
             }
           },
-          "\n      let code = @strconv.parse_int?(t, base=16).unwrap()\n      buffer.write_char(Char::from_int(code))\n    "
+          "\n      let code = @strconv.parse_int?(t, base=16).unwrap()\n      buffer.write_char(Char::from_int(code))\n      string_inner_rquote(buffer, lexbuf)\n    "
         ],
         [
           {
@@ -2095,7 +2095,7 @@
               }
             }
           },
-          "\n      let code = @strconv.parse_int?(t, base=16).unwrap()\n      buffer.write_char(Char::from_int(code))\n    "
+          "\n      let code = @strconv.parse_int?(t, base=16).unwrap()\n      buffer.write_char(Char::from_int(code))\n      string_inner_rquote(buffer, lexbuf)\n    "
         ],
         [
           {
@@ -2123,7 +2123,7 @@
     },
     {
       "name": "code_rbrace",
-      "signature": "code_rbrace[T : @lexbuf.IStringLexbuf](buffer : StringBuilder, lexbuf : T) -> Unit ",
+      "signature": "code_rbrace[T : @lexbuf.IStringLexbuf](buffer : StringBuilder, lexbuf : T) -> Int ",
       "patterns": [
         [
           {
@@ -2335,7 +2335,7 @@
               ]
             }
           },
-          "\n      buffer.write_string(\"{\")\n      code_rbrace(buffer, lexbuf)\n      buffer.write_string(\"}\")\n      code_rbrace(buffer, lexbuf)\n    "
+          "\n      buffer.write_string(\"{\")\n      let _ = code_rbrace(buffer, lexbuf)\n      buffer.write_string(\"}\")\n      code_rbrace(buffer, lexbuf)\n    "
         ],
         [
           {
@@ -2353,7 +2353,7 @@
               ]
             }
           },
-          " () "
+          " $endpos "
         ],
         [
           {

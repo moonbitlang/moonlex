@@ -6,75 +6,75 @@ let lexer_src : String =
   #|regex hex_digit = ['0'-'9' 'A'-'F' 'a'-'f'];
   #|regex lc_ident = ['a'-'z' '_'] ['A'-'Z' 'a'-'z' '_' '0'-'9']*;
   #|
-  #|rule token[T : @lexbuf.IStringLexbuf](lexbuf : T) -> Token {
+  #|rule token[T : @lexbuf.IStringLexbuf](lexbuf : T) -> (Token, Int, Int) {
   #|  parse {
   #|    ws => { token(lexbuf) }
   #|    "//" [^ '\n']* '\n'? => { token(lexbuf) }
-  #|    eof => { EOI }
+  #|    eof => { (EOI, $startpos, $endpos) }
   #|    "rule" ws ((lc_ident as t1) [^ '{']+ as t2) ws? '{' => {
-  #|      RULE_LC_IDENT_LPAREN_CODE_RPAREN_ARROW_CODE_LBRACE((t1, t2))
+  #|      (RULE_LC_IDENT_LPAREN_CODE_RPAREN_ARROW_CODE_LBRACE((t1, t2)), $startpos, $endpos)
   #|    }
-  #|    "parse" ws? "{" => { PARSE_LBRACE }
-  #|    "=>" => { FAT_ARROW }
-  #|    "_" => { UNDERSCORE }
+  #|    "parse" ws? "{" => { (PARSE_LBRACE, $startpos, $endpos) }
+  #|    "=>" => { (FAT_ARROW, $startpos, $endpos) }
+  #|    "_" => { (UNDERSCORE, $startpos, $endpos) }
   #|    "{" => { 
   #|      let buffer = StringBuilder::new()
-  #|      code_rbrace(buffer, lexbuf)
-  #|      LBRACE_CODE_RBRACE(buffer.to_string())
+  #|      let end_pos = code_rbrace(buffer, lexbuf)
+  #|      (LBRACE_CODE_RBRACE(buffer.to_string()), $startpos, end_pos)
   #|    }
-  #|    "}" => { RBRACE }
-  #|    "(" => { LPAREN }
-  #|    ")" => { RPAREN }
-  #|    "[" => { LBRACKET }
-  #|    "]" => { RBRACKET }
-  #|    "=" => { EQ }
-  #|    ":" => { COLON }
-  #|    ";" => { SEMICOLON }
-  #|    "|" => { BAR }
-  #|    "*" => { STAR }
-  #|    "+" => { PLUS }
-  #|    "?" => { QUESTION }
-  #|    "-" => { MINUS }
-  #|    "^" => { CARET }
-  #|    '\'' ([^ '\'' '\\'] as t) '\'' => { CHAR(t) }
-  #|    '\'' "\\b" '\'' => { CHAR('\u{08}') }
-  #|    '\'' "\\t" '\'' => { CHAR('\t') }
-  #|    '\'' "\\v" '\'' => { CHAR('\u{0b}') }
-  #|    '\'' "\\r" '\'' => { CHAR('\r') }
-  #|    '\'' "\\n" '\'' => { CHAR('\n') }
-  #|    '\'' "\\\\" '\'' => { CHAR('\\') }
-  #|    '\'' "\\'" '\'' => { CHAR('\'') }
+  #|    "}" => { (RBRACE, $startpos, $endpos) }
+  #|    "(" => { (LPAREN, $startpos, $endpos) }
+  #|    ")" => { (RPAREN, $startpos, $endpos) }
+  #|    "[" => { (LBRACKET, $startpos, $endpos) }
+  #|    "]" => { (RBRACKET, $startpos, $endpos) }
+  #|    "=" => { (EQ, $startpos, $endpos) }
+  #|    ":" => { (COLON, $startpos, $endpos) }
+  #|    ";" => { (SEMICOLON, $startpos, $endpos) }
+  #|    "|" => { (BAR, $startpos, $endpos) }
+  #|    "*" => { (STAR, $startpos, $endpos) }
+  #|    "+" => { (PLUS, $startpos, $endpos) }
+  #|    "?" => { (QUESTION, $startpos, $endpos) }
+  #|    "-" => { (MINUS, $startpos, $endpos) }
+  #|    "^" => { (CARET, $startpos, $endpos) }
+  #|    '\'' ([^ '\'' '\\'] as t) '\'' => { (CHAR(t), $startpos, $endpos) }
+  #|    '\'' "\\b" '\'' => { (CHAR('\u{08}'), $startpos, $endpos) }
+  #|    '\'' "\\t" '\'' => { (CHAR('\t'), $startpos, $endpos) }
+  #|    '\'' "\\v" '\'' => { (CHAR('\u{0b}'), $startpos, $endpos) }
+  #|    '\'' "\\r" '\'' => { (CHAR('\r'), $startpos, $endpos) }
+  #|    '\'' "\\n" '\'' => { (CHAR('\n'), $startpos, $endpos) }
+  #|    '\'' "\\\\" '\'' => { (CHAR('\\'), $startpos, $endpos) }
+  #|    '\'' "\\'" '\'' => { (CHAR('\''), $startpos, $endpos) }
   #|    '\'' "\\x" ((hex_digit hex_digit) as t) '\'' => {
   #|      let code = @strconv.parse_int?(t, base=16).unwrap()
-  #|      CHAR(Char::from_int(code))
+  #|      (CHAR(Char::from_int(code)), $startpos, $endpos)
   #|    }
   #|    '\'' "\\u" ((hex_digit hex_digit hex_digit hex_digit) as t) '\'' => {
   #|      let code = @strconv.parse_int?(t, base=16).unwrap()
-  #|      CHAR(Char::from_int(code))
+  #|      (CHAR(Char::from_int(code)), $startpos, $endpos)
   #|    }
   #|    '\'' "\\u{" (hex_digit+ as t) '}' '\'' => {
   #|      let code = @strconv.parse_int?(t, base=16).unwrap()
-  #|      CHAR(Char::from_int(code))
+  #|      (CHAR(Char::from_int(code)), $startpos, $endpos)
   #|    }
   #|    '"' => {
   #|      let buffer = StringBuilder::new()
-  #|      string_inner_rquote(buffer, lexbuf)
-  #|      STRING(buffer.to_string())
+  #|      let end_pos = string_inner_rquote(buffer, lexbuf)
+  #|      (STRING(buffer.to_string()), $startpos, end_pos)
   #|    }
   #|    lc_ident as t => {
-  #|      match t {
+  #|      (match t {
   #|        "eof" => EOF
   #|        "regex" => REGEX
   #|        "as" => AS
   #|        _ => LC_IDENT(t)
-  #|      }
+  #|      }, $startpos, $endpos)
   #|    }
   #|  }
   #|}
   #|
-  #|rule string_inner_rquote[T : @lexbuf.IStringLexbuf](buffer : StringBuilder, lexbuf : T) -> Unit {
+  #|rule string_inner_rquote[T : @lexbuf.IStringLexbuf](buffer : StringBuilder, lexbuf : T) -> Int {
   #|  parse {
-  #|    '"' => { () }
+  #|    '"' => { $endpos }
   #|    "\\b" => {
   #|      buffer.write_char('\u{08}')
   #|      string_inner_rquote(buffer, lexbuf)
@@ -106,14 +106,17 @@ let lexer_src : String =
   #|    "\\x" ((hex_digit hex_digit) as t) '\'' => {
   #|      let code = @strconv.parse_int?(t, base=16).unwrap()
   #|      buffer.write_char(Char::from_int(code))
+  #|      string_inner_rquote(buffer, lexbuf)
   #|    }
   #|    "\\u" ((hex_digit hex_digit hex_digit hex_digit) as t) '\'' => {
   #|      let code = @strconv.parse_int?(t, base=16).unwrap()
   #|      buffer.write_char(Char::from_int(code))
+  #|      string_inner_rquote(buffer, lexbuf)
   #|    }
   #|    "\\u{" (hex_digit+ as t) '}' '\'' => {
   #|      let code = @strconv.parse_int?(t, base=16).unwrap()
   #|      buffer.write_char(Char::from_int(code))
+  #|      string_inner_rquote(buffer, lexbuf)
   #|    }
   #|    _ as t => {
   #|      buffer.write_char(t)
@@ -123,7 +126,7 @@ let lexer_src : String =
   #|  }
   #|}
   #|
-  #|rule code_rbrace[T : @lexbuf.IStringLexbuf](buffer : StringBuilder, lexbuf : T) -> Unit {
+  #|rule code_rbrace[T : @lexbuf.IStringLexbuf](buffer : StringBuilder, lexbuf : T) -> Int {
   #|  parse {
   #|    ("//" [^ '\n']+ '\n') as t => {
   #|      buffer.write_string(t)
@@ -139,11 +142,11 @@ let lexer_src : String =
   #|    }
   #|    "{" => {
   #|      buffer.write_string("{")
-  #|      code_rbrace(buffer, lexbuf)
+  #|      let _ = code_rbrace(buffer, lexbuf)
   #|      buffer.write_string("}")
   #|      code_rbrace(buffer, lexbuf)
   #|    }
-  #|    "}" => { () }
+  #|    "}" => { $endpos }
   #|    _ as t => {
   #|      buffer.write_char(t)
   #|      code_rbrace(buffer, lexbuf)

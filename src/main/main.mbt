@@ -1,12 +1,14 @@
 ///|
+fnalias @util.(println_to_stderr, exit)
+
+///|
 fn main {
   let usage =
     #|Usage: moonlex [options] <input-file>
   let output_file = @ref.new("")
   let input_file = @ref.new("")
   let mut code_unit = @type.CodeUnit4
-  let mut default_encoding: @type.Encoding? = None
-  let mut exit = false
+  let mut default_encoding : @type.Encoding? = None
   @ArgParser.parse(
     [
       ("--output-file", "-o", Set_string(output_file), "Output file"),
@@ -14,8 +16,8 @@ fn main {
         "--version",
         "-v",
         Unit(fn() {
-          exit = true
           println("moonlex 0.1.0")
+          exit(0)
         }),
         "Show version",
       ),
@@ -39,35 +41,38 @@ fn main {
         "--default-encoding",
         "",
         String(fn(encoding) {
-          default_encoding = Some(match encoding {
-            "ascii" => @type.Ascii
-            "latin1" => @type.Latin1
-            "utf8" => @type.Utf8
-            "utf16" => @type.Utf16
-            _ => {
-              abort("Invalid encoding: \{encoding}")
-              return
-            }
-          })
+          default_encoding = Some(
+            match encoding {
+              "ascii" => @type.Ascii
+              "latin1" => @type.Latin1
+              "utf8" => @type.Utf8
+              "utf16" => @type.Utf16
+              _ => {
+                abort("Invalid encoding: \{encoding}")
+                return
+              }
+            },
+          )
         }),
         "Set default encoding (ascii, latin1, utf8, or utf16). Only valid when code unit is 1",
-      )
+      ),
     ],
     fn(rest) { input_file.val = rest },
     usage,
     @sys.get_cli_args(),
   )
-  if exit {
-    return
-  }
   guard input_file.val != "" else { abort("Input file is required") }
   let lexer_spec_src = @fs.read_file_to_string?(input_file.val).unwrap()
   let lex = try {
     @parser.parse_lex_from_string!(lexer_spec_src)
   } catch {
-    err => {
-      println(err)
-      panic()
+    @parser.UnexpectedToken(token, loc, expected) => {
+      let loc_str = loc_to_string(input_file.val, lexer_spec_src, loc)
+      let expected_str = array_to_or_list(expected.map(Show::to_string)[:])
+      println_to_stderr(
+        "SyntaxError: Unexpected token \{token.kind()}, expected \{expected_str}.\n  at \{loc_str}",
+      )
+      exit(1)
     }
   }
   let output = @codegen.codegen_lex(lex, code_unit~, default_encoding~)

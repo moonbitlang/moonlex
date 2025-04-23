@@ -6,7 +6,8 @@
     "moonbitlang/ulex/lib/codegen",
     "Yoorkin/ArgParser",
     "moonbitlang/x/sys",
-    "moonbitlang/x/fs"
+    "moonbitlang/x/fs",
+    "moonbitlang/ulex/main/util"
   ],
   "bin-name": "moonlex",
   "bin-target": "js"

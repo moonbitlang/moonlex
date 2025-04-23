@@ -1,5 +1,6 @@
 %start lex_eoi
 %start regex_eoi
+%position<Int>
 %derive<Show> Token
 %derive<Show> ParseError
 
