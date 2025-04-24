@@ -5,13 +5,10 @@
 pub(all) type TagAction Array[TagOp] derive(Show, Eq, Compare) // sorted
 
 ///|
-pub typealias TagIndex = Int
-
-///|
 pub typealias TagRank = Int
 
 ///|
-pub typealias TagVar = (TagIndex, TagRank)
+pub typealias TagVar = (Tag, TagRank)
 
 ///|
 pub(all) enum TagOp {
@@ -22,40 +19,41 @@ pub(all) enum TagOp {
 } derive(Show, Eq, Compare)
 
 ///|
-priv type TagState Array[Int?] derive(Eq, Show, Hash, Compare) // indexed by tag_id
+priv type TagState @immut/sorted_map.T[Tag, TagRank] derive (
+  Eq,
+  Show,
+  Hash,
+  Compare,
+)
 
 ///|
-fn TagState::new(size : Int) -> TagState {
-  Array::make(size, None)
-}
-
-///|
-fn copy(self : TagState) -> TagState {
-  self._.copy()
+fn TagState::new() -> TagState {
+  @immut/sorted_map.new()
 }
 
 ///|
 fn update_by_tag(self : TagState, tag : Tag, rank : Int) -> TagState {
-  let r = self._[tag]
-  if r.is_empty() || r.unwrap() > rank {
-    self._[tag] = Some(rank)
+  match self._[tag] {
+    None => self._.add(tag, rank)
+    Some(old_rank) => if old_rank > rank { self._.add(tag, rank) } else { self }
   }
-  self
 }
 
 ///|
 fn update_by_tags(self : TagState, tags : @immut/sorted_set.T[Tag]) -> TagState {
+  let mut state = self
   for tag in tags {
-    let _ = self.update_by_tag(tag, -1)
-
+    state = state.update_by_tag(tag, -1)
   }
-  self
+  state
 }
 
 ///|
 fn tagState_min(self : TagState, other : TagState) -> TagState {
-  for i = 0; i < self._.length(); i = i + 1 {
-    match (self._[i], other._[i]) {
+  let tags = @immut/sorted_set.from_array(self._.keys()) +
+    @immut/sorted_set.from_array(other._.keys())
+  for tag in tags {
+    match (self._[tag], other._[tag]) {
       (None, _) => break other
       (_, None) => break self
       (Some(r1), Some(r2)) =>
@@ -126,28 +124,23 @@ fn state_canonicalize(state : State, tag_count : Int) -> (State, TagAction) {
   for pair in state.iter() {
     let tags = pair.1
     for tag, rank in tags._ {
-      if not(rank.is_empty()) {
-        mat[tag].push(rank.unwrap())
-      }
+      mat[tag].push(rank)
     }
   }
   mat.map_inplace(fn(x) { @sorted_set.from_iter(x.iter()).to_array() })
   let new_state = state
     .iter()
     .map(fn(pair) {
-      let tags = pair.1
-      tags._.mapi_inplace(fn(tag, op) {
-        op.map(fn(x) {
-          for index, y in mat[tag] {
-            if x == y {
-              break index
-            }
-          } else {
-            abort("unreachable")
+      let tags = pair.1._.map_with_key(fn(tag, x) {
+        for index, y in mat[tag] {
+          if x == y {
+            break index
           }
-        })
+        } else {
+          abort("unreachable")
+        }
       })
-      (pair.0, tags)
+      (pair.0, TagState(tags))
     })
     |> @immut/hashmap.from_iter
   let tag_action = []
@@ -196,7 +189,7 @@ fn DFA::from_nfa(nfa : NFA) -> DFA {
   let initial = eps_closure[nfa.start_node]
   let initial_state = initial
     .iter()
-    .map(fn { (x, y) => (x, TagState::new(nfa.tag_count).update_by_tags(y)) })
+    .map(fn { (x, y) => (x, TagState::new().update_by_tags(y)) })
     |> @immut/hashmap.from_iter
   let (initial_state, start_action) = state_canonicalize(
     initial_state,
@@ -269,7 +262,7 @@ fn DFA::from_nfa(nfa : NFA) -> DFA {
         let step_tagState = from_tagState
         for pair in eps_closure[step_node.num] {
           let (eps_node, tags) = pair
-          let upd_tagState = step_tagState.copy().update_by_tags(tags)
+          let upd_tagState = step_tagState.update_by_tags(tags)
           let old_tagState = state_map[eps_node]
           let new_tagState = if old_tagState is Some(old_tagState) {
             tagState_min(upd_tagState, old_tagState)
