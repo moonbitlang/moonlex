@@ -1,6 +1,7 @@
 ///|
 pub(all) enum Input {
   Eps
+  EpsWithTag(Tag)
   EChar(@eof_char_set.T)
 } derive(Eq, Hash, Show)
 
@@ -21,7 +22,7 @@ pub(all) struct NFA {
 pub(all) struct NFANode {
   num : Int
   mut eps : @immut/sorted_set.T[(NFANode, Tag?)]
-  mut trans : Array[(@eof_char_set.T, (NFANode, Tag?))]
+  mut trans : Array[(@eof_char_set.T, NFANode)]
 } derive(Show)
 
 ///|
@@ -96,17 +97,12 @@ fn new_node(self : NFA) -> NFANode {
 }
 
 ///|
-fn add_edge(
-  self : NFA,
-  from : NFANode,
-  s : Input,
-  tag~ : Tag? = None,
-  to : NFANode
-) -> Unit {
+fn add_edge(self : NFA, from : NFANode, s : Input, to : NFANode) -> Unit {
   ignore(self)
   match s {
-    Eps => from.eps = from.eps.add((to, tag))
-    EChar(c) => from.trans.push((c, (to, tag)))
+    Eps => from.eps = from.eps.add((to, None))
+    EpsWithTag(tag) => from.eps = from.eps.add((to, Some(tag)))
+    EChar(c) => from.trans.push((c, to))
   }
 }
 
@@ -206,8 +202,8 @@ fn register_regex_rec(
       let final_ = self.new_node()
       let tail = self.register_regex_rec(start, re, name2tag, encoding)
       let (begin_tag, end_tag) = name2tag(name)
-      self.add_edge(new_node, Eps, start, tag=Some(begin_tag))
-      self.add_edge(tail, Eps, final_, tag=Some(end_tag))
+      self.add_edge(new_node, EpsWithTag(begin_tag), start)
+      self.add_edge(tail, EpsWithTag(end_tag), final_)
       final_
     }
     Bytes(encoding, re) =>

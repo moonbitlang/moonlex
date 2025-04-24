@@ -224,7 +224,7 @@ fn DFA::from_nfa(nfa : NFA) -> DFA {
         let (nfa_node, tag_state) = p
         nfa_node.trans
         .iter()
-        .map(fn { (cset, (target, tag)) => (cset, (target, tag_state, tag)) })
+        .map(fn { (cset, target) => (cset, (target, tag_state)) })
       })
 
     // Merge char_sets by target
@@ -264,14 +264,10 @@ fn DFA::from_nfa(nfa : NFA) -> DFA {
     for tran in nfa_trans {
       let (cset, targets) = tran
       for target in targets {
-        let (step_node, from_tagState, tag) = target
+        let (step_node, from_tagState) = target
         let mut state_map = next_states[cset].or_else(fn() {
           @immut/hashmap.new()
         })
-        guard tag.is_empty() else {
-          // only eps-edge has tag
-          abort("error")
-        }
         let step_tagState = from_tagState
         for pair in eps_closure[step_node.num] {
           let (eps_node, bits) = pair
