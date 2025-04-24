@@ -44,12 +44,10 @@ fn update_by_tag(self : TagState, tag : Tag, rank : Int) -> TagState {
 }
 
 ///|
-fn update_by_tags(self : TagState, tags : @bitset.T) -> TagState {
-  for i = 0; i < self._.length(); i = i + 1 {
-    if tags.get(i) {
-      let _ = self.update_by_tag(i, -1)
+fn update_by_tags(self : TagState, tags : @immut/sorted_set.T[Tag]) -> TagState {
+  for tag in tags {
+    let _ = self.update_by_tag(tag, -1)
 
-    }
   }
   self
 }
@@ -270,13 +268,13 @@ fn DFA::from_nfa(nfa : NFA) -> DFA {
         })
         let step_tagState = from_tagState
         for pair in eps_closure[step_node.num] {
-          let (eps_node, bits) = pair
-          let upd_tagState = step_tagState.copy().update_by_tags(bits)
+          let (eps_node, tags) = pair
+          let upd_tagState = step_tagState.copy().update_by_tags(tags)
           let old_tagState = state_map[eps_node]
-          let new_tagState = if old_tagState.is_empty() {
-            upd_tagState
+          let new_tagState = if old_tagState is Some(old_tagState) {
+            tagState_min(upd_tagState, old_tagState)
           } else {
-            tagState_min(upd_tagState, old_tagState.unwrap())
+            upd_tagState
           }
           state_map = state_map.add(eps_node, new_tagState)
         }
@@ -289,8 +287,7 @@ fn DFA::from_nfa(nfa : NFA) -> DFA {
   let start_node = get_id(initial_state)
   dfa.start_node = start_node
   dfa.tag_actions[start_node] = start_action
-  while not(queue.is_empty()) {
-    let cur_state = queue.pop().unwrap()
+  while queue.pop() is Some(cur_state) {
     let from_n = node_map.get(cur_state).unwrap()
     let trans = transitions(cur_state)
     for tran in trans {

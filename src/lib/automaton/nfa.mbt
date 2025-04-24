@@ -215,27 +215,26 @@ fn register_regex_rec(
 }
 
 ///|
-fn get_eps_closure(self : NFA) -> Array[@immut/hashmap.T[NFANode, @bitset.T]] {
+fn get_eps_closure(
+  self : NFA
+) -> Array[@immut/hashmap.T[NFANode, @immut/sorted_set.T[Tag]]] {
   Array::map(self.graph, fn(x) {
-    let empty_bits = @bitset.new(self.tag_count)
-    let result = Map::from_array([(x, empty_bits)])
-    fn get_bits(n : NFANode) -> @bitset.T {
-      result.get_or_default(n, empty_bits)
+    let result = Map::from_array([(x, @immut/sorted_set.new())])
+    fn get_tags(n : NFANode) -> @immut/sorted_set.T[Tag] {
+      result.get_or_default(n, @immut/sorted_set.new())
     }
 
     let queue = @queue.from_array([x])
-    while not(queue.is_empty()) {
-      let o = queue.unsafe_pop()
-      let o_bits = get_bits(o)
+    while queue.pop() is Some(o) {
+      let o_tags = get_tags(o)
       for e in o.eps {
         let (u, tag) = e
-        let mut new_u_bits = get_bits(u).union(o_bits)
-        if not(tag.is_empty()) {
-          new_u_bits = new_u_bits.copy()
-          new_u_bits.set(tag.unwrap(), true)
+        let mut new_u_tags = get_tags(u).union(o_tags)
+        if tag is Some(tag) {
+          new_u_tags = new_u_tags.add(tag)
         }
-        if Some(new_u_bits) != result.get(u) {
-          result.set(u, new_u_bits)
+        if Some(new_u_tags) != result.get(u) {
+          result.set(u, new_u_tags)
           queue.push(u)
         }
       }
