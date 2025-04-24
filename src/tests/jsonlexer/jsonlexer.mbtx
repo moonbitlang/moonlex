@@ -60,7 +60,8 @@ rule lex_string[T : @lexbuf.IStringLexbuf](buf : StringBuilder, lexbuf : T) -> U
       buf.write_string(t)
       lex_string!(buf, lexbuf)
     }
-    [^ '"' '\\' '\x00'-'\x1F' '\x7f'] as t => { 
+    // [^ '"' '\\' '\x00'-'\x1F' '\x7f'] as t => { 
+    _ \ ['"' '\\' '\x00'-'\x1F' '\x7f'] as t => { 
       buf.write_char(t)
       lex_string!(buf, lexbuf)
     }

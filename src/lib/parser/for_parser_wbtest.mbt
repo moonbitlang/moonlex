@@ -36,6 +36,7 @@ let lexer_src : String =
   #|    "?" => { (QUESTION, $startpos, $endpos) }
   #|    "-" => { (MINUS, $startpos, $endpos) }
   #|    "^" => { (CARET, $startpos, $endpos) }
+  #|    "\\" => { (BACKSLASH, $startpos, $endpos) }
   #|    '\'' ([^ '\'' '\\'] as t) '\'' => { (CHAR(t), $startpos, $endpos) }
   #|    '\'' "\\b" '\'' => { (CHAR('\u{08}'), $startpos, $endpos) }
   #|    '\'' "\\t" '\'' => { (CHAR('\t'), $startpos, $endpos) }

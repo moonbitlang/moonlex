@@ -736,6 +736,24 @@
           {
             "$tag": "Concat",
             "0": {
+              "$tag": "Epsilon"
+            },
+            "1": {
+              "$tag": "Character",
+              "0": [
+                [
+                  92,
+                  92
+                ]
+              ]
+            }
+          },
+          " (BACKSLASH, $startpos, $endpos) "
+        ],
+        [
+          {
+            "$tag": "Concat",
+            "0": {
               "$tag": "Character",
               "0": [
                 [

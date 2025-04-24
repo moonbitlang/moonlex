@@ -25,6 +25,7 @@
 %token QUESTION     "?"
 %token MINUS        "-"
 %token CARET        "^"
+%token BACKSLASH // "\\"
 
 %token<(String, String)> RULE_LC_IDENT_LPAREN_CODE_RPAREN_ARROW_CODE_LBRACE
 %token<String> LBRACE_CODE_RBRACE
@@ -121,6 +122,18 @@ alternation -> @type.Regex
 concatenation -> @type.Regex
   : repetition                          { $1 }
   | repetition concatenation            { Concat($1, $2) }
+  | differentiation                     { $1 }
+  ;
+
+differentiation -> @type.Regex
+  : atom BACKSLASH atom                 {
+                                          guard $1 is Character(cset1) && $3 is Character(cset2)
+                                          Character(cset1.difference(cset2))
+                                        }
+  | differentiation BACKSLASH atom      { 
+                                          guard $1 is Character(cset1) && $3 is Character(cset2)
+                                          Character(cset1.difference(cset2))
+                                        }
   ;
 
 repetition -> @type.Regex

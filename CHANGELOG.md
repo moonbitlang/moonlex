@@ -1,3 +1,7 @@
+## ulex 0.2.2
+
+- Support `a \ b` for character difference in regex.
+
 ## ulex 0.2.0
 
 ### Breaking Change
