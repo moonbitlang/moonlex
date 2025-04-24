@@ -22,7 +22,7 @@ fn DFA::minimize(dfa : DFA) -> DFA {
   //                     add Y \ X to W
   // ```
 
-  let char_sets = collect_disjoint_char_sets(dfa)
+  let symbols = collect_symbols(dfa)
   let all_states = @immut/sorted_set.from_iter(
     Int::until(0, dfa.graph.length() - 1, inclusive=true),
   )
@@ -54,19 +54,50 @@ fn DFA::minimize(dfa : DFA) -> DFA {
   for _, partition in groups {
     partitions = partitions.add(partition)
   }
+
+  // target -> symbol -> sources
+  let symbolized_invert_map = {
+    let result = @sorted_map.new()
+    for source, trans in dfa.graph {
+      for tran in trans {
+        let (input, target) = tran
+        for symbol in symbols {
+          if symbol.char_set.subset(input) {
+            let map = result[target].or(@immut/sorted_map.new())
+            let map = map.add(
+              symbol,
+              map[symbol].or(@immut/sorted_set.new()).add(source),
+            )
+            result[target] = map
+          }
+        }
+      }
+    }
+    result
+  }
   let mut worklist = partitions
   while not(worklist.is_empty()) {
     let a = worklist.min()
     worklist = worklist.remove_min()
-    for symbol in char_sets {
+    for symbol in symbols {
       let mut x = @immut/sorted_set.new()
-      for state, trans in dfa.graph {
-        for tran in trans {
-          let (input, target) = tran
-          if a.contains(target) && symbol.subset(input) {
-            x = x.add(state)
-          }
+      // Slow version
+      // ```
+      // for state, trans in dfa.graph {
+      //   for tran in trans {
+      //     let (input, target) = tran
+      //     if a.contains(target) && symbol.char_set.subset(input) {
+      //       x = x.add(state)
+      //     }
+      //   }
+      // }
+      // ```
+      for target in a {
+        let sources = match symbolized_invert_map[target] {
+          None => @immut/sorted_set.new()
+          Some(map) => map[symbol].or(@immut/sorted_set.new())
         }
+        x = x + sources
       }
       guard not(x.is_empty()) else { continue }
       for y in partitions {
@@ -119,13 +150,13 @@ fn DFA::minimize(dfa : DFA) -> DFA {
   new_dfa.start_node = get_new_state(dfa.start_node)
   for partition in partitions {
     let new_state = get_new_state(partition.min())
-    for char_set in char_sets {
+    for symbol in symbols {
       for state in partition {
         for tran in dfa.graph[state] {
           let (input, target) = tran
-          if char_set.subset(input) {
+          if symbol.char_set.subset(input) {
             let new_target = get_new_state(target)
-            new_dfa.add_edge(new_state, char_set, new_target)
+            new_dfa.add_edge(new_state, symbol.char_set, new_target)
           }
         }
       }
@@ -150,7 +181,28 @@ fn DFA::minimize(dfa : DFA) -> DFA {
 }
 
 ///|
-fn collect_disjoint_char_sets(dfa : DFA) -> @immut/sorted_set.T[@eof_char_set.T] {
+priv struct Symbol {
+  id : Int
+  char_set : @eof_char_set.T
+}
+
+///|
+impl Compare for Symbol with compare(self, other) {
+  self.id.compare(other.id)
+}
+
+///|
+impl Eq for Symbol with op_equal(self, other) {
+  self.id == other.id
+}
+
+///|
+impl Hash for Symbol with hash_combine(self, hasher) {
+  self.id.hash_combine(hasher)
+}
+
+///|
+fn collect_symbols(dfa : DFA) -> @immut/sorted_set.T[Symbol] {
   let mut char_sets = @immut/sorted_set.new()
   for trans in dfa.graph {
     for tran in trans {
@@ -178,5 +230,12 @@ fn collect_disjoint_char_sets(dfa : DFA) -> @immut/sorted_set.T[@eof_char_set.T]
     all_char_set = all_char_set + char_set
     temp_char_sets = new_temp_char_sets
   }
-  temp_char_sets
+  let mut next_symbol_id = 0
+  fn new_symbol(char_set : @eof_char_set.T) -> Symbol {
+    let symbol = Symbol::{ id: next_symbol_id, char_set }
+    next_symbol_id += 1
+    symbol
+  }
+
+  temp_char_sets.map(fn(char_set) { new_symbol(char_set) })
 }
