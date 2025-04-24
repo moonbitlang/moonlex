@@ -193,7 +193,7 @@ fn register_node(self : DFA, nfa : NFA, node : Int, os : State) -> Unit {
 ///|
 fn DFA::from_nfa(nfa : NFA) -> DFA {
   let eps_closure = nfa.get_eps_closure()
-  let initial = eps_closure[0]
+  let initial = eps_closure[nfa.start_node]
   let initial_state = initial
     .iter()
     .map(fn { (x, y) => (x, TagState::new(nfa.tag_count).update_by_tags(y)) })

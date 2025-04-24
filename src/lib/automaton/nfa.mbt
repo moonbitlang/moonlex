@@ -14,6 +14,7 @@ pub(all) struct NFA {
   end_nodes : Map[Int, Int] // from node_id to pattern_id
   code_blocks : Array[CodeBlock] // indexed by pattern_id
   captures : Array[Array[((String, @type.VarType), (Tag, Tag))]] // indexed_by pattern_id
+  mut start_node : Int
   mut node_count : Int
   mut tag_count : Int
 } derive(Show)
@@ -47,6 +48,7 @@ fn NFA::new_nfa() -> NFA {
     code_blocks: [],
     end_nodes: Map::new(),
     captures: [],
+    start_node: -1,
     node_count: 0,
     tag_count: 0,
   }
@@ -56,6 +58,7 @@ fn NFA::new_nfa() -> NFA {
 pub fn NFA::from_rule(rule : Rule, encoding~ : @type.Encoding?) -> NFA {
   let nfa = NFA::new_nfa()
   let node = nfa.new_node() // match starting from 1
+  nfa.start_node = node.num
   for pattern in rule.patterns {
     let (re, code_block) = pattern
     let capture_names = re
