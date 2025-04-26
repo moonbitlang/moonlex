@@ -28,21 +28,9 @@ fn lex_utf8(lexbuf : @lexbuf.T, buf : StringBuilder) -> Unit!MalformedUtf8Error 
   let mut _tag_8 = -1
   let mut _tag_9 = -1
   let mut _tag_10 = -1
-  let mut _tag_11 = -1
-  let mut _tag_12 = -1
-  let mut _tag_13 = -1
-  let mut _tag_14 = -1
-  let mut _tag_15 = -1
-  let mut _tag_16 = -1
-  let mut _tag_17 = -1
-  let mut _tag_18 = -1
-  let mut _tag_19 = -1
   loop 0 {
     0 => {
       _tag_0 = lexbuf.curr_pos()
-      _tag_2 = lexbuf.curr_pos()
-      _tag_6 = lexbuf.curr_pos()
-      _tag_12 = lexbuf.curr_pos()
       continue match lexbuf.next_as_int() {
         -1 => 1
         0..=127 => 2
@@ -79,8 +67,7 @@ fn lex_utf8(lexbuf : @lexbuf.T, buf : StringBuilder) -> Unit!MalformedUtf8Error 
       break
     }
     4 => {
-      _tag_3 = lexbuf.curr_pos()
-      _tag_4 = lexbuf.curr_pos()
+      _tag_2 = lexbuf.curr_pos()
       if matched >= 5 {
         matched = 5
         _end_pos = lexbuf.curr_pos()
@@ -91,8 +78,7 @@ fn lex_utf8(lexbuf : @lexbuf.T, buf : StringBuilder) -> Unit!MalformedUtf8Error 
       }
     }
     5 => {
-      _tag_7 = lexbuf.curr_pos()
-      _tag_8 = lexbuf.curr_pos()
+      _tag_3 = lexbuf.curr_pos()
       if matched >= 5 {
         matched = 5
         _end_pos = lexbuf.curr_pos()
@@ -103,8 +89,7 @@ fn lex_utf8(lexbuf : @lexbuf.T, buf : StringBuilder) -> Unit!MalformedUtf8Error 
       }
     }
     6 => {
-      _tag_13 = lexbuf.curr_pos()
-      _tag_14 = lexbuf.curr_pos()
+      _tag_4 = lexbuf.curr_pos()
       if matched >= 5 {
         matched = 5
         _end_pos = lexbuf.curr_pos()
@@ -115,68 +100,65 @@ fn lex_utf8(lexbuf : @lexbuf.T, buf : StringBuilder) -> Unit!MalformedUtf8Error 
       }
     }
     7 => {
-      _tag_15 = lexbuf.curr_pos()
-      _tag_16 = lexbuf.curr_pos()
+      _tag_5 = lexbuf.curr_pos()
       continue match lexbuf.next_as_int() {
         128..=191 => 10
         _ => break
       }
     }
     8 => {
-      _tag_5 = lexbuf.curr_pos()
+      _tag_6 = lexbuf.curr_pos()
       if matched >= 2 {
         matched = 2
         _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _tag_2
-        _capture_0_end = _tag_3
-        _capture_1_start = _tag_4
-        _capture_1_end = _tag_5
+        _capture_0_start = _tag_0
+        _capture_0_end = _tag_2
+        _capture_1_start = _tag_2
+        _capture_1_end = _tag_6
       }
       break
     }
     9 => {
-      _tag_9 = lexbuf.curr_pos()
-      _tag_10 = lexbuf.curr_pos()
+      _tag_7 = lexbuf.curr_pos()
       continue match lexbuf.next_as_int() {
         128..=191 => 11
         _ => break
       }
     }
     10 => {
-      _tag_17 = lexbuf.curr_pos()
-      _tag_18 = lexbuf.curr_pos()
+      _tag_8 = lexbuf.curr_pos()
       continue match lexbuf.next_as_int() {
         128..=191 => 12
         _ => break
       }
     }
     11 => {
-      _tag_11 = lexbuf.curr_pos()
+      _tag_9 = lexbuf.curr_pos()
       if matched >= 3 {
         matched = 3
         _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _tag_6
-        _capture_0_end = _tag_7
-        _capture_1_start = _tag_8
-        _capture_1_end = _tag_9
-        _capture_2_start = _tag_10
-        _capture_2_end = _tag_11
+        _capture_0_start = _tag_0
+        _capture_0_end = _tag_3
+        _capture_1_start = _tag_3
+        _capture_1_end = _tag_7
+        _capture_2_start = _tag_7
+        _capture_2_end = _tag_9
       }
       break
     }
     12 => {
-      _tag_19 = lexbuf.curr_pos()
+      _tag_10 = lexbuf.curr_pos()
       if matched >= 4 {
         matched = 4
         _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _tag_12
-        _capture_0_end = _tag_13
-        _capture_1_start = _tag_14
-        _capture_1_end = _tag_15
-        _capture_2_start = _tag_16
-        _capture_2_end = _tag_17
-        _capture_3_start = _tag_18
-        _capture_3_end = _tag_19
+        _capture_0_start = _tag_0
+        _capture_0_end = _tag_4
+        _capture_1_start = _tag_4
+        _capture_1_end = _tag_5
+        _capture_2_start = _tag_5
+        _capture_2_end = _tag_8
+        _capture_3_start = _tag_8
+        _capture_3_end = _tag_10
       }
       break
     }

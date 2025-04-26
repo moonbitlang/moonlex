@@ -29,7 +29,6 @@ fn scan_codeblock_rbrace[T : @lexbuf.IStringLexbuf](subst : Array[SubstItem], le
   let mut _tag_2 = -1
   let mut _tag_3 = -1
   let mut _tag_4 = -1
-  let mut _tag_5 = -1
   loop 0 {
     0 => {
       if matched >= 5 {
@@ -56,7 +55,6 @@ fn scan_codeblock_rbrace[T : @lexbuf.IStringLexbuf](subst : Array[SubstItem], le
     }
     2 => {
       _tag_0 = lexbuf.curr_pos()
-      _tag_4 = lexbuf.curr_pos()
       if matched >= 4 {
         matched = 4
         _end_pos = lexbuf.curr_pos()
@@ -87,12 +85,12 @@ fn scan_codeblock_rbrace[T : @lexbuf.IStringLexbuf](subst : Array[SubstItem], le
       break
     }
     5 => {
-      _tag_5 = lexbuf.curr_pos()
+      _tag_1 = lexbuf.curr_pos()
       if matched >= 3 {
         matched = 3
         _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _tag_4
-        _capture_0_end = _tag_5
+        _capture_0_start = _tag_0
+        _capture_0_end = _tag_1
       }
       continue match lexbuf.next_as_int() {
         48..=57 => 5
@@ -103,12 +101,12 @@ fn scan_codeblock_rbrace[T : @lexbuf.IStringLexbuf](subst : Array[SubstItem], le
       }
     }
     6 => {
-      _tag_5 = lexbuf.curr_pos()
+      _tag_1 = lexbuf.curr_pos()
       if matched >= 3 {
         matched = 3
         _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _tag_4
-        _capture_0_end = _tag_5
+        _capture_0_start = _tag_0
+        _capture_0_end = _tag_1
       }
       continue match lexbuf.next_as_int() {
         48..=57 => 5
@@ -121,12 +119,12 @@ fn scan_codeblock_rbrace[T : @lexbuf.IStringLexbuf](subst : Array[SubstItem], le
       }
     }
     7 => {
-      _tag_5 = lexbuf.curr_pos()
+      _tag_1 = lexbuf.curr_pos()
       if matched >= 3 {
         matched = 3
         _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _tag_4
-        _capture_0_end = _tag_5
+        _capture_0_start = _tag_0
+        _capture_0_end = _tag_1
       }
       continue match lexbuf.next_as_int() {
         48..=57 => 5
@@ -139,12 +137,12 @@ fn scan_codeblock_rbrace[T : @lexbuf.IStringLexbuf](subst : Array[SubstItem], le
       }
     }
     8 => {
-      _tag_5 = lexbuf.curr_pos()
+      _tag_1 = lexbuf.curr_pos()
       if matched >= 3 {
         matched = 3
         _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _tag_4
-        _capture_0_end = _tag_5
+        _capture_0_start = _tag_0
+        _capture_0_end = _tag_1
       }
       continue match lexbuf.next_as_int() {
         48..=57 => 5
@@ -156,12 +154,12 @@ fn scan_codeblock_rbrace[T : @lexbuf.IStringLexbuf](subst : Array[SubstItem], le
       }
     }
     9 => {
-      _tag_5 = lexbuf.curr_pos()
+      _tag_1 = lexbuf.curr_pos()
       if matched >= 3 {
         matched = 3
         _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _tag_4
-        _capture_0_end = _tag_5
+        _capture_0_start = _tag_0
+        _capture_0_end = _tag_1
       }
       continue match lexbuf.next_as_int() {
         48..=57 => 5
@@ -174,12 +172,12 @@ fn scan_codeblock_rbrace[T : @lexbuf.IStringLexbuf](subst : Array[SubstItem], le
       }
     }
     10 => {
-      _tag_5 = lexbuf.curr_pos()
+      _tag_1 = lexbuf.curr_pos()
       if matched >= 3 {
         matched = 3
         _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _tag_4
-        _capture_0_end = _tag_5
+        _capture_0_start = _tag_0
+        _capture_0_end = _tag_1
       }
       continue match lexbuf.next_as_int() {
         48..=57 => 5
@@ -192,12 +190,12 @@ fn scan_codeblock_rbrace[T : @lexbuf.IStringLexbuf](subst : Array[SubstItem], le
       }
     }
     11 => {
-      _tag_5 = lexbuf.curr_pos()
+      _tag_1 = lexbuf.curr_pos()
       if matched >= 3 {
         matched = 3
         _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _tag_4
-        _capture_0_end = _tag_5
+        _capture_0_start = _tag_0
+        _capture_0_end = _tag_1
       }
       continue match lexbuf.next_as_int() {
         48..=57 => 5
@@ -210,12 +208,12 @@ fn scan_codeblock_rbrace[T : @lexbuf.IStringLexbuf](subst : Array[SubstItem], le
       }
     }
     12 => {
-      _tag_5 = lexbuf.curr_pos()
+      _tag_1 = lexbuf.curr_pos()
       if matched >= 3 {
         matched = 3
         _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _tag_4
-        _capture_0_end = _tag_5
+        _capture_0_start = _tag_0
+        _capture_0_end = _tag_1
       }
       continue match lexbuf.next_as_int() {
         48..=57 => 5
@@ -228,12 +226,12 @@ fn scan_codeblock_rbrace[T : @lexbuf.IStringLexbuf](subst : Array[SubstItem], le
       }
     }
     13 => {
-      _tag_5 = lexbuf.curr_pos()
+      _tag_1 = lexbuf.curr_pos()
       if matched >= 3 {
         matched = 3
         _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _tag_4
-        _capture_0_end = _tag_5
+        _capture_0_start = _tag_0
+        _capture_0_end = _tag_1
       }
       continue match lexbuf.next_as_int() {
         48..=57 => 5
@@ -246,12 +244,12 @@ fn scan_codeblock_rbrace[T : @lexbuf.IStringLexbuf](subst : Array[SubstItem], le
       }
     }
     14 => {
-      _tag_5 = lexbuf.curr_pos()
+      _tag_1 = lexbuf.curr_pos()
       if matched >= 3 {
         matched = 3
         _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _tag_4
-        _capture_0_end = _tag_5
+        _capture_0_start = _tag_0
+        _capture_0_end = _tag_1
       }
       continue match lexbuf.next_as_int() {
         48..=57 => 5
@@ -264,13 +262,13 @@ fn scan_codeblock_rbrace[T : @lexbuf.IStringLexbuf](subst : Array[SubstItem], le
       }
     }
     15 => {
+      _tag_2 = lexbuf.curr_pos()
       _tag_1 = lexbuf.curr_pos()
-      _tag_5 = lexbuf.curr_pos()
       if matched >= 3 {
         matched = 3
         _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _tag_4
-        _capture_0_end = _tag_5
+        _capture_0_start = _tag_0
+        _capture_0_end = _tag_1
       }
       continue match lexbuf.next_as_int() {
         40 => 16
@@ -282,7 +280,7 @@ fn scan_codeblock_rbrace[T : @lexbuf.IStringLexbuf](subst : Array[SubstItem], le
       }
     }
     16 => {
-      _tag_2 = lexbuf.curr_pos()
+      _tag_3 = lexbuf.curr_pos()
       continue match lexbuf.next_as_int() {
         9 => 16
         32 => 16
@@ -293,7 +291,7 @@ fn scan_codeblock_rbrace[T : @lexbuf.IStringLexbuf](subst : Array[SubstItem], le
       }
     }
     17 => {
-      _tag_3 = lexbuf.curr_pos()
+      _tag_4 = lexbuf.curr_pos()
       continue match lexbuf.next_as_int() {
         9 => 18
         32 => 18
@@ -318,9 +316,9 @@ fn scan_codeblock_rbrace[T : @lexbuf.IStringLexbuf](subst : Array[SubstItem], le
         matched = 2
         _end_pos = lexbuf.curr_pos()
         _capture_0_start = _tag_0
-        _capture_0_end = _tag_1
-        _capture_1_start = _tag_2
-        _capture_1_end = _tag_3
+        _capture_0_end = _tag_2
+        _capture_1_start = _tag_3
+        _capture_1_end = _tag_4
       }
       break
     }
