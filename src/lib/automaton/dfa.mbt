@@ -79,6 +79,9 @@ pub(all) struct DFA {
 } derive(Show)
 
 ///|
+pub typealias DFANode = Int
+
+///|
 fn DFA::new(
   code_blocks : Array[CodeBlock],
   captures : Array[Array[(String, @type.VarType)]]
@@ -296,7 +299,7 @@ fn DFA::from_nfa(nfa : NFA) -> DFA {
 
 ///|
 pub fn DFA::from_rule(rule : Rule, encoding~ : @type.Encoding?) -> DFA {
-  let dfa = DFA::from_nfa(NFA::from_rule(rule, encoding~))
-  let min_dfa = DFA::minimize(dfa)
-  min_dfa
+  DFA::from_nfa(NFA::from_rule(rule, encoding~))
+  |> DFA::minimize
+  |> DFA::minimize_tags
 }
