@@ -11,11 +11,8 @@ fn count[T : @lexbuf.IStringLexbuf](lines : Int, words : Int, chars : Int, lexbu
   let mut _capture_0_end = -1
   let mut _capture_1_start = -1
   let mut _capture_1_end = -1
-  let mut _tag_0 = -1
-  let mut _tag_1 = -1
   loop 0 {
     0 => {
-      _tag_0 = lexbuf.curr_pos()
       if matched >= 3 {
         matched = 3
         _end_pos = lexbuf.curr_pos()
@@ -31,12 +28,11 @@ fn count[T : @lexbuf.IStringLexbuf](lines : Int, words : Int, chars : Int, lexbu
       }
     }
     1 => {
-      _tag_1 = lexbuf.curr_pos()
       if matched >= 1 {
         matched = 1
         _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _tag_0
-        _capture_0_end = _tag_1
+        _capture_0_start = _start_pos
+        _capture_0_end = _end_pos
       }
       continue match lexbuf.next_as_int() {
         0..=8 => 1

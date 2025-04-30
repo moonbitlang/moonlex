@@ -199,13 +199,21 @@ fn codegen_rule(
               "        _capture_\{index}_start = \{gen_tag_var(begin_tag_var)}\n",
             )
           Static_dfa(RelativeToStart(offset)) =>
-            out.write_string(
-              "        _capture_\{index}_start = _start_pos + \{offset}\n",
-            )
+            if offset == 0 {
+              out.write_string("        _capture_\{index}_start = _start_pos\n")
+            } else {
+              out.write_string(
+                "        _capture_\{index}_start = _start_pos + \{offset}\n",
+              )
+            }
           Static_dfa(RelativeToEnd(offset)) =>
-            out.write_string(
-              "        _capture_\{index}_start = _end_pos + \{offset}\n",
-            )
+            if offset == 0 {
+              out.write_string("        _capture_\{index}_start = _end_pos\n")
+            } else {
+              out.write_string(
+                "        _capture_\{index}_start = _end_pos + \{offset}\n",
+              )
+            }
         }
         match end {
           Dynamic_dfa(end_tag_var) =>
@@ -213,13 +221,21 @@ fn codegen_rule(
               "        _capture_\{index}_end = \{gen_tag_var(end_tag_var)}\n",
             )
           Static_dfa(RelativeToStart(offset)) =>
-            out.write_string(
-              "        _capture_\{index}_end = _start_pos + \{offset}\n",
-            )
+            if offset == 0 {
+              out.write_string("        _capture_\{index}_end = _start_pos\n")
+            } else {
+              out.write_string(
+                "        _capture_\{index}_end = _start_pos + \{offset}\n",
+              )
+            }
           Static_dfa(RelativeToEnd(offset)) =>
-            out.write_string(
-              "        _capture_\{index}_end = _end_pos + \{offset}\n",
-            )
+            if offset == 0 {
+              out.write_string("        _capture_\{index}_end = _end_pos\n")
+            } else {
+              out.write_string(
+                "        _capture_\{index}_end = _end_pos + \{offset}\n",
+              )
+            }
         }
       }
       out.write_string(

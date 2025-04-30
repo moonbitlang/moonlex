@@ -30,13 +30,8 @@ fn token[T : @lexbuf.IStringLexbuf](lexbuf : T) -> Token!LexError  {
   let mut _capture_0_end = -1
   let mut _capture_1_start = -1
   let mut _capture_1_end = -1
-  let mut _tag_0 = -1
-  let mut _tag_1 = -1
-  let mut _tag_2 = -1
-  let mut _tag_3 = -1
   loop 0 {
     0 => {
-      _tag_0 = lexbuf.curr_pos()
       if matched >= 13 {
         matched = 13
         _end_pos = lexbuf.curr_pos()
@@ -76,17 +71,15 @@ fn token[T : @lexbuf.IStringLexbuf](lexbuf : T) -> Token!LexError  {
       }
     }
     1 => {
-      _tag_1 = lexbuf.curr_pos()
       if matched >= 12 {
         matched = 12
         _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _tag_0
-        _capture_0_end = _tag_1
+        _capture_0_start = _start_pos
+        _capture_0_end = _start_pos + 1
       }
       break
     }
     2 => {
-      _tag_1 = lexbuf.curr_pos()
       if matched >= 0 {
         matched = 0
         _end_pos = lexbuf.curr_pos()
@@ -94,18 +87,15 @@ fn token[T : @lexbuf.IStringLexbuf](lexbuf : T) -> Token!LexError  {
       break
     }
     3 => {
-      _tag_2 = lexbuf.curr_pos()
-      _tag_1 = lexbuf.curr_pos()
       if matched >= 2 {
         matched = 2
         _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _tag_0
-        _capture_0_end = _tag_2
+        _capture_0_start = _start_pos
+        _capture_0_end = _start_pos + 1
       }
       break
     }
     4 => {
-      _tag_1 = lexbuf.curr_pos()
       if matched >= 7 {
         matched = 7
         _end_pos = lexbuf.curr_pos()
@@ -113,53 +103,47 @@ fn token[T : @lexbuf.IStringLexbuf](lexbuf : T) -> Token!LexError  {
       break
     }
     5 => {
-      _tag_1 = lexbuf.curr_pos()
       if matched >= 12 {
         matched = 12
         _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _tag_0
-        _capture_0_end = _tag_1
+        _capture_0_start = _start_pos
+        _capture_0_end = _start_pos + 1
       }
       continue match lexbuf.next_as_int() {
-        48 => 17
-        49..=57 => 18
+        48 => 6
+        49..=57 => 7
         _ => break
       }
     }
     6 => {
-      _tag_3 = lexbuf.curr_pos()
-      _tag_1 = lexbuf.curr_pos()
       if matched >= 1 {
         matched = 1
         _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _tag_0
-        _capture_0_end = _tag_3
+        _capture_0_start = _start_pos
+        _capture_0_end = _end_pos
       }
       continue match lexbuf.next_as_int() {
-        69 => 19
-        101 => 19
+        69 => 17
+        101 => 17
         _ => break
       }
     }
     7 => {
-      _tag_3 = lexbuf.curr_pos()
-      _tag_1 = lexbuf.curr_pos()
       if matched >= 1 {
         matched = 1
         _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _tag_0
-        _capture_0_end = _tag_3
+        _capture_0_start = _start_pos
+        _capture_0_end = _end_pos
       }
       continue match lexbuf.next_as_int() {
-        46 => 22
-        48..=57 => 18
-        69 => 19
-        101 => 19
+        46 => 20
+        48..=57 => 7
+        69 => 17
+        101 => 17
         _ => break
       }
     }
     8 => {
-      _tag_1 = lexbuf.curr_pos()
       if matched >= 8 {
         matched = 8
         _end_pos = lexbuf.curr_pos()
@@ -167,7 +151,6 @@ fn token[T : @lexbuf.IStringLexbuf](lexbuf : T) -> Token!LexError  {
       break
     }
     9 => {
-      _tag_1 = lexbuf.curr_pos()
       if matched >= 5 {
         matched = 5
         _end_pos = lexbuf.curr_pos()
@@ -175,7 +158,6 @@ fn token[T : @lexbuf.IStringLexbuf](lexbuf : T) -> Token!LexError  {
       break
     }
     10 => {
-      _tag_1 = lexbuf.curr_pos()
       if matched >= 6 {
         matched = 6
         _end_pos = lexbuf.curr_pos()
@@ -183,25 +165,23 @@ fn token[T : @lexbuf.IStringLexbuf](lexbuf : T) -> Token!LexError  {
       break
     }
     11 => {
-      _tag_1 = lexbuf.curr_pos()
       if matched >= 12 {
         matched = 12
         _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _tag_0
-        _capture_0_end = _tag_1
+        _capture_0_start = _start_pos
+        _capture_0_end = _start_pos + 1
       }
       continue match lexbuf.next_as_int() {
-        97 => 21
+        97 => 19
         _ => break
       }
     }
     12 => {
-      _tag_1 = lexbuf.curr_pos()
       if matched >= 12 {
         matched = 12
         _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _tag_0
-        _capture_0_end = _tag_1
+        _capture_0_start = _start_pos
+        _capture_0_end = _start_pos + 1
       }
       continue match lexbuf.next_as_int() {
         117 => 16
@@ -209,20 +189,18 @@ fn token[T : @lexbuf.IStringLexbuf](lexbuf : T) -> Token!LexError  {
       }
     }
     13 => {
-      _tag_1 = lexbuf.curr_pos()
       if matched >= 12 {
         matched = 12
         _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _tag_0
-        _capture_0_end = _tag_1
+        _capture_0_start = _start_pos
+        _capture_0_end = _start_pos + 1
       }
       continue match lexbuf.next_as_int() {
-        114 => 20
+        114 => 18
         _ => break
       }
     }
     14 => {
-      _tag_1 = lexbuf.curr_pos()
       if matched >= 3 {
         matched = 3
         _end_pos = lexbuf.curr_pos()
@@ -230,7 +208,6 @@ fn token[T : @lexbuf.IStringLexbuf](lexbuf : T) -> Token!LexError  {
       break
     }
     15 => {
-      _tag_1 = lexbuf.curr_pos()
       if matched >= 4 {
         matched = 4
         _end_pos = lexbuf.curr_pos()
@@ -239,51 +216,33 @@ fn token[T : @lexbuf.IStringLexbuf](lexbuf : T) -> Token!LexError  {
     }
     16 => {
       continue match lexbuf.next_as_int() {
-        108 => 23
+        108 => 21
         _ => break
       }
     }
     17 => {
-      _tag_3 = lexbuf.curr_pos()
-      if matched >= 1 {
-        matched = 1
-        _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _tag_0
-        _capture_0_end = _tag_3
-      }
       continue match lexbuf.next_as_int() {
-        69 => 19
-        101 => 19
+        43 => 22
+        45 => 22
+        48..=57 => 23
         _ => break
       }
     }
     18 => {
-      _tag_3 = lexbuf.curr_pos()
-      if matched >= 1 {
-        matched = 1
-        _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _tag_0
-        _capture_0_end = _tag_3
-      }
       continue match lexbuf.next_as_int() {
-        46 => 22
-        48..=57 => 18
-        69 => 19
-        101 => 19
+        117 => 24
         _ => break
       }
     }
     19 => {
       continue match lexbuf.next_as_int() {
-        43 => 24
-        45 => 24
-        48..=57 => 25
+        108 => 25
         _ => break
       }
     }
     20 => {
       continue match lexbuf.next_as_int() {
-        117 => 26
+        48..=57 => 26
         _ => break
       }
     }
@@ -295,83 +254,69 @@ fn token[T : @lexbuf.IStringLexbuf](lexbuf : T) -> Token!LexError  {
     }
     22 => {
       continue match lexbuf.next_as_int() {
-        48..=57 => 28
+        48..=57 => 23
         _ => break
       }
     }
     23 => {
+      if matched >= 1 {
+        matched = 1
+        _end_pos = lexbuf.curr_pos()
+        _capture_0_start = _start_pos
+        _capture_0_end = _end_pos
+      }
       continue match lexbuf.next_as_int() {
-        108 => 29
+        48..=57 => 23
         _ => break
       }
     }
     24 => {
       continue match lexbuf.next_as_int() {
-        48..=57 => 25
+        101 => 28
         _ => break
       }
     }
     25 => {
-      _tag_3 = lexbuf.curr_pos()
-      if matched >= 1 {
-        matched = 1
-        _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _tag_0
-        _capture_0_end = _tag_3
-      }
       continue match lexbuf.next_as_int() {
-        48..=57 => 25
+        115 => 29
         _ => break
       }
     }
     26 => {
+      if matched >= 1 {
+        matched = 1
+        _end_pos = lexbuf.curr_pos()
+        _capture_0_start = _start_pos
+        _capture_0_end = _end_pos
+      }
       continue match lexbuf.next_as_int() {
-        101 => 30
+        48..=57 => 26
+        69 => 17
+        101 => 17
         _ => break
       }
     }
     27 => {
-      continue match lexbuf.next_as_int() {
-        115 => 31
-        _ => break
-      }
-    }
-    28 => {
-      _tag_3 = lexbuf.curr_pos()
-      if matched >= 1 {
-        matched = 1
-        _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _tag_0
-        _capture_0_end = _tag_3
-      }
-      continue match lexbuf.next_as_int() {
-        48..=57 => 28
-        69 => 19
-        101 => 19
-        _ => break
-      }
-    }
-    29 => {
       if matched >= 11 {
         matched = 11
         _end_pos = lexbuf.curr_pos()
       }
       break
     }
-    30 => {
+    28 => {
       if matched >= 9 {
         matched = 9
         _end_pos = lexbuf.curr_pos()
       }
       break
     }
-    31 => {
+    29 => {
       continue match lexbuf.next_as_int() {
-        101 => 32
+        101 => 30
         _ => break
       }
     }
-    32 => {
+    30 => {
       if matched >= 10 {
         matched = 10
         _end_pos = lexbuf.curr_pos()
@@ -472,14 +417,8 @@ fn lex_string[T : @lexbuf.IStringLexbuf](buf : StringBuilder, lexbuf : T) -> Uni
   let mut _capture_0_end = -1
   let mut _capture_1_start = -1
   let mut _capture_1_end = -1
-  let mut _tag_0 = -1
-  let mut _tag_1 = -1
-  let mut _tag_2 = -1
-  let mut _tag_3 = -1
-  let mut _tag_4 = -1
   loop 0 {
     0 => {
-      _tag_0 = lexbuf.curr_pos()
       if matched >= 4 {
         matched = 4
         _end_pos = lexbuf.curr_pos()
@@ -497,44 +436,38 @@ fn lex_string[T : @lexbuf.IStringLexbuf](buf : StringBuilder, lexbuf : T) -> Uni
       }
     }
     1 => {
-      _tag_1 = lexbuf.curr_pos()
       if matched >= 3 {
         matched = 3
         _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _tag_0
-        _capture_0_end = _tag_1
+        _capture_0_start = _start_pos
+        _capture_0_end = _start_pos + 1
       }
       break
     }
     2 => {
-      _tag_2 = lexbuf.curr_pos()
-      _tag_1 = lexbuf.curr_pos()
       if matched >= 2 {
         matched = 2
         _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _tag_0
-        _capture_0_end = _tag_2
+        _capture_0_start = _start_pos
+        _capture_0_end = _start_pos + 1
       }
       break
     }
     3 => {
-      _tag_3 = lexbuf.curr_pos()
-      _tag_1 = lexbuf.curr_pos()
       if matched >= 0 {
         matched = 0
         _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _tag_0
-        _capture_0_end = _tag_3
+        _capture_0_start = _start_pos
+        _capture_0_end = _start_pos + 1
       }
       break
     }
     4 => {
-      _tag_1 = lexbuf.curr_pos()
       if matched >= 3 {
         matched = 3
         _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _tag_0
-        _capture_0_end = _tag_1
+        _capture_0_start = _start_pos
+        _capture_0_end = _start_pos + 1
       }
       continue match lexbuf.next_as_int() {
         34 => 5
@@ -550,12 +483,11 @@ fn lex_string[T : @lexbuf.IStringLexbuf](buf : StringBuilder, lexbuf : T) -> Uni
       }
     }
     5 => {
-      _tag_4 = lexbuf.curr_pos()
       if matched >= 1 {
         matched = 1
         _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _tag_0
-        _capture_0_end = _tag_4
+        _capture_0_start = _start_pos
+        _capture_0_end = _end_pos
       }
       break
     }

@@ -76,7 +76,7 @@ pub fn NFA::from_rule(rule : Rule, encoding~ : @type.Encoding?) -> NFA {
   for pattern in rule.patterns {
     let (re, code_block) = pattern
     let capture_names = re
-      .get_capture_names()
+      .get_capture_names(encoding~)
       .map(fn(it) {
         let (name, (var_type, (begin, end))) = it
         let begin = match begin {

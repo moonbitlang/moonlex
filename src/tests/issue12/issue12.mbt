@@ -9,23 +9,19 @@ fn test_func[T : @lexbuf.IStringLexbuf](lexbuf : T) -> String  {
   let mut _capture_0_end = -1
   let mut _capture_1_start = -1
   let mut _capture_1_end = -1
-  let mut _tag_0 = -1
-  let mut _tag_1 = -1
   loop 0 {
     0 => {
-      _tag_0 = lexbuf.curr_pos()
       continue match lexbuf.next_as_int() {
         97 => 1
         _ => break
       }
     }
     1 => {
-      _tag_1 = lexbuf.curr_pos()
       if matched >= 0 {
         matched = 0
         _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _tag_0
-        _capture_0_end = _tag_1
+        _capture_0_start = _start_pos
+        _capture_0_end = _end_pos
       }
       continue match lexbuf.next_as_int() {
         97..=98 => 2
@@ -40,12 +36,11 @@ fn test_func[T : @lexbuf.IStringLexbuf](lexbuf : T) -> String  {
       }
     }
     3 => {
-      _tag_1 = lexbuf.curr_pos()
       if matched >= 0 {
         matched = 0
         _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _tag_0
-        _capture_0_end = _tag_1
+        _capture_0_start = _start_pos
+        _capture_0_end = _end_pos
       }
       continue match lexbuf.next_as_int() {
         97 => 3

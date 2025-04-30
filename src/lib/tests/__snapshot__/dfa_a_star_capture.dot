@@ -2,4 +2,4 @@ digraph a_star_capture {	0 -> 1[label="a"]
 	1 -> 2[label="a"]
 	2 -> 2[label="a"]0[shape=circle,label=0]
 1[shape=circle,label=1]
-2[shape=box,label="2(0)/[(Dynamic_dfa((0, 2)), Dynamic_dfa((1, 1)))]"]}
+2[shape=box,label="2(0)/[(Dynamic_dfa((0, 2)), Static_dfa(RelativeToEnd(-1)))]"]}
