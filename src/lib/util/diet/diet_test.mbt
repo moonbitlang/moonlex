@@ -123,9 +123,9 @@ test "intersection containing" {
 test "complement empty" {
   let empty : @diet.T[Char] = @diet.empty()
   let complement : @diet.T[Char] = @diet.complement(empty)
-  inspect!(
+  assert_eq!(
     complement.iter_intervals().to_array(),
-    content="[('\\x00', '\u{10ffff}')]",
+    [('\u{0}', '\u{10ffff}')],
   )
 }
 
@@ -133,9 +133,9 @@ test "complement empty" {
 test "complement single interval" {
   let a : @diet.T[Char] = @diet.interval('0', '9')
   let complement : @diet.T[Char] = @diet.complement(a)
-  inspect!(
+  assert_eq!(
     complement.iter_intervals().to_array(),
-    content="[('\\x00', '/'), (':', '\u{10ffff}')]",
+    [('\u{0}', '/'), (':', '\u{10ffff}')],
   )
 }
 
@@ -146,9 +146,9 @@ test "complement multiple intervals" {
     @diet.interval('6', '9'),
   )
   let complement : @diet.T[Char] = @diet.complement(a)
-  inspect!(
+  assert_eq!(
     complement.iter_intervals().to_array(),
-    content="[('\\x00', '/'), ('5', '5'), (':', '\u{10ffff}')]",
+    [('\u{0}', '/'), ('5', '5'), (':', '\u{10ffff}')],
   )
 }
 
@@ -157,8 +157,8 @@ test "difference" {
   let a : @diet.T[Char] = @diet.interval('0', '9')
   let b : @diet.T[Char] = @diet.interval('3', '6')
   let difference : @diet.T[Char] = @diet.difference(a, b)
-  inspect!(
+  assert_eq!(
     difference.iter().to_array(),
-    content="['0', '1', '2', '7', '8', '9']",
+    ['0', '1', '2', '7', '8', '9'],
   )
 }
