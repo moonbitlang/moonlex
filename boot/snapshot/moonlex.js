@@ -13427,45 +13427,45 @@ function moonbitlang$core$builtin$$BitAnd$land$29$(self, other) {
 function moonbitlang$ulex$lib$util$eof_char_set$$EofCharSet$iter_ranges(self) {
   return moonbitlang$ulex$lib$util$diet$$Tree$iter_intervals$1$(self);
 }
-function moonbitlang$core$builtin$$Compare$compare$183$(_x_258, _x_259) {
-  if (_x_258 === 0) {
-    if (_x_259 === 0) {
+function moonbitlang$core$builtin$$Compare$compare$183$(_x_268, _x_269) {
+  if (_x_268 === 0) {
+    if (_x_269 === 0) {
       return 0;
     } else {
       return -1;
     }
   } else {
-    if (_x_259 === 0) {
+    if (_x_269 === 0) {
       return 1;
     } else {
       return 0;
     }
   }
 }
-function moonbitlang$core$builtin$$Eq$op_equal$186$(_x_104, _x_105) {
-  if (_x_104.$tag === 0) {
-    const _RelativeToStart = _x_104;
-    const _$42$x0_106 = _RelativeToStart._0;
-    if (_x_105.$tag === 0) {
-      const _RelativeToStart$2 = _x_105;
-      const _$42$y0_107 = _RelativeToStart$2._0;
-      return _$42$x0_106 === _$42$y0_107;
+function moonbitlang$core$builtin$$Eq$op_equal$186$(_x_114, _x_115) {
+  if (_x_114.$tag === 0) {
+    const _RelativeToStart = _x_114;
+    const _$42$x0_116 = _RelativeToStart._0;
+    if (_x_115.$tag === 0) {
+      const _RelativeToStart$2 = _x_115;
+      const _$42$y0_117 = _RelativeToStart$2._0;
+      return _$42$x0_116 === _$42$y0_117;
     } else {
       return false;
     }
   } else {
-    const _RelativeToEnd = _x_104;
-    const _$42$x0_108 = _RelativeToEnd._0;
-    if (_x_105.$tag === 1) {
-      const _RelativeToEnd$2 = _x_105;
-      const _$42$y0_109 = _RelativeToEnd$2._0;
-      return _$42$x0_108 === _$42$y0_109;
+    const _RelativeToEnd = _x_114;
+    const _$42$x0_118 = _RelativeToEnd._0;
+    if (_x_115.$tag === 1) {
+      const _RelativeToEnd$2 = _x_115;
+      const _$42$y0_119 = _RelativeToEnd$2._0;
+      return _$42$x0_118 === _$42$y0_119;
     } else {
       return false;
     }
   }
 }
-function moonbitlang$ulex$lib$type$$get_char_vars$46$analyze$124$59(re) {
+function moonbitlang$ulex$lib$type$$get_char_vars$46$analyze$124$66(re) {
   let _tmp = re;
   _L: while (true) {
     const re$2 = _tmp;
@@ -13483,53 +13483,58 @@ function moonbitlang$ulex$lib$type$$get_char_vars$46$analyze$124$59(re) {
         case 2: {
           const _Repetition = re$2;
           const _re = _Repetition._0;
-          const _bind = moonbitlang$ulex$lib$type$$get_char_vars$46$analyze$124$59(_re);
+          const _bind = moonbitlang$ulex$lib$type$$get_char_vars$46$analyze$124$66(_re);
           const _char_vars = _bind._0;
           const _str_vars = _bind._1;
           const _len = _bind._2;
-          switch (_len) {
-            case 0: {
-              return { _0: _char_vars, _1: _str_vars, _2: 0 };
-            }
-            case 1: {
-              return { _0: _char_vars, _1: _str_vars, _2: 2 };
-            }
-            default: {
-              return { _0: _char_vars, _1: _str_vars, _2: 2 };
+          _L$3: {
+            if (_len === undefined) {
+              break _L$3;
+            } else {
+              const _Some = _len;
+              const _x = _Some;
+              if (_x === 0) {
+                return { _0: _char_vars, _1: _str_vars, _2: 0 };
+              } else {
+                break _L$3;
+              }
             }
           }
+          return { _0: _char_vars, _1: _str_vars, _2: undefined };
         }
         case 5: {
           const _Concat = re$2;
           const _re1 = _Concat._0;
           const _re2 = _Concat._1;
-          const _bind$2 = moonbitlang$ulex$lib$type$$get_char_vars$46$analyze$124$59(_re1);
+          const _bind$2 = moonbitlang$ulex$lib$type$$get_char_vars$46$analyze$124$66(_re1);
           const _char_vars1 = _bind$2._0;
           const _str_vars1 = _bind$2._1;
           const _len1 = _bind$2._2;
-          const _bind$3 = moonbitlang$ulex$lib$type$$get_char_vars$46$analyze$124$59(_re2);
+          const _bind$3 = moonbitlang$ulex$lib$type$$get_char_vars$46$analyze$124$66(_re2);
           const _char_vars2 = _bind$3._0;
           const _str_vars2 = _bind$3._1;
           const _len2 = _bind$3._2;
           const _tmp$2 = moonbitlang$core$immut$sorted_set$$T$union$23$(_char_vars1, _char_vars2);
           const _tmp$3 = moonbitlang$core$immut$sorted_set$$T$union$23$(_str_vars1, _str_vars2);
           let _tmp$4;
-          if (_len1 === 0) {
-            _tmp$4 = _len2;
-          } else {
-            if (_len2 === 0) {
-              _tmp$4 = _len1;
-            } else {
-              if (_len1 === 2) {
-                _tmp$4 = 2;
+          _L$4: {
+            _L$5: {
+              if (_len1 === undefined) {
+                break _L$5;
               } else {
-                if (_len2 === 2) {
-                  _tmp$4 = 2;
+                const _Some = _len1;
+                const _len1$2 = _Some;
+                if (_len2 === undefined) {
+                  break _L$5;
                 } else {
-                  _tmp$4 = 2;
+                  const _Some$2 = _len2;
+                  const _len2$2 = _Some$2;
+                  _tmp$4 = _len1$2 + _len2$2 | 0;
                 }
               }
+              break _L$4;
             }
+            _tmp$4 = undefined;
           }
           return { _0: _tmp$2, _1: _tmp$3, _2: _tmp$4 };
         }
@@ -13537,41 +13542,39 @@ function moonbitlang$ulex$lib$type$$get_char_vars$46$analyze$124$59(re) {
           const _Alter = re$2;
           const _re1$2 = _Alter._0;
           const _re2$2 = _Alter._1;
-          const _bind$4 = moonbitlang$ulex$lib$type$$get_char_vars$46$analyze$124$59(_re1$2);
+          const _bind$4 = moonbitlang$ulex$lib$type$$get_char_vars$46$analyze$124$66(_re1$2);
           const _char_vars1$2 = _bind$4._0;
           const _str_vars1$2 = _bind$4._1;
           const _len1$2 = _bind$4._2;
-          const _bind$5 = moonbitlang$ulex$lib$type$$get_char_vars$46$analyze$124$59(_re2$2);
+          const _bind$5 = moonbitlang$ulex$lib$type$$get_char_vars$46$analyze$124$66(_re2$2);
           const _char_vars2$2 = _bind$5._0;
           const _str_vars2$2 = _bind$5._1;
           const _len2$2 = _bind$5._2;
           const _tmp$5 = moonbitlang$core$immut$sorted_set$$T$union$23$(_char_vars1$2, _char_vars2$2);
           const _tmp$6 = moonbitlang$core$immut$sorted_set$$T$union$23$(_str_vars1$2, _str_vars2$2);
           let _tmp$7;
-          switch (_len1$2) {
-            case 1: {
-              switch (_len2$2) {
-                case 1: {
-                  _tmp$7 = 1;
-                  break;
-                }
-                case 0: {
-                  _tmp$7 = 2;
-                  break;
-                }
-                default: {
-                  _tmp$7 = 2;
+          _L$5: {
+            _L$6: {
+              if (_len1$2 === undefined) {
+                break _L$6;
+              } else {
+                const _Some = _len1$2;
+                const _len1$3 = _Some;
+                if (_len2$2 === undefined) {
+                  break _L$6;
+                } else {
+                  const _Some$2 = _len2$2;
+                  const _len2$3 = _Some$2;
+                  if (_len1$3 === _len2$3) {
+                    _tmp$7 = _len1$3;
+                  } else {
+                    break _L$6;
+                  }
                 }
               }
-              break;
+              break _L$5;
             }
-            case 0: {
-              _tmp$7 = 2;
-              break;
-            }
-            default: {
-              _tmp$7 = 2;
-            }
+            _tmp$7 = undefined;
           }
           return { _0: _tmp$5, _1: _tmp$6, _2: _tmp$7 };
         }
@@ -13579,24 +13582,27 @@ function moonbitlang$ulex$lib$type$$get_char_vars$46$analyze$124$59(re) {
           const _Capture = re$2;
           const _re$2 = _Capture._0;
           const _var = _Capture._1;
-          const _bind$6 = moonbitlang$ulex$lib$type$$get_char_vars$46$analyze$124$59(_re$2);
+          const _bind$6 = moonbitlang$ulex$lib$type$$get_char_vars$46$analyze$124$66(_re$2);
           const _char_vars$2 = _bind$6._0;
           const _str_vars$2 = _bind$6._1;
           const _len$2 = _bind$6._2;
-          _L$3: {
-            switch (_len$2) {
-              case 1: {
+          let len;
+          _L$6: {
+            if (_len$2 === undefined) {
+              len = _len$2;
+              break _L$6;
+            } else {
+              const _Some = _len$2;
+              const _x = _Some;
+              if (_x === 1) {
                 return { _0: moonbitlang$core$immut$sorted_set$$T$add$23$(_char_vars$2, _var), _1: _str_vars$2, _2: 1 };
-              }
-              case 0: {
-                break _L$3;
-              }
-              default: {
-                break _L$3;
+              } else {
+                len = _len$2;
+                break _L$6;
               }
             }
           }
-          return { _0: _char_vars$2, _1: moonbitlang$core$immut$sorted_set$$T$add$23$(_str_vars$2, _var), _2: _len$2 };
+          return { _0: _char_vars$2, _1: moonbitlang$core$immut$sorted_set$$T$add$23$(_str_vars$2, _var), _2: len };
         }
         default: {
           const _Bytes = re$2;
@@ -13610,7 +13616,7 @@ function moonbitlang$ulex$lib$type$$get_char_vars$46$analyze$124$59(re) {
   }
 }
 function moonbitlang$ulex$lib$type$$get_char_vars(re) {
-  const _bind = moonbitlang$ulex$lib$type$$get_char_vars$46$analyze$124$59(re);
+  const _bind = moonbitlang$ulex$lib$type$$get_char_vars$46$analyze$124$66(re);
   const _char_vars = _bind._0;
   const _str_vars = _bind._1;
   return moonbitlang$core$immut$sorted_set$$T$difference$23$(_char_vars, _str_vars);
@@ -13619,84 +13625,101 @@ function moonbitlang$ulex$lib$type$$get_static_known_tag_positions$46$len_of$124
   let _tmp = re;
   _L: while (true) {
     const re$2 = _tmp;
-    switch (re$2.$tag) {
-      case 3: {
-        return 0;
-      }
-      case 0: {
-        return 0;
-      }
-      case 1: {
-        return 1;
-      }
-      case 2: {
-        return 2;
-      }
-      case 5: {
-        const _Concat = re$2;
-        const _re1 = _Concat._0;
-        const _re2 = _Concat._1;
-        const _bind = moonbitlang$ulex$lib$type$$get_static_known_tag_positions$46$len_of$124$21(_re1);
-        const _bind$2 = moonbitlang$ulex$lib$type$$get_static_known_tag_positions$46$len_of$124$21(_re2);
-        if (_bind === 0) {
-          return _bind$2;
-        } else {
-          if (_bind$2 === 0) {
-            return _bind;
-          } else {
-            if (_bind === 2) {
-              return 2;
+    _L$2: {
+      switch (re$2.$tag) {
+        case 3: {
+          break _L$2;
+        }
+        case 0: {
+          break _L$2;
+        }
+        case 1: {
+          return 1;
+        }
+        case 2: {
+          const _Repetition = re$2;
+          const _re = _Repetition._0;
+          _L$3: {
+            const _bind = moonbitlang$ulex$lib$type$$get_static_known_tag_positions$46$len_of$124$21(_re);
+            if (_bind === undefined) {
+              break _L$3;
             } else {
-              if (_bind$2 === 2) {
-                return 2;
+              const _Some = _bind;
+              const _x = _Some;
+              if (_x === 0) {
+                return 0;
               } else {
-                return 2;
+                break _L$3;
               }
             }
           }
+          return undefined;
         }
-      }
-      case 4: {
-        const _Alter = re$2;
-        const _re1$2 = _Alter._0;
-        const _re2$2 = _Alter._1;
-        const _bind$3 = moonbitlang$ulex$lib$type$$get_static_known_tag_positions$46$len_of$124$21(_re1$2);
-        const _bind$4 = moonbitlang$ulex$lib$type$$get_static_known_tag_positions$46$len_of$124$21(_re2$2);
-        switch (_bind$3) {
-          case 1: {
-            switch (_bind$4) {
-              case 1: {
-                return 1;
-              }
-              case 0: {
-                return 2;
-              }
-              default: {
-                return 2;
+        case 5: {
+          const _Concat = re$2;
+          const _re1 = _Concat._0;
+          const _re2 = _Concat._1;
+          _L$4: {
+            const _bind = moonbitlang$ulex$lib$type$$get_static_known_tag_positions$46$len_of$124$21(_re1);
+            if (_bind === undefined) {
+              break _L$4;
+            } else {
+              const _Some = _bind;
+              const _len1 = _Some;
+              const _bind$2 = moonbitlang$ulex$lib$type$$get_static_known_tag_positions$46$len_of$124$21(_re2);
+              if (_bind$2 === undefined) {
+                break _L$4;
+              } else {
+                const _Some$2 = _bind$2;
+                const _len2 = _Some$2;
+                return _len1 + _len2 | 0;
               }
             }
           }
-          case 0: {
-            return 2;
-          }
-          default: {
-            return 2;
-          }
+          return undefined;
         }
-      }
-      case 6: {
-        const _Capture = re$2;
-        const _regex = _Capture._0;
-        _tmp = _regex;
-        continue _L;
-      }
-      default: {
-        const _Bytes = re$2;
-        const _re = _Bytes._1;
-        _tmp = _re;
-        continue _L;
+        case 4: {
+          const _Alter = re$2;
+          const _re1$2 = _Alter._0;
+          const _re2$2 = _Alter._1;
+          _L$5: {
+            const _bind = moonbitlang$ulex$lib$type$$get_static_known_tag_positions$46$len_of$124$21(_re1$2);
+            if (_bind === undefined) {
+              break _L$5;
+            } else {
+              const _Some = _bind;
+              const _len1 = _Some;
+              const _bind$2 = moonbitlang$ulex$lib$type$$get_static_known_tag_positions$46$len_of$124$21(_re2$2);
+              if (_bind$2 === undefined) {
+                break _L$5;
+              } else {
+                const _Some$2 = _bind$2;
+                const _len2 = _Some$2;
+                if (_len1 === _len2) {
+                  return _len1;
+                } else {
+                  break _L$5;
+                }
+              }
+            }
+          }
+          return undefined;
+        }
+        case 6: {
+          const _Capture = re$2;
+          const _regex = _Capture._0;
+          _tmp = _regex;
+          continue _L;
+        }
+        default: {
+          const _Bytes = re$2;
+          const _re$2 = _Bytes._1;
+          _tmp = _re$2;
+          continue _L;
+        }
       }
     }
+    return 0;
   }
 }
 function moonbitlang$ulex$lib$type$$Regex$get_static_known_tag_positions(self, encoding) {
@@ -13729,15 +13752,11 @@ function moonbitlang$ulex$lib$type$$Regex$get_static_known_tag_positions(self, e
             moonbitlang$core$array$$Array$push$165$(queue, { _0: _regex, _1: _offset });
             map = moonbitlang$core$immut$sorted_map$$T$add$64$(map, { _0: _name, _1: 1 }, new $64$moonbitlang$47$ulex$47$lib$47$type$46$StaticKnownTagPosition$RelativeToEnd(_offset));
             const _bind$2 = moonbitlang$ulex$lib$type$$get_static_known_tag_positions$46$len_of$124$21(_regex);
-            switch (_bind$2) {
-              case 0: {
-                map = moonbitlang$core$immut$sorted_map$$T$add$64$(map, { _0: _name, _1: 0 }, new $64$moonbitlang$47$ulex$47$lib$47$type$46$StaticKnownTagPosition$RelativeToEnd(_offset));
-                break;
-              }
-              case 1: {
-                map = moonbitlang$core$immut$sorted_map$$T$add$64$(map, { _0: _name, _1: 0 }, new $64$moonbitlang$47$ulex$47$lib$47$type$46$StaticKnownTagPosition$RelativeToEnd(_offset - 1 | 0));
-                break;
-              }
+            if (_bind$2 === undefined) {
+            } else {
+              const _Some$2 = _bind$2;
+              const _len = _Some$2;
+              map = moonbitlang$core$immut$sorted_map$$T$add$64$(map, { _0: _name, _1: 0 }, new $64$moonbitlang$47$ulex$47$lib$47$type$46$StaticKnownTagPosition$RelativeToEnd(_offset - _len | 0));
             }
             break;
           }
@@ -13747,15 +13766,11 @@ function moonbitlang$ulex$lib$type$$Regex$get_static_known_tag_positions(self, e
             const _re2 = _Concat._1;
             moonbitlang$core$array$$Array$push$165$(queue, { _0: _re2, _1: _offset });
             const _bind$3 = moonbitlang$ulex$lib$type$$get_static_known_tag_positions$46$len_of$124$21(_re2);
-            switch (_bind$3) {
-              case 0: {
-                moonbitlang$core$array$$Array$push$165$(queue, { _0: _re1, _1: _offset });
-                break;
-              }
-              case 1: {
-                moonbitlang$core$array$$Array$push$165$(queue, { _0: _re1, _1: _offset - 1 | 0 });
-                break;
-              }
+            if (_bind$3 === undefined) {
+            } else {
+              const _Some$2 = _bind$3;
+              const _len = _Some$2;
+              moonbitlang$core$array$$Array$push$165$(queue, { _0: _re1, _1: _offset - _len | 0 });
             }
             break;
           }
@@ -13806,15 +13821,11 @@ function moonbitlang$ulex$lib$type$$Regex$get_static_known_tag_positions(self, e
             moonbitlang$core$array$$Array$push$165$(queue$2, { _0: _regex, _1: _offset });
             map = moonbitlang$core$immut$sorted_map$$T$add$64$(map, { _0: _name, _1: 0 }, new $64$moonbitlang$47$ulex$47$lib$47$type$46$StaticKnownTagPosition$RelativeToStart(_offset));
             const _bind$2 = moonbitlang$ulex$lib$type$$get_static_known_tag_positions$46$len_of$124$21(_regex);
-            switch (_bind$2) {
-              case 0: {
-                map = moonbitlang$core$immut$sorted_map$$T$add$64$(map, { _0: _name, _1: 1 }, new $64$moonbitlang$47$ulex$47$lib$47$type$46$StaticKnownTagPosition$RelativeToStart(_offset));
-                break;
-              }
-              case 1: {
-                map = moonbitlang$core$immut$sorted_map$$T$add$64$(map, { _0: _name, _1: 1 }, new $64$moonbitlang$47$ulex$47$lib$47$type$46$StaticKnownTagPosition$RelativeToStart(_offset + 1 | 0));
-                break;
-              }
+            if (_bind$2 === undefined) {
+            } else {
+              const _Some$2 = _bind$2;
+              const _len = _Some$2;
+              map = moonbitlang$core$immut$sorted_map$$T$add$64$(map, { _0: _name, _1: 1 }, new $64$moonbitlang$47$ulex$47$lib$47$type$46$StaticKnownTagPosition$RelativeToStart(_offset + _len | 0));
             }
             break;
           }
@@ -13824,15 +13835,11 @@ function moonbitlang$ulex$lib$type$$Regex$get_static_known_tag_positions(self, e
             const _re2 = _Concat._1;
             moonbitlang$core$array$$Array$push$165$(queue$2, { _0: _re1, _1: _offset });
             const _bind$3 = moonbitlang$ulex$lib$type$$get_static_known_tag_positions$46$len_of$124$21(_re1);
-            switch (_bind$3) {
-              case 0: {
-                moonbitlang$core$array$$Array$push$165$(queue$2, { _0: _re2, _1: _offset });
-                break;
-              }
-              case 1: {
-                moonbitlang$core$array$$Array$push$165$(queue$2, { _0: _re2, _1: _offset + 1 | 0 });
-                break;
-              }
+            if (_bind$3 === undefined) {
+            } else {
+              const _Some$2 = _bind$3;
+              const _len = _Some$2;
+              moonbitlang$core$array$$Array$push$165$(queue$2, { _0: _re2, _1: _offset + _len | 0 });
             }
             break;
           }
@@ -14249,7 +14256,7 @@ function moonbitlang$ulex$lib$parser$$code_rbrace$187$(buffer, lexbuf) {
             matched = 2;
             _end_pos = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$curr_pos$187$(lexbuf$2);
             _capture_0_start = _start_pos;
-            _capture_0_end = _end_pos;
+            _capture_0_end = _start_pos + 3 | 0;
           }
           break _L$2;
         }
@@ -14273,23 +14280,17 @@ function moonbitlang$ulex$lib$parser$$code_rbrace$187$(buffer, lexbuf) {
       const _bind = matched;
       switch (_bind) {
         case 0: {
-          const _start_pos_of_t = _capture_0_start;
-          const _end_pos_of_t = _capture_0_end;
-          const t = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$get_string$187$(lexbuf$2, _start_pos_of_t, _end_pos_of_t);
+          const t = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$get_string$187$(lexbuf$2, _capture_0_start, _capture_0_end);
           moonbitlang$core$builtin$$Logger$write_string$22$(buffer$2, t);
           continue _L;
         }
         case 1: {
-          const _start_pos_of_t$2 = _capture_0_start;
-          const _end_pos_of_t$2 = _capture_0_end;
-          const t$2 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$get_string$187$(lexbuf$2, _start_pos_of_t$2, _end_pos_of_t$2);
+          const t$2 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$get_string$187$(lexbuf$2, _capture_0_start, _capture_0_end);
           moonbitlang$core$builtin$$Logger$write_string$22$(buffer$2, t$2);
           continue _L;
         }
         case 2: {
-          const _start_pos_of_t$3 = _capture_0_start;
-          const _end_pos_of_t$3 = _capture_0_end;
-          const t$3 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$get_string$187$(lexbuf$2, _start_pos_of_t$3, _end_pos_of_t$3);
+          const t$3 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$get_string$187$(lexbuf$2, _capture_0_start, _capture_0_end);
           moonbitlang$core$builtin$$Logger$write_string$22$(buffer$2, t$3);
           continue _L;
         }
@@ -14303,9 +14304,7 @@ function moonbitlang$ulex$lib$parser$$code_rbrace$187$(buffer, lexbuf) {
           return _end_pos;
         }
         case 5: {
-          const _start_pos_of_t$4 = _capture_0_start;
-          const _end_pos_of_t$4 = _capture_0_end;
-          const t$4 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$get_char$187$(lexbuf$2, _start_pos_of_t$4, _end_pos_of_t$4);
+          const t$4 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$get_char$187$(lexbuf$2, _capture_0_start, _capture_0_end);
           moonbitlang$core$builtin$$Logger$write_char$22$(buffer$2, t$4);
           continue _L;
         }
@@ -14332,10 +14331,6 @@ function moonbitlang$ulex$lib$parser$$string_inner_rquote$187$(buffer, lexbuf) {
     let _start_pos = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$curr_pos$187$(lexbuf$2);
     let _capture_0_start = -1;
     let _capture_0_end = -1;
-    let _tag_0 = -1;
-    let _tag_1 = -1;
-    let _tag_2 = -1;
-    let _tag_3 = -1;
     let _tmp$3 = 0;
     _L$2: while (true) {
       const _param = _tmp$3;
@@ -14490,7 +14485,6 @@ function moonbitlang$ulex$lib$parser$$string_inner_rquote$187$(buffer, lexbuf) {
           break _L$2;
         }
         case 11: {
-          _tag_0 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$curr_pos$187$(lexbuf$2);
           const _bind$3 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$next_as_int$187$(lexbuf$2);
           let _tmp$6;
           if (_bind$3 >= 48 && _bind$3 <= 57) {
@@ -14521,7 +14515,6 @@ function moonbitlang$ulex$lib$parser$$string_inner_rquote$187$(buffer, lexbuf) {
           break _L$2;
         }
         case 13: {
-          _tag_1 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$curr_pos$187$(lexbuf$2);
           const _bind$4 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$next_as_int$187$(lexbuf$2);
           let _tmp$7;
           if (_bind$4 >= 48 && _bind$4 <= 57) {
@@ -14579,7 +14572,6 @@ function moonbitlang$ulex$lib$parser$$string_inner_rquote$187$(buffer, lexbuf) {
           continue _L$2;
         }
         case 16: {
-          _tag_2 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$curr_pos$187$(lexbuf$2);
           const _bind$7 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$next_as_int$187$(lexbuf$2);
           let _tmp$10;
           if (_bind$7 >= 48 && _bind$7 <= 57) {
@@ -14610,7 +14602,6 @@ function moonbitlang$ulex$lib$parser$$string_inner_rquote$187$(buffer, lexbuf) {
           continue _L$2;
         }
         case 18: {
-          _tag_3 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$curr_pos$187$(lexbuf$2);
           const _bind$9 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$next_as_int$187$(lexbuf$2);
           let _tmp$12;
           if (_bind$9 >= 48 && _bind$9 <= 57) {
@@ -14656,8 +14647,8 @@ function moonbitlang$ulex$lib$parser$$string_inner_rquote$187$(buffer, lexbuf) {
           if (matched >= 8) {
             matched = 8;
             _end_pos = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$curr_pos$187$(lexbuf$2);
-            _capture_0_start = _tag_1;
-            _capture_0_end = _end_pos + -1 | 0;
+            _capture_0_start = _start_pos + 2 | 0;
+            _capture_0_end = _start_pos + 4 | 0;
           }
           break _L$2;
         }
@@ -14695,8 +14686,8 @@ function moonbitlang$ulex$lib$parser$$string_inner_rquote$187$(buffer, lexbuf) {
           if (matched >= 10) {
             matched = 10;
             _end_pos = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$curr_pos$187$(lexbuf$2);
-            _capture_0_start = _tag_2;
-            _capture_0_end = _tag_3;
+            _capture_0_start = _start_pos + 3 | 0;
+            _capture_0_end = _end_pos + -2 | 0;
           }
           break _L$2;
         }
@@ -14715,8 +14706,8 @@ function moonbitlang$ulex$lib$parser$$string_inner_rquote$187$(buffer, lexbuf) {
           if (matched >= 9) {
             matched = 9;
             _end_pos = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$curr_pos$187$(lexbuf$2);
-            _capture_0_start = _tag_0;
-            _capture_0_end = _end_pos + -1 | 0;
+            _capture_0_start = _start_pos + 2 | 0;
+            _capture_0_end = _start_pos + 6 | 0;
           }
           break _L$2;
         }
@@ -14762,33 +14753,25 @@ function moonbitlang$ulex$lib$parser$$string_inner_rquote$187$(buffer, lexbuf) {
           continue _L;
         }
         case 8: {
-          const _start_pos_of_t = _capture_0_start;
-          const _end_pos_of_t = _capture_0_end;
-          const t = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$get_string$187$(lexbuf$2, _start_pos_of_t, _end_pos_of_t);
+          const t = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$get_string$187$(lexbuf$2, _capture_0_start, _capture_0_end);
           const code = moonbitlang$core$result$$Result$unwrap$50$(moonbitlang$core$strconv$$parse_int(t, 16));
           moonbitlang$core$builtin$$Logger$write_char$22$(buffer$2, code);
           continue _L;
         }
         case 9: {
-          const _start_pos_of_t$2 = _capture_0_start;
-          const _end_pos_of_t$2 = _capture_0_end;
-          const t$2 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$get_string$187$(lexbuf$2, _start_pos_of_t$2, _end_pos_of_t$2);
+          const t$2 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$get_string$187$(lexbuf$2, _capture_0_start, _capture_0_end);
           const code$2 = moonbitlang$core$result$$Result$unwrap$50$(moonbitlang$core$strconv$$parse_int(t$2, 16));
           moonbitlang$core$builtin$$Logger$write_char$22$(buffer$2, code$2);
           continue _L;
         }
         case 10: {
-          const _start_pos_of_t$3 = _capture_0_start;
-          const _end_pos_of_t$3 = _capture_0_end;
-          const t$3 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$get_string$187$(lexbuf$2, _start_pos_of_t$3, _end_pos_of_t$3);
+          const t$3 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$get_string$187$(lexbuf$2, _capture_0_start, _capture_0_end);
           const code$3 = moonbitlang$core$result$$Result$unwrap$50$(moonbitlang$core$strconv$$parse_int(t$3, 16));
           moonbitlang$core$builtin$$Logger$write_char$22$(buffer$2, code$3);
           continue _L;
         }
         case 11: {
-          const _start_pos_of_t$4 = _capture_0_start;
-          const _end_pos_of_t$4 = _capture_0_end;
-          const t$4 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$get_char$187$(lexbuf$2, _start_pos_of_t$4, _end_pos_of_t$4);
+          const t$4 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$get_char$187$(lexbuf$2, _capture_0_start, _capture_0_end);
           moonbitlang$core$builtin$$Logger$write_char$22$(buffer$2, t$4);
           continue _L;
         }
@@ -14817,13 +14800,9 @@ function moonbitlang$ulex$lib$parser$$token$187$(lexbuf) {
     let _capture_1_end = -1;
     let _tag_0 = -1;
     let _tag_1 = -1;
+    let _tag_1_1 = -1;
     let _tag_2 = -1;
-    let _tag_3 = -1;
-    let _tag_4 = -1;
-    let _tag_5 = -1;
-    let _tag_5_1 = -1;
-    let _tag_6 = -1;
-    let _tag_6_1 = -1;
+    let _tag_2_1 = -1;
     let _tmp$2 = 0;
     _L$2: while (true) {
       const _param = _tmp$2;
@@ -15587,7 +15566,6 @@ function moonbitlang$ulex$lib$parser$$token$187$(lexbuf) {
           continue _L$2;
         }
         case 42: {
-          _tag_0 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$curr_pos$187$(lexbuf$2);
           const _bind$23 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$next_as_int$187$(lexbuf$2);
           let _tmp$25;
           if (_bind$23 >= 48 && _bind$23 <= 57) {
@@ -15622,7 +15600,6 @@ function moonbitlang$ulex$lib$parser$$token$187$(lexbuf) {
           continue _L$2;
         }
         case 44: {
-          _tag_1 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$curr_pos$187$(lexbuf$2);
           const _bind$25 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$next_as_int$187$(lexbuf$2);
           let _tmp$27;
           if (_bind$25 >= 48 && _bind$25 <= 57) {
@@ -15767,7 +15744,6 @@ function moonbitlang$ulex$lib$parser$$token$187$(lexbuf) {
           continue _L$2;
         }
         case 52: {
-          _tag_2 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$curr_pos$187$(lexbuf$2);
           const _bind$29 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$next_as_int$187$(lexbuf$2);
           let _tmp$31;
           if (_bind$29 >= 48 && _bind$29 <= 57) {
@@ -15827,7 +15803,7 @@ function moonbitlang$ulex$lib$parser$$token$187$(lexbuf) {
           break _L$2;
         }
         case 57: {
-          _tag_3 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$curr_pos$187$(lexbuf$2);
+          _tag_0 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$curr_pos$187$(lexbuf$2);
           const _bind$31 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$next_as_int$187$(lexbuf$2);
           let _tmp$33;
           if (_bind$31 >= 9 && _bind$31 <= 10) {
@@ -15900,7 +15876,6 @@ function moonbitlang$ulex$lib$parser$$token$187$(lexbuf) {
           continue _L$2;
         }
         case 59: {
-          _tag_4 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$curr_pos$187$(lexbuf$2);
           const _bind$33 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$next_as_int$187$(lexbuf$2);
           let _tmp$35;
           if (_bind$33 >= 48 && _bind$33 <= 57) {
@@ -15954,7 +15929,7 @@ function moonbitlang$ulex$lib$parser$$token$187$(lexbuf) {
           continue _L$2;
         }
         case 62: {
-          _tag_5 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$curr_pos$187$(lexbuf$2);
+          _tag_1 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$curr_pos$187$(lexbuf$2);
           const _bind$36 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$next_as_int$187$(lexbuf$2);
           let _tmp$38;
           if (_bind$36 >= 0 && _bind$36 <= 47) {
@@ -16061,13 +16036,13 @@ function moonbitlang$ulex$lib$parser$$token$187$(lexbuf) {
           if (matched >= 31) {
             matched = 31;
             _end_pos = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$curr_pos$187$(lexbuf$2);
-            _capture_0_start = _tag_1;
-            _capture_0_end = _end_pos + -1 | 0;
+            _capture_0_start = _start_pos + 3 | 0;
+            _capture_0_end = _start_pos + 5 | 0;
           }
           break _L$2;
         }
         case 68: {
-          _tag_6 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$curr_pos$187$(lexbuf$2);
+          _tag_2 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$curr_pos$187$(lexbuf$2);
           const _bind$40 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$next_as_int$187$(lexbuf$2);
           let _tmp$42;
           if (_bind$40 >= 0 && _bind$40 <= 8) {
@@ -16111,9 +16086,9 @@ function moonbitlang$ulex$lib$parser$$token$187$(lexbuf) {
           continue _L$2;
         }
         case 69: {
-          _tag_5 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$curr_pos$187$(lexbuf$2);
-          _tag_6 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$curr_pos$187$(lexbuf$2);
-          _tag_5_1 = _tag_5;
+          _tag_1 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$curr_pos$187$(lexbuf$2);
+          _tag_2 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$curr_pos$187$(lexbuf$2);
+          _tag_1_1 = _tag_1;
           const _bind$41 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$next_as_int$187$(lexbuf$2);
           let _tmp$43;
           if (_bind$41 >= 0 && _bind$41 <= 8) {
@@ -16188,8 +16163,8 @@ function moonbitlang$ulex$lib$parser$$token$187$(lexbuf) {
           if (matched >= 33) {
             matched = 33;
             _end_pos = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$curr_pos$187$(lexbuf$2);
-            _capture_0_start = _tag_2;
-            _capture_0_end = _tag_4;
+            _capture_0_start = _start_pos + 4 | 0;
+            _capture_0_end = _end_pos + -2 | 0;
           }
           break _L$2;
         }
@@ -16205,8 +16180,8 @@ function moonbitlang$ulex$lib$parser$$token$187$(lexbuf) {
           continue _L$2;
         }
         case 72: {
-          _tag_6 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$curr_pos$187$(lexbuf$2);
-          _tag_6_1 = _tag_6;
+          _tag_2 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$curr_pos$187$(lexbuf$2);
+          _tag_2_1 = _tag_2;
           const _bind$43 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$next_as_int$187$(lexbuf$2);
           let _tmp$45;
           if (_bind$43 >= 0 && _bind$43 <= 8) {
@@ -16253,10 +16228,10 @@ function moonbitlang$ulex$lib$parser$$token$187$(lexbuf) {
           if (matched >= 3) {
             matched = 3;
             _end_pos = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$curr_pos$187$(lexbuf$2);
-            _capture_0_start = _tag_3;
-            _capture_0_end = _tag_5;
-            _capture_1_start = _tag_3;
-            _capture_1_end = _tag_6;
+            _capture_0_start = _tag_0;
+            _capture_0_end = _tag_1;
+            _capture_1_start = _tag_0;
+            _capture_1_end = _tag_2;
           }
           break _L$2;
         }
@@ -16264,8 +16239,8 @@ function moonbitlang$ulex$lib$parser$$token$187$(lexbuf) {
           if (matched >= 32) {
             matched = 32;
             _end_pos = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$curr_pos$187$(lexbuf$2);
-            _capture_0_start = _tag_0;
-            _capture_0_end = _end_pos + -1 | 0;
+            _capture_0_start = _start_pos + 3 | 0;
+            _capture_0_end = _start_pos + 7 | 0;
           }
           break _L$2;
         }
@@ -16289,12 +16264,8 @@ function moonbitlang$ulex$lib$parser$$token$187$(lexbuf) {
           return { _0: $64$moonbitlang$47$ulex$47$lib$47$parser$46$Token$EOI, _1: _start_pos, _2: _end_pos };
         }
         case 3: {
-          const _start_pos_of_t1 = _capture_0_start;
-          const _end_pos_of_t1 = _capture_0_end;
-          const t1 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$get_string$187$(lexbuf$2, _start_pos_of_t1, _end_pos_of_t1);
-          const _start_pos_of_t2 = _capture_1_start;
-          const _end_pos_of_t2 = _capture_1_end;
-          const t2 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$get_string$187$(lexbuf$2, _start_pos_of_t2, _end_pos_of_t2);
+          const t1 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$get_string$187$(lexbuf$2, _capture_0_start, _capture_0_end);
+          const t2 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$get_string$187$(lexbuf$2, _capture_1_start, _capture_1_end);
           return { _0: new $64$moonbitlang$47$ulex$47$lib$47$parser$46$Token$RULE_LC_IDENT_LPAREN_CODE_RPAREN_ARROW_CODE_LBRACE({ _0: t1, _1: t2 }), _1: _start_pos, _2: _end_pos };
         }
         case 4: {
@@ -16357,9 +16328,7 @@ function moonbitlang$ulex$lib$parser$$token$187$(lexbuf) {
           return { _0: $64$moonbitlang$47$ulex$47$lib$47$parser$46$Token$BACKSLASH, _1: _start_pos, _2: _end_pos };
         }
         case 23: {
-          const _start_pos_of_t = _capture_0_start;
-          const _end_pos_of_t = _capture_0_end;
-          const t = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$get_char$187$(lexbuf$2, _start_pos_of_t, _end_pos_of_t);
+          const t = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$get_char$187$(lexbuf$2, _capture_0_start, _capture_0_end);
           return { _0: new $64$moonbitlang$47$ulex$47$lib$47$parser$46$Token$CHAR(t), _1: _start_pos, _2: _end_pos };
         }
         case 24: {
@@ -16384,23 +16353,17 @@ function moonbitlang$ulex$lib$parser$$token$187$(lexbuf) {
           return { _0: new $64$moonbitlang$47$ulex$47$lib$47$parser$46$Token$CHAR(39), _1: _start_pos, _2: _end_pos };
         }
         case 31: {
-          const _start_pos_of_t$2 = _capture_0_start;
-          const _end_pos_of_t$2 = _capture_0_end;
-          const t$2 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$get_string$187$(lexbuf$2, _start_pos_of_t$2, _end_pos_of_t$2);
+          const t$2 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$get_string$187$(lexbuf$2, _capture_0_start, _capture_0_end);
           const code = moonbitlang$core$result$$Result$unwrap$50$(moonbitlang$core$strconv$$parse_int(t$2, 16));
           return { _0: new $64$moonbitlang$47$ulex$47$lib$47$parser$46$Token$CHAR(code), _1: _start_pos, _2: _end_pos };
         }
         case 32: {
-          const _start_pos_of_t$3 = _capture_0_start;
-          const _end_pos_of_t$3 = _capture_0_end;
-          const t$3 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$get_string$187$(lexbuf$2, _start_pos_of_t$3, _end_pos_of_t$3);
+          const t$3 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$get_string$187$(lexbuf$2, _capture_0_start, _capture_0_end);
           const code$2 = moonbitlang$core$result$$Result$unwrap$50$(moonbitlang$core$strconv$$parse_int(t$3, 16));
           return { _0: new $64$moonbitlang$47$ulex$47$lib$47$parser$46$Token$CHAR(code$2), _1: _start_pos, _2: _end_pos };
         }
         case 33: {
-          const _start_pos_of_t$4 = _capture_0_start;
-          const _end_pos_of_t$4 = _capture_0_end;
-          const t$4 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$get_string$187$(lexbuf$2, _start_pos_of_t$4, _end_pos_of_t$4);
+          const t$4 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$get_string$187$(lexbuf$2, _capture_0_start, _capture_0_end);
           const code$3 = moonbitlang$core$result$$Result$unwrap$50$(moonbitlang$core$strconv$$parse_int(t$4, 16));
           return { _0: new $64$moonbitlang$47$ulex$47$lib$47$parser$46$Token$CHAR(code$3), _1: _start_pos, _2: _end_pos };
         }
@@ -16410,9 +16373,7 @@ function moonbitlang$ulex$lib$parser$$token$187$(lexbuf) {
           return { _0: new $64$moonbitlang$47$ulex$47$lib$47$parser$46$Token$STRING(moonbitlang$core$builtin$$StringBuilder$to_string(buffer$2)), _1: _start_pos, _2: end_pos$2 };
         }
         case 35: {
-          const _start_pos_of_t$5 = _capture_0_start;
-          const _end_pos_of_t$5 = _capture_0_end;
-          const t$5 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$get_string$187$(lexbuf$2, _start_pos_of_t$5, _end_pos_of_t$5);
+          const t$5 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$get_string$187$(lexbuf$2, _capture_0_start, _capture_0_end);
           let _tmp$3;
           switch (t$5) {
             case "eof": {
@@ -21347,12 +21308,8 @@ function moonbitlang$ulex$lib$codegen$internal$codeblock_parser$$scan_codeblock_
           return;
         }
         case 2: {
-          const _start_pos_of_t1 = _capture_0_start;
-          const _end_pos_of_t1 = _capture_0_end;
-          const t1 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$get_string$187$(lexbuf$2, _start_pos_of_t1, _end_pos_of_t1);
-          const _start_pos_of_t2 = _capture_1_start;
-          const _end_pos_of_t2 = _capture_1_end;
-          const t2 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$get_string$187$(lexbuf$2, _start_pos_of_t2, _end_pos_of_t2);
+          const t1 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$get_string$187$(lexbuf$2, _capture_0_start, _capture_0_end);
+          const t2 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$get_string$187$(lexbuf$2, _capture_1_start, _capture_1_end);
           const _tmp$4 = _start_pos.val;
           const _tmp$5 = _end_pos.val;
           let _tmp$6;
@@ -21373,9 +21330,7 @@ function moonbitlang$ulex$lib$codegen$internal$codeblock_parser$$scan_codeblock_
           continue _L;
         }
         case 3: {
-          const _start_pos_of_t1$2 = _capture_0_start;
-          const _end_pos_of_t1$2 = _capture_0_end;
-          const t1$2 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$get_string$187$(lexbuf$2, _start_pos_of_t1$2, _end_pos_of_t1$2);
+          const t1$2 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$get_string$187$(lexbuf$2, _capture_0_start, _capture_0_end);
           _L$3: {
             _L$4: {
               switch (t1$2) {
@@ -21912,7 +21867,7 @@ function Yoorkin$trie$$T$lookup$189$(self, path) {
     }
   }
 }
-function Yoorkin$trie$$add$46$aux$47$7014(value, _param1, _param2) {
+function Yoorkin$trie$$add$46$aux$47$7007(value, _param1, _param2) {
   if (_param1.len === 0) {
     return { value: value, forks: _param2.forks };
   } else {
@@ -21922,12 +21877,12 @@ function Yoorkin$trie$$add$46$aux$47$7014(value, _param1, _param2) {
     const _some = _param1.len;
     const _x$2 = { buf: _tmp, start: _tmp$2, len: _some - 1 | 0 };
     const subtree = moonbitlang$core$option$$Option$or$88$(moonbitlang$core$immut$sorted_map$$T$op_get$61$(_param2.forks, _x), { value: undefined, forks: moonbitlang$core$immut$sorted_map$$new$61$() });
-    return { value: _param2.value, forks: moonbitlang$core$immut$sorted_map$$T$add$61$(_param2.forks, _x, Yoorkin$trie$$add$46$aux$47$7014(value, _x$2, subtree)) };
+    return { value: _param2.value, forks: moonbitlang$core$immut$sorted_map$$T$add$61$(_param2.forks, _x, Yoorkin$trie$$add$46$aux$47$7007(value, _x$2, subtree)) };
   }
 }
 function Yoorkin$trie$$T$add$189$(self, path, value) {
   const _bind = moonbitlang$core$string$$String$to_array(path);
-  return Yoorkin$trie$$add$46$aux$47$7014(value, { buf: _bind, start: 0, len: _bind.length }, self);
+  return Yoorkin$trie$$add$46$aux$47$7007(value, { buf: _bind, start: 0, len: _bind.length }, self);
 }
 function Yoorkin$trie$$empty$189$() {
   return { value: undefined, forks: moonbitlang$core$immut$sorted_map$$new$61$() };

@@ -76,26 +76,21 @@ fn check_legal_rec(
 }
 
 ///|
-priv enum ReLen {
-  Zero
-  One
-  Many
-}
-
-///|
 pub fn get_char_vars(re : Regex) -> @immut/sorted_set.T[String] {
   fn analyze(
     re : Regex
-  ) -> (@immut/sorted_set.T[String], @immut/sorted_set.T[String], ReLen) {
+  ) -> (@immut/sorted_set.T[String], @immut/sorted_set.T[String], Int?) {
     match re {
-      Epsilon | EOF => (@immut/sorted_set.new(), @immut/sorted_set.new(), Zero)
-      Character(_) => (@immut/sorted_set.new(), @immut/sorted_set.new(), One)
+      Epsilon | EOF =>
+        (@immut/sorted_set.new(), @immut/sorted_set.new(), Some(0))
+      Character(_) =>
+        (@immut/sorted_set.new(), @immut/sorted_set.new(), Some(1))
       Repetition(re) => {
         let (char_vars, str_vars, len) = analyze(re)
-        match len {
-          Zero => (char_vars, str_vars, Zero)
-          One => (char_vars, str_vars, Many)
-          Many => (char_vars, str_vars, Many)
+        if len is Some(0) {
+          (char_vars, str_vars, Some(0))
+        } else {
+          (char_vars, str_vars, None)
         }
       }
       Concat(re1, re2) => {
@@ -104,10 +99,10 @@ pub fn get_char_vars(re : Regex) -> @immut/sorted_set.T[String] {
         (
           char_vars1.union(char_vars2),
           str_vars1.union(str_vars2),
-          match (len1, len2) {
-            (Zero, len) | (len, Zero) => len
-            (Many, _) | (_, Many) => Many
-            (One, One) => Many
+          if len1 is Some(len1) && len2 is Some(len2) {
+            Some(len1 + len2)
+          } else {
+            None
           },
         )
       }
@@ -117,17 +112,18 @@ pub fn get_char_vars(re : Regex) -> @immut/sorted_set.T[String] {
         (
           char_vars1.union(char_vars2),
           str_vars1.union(str_vars2),
-          match (len1, len2) {
-            (One, One) => One
-            (Zero | Many, _) | (_, Zero | Many) => Many
+          if len1 is Some(len1) && len2 is Some(len2) && len1 == len2 {
+            Some(len1)
+          } else {
+            None
           },
         )
       }
       Capture(re, var) => {
         let (char_vars, str_vars, len) = analyze(re)
         match len {
-          One => (char_vars.add(var), str_vars, One)
-          Zero | Many => (char_vars, str_vars.add(var), len)
+          Some(1) => (char_vars.add(var), str_vars, Some(1))
+          len => (char_vars, str_vars.add(var), len)
         }
       }
       Bytes(_, re) => analyze(re)
@@ -152,19 +148,22 @@ fn get_static_known_tag_positions(
   fn len_of(re : Regex) {
     // TODO: dynamic programming
     match re {
-      Epsilon | EOF => Zero
-      Character(_) => One
-      Repetition(_) => Many
+      Epsilon | EOF => Some(0)
+      Character(_) => Some(1)
+      Repetition(re) => if len_of(re) is Some(0) { Some(0) } else { None }
       Concat(re1, re2) =>
-        match (len_of(re1), len_of(re2)) {
-          (Zero, len) | (len, Zero) => len
-          (Many, _) | (_, Many) => Many
-          (One, One) => Many
+        if len_of(re1) is Some(len1) && len_of(re2) is Some(len2) {
+          Some(len1 + len2)
+        } else {
+          None
         }
       Alter(re1, re2) =>
-        match (len_of(re1), len_of(re2)) {
-          (One, One) => One
-          (Zero | Many, _) | (_, Zero | Many) => Many
+        if len_of(re1) is Some(len1) &&
+          len_of(re2) is Some(len2) &&
+          len1 == len2 {
+          Some(len1)
+        } else {
+          None
         }
       Capture(regex, _) => len_of(regex)
       Bytes(_, re) => len_of(re)
@@ -182,17 +181,16 @@ fn get_static_known_tag_positions(
           queue.push((regex, offset))
           map = map.add((name, Start), RelativeToStart(offset))
           match len_of(regex) {
-            Zero => map = map.add((name, End), RelativeToStart(offset))
-            One => map = map.add((name, End), RelativeToStart(offset + 1))
-            Many => ()
+            Some(len) =>
+              map = map.add((name, End), RelativeToStart(offset + len))
+            None => ()
           }
         }
         Concat(re1, re2) => {
           queue.push((re1, offset))
           match len_of(re1) {
-            Zero => queue.push((re2, offset))
-            One => queue.push((re2, offset + 1))
-            Many => ()
+            Some(len) => queue.push((re2, offset + len))
+            None => ()
           }
         }
         Alter(re1, re2) => {
@@ -217,17 +215,16 @@ fn get_static_known_tag_positions(
           queue.push((regex, offset))
           map = map.add((name, End), RelativeToEnd(offset))
           match len_of(regex) {
-            Zero => map = map.add((name, Start), RelativeToEnd(offset))
-            One => map = map.add((name, Start), RelativeToEnd(offset - 1))
-            Many => ()
+            Some(len) =>
+              map = map.add((name, Start), RelativeToEnd(offset - len))
+            None => ()
           }
         }
         Concat(re1, re2) => {
           queue.push((re2, offset))
           match len_of(re2) {
-            Zero => queue.push((re1, offset))
-            One => queue.push((re1, offset - 1))
-            Many => ()
+            Some(len) => queue.push((re1, offset - len))
+            None => ()
           }
         }
         Alter(re1, re2) => {
