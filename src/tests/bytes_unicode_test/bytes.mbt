@@ -208,9 +208,7 @@ fn lex_unicode(lexbuf : @lexbuf.T) -> Int  {
     }
     2 => {
       ()
-      let _start_pos_of_c = _capture_0_start
-      let _end_pos_of_c = _capture_0_end
-      let c = lexbuf.get_char(_start_pos_of_c, _end_pos_of_c)
+      let c = lexbuf.get_char(_capture_0_start, _capture_0_end)
 
       if c == 'あ' {
         3

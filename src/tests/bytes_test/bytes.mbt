@@ -156,9 +156,7 @@ fn lex_utf8(lexbuf : @lexbuf.T, buf : StringBuilder) -> Unit!MalformedUtf8Error 
     }
     1 => {
       ()
-      let _start_pos_of_t = _capture_0_start
-      let _end_pos_of_t = _capture_0_end
-      let t = lexbuf.get_char(_start_pos_of_t, _end_pos_of_t)
+      let t = lexbuf.get_char(_capture_0_start, _capture_0_end)
  
       let c = Char::from_int(t.to_int())
       buf.write_char(c)
@@ -167,12 +165,8 @@ fn lex_utf8(lexbuf : @lexbuf.T, buf : StringBuilder) -> Unit!MalformedUtf8Error 
     }
     2 => {
       ()
-      let _start_pos_of_t1 = _capture_0_start
-      let _end_pos_of_t1 = _capture_0_end
-      let t1 = lexbuf.get_char(_start_pos_of_t1, _end_pos_of_t1)
-      let _start_pos_of_t2 = _capture_1_start
-      let _end_pos_of_t2 = _capture_1_end
-      let t2 = lexbuf.get_char(_start_pos_of_t2, _end_pos_of_t2)
+      let t1 = lexbuf.get_char(_capture_0_start, _capture_0_end)
+      let t2 = lexbuf.get_char(_capture_1_start, _capture_1_end)
 
       let c = Char::from_int((t1.to_int() & 0x1f) << 6 | (t2.to_int() & 0x3f))
       buf.write_char(c)
@@ -181,15 +175,9 @@ fn lex_utf8(lexbuf : @lexbuf.T, buf : StringBuilder) -> Unit!MalformedUtf8Error 
     }
     3 => {
       ()
-      let _start_pos_of_t1 = _capture_0_start
-      let _end_pos_of_t1 = _capture_0_end
-      let t1 = lexbuf.get_char(_start_pos_of_t1, _end_pos_of_t1)
-      let _start_pos_of_t2 = _capture_1_start
-      let _end_pos_of_t2 = _capture_1_end
-      let t2 = lexbuf.get_char(_start_pos_of_t2, _end_pos_of_t2)
-      let _start_pos_of_t3 = _capture_2_start
-      let _end_pos_of_t3 = _capture_2_end
-      let t3 = lexbuf.get_char(_start_pos_of_t3, _end_pos_of_t3)
+      let t1 = lexbuf.get_char(_capture_0_start, _capture_0_end)
+      let t2 = lexbuf.get_char(_capture_1_start, _capture_1_end)
+      let t3 = lexbuf.get_char(_capture_2_start, _capture_2_end)
 
       let c = Char::from_int((t1.to_int() & 0x0f) << 12 | (t2.to_int() & 0x3f) << 6 | (t3.to_int() & 0x3f))
       buf.write_char(c)
@@ -198,18 +186,10 @@ fn lex_utf8(lexbuf : @lexbuf.T, buf : StringBuilder) -> Unit!MalformedUtf8Error 
     }
     4 => {
       ()
-      let _start_pos_of_t1 = _capture_0_start
-      let _end_pos_of_t1 = _capture_0_end
-      let t1 = lexbuf.get_char(_start_pos_of_t1, _end_pos_of_t1)
-      let _start_pos_of_t2 = _capture_1_start
-      let _end_pos_of_t2 = _capture_1_end
-      let t2 = lexbuf.get_char(_start_pos_of_t2, _end_pos_of_t2)
-      let _start_pos_of_t3 = _capture_2_start
-      let _end_pos_of_t3 = _capture_2_end
-      let t3 = lexbuf.get_char(_start_pos_of_t3, _end_pos_of_t3)
-      let _start_pos_of_t4 = _capture_3_start
-      let _end_pos_of_t4 = _capture_3_end
-      let t4 = lexbuf.get_char(_start_pos_of_t4, _end_pos_of_t4)
+      let t1 = lexbuf.get_char(_capture_0_start, _capture_0_end)
+      let t2 = lexbuf.get_char(_capture_1_start, _capture_1_end)
+      let t3 = lexbuf.get_char(_capture_2_start, _capture_2_end)
+      let t4 = lexbuf.get_char(_capture_3_start, _capture_3_end)
 
       let c = Char::from_int((t1.to_int() & 0x07) << 18 | (t2.to_int() & 0x3f) << 12 | (t3.to_int() & 0x3f) << 6 | (t4.to_int() & 0x3f))
       buf.write_char(c)

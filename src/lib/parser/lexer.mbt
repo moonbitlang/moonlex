@@ -787,12 +787,8 @@ fn token[T : @lexbuf.IStringLexbuf](lexbuf : T) -> (Token, Int, Int)  {
     }
     3 => {
       ()
-      let _start_pos_of_t1 = _capture_0_start
-      let _end_pos_of_t1 = _capture_0_end
-      let t1 = lexbuf.get_string(_start_pos_of_t1, _end_pos_of_t1)
-      let _start_pos_of_t2 = _capture_1_start
-      let _end_pos_of_t2 = _capture_1_end
-      let t2 = lexbuf.get_string(_start_pos_of_t2, _end_pos_of_t2)
+      let t1 = lexbuf.get_string(_capture_0_start, _capture_0_end)
+      let t2 = lexbuf.get_string(_capture_1_start, _capture_1_end)
 
       (RULE_LC_IDENT_LPAREN_CODE_RPAREN_ARROW_CODE_LBRACE((t1, t2)), _start_pos, _end_pos)
     
@@ -879,9 +875,7 @@ fn token[T : @lexbuf.IStringLexbuf](lexbuf : T) -> (Token, Int, Int)  {
     }
     23 => {
       ()
-      let _start_pos_of_t = _capture_0_start
-      let _end_pos_of_t = _capture_0_end
-      let t = lexbuf.get_char(_start_pos_of_t, _end_pos_of_t)
+      let t = lexbuf.get_char(_capture_0_start, _capture_0_end)
  (CHAR(t), _start_pos, _end_pos) 
     }
     24 => {
@@ -914,9 +908,7 @@ fn token[T : @lexbuf.IStringLexbuf](lexbuf : T) -> (Token, Int, Int)  {
     }
     31 => {
       ()
-      let _start_pos_of_t = _capture_0_start
-      let _end_pos_of_t = _capture_0_end
-      let t = lexbuf.get_string(_start_pos_of_t, _end_pos_of_t)
+      let t = lexbuf.get_string(_capture_0_start, _capture_0_end)
 
       let code = @strconv.parse_int?(t, base=16).unwrap()
       (CHAR(Char::from_int(code)), _start_pos, _end_pos)
@@ -924,9 +916,7 @@ fn token[T : @lexbuf.IStringLexbuf](lexbuf : T) -> (Token, Int, Int)  {
     }
     32 => {
       ()
-      let _start_pos_of_t = _capture_0_start
-      let _end_pos_of_t = _capture_0_end
-      let t = lexbuf.get_string(_start_pos_of_t, _end_pos_of_t)
+      let t = lexbuf.get_string(_capture_0_start, _capture_0_end)
 
       let code = @strconv.parse_int?(t, base=16).unwrap()
       (CHAR(Char::from_int(code)), _start_pos, _end_pos)
@@ -934,9 +924,7 @@ fn token[T : @lexbuf.IStringLexbuf](lexbuf : T) -> (Token, Int, Int)  {
     }
     33 => {
       ()
-      let _start_pos_of_t = _capture_0_start
-      let _end_pos_of_t = _capture_0_end
-      let t = lexbuf.get_string(_start_pos_of_t, _end_pos_of_t)
+      let t = lexbuf.get_string(_capture_0_start, _capture_0_end)
 
       let code = @strconv.parse_int?(t, base=16).unwrap()
       (CHAR(Char::from_int(code)), _start_pos, _end_pos)
@@ -952,9 +940,7 @@ fn token[T : @lexbuf.IStringLexbuf](lexbuf : T) -> (Token, Int, Int)  {
     }
     35 => {
       ()
-      let _start_pos_of_t = _capture_0_start
-      let _end_pos_of_t = _capture_0_end
-      let t = lexbuf.get_string(_start_pos_of_t, _end_pos_of_t)
+      let t = lexbuf.get_string(_capture_0_start, _capture_0_end)
 
       (match t {
         "eof" => EOF
@@ -1266,9 +1252,7 @@ fn string_inner_rquote[T : @lexbuf.IStringLexbuf](buffer : StringBuilder, lexbuf
     }
     8 => {
       ()
-      let _start_pos_of_t = _capture_0_start
-      let _end_pos_of_t = _capture_0_end
-      let t = lexbuf.get_string(_start_pos_of_t, _end_pos_of_t)
+      let t = lexbuf.get_string(_capture_0_start, _capture_0_end)
 
       let code = @strconv.parse_int?(t, base=16).unwrap()
       buffer.write_char(Char::from_int(code))
@@ -1277,9 +1261,7 @@ fn string_inner_rquote[T : @lexbuf.IStringLexbuf](buffer : StringBuilder, lexbuf
     }
     9 => {
       ()
-      let _start_pos_of_t = _capture_0_start
-      let _end_pos_of_t = _capture_0_end
-      let t = lexbuf.get_string(_start_pos_of_t, _end_pos_of_t)
+      let t = lexbuf.get_string(_capture_0_start, _capture_0_end)
 
       let code = @strconv.parse_int?(t, base=16).unwrap()
       buffer.write_char(Char::from_int(code))
@@ -1288,9 +1270,7 @@ fn string_inner_rquote[T : @lexbuf.IStringLexbuf](buffer : StringBuilder, lexbuf
     }
     10 => {
       ()
-      let _start_pos_of_t = _capture_0_start
-      let _end_pos_of_t = _capture_0_end
-      let t = lexbuf.get_string(_start_pos_of_t, _end_pos_of_t)
+      let t = lexbuf.get_string(_capture_0_start, _capture_0_end)
 
       let code = @strconv.parse_int?(t, base=16).unwrap()
       buffer.write_char(Char::from_int(code))
@@ -1299,9 +1279,7 @@ fn string_inner_rquote[T : @lexbuf.IStringLexbuf](buffer : StringBuilder, lexbuf
     }
     11 => {
       ()
-      let _start_pos_of_t = _capture_0_start
-      let _end_pos_of_t = _capture_0_end
-      let t = lexbuf.get_char(_start_pos_of_t, _end_pos_of_t)
+      let t = lexbuf.get_char(_capture_0_start, _capture_0_end)
 
       buffer.write_char(t)
       string_inner_rquote(buffer, lexbuf)
@@ -1491,9 +1469,7 @@ fn code_rbrace[T : @lexbuf.IStringLexbuf](buffer : StringBuilder, lexbuf : T) ->
   match matched {
     0 => {
       ()
-      let _start_pos_of_t = _capture_0_start
-      let _end_pos_of_t = _capture_0_end
-      let t = lexbuf.get_string(_start_pos_of_t, _end_pos_of_t)
+      let t = lexbuf.get_string(_capture_0_start, _capture_0_end)
 
       buffer.write_string(t)
       code_rbrace(buffer, lexbuf)
@@ -1501,9 +1477,7 @@ fn code_rbrace[T : @lexbuf.IStringLexbuf](buffer : StringBuilder, lexbuf : T) ->
     }
     1 => {
       ()
-      let _start_pos_of_t = _capture_0_start
-      let _end_pos_of_t = _capture_0_end
-      let t = lexbuf.get_string(_start_pos_of_t, _end_pos_of_t)
+      let t = lexbuf.get_string(_capture_0_start, _capture_0_end)
 
       buffer.write_string(t)
       code_rbrace(buffer, lexbuf)
@@ -1511,9 +1485,7 @@ fn code_rbrace[T : @lexbuf.IStringLexbuf](buffer : StringBuilder, lexbuf : T) ->
     }
     2 => {
       ()
-      let _start_pos_of_t = _capture_0_start
-      let _end_pos_of_t = _capture_0_end
-      let t = lexbuf.get_string(_start_pos_of_t, _end_pos_of_t)
+      let t = lexbuf.get_string(_capture_0_start, _capture_0_end)
 
       buffer.write_string(t)
       code_rbrace(buffer, lexbuf)
@@ -1534,9 +1506,7 @@ fn code_rbrace[T : @lexbuf.IStringLexbuf](buffer : StringBuilder, lexbuf : T) ->
     }
     5 => {
       ()
-      let _start_pos_of_t = _capture_0_start
-      let _end_pos_of_t = _capture_0_end
-      let t = lexbuf.get_char(_start_pos_of_t, _end_pos_of_t)
+      let t = lexbuf.get_char(_capture_0_start, _capture_0_end)
 
       buffer.write_char(t)
       code_rbrace(buffer, lexbuf)

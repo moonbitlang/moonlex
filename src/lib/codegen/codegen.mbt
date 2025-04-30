@@ -16,16 +16,22 @@ pub fn codegen_lex(
 ///|
 fn rewrite_codeblock(
   codeblock : @type.CodeBlock,
-  subst : Array[@codeblock_parser.SubstItem]
+  subst : Array[@codeblock_parser.SubstItem],
+  captures : Array[(String, @type.VarType)]
 ) -> @type.CodeBlock {
+  fn index_of_name(name : String) -> Int {
+    captures.search_by(fn { (n, _) => n == name }).unwrap()
+  }
+
   let buf = StringBuilder::new()
   let mut last_index = 0
   for item in subst {
     // replace `$startpos(t)`/`$endpos(t)` with `_start_pos_of_t`/`_end_pos_of_t`
     buf.write_substring(codeblock, last_index, item.start - last_index)
     match item.desc {
-      StartPosOf(name) => buf.write_string("_start_pos_of_\{name}")
-      EndPosOf(name) => buf.write_string("_end_pos_of_\{name}")
+      StartPosOf(name) =>
+        buf.write_string("_capture_\{index_of_name(name)}_start")
+      EndPosOf(name) => buf.write_string("_capture_\{index_of_name(name)}_end")
       StartPos => buf.write_string("_start_pos")
       EndPos => buf.write_string("_end_pos")
     }
@@ -310,7 +316,8 @@ fn codegen_rule(
       ,
     )
     let subst = @codeblock_parser.parse_codeblock(codeblock)
-    for capture_id, capture in dfa.captures[pattern_id] {
+    let captures = dfa.captures[pattern_id]
+    for capture_id, capture in captures {
       let (name, var_type) = capture
       fn name_used_in_subst(name : String) -> Bool {
         for item in subst {
@@ -325,17 +332,13 @@ fn codegen_rule(
       match var_type {
         Char =>
           out.write_string(
-            $|      let _start_pos_of_\{name} = _capture_\{capture_id}_start
-            $|      let _end_pos_of_\{name} = _capture_\{capture_id}_end
-            $|      let \{name} = lexbuf.get_char(_start_pos_of_\{name}, _end_pos_of_\{name})
+            $|      let \{name} = lexbuf.get_char(_capture_\{capture_id}_start, _capture_\{capture_id}_end)
             $|
             ,
           )
         String =>
           out.write_string(
-            $|      let _start_pos_of_\{name} = _capture_\{capture_id}_start
-            $|      let _end_pos_of_\{name} = _capture_\{capture_id}_end
-            $|      let \{name} = lexbuf.get_string(_start_pos_of_\{name}, _end_pos_of_\{name})
+            $|      let \{name} = lexbuf.get_string(_capture_\{capture_id}_start, _capture_\{capture_id}_end)
             $|
             ,
           )
@@ -349,7 +352,7 @@ fn codegen_rule(
       }
     }
     out.write_string(
-      $|\{rewrite_codeblock(codeblock, subst)}
+      $|\{rewrite_codeblock(codeblock, subst, captures)}
       $|
       ,
     )

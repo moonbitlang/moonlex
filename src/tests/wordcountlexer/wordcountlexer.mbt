@@ -71,9 +71,7 @@ fn count[T : @lexbuf.IStringLexbuf](lines : Int, words : Int, chars : Int, lexbu
     }
     1 => {
       ()
-      let _start_pos_of_word = _capture_0_start
-      let _end_pos_of_word = _capture_0_end
-      let word = lexbuf.get_string(_start_pos_of_word, _end_pos_of_word)
+      let word = lexbuf.get_string(_capture_0_start, _capture_0_end)
 
       let new_chars = chars + word.length()
       count(lines, words + 1, new_chars, lexbuf)

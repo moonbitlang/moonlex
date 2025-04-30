@@ -331,12 +331,8 @@ fn scan_codeblock_rbrace[T : @lexbuf.IStringLexbuf](subst : Array[SubstItem], le
     }
     2 => {
       ()
-      let _start_pos_of_t1 = _capture_0_start
-      let _end_pos_of_t1 = _capture_0_end
-      let t1 = lexbuf.get_string(_start_pos_of_t1, _end_pos_of_t1)
-      let _start_pos_of_t2 = _capture_1_start
-      let _end_pos_of_t2 = _capture_1_end
-      let t2 = lexbuf.get_string(_start_pos_of_t2, _end_pos_of_t2)
+      let t1 = lexbuf.get_string(_capture_0_start, _capture_0_end)
+      let t2 = lexbuf.get_string(_capture_1_start, _capture_1_end)
 
       subst.push({ 
         start: _start_pos, 
@@ -352,9 +348,7 @@ fn scan_codeblock_rbrace[T : @lexbuf.IStringLexbuf](subst : Array[SubstItem], le
     }
     3 => {
       ()
-      let _start_pos_of_t1 = _capture_0_start
-      let _end_pos_of_t1 = _capture_0_end
-      let t1 = lexbuf.get_string(_start_pos_of_t1, _end_pos_of_t1)
+      let t1 = lexbuf.get_string(_capture_0_start, _capture_0_end)
 
       if t1 is ("startpos" | "endpos") {
         subst.push({ 
