@@ -9,11 +9,19 @@ pub(all) enum Input {
 typealias Tag = Int
 
 ///|
+pub(all) enum NFACapturePosition {
+  Dynamic_nfa(Tag)
+  Static_nfa(@type.StaticKnownTagPosition)
+} derive(Show)
+
+///|
 pub(all) struct NFA {
   graph : Array[NFANode]
   end_nodes : Map[Int, Int] // from node_id to pattern_id
   code_blocks : Array[CodeBlock] // indexed by pattern_id
-  captures : Array[Array[((String, @type.VarType), (Tag, Tag))]] // indexed_by pattern_id
+  captures : Array[
+    Array[((String, @type.VarType), (NFACapturePosition, NFACapturePosition))],
+  ] // indexed_by pattern_id
   mut start_node : Int
   mut node_count : Int
   mut tag_count : Int
@@ -59,15 +67,27 @@ pub fn NFA::from_rule(rule : Rule, encoding~ : @type.Encoding?) -> NFA {
   let nfa = NFA::new_nfa()
   let node = nfa.new_node() // match starting from 1
   nfa.start_node = node.num
+  fn alloc_tag() {
+    let tag = nfa.tag_count
+    nfa.tag_count += 1
+    tag
+  }
+
   for pattern in rule.patterns {
     let (re, code_block) = pattern
     let capture_names = re
       .get_capture_names()
-      .map(fn(var) {
-        let begin_tag = nfa.tag_count
-        let end_tag = nfa.tag_count + 1
-        nfa.tag_count += 2
-        (var, (begin_tag, end_tag))
+      .map(fn(it) {
+        let (name, (var_type, (begin, end))) = it
+        let begin = match begin {
+          None => Dynamic_nfa(alloc_tag())
+          Some(info) => Static_nfa(info)
+        }
+        let end = match end {
+          None => Dynamic_nfa(alloc_tag())
+          Some(info) => Static_nfa(info)
+        }
+        ((name, var_type), (begin, end))
       })
     let map = Map::from_iter(
       capture_names
@@ -115,10 +135,10 @@ fn register_regex(
   node : NFANode,
   re : Regex,
   code_block : CodeBlock,
-  name2tag : (String) -> (Tag, Tag),
+  name2pos : (String) -> (NFACapturePosition, NFACapturePosition),
   encoding~ : @type.Encoding?
 ) -> Unit {
-  let final_ = self.register_regex_rec(node, re, name2tag, encoding)
+  let final_ = self.register_regex_rec(node, re, name2pos, encoding)
   let id = self.code_blocks.length()
   self.code_blocks.push(code_block)
   self.end_nodes.set(final_.num, id)
@@ -129,7 +149,7 @@ fn register_regex_rec(
   self : NFA,
   node : NFANode,
   re : Regex,
-  name2tag : (String) -> (Tag, Tag),
+  name2pos : (String) -> (NFACapturePosition, NFACapturePosition),
   encoding : @type.Encoding?
 ) -> NFANode {
   let new_node = self.new_node()
@@ -184,17 +204,17 @@ fn register_regex_rec(
       next_node
     }
     Repetition(re) => {
-      let final_ = self.register_regex_rec(new_node, re, name2tag, encoding)
+      let final_ = self.register_regex_rec(new_node, re, name2pos, encoding)
       self.add_edge(final_, Eps, new_node)
       final_
     }
     Concat(re1, re2) => {
-      let mid = self.register_regex_rec(new_node, re1, name2tag, encoding)
-      self.register_regex_rec(mid, re2, name2tag, encoding)
+      let mid = self.register_regex_rec(new_node, re1, name2pos, encoding)
+      self.register_regex_rec(mid, re2, name2pos, encoding)
     }
     Alter(re1, re2) => {
-      let final_1 = self.register_regex_rec(new_node, re1, name2tag, encoding)
-      let final_2 = self.register_regex_rec(new_node, re2, name2tag, encoding)
+      let final_1 = self.register_regex_rec(new_node, re1, name2pos, encoding)
+      let final_2 = self.register_regex_rec(new_node, re2, name2pos, encoding)
       let final_ = self.new_node()
       self.add_edge(final_1, Eps, final_)
       self.add_edge(final_2, Eps, final_)
@@ -203,14 +223,30 @@ fn register_regex_rec(
     Capture(re, name) => {
       let start = self.new_node()
       let final_ = self.new_node()
-      let tail = self.register_regex_rec(start, re, name2tag, encoding)
-      let (begin_tag, end_tag) = name2tag(name)
-      self.add_edge(new_node, EpsWithTag(begin_tag), start)
-      self.add_edge(tail, EpsWithTag(end_tag), final_)
+      let tail = self.register_regex_rec(start, re, name2pos, encoding)
+      let (begin_tag, end_tag) = name2pos(name)
+      self.add_edge(
+        new_node,
+        if begin_tag is Dynamic_nfa(begin_tag) {
+          EpsWithTag(begin_tag)
+        } else {
+          Eps
+        },
+        start,
+      )
+      self.add_edge(
+        tail,
+        if end_tag is Dynamic_nfa(end_tag) {
+          EpsWithTag(end_tag)
+        } else {
+          Eps
+        },
+        final_,
+      )
       final_
     }
     Bytes(encoding, re) =>
-      self.register_regex_rec(new_node, re, name2tag, Some(encoding))
+      self.register_regex_rec(new_node, re, name2pos, Some(encoding))
   }
   let new_final = self.new_node()
   self.add_edge(final_, Eps, new_final)

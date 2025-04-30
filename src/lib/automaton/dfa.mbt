@@ -67,11 +67,17 @@ fn tagState_min(self : TagState, other : TagState) -> TagState {
 }
 
 ///|
+pub(all) enum DFACapturePosition {
+  Dynamic_dfa(TagVar)
+  Static_dfa(@type.StaticKnownTagPosition)
+} derive(Show, Eq)
+
+///|
 pub(all) struct DFA {
   graph : Array[Array[(@eof_char_set.T, Int)]] // indexed by node_id
   mut start_node : Int
   tag_actions : Map[Int, TagAction] // indexed by node_id
-  end_nodes : Map[Int, (Int, Array[((Tag, Int), (Tag, Int))])]
+  end_nodes : Map[Int, (Int, Array[(DFACapturePosition, DFACapturePosition)])]
   // (pattern_id, [(begin_tag, rank), (end_tag, rank))])
   code_blocks : Array[CodeBlock] // indexed by pattern_id
   captures : Array[Array[(String, @type.VarType)]] // indexed by pattern_id
@@ -181,7 +187,16 @@ fn register_node(self : DFA, nfa : NFA, node : Int, os : State) -> Unit {
   let tagState = end_nodes[0].1
   let min_tags = nfa.captures[min_code_block].map(fn {
     (_name, (begin, end)) =>
-      ((begin, tagState._[begin].unwrap()), (end, tagState._[end].unwrap()))
+      (
+        match begin {
+          Dynamic_nfa(tag) => Dynamic_dfa((tag, tagState._[tag].unwrap()))
+          Static_nfa(info) => Static_dfa(info)
+        },
+        match end {
+          Dynamic_nfa(tag) => Dynamic_dfa((tag, tagState._[tag].unwrap()))
+          Static_nfa(info) => Static_dfa(info)
+        },
+      )
   })
   self.end_nodes.set(node, (min_code_block, min_tags))
 }

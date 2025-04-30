@@ -53,6 +53,14 @@ fn DFA::minimize_tags(self : DFA) -> DFA {
       tag_to_new_tag[tag] = new_tag
     }
   }
+  fn map_capture_pos(pos : DFACapturePosition) -> DFACapturePosition {
+    if pos is Dynamic_dfa(tag_var) && tag_to_new_tag[tag_var.0] is Some(new_tag) {
+      Dynamic_dfa((new_tag, tag_var.1))
+    } else {
+      pos
+    }
+  }
+
   DFA::{
     graph: self.graph,
     start_node: self.start_node,
@@ -85,11 +93,8 @@ fn DFA::minimize_tags(self : DFA) -> DFA {
           (
             pattern_id,
             captures.map(fn(capture) {
-              let (begin_tag, end_tag) = capture
-              (
-                (tag_to_new_tag[begin_tag.0].unwrap(), begin_tag.1),
-                (tag_to_new_tag[end_tag.0].unwrap(), end_tag.1),
-              )
+              let (begin, end) = capture
+              (map_capture_pos(begin), map_capture_pos(end))
             }),
           ),
         )

@@ -129,17 +129,17 @@ fn codegen_rule(
       }
     }
   }
-  fn gen_tag_var(tag_id : Int, rank : Int) -> String {
-    if rank == 0 {
-      "_tag_\{tag_id}"
+  fn gen_tag_var(tag_var : @automaton.TagVar) -> String {
+    if tag_var.1 == 0 {
+      "_tag_\{tag_var.0}"
     } else {
-      "_tag_\{tag_id}_\{rank}"
+      "_tag_\{tag_var.0}_\{tag_var.1}"
     }
   }
 
   for tag_var in all_tag_vars {
     out.write_string(
-      $|  let mut \{gen_tag_var(tag_var.0, tag_var.1)} = -1
+      $|  let mut \{gen_tag_var(tag_var)} = -1
       $|
       ,
     )
@@ -147,7 +147,7 @@ fn codegen_rule(
   let start_tags = @sorted_set.new()
   for tag in start_tags {
     out.write_string(
-      $|  \{gen_tag_var(tag, 0)} = lexbuf.curr_pos()
+      $|  \{gen_tag_var((tag, 0))} = lexbuf.curr_pos()
       $|
       ,
     )
@@ -167,12 +167,9 @@ fn codegen_rule(
       let buf = []
       for op in tag_action._ {
         match op {
-          Set(dest~) =>
-            buf.push("\{gen_tag_var(dest.0, dest.1)} = lexbuf.curr_pos()")
+          Set(dest~) => buf.push("\{gen_tag_var(dest)} = lexbuf.curr_pos()")
           Copy(dest~, src~) =>
-            buf.push(
-              "\{gen_tag_var(dest.0, dest.1)} = \{gen_tag_var(src.0, src.1)}",
-            )
+            buf.push("\{gen_tag_var(dest)} = \{gen_tag_var(src)}")
         }
       }
       if buf.is_empty() {
@@ -195,11 +192,35 @@ fn codegen_rule(
         ,
       )
       for index, capture in captures {
-        let ((begin_tag, begin_rank), (end_tag, end_rank)) = capture
-        let begin_tag_var = gen_tag_var(begin_tag, begin_rank)
-        let end_tag_var = gen_tag_var(end_tag, end_rank)
-        out.write_string("        _capture_\{index}_start = \{begin_tag_var}\n")
-        out.write_string("        _capture_\{index}_end = \{end_tag_var}\n")
+        let (begin, end) = capture
+        match begin {
+          Dynamic_dfa(begin_tag_var) =>
+            out.write_string(
+              "        _capture_\{index}_start = \{gen_tag_var(begin_tag_var)}\n",
+            )
+          Static_dfa(RelativeToStart(offset)) =>
+            out.write_string(
+              "        _capture_\{index}_start = _start_pos + \{offset}\n",
+            )
+          Static_dfa(RelativeToEnd(offset)) =>
+            out.write_string(
+              "        _capture_\{index}_start = _end_pos + \{offset}\n",
+            )
+        }
+        match end {
+          Dynamic_dfa(end_tag_var) =>
+            out.write_string(
+              "        _capture_\{index}_end = \{gen_tag_var(end_tag_var)}\n",
+            )
+          Static_dfa(RelativeToStart(offset)) =>
+            out.write_string(
+              "        _capture_\{index}_end = _start_pos + \{offset}\n",
+            )
+          Static_dfa(RelativeToEnd(offset)) =>
+            out.write_string(
+              "        _capture_\{index}_end = _end_pos + \{offset}\n",
+            )
+        }
       }
       out.write_string(
         $|      }

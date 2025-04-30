@@ -1,3 +1,4 @@
+///|
 pub(all) enum CodeUnit {
   CodeUnit1
   CodeUnit2
@@ -17,6 +18,7 @@ pub(all) enum Regex {
   Bytes(Encoding, Regex)
 } derive(Show, Eq, ToJson)
 
+///|
 pub(all) enum Encoding {
   Ascii
   Latin1
@@ -29,6 +31,12 @@ pub(all) enum VarType {
   Char
   String
 } derive(Show)
+
+///|
+pub(all) enum StaticKnownTagPosition {
+  RelativeToStart(Int)
+  RelativeToEnd(Int)
+} derive(Show, Eq)
 
 ///|
 pub fn check_legal(self : Regex) -> Bool {
@@ -131,15 +139,36 @@ pub fn get_char_vars(re : Regex) -> @immut/sorted_set.T[String] {
 }
 
 ///|
-pub fn get_capture_names(self : Regex) -> Array[(String, VarType)] {
+priv enum CaptureVarEndpoint {
+  Start
+  End
+} derive(Compare, Eq)
+
+///|
+fn get_static_known_tag_positions(
+  self : Regex
+) -> @immut/sorted_map.T[(String, CaptureVarEndpoint), StaticKnownTagPosition] {
+  // TODO
+  ignore(self)
+  @immut/sorted_map.new()
+}
+
+///|
+pub fn get_capture_names(
+  self : Regex
+) ->
+     Array[
+       (String, (VarType, (StaticKnownTagPosition?, StaticKnownTagPosition?))),
+     ] {
   let char_vars = get_char_vars(self)
+  let static_tag_positions = get_static_known_tag_positions(self)
   let result = self
     .get_capture_names_rec()
     .map(fn(var) {
-      match char_vars.contains(var) {
-        true => (var, Char)
-        false => (var, String)
-      }
+      let var_type = if char_vars.contains(var) { Char } else { String }
+      let start_pos = static_tag_positions.get((var, Start))
+      let end_pos = static_tag_positions.get((var, End))
+      (var, (var_type, (start_pos, end_pos)))
     })
     .to_array()
   if Map::from_array(result).size() != result.length() {
