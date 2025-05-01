@@ -11,7 +11,7 @@ typealias Tag = Int
 ///|
 pub(all) enum NFACapturePosition {
   Dynamic_nfa(Tag)
-  Static_nfa(@type.StaticKnownTagPosition)
+  Static_nfa(StaticKnownTagPosition)
 } derive(Show)
 
 ///|
@@ -20,7 +20,7 @@ pub(all) struct NFA {
   end_nodes : Map[Int, Int] // from node_id to pattern_id
   code_blocks : Array[CodeBlock] // indexed by pattern_id
   captures : Array[
-    Array[((String, @type.VarType), (NFACapturePosition, NFACapturePosition))],
+    Array[((String, VarType), (NFACapturePosition, NFACapturePosition))],
   ] // indexed_by pattern_id
   mut start_node : Int
   mut node_count : Int
@@ -75,20 +75,18 @@ pub fn NFA::from_rule(rule : Rule, encoding~ : @type.Encoding?) -> NFA {
 
   for pattern in rule.patterns {
     let (re, code_block) = pattern
-    let capture_names = re
-      .get_capture_names(encoding~)
-      .map(fn(it) {
-        let (name, (var_type, (begin, end))) = it
-        let begin = match begin {
-          None => Dynamic_nfa(alloc_tag())
-          Some(info) => Static_nfa(info)
-        }
-        let end = match end {
-          None => Dynamic_nfa(alloc_tag())
-          Some(info) => Static_nfa(info)
-        }
-        ((name, var_type), (begin, end))
-      })
+    let capture_names = get_regex_captures(re, encoding~).map(fn(it) {
+      let (name, (var_type, (begin, end))) = it
+      let begin = match begin {
+        None => Dynamic_nfa(alloc_tag())
+        Some(info) => Static_nfa(info)
+      }
+      let end = match end {
+        None => Dynamic_nfa(alloc_tag())
+        Some(info) => Static_nfa(info)
+      }
+      ((name, var_type), (begin, end))
+    })
     let map = Map::from_iter(
       capture_names
       .iter()

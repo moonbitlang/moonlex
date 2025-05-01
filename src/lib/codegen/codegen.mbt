@@ -17,7 +17,7 @@ pub fn codegen_lex(
 fn rewrite_codeblock(
   codeblock : @type.CodeBlock,
   subst : Array[@codeblock_parser.SubstItem],
-  captures : Array[(String, @type.VarType)]
+  captures : Array[(String, @automaton.VarType)]
 ) -> @type.CodeBlock {
   fn index_of_name(name : String) -> Int {
     captures.search_by(fn { (n, _) => n == name }).unwrap()

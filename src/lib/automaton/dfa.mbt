@@ -69,7 +69,7 @@ fn tagState_min(self : TagState, other : TagState) -> TagState {
 ///|
 pub(all) enum DFACapturePosition {
   Dynamic_dfa(TagVar)
-  Static_dfa(@type.StaticKnownTagPosition)
+  Static_dfa(StaticKnownTagPosition)
 } derive(Show, Eq)
 
 ///|
@@ -80,7 +80,7 @@ pub(all) struct DFA {
   end_nodes : Map[Int, (Int, Array[(DFACapturePosition, DFACapturePosition)])]
   // (pattern_id, [(begin_tag, rank), (end_tag, rank))])
   code_blocks : Array[CodeBlock] // indexed by pattern_id
-  captures : Array[Array[(String, @type.VarType)]] // indexed by pattern_id
+  captures : Array[Array[(String, VarType)]] // indexed by pattern_id
   mut node_count : Int
 } derive(Show)
 
@@ -90,7 +90,7 @@ pub typealias DFANode = Int
 ///|
 fn DFA::new(
   code_blocks : Array[CodeBlock],
-  captures : Array[Array[(String, @type.VarType)]]
+  captures : Array[Array[(String, VarType)]]
 ) -> DFA {
   {
     graph: [],
