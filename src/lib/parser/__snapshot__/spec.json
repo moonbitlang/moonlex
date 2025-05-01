@@ -32,23 +32,17 @@
           {
             "$tag": "Concat",
             "0": {
+              "$tag": "Character",
+              "0": [
+                [
+                  47,
+                  47
+                ]
+              ]
+            },
+            "1": {
               "$tag": "Concat",
               "0": {
-                "$tag": "Concat",
-                "0": {
-                  "$tag": "Epsilon"
-                },
-                "1": {
-                  "$tag": "Character",
-                  "0": [
-                    [
-                      47,
-                      47
-                    ]
-                  ]
-                }
-              },
-              "1": {
                 "$tag": "Character",
                 "0": [
                   [
@@ -56,45 +50,45 @@
                     47
                   ]
                 ]
-              }
-            },
-            "1": {
-              "$tag": "Concat",
-              "0": {
-                "$tag": "Alter",
+              },
+              "1": {
+                "$tag": "Concat",
                 "0": {
-                  "$tag": "Repetition",
+                  "$tag": "Alter",
+                  "0": {
+                    "$tag": "Repetition",
+                    "0": {
+                      "$tag": "Character",
+                      "0": [
+                        [
+                          0,
+                          9
+                        ],
+                        [
+                          11,
+                          1114111
+                        ]
+                      ]
+                    }
+                  },
+                  "1": {
+                    "$tag": "Epsilon"
+                  }
+                },
+                "1": {
+                  "$tag": "Alter",
                   "0": {
                     "$tag": "Character",
                     "0": [
                       [
-                        0,
-                        9
-                      ],
-                      [
-                        11,
-                        1114111
+                        10,
+                        10
                       ]
                     ]
+                  },
+                  "1": {
+                    "$tag": "Epsilon"
                   }
-                },
-                "1": {
-                  "$tag": "Epsilon"
-                }
-              },
-              "1": {
-                "$tag": "Alter",
-                "0": {
-                  "$tag": "Character",
-                  "0": [
-                    [
-                      10,
-                      10
-                    ]
-                  ]
-                },
-                "1": {
-                  "$tag": "Epsilon"
                 }
               }
             }
@@ -111,37 +105,28 @@
           {
             "$tag": "Concat",
             "0": {
+              "$tag": "Character",
+              "0": [
+                [
+                  114,
+                  114
+                ]
+              ]
+            },
+            "1": {
               "$tag": "Concat",
               "0": {
+                "$tag": "Character",
+                "0": [
+                  [
+                    117,
+                    117
+                  ]
+                ]
+              },
+              "1": {
                 "$tag": "Concat",
                 "0": {
-                  "$tag": "Concat",
-                  "0": {
-                    "$tag": "Concat",
-                    "0": {
-                      "$tag": "Epsilon"
-                    },
-                    "1": {
-                      "$tag": "Character",
-                      "0": [
-                        [
-                          114,
-                          114
-                        ]
-                      ]
-                    }
-                  },
-                  "1": {
-                    "$tag": "Character",
-                    "0": [
-                      [
-                        117,
-                        117
-                      ]
-                    ]
-                  }
-                },
-                "1": {
                   "$tag": "Character",
                   "0": [
                     [
@@ -149,119 +134,20 @@
                       108
                     ]
                   ]
-                }
-              },
-              "1": {
-                "$tag": "Character",
-                "0": [
-                  [
-                    101,
-                    101
-                  ]
-                ]
-              }
-            },
-            "1": {
-              "$tag": "Concat",
-              "0": {
-                "$tag": "Repetition",
-                "0": {
-                  "$tag": "Character",
-                  "0": [
-                    [
-                      9,
-                      10
-                    ],
-                    [
-                      13,
-                      13
-                    ],
-                    [
-                      32,
-                      32
-                    ]
-                  ]
-                }
-              },
-              "1": {
-                "$tag": "Concat",
-                "0": {
-                  "$tag": "Capture",
-                  "0": {
-                    "$tag": "Concat",
-                    "0": {
-                      "$tag": "Capture",
-                      "0": {
-                        "$tag": "Concat",
-                        "0": {
-                          "$tag": "Character",
-                          "0": [
-                            [
-                              95,
-                              95
-                            ],
-                            [
-                              97,
-                              122
-                            ]
-                          ]
-                        },
-                        "1": {
-                          "$tag": "Alter",
-                          "0": {
-                            "$tag": "Repetition",
-                            "0": {
-                              "$tag": "Character",
-                              "0": [
-                                [
-                                  48,
-                                  57
-                                ],
-                                [
-                                  65,
-                                  90
-                                ],
-                                [
-                                  95,
-                                  95
-                                ],
-                                [
-                                  97,
-                                  122
-                                ]
-                              ]
-                            }
-                          },
-                          "1": {
-                            "$tag": "Epsilon"
-                          }
-                        }
-                      },
-                      "1": "t1"
-                    },
-                    "1": {
-                      "$tag": "Repetition",
-                      "0": {
-                        "$tag": "Character",
-                        "0": [
-                          [
-                            0,
-                            122
-                          ],
-                          [
-                            124,
-                            1114111
-                          ]
-                        ]
-                      }
-                    }
-                  },
-                  "1": "t2"
                 },
                 "1": {
                   "$tag": "Concat",
                   "0": {
-                    "$tag": "Alter",
+                    "$tag": "Character",
+                    "0": [
+                      [
+                        101,
+                        101
+                      ]
+                    ]
+                  },
+                  "1": {
+                    "$tag": "Concat",
                     "0": {
                       "$tag": "Repetition",
                       "0": {
@@ -283,17 +169,119 @@
                       }
                     },
                     "1": {
-                      "$tag": "Epsilon"
+                      "$tag": "Concat",
+                      "0": {
+                        "$tag": "Capture",
+                        "0": {
+                          "$tag": "Concat",
+                          "0": {
+                            "$tag": "Capture",
+                            "0": {
+                              "$tag": "Concat",
+                              "0": {
+                                "$tag": "Character",
+                                "0": [
+                                  [
+                                    95,
+                                    95
+                                  ],
+                                  [
+                                    97,
+                                    122
+                                  ]
+                                ]
+                              },
+                              "1": {
+                                "$tag": "Alter",
+                                "0": {
+                                  "$tag": "Repetition",
+                                  "0": {
+                                    "$tag": "Character",
+                                    "0": [
+                                      [
+                                        48,
+                                        57
+                                      ],
+                                      [
+                                        65,
+                                        90
+                                      ],
+                                      [
+                                        95,
+                                        95
+                                      ],
+                                      [
+                                        97,
+                                        122
+                                      ]
+                                    ]
+                                  }
+                                },
+                                "1": {
+                                  "$tag": "Epsilon"
+                                }
+                              }
+                            },
+                            "1": "t1"
+                          },
+                          "1": {
+                            "$tag": "Repetition",
+                            "0": {
+                              "$tag": "Character",
+                              "0": [
+                                [
+                                  0,
+                                  122
+                                ],
+                                [
+                                  124,
+                                  1114111
+                                ]
+                              ]
+                            }
+                          }
+                        },
+                        "1": "t2"
+                      },
+                      "1": {
+                        "$tag": "Concat",
+                        "0": {
+                          "$tag": "Alter",
+                          "0": {
+                            "$tag": "Repetition",
+                            "0": {
+                              "$tag": "Character",
+                              "0": [
+                                [
+                                  9,
+                                  10
+                                ],
+                                [
+                                  13,
+                                  13
+                                ],
+                                [
+                                  32,
+                                  32
+                                ]
+                              ]
+                            }
+                          },
+                          "1": {
+                            "$tag": "Epsilon"
+                          }
+                        },
+                        "1": {
+                          "$tag": "Character",
+                          "0": [
+                            [
+                              123,
+                              123
+                            ]
+                          ]
+                        }
+                      }
                     }
-                  },
-                  "1": {
-                    "$tag": "Character",
-                    "0": [
-                      [
-                        123,
-                        123
-                      ]
-                    ]
                   }
                 }
               }
@@ -305,109 +293,97 @@
           {
             "$tag": "Concat",
             "0": {
+              "$tag": "Character",
+              "0": [
+                [
+                  112,
+                  112
+                ]
+              ]
+            },
+            "1": {
               "$tag": "Concat",
               "0": {
+                "$tag": "Character",
+                "0": [
+                  [
+                    97,
+                    97
+                  ]
+                ]
+              },
+              "1": {
                 "$tag": "Concat",
                 "0": {
+                  "$tag": "Character",
+                  "0": [
+                    [
+                      114,
+                      114
+                    ]
+                  ]
+                },
+                "1": {
                   "$tag": "Concat",
                   "0": {
+                    "$tag": "Character",
+                    "0": [
+                      [
+                        115,
+                        115
+                      ]
+                    ]
+                  },
+                  "1": {
                     "$tag": "Concat",
                     "0": {
+                      "$tag": "Character",
+                      "0": [
+                        [
+                          101,
+                          101
+                        ]
+                      ]
+                    },
+                    "1": {
                       "$tag": "Concat",
                       "0": {
-                        "$tag": "Epsilon"
+                        "$tag": "Alter",
+                        "0": {
+                          "$tag": "Repetition",
+                          "0": {
+                            "$tag": "Character",
+                            "0": [
+                              [
+                                9,
+                                10
+                              ],
+                              [
+                                13,
+                                13
+                              ],
+                              [
+                                32,
+                                32
+                              ]
+                            ]
+                          }
+                        },
+                        "1": {
+                          "$tag": "Epsilon"
+                        }
                       },
                       "1": {
                         "$tag": "Character",
                         "0": [
                           [
-                            112,
-                            112
+                            123,
+                            123
                           ]
                         ]
                       }
-                    },
-                    "1": {
-                      "$tag": "Character",
-                      "0": [
-                        [
-                          97,
-                          97
-                        ]
-                      ]
                     }
-                  },
-                  "1": {
-                    "$tag": "Character",
-                    "0": [
-                      [
-                        114,
-                        114
-                      ]
-                    ]
                   }
-                },
-                "1": {
-                  "$tag": "Character",
-                  "0": [
-                    [
-                      115,
-                      115
-                    ]
-                  ]
-                }
-              },
-              "1": {
-                "$tag": "Character",
-                "0": [
-                  [
-                    101,
-                    101
-                  ]
-                ]
-              }
-            },
-            "1": {
-              "$tag": "Concat",
-              "0": {
-                "$tag": "Alter",
-                "0": {
-                  "$tag": "Repetition",
-                  "0": {
-                    "$tag": "Character",
-                    "0": [
-                      [
-                        9,
-                        10
-                      ],
-                      [
-                        13,
-                        13
-                      ],
-                      [
-                        32,
-                        32
-                      ]
-                    ]
-                  }
-                },
-                "1": {
-                  "$tag": "Epsilon"
-                }
-              },
-              "1": {
-                "$tag": "Concat",
-                "0": {
-                  "$tag": "Epsilon"
-                },
-                "1": {
-                  "$tag": "Character",
-                  "0": [
-                    [
-                      123,
-                      123
-                    ]
-                  ]
                 }
               }
             }
@@ -418,19 +394,13 @@
           {
             "$tag": "Concat",
             "0": {
-              "$tag": "Concat",
-              "0": {
-                "$tag": "Epsilon"
-              },
-              "1": {
-                "$tag": "Character",
-                "0": [
-                  [
-                    61,
-                    61
-                  ]
+              "$tag": "Character",
+              "0": [
+                [
+                  61,
+                  61
                 ]
-              }
+              ]
             },
             "1": {
               "$tag": "Character",
@@ -446,307 +416,205 @@
         ],
         [
           {
-            "$tag": "Concat",
-            "0": {
-              "$tag": "Epsilon"
-            },
-            "1": {
-              "$tag": "Character",
-              "0": [
-                [
-                  95,
-                  95
-                ]
+            "$tag": "Character",
+            "0": [
+              [
+                95,
+                95
               ]
-            }
+            ]
           },
           " (UNDERSCORE, $startpos, $endpos) "
         ],
         [
           {
-            "$tag": "Concat",
-            "0": {
-              "$tag": "Epsilon"
-            },
-            "1": {
-              "$tag": "Character",
-              "0": [
-                [
-                  123,
-                  123
-                ]
+            "$tag": "Character",
+            "0": [
+              [
+                123,
+                123
               ]
-            }
+            ]
           },
           " \n      let buffer = StringBuilder::new()\n      let end_pos = code_rbrace(buffer, lexbuf)\n      (LBRACE_CODE_RBRACE(buffer.to_string()), $startpos, end_pos)\n    "
         ],
         [
           {
-            "$tag": "Concat",
-            "0": {
-              "$tag": "Epsilon"
-            },
-            "1": {
-              "$tag": "Character",
-              "0": [
-                [
-                  125,
-                  125
-                ]
+            "$tag": "Character",
+            "0": [
+              [
+                125,
+                125
               ]
-            }
+            ]
           },
           " (RBRACE, $startpos, $endpos) "
         ],
         [
           {
-            "$tag": "Concat",
-            "0": {
-              "$tag": "Epsilon"
-            },
-            "1": {
-              "$tag": "Character",
-              "0": [
-                [
-                  40,
-                  40
-                ]
+            "$tag": "Character",
+            "0": [
+              [
+                40,
+                40
               ]
-            }
+            ]
           },
           " (LPAREN, $startpos, $endpos) "
         ],
         [
           {
-            "$tag": "Concat",
-            "0": {
-              "$tag": "Epsilon"
-            },
-            "1": {
-              "$tag": "Character",
-              "0": [
-                [
-                  41,
-                  41
-                ]
+            "$tag": "Character",
+            "0": [
+              [
+                41,
+                41
               ]
-            }
+            ]
           },
           " (RPAREN, $startpos, $endpos) "
         ],
         [
           {
-            "$tag": "Concat",
-            "0": {
-              "$tag": "Epsilon"
-            },
-            "1": {
-              "$tag": "Character",
-              "0": [
-                [
-                  91,
-                  91
-                ]
+            "$tag": "Character",
+            "0": [
+              [
+                91,
+                91
               ]
-            }
+            ]
           },
           " (LBRACKET, $startpos, $endpos) "
         ],
         [
           {
-            "$tag": "Concat",
-            "0": {
-              "$tag": "Epsilon"
-            },
-            "1": {
-              "$tag": "Character",
-              "0": [
-                [
-                  93,
-                  93
-                ]
+            "$tag": "Character",
+            "0": [
+              [
+                93,
+                93
               ]
-            }
+            ]
           },
           " (RBRACKET, $startpos, $endpos) "
         ],
         [
           {
-            "$tag": "Concat",
-            "0": {
-              "$tag": "Epsilon"
-            },
-            "1": {
-              "$tag": "Character",
-              "0": [
-                [
-                  61,
-                  61
-                ]
+            "$tag": "Character",
+            "0": [
+              [
+                61,
+                61
               ]
-            }
+            ]
           },
           " (EQ, $startpos, $endpos) "
         ],
         [
           {
-            "$tag": "Concat",
-            "0": {
-              "$tag": "Epsilon"
-            },
-            "1": {
-              "$tag": "Character",
-              "0": [
-                [
-                  58,
-                  58
-                ]
+            "$tag": "Character",
+            "0": [
+              [
+                58,
+                58
               ]
-            }
+            ]
           },
           " (COLON, $startpos, $endpos) "
         ],
         [
           {
-            "$tag": "Concat",
-            "0": {
-              "$tag": "Epsilon"
-            },
-            "1": {
-              "$tag": "Character",
-              "0": [
-                [
-                  59,
-                  59
-                ]
+            "$tag": "Character",
+            "0": [
+              [
+                59,
+                59
               ]
-            }
+            ]
           },
           " (SEMICOLON, $startpos, $endpos) "
         ],
         [
           {
-            "$tag": "Concat",
-            "0": {
-              "$tag": "Epsilon"
-            },
-            "1": {
-              "$tag": "Character",
-              "0": [
-                [
-                  124,
-                  124
-                ]
+            "$tag": "Character",
+            "0": [
+              [
+                124,
+                124
               ]
-            }
+            ]
           },
           " (BAR, $startpos, $endpos) "
         ],
         [
           {
-            "$tag": "Concat",
-            "0": {
-              "$tag": "Epsilon"
-            },
-            "1": {
-              "$tag": "Character",
-              "0": [
-                [
-                  42,
-                  42
-                ]
+            "$tag": "Character",
+            "0": [
+              [
+                42,
+                42
               ]
-            }
+            ]
           },
           " (STAR, $startpos, $endpos) "
         ],
         [
           {
-            "$tag": "Concat",
-            "0": {
-              "$tag": "Epsilon"
-            },
-            "1": {
-              "$tag": "Character",
-              "0": [
-                [
-                  43,
-                  43
-                ]
+            "$tag": "Character",
+            "0": [
+              [
+                43,
+                43
               ]
-            }
+            ]
           },
           " (PLUS, $startpos, $endpos) "
         ],
         [
           {
-            "$tag": "Concat",
-            "0": {
-              "$tag": "Epsilon"
-            },
-            "1": {
-              "$tag": "Character",
-              "0": [
-                [
-                  63,
-                  63
-                ]
+            "$tag": "Character",
+            "0": [
+              [
+                63,
+                63
               ]
-            }
+            ]
           },
           " (QUESTION, $startpos, $endpos) "
         ],
         [
           {
-            "$tag": "Concat",
-            "0": {
-              "$tag": "Epsilon"
-            },
-            "1": {
-              "$tag": "Character",
-              "0": [
-                [
-                  45,
-                  45
-                ]
+            "$tag": "Character",
+            "0": [
+              [
+                45,
+                45
               ]
-            }
+            ]
           },
           " (MINUS, $startpos, $endpos) "
         ],
         [
           {
-            "$tag": "Concat",
-            "0": {
-              "$tag": "Epsilon"
-            },
-            "1": {
-              "$tag": "Character",
-              "0": [
-                [
-                  94,
-                  94
-                ]
+            "$tag": "Character",
+            "0": [
+              [
+                94,
+                94
               ]
-            }
+            ]
           },
           " (CARET, $startpos, $endpos) "
         ],
         [
           {
-            "$tag": "Concat",
-            "0": {
-              "$tag": "Epsilon"
-            },
-            "1": {
-              "$tag": "Character",
-              "0": [
-                [
-                  92,
-                  92
-                ]
+            "$tag": "Character",
+            "0": [
+              [
+                92,
+                92
               ]
-            }
+            ]
           },
           " (BACKSLASH, $startpos, $endpos) "
         ],
@@ -813,23 +681,17 @@
             "1": {
               "$tag": "Concat",
               "0": {
+                "$tag": "Character",
+                "0": [
+                  [
+                    92,
+                    92
+                  ]
+                ]
+              },
+              "1": {
                 "$tag": "Concat",
                 "0": {
-                  "$tag": "Concat",
-                  "0": {
-                    "$tag": "Epsilon"
-                  },
-                  "1": {
-                    "$tag": "Character",
-                    "0": [
-                      [
-                        92,
-                        92
-                      ]
-                    ]
-                  }
-                },
-                "1": {
                   "$tag": "Character",
                   "0": [
                     [
@@ -837,16 +699,16 @@
                       98
                     ]
                   ]
-                }
-              },
-              "1": {
-                "$tag": "Character",
-                "0": [
-                  [
-                    39,
-                    39
+                },
+                "1": {
+                  "$tag": "Character",
+                  "0": [
+                    [
+                      39,
+                      39
+                    ]
                   ]
-                ]
+                }
               }
             }
           },
@@ -867,23 +729,17 @@
             "1": {
               "$tag": "Concat",
               "0": {
+                "$tag": "Character",
+                "0": [
+                  [
+                    92,
+                    92
+                  ]
+                ]
+              },
+              "1": {
                 "$tag": "Concat",
                 "0": {
-                  "$tag": "Concat",
-                  "0": {
-                    "$tag": "Epsilon"
-                  },
-                  "1": {
-                    "$tag": "Character",
-                    "0": [
-                      [
-                        92,
-                        92
-                      ]
-                    ]
-                  }
-                },
-                "1": {
                   "$tag": "Character",
                   "0": [
                     [
@@ -891,16 +747,16 @@
                       116
                     ]
                   ]
-                }
-              },
-              "1": {
-                "$tag": "Character",
-                "0": [
-                  [
-                    39,
-                    39
+                },
+                "1": {
+                  "$tag": "Character",
+                  "0": [
+                    [
+                      39,
+                      39
+                    ]
                   ]
-                ]
+                }
               }
             }
           },
@@ -921,23 +777,17 @@
             "1": {
               "$tag": "Concat",
               "0": {
+                "$tag": "Character",
+                "0": [
+                  [
+                    92,
+                    92
+                  ]
+                ]
+              },
+              "1": {
                 "$tag": "Concat",
                 "0": {
-                  "$tag": "Concat",
-                  "0": {
-                    "$tag": "Epsilon"
-                  },
-                  "1": {
-                    "$tag": "Character",
-                    "0": [
-                      [
-                        92,
-                        92
-                      ]
-                    ]
-                  }
-                },
-                "1": {
                   "$tag": "Character",
                   "0": [
                     [
@@ -945,16 +795,16 @@
                       118
                     ]
                   ]
-                }
-              },
-              "1": {
-                "$tag": "Character",
-                "0": [
-                  [
-                    39,
-                    39
+                },
+                "1": {
+                  "$tag": "Character",
+                  "0": [
+                    [
+                      39,
+                      39
+                    ]
                   ]
-                ]
+                }
               }
             }
           },
@@ -975,23 +825,17 @@
             "1": {
               "$tag": "Concat",
               "0": {
+                "$tag": "Character",
+                "0": [
+                  [
+                    92,
+                    92
+                  ]
+                ]
+              },
+              "1": {
                 "$tag": "Concat",
                 "0": {
-                  "$tag": "Concat",
-                  "0": {
-                    "$tag": "Epsilon"
-                  },
-                  "1": {
-                    "$tag": "Character",
-                    "0": [
-                      [
-                        92,
-                        92
-                      ]
-                    ]
-                  }
-                },
-                "1": {
                   "$tag": "Character",
                   "0": [
                     [
@@ -999,16 +843,16 @@
                       114
                     ]
                   ]
-                }
-              },
-              "1": {
-                "$tag": "Character",
-                "0": [
-                  [
-                    39,
-                    39
+                },
+                "1": {
+                  "$tag": "Character",
+                  "0": [
+                    [
+                      39,
+                      39
+                    ]
                   ]
-                ]
+                }
               }
             }
           },
@@ -1029,23 +873,17 @@
             "1": {
               "$tag": "Concat",
               "0": {
+                "$tag": "Character",
+                "0": [
+                  [
+                    92,
+                    92
+                  ]
+                ]
+              },
+              "1": {
                 "$tag": "Concat",
                 "0": {
-                  "$tag": "Concat",
-                  "0": {
-                    "$tag": "Epsilon"
-                  },
-                  "1": {
-                    "$tag": "Character",
-                    "0": [
-                      [
-                        92,
-                        92
-                      ]
-                    ]
-                  }
-                },
-                "1": {
                   "$tag": "Character",
                   "0": [
                     [
@@ -1053,16 +891,16 @@
                       110
                     ]
                   ]
-                }
-              },
-              "1": {
-                "$tag": "Character",
-                "0": [
-                  [
-                    39,
-                    39
+                },
+                "1": {
+                  "$tag": "Character",
+                  "0": [
+                    [
+                      39,
+                      39
+                    ]
                   ]
-                ]
+                }
               }
             }
           },
@@ -1083,23 +921,17 @@
             "1": {
               "$tag": "Concat",
               "0": {
+                "$tag": "Character",
+                "0": [
+                  [
+                    92,
+                    92
+                  ]
+                ]
+              },
+              "1": {
                 "$tag": "Concat",
                 "0": {
-                  "$tag": "Concat",
-                  "0": {
-                    "$tag": "Epsilon"
-                  },
-                  "1": {
-                    "$tag": "Character",
-                    "0": [
-                      [
-                        92,
-                        92
-                      ]
-                    ]
-                  }
-                },
-                "1": {
                   "$tag": "Character",
                   "0": [
                     [
@@ -1107,16 +939,16 @@
                       92
                     ]
                   ]
-                }
-              },
-              "1": {
-                "$tag": "Character",
-                "0": [
-                  [
-                    39,
-                    39
+                },
+                "1": {
+                  "$tag": "Character",
+                  "0": [
+                    [
+                      39,
+                      39
+                    ]
                   ]
-                ]
+                }
               }
             }
           },
@@ -1137,21 +969,24 @@
             "1": {
               "$tag": "Concat",
               "0": {
+                "$tag": "Character",
+                "0": [
+                  [
+                    92,
+                    92
+                  ]
+                ]
+              },
+              "1": {
                 "$tag": "Concat",
                 "0": {
-                  "$tag": "Concat",
-                  "0": {
-                    "$tag": "Epsilon"
-                  },
-                  "1": {
-                    "$tag": "Character",
-                    "0": [
-                      [
-                        92,
-                        92
-                      ]
+                  "$tag": "Character",
+                  "0": [
+                    [
+                      39,
+                      39
                     ]
-                  }
+                  ]
                 },
                 "1": {
                   "$tag": "Character",
@@ -1162,15 +997,6 @@
                     ]
                   ]
                 }
-              },
-              "1": {
-                "$tag": "Character",
-                "0": [
-                  [
-                    39,
-                    39
-                  ]
-                ]
               }
             }
           },
@@ -1191,23 +1017,17 @@
             "1": {
               "$tag": "Concat",
               "0": {
+                "$tag": "Character",
+                "0": [
+                  [
+                    92,
+                    92
+                  ]
+                ]
+              },
+              "1": {
                 "$tag": "Concat",
                 "0": {
-                  "$tag": "Concat",
-                  "0": {
-                    "$tag": "Epsilon"
-                  },
-                  "1": {
-                    "$tag": "Character",
-                    "0": [
-                      [
-                        92,
-                        92
-                      ]
-                    ]
-                  }
-                },
-                "1": {
                   "$tag": "Character",
                   "0": [
                     [
@@ -1215,59 +1035,59 @@
                       120
                     ]
                   ]
-                }
-              },
-              "1": {
-                "$tag": "Concat",
-                "0": {
-                  "$tag": "Capture",
-                  "0": {
-                    "$tag": "Concat",
-                    "0": {
-                      "$tag": "Character",
-                      "0": [
-                        [
-                          48,
-                          57
-                        ],
-                        [
-                          65,
-                          70
-                        ],
-                        [
-                          97,
-                          102
-                        ]
-                      ]
-                    },
-                    "1": {
-                      "$tag": "Character",
-                      "0": [
-                        [
-                          48,
-                          57
-                        ],
-                        [
-                          65,
-                          70
-                        ],
-                        [
-                          97,
-                          102
-                        ]
-                      ]
-                    }
-                  },
-                  "1": "t"
                 },
                 "1": {
-                  "$tag": "Character",
-                  "0": [
-                    [
-                      39,
-                      39
+                  "$tag": "Concat",
+                  "0": {
+                    "$tag": "Capture",
+                    "0": {
+                      "$tag": "Concat",
+                      "0": {
+                        "$tag": "Character",
+                        "0": [
+                          [
+                            48,
+                            57
+                          ],
+                          [
+                            65,
+                            70
+                          ],
+                          [
+                            97,
+                            102
+                          ]
+                        ]
+                      },
+                      "1": {
+                        "$tag": "Character",
+                        "0": [
+                          [
+                            48,
+                            57
+                          ],
+                          [
+                            65,
+                            70
+                          ],
+                          [
+                            97,
+                            102
+                          ]
+                        ]
+                      }
+                    },
+                    "1": "t"
+                  },
+                  "1": {
+                    "$tag": "Character",
+                    "0": [
+                      [
+                        39,
+                        39
+                      ]
                     ]
-                  ]
+                  }
                 }
               }
             }
@@ -1289,23 +1109,17 @@
             "1": {
               "$tag": "Concat",
               "0": {
+                "$tag": "Character",
+                "0": [
+                  [
+                    92,
+                    92
+                  ]
+                ]
+              },
+              "1": {
                 "$tag": "Concat",
                 "0": {
-                  "$tag": "Concat",
-                  "0": {
-                    "$tag": "Epsilon"
-                  },
-                  "1": {
-                    "$tag": "Character",
-                    "0": [
-                      [
-                        92,
-                        92
-                      ]
-                    ]
-                  }
-                },
-                "1": {
                   "$tag": "Character",
                   "0": [
                     [
@@ -1313,32 +1127,12 @@
                       117
                     ]
                   ]
-                }
-              },
-              "1": {
-                "$tag": "Concat",
-                "0": {
-                  "$tag": "Capture",
+                },
+                "1": {
+                  "$tag": "Concat",
                   "0": {
-                    "$tag": "Concat",
+                    "$tag": "Capture",
                     "0": {
-                      "$tag": "Character",
-                      "0": [
-                        [
-                          48,
-                          57
-                        ],
-                        [
-                          65,
-                          70
-                        ],
-                        [
-                          97,
-                          102
-                        ]
-                      ]
-                    },
-                    "1": {
                       "$tag": "Concat",
                       "0": {
                         "$tag": "Character",
@@ -1377,35 +1171,55 @@
                           ]
                         },
                         "1": {
-                          "$tag": "Character",
-                          "0": [
-                            [
-                              48,
-                              57
-                            ],
-                            [
-                              65,
-                              70
-                            ],
-                            [
-                              97,
-                              102
+                          "$tag": "Concat",
+                          "0": {
+                            "$tag": "Character",
+                            "0": [
+                              [
+                                48,
+                                57
+                              ],
+                              [
+                                65,
+                                70
+                              ],
+                              [
+                                97,
+                                102
+                              ]
                             ]
-                          ]
+                          },
+                          "1": {
+                            "$tag": "Character",
+                            "0": [
+                              [
+                                48,
+                                57
+                              ],
+                              [
+                                65,
+                                70
+                              ],
+                              [
+                                97,
+                                102
+                              ]
+                            ]
+                          }
                         }
                       }
-                    }
+                    },
+                    "1": "t"
                   },
-                  "1": "t"
-                },
-                "1": {
-                  "$tag": "Character",
-                  "0": [
-                    [
-                      39,
-                      39
+                  "1": {
+                    "$tag": "Character",
+                    "0": [
+                      [
+                        39,
+                        39
+                      ]
                     ]
-                  ]
+                  }
                 }
               }
             }
@@ -1427,69 +1241,24 @@
             "1": {
               "$tag": "Concat",
               "0": {
-                "$tag": "Concat",
-                "0": {
-                  "$tag": "Concat",
-                  "0": {
-                    "$tag": "Concat",
-                    "0": {
-                      "$tag": "Epsilon"
-                    },
-                    "1": {
-                      "$tag": "Character",
-                      "0": [
-                        [
-                          92,
-                          92
-                        ]
-                      ]
-                    }
-                  },
-                  "1": {
-                    "$tag": "Character",
-                    "0": [
-                      [
-                        117,
-                        117
-                      ]
-                    ]
-                  }
-                },
-                "1": {
-                  "$tag": "Character",
-                  "0": [
-                    [
-                      123,
-                      123
-                    ]
+                "$tag": "Character",
+                "0": [
+                  [
+                    92,
+                    92
                   ]
-                }
+                ]
               },
               "1": {
                 "$tag": "Concat",
                 "0": {
-                  "$tag": "Capture",
-                  "0": {
-                    "$tag": "Repetition",
-                    "0": {
-                      "$tag": "Character",
-                      "0": [
-                        [
-                          48,
-                          57
-                        ],
-                        [
-                          65,
-                          70
-                        ],
-                        [
-                          97,
-                          102
-                        ]
-                      ]
-                    }
-                  },
-                  "1": "t"
+                  "$tag": "Character",
+                  "0": [
+                    [
+                      117,
+                      117
+                    ]
+                  ]
                 },
                 "1": {
                   "$tag": "Concat",
@@ -1497,19 +1266,58 @@
                     "$tag": "Character",
                     "0": [
                       [
-                        125,
-                        125
+                        123,
+                        123
                       ]
                     ]
                   },
                   "1": {
-                    "$tag": "Character",
-                    "0": [
-                      [
-                        39,
-                        39
-                      ]
-                    ]
+                    "$tag": "Concat",
+                    "0": {
+                      "$tag": "Capture",
+                      "0": {
+                        "$tag": "Repetition",
+                        "0": {
+                          "$tag": "Character",
+                          "0": [
+                            [
+                              48,
+                              57
+                            ],
+                            [
+                              65,
+                              70
+                            ],
+                            [
+                              97,
+                              102
+                            ]
+                          ]
+                        }
+                      },
+                      "1": "t"
+                    },
+                    "1": {
+                      "$tag": "Concat",
+                      "0": {
+                        "$tag": "Character",
+                        "0": [
+                          [
+                            125,
+                            125
+                          ]
+                        ]
+                      },
+                      "1": {
+                        "$tag": "Character",
+                        "0": [
+                          [
+                            39,
+                            39
+                          ]
+                        ]
+                      }
+                    }
                   }
                 }
               }
@@ -1604,19 +1412,13 @@
           {
             "$tag": "Concat",
             "0": {
-              "$tag": "Concat",
-              "0": {
-                "$tag": "Epsilon"
-              },
-              "1": {
-                "$tag": "Character",
-                "0": [
-                  [
-                    92,
-                    92
-                  ]
+              "$tag": "Character",
+              "0": [
+                [
+                  92,
+                  92
                 ]
-              }
+              ]
             },
             "1": {
               "$tag": "Character",
@@ -1634,19 +1436,13 @@
           {
             "$tag": "Concat",
             "0": {
-              "$tag": "Concat",
-              "0": {
-                "$tag": "Epsilon"
-              },
-              "1": {
-                "$tag": "Character",
-                "0": [
-                  [
-                    92,
-                    92
-                  ]
+              "$tag": "Character",
+              "0": [
+                [
+                  92,
+                  92
                 ]
-              }
+              ]
             },
             "1": {
               "$tag": "Character",
@@ -1664,19 +1460,13 @@
           {
             "$tag": "Concat",
             "0": {
-              "$tag": "Concat",
-              "0": {
-                "$tag": "Epsilon"
-              },
-              "1": {
-                "$tag": "Character",
-                "0": [
-                  [
-                    92,
-                    92
-                  ]
+              "$tag": "Character",
+              "0": [
+                [
+                  92,
+                  92
                 ]
-              }
+              ]
             },
             "1": {
               "$tag": "Character",
@@ -1694,19 +1484,13 @@
           {
             "$tag": "Concat",
             "0": {
-              "$tag": "Concat",
-              "0": {
-                "$tag": "Epsilon"
-              },
-              "1": {
-                "$tag": "Character",
-                "0": [
-                  [
-                    92,
-                    92
-                  ]
+              "$tag": "Character",
+              "0": [
+                [
+                  92,
+                  92
                 ]
-              }
+              ]
             },
             "1": {
               "$tag": "Character",
@@ -1724,19 +1508,13 @@
           {
             "$tag": "Concat",
             "0": {
-              "$tag": "Concat",
-              "0": {
-                "$tag": "Epsilon"
-              },
-              "1": {
-                "$tag": "Character",
-                "0": [
-                  [
-                    92,
-                    92
-                  ]
+              "$tag": "Character",
+              "0": [
+                [
+                  92,
+                  92
                 ]
-              }
+              ]
             },
             "1": {
               "$tag": "Character",
@@ -1754,19 +1532,13 @@
           {
             "$tag": "Concat",
             "0": {
-              "$tag": "Concat",
-              "0": {
-                "$tag": "Epsilon"
-              },
-              "1": {
-                "$tag": "Character",
-                "0": [
-                  [
-                    92,
-                    92
-                  ]
+              "$tag": "Character",
+              "0": [
+                [
+                  92,
+                  92
                 ]
-              }
+              ]
             },
             "1": {
               "$tag": "Character",
@@ -1784,19 +1556,13 @@
           {
             "$tag": "Concat",
             "0": {
-              "$tag": "Concat",
-              "0": {
-                "$tag": "Epsilon"
-              },
-              "1": {
-                "$tag": "Character",
-                "0": [
-                  [
-                    92,
-                    92
-                  ]
+              "$tag": "Character",
+              "0": [
+                [
+                  92,
+                  92
                 ]
-              }
+              ]
             },
             "1": {
               "$tag": "Character",
@@ -1814,23 +1580,17 @@
           {
             "$tag": "Concat",
             "0": {
+              "$tag": "Character",
+              "0": [
+                [
+                  92,
+                  92
+                ]
+              ]
+            },
+            "1": {
               "$tag": "Concat",
               "0": {
-                "$tag": "Concat",
-                "0": {
-                  "$tag": "Epsilon"
-                },
-                "1": {
-                  "$tag": "Character",
-                  "0": [
-                    [
-                      92,
-                      92
-                    ]
-                  ]
-                }
-              },
-              "1": {
                 "$tag": "Character",
                 "0": [
                   [
@@ -1838,59 +1598,59 @@
                     120
                   ]
                 ]
-              }
-            },
-            "1": {
-              "$tag": "Concat",
-              "0": {
-                "$tag": "Capture",
-                "0": {
-                  "$tag": "Concat",
-                  "0": {
-                    "$tag": "Character",
-                    "0": [
-                      [
-                        48,
-                        57
-                      ],
-                      [
-                        65,
-                        70
-                      ],
-                      [
-                        97,
-                        102
-                      ]
-                    ]
-                  },
-                  "1": {
-                    "$tag": "Character",
-                    "0": [
-                      [
-                        48,
-                        57
-                      ],
-                      [
-                        65,
-                        70
-                      ],
-                      [
-                        97,
-                        102
-                      ]
-                    ]
-                  }
-                },
-                "1": "t"
               },
               "1": {
-                "$tag": "Character",
-                "0": [
-                  [
-                    39,
-                    39
+                "$tag": "Concat",
+                "0": {
+                  "$tag": "Capture",
+                  "0": {
+                    "$tag": "Concat",
+                    "0": {
+                      "$tag": "Character",
+                      "0": [
+                        [
+                          48,
+                          57
+                        ],
+                        [
+                          65,
+                          70
+                        ],
+                        [
+                          97,
+                          102
+                        ]
+                      ]
+                    },
+                    "1": {
+                      "$tag": "Character",
+                      "0": [
+                        [
+                          48,
+                          57
+                        ],
+                        [
+                          65,
+                          70
+                        ],
+                        [
+                          97,
+                          102
+                        ]
+                      ]
+                    }
+                  },
+                  "1": "t"
+                },
+                "1": {
+                  "$tag": "Character",
+                  "0": [
+                    [
+                      39,
+                      39
+                    ]
                   ]
-                ]
+                }
               }
             }
           },
@@ -1900,23 +1660,17 @@
           {
             "$tag": "Concat",
             "0": {
+              "$tag": "Character",
+              "0": [
+                [
+                  92,
+                  92
+                ]
+              ]
+            },
+            "1": {
               "$tag": "Concat",
               "0": {
-                "$tag": "Concat",
-                "0": {
-                  "$tag": "Epsilon"
-                },
-                "1": {
-                  "$tag": "Character",
-                  "0": [
-                    [
-                      92,
-                      92
-                    ]
-                  ]
-                }
-              },
-              "1": {
                 "$tag": "Character",
                 "0": [
                   [
@@ -1924,32 +1678,12 @@
                     117
                   ]
                 ]
-              }
-            },
-            "1": {
-              "$tag": "Concat",
-              "0": {
-                "$tag": "Capture",
+              },
+              "1": {
+                "$tag": "Concat",
                 "0": {
-                  "$tag": "Concat",
+                  "$tag": "Capture",
                   "0": {
-                    "$tag": "Character",
-                    "0": [
-                      [
-                        48,
-                        57
-                      ],
-                      [
-                        65,
-                        70
-                      ],
-                      [
-                        97,
-                        102
-                      ]
-                    ]
-                  },
-                  "1": {
                     "$tag": "Concat",
                     "0": {
                       "$tag": "Character",
@@ -1988,6 +1722,101 @@
                         ]
                       },
                       "1": {
+                        "$tag": "Concat",
+                        "0": {
+                          "$tag": "Character",
+                          "0": [
+                            [
+                              48,
+                              57
+                            ],
+                            [
+                              65,
+                              70
+                            ],
+                            [
+                              97,
+                              102
+                            ]
+                          ]
+                        },
+                        "1": {
+                          "$tag": "Character",
+                          "0": [
+                            [
+                              48,
+                              57
+                            ],
+                            [
+                              65,
+                              70
+                            ],
+                            [
+                              97,
+                              102
+                            ]
+                          ]
+                        }
+                      }
+                    }
+                  },
+                  "1": "t"
+                },
+                "1": {
+                  "$tag": "Character",
+                  "0": [
+                    [
+                      39,
+                      39
+                    ]
+                  ]
+                }
+              }
+            }
+          },
+          "\n      let code = @strconv.parse_int?(t, base=16).unwrap()\n      buffer.write_char(Char::from_int(code))\n      string_inner_rquote(buffer, lexbuf)\n    "
+        ],
+        [
+          {
+            "$tag": "Concat",
+            "0": {
+              "$tag": "Character",
+              "0": [
+                [
+                  92,
+                  92
+                ]
+              ]
+            },
+            "1": {
+              "$tag": "Concat",
+              "0": {
+                "$tag": "Character",
+                "0": [
+                  [
+                    117,
+                    117
+                  ]
+                ]
+              },
+              "1": {
+                "$tag": "Concat",
+                "0": {
+                  "$tag": "Character",
+                  "0": [
+                    [
+                      123,
+                      123
+                    ]
+                  ]
+                },
+                "1": {
+                  "$tag": "Concat",
+                  "0": {
+                    "$tag": "Capture",
+                    "0": {
+                      "$tag": "Repetition",
+                      "0": {
                         "$tag": "Character",
                         "0": [
                           [
@@ -2004,111 +1833,30 @@
                           ]
                         ]
                       }
-                    }
-                  }
-                },
-                "1": "t"
-              },
-              "1": {
-                "$tag": "Character",
-                "0": [
-                  [
-                    39,
-                    39
-                  ]
-                ]
-              }
-            }
-          },
-          "\n      let code = @strconv.parse_int?(t, base=16).unwrap()\n      buffer.write_char(Char::from_int(code))\n      string_inner_rquote(buffer, lexbuf)\n    "
-        ],
-        [
-          {
-            "$tag": "Concat",
-            "0": {
-              "$tag": "Concat",
-              "0": {
-                "$tag": "Concat",
-                "0": {
-                  "$tag": "Concat",
-                  "0": {
-                    "$tag": "Epsilon"
+                    },
+                    "1": "t"
                   },
                   "1": {
-                    "$tag": "Character",
-                    "0": [
-                      [
-                        92,
-                        92
+                    "$tag": "Concat",
+                    "0": {
+                      "$tag": "Character",
+                      "0": [
+                        [
+                          125,
+                          125
+                        ]
                       ]
-                    ]
-                  }
-                },
-                "1": {
-                  "$tag": "Character",
-                  "0": [
-                    [
-                      117,
-                      117
-                    ]
-                  ]
-                }
-              },
-              "1": {
-                "$tag": "Character",
-                "0": [
-                  [
-                    123,
-                    123
-                  ]
-                ]
-              }
-            },
-            "1": {
-              "$tag": "Concat",
-              "0": {
-                "$tag": "Capture",
-                "0": {
-                  "$tag": "Repetition",
-                  "0": {
-                    "$tag": "Character",
-                    "0": [
-                      [
-                        48,
-                        57
-                      ],
-                      [
-                        65,
-                        70
-                      ],
-                      [
-                        97,
-                        102
+                    },
+                    "1": {
+                      "$tag": "Character",
+                      "0": [
+                        [
+                          39,
+                          39
+                        ]
                       ]
-                    ]
+                    }
                   }
-                },
-                "1": "t"
-              },
-              "1": {
-                "$tag": "Concat",
-                "0": {
-                  "$tag": "Character",
-                  "0": [
-                    [
-                      125,
-                      125
-                    ]
-                  ]
-                },
-                "1": {
-                  "$tag": "Character",
-                  "0": [
-                    [
-                      39,
-                      39
-                    ]
-                  ]
                 }
               }
             }
@@ -2149,23 +1897,17 @@
             "0": {
               "$tag": "Concat",
               "0": {
+                "$tag": "Character",
+                "0": [
+                  [
+                    47,
+                    47
+                  ]
+                ]
+              },
+              "1": {
                 "$tag": "Concat",
                 "0": {
-                  "$tag": "Concat",
-                  "0": {
-                    "$tag": "Epsilon"
-                  },
-                  "1": {
-                    "$tag": "Character",
-                    "0": [
-                      [
-                        47,
-                        47
-                      ]
-                    ]
-                  }
-                },
-                "1": {
                   "$tag": "Character",
                   "0": [
                     [
@@ -2173,34 +1915,34 @@
                       47
                     ]
                   ]
-                }
-              },
-              "1": {
-                "$tag": "Concat",
-                "0": {
-                  "$tag": "Repetition",
+                },
+                "1": {
+                  "$tag": "Concat",
                   "0": {
+                    "$tag": "Repetition",
+                    "0": {
+                      "$tag": "Character",
+                      "0": [
+                        [
+                          0,
+                          9
+                        ],
+                        [
+                          11,
+                          1114111
+                        ]
+                      ]
+                    }
+                  },
+                  "1": {
                     "$tag": "Character",
                     "0": [
                       [
-                        0,
-                        9
-                      ],
-                      [
-                        11,
-                        1114111
+                        10,
+                        10
                       ]
                     ]
                   }
-                },
-                "1": {
-                  "$tag": "Character",
-                  "0": [
-                    [
-                      10,
-                      10
-                    ]
-                  ]
                 }
               }
             },
@@ -2339,37 +2081,25 @@
         ],
         [
           {
-            "$tag": "Concat",
-            "0": {
-              "$tag": "Epsilon"
-            },
-            "1": {
-              "$tag": "Character",
-              "0": [
-                [
-                  123,
-                  123
-                ]
+            "$tag": "Character",
+            "0": [
+              [
+                123,
+                123
               ]
-            }
+            ]
           },
           "\n      buffer.write_string(\"{\")\n      let _ = code_rbrace(buffer, lexbuf)\n      buffer.write_string(\"}\")\n      code_rbrace(buffer, lexbuf)\n    "
         ],
         [
           {
-            "$tag": "Concat",
-            "0": {
-              "$tag": "Epsilon"
-            },
-            "1": {
-              "$tag": "Character",
-              "0": [
-                [
-                  125,
-                  125
-                ]
+            "$tag": "Character",
+            "0": [
+              [
+                125,
+                125
               ]
-            }
+            ]
           },
           " $endpos "
         ],

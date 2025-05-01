@@ -50,12 +50,20 @@ pub fn opt(re : Regex) -> Regex {
 
 ///|
 pub fn seq(re1 : Regex, re2 : Regex) -> Regex {
-  Concat(re1, re2)
+  match (re1, re2) {
+    (Concat(re1, re2), re3) => seq(re1, seq(re2, re3))
+    (Epsilon, re) | (re, Epsilon) => re
+    _ => Concat(re1, re2)
+  }
 }
 
 ///|
 pub fn alt(re1 : Regex, re2 : Regex) -> Regex {
-  Alter(re1, re2)
+  match (re1, re2) {
+    (Alter(re1, re2), re3) => alt(re1, alt(re2, re3))
+    (Character(cset1), Character(cset2)) => Character(cset1 + cset2)
+    _ => Alter(re1, re2)
+  }
 }
 
 ///|

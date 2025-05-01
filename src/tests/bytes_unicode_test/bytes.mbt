@@ -49,7 +49,7 @@ fn lex_unicode(lexbuf : @lexbuf.T) -> Int  {
     4 => {
       continue match lexbuf.next_as_int() {
         128 => 2
-        129..=130 => 10
+        129..=130 => 9
         131..=191 => 2
         _ => break
       }
@@ -65,7 +65,7 @@ fn lex_unicode(lexbuf : @lexbuf.T) -> Int  {
     6 => {
       continue match lexbuf.next_as_int() {
         144..=159 => 3
-        160 => 9
+        160 => 10
         161..=191 => 3
         _ => break
       }
@@ -86,15 +86,15 @@ fn lex_unicode(lexbuf : @lexbuf.T) -> Int  {
     }
     9 => {
       continue match lexbuf.next_as_int() {
-        128..=173 => 2
-        174 => 12
-        175..=191 => 2
+        128..=191 => 12
         _ => break
       }
     }
     10 => {
       continue match lexbuf.next_as_int() {
-        128..=191 => 13
+        128..=173 => 2
+        174 => 13
+        175..=191 => 2
         _ => break
       }
     }
@@ -109,14 +109,6 @@ fn lex_unicode(lexbuf : @lexbuf.T) -> Int  {
       }
     }
     12 => {
-      continue match lexbuf.next_as_int() {
-        128..=182 => 1
-        183 => 15
-        184..=191 => 1
-        _ => break
-      }
-    }
-    13 => {
       _tag_1 = lexbuf.curr_pos()
       if matched >= 2 {
         matched = 2
@@ -125,6 +117,14 @@ fn lex_unicode(lexbuf : @lexbuf.T) -> Int  {
         _capture_0_end = _tag_1
       }
       break
+    }
+    13 => {
+      continue match lexbuf.next_as_int() {
+        128..=182 => 1
+        183 => 15
+        184..=191 => 1
+        _ => break
+      }
     }
     14 => {
       continue match lexbuf.next_as_int() {
