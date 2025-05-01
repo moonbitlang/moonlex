@@ -43,10 +43,10 @@ fn main {
         String(fn(encoding) {
           default_encoding = Some(
             match encoding {
-              "ascii" => @type.Ascii
-              "latin1" => @type.Latin1
-              "utf8" => @type.Utf8
-              "utf16" => @type.Utf16
+              "ascii" => @regex.Ascii
+              "latin1" => @regex.Latin1
+              "utf8" => @regex.Utf8
+              "utf16" => @regex.Utf16
               _ => {
                 abort("Invalid encoding: \{encoding}")
                 return

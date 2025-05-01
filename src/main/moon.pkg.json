@@ -7,7 +7,8 @@
     "Yoorkin/ArgParser",
     "moonbitlang/x/sys",
     "moonbitlang/x/fs",
-    "moonbitlang/ulex/main/util"
+    "moonbitlang/ulex/main/util",
+    "moonbitlang/ulex/lib/regex"
   ],
   "bin-name": "moonlex",
   "bin-target": "js"

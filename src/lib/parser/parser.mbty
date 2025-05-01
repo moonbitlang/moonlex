@@ -111,54 +111,54 @@ regex -> @type.Regex
 
 alias -> @type.Regex
   : alternation                         { $1 }
-  | alternation "as" LC_IDENT           { Capture($1, $3) }
+  | alternation "as" LC_IDENT           { @regex.bind($1, $3) }
   ;
 
 alternation -> @type.Regex
   : concatenation                       { $1 }
-  | concatenation "|" alternation       { Alter($1, $3) }
+  | concatenation "|" alternation       { @regex.alt($1, $3) }
   ;
 
 concatenation -> @type.Regex
   : repetition                          { $1 }
-  | repetition concatenation            { Concat($1, $2) }
+  | repetition concatenation            { @regex.seq($1, $2) }
   | differentiation                     { $1 }
   ;
 
 differentiation -> @type.Regex
   : atom BACKSLASH atom                 {
                                           guard $1 is Character(cset1) && $3 is Character(cset2)
-                                          Character(cset1.difference(cset2))
+                                          @regex.char_class(cset1.difference(cset2))
                                         }
   | differentiation BACKSLASH atom      { 
                                           guard $1 is Character(cset1) && $3 is Character(cset2)
-                                          Character(cset1.difference(cset2))
+                                          @regex.char_class(cset1.difference(cset2))
                                         }
   ;
 
 repetition -> @type.Regex
   : atom                                { $1 }
-  | atom "*"                            { Alter(Repetition($1), Epsilon) }
-  | atom "+"                            { Repetition($1) }
-  | atom "?"                            { Alter($1, Epsilon) }
+  | atom "*"                            { @regex.star($1) }
+  | atom "+"                            { @regex.plus($1) }
+  | atom "?"                            { @regex.opt($1) }
   ;
 
 atom -> @type.Regex
   : "(" alias ")"                       { $2 }
   | "(" LC_IDENT ":" alias ")"          { 
                                           match $2 {
-                                            "ascii" => Bytes(Ascii, $4)
-                                            "latin1" => Bytes(Latin1, $4)
-                                            "utf8" => Bytes(Utf8, $4)
+                                            "ascii" => @regex.embed($4, encoding=Ascii)
+                                            "latin1" => @regex.embed($4, encoding=Latin1)
+                                            "utf8" => @regex.embed($4, encoding=Utf8)
                                             _ => panic()
                                           } 
                                         }
-  | character_class                     { Character($1) }
+  | character_class                     { @regex.char_class($1) }
   | LC_IDENT                            { named_regexes.get($1).unwrap() }
-  | CHAR                                { Character(@char_set.singleton($1)) }
-  | STRING                              { $1.iter().fold(init=Epsilon, fn(acc, c) { Concat(acc, Character(@char_set.singleton(c))) }) }
-  | UNDERSCORE                          { Character(@char_set.any) }
-  | EOF                                 { EOF }
+  | CHAR                                { @regex.char_class(@char_set.singleton($1)) }
+  | STRING                              { $1.iter().fold(init=@regex.epsilon, fn(acc, c) { @regex.seq(acc, @regex.char_class(@char_set.singleton(c))) }) }
+  | UNDERSCORE                          { @regex.char_class(@char_set.any) }
+  | EOF                                 { @regex.eof }
   ;
 
 character_class -> @char_set.T

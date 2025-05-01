@@ -1,5 +1,5 @@
 {
   "import": [
-    "moonbitlang/ulex/lib/util/char_set"
+    "moonbitlang/ulex/lib/regex"
   ]
 }
