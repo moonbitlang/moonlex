@@ -8,7 +8,7 @@ pub(all) enum CodeUnit {
 ///|
 pub(all) enum Regex {
   EOF
-  Character(@eof_char_set.T)
+  Character(@char_set.T)
   Repetition(Regex) // repeat at least once
   Epsilon
   Alter(Regex, Regex)

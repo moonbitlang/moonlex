@@ -5,6 +5,15 @@ pub typealias T = EofCharSet
 type EofCharSet @diet.T[EofChar] derive(Default, Eq, Compare, Hash)
 
 ///|
+pub fn from_char_set(cset : @char_set.T) -> EofCharSet {
+  let mut result = empty
+  for r in cset.iter_ranges() {
+    result += range(r.0, r.1)
+  }
+  result
+}
+
+///|
 pub let empty : EofCharSet = @diet.empty()
 
 ///|

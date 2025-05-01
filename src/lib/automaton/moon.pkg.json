@@ -2,6 +2,7 @@
   "import": [
     "moonbitlang/ulex/lib/type",
     "moonbitlang/ulex/lib/util/eof_char_set",
-    "moonbitlang/x/encoding"
+    "moonbitlang/x/encoding",
+    "moonbitlang/ulex/lib/util/char_set"
   ]
 }

@@ -11,7 +11,7 @@ fn get_masked_range_cset(
   bytes : Bytes,
   num_bytes : Int,
   mask_index : Int
-) -> @eof_char_set.T {
+) -> @char_set.T {
   guard mask_index >= 1 && mask_index <= bytes.length()
   let prefix = bytes[0:mask_index]
   let masked_min_suffix = Bytes::make(num_bytes - mask_index, 0x80)
@@ -20,19 +20,19 @@ fn get_masked_range_cset(
   let masked_max_bytes : Bytes = [..prefix, ..masked_max_suffix]
   let masked_min = utf8_bytes_to_char(masked_min_bytes)
   let masked_max = utf8_bytes_to_char(masked_max_bytes)
-  @eof_char_set.range(masked_min, masked_max)
+  @char_set.range(masked_min, masked_max)
 }
 
 ///|
 fn lower_unicode_charclass_to_utf8(
-  cset : @eof_char_set.T
-) -> Array[Array[@eof_char_set.T]] {
+  cset : @char_set.T
+) -> Array[Array[@char_set.T]] {
   // TODO: This function does not return optimal results.
   let groups = [
-    (1, cset & @eof_char_set.range('\u{00}', '\u{7f}')),
-    (2, cset & @eof_char_set.range('\u{80}', '\u{7ff}')),
-    (3, cset & @eof_char_set.range('\u{800}', '\u{ffff}')),
-    (4, cset & @eof_char_set.range('\u{10000}', '\u{10ffff}')),
+    (1, cset & @char_set.range('\u{00}', '\u{7f}')),
+    (2, cset & @char_set.range('\u{80}', '\u{7ff}')),
+    (3, cset & @char_set.range('\u{800}', '\u{ffff}')),
+    (4, cset & @char_set.range('\u{10000}', '\u{10ffff}')),
   ]
   let result = []
   for group in groups {
@@ -44,12 +44,12 @@ fn lower_unicode_charclass_to_utf8(
     } else {
       let branches = []
       let dedup = Set::new()
-      fn add_branch(range_cset : @eof_char_set.T, pin_index : Int) {
+      fn add_branch(range_cset : @char_set.T, pin_index : Int) {
         if dedup.add_and_check((range_cset, pin_index)) {
           let ranges = range_cset.iter_ranges().to_array()
           guard ranges.length() <= 1
           guard ranges is [range] else { return }
-          guard range.0.repr() is Char(min) && range.1.repr() is Char(max)
+          let (min, max) = range
           let min_bytes = @encoding.encode(UTF8, String::make(1, min))
           let max_bytes = @encoding.encode(UTF8, String::make(1, max))
           if pin_index >= num_bytes {
@@ -59,7 +59,7 @@ fn lower_unicode_charclass_to_utf8(
                 ..min_bytes
                 .iter()
                 .map(fn(byte) {
-                  @eof_char_set.singleton(Char::from_int(byte.to_int()))
+                  @char_set.singleton(Char::from_int(byte.to_int()))
                 }),
               ],
             )
@@ -72,14 +72,14 @@ fn lower_unicode_charclass_to_utf8(
                 ..common_prefix
                 .iter()
                 .map(fn(byte) {
-                  @eof_char_set.singleton(Char::from_int(byte.to_int()))
+                  @char_set.singleton(Char::from_int(byte.to_int()))
                 })
                 .to_array(),
-                @eof_char_set.range(
+                @char_set.range(
                   Char::from_int(min_bytes[pin_index].to_int()),
                   Char::from_int(max_bytes[pin_index].to_int()),
                 ),
-                ..[@eof_char_set.range('\u{80}', '\u{bf}')].repeat(
+                ..[@char_set.range('\u{80}', '\u{bf}')].repeat(
                   num_bytes - pin_index - 1,
                 ),
               ],
@@ -89,8 +89,8 @@ fn lower_unicode_charclass_to_utf8(
       }
 
       for range in cset.iter_ranges() {
-        guard range.0.repr() is Char(min) && range.1.repr() is Char(max)
-        let range_cset = @eof_char_set.range(min, max)
+        let (min, max) = range
+        let range_cset = @char_set.range(min, max)
         let min_bytes = @encoding.encode(UTF8, String::make(1, min))
         let max_bytes = @encoding.encode(UTF8, String::make(1, max))
         fn process_endpoint(bytes : Bytes) {
@@ -99,7 +99,7 @@ fn lower_unicode_charclass_to_utf8(
                 get_masked_range_cset(bytes, num_bytes, i) & range_cset
               ) -
               (if i == num_bytes {
-                @eof_char_set.empty
+                @char_set.empty
               } else {
                 get_masked_range_cset(bytes, num_bytes, i + 1)
               })
@@ -112,9 +112,8 @@ fn lower_unicode_charclass_to_utf8(
           get_masked_range_cset(min_bytes, num_bytes, 1) -
           get_masked_range_cset(max_bytes, num_bytes, 1)
         for mid_range in mid_range_csets.iter_ranges() {
-          guard mid_range.0.repr() is Char(min) &&
-            mid_range.1.repr() is Char(max)
-          let mid_range_cset = @eof_char_set.range(min, max)
+          let (min, max) = mid_range
+          let mid_range_cset = @char_set.range(min, max)
           add_branch(mid_range_cset, 0)
         }
         process_endpoint(max_bytes)
@@ -131,31 +130,31 @@ fn lower_unicode_charclass_to_utf8(
 ///|
 test "['\\u3000'], ['\\u30ff']" {
   // assert_eq!(
-  //   lower_unicode_charclass_to_utf8(@eof_char_set.singleton('\u3000')),
+  //   lower_unicode_charclass_to_utf8(@char_set.singleton('\u3000')),
   //   [
   //     [
-  //       @eof_char_set.singleton('\u{e3}'),
-  //       @eof_char_set.singleton('\u{80}'),
-  //       @eof_char_set.singleton('\u{80}'),
+  //       @char_set.singleton('\u{e3}'),
+  //       @char_set.singleton('\u{80}'),
+  //       @char_set.singleton('\u{80}'),
   //     ],
   //   ],
   // )
   // assert_eq!(
-  //   lower_unicode_charclass_to_utf8(@eof_char_set.singleton('\u30ff')),
+  //   lower_unicode_charclass_to_utf8(@char_set.singleton('\u30ff')),
   //   [
   //     [
-  //       @eof_char_set.singleton('\u{e3}'),
-  //       @eof_char_set.singleton('\u{81}'),
-  //       @eof_char_set.singleton('\u{bf}'),
+  //       @char_set.singleton('\u{e3}'),
+  //       @char_set.singleton('\u{81}'),
+  //       @char_set.singleton('\u{bf}'),
   //     ],
   //   ],
   // )
   @json.inspect!(
-    lower_unicode_charclass_to_utf8(@eof_char_set.singleton('\u3000')),
+    lower_unicode_charclass_to_utf8(@char_set.singleton('\u3000')),
     content=[[[[227, 227]], [[128, 128]], [[128, 128]]]],
   )
   @json.inspect!(
-    lower_unicode_charclass_to_utf8(@eof_char_set.singleton('\u30ff')),
+    lower_unicode_charclass_to_utf8(@char_set.singleton('\u30ff')),
     content=[[[[227, 227]], [[131, 131]], [[191, 191]]]],
   )
 }
@@ -163,17 +162,17 @@ test "['\\u3000'], ['\\u30ff']" {
 ///|
 test "['\\u3000'-'\\u30ff']" {
   // assert_eq!(
-  //   lower_unicode_charclass_to_utf8(@eof_char_set.range('\u3000', '\u30ff')),
+  //   lower_unicode_charclass_to_utf8(@char_set.range('\u3000', '\u30ff')),
   //   [
   //     [
-  //       @eof_char_set.singleton('\u{e3}'),
-  //       @eof_char_set.range('\u{80}', '\u{81}'),
-  //       @eof_char_set.range('\u{80}', '\u{bf}'),
+  //       @char_set.singleton('\u{e3}'),
+  //       @char_set.range('\u{80}', '\u{81}'),
+  //       @char_set.range('\u{80}', '\u{bf}'),
   //     ],
   //   ],
   // )
   @json.inspect!(
-    lower_unicode_charclass_to_utf8(@eof_char_set.range('\u3000', '\u30ff')),
+    lower_unicode_charclass_to_utf8(@char_set.range('\u3000', '\u30ff')),
     content=[
       [[[227, 227]], [[128, 128]], [[128, 128]]],
       [[[227, 227]], [[128, 128]], [[129, 191]]],
@@ -188,28 +187,28 @@ test "['\\u3000'-'\\u30ff']" {
 ///|
 test "['\\x00'-'\\u{10ffff}']" {
   // assert_eq!(
-  //   lower_unicode_charclass_to_utf8(@eof_char_set.range('\u{00}', '\u{10ffff}')),
+  //   lower_unicode_charclass_to_utf8(@char_set.range('\u{00}', '\u{10ffff}')),
   //   [
-  //     [@eof_char_set.range('\u{00}', '\u{7f}')],
+  //     [@char_set.range('\u{00}', '\u{7f}')],
   //     [
-  //       @eof_char_set.range('\u{c0}', '\u{df}'),
-  //       @eof_char_set.range('\u{80}', '\u{bf}'),
+  //       @char_set.range('\u{c0}', '\u{df}'),
+  //       @char_set.range('\u{80}', '\u{bf}'),
   //     ],
   //     [
-  //       @eof_char_set.range('\u{e0}', '\u{ef}'),
-  //       @eof_char_set.range('\u{80}', '\u{bf}'),
-  //       @eof_char_set.range('\u{80}', '\u{bf}'),
+  //       @char_set.range('\u{e0}', '\u{ef}'),
+  //       @char_set.range('\u{80}', '\u{bf}'),
+  //       @char_set.range('\u{80}', '\u{bf}'),
   //     ],
   //     [
-  //       @eof_char_set.range('\u{f0}', '\u{f7}'),
-  //       @eof_char_set.range('\u{80}', '\u{bf}'),
-  //       @eof_char_set.range('\u{80}', '\u{bf}'),
-  //       @eof_char_set.range('\u{80}', '\u{bf}'),
+  //       @char_set.range('\u{f0}', '\u{f7}'),
+  //       @char_set.range('\u{80}', '\u{bf}'),
+  //       @char_set.range('\u{80}', '\u{bf}'),
+  //       @char_set.range('\u{80}', '\u{bf}'),
   //     ],
   //   ],
   // )
   @json.inspect!(
-    lower_unicode_charclass_to_utf8(@eof_char_set.range('\u{00}', '\u{10ffff}')),
+    lower_unicode_charclass_to_utf8(@char_set.range('\u{00}', '\u{10ffff}')),
     content=[
       [[[0, 127]]],
       [[[194, 194]], [[128, 128]]],
@@ -240,14 +239,14 @@ test "['\\x00'-'\\u{10ffff}']" {
 test "['\\xff' '\\uffff']" {
   assert_eq!(
     lower_unicode_charclass_to_utf8(
-      @eof_char_set.singleton('\u{ff}') + @eof_char_set.singleton('\uffff'),
+      @char_set.singleton('\u{ff}') + @char_set.singleton('\uffff'),
     ),
     [
-      [@eof_char_set.singleton('\u{c3}'), @eof_char_set.singleton('\u{bf}')],
+      [@char_set.singleton('\u{c3}'), @char_set.singleton('\u{bf}')],
       [
-        @eof_char_set.singleton('\u{ef}'),
-        @eof_char_set.singleton('\u{bf}'),
-        @eof_char_set.singleton('\u{bf}'),
+        @char_set.singleton('\u{ef}'),
+        @char_set.singleton('\u{bf}'),
+        @char_set.singleton('\u{bf}'),
       ],
     ],
   )

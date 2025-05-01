@@ -1,7 +1,7 @@
 {
   "import": [
     "moonbitlang/ulex/lib/type",
-    "moonbitlang/ulex/lib/util/eof_char_set",
+    "moonbitlang/ulex/lib/util/char_set",
     "moonbitlang/ulex-runtime/lexbuf"
   ],
   "pre-build": [

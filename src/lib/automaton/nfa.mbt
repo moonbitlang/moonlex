@@ -162,24 +162,38 @@ fn register_regex_rec(
     Character(cset) => {
       let next_node = self.new_node()
       match encoding {
-        None => self.add_edge(new_node, EChar(cset), next_node)
+        None =>
+          self.add_edge(
+            new_node,
+            EChar(@eof_char_set.from_char_set(cset)),
+            next_node,
+          )
         Some(Ascii) =>
           // TODO: check range in 0..=128
-          self.add_edge(new_node, EChar(cset), next_node)
+          self.add_edge(
+            new_node,
+            EChar(@eof_char_set.from_char_set(cset)),
+            next_node,
+          )
         Some(Latin1) =>
           // TODO: check range in 0..=255
-          self.add_edge(new_node, EChar(cset), next_node)
+          self.add_edge(
+            new_node,
+            EChar(@eof_char_set.from_char_set(cset)),
+            next_node,
+          )
         Some(Utf8) => {
           // TODO: Lower cset to `Regex`, not `Array[Array[@eof_char_set.T]]`
           let branches = lower_unicode_charclass_to_utf8(cset)
           for branch in branches {
             let self_ = self
-            fn link(
-              byte_cset : @eof_char_set.T,
-              prev_node : NFANode
-            ) -> NFANode {
+            fn link(byte_cset : @char_set.T, prev_node : NFANode) -> NFANode {
               let end_node = self_.new_node()
-              self_.add_edge(prev_node, EChar(byte_cset), end_node)
+              self_.add_edge(
+                prev_node,
+                EChar(@eof_char_set.from_char_set(byte_cset)),
+                end_node,
+              )
               end_node
             }
 
