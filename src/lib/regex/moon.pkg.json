@@ -1,5 +1,6 @@
 {
   "import": [
-    "moonbitlang/ulex/lib/util/char_set"
+    "moonbitlang/ulex/lib/util/char_set",
+    "moonbitlang/x/encoding"
   ]
 }

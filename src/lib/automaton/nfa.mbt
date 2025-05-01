@@ -75,7 +75,10 @@ pub fn NFA::from_rule(rule : Rule, encoding~ : @type.Encoding?) -> NFA {
 
   for pattern in rule.patterns {
     let (re, code_block) = pattern
-    let capture_names = get_regex_captures(re, encoding~).map(fn(it) {
+    let lowered_re = re.lower(encoding~)
+    let capture_names = get_regex_captures(re, lowered_re, encoding~).map(fn(
+      it
+    ) {
       let (name, (var_type, (begin, end))) = it
       let begin = match begin {
         None => Dynamic_nfa(alloc_tag())
@@ -95,13 +98,9 @@ pub fn NFA::from_rule(rule : Rule, encoding~ : @type.Encoding?) -> NFA {
           (name, (begin_tag, end_tag))
       }),
     )
-    nfa.register_regex(
-      node,
-      re,
-      code_block,
-      fn(x) { map.get(x).unwrap() },
-      encoding~,
-    )
+    nfa.register_regex(node, lowered_re, code_block, fn(x) {
+      map.get(x).unwrap()
+    })
     nfa.captures.push(capture_names)
   }
   nfa
@@ -133,10 +132,9 @@ fn register_regex(
   node : NFANode,
   re : Regex,
   code_block : CodeBlock,
-  name2pos : (String) -> (NFACapturePosition, NFACapturePosition),
-  encoding~ : @type.Encoding?
+  name2pos : (String) -> (NFACapturePosition, NFACapturePosition)
 ) -> Unit {
-  let final_ = self.register_regex_rec(node, re, name2pos, encoding)
+  let final_ = self.register_regex_rec(node, re, name2pos)
   let id = self.code_blocks.length()
   self.code_blocks.push(code_block)
   self.end_nodes.set(final_.num, id)
@@ -147,8 +145,7 @@ fn register_regex_rec(
   self : NFA,
   node : NFANode,
   re : Regex,
-  name2pos : (String) -> (NFACapturePosition, NFACapturePosition),
-  encoding : @type.Encoding?
+  name2pos : (String) -> (NFACapturePosition, NFACapturePosition)
 ) -> NFANode {
   let new_node = self.new_node()
   self.add_edge(node, Eps, new_node)
@@ -161,53 +158,11 @@ fn register_regex_rec(
     }
     Character(cset) => {
       let next_node = self.new_node()
-      match encoding {
-        None =>
-          self.add_edge(
-            new_node,
-            EChar(@eof_char_set.from_char_set(cset)),
-            next_node,
-          )
-        Some(Ascii) =>
-          // TODO: check range in 0..=128
-          self.add_edge(
-            new_node,
-            EChar(@eof_char_set.from_char_set(cset)),
-            next_node,
-          )
-        Some(Latin1) =>
-          // TODO: check range in 0..=255
-          self.add_edge(
-            new_node,
-            EChar(@eof_char_set.from_char_set(cset)),
-            next_node,
-          )
-        Some(Utf8) => {
-          // TODO: Lower cset to `Regex`, not `Array[Array[@eof_char_set.T]]`
-          let branches = lower_unicode_charclass_to_utf8(cset)
-          for branch in branches {
-            let self_ = self
-            fn link(byte_cset : @char_set.T, prev_node : NFANode) -> NFANode {
-              let end_node = self_.new_node()
-              self_.add_edge(
-                prev_node,
-                EChar(@eof_char_set.from_char_set(byte_cset)),
-                end_node,
-              )
-              end_node
-            }
-
-            let mut prev_node = new_node
-            for byte_cset in branch {
-              prev_node = link(byte_cset, prev_node)
-            }
-            self.add_edge(prev_node, Eps, next_node)
-          }
-        }
-        Some(Utf16) =>
-          // TODO: Implement UTF-16 handling
-          panic()
-      }
+      self.add_edge(
+        new_node,
+        EChar(@eof_char_set.from_char_set(cset)),
+        next_node,
+      )
       next_node
     }
     Epsilon => {
@@ -216,17 +171,17 @@ fn register_regex_rec(
       next_node
     }
     Repetition(re) => {
-      let final_ = self.register_regex_rec(new_node, re, name2pos, encoding)
+      let final_ = self.register_regex_rec(new_node, re, name2pos)
       self.add_edge(final_, Eps, new_node)
       final_
     }
     Concat(re1, re2) => {
-      let mid = self.register_regex_rec(new_node, re1, name2pos, encoding)
-      self.register_regex_rec(mid, re2, name2pos, encoding)
+      let mid = self.register_regex_rec(new_node, re1, name2pos)
+      self.register_regex_rec(mid, re2, name2pos)
     }
     Alter(re1, re2) => {
-      let final_1 = self.register_regex_rec(new_node, re1, name2pos, encoding)
-      let final_2 = self.register_regex_rec(new_node, re2, name2pos, encoding)
+      let final_1 = self.register_regex_rec(new_node, re1, name2pos)
+      let final_2 = self.register_regex_rec(new_node, re2, name2pos)
       let final_ = self.new_node()
       self.add_edge(final_1, Eps, final_)
       self.add_edge(final_2, Eps, final_)
@@ -235,7 +190,7 @@ fn register_regex_rec(
     Capture(re, name) => {
       let start = self.new_node()
       let final_ = self.new_node()
-      let tail = self.register_regex_rec(start, re, name2pos, encoding)
+      let tail = self.register_regex_rec(start, re, name2pos)
       let (begin_tag, end_tag) = name2pos(name)
       self.add_edge(
         new_node,
@@ -257,8 +212,9 @@ fn register_regex_rec(
       )
       final_
     }
-    Bytes(encoding, re) =>
-      self.register_regex_rec(new_node, re, name2pos, Some(encoding))
+    Bytes(_) =>
+      // This should be eliminated before call `register_regex_rec`
+      panic()
   }
   let new_final = self.new_node()
   self.add_edge(final_, Eps, new_final)

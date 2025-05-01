@@ -49,7 +49,7 @@ fn lex_unicode(lexbuf : @lexbuf.T) -> Int  {
     4 => {
       continue match lexbuf.next_as_int() {
         128 => 2
-        129..=130 => 9
+        129..=130 => 10
         131..=191 => 2
         _ => break
       }
@@ -57,7 +57,7 @@ fn lex_unicode(lexbuf : @lexbuf.T) -> Int  {
     5 => {
       continue match lexbuf.next_as_int() {
         128..=135 => 2
-        136 => 10
+        136 => 8
         137..=191 => 2
         _ => break
       }
@@ -65,7 +65,7 @@ fn lex_unicode(lexbuf : @lexbuf.T) -> Int  {
     6 => {
       continue match lexbuf.next_as_int() {
         144..=159 => 3
-        160 => 8
+        160 => 9
         161..=191 => 3
         _ => break
       }
@@ -78,35 +78,45 @@ fn lex_unicode(lexbuf : @lexbuf.T) -> Int  {
     }
     8 => {
       continue match lexbuf.next_as_int() {
-        128..=173 => 2
-        174 => 11
-        175..=191 => 2
+        128..=144 => 1
+        145 => 11
+        146..=191 => 1
         _ => break
       }
     }
     9 => {
       continue match lexbuf.next_as_int() {
-        128..=191 => 12
+        128..=173 => 2
+        174 => 12
+        175..=191 => 2
         _ => break
       }
     }
     10 => {
       continue match lexbuf.next_as_int() {
-        128..=144 => 1
-        145 => 13
-        146..=191 => 1
+        128..=191 => 13
         _ => break
       }
     }
     11 => {
+      if matched >= 3 {
+        matched = 3
+        _end_pos = lexbuf.curr_pos()
+      }
       continue match lexbuf.next_as_int() {
-        128..=182 => 1
-        183 => 14
-        184..=191 => 1
+        231 => 14
         _ => break
       }
     }
     12 => {
+      continue match lexbuf.next_as_int() {
+        128..=182 => 1
+        183 => 15
+        184..=191 => 1
+        _ => break
+      }
+    }
+    13 => {
       _tag_1 = lexbuf.curr_pos()
       if matched >= 2 {
         matched = 2
@@ -116,28 +126,18 @@ fn lex_unicode(lexbuf : @lexbuf.T) -> Int  {
       }
       break
     }
-    13 => {
-      if matched >= 3 {
-        matched = 3
-        _end_pos = lexbuf.curr_pos()
-      }
+    14 => {
       continue match lexbuf.next_as_int() {
-        231 => 15
+        136 => 16
         _ => break
       }
     }
-    14 => {
+    15 => {
       if matched >= 1 {
         matched = 1
         _end_pos = lexbuf.curr_pos()
       }
       break
-    }
-    15 => {
-      continue match lexbuf.next_as_int() {
-        136 => 16
-        _ => break
-      }
     }
     16 => {
       continue match lexbuf.next_as_int() {
