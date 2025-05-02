@@ -76,9 +76,7 @@ pub fn NFA::from_rule(rule : Rule, encoding~ : @type.Encoding?) -> NFA {
   for pattern in rule.patterns {
     let (re, code_block) = pattern
     let lowered_re = re.lower(encoding~)
-    let capture_names = get_regex_captures(re, lowered_re, encoding~).map(fn(
-      it
-    ) {
+    let capture_names = get_regex_captures(re, lowered_re).map(fn(it) {
       let (name, (var_type, (begin, end))) = it
       let begin = match begin {
         None => Dynamic_nfa(alloc_tag())

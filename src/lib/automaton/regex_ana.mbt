@@ -18,8 +18,7 @@ priv enum CaptureVarEndpoint {
 
 ///|
 fn get_regex_static_known_tag_positions(
-  re : Regex,
-  encoding~ : @type.Encoding?
+  re : Regex
 ) -> @immut/sorted_map.T[(String, CaptureVarEndpoint), StaticKnownTagPosition] {
   fn len_of(re : Regex) {
     // TODO: dynamic programming
@@ -115,11 +114,8 @@ fn get_regex_static_known_tag_positions(
     }
   }
 
-  // TODO: relax the restriction
-  if encoding is None {
-    right_aux(re)
-    left_aux(re)
-  }
+  right_aux(re)
+  left_aux(re)
   map
 }
 
@@ -127,17 +123,13 @@ fn get_regex_static_known_tag_positions(
 pub fn get_regex_captures(
   re : Regex,
   lowered_re : Regex,
-  encoding~ : @type.Encoding?
 ) ->
      Array[
        (String, (VarType, (StaticKnownTagPosition?, StaticKnownTagPosition?))),
      ] {
   let char_vars = re.get_char_capture_vars()
   let vars = re.get_capture_vars()
-  let static_tag_positions = get_regex_static_known_tag_positions(
-    lowered_re,
-    encoding~,
-  )
+  let static_tag_positions = get_regex_static_known_tag_positions(lowered_re)
   let result = vars
     .iter()
     .map(fn(var) {

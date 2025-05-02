@@ -9,11 +9,8 @@ fn lex_unicode(lexbuf : @lexbuf.T) -> Int  {
   let mut _capture_0_end = -1
   let mut _capture_1_start = -1
   let mut _capture_1_end = -1
-  let mut _tag_0 = -1
-  let mut _tag_1 = -1
   loop 0 {
     0 => {
-      _tag_0 = lexbuf.curr_pos()
       continue match lexbuf.next_as_int() {
         0..=127 => 1
         194..=223 => 2
@@ -109,12 +106,11 @@ fn lex_unicode(lexbuf : @lexbuf.T) -> Int  {
       }
     }
     12 => {
-      _tag_1 = lexbuf.curr_pos()
       if matched >= 2 {
         matched = 2
         _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _tag_0
-        _capture_0_end = _tag_1
+        _capture_0_start = _start_pos
+        _capture_0_end = _start_pos + 3
       }
       break
     }
