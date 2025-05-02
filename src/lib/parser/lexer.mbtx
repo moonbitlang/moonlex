@@ -24,7 +24,6 @@ rule token[T : @lexbuf.IStringLexbuf](lexbuf : T) -> (Token, Int, Int) {
     "[" => { (LBRACKET, $startpos, $endpos) }
     "]" => { (RBRACKET, $startpos, $endpos) }
     "=" => { (EQ, $startpos, $endpos) }
-    ":" => { (COLON, $startpos, $endpos) }
     ";" => { (SEMICOLON, $startpos, $endpos) }
     "|" => { (BAR, $startpos, $endpos) }
     "*" => { (STAR, $startpos, $endpos) }

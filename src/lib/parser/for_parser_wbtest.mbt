@@ -28,7 +28,6 @@ let lexer_src : String =
   #|    "[" => { (LBRACKET, $startpos, $endpos) }
   #|    "]" => { (RBRACKET, $startpos, $endpos) }
   #|    "=" => { (EQ, $startpos, $endpos) }
-  #|    ":" => { (COLON, $startpos, $endpos) }
   #|    ";" => { (SEMICOLON, $startpos, $endpos) }
   #|    "|" => { (BAR, $startpos, $endpos) }
   #|    "*" => { (STAR, $startpos, $endpos) }

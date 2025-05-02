@@ -2,7 +2,14 @@
 pub typealias T = Regex
 
 ///|
-pub enum Regex {
+pub struct Regex {
+  desc : RegexDesc
+  class : RegexClass
+  len : Int?
+} derive(Show, Eq, ToJson)
+
+///|
+pub enum RegexDesc {
   EOF
   Character(@char_set.T)
   Repetition(Regex) // repeat at least once
@@ -10,8 +17,12 @@ pub enum Regex {
   Alter(Regex, Regex)
   Concat(Regex, Regex)
   Capture(Regex, String)
-  // Embedded bytes, Only valid in bytes mode
-  Bytes(Encoding, Regex)
+} derive(Show, Eq, ToJson)
+
+///|
+pub enum RegexClass {
+  Char
+  String
 } derive(Show, Eq, ToJson)
 
 ///|
@@ -23,57 +34,83 @@ pub(all) enum Encoding {
 } derive(Show, Eq, ToJson)
 
 ///|
-pub let eof : Regex = EOF
+pub let eof : Regex = { desc: EOF, class: String, len: None }
 
 ///|
-pub let epsilon : Regex = Epsilon
+pub let epsilon : Regex = { desc: Epsilon, class: String, len: Some(0) }
 
 ///|
-pub fn char_class(cset : @char_set.T) -> Regex {
-  Character(cset)
+pub fn char_class(cset : @char_set.T, as_bytes? : Encoding) -> Regex {
+  match as_bytes {
+    None => { desc: Character(cset), class: Char, len: Some(1) }
+    Some(encoding) => lower_unicode_charclass(cset, encoding~)
+  }
 }
 
 ///|
 pub fn star(re : Regex) -> Regex {
-  Alter(Repetition(re), epsilon)
+  opt(plus(re))
 }
 
 ///|
 pub fn plus(re : Regex) -> Regex {
-  Repetition(re)
+  {
+    desc: Repetition(re),
+    class: String,
+    len: if re.len is Some(0) {
+      Some(0)
+    } else {
+      None
+    },
+  }
 }
 
 ///|
 pub fn opt(re : Regex) -> Regex {
-  Alter(re, epsilon)
+  alt(re, epsilon)
 }
 
 ///|
 pub fn seq(re1 : Regex, re2 : Regex) -> Regex {
   match (re1, re2) {
-    (Concat(re1, re2), re3) => seq(re1, seq(re2, re3))
-    (Epsilon, re) | (re, Epsilon) => re
-    _ => Concat(re1, re2)
+    ({ desc: Concat(re1, re2), .. }, re3) => seq(re1, seq(re2, re3))
+    ({ desc: Epsilon, .. }, re) | (re, { desc: Epsilon, .. }) => re
+    _ =>
+      {
+        desc: Concat(re1, re2),
+        class: String,
+        len: if re1.len is Some(len1) && re2.len is Some(len2) {
+          Some(len1 + len2)
+        } else {
+          None
+        },
+      }
   }
 }
 
 ///|
 pub fn alt(re1 : Regex, re2 : Regex) -> Regex {
+  let class = if re1.class is Char && re2.class is Char { Char } else { String }
   match (re1, re2) {
-    (Alter(re1, re2), re3) => alt(re1, alt(re2, re3))
-    (Character(cset1), Character(cset2)) => Character(cset1 + cset2)
-    _ => Alter(re1, re2)
+    ({ desc: Alter(re1, re2), .. }, re3) => alt(re1, alt(re2, re3))
+    ({ desc: Character(cset1), .. }, { desc: Character(cset2), .. }) =>
+      { desc: Character(cset1 + cset2), class, len: Some(1) }
+    _ =>
+      {
+        desc: Alter(re1, re2),
+        class,
+        len: if re1.len is Some(len1) && re2.len is Some(len2) && len1 == len2 {
+          Some(len1)
+        } else {
+          None
+        },
+      }
   }
 }
 
 ///|
 pub fn bind(re : Regex, name : String) -> Regex {
-  Capture(re, name)
-}
-
-///|
-pub fn embed(re : Regex, encoding~ : Encoding) -> Regex {
-  Bytes(encoding, re)
+  { desc: Capture(re, name), class: re.class, len: re.len }
 }
 
 ///|
@@ -91,7 +128,7 @@ fn check_legal_rec(
   names : Set[String],
   ban_capture : Bool
 ) -> Bool {
-  match self {
+  match self.desc {
     Capture(re, name) =>
       if ban_capture {
         false
@@ -109,76 +146,20 @@ fn check_legal_rec(
       re1.check_legal_rec(names, true) && re2.check_legal_rec(names, true)
     Repetition(re) => re.check_legal_rec(names, true)
     Epsilon => true
-    Bytes(_, re) => re.check_legal_rec(names, ban_capture)
   }
 }
 
 ///|
-pub fn get_capture_vars(self : Regex) -> @immut/sorted_set.T[String] {
-  match self {
-    Capture(re, name) => get_capture_vars(re).add(name)
-    Repetition(re) | Bytes(_, re) => get_capture_vars(re)
+pub fn get_capture_vars(
+  self : Regex
+) -> @immut/sorted_map.T[String, RegexClass] {
+  match self.desc {
+    Capture(re, name) => get_capture_vars(re).add(name, re.class)
+    Repetition(re) => get_capture_vars(re)
     Alter(re1, re2) | Concat(re1, re2) =>
-      get_capture_vars(re1).union(get_capture_vars(re2))
-    EOF | Character(_) | Epsilon => @immut/sorted_set.new()
+      @immut/sorted_map.from_iter(
+        get_capture_vars(re1).iter().concat(get_capture_vars(re2).iter()),
+      )
+    EOF | Character(_) | Epsilon => @immut/sorted_map.new()
   }
-}
-
-///|
-pub fn get_char_capture_vars(self : Regex) -> @immut/sorted_set.T[String] {
-  fn analyze(
-    re : Regex
-  ) -> (@immut/sorted_set.T[String], @immut/sorted_set.T[String], Int?) {
-    match re {
-      Epsilon | EOF =>
-        (@immut/sorted_set.new(), @immut/sorted_set.new(), Some(0))
-      Character(_) =>
-        (@immut/sorted_set.new(), @immut/sorted_set.new(), Some(1))
-      Repetition(re) => {
-        let (char_vars, str_vars, len) = analyze(re)
-        if len is Some(0) {
-          (char_vars, str_vars, Some(0))
-        } else {
-          (char_vars, str_vars, None)
-        }
-      }
-      Concat(re1, re2) => {
-        let (char_vars1, str_vars1, len1) = analyze(re1)
-        let (char_vars2, str_vars2, len2) = analyze(re2)
-        (
-          char_vars1.union(char_vars2),
-          str_vars1.union(str_vars2),
-          if len1 is Some(len1) && len2 is Some(len2) {
-            Some(len1 + len2)
-          } else {
-            None
-          },
-        )
-      }
-      Alter(re1, re2) => {
-        let (char_vars1, str_vars1, len1) = analyze(re1)
-        let (char_vars2, str_vars2, len2) = analyze(re2)
-        (
-          char_vars1.union(char_vars2),
-          str_vars1.union(str_vars2),
-          if len1 is Some(len1) && len2 is Some(len2) && len1 == len2 {
-            Some(len1)
-          } else {
-            None
-          },
-        )
-      }
-      Capture(re, var) => {
-        let (char_vars, str_vars, len) = analyze(re)
-        match len {
-          Some(1) => (char_vars.add(var), str_vars, Some(1))
-          len => (char_vars, str_vars.add(var), len)
-        }
-      }
-      Bytes(_, re) => analyze(re)
-    }
-  }
-
-  let (char_vars, str_vars, _len) = analyze(self)
-  char_vars.difference(str_vars)
 }

@@ -95,7 +95,7 @@ fn codegen_rule(
     CodeUnit1 => default_encoding
     CodeUnit2 | CodeUnit4 => None
   }
-  let dfa = @automaton.DFA::from_rule(rule, encoding~)
+  let dfa = @automaton.DFA::from_rule(rule, encoding?)
   let max_num_capture_vars = dfa.captures
     .iter()
     .map(fn(vars) { vars.length() })
