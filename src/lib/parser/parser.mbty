@@ -16,7 +16,6 @@
 %token LBRACKET     "["
 %token RBRACKET     "]"
 %token EQ           "="
-%token COLON        ":"
 %token SEMICOLON    ";"
 %token FAT_ARROW    "=>"
 %token BAR          "|"
@@ -115,13 +114,13 @@ concatenation                           -> (Context) -> @type.Regex
 differentiation                         -> (Context) -> @type.Regex
   : atom BACKSLASH atom                 {
                                           fn (ctx) {
-                                            guard $1(ctx) is Character(cset1) && $3(ctx) is Character(cset2)
+                                            guard $1(ctx).desc is Character(cset1) && $3(ctx).desc is Character(cset2)
                                             @regex.char_class(cset1.difference(cset2))
                                           }
                                         }
   | differentiation BACKSLASH atom      {
                                           fn (ctx) {
-                                            guard $1(ctx) is Character(cset1) && $3(ctx) is Character(cset2)
+                                            guard $1(ctx).desc is Character(cset1) && $3(ctx).desc is Character(cset2)
                                             @regex.char_class(cset1.difference(cset2))
                                           }
                                         }
@@ -136,16 +135,6 @@ repetition                              -> (Context) -> @type.Regex
 
 atom                                    -> (Context) -> @type.Regex
   : "(" alias ")"                       { $2 }
-  | "(" LC_IDENT ":" alias ")"          {
-                                          fn (ctx) {
-                                            match $2 {
-                                              "ascii" => @regex.embed($4(ctx), encoding=Ascii)
-                                              "latin1" => @regex.embed($4(ctx), encoding=Latin1)
-                                              "utf8" => @regex.embed($4(ctx), encoding=Utf8)
-                                              _ => panic()
-                                            }
-                                          }
-                                        }
   | character_class                     { fn { _ctx => @regex.char_class($1) } }
   | LC_IDENT                            { fn { ctx => ctx.named_regexes.get($1).unwrap() } }
   | CHAR                                { fn { _ctx => @regex.char_class(@char_set.singleton($1)) } }

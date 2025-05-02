@@ -1,18 +1,21 @@
 ///|
 pub fn lower(self : Regex, encoding~ : Encoding?) -> Regex {
-  match self {
-    Epsilon => epsilon
-    EOF => eof
-    Character(cset) =>
-      match encoding {
-        None => char_class(cset)
-        Some(encoding) => lower_unicode_charclass(cset, encoding~)
-      }
-    Repetition(re) => plus(lower(re, encoding~))
-    Concat(re1, re2) => seq(lower(re1, encoding~), lower(re2, encoding~))
-    Alter(re1, re2) => alt(lower(re1, encoding~), lower(re2, encoding~))
-    Capture(re, var) => bind(lower(re, encoding~), var)
-    Bytes(enc, re) => lower(re, encoding=Some(enc))
+  if encoding is None {
+    self
+  } else {
+    match self.desc {
+      Epsilon => epsilon
+      EOF => eof
+      Character(cset) =>
+        match encoding {
+          None => char_class(cset)
+          Some(encoding) => lower_unicode_charclass(cset, encoding~)
+        }
+      Repetition(re) => plus(lower(re, encoding~))
+      Concat(re1, re2) => seq(lower(re1, encoding~), lower(re2, encoding~))
+      Alter(re1, re2) => alt(lower(re1, encoding~), lower(re2, encoding~))
+      Capture(re, var) => bind(lower(re, encoding~), var)
+    }
   }
 }
 

@@ -63,7 +63,7 @@ fn NFA::new_nfa() -> NFA {
 }
 
 ///|
-pub fn NFA::from_rule(rule : Rule, encoding~ : @type.Encoding?) -> NFA {
+pub fn NFA::from_rule(rule : Rule, encoding? : @type.Encoding) -> NFA {
   let nfa = NFA::new_nfa()
   let node = nfa.new_node() // match starting from 1
   nfa.start_node = node.num
@@ -148,7 +148,7 @@ fn register_regex_rec(
   let new_node = self.new_node()
   self.add_edge(node, Eps, new_node)
   // return the final_ point of re for convience in building
-  let final_ = match re {
+  let final_ = match re.desc {
     EOF => {
       let next_node = self.new_node()
       self.add_edge(new_node, EChar(@eof_char_set.eof), next_node)
@@ -210,9 +210,6 @@ fn register_regex_rec(
       )
       final_
     }
-    Bytes(_) =>
-      // This should be eliminated before call `register_regex_rec`
-      panic()
   }
   let new_final = self.new_node()
   self.add_edge(final_, Eps, new_final)

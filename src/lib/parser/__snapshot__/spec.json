@@ -7,314 +7,188 @@
       "patterns": [
         [
           {
-            "$tag": "Repetition",
-            "0": {
-              "$tag": "Character",
-              "0": [
-                [
-                  9,
-                  10
-                ],
-                [
-                  13,
-                  13
-                ],
-                [
-                  32,
-                  32
-                ]
-              ]
+            "desc": {
+              "$tag": "Repetition",
+              "0": {
+                "desc": {
+                  "$tag": "Character",
+                  "0": [
+                    [
+                      9,
+                      10
+                    ],
+                    [
+                      13,
+                      13
+                    ],
+                    [
+                      32,
+                      32
+                    ]
+                  ]
+                },
+                "class": {
+                  "$tag": "Char"
+                },
+                "len": 1
+              }
+            },
+            "class": {
+              "$tag": "String"
             }
           },
           " token(lexbuf) "
         ],
         [
           {
-            "$tag": "Concat",
-            "0": {
-              "$tag": "Character",
-              "0": [
-                [
-                  47,
-                  47
-                ]
-              ]
-            },
-            "1": {
+            "desc": {
               "$tag": "Concat",
               "0": {
-                "$tag": "Character",
-                "0": [
-                  [
-                    47,
-                    47
+                "desc": {
+                  "$tag": "Character",
+                  "0": [
+                    [
+                      47,
+                      47
+                    ]
                   ]
-                ]
+                },
+                "class": {
+                  "$tag": "Char"
+                },
+                "len": 1
               },
               "1": {
-                "$tag": "Concat",
-                "0": {
-                  "$tag": "Alter",
+                "desc": {
+                  "$tag": "Concat",
                   "0": {
-                    "$tag": "Repetition",
-                    "0": {
+                    "desc": {
                       "$tag": "Character",
                       "0": [
                         [
-                          0,
-                          9
-                        ],
-                        [
-                          11,
-                          1114111
+                          47,
+                          47
                         ]
                       ]
-                    }
+                    },
+                    "class": {
+                      "$tag": "Char"
+                    },
+                    "len": 1
                   },
                   "1": {
-                    "$tag": "Epsilon"
+                    "desc": {
+                      "$tag": "Concat",
+                      "0": {
+                        "desc": {
+                          "$tag": "Alter",
+                          "0": {
+                            "desc": {
+                              "$tag": "Repetition",
+                              "0": {
+                                "desc": {
+                                  "$tag": "Character",
+                                  "0": [
+                                    [
+                                      0,
+                                      9
+                                    ],
+                                    [
+                                      11,
+                                      1114111
+                                    ]
+                                  ]
+                                },
+                                "class": {
+                                  "$tag": "Char"
+                                },
+                                "len": 1
+                              }
+                            },
+                            "class": {
+                              "$tag": "String"
+                            }
+                          },
+                          "1": {
+                            "desc": {
+                              "$tag": "Epsilon"
+                            },
+                            "class": {
+                              "$tag": "String"
+                            },
+                            "len": 0
+                          }
+                        },
+                        "class": {
+                          "$tag": "String"
+                        }
+                      },
+                      "1": {
+                        "desc": {
+                          "$tag": "Alter",
+                          "0": {
+                            "desc": {
+                              "$tag": "Character",
+                              "0": [
+                                [
+                                  10,
+                                  10
+                                ]
+                              ]
+                            },
+                            "class": {
+                              "$tag": "Char"
+                            },
+                            "len": 1
+                          },
+                          "1": {
+                            "desc": {
+                              "$tag": "Epsilon"
+                            },
+                            "class": {
+                              "$tag": "String"
+                            },
+                            "len": 0
+                          }
+                        },
+                        "class": {
+                          "$tag": "String"
+                        }
+                      }
+                    },
+                    "class": {
+                      "$tag": "String"
+                    }
                   }
                 },
-                "1": {
-                  "$tag": "Alter",
-                  "0": {
-                    "$tag": "Character",
-                    "0": [
-                      [
-                        10,
-                        10
-                      ]
-                    ]
-                  },
-                  "1": {
-                    "$tag": "Epsilon"
-                  }
+                "class": {
+                  "$tag": "String"
                 }
               }
+            },
+            "class": {
+              "$tag": "String"
             }
           },
           " token(lexbuf) "
         ],
         [
           {
-            "$tag": "EOF"
+            "desc": {
+              "$tag": "EOF"
+            },
+            "class": {
+              "$tag": "String"
+            }
           },
           " (EOI, $startpos, $endpos) "
         ],
         [
           {
-            "$tag": "Concat",
-            "0": {
-              "$tag": "Character",
-              "0": [
-                [
-                  114,
-                  114
-                ]
-              ]
-            },
-            "1": {
+            "desc": {
               "$tag": "Concat",
               "0": {
-                "$tag": "Character",
-                "0": [
-                  [
-                    117,
-                    117
-                  ]
-                ]
-              },
-              "1": {
-                "$tag": "Concat",
-                "0": {
-                  "$tag": "Character",
-                  "0": [
-                    [
-                      108,
-                      108
-                    ]
-                  ]
-                },
-                "1": {
-                  "$tag": "Concat",
-                  "0": {
-                    "$tag": "Character",
-                    "0": [
-                      [
-                        101,
-                        101
-                      ]
-                    ]
-                  },
-                  "1": {
-                    "$tag": "Concat",
-                    "0": {
-                      "$tag": "Repetition",
-                      "0": {
-                        "$tag": "Character",
-                        "0": [
-                          [
-                            9,
-                            10
-                          ],
-                          [
-                            13,
-                            13
-                          ],
-                          [
-                            32,
-                            32
-                          ]
-                        ]
-                      }
-                    },
-                    "1": {
-                      "$tag": "Concat",
-                      "0": {
-                        "$tag": "Capture",
-                        "0": {
-                          "$tag": "Concat",
-                          "0": {
-                            "$tag": "Capture",
-                            "0": {
-                              "$tag": "Concat",
-                              "0": {
-                                "$tag": "Character",
-                                "0": [
-                                  [
-                                    95,
-                                    95
-                                  ],
-                                  [
-                                    97,
-                                    122
-                                  ]
-                                ]
-                              },
-                              "1": {
-                                "$tag": "Alter",
-                                "0": {
-                                  "$tag": "Repetition",
-                                  "0": {
-                                    "$tag": "Character",
-                                    "0": [
-                                      [
-                                        48,
-                                        57
-                                      ],
-                                      [
-                                        65,
-                                        90
-                                      ],
-                                      [
-                                        95,
-                                        95
-                                      ],
-                                      [
-                                        97,
-                                        122
-                                      ]
-                                    ]
-                                  }
-                                },
-                                "1": {
-                                  "$tag": "Epsilon"
-                                }
-                              }
-                            },
-                            "1": "t1"
-                          },
-                          "1": {
-                            "$tag": "Repetition",
-                            "0": {
-                              "$tag": "Character",
-                              "0": [
-                                [
-                                  0,
-                                  122
-                                ],
-                                [
-                                  124,
-                                  1114111
-                                ]
-                              ]
-                            }
-                          }
-                        },
-                        "1": "t2"
-                      },
-                      "1": {
-                        "$tag": "Concat",
-                        "0": {
-                          "$tag": "Alter",
-                          "0": {
-                            "$tag": "Repetition",
-                            "0": {
-                              "$tag": "Character",
-                              "0": [
-                                [
-                                  9,
-                                  10
-                                ],
-                                [
-                                  13,
-                                  13
-                                ],
-                                [
-                                  32,
-                                  32
-                                ]
-                              ]
-                            }
-                          },
-                          "1": {
-                            "$tag": "Epsilon"
-                          }
-                        },
-                        "1": {
-                          "$tag": "Character",
-                          "0": [
-                            [
-                              123,
-                              123
-                            ]
-                          ]
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "\n      (RULE_LC_IDENT_LPAREN_CODE_RPAREN_ARROW_CODE_LBRACE((t1, t2)), $startpos, $endpos)\n    "
-        ],
-        [
-          {
-            "$tag": "Concat",
-            "0": {
-              "$tag": "Character",
-              "0": [
-                [
-                  112,
-                  112
-                ]
-              ]
-            },
-            "1": {
-              "$tag": "Concat",
-              "0": {
-                "$tag": "Character",
-                "0": [
-                  [
-                    97,
-                    97
-                  ]
-                ]
-              },
-              "1": {
-                "$tag": "Concat",
-                "0": {
+                "desc": {
                   "$tag": "Character",
                   "0": [
                     [
@@ -323,77 +197,697 @@
                     ]
                   ]
                 },
-                "1": {
+                "class": {
+                  "$tag": "Char"
+                },
+                "len": 1
+              },
+              "1": {
+                "desc": {
                   "$tag": "Concat",
                   "0": {
-                    "$tag": "Character",
-                    "0": [
-                      [
-                        115,
-                        115
-                      ]
-                    ]
-                  },
-                  "1": {
-                    "$tag": "Concat",
-                    "0": {
+                    "desc": {
                       "$tag": "Character",
                       "0": [
                         [
-                          101,
-                          101
+                          117,
+                          117
                         ]
                       ]
                     },
-                    "1": {
+                    "class": {
+                      "$tag": "Char"
+                    },
+                    "len": 1
+                  },
+                  "1": {
+                    "desc": {
                       "$tag": "Concat",
                       "0": {
-                        "$tag": "Alter",
-                        "0": {
-                          "$tag": "Repetition",
-                          "0": {
-                            "$tag": "Character",
-                            "0": [
-                              [
-                                9,
-                                10
-                              ],
-                              [
-                                13,
-                                13
-                              ],
-                              [
-                                32,
-                                32
-                              ]
+                        "desc": {
+                          "$tag": "Character",
+                          "0": [
+                            [
+                              108,
+                              108
                             ]
-                          }
+                          ]
                         },
-                        "1": {
-                          "$tag": "Epsilon"
-                        }
+                        "class": {
+                          "$tag": "Char"
+                        },
+                        "len": 1
                       },
                       "1": {
-                        "$tag": "Character",
-                        "0": [
-                          [
-                            123,
-                            123
-                          ]
-                        ]
+                        "desc": {
+                          "$tag": "Concat",
+                          "0": {
+                            "desc": {
+                              "$tag": "Character",
+                              "0": [
+                                [
+                                  101,
+                                  101
+                                ]
+                              ]
+                            },
+                            "class": {
+                              "$tag": "Char"
+                            },
+                            "len": 1
+                          },
+                          "1": {
+                            "desc": {
+                              "$tag": "Concat",
+                              "0": {
+                                "desc": {
+                                  "$tag": "Repetition",
+                                  "0": {
+                                    "desc": {
+                                      "$tag": "Character",
+                                      "0": [
+                                        [
+                                          9,
+                                          10
+                                        ],
+                                        [
+                                          13,
+                                          13
+                                        ],
+                                        [
+                                          32,
+                                          32
+                                        ]
+                                      ]
+                                    },
+                                    "class": {
+                                      "$tag": "Char"
+                                    },
+                                    "len": 1
+                                  }
+                                },
+                                "class": {
+                                  "$tag": "String"
+                                }
+                              },
+                              "1": {
+                                "desc": {
+                                  "$tag": "Concat",
+                                  "0": {
+                                    "desc": {
+                                      "$tag": "Capture",
+                                      "0": {
+                                        "desc": {
+                                          "$tag": "Concat",
+                                          "0": {
+                                            "desc": {
+                                              "$tag": "Capture",
+                                              "0": {
+                                                "desc": {
+                                                  "$tag": "Concat",
+                                                  "0": {
+                                                    "desc": {
+                                                      "$tag": "Character",
+                                                      "0": [
+                                                        [
+                                                          95,
+                                                          95
+                                                        ],
+                                                        [
+                                                          97,
+                                                          122
+                                                        ]
+                                                      ]
+                                                    },
+                                                    "class": {
+                                                      "$tag": "Char"
+                                                    },
+                                                    "len": 1
+                                                  },
+                                                  "1": {
+                                                    "desc": {
+                                                      "$tag": "Alter",
+                                                      "0": {
+                                                        "desc": {
+                                                          "$tag": "Repetition",
+                                                          "0": {
+                                                            "desc": {
+                                                              "$tag": "Character",
+                                                              "0": [
+                                                                [
+                                                                  48,
+                                                                  57
+                                                                ],
+                                                                [
+                                                                  65,
+                                                                  90
+                                                                ],
+                                                                [
+                                                                  95,
+                                                                  95
+                                                                ],
+                                                                [
+                                                                  97,
+                                                                  122
+                                                                ]
+                                                              ]
+                                                            },
+                                                            "class": {
+                                                              "$tag": "Char"
+                                                            },
+                                                            "len": 1
+                                                          }
+                                                        },
+                                                        "class": {
+                                                          "$tag": "String"
+                                                        }
+                                                      },
+                                                      "1": {
+                                                        "desc": {
+                                                          "$tag": "Epsilon"
+                                                        },
+                                                        "class": {
+                                                          "$tag": "String"
+                                                        },
+                                                        "len": 0
+                                                      }
+                                                    },
+                                                    "class": {
+                                                      "$tag": "String"
+                                                    }
+                                                  }
+                                                },
+                                                "class": {
+                                                  "$tag": "String"
+                                                }
+                                              },
+                                              "1": "t1"
+                                            },
+                                            "class": {
+                                              "$tag": "String"
+                                            }
+                                          },
+                                          "1": {
+                                            "desc": {
+                                              "$tag": "Repetition",
+                                              "0": {
+                                                "desc": {
+                                                  "$tag": "Character",
+                                                  "0": [
+                                                    [
+                                                      0,
+                                                      122
+                                                    ],
+                                                    [
+                                                      124,
+                                                      1114111
+                                                    ]
+                                                  ]
+                                                },
+                                                "class": {
+                                                  "$tag": "Char"
+                                                },
+                                                "len": 1
+                                              }
+                                            },
+                                            "class": {
+                                              "$tag": "String"
+                                            }
+                                          }
+                                        },
+                                        "class": {
+                                          "$tag": "String"
+                                        }
+                                      },
+                                      "1": "t2"
+                                    },
+                                    "class": {
+                                      "$tag": "String"
+                                    }
+                                  },
+                                  "1": {
+                                    "desc": {
+                                      "$tag": "Concat",
+                                      "0": {
+                                        "desc": {
+                                          "$tag": "Alter",
+                                          "0": {
+                                            "desc": {
+                                              "$tag": "Repetition",
+                                              "0": {
+                                                "desc": {
+                                                  "$tag": "Character",
+                                                  "0": [
+                                                    [
+                                                      9,
+                                                      10
+                                                    ],
+                                                    [
+                                                      13,
+                                                      13
+                                                    ],
+                                                    [
+                                                      32,
+                                                      32
+                                                    ]
+                                                  ]
+                                                },
+                                                "class": {
+                                                  "$tag": "Char"
+                                                },
+                                                "len": 1
+                                              }
+                                            },
+                                            "class": {
+                                              "$tag": "String"
+                                            }
+                                          },
+                                          "1": {
+                                            "desc": {
+                                              "$tag": "Epsilon"
+                                            },
+                                            "class": {
+                                              "$tag": "String"
+                                            },
+                                            "len": 0
+                                          }
+                                        },
+                                        "class": {
+                                          "$tag": "String"
+                                        }
+                                      },
+                                      "1": {
+                                        "desc": {
+                                          "$tag": "Character",
+                                          "0": [
+                                            [
+                                              123,
+                                              123
+                                            ]
+                                          ]
+                                        },
+                                        "class": {
+                                          "$tag": "Char"
+                                        },
+                                        "len": 1
+                                      }
+                                    },
+                                    "class": {
+                                      "$tag": "String"
+                                    }
+                                  }
+                                },
+                                "class": {
+                                  "$tag": "String"
+                                }
+                              }
+                            },
+                            "class": {
+                              "$tag": "String"
+                            }
+                          }
+                        },
+                        "class": {
+                          "$tag": "String"
+                        }
                       }
+                    },
+                    "class": {
+                      "$tag": "String"
                     }
                   }
+                },
+                "class": {
+                  "$tag": "String"
                 }
               }
+            },
+            "class": {
+              "$tag": "String"
+            }
+          },
+          "\n      (RULE_LC_IDENT_LPAREN_CODE_RPAREN_ARROW_CODE_LBRACE((t1, t2)), $startpos, $endpos)\n    "
+        ],
+        [
+          {
+            "desc": {
+              "$tag": "Concat",
+              "0": {
+                "desc": {
+                  "$tag": "Character",
+                  "0": [
+                    [
+                      112,
+                      112
+                    ]
+                  ]
+                },
+                "class": {
+                  "$tag": "Char"
+                },
+                "len": 1
+              },
+              "1": {
+                "desc": {
+                  "$tag": "Concat",
+                  "0": {
+                    "desc": {
+                      "$tag": "Character",
+                      "0": [
+                        [
+                          97,
+                          97
+                        ]
+                      ]
+                    },
+                    "class": {
+                      "$tag": "Char"
+                    },
+                    "len": 1
+                  },
+                  "1": {
+                    "desc": {
+                      "$tag": "Concat",
+                      "0": {
+                        "desc": {
+                          "$tag": "Character",
+                          "0": [
+                            [
+                              114,
+                              114
+                            ]
+                          ]
+                        },
+                        "class": {
+                          "$tag": "Char"
+                        },
+                        "len": 1
+                      },
+                      "1": {
+                        "desc": {
+                          "$tag": "Concat",
+                          "0": {
+                            "desc": {
+                              "$tag": "Character",
+                              "0": [
+                                [
+                                  115,
+                                  115
+                                ]
+                              ]
+                            },
+                            "class": {
+                              "$tag": "Char"
+                            },
+                            "len": 1
+                          },
+                          "1": {
+                            "desc": {
+                              "$tag": "Concat",
+                              "0": {
+                                "desc": {
+                                  "$tag": "Character",
+                                  "0": [
+                                    [
+                                      101,
+                                      101
+                                    ]
+                                  ]
+                                },
+                                "class": {
+                                  "$tag": "Char"
+                                },
+                                "len": 1
+                              },
+                              "1": {
+                                "desc": {
+                                  "$tag": "Concat",
+                                  "0": {
+                                    "desc": {
+                                      "$tag": "Alter",
+                                      "0": {
+                                        "desc": {
+                                          "$tag": "Repetition",
+                                          "0": {
+                                            "desc": {
+                                              "$tag": "Character",
+                                              "0": [
+                                                [
+                                                  9,
+                                                  10
+                                                ],
+                                                [
+                                                  13,
+                                                  13
+                                                ],
+                                                [
+                                                  32,
+                                                  32
+                                                ]
+                                              ]
+                                            },
+                                            "class": {
+                                              "$tag": "Char"
+                                            },
+                                            "len": 1
+                                          }
+                                        },
+                                        "class": {
+                                          "$tag": "String"
+                                        }
+                                      },
+                                      "1": {
+                                        "desc": {
+                                          "$tag": "Epsilon"
+                                        },
+                                        "class": {
+                                          "$tag": "String"
+                                        },
+                                        "len": 0
+                                      }
+                                    },
+                                    "class": {
+                                      "$tag": "String"
+                                    }
+                                  },
+                                  "1": {
+                                    "desc": {
+                                      "$tag": "Character",
+                                      "0": [
+                                        [
+                                          123,
+                                          123
+                                        ]
+                                      ]
+                                    },
+                                    "class": {
+                                      "$tag": "Char"
+                                    },
+                                    "len": 1
+                                  }
+                                },
+                                "class": {
+                                  "$tag": "String"
+                                }
+                              }
+                            },
+                            "class": {
+                              "$tag": "String"
+                            }
+                          }
+                        },
+                        "class": {
+                          "$tag": "String"
+                        }
+                      }
+                    },
+                    "class": {
+                      "$tag": "String"
+                    }
+                  }
+                },
+                "class": {
+                  "$tag": "String"
+                }
+              }
+            },
+            "class": {
+              "$tag": "String"
             }
           },
           " (PARSE_LBRACE, $startpos, $endpos) "
         ],
         [
           {
-            "$tag": "Concat",
-            "0": {
+            "desc": {
+              "$tag": "Concat",
+              "0": {
+                "desc": {
+                  "$tag": "Character",
+                  "0": [
+                    [
+                      61,
+                      61
+                    ]
+                  ]
+                },
+                "class": {
+                  "$tag": "Char"
+                },
+                "len": 1
+              },
+              "1": {
+                "desc": {
+                  "$tag": "Character",
+                  "0": [
+                    [
+                      62,
+                      62
+                    ]
+                  ]
+                },
+                "class": {
+                  "$tag": "Char"
+                },
+                "len": 1
+              }
+            },
+            "class": {
+              "$tag": "String"
+            },
+            "len": 2
+          },
+          " (FAT_ARROW, $startpos, $endpos) "
+        ],
+        [
+          {
+            "desc": {
+              "$tag": "Character",
+              "0": [
+                [
+                  95,
+                  95
+                ]
+              ]
+            },
+            "class": {
+              "$tag": "Char"
+            },
+            "len": 1
+          },
+          " (UNDERSCORE, $startpos, $endpos) "
+        ],
+        [
+          {
+            "desc": {
+              "$tag": "Character",
+              "0": [
+                [
+                  123,
+                  123
+                ]
+              ]
+            },
+            "class": {
+              "$tag": "Char"
+            },
+            "len": 1
+          },
+          " \n      let buffer = StringBuilder::new()\n      let end_pos = code_rbrace(buffer, lexbuf)\n      (LBRACE_CODE_RBRACE(buffer.to_string()), $startpos, end_pos)\n    "
+        ],
+        [
+          {
+            "desc": {
+              "$tag": "Character",
+              "0": [
+                [
+                  125,
+                  125
+                ]
+              ]
+            },
+            "class": {
+              "$tag": "Char"
+            },
+            "len": 1
+          },
+          " (RBRACE, $startpos, $endpos) "
+        ],
+        [
+          {
+            "desc": {
+              "$tag": "Character",
+              "0": [
+                [
+                  40,
+                  40
+                ]
+              ]
+            },
+            "class": {
+              "$tag": "Char"
+            },
+            "len": 1
+          },
+          " (LPAREN, $startpos, $endpos) "
+        ],
+        [
+          {
+            "desc": {
+              "$tag": "Character",
+              "0": [
+                [
+                  41,
+                  41
+                ]
+              ]
+            },
+            "class": {
+              "$tag": "Char"
+            },
+            "len": 1
+          },
+          " (RPAREN, $startpos, $endpos) "
+        ],
+        [
+          {
+            "desc": {
+              "$tag": "Character",
+              "0": [
+                [
+                  91,
+                  91
+                ]
+              ]
+            },
+            "class": {
+              "$tag": "Char"
+            },
+            "len": 1
+          },
+          " (LBRACKET, $startpos, $endpos) "
+        ],
+        [
+          {
+            "desc": {
+              "$tag": "Character",
+              "0": [
+                [
+                  93,
+                  93
+                ]
+              ]
+            },
+            "class": {
+              "$tag": "Char"
+            },
+            "len": 1
+          },
+          " (RBRACKET, $startpos, $endpos) "
+        ],
+        [
+          {
+            "desc": {
               "$tag": "Character",
               "0": [
                 [
@@ -402,305 +896,247 @@
                 ]
               ]
             },
-            "1": {
-              "$tag": "Character",
-              "0": [
-                [
-                  62,
-                  62
-                ]
-              ]
-            }
-          },
-          " (FAT_ARROW, $startpos, $endpos) "
-        ],
-        [
-          {
-            "$tag": "Character",
-            "0": [
-              [
-                95,
-                95
-              ]
-            ]
-          },
-          " (UNDERSCORE, $startpos, $endpos) "
-        ],
-        [
-          {
-            "$tag": "Character",
-            "0": [
-              [
-                123,
-                123
-              ]
-            ]
-          },
-          " \n      let buffer = StringBuilder::new()\n      let end_pos = code_rbrace(buffer, lexbuf)\n      (LBRACE_CODE_RBRACE(buffer.to_string()), $startpos, end_pos)\n    "
-        ],
-        [
-          {
-            "$tag": "Character",
-            "0": [
-              [
-                125,
-                125
-              ]
-            ]
-          },
-          " (RBRACE, $startpos, $endpos) "
-        ],
-        [
-          {
-            "$tag": "Character",
-            "0": [
-              [
-                40,
-                40
-              ]
-            ]
-          },
-          " (LPAREN, $startpos, $endpos) "
-        ],
-        [
-          {
-            "$tag": "Character",
-            "0": [
-              [
-                41,
-                41
-              ]
-            ]
-          },
-          " (RPAREN, $startpos, $endpos) "
-        ],
-        [
-          {
-            "$tag": "Character",
-            "0": [
-              [
-                91,
-                91
-              ]
-            ]
-          },
-          " (LBRACKET, $startpos, $endpos) "
-        ],
-        [
-          {
-            "$tag": "Character",
-            "0": [
-              [
-                93,
-                93
-              ]
-            ]
-          },
-          " (RBRACKET, $startpos, $endpos) "
-        ],
-        [
-          {
-            "$tag": "Character",
-            "0": [
-              [
-                61,
-                61
-              ]
-            ]
+            "class": {
+              "$tag": "Char"
+            },
+            "len": 1
           },
           " (EQ, $startpos, $endpos) "
         ],
         [
           {
-            "$tag": "Character",
-            "0": [
-              [
-                58,
-                58
+            "desc": {
+              "$tag": "Character",
+              "0": [
+                [
+                  59,
+                  59
+                ]
               ]
-            ]
-          },
-          " (COLON, $startpos, $endpos) "
-        ],
-        [
-          {
-            "$tag": "Character",
-            "0": [
-              [
-                59,
-                59
-              ]
-            ]
+            },
+            "class": {
+              "$tag": "Char"
+            },
+            "len": 1
           },
           " (SEMICOLON, $startpos, $endpos) "
         ],
         [
           {
-            "$tag": "Character",
-            "0": [
-              [
-                124,
-                124
+            "desc": {
+              "$tag": "Character",
+              "0": [
+                [
+                  124,
+                  124
+                ]
               ]
-            ]
+            },
+            "class": {
+              "$tag": "Char"
+            },
+            "len": 1
           },
           " (BAR, $startpos, $endpos) "
         ],
         [
           {
-            "$tag": "Character",
-            "0": [
-              [
-                42,
-                42
+            "desc": {
+              "$tag": "Character",
+              "0": [
+                [
+                  42,
+                  42
+                ]
               ]
-            ]
+            },
+            "class": {
+              "$tag": "Char"
+            },
+            "len": 1
           },
           " (STAR, $startpos, $endpos) "
         ],
         [
           {
-            "$tag": "Character",
-            "0": [
-              [
-                43,
-                43
+            "desc": {
+              "$tag": "Character",
+              "0": [
+                [
+                  43,
+                  43
+                ]
               ]
-            ]
+            },
+            "class": {
+              "$tag": "Char"
+            },
+            "len": 1
           },
           " (PLUS, $startpos, $endpos) "
         ],
         [
           {
-            "$tag": "Character",
-            "0": [
-              [
-                63,
-                63
+            "desc": {
+              "$tag": "Character",
+              "0": [
+                [
+                  63,
+                  63
+                ]
               ]
-            ]
+            },
+            "class": {
+              "$tag": "Char"
+            },
+            "len": 1
           },
           " (QUESTION, $startpos, $endpos) "
         ],
         [
           {
-            "$tag": "Character",
-            "0": [
-              [
-                45,
-                45
+            "desc": {
+              "$tag": "Character",
+              "0": [
+                [
+                  45,
+                  45
+                ]
               ]
-            ]
+            },
+            "class": {
+              "$tag": "Char"
+            },
+            "len": 1
           },
           " (MINUS, $startpos, $endpos) "
         ],
         [
           {
-            "$tag": "Character",
-            "0": [
-              [
-                94,
-                94
+            "desc": {
+              "$tag": "Character",
+              "0": [
+                [
+                  94,
+                  94
+                ]
               ]
-            ]
+            },
+            "class": {
+              "$tag": "Char"
+            },
+            "len": 1
           },
           " (CARET, $startpos, $endpos) "
         ],
         [
           {
-            "$tag": "Character",
-            "0": [
-              [
-                92,
-                92
+            "desc": {
+              "$tag": "Character",
+              "0": [
+                [
+                  92,
+                  92
+                ]
               ]
-            ]
+            },
+            "class": {
+              "$tag": "Char"
+            },
+            "len": 1
           },
           " (BACKSLASH, $startpos, $endpos) "
         ],
         [
           {
-            "$tag": "Concat",
-            "0": {
-              "$tag": "Character",
-              "0": [
-                [
-                  39,
-                  39
-                ]
-              ]
-            },
-            "1": {
+            "desc": {
               "$tag": "Concat",
               "0": {
-                "$tag": "Capture",
-                "0": {
+                "desc": {
                   "$tag": "Character",
                   "0": [
                     [
-                      0,
-                      38
-                    ],
-                    [
-                      40,
-                      91
-                    ],
-                    [
-                      93,
-                      1114111
+                      39,
+                      39
                     ]
                   ]
                 },
-                "1": "t"
+                "class": {
+                  "$tag": "Char"
+                },
+                "len": 1
               },
               "1": {
-                "$tag": "Character",
-                "0": [
-                  [
-                    39,
-                    39
-                  ]
-                ]
+                "desc": {
+                  "$tag": "Concat",
+                  "0": {
+                    "desc": {
+                      "$tag": "Capture",
+                      "0": {
+                        "desc": {
+                          "$tag": "Character",
+                          "0": [
+                            [
+                              0,
+                              38
+                            ],
+                            [
+                              40,
+                              91
+                            ],
+                            [
+                              93,
+                              1114111
+                            ]
+                          ]
+                        },
+                        "class": {
+                          "$tag": "Char"
+                        },
+                        "len": 1
+                      },
+                      "1": "t"
+                    },
+                    "class": {
+                      "$tag": "Char"
+                    },
+                    "len": 1
+                  },
+                  "1": {
+                    "desc": {
+                      "$tag": "Character",
+                      "0": [
+                        [
+                          39,
+                          39
+                        ]
+                      ]
+                    },
+                    "class": {
+                      "$tag": "Char"
+                    },
+                    "len": 1
+                  }
+                },
+                "class": {
+                  "$tag": "String"
+                },
+                "len": 2
               }
-            }
+            },
+            "class": {
+              "$tag": "String"
+            },
+            "len": 3
           },
           " (CHAR(t), $startpos, $endpos) "
         ],
         [
           {
-            "$tag": "Concat",
-            "0": {
-              "$tag": "Character",
-              "0": [
-                [
-                  39,
-                  39
-                ]
-              ]
-            },
-            "1": {
+            "desc": {
               "$tag": "Concat",
               "0": {
-                "$tag": "Character",
-                "0": [
-                  [
-                    92,
-                    92
-                  ]
-                ]
-              },
-              "1": {
-                "$tag": "Concat",
-                "0": {
-                  "$tag": "Character",
-                  "0": [
-                    [
-                      98,
-                      98
-                    ]
-                  ]
-                },
-                "1": {
+                "desc": {
                   "$tag": "Character",
                   "0": [
                     [
@@ -708,47 +1144,89 @@
                       39
                     ]
                   ]
-                }
+                },
+                "class": {
+                  "$tag": "Char"
+                },
+                "len": 1
+              },
+              "1": {
+                "desc": {
+                  "$tag": "Concat",
+                  "0": {
+                    "desc": {
+                      "$tag": "Character",
+                      "0": [
+                        [
+                          92,
+                          92
+                        ]
+                      ]
+                    },
+                    "class": {
+                      "$tag": "Char"
+                    },
+                    "len": 1
+                  },
+                  "1": {
+                    "desc": {
+                      "$tag": "Concat",
+                      "0": {
+                        "desc": {
+                          "$tag": "Character",
+                          "0": [
+                            [
+                              98,
+                              98
+                            ]
+                          ]
+                        },
+                        "class": {
+                          "$tag": "Char"
+                        },
+                        "len": 1
+                      },
+                      "1": {
+                        "desc": {
+                          "$tag": "Character",
+                          "0": [
+                            [
+                              39,
+                              39
+                            ]
+                          ]
+                        },
+                        "class": {
+                          "$tag": "Char"
+                        },
+                        "len": 1
+                      }
+                    },
+                    "class": {
+                      "$tag": "String"
+                    },
+                    "len": 2
+                  }
+                },
+                "class": {
+                  "$tag": "String"
+                },
+                "len": 3
               }
-            }
+            },
+            "class": {
+              "$tag": "String"
+            },
+            "len": 4
           },
           " (CHAR('\\u{08}'), $startpos, $endpos) "
         ],
         [
           {
-            "$tag": "Concat",
-            "0": {
-              "$tag": "Character",
-              "0": [
-                [
-                  39,
-                  39
-                ]
-              ]
-            },
-            "1": {
+            "desc": {
               "$tag": "Concat",
               "0": {
-                "$tag": "Character",
-                "0": [
-                  [
-                    92,
-                    92
-                  ]
-                ]
-              },
-              "1": {
-                "$tag": "Concat",
-                "0": {
-                  "$tag": "Character",
-                  "0": [
-                    [
-                      116,
-                      116
-                    ]
-                  ]
-                },
-                "1": {
+                "desc": {
                   "$tag": "Character",
                   "0": [
                     [
@@ -756,47 +1234,89 @@
                       39
                     ]
                   ]
-                }
+                },
+                "class": {
+                  "$tag": "Char"
+                },
+                "len": 1
+              },
+              "1": {
+                "desc": {
+                  "$tag": "Concat",
+                  "0": {
+                    "desc": {
+                      "$tag": "Character",
+                      "0": [
+                        [
+                          92,
+                          92
+                        ]
+                      ]
+                    },
+                    "class": {
+                      "$tag": "Char"
+                    },
+                    "len": 1
+                  },
+                  "1": {
+                    "desc": {
+                      "$tag": "Concat",
+                      "0": {
+                        "desc": {
+                          "$tag": "Character",
+                          "0": [
+                            [
+                              116,
+                              116
+                            ]
+                          ]
+                        },
+                        "class": {
+                          "$tag": "Char"
+                        },
+                        "len": 1
+                      },
+                      "1": {
+                        "desc": {
+                          "$tag": "Character",
+                          "0": [
+                            [
+                              39,
+                              39
+                            ]
+                          ]
+                        },
+                        "class": {
+                          "$tag": "Char"
+                        },
+                        "len": 1
+                      }
+                    },
+                    "class": {
+                      "$tag": "String"
+                    },
+                    "len": 2
+                  }
+                },
+                "class": {
+                  "$tag": "String"
+                },
+                "len": 3
               }
-            }
+            },
+            "class": {
+              "$tag": "String"
+            },
+            "len": 4
           },
           " (CHAR('\\t'), $startpos, $endpos) "
         ],
         [
           {
-            "$tag": "Concat",
-            "0": {
-              "$tag": "Character",
-              "0": [
-                [
-                  39,
-                  39
-                ]
-              ]
-            },
-            "1": {
+            "desc": {
               "$tag": "Concat",
               "0": {
-                "$tag": "Character",
-                "0": [
-                  [
-                    92,
-                    92
-                  ]
-                ]
-              },
-              "1": {
-                "$tag": "Concat",
-                "0": {
-                  "$tag": "Character",
-                  "0": [
-                    [
-                      118,
-                      118
-                    ]
-                  ]
-                },
-                "1": {
+                "desc": {
                   "$tag": "Character",
                   "0": [
                     [
@@ -804,47 +1324,89 @@
                       39
                     ]
                   ]
-                }
+                },
+                "class": {
+                  "$tag": "Char"
+                },
+                "len": 1
+              },
+              "1": {
+                "desc": {
+                  "$tag": "Concat",
+                  "0": {
+                    "desc": {
+                      "$tag": "Character",
+                      "0": [
+                        [
+                          92,
+                          92
+                        ]
+                      ]
+                    },
+                    "class": {
+                      "$tag": "Char"
+                    },
+                    "len": 1
+                  },
+                  "1": {
+                    "desc": {
+                      "$tag": "Concat",
+                      "0": {
+                        "desc": {
+                          "$tag": "Character",
+                          "0": [
+                            [
+                              118,
+                              118
+                            ]
+                          ]
+                        },
+                        "class": {
+                          "$tag": "Char"
+                        },
+                        "len": 1
+                      },
+                      "1": {
+                        "desc": {
+                          "$tag": "Character",
+                          "0": [
+                            [
+                              39,
+                              39
+                            ]
+                          ]
+                        },
+                        "class": {
+                          "$tag": "Char"
+                        },
+                        "len": 1
+                      }
+                    },
+                    "class": {
+                      "$tag": "String"
+                    },
+                    "len": 2
+                  }
+                },
+                "class": {
+                  "$tag": "String"
+                },
+                "len": 3
               }
-            }
+            },
+            "class": {
+              "$tag": "String"
+            },
+            "len": 4
           },
           " (CHAR('\\u{0b}'), $startpos, $endpos) "
         ],
         [
           {
-            "$tag": "Concat",
-            "0": {
-              "$tag": "Character",
-              "0": [
-                [
-                  39,
-                  39
-                ]
-              ]
-            },
-            "1": {
+            "desc": {
               "$tag": "Concat",
               "0": {
-                "$tag": "Character",
-                "0": [
-                  [
-                    92,
-                    92
-                  ]
-                ]
-              },
-              "1": {
-                "$tag": "Concat",
-                "0": {
-                  "$tag": "Character",
-                  "0": [
-                    [
-                      114,
-                      114
-                    ]
-                  ]
-                },
-                "1": {
+                "desc": {
                   "$tag": "Character",
                   "0": [
                     [
@@ -852,47 +1414,89 @@
                       39
                     ]
                   ]
-                }
+                },
+                "class": {
+                  "$tag": "Char"
+                },
+                "len": 1
+              },
+              "1": {
+                "desc": {
+                  "$tag": "Concat",
+                  "0": {
+                    "desc": {
+                      "$tag": "Character",
+                      "0": [
+                        [
+                          92,
+                          92
+                        ]
+                      ]
+                    },
+                    "class": {
+                      "$tag": "Char"
+                    },
+                    "len": 1
+                  },
+                  "1": {
+                    "desc": {
+                      "$tag": "Concat",
+                      "0": {
+                        "desc": {
+                          "$tag": "Character",
+                          "0": [
+                            [
+                              114,
+                              114
+                            ]
+                          ]
+                        },
+                        "class": {
+                          "$tag": "Char"
+                        },
+                        "len": 1
+                      },
+                      "1": {
+                        "desc": {
+                          "$tag": "Character",
+                          "0": [
+                            [
+                              39,
+                              39
+                            ]
+                          ]
+                        },
+                        "class": {
+                          "$tag": "Char"
+                        },
+                        "len": 1
+                      }
+                    },
+                    "class": {
+                      "$tag": "String"
+                    },
+                    "len": 2
+                  }
+                },
+                "class": {
+                  "$tag": "String"
+                },
+                "len": 3
               }
-            }
+            },
+            "class": {
+              "$tag": "String"
+            },
+            "len": 4
           },
           " (CHAR('\\r'), $startpos, $endpos) "
         ],
         [
           {
-            "$tag": "Concat",
-            "0": {
-              "$tag": "Character",
-              "0": [
-                [
-                  39,
-                  39
-                ]
-              ]
-            },
-            "1": {
+            "desc": {
               "$tag": "Concat",
               "0": {
-                "$tag": "Character",
-                "0": [
-                  [
-                    92,
-                    92
-                  ]
-                ]
-              },
-              "1": {
-                "$tag": "Concat",
-                "0": {
-                  "$tag": "Character",
-                  "0": [
-                    [
-                      110,
-                      110
-                    ]
-                  ]
-                },
-                "1": {
+                "desc": {
                   "$tag": "Character",
                   "0": [
                     [
@@ -900,47 +1504,89 @@
                       39
                     ]
                   ]
-                }
+                },
+                "class": {
+                  "$tag": "Char"
+                },
+                "len": 1
+              },
+              "1": {
+                "desc": {
+                  "$tag": "Concat",
+                  "0": {
+                    "desc": {
+                      "$tag": "Character",
+                      "0": [
+                        [
+                          92,
+                          92
+                        ]
+                      ]
+                    },
+                    "class": {
+                      "$tag": "Char"
+                    },
+                    "len": 1
+                  },
+                  "1": {
+                    "desc": {
+                      "$tag": "Concat",
+                      "0": {
+                        "desc": {
+                          "$tag": "Character",
+                          "0": [
+                            [
+                              110,
+                              110
+                            ]
+                          ]
+                        },
+                        "class": {
+                          "$tag": "Char"
+                        },
+                        "len": 1
+                      },
+                      "1": {
+                        "desc": {
+                          "$tag": "Character",
+                          "0": [
+                            [
+                              39,
+                              39
+                            ]
+                          ]
+                        },
+                        "class": {
+                          "$tag": "Char"
+                        },
+                        "len": 1
+                      }
+                    },
+                    "class": {
+                      "$tag": "String"
+                    },
+                    "len": 2
+                  }
+                },
+                "class": {
+                  "$tag": "String"
+                },
+                "len": 3
               }
-            }
+            },
+            "class": {
+              "$tag": "String"
+            },
+            "len": 4
           },
           " (CHAR('\\n'), $startpos, $endpos) "
         ],
         [
           {
-            "$tag": "Concat",
-            "0": {
-              "$tag": "Character",
-              "0": [
-                [
-                  39,
-                  39
-                ]
-              ]
-            },
-            "1": {
+            "desc": {
               "$tag": "Concat",
               "0": {
-                "$tag": "Character",
-                "0": [
-                  [
-                    92,
-                    92
-                  ]
-                ]
-              },
-              "1": {
-                "$tag": "Concat",
-                "0": {
-                  "$tag": "Character",
-                  "0": [
-                    [
-                      92,
-                      92
-                    ]
-                  ]
-                },
-                "1": {
+                "desc": {
                   "$tag": "Character",
                   "0": [
                     [
@@ -948,38 +1594,89 @@
                       39
                     ]
                   ]
-                }
+                },
+                "class": {
+                  "$tag": "Char"
+                },
+                "len": 1
+              },
+              "1": {
+                "desc": {
+                  "$tag": "Concat",
+                  "0": {
+                    "desc": {
+                      "$tag": "Character",
+                      "0": [
+                        [
+                          92,
+                          92
+                        ]
+                      ]
+                    },
+                    "class": {
+                      "$tag": "Char"
+                    },
+                    "len": 1
+                  },
+                  "1": {
+                    "desc": {
+                      "$tag": "Concat",
+                      "0": {
+                        "desc": {
+                          "$tag": "Character",
+                          "0": [
+                            [
+                              92,
+                              92
+                            ]
+                          ]
+                        },
+                        "class": {
+                          "$tag": "Char"
+                        },
+                        "len": 1
+                      },
+                      "1": {
+                        "desc": {
+                          "$tag": "Character",
+                          "0": [
+                            [
+                              39,
+                              39
+                            ]
+                          ]
+                        },
+                        "class": {
+                          "$tag": "Char"
+                        },
+                        "len": 1
+                      }
+                    },
+                    "class": {
+                      "$tag": "String"
+                    },
+                    "len": 2
+                  }
+                },
+                "class": {
+                  "$tag": "String"
+                },
+                "len": 3
               }
-            }
+            },
+            "class": {
+              "$tag": "String"
+            },
+            "len": 4
           },
           " (CHAR('\\\\'), $startpos, $endpos) "
         ],
         [
           {
-            "$tag": "Concat",
-            "0": {
-              "$tag": "Character",
-              "0": [
-                [
-                  39,
-                  39
-                ]
-              ]
-            },
-            "1": {
+            "desc": {
               "$tag": "Concat",
               "0": {
-                "$tag": "Character",
-                "0": [
-                  [
-                    92,
-                    92
-                  ]
-                ]
-              },
-              "1": {
-                "$tag": "Concat",
-                "0": {
+                "desc": {
                   "$tag": "Character",
                   "0": [
                     [
@@ -988,405 +1685,762 @@
                     ]
                   ]
                 },
-                "1": {
-                  "$tag": "Character",
-                  "0": [
-                    [
-                      39,
-                      39
-                    ]
-                  ]
-                }
+                "class": {
+                  "$tag": "Char"
+                },
+                "len": 1
+              },
+              "1": {
+                "desc": {
+                  "$tag": "Concat",
+                  "0": {
+                    "desc": {
+                      "$tag": "Character",
+                      "0": [
+                        [
+                          92,
+                          92
+                        ]
+                      ]
+                    },
+                    "class": {
+                      "$tag": "Char"
+                    },
+                    "len": 1
+                  },
+                  "1": {
+                    "desc": {
+                      "$tag": "Concat",
+                      "0": {
+                        "desc": {
+                          "$tag": "Character",
+                          "0": [
+                            [
+                              39,
+                              39
+                            ]
+                          ]
+                        },
+                        "class": {
+                          "$tag": "Char"
+                        },
+                        "len": 1
+                      },
+                      "1": {
+                        "desc": {
+                          "$tag": "Character",
+                          "0": [
+                            [
+                              39,
+                              39
+                            ]
+                          ]
+                        },
+                        "class": {
+                          "$tag": "Char"
+                        },
+                        "len": 1
+                      }
+                    },
+                    "class": {
+                      "$tag": "String"
+                    },
+                    "len": 2
+                  }
+                },
+                "class": {
+                  "$tag": "String"
+                },
+                "len": 3
               }
-            }
+            },
+            "class": {
+              "$tag": "String"
+            },
+            "len": 4
           },
           " (CHAR('\\''), $startpos, $endpos) "
         ],
         [
           {
-            "$tag": "Concat",
-            "0": {
-              "$tag": "Character",
-              "0": [
-                [
-                  39,
-                  39
-                ]
-              ]
-            },
-            "1": {
+            "desc": {
               "$tag": "Concat",
               "0": {
-                "$tag": "Character",
-                "0": [
-                  [
-                    92,
-                    92
-                  ]
-                ]
-              },
-              "1": {
-                "$tag": "Concat",
-                "0": {
+                "desc": {
                   "$tag": "Character",
                   "0": [
                     [
-                      120,
-                      120
+                      39,
+                      39
                     ]
                   ]
                 },
-                "1": {
+                "class": {
+                  "$tag": "Char"
+                },
+                "len": 1
+              },
+              "1": {
+                "desc": {
                   "$tag": "Concat",
                   "0": {
-                    "$tag": "Capture",
-                    "0": {
-                      "$tag": "Concat",
-                      "0": {
-                        "$tag": "Character",
-                        "0": [
-                          [
-                            48,
-                            57
-                          ],
-                          [
-                            65,
-                            70
-                          ],
-                          [
-                            97,
-                            102
-                          ]
+                    "desc": {
+                      "$tag": "Character",
+                      "0": [
+                        [
+                          92,
+                          92
                         ]
-                      },
-                      "1": {
-                        "$tag": "Character",
-                        "0": [
-                          [
-                            48,
-                            57
-                          ],
-                          [
-                            65,
-                            70
-                          ],
-                          [
-                            97,
-                            102
-                          ]
-                        ]
-                      }
+                      ]
                     },
-                    "1": "t"
+                    "class": {
+                      "$tag": "Char"
+                    },
+                    "len": 1
                   },
                   "1": {
-                    "$tag": "Character",
-                    "0": [
-                      [
-                        39,
-                        39
-                      ]
-                    ]
-                  }
-                }
-              }
-            }
-          },
-          "\n      let code = @strconv.parse_int?(t, base=16).unwrap()\n      (CHAR(Char::from_int(code)), $startpos, $endpos)\n    "
-        ],
-        [
-          {
-            "$tag": "Concat",
-            "0": {
-              "$tag": "Character",
-              "0": [
-                [
-                  39,
-                  39
-                ]
-              ]
-            },
-            "1": {
-              "$tag": "Concat",
-              "0": {
-                "$tag": "Character",
-                "0": [
-                  [
-                    92,
-                    92
-                  ]
-                ]
-              },
-              "1": {
-                "$tag": "Concat",
-                "0": {
-                  "$tag": "Character",
-                  "0": [
-                    [
-                      117,
-                      117
-                    ]
-                  ]
-                },
-                "1": {
-                  "$tag": "Concat",
-                  "0": {
-                    "$tag": "Capture",
-                    "0": {
+                    "desc": {
                       "$tag": "Concat",
                       "0": {
-                        "$tag": "Character",
-                        "0": [
-                          [
-                            48,
-                            57
-                          ],
-                          [
-                            65,
-                            70
-                          ],
-                          [
-                            97,
-                            102
-                          ]
-                        ]
-                      },
-                      "1": {
-                        "$tag": "Concat",
-                        "0": {
+                        "desc": {
                           "$tag": "Character",
                           "0": [
                             [
-                              48,
-                              57
-                            ],
-                            [
-                              65,
-                              70
-                            ],
-                            [
-                              97,
-                              102
+                              120,
+                              120
                             ]
                           ]
                         },
-                        "1": {
+                        "class": {
+                          "$tag": "Char"
+                        },
+                        "len": 1
+                      },
+                      "1": {
+                        "desc": {
                           "$tag": "Concat",
                           "0": {
-                            "$tag": "Character",
-                            "0": [
-                              [
-                                48,
-                                57
-                              ],
-                              [
-                                65,
-                                70
-                              ],
-                              [
-                                97,
-                                102
-                              ]
-                            ]
+                            "desc": {
+                              "$tag": "Capture",
+                              "0": {
+                                "desc": {
+                                  "$tag": "Concat",
+                                  "0": {
+                                    "desc": {
+                                      "$tag": "Character",
+                                      "0": [
+                                        [
+                                          48,
+                                          57
+                                        ],
+                                        [
+                                          65,
+                                          70
+                                        ],
+                                        [
+                                          97,
+                                          102
+                                        ]
+                                      ]
+                                    },
+                                    "class": {
+                                      "$tag": "Char"
+                                    },
+                                    "len": 1
+                                  },
+                                  "1": {
+                                    "desc": {
+                                      "$tag": "Character",
+                                      "0": [
+                                        [
+                                          48,
+                                          57
+                                        ],
+                                        [
+                                          65,
+                                          70
+                                        ],
+                                        [
+                                          97,
+                                          102
+                                        ]
+                                      ]
+                                    },
+                                    "class": {
+                                      "$tag": "Char"
+                                    },
+                                    "len": 1
+                                  }
+                                },
+                                "class": {
+                                  "$tag": "String"
+                                },
+                                "len": 2
+                              },
+                              "1": "t"
+                            },
+                            "class": {
+                              "$tag": "String"
+                            },
+                            "len": 2
                           },
                           "1": {
-                            "$tag": "Character",
-                            "0": [
-                              [
-                                48,
-                                57
-                              ],
-                              [
-                                65,
-                                70
-                              ],
-                              [
-                                97,
-                                102
+                            "desc": {
+                              "$tag": "Character",
+                              "0": [
+                                [
+                                  39,
+                                  39
+                                ]
                               ]
-                            ]
+                            },
+                            "class": {
+                              "$tag": "Char"
+                            },
+                            "len": 1
                           }
-                        }
+                        },
+                        "class": {
+                          "$tag": "String"
+                        },
+                        "len": 3
                       }
                     },
-                    "1": "t"
-                  },
-                  "1": {
-                    "$tag": "Character",
-                    "0": [
-                      [
-                        39,
-                        39
-                      ]
-                    ]
+                    "class": {
+                      "$tag": "String"
+                    },
+                    "len": 4
                   }
-                }
+                },
+                "class": {
+                  "$tag": "String"
+                },
+                "len": 5
               }
-            }
+            },
+            "class": {
+              "$tag": "String"
+            },
+            "len": 6
           },
           "\n      let code = @strconv.parse_int?(t, base=16).unwrap()\n      (CHAR(Char::from_int(code)), $startpos, $endpos)\n    "
         ],
         [
           {
-            "$tag": "Concat",
-            "0": {
-              "$tag": "Character",
-              "0": [
-                [
-                  39,
-                  39
-                ]
-              ]
-            },
-            "1": {
+            "desc": {
               "$tag": "Concat",
               "0": {
-                "$tag": "Character",
-                "0": [
-                  [
-                    92,
-                    92
-                  ]
-                ]
-              },
-              "1": {
-                "$tag": "Concat",
-                "0": {
+                "desc": {
                   "$tag": "Character",
                   "0": [
                     [
-                      117,
-                      117
+                      39,
+                      39
                     ]
                   ]
                 },
-                "1": {
+                "class": {
+                  "$tag": "Char"
+                },
+                "len": 1
+              },
+              "1": {
+                "desc": {
                   "$tag": "Concat",
                   "0": {
-                    "$tag": "Character",
-                    "0": [
-                      [
-                        123,
-                        123
+                    "desc": {
+                      "$tag": "Character",
+                      "0": [
+                        [
+                          92,
+                          92
+                        ]
                       ]
-                    ]
+                    },
+                    "class": {
+                      "$tag": "Char"
+                    },
+                    "len": 1
                   },
                   "1": {
-                    "$tag": "Concat",
-                    "0": {
-                      "$tag": "Capture",
+                    "desc": {
+                      "$tag": "Concat",
                       "0": {
-                        "$tag": "Repetition",
-                        "0": {
+                        "desc": {
                           "$tag": "Character",
                           "0": [
                             [
-                              48,
-                              57
-                            ],
-                            [
-                              65,
-                              70
-                            ],
-                            [
-                              97,
-                              102
+                              117,
+                              117
                             ]
                           ]
-                        }
-                      },
-                      "1": "t"
-                    },
-                    "1": {
-                      "$tag": "Concat",
-                      "0": {
-                        "$tag": "Character",
-                        "0": [
-                          [
-                            125,
-                            125
-                          ]
-                        ]
+                        },
+                        "class": {
+                          "$tag": "Char"
+                        },
+                        "len": 1
                       },
                       "1": {
-                        "$tag": "Character",
-                        "0": [
-                          [
-                            39,
-                            39
-                          ]
-                        ]
+                        "desc": {
+                          "$tag": "Concat",
+                          "0": {
+                            "desc": {
+                              "$tag": "Capture",
+                              "0": {
+                                "desc": {
+                                  "$tag": "Concat",
+                                  "0": {
+                                    "desc": {
+                                      "$tag": "Character",
+                                      "0": [
+                                        [
+                                          48,
+                                          57
+                                        ],
+                                        [
+                                          65,
+                                          70
+                                        ],
+                                        [
+                                          97,
+                                          102
+                                        ]
+                                      ]
+                                    },
+                                    "class": {
+                                      "$tag": "Char"
+                                    },
+                                    "len": 1
+                                  },
+                                  "1": {
+                                    "desc": {
+                                      "$tag": "Concat",
+                                      "0": {
+                                        "desc": {
+                                          "$tag": "Character",
+                                          "0": [
+                                            [
+                                              48,
+                                              57
+                                            ],
+                                            [
+                                              65,
+                                              70
+                                            ],
+                                            [
+                                              97,
+                                              102
+                                            ]
+                                          ]
+                                        },
+                                        "class": {
+                                          "$tag": "Char"
+                                        },
+                                        "len": 1
+                                      },
+                                      "1": {
+                                        "desc": {
+                                          "$tag": "Concat",
+                                          "0": {
+                                            "desc": {
+                                              "$tag": "Character",
+                                              "0": [
+                                                [
+                                                  48,
+                                                  57
+                                                ],
+                                                [
+                                                  65,
+                                                  70
+                                                ],
+                                                [
+                                                  97,
+                                                  102
+                                                ]
+                                              ]
+                                            },
+                                            "class": {
+                                              "$tag": "Char"
+                                            },
+                                            "len": 1
+                                          },
+                                          "1": {
+                                            "desc": {
+                                              "$tag": "Character",
+                                              "0": [
+                                                [
+                                                  48,
+                                                  57
+                                                ],
+                                                [
+                                                  65,
+                                                  70
+                                                ],
+                                                [
+                                                  97,
+                                                  102
+                                                ]
+                                              ]
+                                            },
+                                            "class": {
+                                              "$tag": "Char"
+                                            },
+                                            "len": 1
+                                          }
+                                        },
+                                        "class": {
+                                          "$tag": "String"
+                                        },
+                                        "len": 2
+                                      }
+                                    },
+                                    "class": {
+                                      "$tag": "String"
+                                    },
+                                    "len": 3
+                                  }
+                                },
+                                "class": {
+                                  "$tag": "String"
+                                },
+                                "len": 4
+                              },
+                              "1": "t"
+                            },
+                            "class": {
+                              "$tag": "String"
+                            },
+                            "len": 4
+                          },
+                          "1": {
+                            "desc": {
+                              "$tag": "Character",
+                              "0": [
+                                [
+                                  39,
+                                  39
+                                ]
+                              ]
+                            },
+                            "class": {
+                              "$tag": "Char"
+                            },
+                            "len": 1
+                          }
+                        },
+                        "class": {
+                          "$tag": "String"
+                        },
+                        "len": 5
                       }
+                    },
+                    "class": {
+                      "$tag": "String"
+                    },
+                    "len": 6
+                  }
+                },
+                "class": {
+                  "$tag": "String"
+                },
+                "len": 7
+              }
+            },
+            "class": {
+              "$tag": "String"
+            },
+            "len": 8
+          },
+          "\n      let code = @strconv.parse_int?(t, base=16).unwrap()\n      (CHAR(Char::from_int(code)), $startpos, $endpos)\n    "
+        ],
+        [
+          {
+            "desc": {
+              "$tag": "Concat",
+              "0": {
+                "desc": {
+                  "$tag": "Character",
+                  "0": [
+                    [
+                      39,
+                      39
+                    ]
+                  ]
+                },
+                "class": {
+                  "$tag": "Char"
+                },
+                "len": 1
+              },
+              "1": {
+                "desc": {
+                  "$tag": "Concat",
+                  "0": {
+                    "desc": {
+                      "$tag": "Character",
+                      "0": [
+                        [
+                          92,
+                          92
+                        ]
+                      ]
+                    },
+                    "class": {
+                      "$tag": "Char"
+                    },
+                    "len": 1
+                  },
+                  "1": {
+                    "desc": {
+                      "$tag": "Concat",
+                      "0": {
+                        "desc": {
+                          "$tag": "Character",
+                          "0": [
+                            [
+                              117,
+                              117
+                            ]
+                          ]
+                        },
+                        "class": {
+                          "$tag": "Char"
+                        },
+                        "len": 1
+                      },
+                      "1": {
+                        "desc": {
+                          "$tag": "Concat",
+                          "0": {
+                            "desc": {
+                              "$tag": "Character",
+                              "0": [
+                                [
+                                  123,
+                                  123
+                                ]
+                              ]
+                            },
+                            "class": {
+                              "$tag": "Char"
+                            },
+                            "len": 1
+                          },
+                          "1": {
+                            "desc": {
+                              "$tag": "Concat",
+                              "0": {
+                                "desc": {
+                                  "$tag": "Capture",
+                                  "0": {
+                                    "desc": {
+                                      "$tag": "Repetition",
+                                      "0": {
+                                        "desc": {
+                                          "$tag": "Character",
+                                          "0": [
+                                            [
+                                              48,
+                                              57
+                                            ],
+                                            [
+                                              65,
+                                              70
+                                            ],
+                                            [
+                                              97,
+                                              102
+                                            ]
+                                          ]
+                                        },
+                                        "class": {
+                                          "$tag": "Char"
+                                        },
+                                        "len": 1
+                                      }
+                                    },
+                                    "class": {
+                                      "$tag": "String"
+                                    }
+                                  },
+                                  "1": "t"
+                                },
+                                "class": {
+                                  "$tag": "String"
+                                }
+                              },
+                              "1": {
+                                "desc": {
+                                  "$tag": "Concat",
+                                  "0": {
+                                    "desc": {
+                                      "$tag": "Character",
+                                      "0": [
+                                        [
+                                          125,
+                                          125
+                                        ]
+                                      ]
+                                    },
+                                    "class": {
+                                      "$tag": "Char"
+                                    },
+                                    "len": 1
+                                  },
+                                  "1": {
+                                    "desc": {
+                                      "$tag": "Character",
+                                      "0": [
+                                        [
+                                          39,
+                                          39
+                                        ]
+                                      ]
+                                    },
+                                    "class": {
+                                      "$tag": "Char"
+                                    },
+                                    "len": 1
+                                  }
+                                },
+                                "class": {
+                                  "$tag": "String"
+                                },
+                                "len": 2
+                              }
+                            },
+                            "class": {
+                              "$tag": "String"
+                            }
+                          }
+                        },
+                        "class": {
+                          "$tag": "String"
+                        }
+                      }
+                    },
+                    "class": {
+                      "$tag": "String"
                     }
                   }
+                },
+                "class": {
+                  "$tag": "String"
                 }
               }
+            },
+            "class": {
+              "$tag": "String"
             }
           },
           "\n      let code = @strconv.parse_int?(t, base=16).unwrap()\n      (CHAR(Char::from_int(code)), $startpos, $endpos)\n    "
         ],
         [
           {
-            "$tag": "Character",
-            "0": [
-              [
-                34,
-                34
+            "desc": {
+              "$tag": "Character",
+              "0": [
+                [
+                  34,
+                  34
+                ]
               ]
-            ]
+            },
+            "class": {
+              "$tag": "Char"
+            },
+            "len": 1
           },
           "\n      let buffer = StringBuilder::new()\n      let end_pos = string_inner_rquote(buffer, lexbuf)\n      (STRING(buffer.to_string()), $startpos, end_pos)\n    "
         ],
         [
           {
-            "$tag": "Capture",
-            "0": {
-              "$tag": "Concat",
+            "desc": {
+              "$tag": "Capture",
               "0": {
-                "$tag": "Character",
-                "0": [
-                  [
-                    95,
-                    95
-                  ],
-                  [
-                    97,
-                    122
-                  ]
-                ]
-              },
-              "1": {
-                "$tag": "Alter",
-                "0": {
-                  "$tag": "Repetition",
+                "desc": {
+                  "$tag": "Concat",
                   "0": {
-                    "$tag": "Character",
-                    "0": [
-                      [
-                        48,
-                        57
-                      ],
-                      [
-                        65,
-                        90
-                      ],
-                      [
-                        95,
-                        95
-                      ],
-                      [
-                        97,
-                        122
+                    "desc": {
+                      "$tag": "Character",
+                      "0": [
+                        [
+                          95,
+                          95
+                        ],
+                        [
+                          97,
+                          122
+                        ]
                       ]
-                    ]
+                    },
+                    "class": {
+                      "$tag": "Char"
+                    },
+                    "len": 1
+                  },
+                  "1": {
+                    "desc": {
+                      "$tag": "Alter",
+                      "0": {
+                        "desc": {
+                          "$tag": "Repetition",
+                          "0": {
+                            "desc": {
+                              "$tag": "Character",
+                              "0": [
+                                [
+                                  48,
+                                  57
+                                ],
+                                [
+                                  65,
+                                  90
+                                ],
+                                [
+                                  95,
+                                  95
+                                ],
+                                [
+                                  97,
+                                  122
+                                ]
+                              ]
+                            },
+                            "class": {
+                              "$tag": "Char"
+                            },
+                            "len": 1
+                          }
+                        },
+                        "class": {
+                          "$tag": "String"
+                        }
+                      },
+                      "1": {
+                        "desc": {
+                          "$tag": "Epsilon"
+                        },
+                        "class": {
+                          "$tag": "String"
+                        },
+                        "len": 0
+                      }
+                    },
+                    "class": {
+                      "$tag": "String"
+                    }
                   }
                 },
-                "1": {
-                  "$tag": "Epsilon"
+                "class": {
+                  "$tag": "String"
                 }
-              }
+              },
+              "1": "t"
             },
-            "1": "t"
+            "class": {
+              "$tag": "String"
+            }
           },
           "\n      (match t {\n        \"eof\" => EOF\n        \"regex\" => REGEX\n        \"as\" => AS\n        _ => LC_IDENT(t)\n      }, $startpos, $endpos)\n    "
         ]
@@ -1398,173 +2452,7 @@
       "patterns": [
         [
           {
-            "$tag": "Character",
-            "0": [
-              [
-                34,
-                34
-              ]
-            ]
-          },
-          " $endpos "
-        ],
-        [
-          {
-            "$tag": "Concat",
-            "0": {
-              "$tag": "Character",
-              "0": [
-                [
-                  92,
-                  92
-                ]
-              ]
-            },
-            "1": {
-              "$tag": "Character",
-              "0": [
-                [
-                  98,
-                  98
-                ]
-              ]
-            }
-          },
-          "\n      buffer.write_char('\\u{08}')\n      string_inner_rquote(buffer, lexbuf)\n    "
-        ],
-        [
-          {
-            "$tag": "Concat",
-            "0": {
-              "$tag": "Character",
-              "0": [
-                [
-                  92,
-                  92
-                ]
-              ]
-            },
-            "1": {
-              "$tag": "Character",
-              "0": [
-                [
-                  116,
-                  116
-                ]
-              ]
-            }
-          },
-          "\n      buffer.write_char('\\t')\n      string_inner_rquote(buffer, lexbuf)\n    "
-        ],
-        [
-          {
-            "$tag": "Concat",
-            "0": {
-              "$tag": "Character",
-              "0": [
-                [
-                  92,
-                  92
-                ]
-              ]
-            },
-            "1": {
-              "$tag": "Character",
-              "0": [
-                [
-                  118,
-                  118
-                ]
-              ]
-            }
-          },
-          "\n      buffer.write_char('\\u{0b}')\n      string_inner_rquote(buffer, lexbuf)\n    "
-        ],
-        [
-          {
-            "$tag": "Concat",
-            "0": {
-              "$tag": "Character",
-              "0": [
-                [
-                  92,
-                  92
-                ]
-              ]
-            },
-            "1": {
-              "$tag": "Character",
-              "0": [
-                [
-                  114,
-                  114
-                ]
-              ]
-            }
-          },
-          "\n      buffer.write_char('\\r')\n      string_inner_rquote(buffer, lexbuf)\n    "
-        ],
-        [
-          {
-            "$tag": "Concat",
-            "0": {
-              "$tag": "Character",
-              "0": [
-                [
-                  92,
-                  92
-                ]
-              ]
-            },
-            "1": {
-              "$tag": "Character",
-              "0": [
-                [
-                  110,
-                  110
-                ]
-              ]
-            }
-          },
-          "\n      buffer.write_char('\\n')\n      string_inner_rquote(buffer, lexbuf)\n    "
-        ],
-        [
-          {
-            "$tag": "Concat",
-            "0": {
-              "$tag": "Character",
-              "0": [
-                [
-                  92,
-                  92
-                ]
-              ]
-            },
-            "1": {
-              "$tag": "Character",
-              "0": [
-                [
-                  92,
-                  92
-                ]
-              ]
-            }
-          },
-          "\n      buffer.write_char('\\\\')\n      string_inner_rquote(buffer, lexbuf)\n    "
-        ],
-        [
-          {
-            "$tag": "Concat",
-            "0": {
-              "$tag": "Character",
-              "0": [
-                [
-                  92,
-                  92
-                ]
-              ]
-            },
-            "1": {
+            "desc": {
               "$tag": "Character",
               "0": [
                 [
@@ -1572,316 +2460,847 @@
                   34
                 ]
               ]
-            }
+            },
+            "class": {
+              "$tag": "Char"
+            },
+            "len": 1
+          },
+          " $endpos "
+        ],
+        [
+          {
+            "desc": {
+              "$tag": "Concat",
+              "0": {
+                "desc": {
+                  "$tag": "Character",
+                  "0": [
+                    [
+                      92,
+                      92
+                    ]
+                  ]
+                },
+                "class": {
+                  "$tag": "Char"
+                },
+                "len": 1
+              },
+              "1": {
+                "desc": {
+                  "$tag": "Character",
+                  "0": [
+                    [
+                      98,
+                      98
+                    ]
+                  ]
+                },
+                "class": {
+                  "$tag": "Char"
+                },
+                "len": 1
+              }
+            },
+            "class": {
+              "$tag": "String"
+            },
+            "len": 2
+          },
+          "\n      buffer.write_char('\\u{08}')\n      string_inner_rquote(buffer, lexbuf)\n    "
+        ],
+        [
+          {
+            "desc": {
+              "$tag": "Concat",
+              "0": {
+                "desc": {
+                  "$tag": "Character",
+                  "0": [
+                    [
+                      92,
+                      92
+                    ]
+                  ]
+                },
+                "class": {
+                  "$tag": "Char"
+                },
+                "len": 1
+              },
+              "1": {
+                "desc": {
+                  "$tag": "Character",
+                  "0": [
+                    [
+                      116,
+                      116
+                    ]
+                  ]
+                },
+                "class": {
+                  "$tag": "Char"
+                },
+                "len": 1
+              }
+            },
+            "class": {
+              "$tag": "String"
+            },
+            "len": 2
+          },
+          "\n      buffer.write_char('\\t')\n      string_inner_rquote(buffer, lexbuf)\n    "
+        ],
+        [
+          {
+            "desc": {
+              "$tag": "Concat",
+              "0": {
+                "desc": {
+                  "$tag": "Character",
+                  "0": [
+                    [
+                      92,
+                      92
+                    ]
+                  ]
+                },
+                "class": {
+                  "$tag": "Char"
+                },
+                "len": 1
+              },
+              "1": {
+                "desc": {
+                  "$tag": "Character",
+                  "0": [
+                    [
+                      118,
+                      118
+                    ]
+                  ]
+                },
+                "class": {
+                  "$tag": "Char"
+                },
+                "len": 1
+              }
+            },
+            "class": {
+              "$tag": "String"
+            },
+            "len": 2
+          },
+          "\n      buffer.write_char('\\u{0b}')\n      string_inner_rquote(buffer, lexbuf)\n    "
+        ],
+        [
+          {
+            "desc": {
+              "$tag": "Concat",
+              "0": {
+                "desc": {
+                  "$tag": "Character",
+                  "0": [
+                    [
+                      92,
+                      92
+                    ]
+                  ]
+                },
+                "class": {
+                  "$tag": "Char"
+                },
+                "len": 1
+              },
+              "1": {
+                "desc": {
+                  "$tag": "Character",
+                  "0": [
+                    [
+                      114,
+                      114
+                    ]
+                  ]
+                },
+                "class": {
+                  "$tag": "Char"
+                },
+                "len": 1
+              }
+            },
+            "class": {
+              "$tag": "String"
+            },
+            "len": 2
+          },
+          "\n      buffer.write_char('\\r')\n      string_inner_rquote(buffer, lexbuf)\n    "
+        ],
+        [
+          {
+            "desc": {
+              "$tag": "Concat",
+              "0": {
+                "desc": {
+                  "$tag": "Character",
+                  "0": [
+                    [
+                      92,
+                      92
+                    ]
+                  ]
+                },
+                "class": {
+                  "$tag": "Char"
+                },
+                "len": 1
+              },
+              "1": {
+                "desc": {
+                  "$tag": "Character",
+                  "0": [
+                    [
+                      110,
+                      110
+                    ]
+                  ]
+                },
+                "class": {
+                  "$tag": "Char"
+                },
+                "len": 1
+              }
+            },
+            "class": {
+              "$tag": "String"
+            },
+            "len": 2
+          },
+          "\n      buffer.write_char('\\n')\n      string_inner_rquote(buffer, lexbuf)\n    "
+        ],
+        [
+          {
+            "desc": {
+              "$tag": "Concat",
+              "0": {
+                "desc": {
+                  "$tag": "Character",
+                  "0": [
+                    [
+                      92,
+                      92
+                    ]
+                  ]
+                },
+                "class": {
+                  "$tag": "Char"
+                },
+                "len": 1
+              },
+              "1": {
+                "desc": {
+                  "$tag": "Character",
+                  "0": [
+                    [
+                      92,
+                      92
+                    ]
+                  ]
+                },
+                "class": {
+                  "$tag": "Char"
+                },
+                "len": 1
+              }
+            },
+            "class": {
+              "$tag": "String"
+            },
+            "len": 2
+          },
+          "\n      buffer.write_char('\\\\')\n      string_inner_rquote(buffer, lexbuf)\n    "
+        ],
+        [
+          {
+            "desc": {
+              "$tag": "Concat",
+              "0": {
+                "desc": {
+                  "$tag": "Character",
+                  "0": [
+                    [
+                      92,
+                      92
+                    ]
+                  ]
+                },
+                "class": {
+                  "$tag": "Char"
+                },
+                "len": 1
+              },
+              "1": {
+                "desc": {
+                  "$tag": "Character",
+                  "0": [
+                    [
+                      34,
+                      34
+                    ]
+                  ]
+                },
+                "class": {
+                  "$tag": "Char"
+                },
+                "len": 1
+              }
+            },
+            "class": {
+              "$tag": "String"
+            },
+            "len": 2
           },
           "\n      buffer.write_char('\"')\n      string_inner_rquote(buffer, lexbuf)\n    "
         ],
         [
           {
-            "$tag": "Concat",
-            "0": {
-              "$tag": "Character",
-              "0": [
-                [
-                  92,
-                  92
-                ]
-              ]
-            },
-            "1": {
+            "desc": {
               "$tag": "Concat",
               "0": {
-                "$tag": "Character",
-                "0": [
-                  [
-                    120,
-                    120
-                  ]
-                ]
-              },
-              "1": {
-                "$tag": "Concat",
-                "0": {
-                  "$tag": "Capture",
-                  "0": {
-                    "$tag": "Concat",
-                    "0": {
-                      "$tag": "Character",
-                      "0": [
-                        [
-                          48,
-                          57
-                        ],
-                        [
-                          65,
-                          70
-                        ],
-                        [
-                          97,
-                          102
-                        ]
-                      ]
-                    },
-                    "1": {
-                      "$tag": "Character",
-                      "0": [
-                        [
-                          48,
-                          57
-                        ],
-                        [
-                          65,
-                          70
-                        ],
-                        [
-                          97,
-                          102
-                        ]
-                      ]
-                    }
-                  },
-                  "1": "t"
-                },
-                "1": {
+                "desc": {
                   "$tag": "Character",
                   "0": [
                     [
-                      39,
-                      39
+                      92,
+                      92
                     ]
                   ]
-                }
-              }
-            }
-          },
-          "\n      let code = @strconv.parse_int?(t, base=16).unwrap()\n      buffer.write_char(Char::from_int(code))\n      string_inner_rquote(buffer, lexbuf)\n    "
-        ],
-        [
-          {
-            "$tag": "Concat",
-            "0": {
-              "$tag": "Character",
-              "0": [
-                [
-                  92,
-                  92
-                ]
-              ]
-            },
-            "1": {
-              "$tag": "Concat",
-              "0": {
-                "$tag": "Character",
-                "0": [
-                  [
-                    117,
-                    117
-                  ]
-                ]
+                },
+                "class": {
+                  "$tag": "Char"
+                },
+                "len": 1
               },
               "1": {
-                "$tag": "Concat",
-                "0": {
-                  "$tag": "Capture",
+                "desc": {
+                  "$tag": "Concat",
                   "0": {
-                    "$tag": "Concat",
-                    "0": {
+                    "desc": {
                       "$tag": "Character",
                       "0": [
                         [
-                          48,
-                          57
-                        ],
-                        [
-                          65,
-                          70
-                        ],
-                        [
-                          97,
-                          102
+                          120,
+                          120
                         ]
                       ]
                     },
-                    "1": {
+                    "class": {
+                      "$tag": "Char"
+                    },
+                    "len": 1
+                  },
+                  "1": {
+                    "desc": {
                       "$tag": "Concat",
                       "0": {
-                        "$tag": "Character",
-                        "0": [
-                          [
-                            48,
-                            57
-                          ],
-                          [
-                            65,
-                            70
-                          ],
-                          [
-                            97,
-                            102
-                          ]
-                        ]
+                        "desc": {
+                          "$tag": "Capture",
+                          "0": {
+                            "desc": {
+                              "$tag": "Concat",
+                              "0": {
+                                "desc": {
+                                  "$tag": "Character",
+                                  "0": [
+                                    [
+                                      48,
+                                      57
+                                    ],
+                                    [
+                                      65,
+                                      70
+                                    ],
+                                    [
+                                      97,
+                                      102
+                                    ]
+                                  ]
+                                },
+                                "class": {
+                                  "$tag": "Char"
+                                },
+                                "len": 1
+                              },
+                              "1": {
+                                "desc": {
+                                  "$tag": "Character",
+                                  "0": [
+                                    [
+                                      48,
+                                      57
+                                    ],
+                                    [
+                                      65,
+                                      70
+                                    ],
+                                    [
+                                      97,
+                                      102
+                                    ]
+                                  ]
+                                },
+                                "class": {
+                                  "$tag": "Char"
+                                },
+                                "len": 1
+                              }
+                            },
+                            "class": {
+                              "$tag": "String"
+                            },
+                            "len": 2
+                          },
+                          "1": "t"
+                        },
+                        "class": {
+                          "$tag": "String"
+                        },
+                        "len": 2
                       },
                       "1": {
-                        "$tag": "Concat",
-                        "0": {
+                        "desc": {
                           "$tag": "Character",
                           "0": [
                             [
-                              48,
-                              57
-                            ],
-                            [
-                              65,
-                              70
-                            ],
-                            [
-                              97,
-                              102
+                              39,
+                              39
                             ]
                           ]
                         },
-                        "1": {
+                        "class": {
+                          "$tag": "Char"
+                        },
+                        "len": 1
+                      }
+                    },
+                    "class": {
+                      "$tag": "String"
+                    },
+                    "len": 3
+                  }
+                },
+                "class": {
+                  "$tag": "String"
+                },
+                "len": 4
+              }
+            },
+            "class": {
+              "$tag": "String"
+            },
+            "len": 5
+          },
+          "\n      let code = @strconv.parse_int?(t, base=16).unwrap()\n      buffer.write_char(Char::from_int(code))\n      string_inner_rquote(buffer, lexbuf)\n    "
+        ],
+        [
+          {
+            "desc": {
+              "$tag": "Concat",
+              "0": {
+                "desc": {
+                  "$tag": "Character",
+                  "0": [
+                    [
+                      92,
+                      92
+                    ]
+                  ]
+                },
+                "class": {
+                  "$tag": "Char"
+                },
+                "len": 1
+              },
+              "1": {
+                "desc": {
+                  "$tag": "Concat",
+                  "0": {
+                    "desc": {
+                      "$tag": "Character",
+                      "0": [
+                        [
+                          117,
+                          117
+                        ]
+                      ]
+                    },
+                    "class": {
+                      "$tag": "Char"
+                    },
+                    "len": 1
+                  },
+                  "1": {
+                    "desc": {
+                      "$tag": "Concat",
+                      "0": {
+                        "desc": {
+                          "$tag": "Capture",
+                          "0": {
+                            "desc": {
+                              "$tag": "Concat",
+                              "0": {
+                                "desc": {
+                                  "$tag": "Character",
+                                  "0": [
+                                    [
+                                      48,
+                                      57
+                                    ],
+                                    [
+                                      65,
+                                      70
+                                    ],
+                                    [
+                                      97,
+                                      102
+                                    ]
+                                  ]
+                                },
+                                "class": {
+                                  "$tag": "Char"
+                                },
+                                "len": 1
+                              },
+                              "1": {
+                                "desc": {
+                                  "$tag": "Concat",
+                                  "0": {
+                                    "desc": {
+                                      "$tag": "Character",
+                                      "0": [
+                                        [
+                                          48,
+                                          57
+                                        ],
+                                        [
+                                          65,
+                                          70
+                                        ],
+                                        [
+                                          97,
+                                          102
+                                        ]
+                                      ]
+                                    },
+                                    "class": {
+                                      "$tag": "Char"
+                                    },
+                                    "len": 1
+                                  },
+                                  "1": {
+                                    "desc": {
+                                      "$tag": "Concat",
+                                      "0": {
+                                        "desc": {
+                                          "$tag": "Character",
+                                          "0": [
+                                            [
+                                              48,
+                                              57
+                                            ],
+                                            [
+                                              65,
+                                              70
+                                            ],
+                                            [
+                                              97,
+                                              102
+                                            ]
+                                          ]
+                                        },
+                                        "class": {
+                                          "$tag": "Char"
+                                        },
+                                        "len": 1
+                                      },
+                                      "1": {
+                                        "desc": {
+                                          "$tag": "Character",
+                                          "0": [
+                                            [
+                                              48,
+                                              57
+                                            ],
+                                            [
+                                              65,
+                                              70
+                                            ],
+                                            [
+                                              97,
+                                              102
+                                            ]
+                                          ]
+                                        },
+                                        "class": {
+                                          "$tag": "Char"
+                                        },
+                                        "len": 1
+                                      }
+                                    },
+                                    "class": {
+                                      "$tag": "String"
+                                    },
+                                    "len": 2
+                                  }
+                                },
+                                "class": {
+                                  "$tag": "String"
+                                },
+                                "len": 3
+                              }
+                            },
+                            "class": {
+                              "$tag": "String"
+                            },
+                            "len": 4
+                          },
+                          "1": "t"
+                        },
+                        "class": {
+                          "$tag": "String"
+                        },
+                        "len": 4
+                      },
+                      "1": {
+                        "desc": {
                           "$tag": "Character",
                           "0": [
                             [
-                              48,
-                              57
-                            ],
-                            [
-                              65,
-                              70
-                            ],
-                            [
-                              97,
-                              102
+                              39,
+                              39
                             ]
                           ]
-                        }
+                        },
+                        "class": {
+                          "$tag": "Char"
+                        },
+                        "len": 1
                       }
-                    }
-                  },
-                  "1": "t"
+                    },
+                    "class": {
+                      "$tag": "String"
+                    },
+                    "len": 5
+                  }
                 },
-                "1": {
-                  "$tag": "Character",
-                  "0": [
-                    [
-                      39,
-                      39
-                    ]
-                  ]
-                }
+                "class": {
+                  "$tag": "String"
+                },
+                "len": 6
               }
-            }
+            },
+            "class": {
+              "$tag": "String"
+            },
+            "len": 7
           },
           "\n      let code = @strconv.parse_int?(t, base=16).unwrap()\n      buffer.write_char(Char::from_int(code))\n      string_inner_rquote(buffer, lexbuf)\n    "
         ],
         [
           {
-            "$tag": "Concat",
-            "0": {
-              "$tag": "Character",
-              "0": [
-                [
-                  92,
-                  92
-                ]
-              ]
-            },
-            "1": {
+            "desc": {
               "$tag": "Concat",
               "0": {
-                "$tag": "Character",
-                "0": [
-                  [
-                    117,
-                    117
-                  ]
-                ]
-              },
-              "1": {
-                "$tag": "Concat",
-                "0": {
+                "desc": {
                   "$tag": "Character",
                   "0": [
                     [
-                      123,
-                      123
+                      92,
+                      92
                     ]
                   ]
                 },
-                "1": {
+                "class": {
+                  "$tag": "Char"
+                },
+                "len": 1
+              },
+              "1": {
+                "desc": {
                   "$tag": "Concat",
                   "0": {
-                    "$tag": "Capture",
-                    "0": {
-                      "$tag": "Repetition",
-                      "0": {
-                        "$tag": "Character",
-                        "0": [
-                          [
-                            48,
-                            57
-                          ],
-                          [
-                            65,
-                            70
-                          ],
-                          [
-                            97,
-                            102
-                          ]
+                    "desc": {
+                      "$tag": "Character",
+                      "0": [
+                        [
+                          117,
+                          117
                         ]
-                      }
+                      ]
                     },
-                    "1": "t"
+                    "class": {
+                      "$tag": "Char"
+                    },
+                    "len": 1
                   },
                   "1": {
-                    "$tag": "Concat",
-                    "0": {
-                      "$tag": "Character",
-                      "0": [
-                        [
-                          125,
-                          125
-                        ]
-                      ]
+                    "desc": {
+                      "$tag": "Concat",
+                      "0": {
+                        "desc": {
+                          "$tag": "Character",
+                          "0": [
+                            [
+                              123,
+                              123
+                            ]
+                          ]
+                        },
+                        "class": {
+                          "$tag": "Char"
+                        },
+                        "len": 1
+                      },
+                      "1": {
+                        "desc": {
+                          "$tag": "Concat",
+                          "0": {
+                            "desc": {
+                              "$tag": "Capture",
+                              "0": {
+                                "desc": {
+                                  "$tag": "Repetition",
+                                  "0": {
+                                    "desc": {
+                                      "$tag": "Character",
+                                      "0": [
+                                        [
+                                          48,
+                                          57
+                                        ],
+                                        [
+                                          65,
+                                          70
+                                        ],
+                                        [
+                                          97,
+                                          102
+                                        ]
+                                      ]
+                                    },
+                                    "class": {
+                                      "$tag": "Char"
+                                    },
+                                    "len": 1
+                                  }
+                                },
+                                "class": {
+                                  "$tag": "String"
+                                }
+                              },
+                              "1": "t"
+                            },
+                            "class": {
+                              "$tag": "String"
+                            }
+                          },
+                          "1": {
+                            "desc": {
+                              "$tag": "Concat",
+                              "0": {
+                                "desc": {
+                                  "$tag": "Character",
+                                  "0": [
+                                    [
+                                      125,
+                                      125
+                                    ]
+                                  ]
+                                },
+                                "class": {
+                                  "$tag": "Char"
+                                },
+                                "len": 1
+                              },
+                              "1": {
+                                "desc": {
+                                  "$tag": "Character",
+                                  "0": [
+                                    [
+                                      39,
+                                      39
+                                    ]
+                                  ]
+                                },
+                                "class": {
+                                  "$tag": "Char"
+                                },
+                                "len": 1
+                              }
+                            },
+                            "class": {
+                              "$tag": "String"
+                            },
+                            "len": 2
+                          }
+                        },
+                        "class": {
+                          "$tag": "String"
+                        }
+                      }
                     },
-                    "1": {
-                      "$tag": "Character",
-                      "0": [
-                        [
-                          39,
-                          39
-                        ]
-                      ]
+                    "class": {
+                      "$tag": "String"
                     }
                   }
+                },
+                "class": {
+                  "$tag": "String"
                 }
               }
+            },
+            "class": {
+              "$tag": "String"
             }
           },
           "\n      let code = @strconv.parse_int?(t, base=16).unwrap()\n      buffer.write_char(Char::from_int(code))\n      string_inner_rquote(buffer, lexbuf)\n    "
         ],
         [
           {
-            "$tag": "Capture",
-            "0": {
-              "$tag": "Character",
-              "0": [
-                [
-                  0,
-                  1114111
-                ]
-              ]
+            "desc": {
+              "$tag": "Capture",
+              "0": {
+                "desc": {
+                  "$tag": "Character",
+                  "0": [
+                    [
+                      0,
+                      1114111
+                    ]
+                  ]
+                },
+                "class": {
+                  "$tag": "Char"
+                },
+                "len": 1
+              },
+              "1": "t"
             },
-            "1": "t"
+            "class": {
+              "$tag": "Char"
+            },
+            "len": 1
           },
           "\n      buffer.write_char(t)\n      string_inner_rquote(buffer, lexbuf)\n    "
         ],
         [
           {
-            "$tag": "EOF"
+            "desc": {
+              "$tag": "EOF"
+            },
+            "class": {
+              "$tag": "String"
+            }
           },
           " abort(\"Unexpected end of input\") "
         ]
@@ -1893,235 +3312,421 @@
       "patterns": [
         [
           {
-            "$tag": "Capture",
-            "0": {
-              "$tag": "Concat",
+            "desc": {
+              "$tag": "Capture",
               "0": {
-                "$tag": "Character",
-                "0": [
-                  [
-                    47,
-                    47
-                  ]
-                ]
-              },
-              "1": {
-                "$tag": "Concat",
-                "0": {
-                  "$tag": "Character",
-                  "0": [
-                    [
-                      47,
-                      47
-                    ]
-                  ]
-                },
-                "1": {
+                "desc": {
                   "$tag": "Concat",
                   "0": {
-                    "$tag": "Repetition",
-                    "0": {
+                    "desc": {
                       "$tag": "Character",
                       "0": [
                         [
-                          0,
-                          9
-                        ],
-                        [
-                          11,
-                          1114111
+                          47,
+                          47
                         ]
                       ]
-                    }
+                    },
+                    "class": {
+                      "$tag": "Char"
+                    },
+                    "len": 1
                   },
                   "1": {
-                    "$tag": "Character",
-                    "0": [
-                      [
-                        10,
-                        10
-                      ]
-                    ]
+                    "desc": {
+                      "$tag": "Concat",
+                      "0": {
+                        "desc": {
+                          "$tag": "Character",
+                          "0": [
+                            [
+                              47,
+                              47
+                            ]
+                          ]
+                        },
+                        "class": {
+                          "$tag": "Char"
+                        },
+                        "len": 1
+                      },
+                      "1": {
+                        "desc": {
+                          "$tag": "Concat",
+                          "0": {
+                            "desc": {
+                              "$tag": "Repetition",
+                              "0": {
+                                "desc": {
+                                  "$tag": "Character",
+                                  "0": [
+                                    [
+                                      0,
+                                      9
+                                    ],
+                                    [
+                                      11,
+                                      1114111
+                                    ]
+                                  ]
+                                },
+                                "class": {
+                                  "$tag": "Char"
+                                },
+                                "len": 1
+                              }
+                            },
+                            "class": {
+                              "$tag": "String"
+                            }
+                          },
+                          "1": {
+                            "desc": {
+                              "$tag": "Character",
+                              "0": [
+                                [
+                                  10,
+                                  10
+                                ]
+                              ]
+                            },
+                            "class": {
+                              "$tag": "Char"
+                            },
+                            "len": 1
+                          }
+                        },
+                        "class": {
+                          "$tag": "String"
+                        }
+                      }
+                    },
+                    "class": {
+                      "$tag": "String"
+                    }
                   }
+                },
+                "class": {
+                  "$tag": "String"
                 }
-              }
+              },
+              "1": "t"
             },
-            "1": "t"
+            "class": {
+              "$tag": "String"
+            }
           },
           "\n      buffer.write_string(t)\n      code_rbrace(buffer, lexbuf)\n    "
         ],
         [
           {
-            "$tag": "Capture",
-            "0": {
-              "$tag": "Concat",
+            "desc": {
+              "$tag": "Capture",
               "0": {
-                "$tag": "Character",
-                "0": [
-                  [
-                    34,
-                    34
-                  ]
-                ]
-              },
-              "1": {
-                "$tag": "Concat",
-                "0": {
-                  "$tag": "Alter",
+                "desc": {
+                  "$tag": "Concat",
                   "0": {
-                    "$tag": "Repetition",
-                    "0": {
-                      "$tag": "Alter",
-                      "0": {
-                        "$tag": "Character",
-                        "0": [
-                          [
-                            0,
-                            33
-                          ],
-                          [
-                            35,
-                            91
-                          ],
-                          [
-                            93,
-                            1114111
-                          ]
+                    "desc": {
+                      "$tag": "Character",
+                      "0": [
+                        [
+                          34,
+                          34
                         ]
+                      ]
+                    },
+                    "class": {
+                      "$tag": "Char"
+                    },
+                    "len": 1
+                  },
+                  "1": {
+                    "desc": {
+                      "$tag": "Concat",
+                      "0": {
+                        "desc": {
+                          "$tag": "Alter",
+                          "0": {
+                            "desc": {
+                              "$tag": "Repetition",
+                              "0": {
+                                "desc": {
+                                  "$tag": "Alter",
+                                  "0": {
+                                    "desc": {
+                                      "$tag": "Character",
+                                      "0": [
+                                        [
+                                          0,
+                                          33
+                                        ],
+                                        [
+                                          35,
+                                          91
+                                        ],
+                                        [
+                                          93,
+                                          1114111
+                                        ]
+                                      ]
+                                    },
+                                    "class": {
+                                      "$tag": "Char"
+                                    },
+                                    "len": 1
+                                  },
+                                  "1": {
+                                    "desc": {
+                                      "$tag": "Concat",
+                                      "0": {
+                                        "desc": {
+                                          "$tag": "Character",
+                                          "0": [
+                                            [
+                                              92,
+                                              92
+                                            ]
+                                          ]
+                                        },
+                                        "class": {
+                                          "$tag": "Char"
+                                        },
+                                        "len": 1
+                                      },
+                                      "1": {
+                                        "desc": {
+                                          "$tag": "Character",
+                                          "0": [
+                                            [
+                                              0,
+                                              1114111
+                                            ]
+                                          ]
+                                        },
+                                        "class": {
+                                          "$tag": "Char"
+                                        },
+                                        "len": 1
+                                      }
+                                    },
+                                    "class": {
+                                      "$tag": "String"
+                                    },
+                                    "len": 2
+                                  }
+                                },
+                                "class": {
+                                  "$tag": "String"
+                                }
+                              }
+                            },
+                            "class": {
+                              "$tag": "String"
+                            }
+                          },
+                          "1": {
+                            "desc": {
+                              "$tag": "Epsilon"
+                            },
+                            "class": {
+                              "$tag": "String"
+                            },
+                            "len": 0
+                          }
+                        },
+                        "class": {
+                          "$tag": "String"
+                        }
                       },
                       "1": {
-                        "$tag": "Concat",
-                        "0": {
+                        "desc": {
                           "$tag": "Character",
                           "0": [
                             [
-                              92,
-                              92
+                              34,
+                              34
                             ]
                           ]
                         },
-                        "1": {
+                        "class": {
+                          "$tag": "Char"
+                        },
+                        "len": 1
+                      }
+                    },
+                    "class": {
+                      "$tag": "String"
+                    }
+                  }
+                },
+                "class": {
+                  "$tag": "String"
+                }
+              },
+              "1": "t"
+            },
+            "class": {
+              "$tag": "String"
+            }
+          },
+          "\n      buffer.write_string(t)\n      code_rbrace(buffer, lexbuf)\n    "
+        ],
+        [
+          {
+            "desc": {
+              "$tag": "Capture",
+              "0": {
+                "desc": {
+                  "$tag": "Concat",
+                  "0": {
+                    "desc": {
+                      "$tag": "Character",
+                      "0": [
+                        [
+                          39,
+                          39
+                        ]
+                      ]
+                    },
+                    "class": {
+                      "$tag": "Char"
+                    },
+                    "len": 1
+                  },
+                  "1": {
+                    "desc": {
+                      "$tag": "Concat",
+                      "0": {
+                        "desc": {
                           "$tag": "Character",
                           "0": [
                             [
                               0,
+                              38
+                            ],
+                            [
+                              40,
+                              91
+                            ],
+                            [
+                              93,
                               1114111
                             ]
                           ]
-                        }
+                        },
+                        "class": {
+                          "$tag": "Char"
+                        },
+                        "len": 1
+                      },
+                      "1": {
+                        "desc": {
+                          "$tag": "Character",
+                          "0": [
+                            [
+                              39,
+                              39
+                            ]
+                          ]
+                        },
+                        "class": {
+                          "$tag": "Char"
+                        },
+                        "len": 1
                       }
-                    }
-                  },
-                  "1": {
-                    "$tag": "Epsilon"
+                    },
+                    "class": {
+                      "$tag": "String"
+                    },
+                    "len": 2
                   }
                 },
-                "1": {
-                  "$tag": "Character",
-                  "0": [
-                    [
-                      34,
-                      34
-                    ]
-                  ]
-                }
-              }
-            },
-            "1": "t"
-          },
-          "\n      buffer.write_string(t)\n      code_rbrace(buffer, lexbuf)\n    "
-        ],
-        [
-          {
-            "$tag": "Capture",
-            "0": {
-              "$tag": "Concat",
-              "0": {
-                "$tag": "Character",
-                "0": [
-                  [
-                    39,
-                    39
-                  ]
-                ]
-              },
-              "1": {
-                "$tag": "Concat",
-                "0": {
-                  "$tag": "Character",
-                  "0": [
-                    [
-                      0,
-                      38
-                    ],
-                    [
-                      40,
-                      91
-                    ],
-                    [
-                      93,
-                      1114111
-                    ]
-                  ]
+                "class": {
+                  "$tag": "String"
                 },
-                "1": {
-                  "$tag": "Character",
-                  "0": [
-                    [
-                      39,
-                      39
-                    ]
-                  ]
-                }
-              }
+                "len": 3
+              },
+              "1": "t"
             },
-            "1": "t"
+            "class": {
+              "$tag": "String"
+            },
+            "len": 3
           },
           "\n      buffer.write_string(t)\n      code_rbrace(buffer, lexbuf)\n    "
         ],
         [
           {
-            "$tag": "Character",
-            "0": [
-              [
-                123,
-                123
+            "desc": {
+              "$tag": "Character",
+              "0": [
+                [
+                  123,
+                  123
+                ]
               ]
-            ]
+            },
+            "class": {
+              "$tag": "Char"
+            },
+            "len": 1
           },
           "\n      buffer.write_string(\"{\")\n      let _ = code_rbrace(buffer, lexbuf)\n      buffer.write_string(\"}\")\n      code_rbrace(buffer, lexbuf)\n    "
         ],
         [
           {
-            "$tag": "Character",
-            "0": [
-              [
-                125,
-                125
+            "desc": {
+              "$tag": "Character",
+              "0": [
+                [
+                  125,
+                  125
+                ]
               ]
-            ]
+            },
+            "class": {
+              "$tag": "Char"
+            },
+            "len": 1
           },
           " $endpos "
         ],
         [
           {
-            "$tag": "Capture",
-            "0": {
-              "$tag": "Character",
-              "0": [
-                [
-                  0,
-                  1114111
-                ]
-              ]
+            "desc": {
+              "$tag": "Capture",
+              "0": {
+                "desc": {
+                  "$tag": "Character",
+                  "0": [
+                    [
+                      0,
+                      1114111
+                    ]
+                  ]
+                },
+                "class": {
+                  "$tag": "Char"
+                },
+                "len": 1
+              },
+              "1": "t"
             },
-            "1": "t"
+            "class": {
+              "$tag": "Char"
+            },
+            "len": 1
           },
           "\n      buffer.write_char(t)\n      code_rbrace(buffer, lexbuf)\n    "
         ],
         [
           {
-            "$tag": "EOF"
+            "desc": {
+              "$tag": "EOF"
+            },
+            "class": {
+              "$tag": "String"
+            }
           },
           " abort(\"Unexpected end of input\") "
         ]

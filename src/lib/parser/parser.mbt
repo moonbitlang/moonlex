@@ -13,7 +13,6 @@ pub(all) enum Token {
   LBRACKET
   RBRACKET
   EQ
-  COLON
   SEMICOLON
   FAT_ARROW
   BAR
@@ -44,7 +43,6 @@ pub fn Token::kind(self : Token) -> TokenKind {
     LBRACKET => TK_LBRACKET
     RBRACKET => TK_RBRACKET
     EQ => TK_EQ
-    COLON => TK_COLON
     SEMICOLON => TK_SEMICOLON
     FAT_ARROW => TK_FAT_ARROW
     BAR => TK_BAR
@@ -75,7 +73,6 @@ pub(all) enum TokenKind {
   TK_LBRACKET
   TK_RBRACKET
   TK_EQ
-  TK_COLON
   TK_SEMICOLON
   TK_FAT_ARROW
   TK_BAR
@@ -107,7 +104,6 @@ pub impl Show for TokenKind with output(self, logger) {
       TK_LBRACKET => "\"[\""
       TK_RBRACKET => "\"]\""
       TK_EQ => "\"=\""
-      TK_COLON => "\":\""
       TK_SEMICOLON => "\";\""
       TK_FAT_ARROW => "\"=>\""
       TK_BAR => "\"|\""
@@ -181,7 +177,6 @@ priv enum YYSymbol {
   T_LBRACKET
   T_RBRACKET
   T_EQ
-  T_COLON
   T_SEMICOLON
   T_FAT_ARROW
   T_BAR
@@ -229,279 +224,167 @@ fn init {
 }
 
 // file:///./parser.mbty
-// 151|    CHAR                                { fn { _ctx => @regex.char_class(@char_set.singleton($1)) } }
+// 142|    UNDERSCORE                          { fn { _ctx => @regex.char_class(@char_set.any) } }
 fn yy_action_0(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  guard _args[0].0 is YYObj_Char(_dollar1)
-  YYObj__Context______type_Regex({();  fn { _ctx => @regex.char_class(@char_set.singleton(_dollar1)) } })
+  YYObj__Context______type_Regex({();  fn { _ctx => @regex.char_class(@char_set.any) } })
 }
 
 // file:///./parser.mbty
-// 100|    alternation                         { $1 }
+// 100|    alternation "as" LC_IDENT           { fn { ctx => @regex.bind($1(ctx), $3) } }
 fn yy_action_1(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  guard _args[0].0 is YYObj__Context______type_Regex(_dollar1)
-  YYObj__Context______type_Regex({();  _dollar1 })
-}
-
-// file:///./parser.mbty
-// 105|    concatenation                       { $1 }
-fn yy_action_2(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  guard _args[0].0 is YYObj__Context______type_Regex(_dollar1)
-  YYObj__Context______type_Regex({();  _dollar1 })
-}
-
-// file:///./parser.mbty
-// 116|    atom BACKSLASH atom                 {
-// 117|                                          fn (ctx) {
-// 118|                                            guard $1(ctx) is Character(cset1) && $3(ctx) is Character(cset2)
-// 119|                                            @regex.char_class(cset1.difference(cset2))
-// 120|                                          }
-// 121|                                        }
-fn yy_action_3(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  guard _args[0].0 is YYObj__Context______type_Regex(_dollar1)
-  guard _args[2].0 is YYObj__Context______type_Regex(_dollar3)
-  YYObj__Context______type_Regex({(); 
-                                          fn (ctx) {
-                                            guard _dollar1(ctx) is Character(cset1) && _dollar3(ctx) is Character(cset2)
-                                            @regex.char_class(cset1.difference(cset2))
-                                          }
-                                        })
-}
-
-// file:///./parser.mbty
-// 96|    alias                               { $1 }
-fn yy_action_4(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  guard _args[0].0 is YYObj__Context______type_Regex(_dollar1)
-  YYObj__Context______type_Regex({();  _dollar1 })
-}
-
-// file:///./parser.mbty
-// 134|    atom "?"                            { fn { ctx => @regex.opt($1(ctx)) } }
-fn yy_action_5(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  guard _args[0].0 is YYObj__Context______type_Regex(_dollar1)
-  YYObj__Context______type_Regex({();  fn { ctx => @regex.opt(_dollar1(ctx)) } })
-}
-
-// file:///./parser.mbty
-// 139|    "(" LC_IDENT ":" alias ")"          {
-// 140|                                          fn (ctx) {
-// 141|                                            match $2 {
-// 142|                                              "ascii" => @regex.embed($4(ctx), encoding=Ascii)
-// 143|                                              "latin1" => @regex.embed($4(ctx), encoding=Latin1)
-// 144|                                              "utf8" => @regex.embed($4(ctx), encoding=Utf8)
-// 145|                                              _ => panic()
-// 146|                                            }
-// 147|                                          }
-// 148|                                        }
-fn yy_action_6(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  guard _args[1].0 is YYObj_String(_dollar2)
-  guard _args[3].0 is YYObj__Context______type_Regex(_dollar4)
-  YYObj__Context______type_Regex({(); 
-                                          fn (ctx) {
-                                            match _dollar2 {
-                                              "ascii" => @regex.embed(_dollar4(ctx), encoding=Ascii)
-                                              "latin1" => @regex.embed(_dollar4(ctx), encoding=Latin1)
-                                              "utf8" => @regex.embed(_dollar4(ctx), encoding=Utf8)
-                                              _ => panic()
-                                            }
-                                          }
-                                        })
-}
-
-// file:///./parser.mbty
-// 152|    STRING                              { fn { _ctx => $1.iter().fold(init=@regex.epsilon, fn(acc, c) { @regex.seq(acc, @regex.char_class(@char_set.singleton(c))) }) } }
-fn yy_action_7(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  guard _args[0].0 is YYObj_String(_dollar1)
-  YYObj__Context______type_Regex({();  fn { _ctx => _dollar1.iter().fold(init=@regex.epsilon, fn(acc, c) { @regex.seq(acc, @regex.char_class(@char_set.singleton(c))) }) } })
-}
-
-// file:///./parser.mbty
-// 154|    EOF                                 { fn { _ctx => @regex.eof } }
-fn yy_action_8(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  YYObj__Context______type_Regex({();  fn { _ctx => @regex.eof } })
-}
-
-// file:///./parser.mbty
-// 111|    repetition concatenation            { fn { ctx => @regex.seq($1(ctx), $2(ctx)) } }
-fn yy_action_9(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  guard _args[0].0 is YYObj__Context______type_Regex(_dollar1)
-  guard _args[1].0 is YYObj__Context______type_Regex(_dollar2)
-  YYObj__Context______type_Regex({();  fn { ctx => @regex.seq(_dollar1(ctx), _dollar2(ctx)) } })
-}
-
-// file:///./parser.mbty
-// 88|                                        { fn { _ctx => Nil } }
-fn yy_action_10(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  YYObj__Context______immut_list_T___type_Regex___type_CodeBlock__({();  fn { _ctx => Nil } })
-}
-
-// file:///./parser.mbty
-// 150|    LC_IDENT                            { fn { ctx => ctx.named_regexes.get($1).unwrap() } }
-fn yy_action_11(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  guard _args[0].0 is YYObj_String(_dollar1)
-  YYObj__Context______type_Regex({();  fn { ctx => ctx.named_regexes.get(_dollar1).unwrap() } })
-}
-
-// file:///./parser.mbty
-// 163|    character_class_item character_class_inner 
-// 164|                                        { $1 + $2 }
-fn yy_action_12(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  guard _args[0].0 is YYObj__char_set_T(_dollar1)
-  guard _args[1].0 is YYObj__char_set_T(_dollar2)
-  YYObj__char_set_T({();  _dollar1 + _dollar2 })
-}
-
-// file:///./parser.mbty
-// 92|    regex "=>" LBRACE_CODE_RBRACE       { fn { ctx => ($1(ctx), $3) } }
-fn yy_action_13(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  guard _args[0].0 is YYObj__Context______type_Regex(_dollar1)
-  guard _args[2].0 is YYObj_String(_dollar3)
-  YYObj__Context_______type_Regex___type_CodeBlock_({();  fn { ctx => (_dollar1(ctx), _dollar3) } })
-}
-
-// file:///./parser.mbty
-// 110|    repetition                          { $1 }
-fn yy_action_14(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  guard _args[0].0 is YYObj__Context______type_Regex(_dollar1)
-  YYObj__Context______type_Regex({();  _dollar1 })
-}
-
-// file:///./parser.mbty
-// 39|    lex EOI                             { $1 }
-fn yy_action_15(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  guard _args[0].0 is YYObj__Context______type_Lex(_dollar1)
-  YYObj__Context______type_Lex({();  _dollar1 })
-}
-
-// file:///./parser.mbty
-// 82|    RULE_LC_IDENT_LPAREN_CODE_RPAREN_ARROW_CODE_LBRACE "parse {" rule_item_list "}" "}" 
-// 83|                                        { fn { ctx => { name: $1.0, signature: $1.1, patterns: $3(ctx).to_array() } } }
-fn yy_action_16(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  guard _args[0].0 is YYObj__String__String_(_dollar1)
-  guard _args[2].0 is YYObj__Context______immut_list_T___type_Regex___type_CodeBlock__(_dollar3)
-  YYObj__Context______type_Rule({();  fn { ctx => { name: _dollar1.0, signature: _dollar1.1, patterns: _dollar3(ctx).to_array() } } })
-}
-
-// file:///./parser.mbty
-// 101|    alternation "as" LC_IDENT           { fn { ctx => @regex.bind($1(ctx), $3) } }
-fn yy_action_17(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   guard _args[0].0 is YYObj__Context______type_Regex(_dollar1)
   guard _args[2].0 is YYObj_String(_dollar3)
   YYObj__Context______type_Regex({();  fn { ctx => @regex.bind(_dollar1(ctx), _dollar3) } })
 }
 
 // file:///./parser.mbty
-// 87|    rule_item rule_item_list            { fn { ctx => Cons($1(ctx), $2(ctx)) } }
-fn yy_action_18(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  guard _args[0].0 is YYObj__Context_______type_Regex___type_CodeBlock_(_dollar1)
-  guard _args[1].0 is YYObj__Context______immut_list_T___type_Regex___type_CodeBlock__(_dollar2)
-  YYObj__Context______immut_list_T___type_Regex___type_CodeBlock__({();  fn { ctx => Cons(_dollar1(ctx), _dollar2(ctx)) } })
-}
-
-// file:///./parser.mbty
-// 73|    "regex" LC_IDENT "=" regex ";"      { fn { ctx => ctx.define_regex($2, $4(ctx)) } }
-fn yy_action_19(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  guard _args[1].0 is YYObj_String(_dollar2)
-  guard _args[3].0 is YYObj__Context______type_Regex(_dollar4)
-  YYObj__Context_____Context({();  fn { ctx => ctx.define_regex(_dollar2, _dollar4(ctx)) } })
-}
-
-// file:///./parser.mbty
-// 47|                                        { fn { _ctx => { header: "", rules: [],  trailer: "" } } }
-fn yy_action_20(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  YYObj__Context______type_Lex({();  fn { _ctx => { header: "", rules: [],  trailer: "" } } })
-}
-
-// file:///./parser.mbty
-// 169|    CHAR                                { @char_set.singleton($1) }
-fn yy_action_21(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  guard _args[0].0 is YYObj_Char(_dollar1)
-  YYObj__char_set_T({();  @char_set.singleton(_dollar1) })
-}
-
-// file:///./parser.mbty
-// 133|    atom "+"                            { fn { ctx => @regex.plus($1(ctx)) } }
-fn yy_action_22(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  guard _args[0].0 is YYObj__Context______type_Regex(_dollar1)
-  YYObj__Context______type_Regex({();  fn { ctx => @regex.plus(_dollar1(ctx)) } })
-}
-
-// file:///./parser.mbty
-// 68|    named_regex named_regex_list        { fn { ctx => $2($1(ctx)) } }
-fn yy_action_23(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  guard _args[1].0 is YYObj__Context_____Context(_dollar2)
-  guard _args[0].0 is YYObj__Context_____Context(_dollar1)
-  YYObj__Context_____Context({();  fn { ctx => _dollar2(_dollar1(ctx)) } })
-}
-
-// file:///./parser.mbty
-// 64|                                        { "" }
-fn yy_action_24(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  YYObj_String({();  "" })
-}
-
-// file:///./parser.mbty
-// 153|    UNDERSCORE                          { fn { _ctx => @regex.char_class(@char_set.any) } }
-fn yy_action_25(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  YYObj__Context______type_Regex({();  fn { _ctx => @regex.char_class(@char_set.any) } })
-}
-
-// file:///./parser.mbty
-// 158|    "[" character_class_inner "]"       { $2 }
-fn yy_action_26(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  guard _args[1].0 is YYObj__char_set_T(_dollar2)
-  YYObj__char_set_T({();  _dollar2 })
-}
-
-// file:///./parser.mbty
-// 106|    concatenation "|" alternation       { fn { ctx => @regex.alt($1(ctx), $3(ctx)) } }
-fn yy_action_27(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+// 105|    concatenation "|" alternation       { fn { ctx => @regex.alt($1(ctx), $3(ctx)) } }
+fn yy_action_2(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   guard _args[0].0 is YYObj__Context______type_Regex(_dollar1)
   guard _args[2].0 is YYObj__Context______type_Regex(_dollar3)
   YYObj__Context______type_Regex({();  fn { ctx => @regex.alt(_dollar1(ctx), _dollar3(ctx)) } })
 }
 
 // file:///./parser.mbty
-// 122|    differentiation BACKSLASH atom      {
-// 123|                                          fn (ctx) {
-// 124|                                            guard $1(ctx) is Character(cset1) && $3(ctx) is Character(cset2)
-// 125|                                            @regex.char_class(cset1.difference(cset2))
-// 126|                                          }
-// 127|                                        }
-fn yy_action_28(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+// 121|    differentiation BACKSLASH atom      {
+// 122|                                          fn (ctx) {
+// 123|                                            guard $1(ctx).desc is Character(cset1) && $3(ctx).desc is Character(cset2)
+// 124|                                            @regex.char_class(cset1.difference(cset2))
+// 125|                                          }
+// 126|                                        }
+fn yy_action_3(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   guard _args[0].0 is YYObj__Context______type_Regex(_dollar1)
   guard _args[2].0 is YYObj__Context______type_Regex(_dollar3)
   YYObj__Context______type_Regex({(); 
                                           fn (ctx) {
-                                            guard _dollar1(ctx) is Character(cset1) && _dollar3(ctx) is Character(cset2)
+                                            guard _dollar1(ctx).desc is Character(cset1) && _dollar3(ctx).desc is Character(cset2)
                                             @regex.char_class(cset1.difference(cset2))
                                           }
                                         })
 }
 
 // file:///./parser.mbty
-// 78|    rule nonempty_rule_list             { fn { ctx => Cons($1(ctx), $2(ctx)) } }
-fn yy_action_29(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  guard _args[0].0 is YYObj__Context______type_Rule(_dollar1)
-  guard _args[1].0 is YYObj__Context______immut_list_T__type_Rule_(_dollar2)
-  YYObj__Context______immut_list_T__type_Rule_({();  fn { ctx => Cons(_dollar1(ctx), _dollar2(ctx)) } })
+// 99|    alternation                         { $1 }
+fn yy_action_4(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  guard _args[0].0 is YYObj__Context______type_Regex(_dollar1)
+  YYObj__Context______type_Regex({();  _dollar1 })
 }
 
 // file:///./parser.mbty
-// 77|    rule                                { fn { ctx => Cons($1(ctx), Nil) } }
-fn yy_action_30(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+// 137|    "(" alias ")"                       { $2 }
+fn yy_action_5(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  guard _args[1].0 is YYObj__Context______type_Regex(_dollar2)
+  YYObj__Context______type_Regex({();  _dollar2 })
+}
+
+// file:///./parser.mbty
+// 139|    LC_IDENT                            { fn { ctx => ctx.named_regexes.get($1).unwrap() } }
+fn yy_action_6(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  guard _args[0].0 is YYObj_String(_dollar1)
+  YYObj__Context______type_Regex({();  fn { ctx => ctx.named_regexes.get(_dollar1).unwrap() } })
+}
+
+// file:///./parser.mbty
+// 143|    EOF                                 { fn { _ctx => @regex.eof } }
+fn yy_action_7(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  YYObj__Context______type_Regex({();  fn { _ctx => @regex.eof } })
+}
+
+// file:///./parser.mbty
+// 148|    "[" "^" character_class_inner "]"   { $3.negated() }
+fn yy_action_8(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  guard _args[2].0 is YYObj__char_set_T(_dollar3)
+  YYObj__char_set_T({();  _dollar3.negated() })
+}
+
+// file:///./parser.mbty
+// 111|    differentiation                     { $1 }
+fn yy_action_9(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  guard _args[0].0 is YYObj__Context______type_Regex(_dollar1)
+  YYObj__Context______type_Regex({();  _dollar1 })
+}
+
+// file:///./parser.mbty
+// 91|    regex "=>" LBRACE_CODE_RBRACE       { fn { ctx => ($1(ctx), $3) } }
+fn yy_action_10(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  guard _args[0].0 is YYObj__Context______type_Regex(_dollar1)
+  guard _args[2].0 is YYObj_String(_dollar3)
+  YYObj__Context_______type_Regex___type_CodeBlock_({();  fn { ctx => (_dollar1(ctx), _dollar3) } })
+}
+
+// file:///./parser.mbty
+// 141|    STRING                              { fn { _ctx => $1.iter().fold(init=@regex.epsilon, fn(acc, c) { @regex.seq(acc, @regex.char_class(@char_set.singleton(c))) }) } }
+fn yy_action_11(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  guard _args[0].0 is YYObj_String(_dollar1)
+  YYObj__Context______type_Regex({();  fn { _ctx => _dollar1.iter().fold(init=@regex.epsilon, fn(acc, c) { @regex.seq(acc, @regex.char_class(@char_set.singleton(c))) }) } })
+}
+
+// file:///./parser.mbty
+// 158|    CHAR                                { @char_set.singleton($1) }
+fn yy_action_12(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  guard _args[0].0 is YYObj_Char(_dollar1)
+  YYObj__char_set_T({();  @char_set.singleton(_dollar1) })
+}
+
+// file:///./parser.mbty
+// 95|    alias                               { $1 }
+fn yy_action_13(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  guard _args[0].0 is YYObj__Context______type_Regex(_dollar1)
+  YYObj__Context______type_Regex({();  _dollar1 })
+}
+
+// file:///./parser.mbty
+// 110|    repetition concatenation            { fn { ctx => @regex.seq($1(ctx), $2(ctx)) } }
+fn yy_action_14(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  guard _args[0].0 is YYObj__Context______type_Regex(_dollar1)
+  guard _args[1].0 is YYObj__Context______type_Regex(_dollar2)
+  YYObj__Context______type_Regex({();  fn { ctx => @regex.seq(_dollar1(ctx), _dollar2(ctx)) } })
+}
+
+// file:///./parser.mbty
+// 42|    regex EOI                           { $1 }
+fn yy_action_15(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  guard _args[0].0 is YYObj__Context______type_Regex(_dollar1)
+  YYObj__Context______type_Regex({();  _dollar1 })
+}
+
+// file:///./parser.mbty
+// 86|    rule_item rule_item_list            { fn { ctx => Cons($1(ctx), $2(ctx)) } }
+fn yy_action_16(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  guard _args[0].0 is YYObj__Context_______type_Regex___type_CodeBlock_(_dollar1)
+  guard _args[1].0 is YYObj__Context______immut_list_T___type_Regex___type_CodeBlock__(_dollar2)
+  YYObj__Context______immut_list_T___type_Regex___type_CodeBlock__({();  fn { ctx => Cons(_dollar1(ctx), _dollar2(ctx)) } })
+}
+
+// file:///./parser.mbty
+// 104|    concatenation                       { $1 }
+fn yy_action_17(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  guard _args[0].0 is YYObj__Context______type_Regex(_dollar1)
+  YYObj__Context______type_Regex({();  _dollar1 })
+}
+
+// file:///./parser.mbty
+// 87|                                        { fn { _ctx => Nil } }
+fn yy_action_18(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  YYObj__Context______immut_list_T___type_Regex___type_CodeBlock__({();  fn { _ctx => Nil } })
+}
+
+// file:///./parser.mbty
+// 76|    rule                                { fn { ctx => Cons($1(ctx), Nil) } }
+fn yy_action_19(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   guard _args[0].0 is YYObj__Context______type_Rule(_dollar1)
   YYObj__Context______immut_list_T__type_Rule_({();  fn { ctx => Cons(_dollar1(ctx), Nil) } })
 }
 
 // file:///./parser.mbty
-// 48|    header named_regex_list nonempty_rule_list trailer 
-// 49|                                        {
-// 50|                                          fn (ctx) {
-// 51|                                            let ctx = $2(ctx)
-// 52|                                            { header: $1, rules: $3(ctx).to_array(), trailer: $4 }
-// 53|                                          } 
-// 54|                                        }
-fn yy_action_31(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+// 47|    header named_regex_list nonempty_rule_list trailer 
+// 48|                                        {
+// 49|                                          fn (ctx) {
+// 50|                                            let ctx = $2(ctx)
+// 51|                                            { header: $1, rules: $3(ctx).to_array(), trailer: $4 }
+// 52|                                          } 
+// 53|                                        }
+fn yy_action_20(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   guard _args[1].0 is YYObj__Context_____Context(_dollar2)
   guard _args[0].0 is YYObj_String(_dollar1)
   guard _args[2].0 is YYObj__Context______immut_list_T__type_Rule_(_dollar3)
@@ -515,34 +398,115 @@ fn yy_action_31(_last_pos : Position, _args : ArrayView[(YYObj, Position, Positi
 }
 
 // file:///./parser.mbty
-// 59|                                        { "" }
-fn yy_action_32(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  YYObj_String({();  "" })
+// 133|    atom "?"                            { fn { ctx => @regex.opt($1(ctx)) } }
+fn yy_action_21(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  guard _args[0].0 is YYObj__Context______type_Regex(_dollar1)
+  YYObj__Context______type_Regex({();  fn { ctx => @regex.opt(_dollar1(ctx)) } })
 }
 
 // file:///./parser.mbty
-// 138|    "(" alias ")"                       { $2 }
-fn yy_action_33(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  guard _args[1].0 is YYObj__Context______type_Regex(_dollar2)
-  YYObj__Context______type_Regex({();  _dollar2 })
+// 68|                                        { fn { ctx => ctx } }
+fn yy_action_22(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  YYObj__Context_____Context({();  fn { ctx => ctx } })
 }
 
 // file:///./parser.mbty
-// 43|    regex EOI                           { $1 }
-fn yy_action_34(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+// 67|    named_regex named_regex_list        { fn { ctx => $2($1(ctx)) } }
+fn yy_action_23(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  guard _args[1].0 is YYObj__Context_____Context(_dollar2)
+  guard _args[0].0 is YYObj__Context_____Context(_dollar1)
+  YYObj__Context_____Context({();  fn { ctx => _dollar2(_dollar1(ctx)) } })
+}
+
+// file:///./parser.mbty
+// 147|    "[" character_class_inner "]"       { $2 }
+fn yy_action_24(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  guard _args[1].0 is YYObj__char_set_T(_dollar2)
+  YYObj__char_set_T({();  _dollar2 })
+}
+
+// file:///./parser.mbty
+// 152|    character_class_item character_class_inner 
+// 153|                                        { $1 + $2 }
+fn yy_action_25(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  guard _args[0].0 is YYObj__char_set_T(_dollar1)
+  guard _args[1].0 is YYObj__char_set_T(_dollar2)
+  YYObj__char_set_T({();  _dollar1 + _dollar2 })
+}
+
+// file:///./parser.mbty
+// 109|    repetition                          { $1 }
+fn yy_action_26(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   guard _args[0].0 is YYObj__Context______type_Regex(_dollar1)
   YYObj__Context______type_Regex({();  _dollar1 })
 }
 
 // file:///./parser.mbty
-// 58|    LBRACE_CODE_RBRACE                  { $1 }
-fn yy_action_35(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+// 130|    atom                                { $1 }
+fn yy_action_27(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  guard _args[0].0 is YYObj__Context______type_Regex(_dollar1)
+  YYObj__Context______type_Regex({();  _dollar1 })
+}
+
+// file:///./parser.mbty
+// 81|    RULE_LC_IDENT_LPAREN_CODE_RPAREN_ARROW_CODE_LBRACE "parse {" rule_item_list "}" "}" 
+// 82|                                        { fn { ctx => { name: $1.0, signature: $1.1, patterns: $3(ctx).to_array() } } }
+fn yy_action_28(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  guard _args[0].0 is YYObj__String__String_(_dollar1)
+  guard _args[2].0 is YYObj__Context______immut_list_T___type_Regex___type_CodeBlock__(_dollar3)
+  YYObj__Context______type_Rule({();  fn { ctx => { name: _dollar1.0, signature: _dollar1.1, patterns: _dollar3(ctx).to_array() } } })
+}
+
+// file:///./parser.mbty
+// 57|    LBRACE_CODE_RBRACE                  { $1 }
+fn yy_action_29(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   guard _args[0].0 is YYObj_String(_dollar1)
   YYObj_String({();  _dollar1 })
 }
 
 // file:///./parser.mbty
-// 170|    CHAR "-" CHAR                       { @char_set.range($1, $3)}
+// 77|    rule nonempty_rule_list             { fn { ctx => Cons($1(ctx), $2(ctx)) } }
+fn yy_action_30(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  guard _args[0].0 is YYObj__Context______type_Rule(_dollar1)
+  guard _args[1].0 is YYObj__Context______immut_list_T__type_Rule_(_dollar2)
+  YYObj__Context______immut_list_T__type_Rule_({();  fn { ctx => Cons(_dollar1(ctx), _dollar2(ctx)) } })
+}
+
+// file:///./parser.mbty
+// 62|    LBRACE_CODE_RBRACE                  { $1 }
+fn yy_action_31(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  guard _args[0].0 is YYObj_String(_dollar1)
+  YYObj_String({();  _dollar1 })
+}
+
+// file:///./parser.mbty
+// 138|    character_class                     { fn { _ctx => @regex.char_class($1) } }
+fn yy_action_32(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  guard _args[0].0 is YYObj__char_set_T(_dollar1)
+  YYObj__Context______type_Regex({();  fn { _ctx => @regex.char_class(_dollar1) } })
+}
+
+// file:///./parser.mbty
+// 46|                                        { fn { _ctx => { header: "", rules: [],  trailer: "" } } }
+fn yy_action_33(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  YYObj__Context______type_Lex({();  fn { _ctx => { header: "", rules: [],  trailer: "" } } })
+}
+
+// file:///./parser.mbty
+// 58|                                        { "" }
+fn yy_action_34(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  YYObj_String({();  "" })
+}
+
+// file:///./parser.mbty
+// 131|    atom "*"                            { fn { ctx => @regex.star($1(ctx)) } }
+fn yy_action_35(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  guard _args[0].0 is YYObj__Context______type_Regex(_dollar1)
+  YYObj__Context______type_Regex({();  fn { ctx => @regex.star(_dollar1(ctx)) } })
+}
+
+// file:///./parser.mbty
+// 159|    CHAR "-" CHAR                       { @char_set.range($1, $3)}
 fn yy_action_36(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   guard _args[0].0 is YYObj_Char(_dollar1)
   guard _args[2].0 is YYObj_Char(_dollar3)
@@ -550,58 +514,63 @@ fn yy_action_36(_last_pos : Position, _args : ArrayView[(YYObj, Position, Positi
 }
 
 // file:///./parser.mbty
-// 131|    atom                                { $1 }
+// 38|    lex EOI                             { $1 }
 fn yy_action_37(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  guard _args[0].0 is YYObj__Context______type_Regex(_dollar1)
-  YYObj__Context______type_Regex({();  _dollar1 })
+  guard _args[0].0 is YYObj__Context______type_Lex(_dollar1)
+  YYObj__Context______type_Lex({();  _dollar1 })
 }
 
 // file:///./parser.mbty
-// 165|    character_class_item                { $1 }
+// 132|    atom "+"                            { fn { ctx => @regex.plus($1(ctx)) } }
 fn yy_action_38(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  guard _args[0].0 is YYObj__Context______type_Regex(_dollar1)
+  YYObj__Context______type_Regex({();  fn { ctx => @regex.plus(_dollar1(ctx)) } })
+}
+
+// file:///./parser.mbty
+// 72|    "regex" LC_IDENT "=" regex ";"      { fn { ctx => ctx.define_regex($2, $4(ctx)) } }
+fn yy_action_39(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  guard _args[1].0 is YYObj_String(_dollar2)
+  guard _args[3].0 is YYObj__Context______type_Regex(_dollar4)
+  YYObj__Context_____Context({();  fn { ctx => ctx.define_regex(_dollar2, _dollar4(ctx)) } })
+}
+
+// file:///./parser.mbty
+// 63|                                        { "" }
+fn yy_action_40(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  YYObj_String({();  "" })
+}
+
+// file:///./parser.mbty
+// 140|    CHAR                                { fn { _ctx => @regex.char_class(@char_set.singleton($1)) } }
+fn yy_action_41(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  guard _args[0].0 is YYObj_Char(_dollar1)
+  YYObj__Context______type_Regex({();  fn { _ctx => @regex.char_class(@char_set.singleton(_dollar1)) } })
+}
+
+// file:///./parser.mbty
+// 115|    atom BACKSLASH atom                 {
+// 116|                                          fn (ctx) {
+// 117|                                            guard $1(ctx).desc is Character(cset1) && $3(ctx).desc is Character(cset2)
+// 118|                                            @regex.char_class(cset1.difference(cset2))
+// 119|                                          }
+// 120|                                        }
+fn yy_action_42(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  guard _args[0].0 is YYObj__Context______type_Regex(_dollar1)
+  guard _args[2].0 is YYObj__Context______type_Regex(_dollar3)
+  YYObj__Context______type_Regex({(); 
+                                          fn (ctx) {
+                                            guard _dollar1(ctx).desc is Character(cset1) && _dollar3(ctx).desc is Character(cset2)
+                                            @regex.char_class(cset1.difference(cset2))
+                                          }
+                                        })
+}
+
+// file:///./parser.mbty
+// 154|    character_class_item                { $1 }
+fn yy_action_43(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   guard _args[0].0 is YYObj__char_set_T(_dollar1)
   YYObj__char_set_T({();  _dollar1 })
-}
-
-// file:///./parser.mbty
-// 132|    atom "*"                            { fn { ctx => @regex.star($1(ctx)) } }
-fn yy_action_39(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  guard _args[0].0 is YYObj__Context______type_Regex(_dollar1)
-  YYObj__Context______type_Regex({();  fn { ctx => @regex.star(_dollar1(ctx)) } })
-}
-
-// file:///./parser.mbty
-// 69|                                        { fn { ctx => ctx } }
-fn yy_action_40(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  YYObj__Context_____Context({();  fn { ctx => ctx } })
-}
-
-// file:///./parser.mbty
-// 63|    LBRACE_CODE_RBRACE                  { $1 }
-fn yy_action_41(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  guard _args[0].0 is YYObj_String(_dollar1)
-  YYObj_String({();  _dollar1 })
-}
-
-// file:///./parser.mbty
-// 149|    character_class                     { fn { _ctx => @regex.char_class($1) } }
-fn yy_action_42(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  guard _args[0].0 is YYObj__char_set_T(_dollar1)
-  YYObj__Context______type_Regex({();  fn { _ctx => @regex.char_class(_dollar1) } })
-}
-
-// file:///./parser.mbty
-// 112|    differentiation                     { $1 }
-fn yy_action_43(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  guard _args[0].0 is YYObj__Context______type_Regex(_dollar1)
-  YYObj__Context______type_Regex({();  _dollar1 })
-}
-
-// file:///./parser.mbty
-// 159|    "[" "^" character_class_inner "]"   { $3.negated() }
-fn yy_action_44(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  guard _args[2].0 is YYObj__char_set_T(_dollar3)
-  YYObj__char_set_T({();  _dollar3.negated() })
 }
 
 fn yy_input(token : Token, _start_pos : Position, _end_pos : Position) -> (YYSymbol, YYObj) {
@@ -618,7 +587,6 @@ fn yy_input(token : Token, _start_pos : Position, _end_pos : Position) -> (YYSym
     LBRACKET => (T_LBRACKET, YYObj_Void)
     RBRACKET => (T_RBRACKET, YYObj_Void)
     EQ => (T_EQ, YYObj_Void)
-    COLON => (T_COLON, YYObj_Void)
     SEMICOLON => (T_SEMICOLON, YYObj_Void)
     FAT_ARROW => (T_FAT_ARROW, YYObj_Void)
     BAR => (T_BAR, YYObj_Void)
@@ -652,16 +620,15 @@ fn yy_input(token : Token, _start_pos : Position, _end_pos : Position) -> (YYSym
 // [29, repetition → • atom PLUS, EOI / EOF / AS / UNDERSCORE / LPAREN / LBRACKET / BAR / LC_IDENT / CHAR / STRING]
 // [30, repetition → • atom QUESTION, EOI / EOF / AS / UNDERSCORE / LPAREN / LBRACKET / BAR / LC_IDENT / CHAR / STRING]
 // [31, atom → • LPAREN alias RPAREN, EOI / EOF / AS / UNDERSCORE / LPAREN / LBRACKET / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-// [32, atom → • LPAREN LC_IDENT COLON alias RPAREN, EOI / EOF / AS / UNDERSCORE / LPAREN / LBRACKET / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-// [33, atom → • character_class, EOI / EOF / AS / UNDERSCORE / LPAREN / LBRACKET / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-// [34, atom → • LC_IDENT, EOI / EOF / AS / UNDERSCORE / LPAREN / LBRACKET / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-// [35, atom → • CHAR, EOI / EOF / AS / UNDERSCORE / LPAREN / LBRACKET / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-// [36, atom → • STRING, EOI / EOF / AS / UNDERSCORE / LPAREN / LBRACKET / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-// [37, atom → • UNDERSCORE, EOI / EOF / AS / UNDERSCORE / LPAREN / LBRACKET / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-// [38, atom → • EOF, EOI / EOF / AS / UNDERSCORE / LPAREN / LBRACKET / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-// [39, character_class → • LBRACKET character_class_inner RBRACKET, EOI / EOF / AS / UNDERSCORE / LPAREN / LBRACKET / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-// [40, character_class → • LBRACKET CARET character_class_inner RBRACKET, EOI / EOF / AS / UNDERSCORE / LPAREN / LBRACKET / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-// [46, regex_eoi_prime → • regex_eoi, $]
+// [32, atom → • character_class, EOI / EOF / AS / UNDERSCORE / LPAREN / LBRACKET / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
+// [33, atom → • LC_IDENT, EOI / EOF / AS / UNDERSCORE / LPAREN / LBRACKET / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
+// [34, atom → • CHAR, EOI / EOF / AS / UNDERSCORE / LPAREN / LBRACKET / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
+// [35, atom → • STRING, EOI / EOF / AS / UNDERSCORE / LPAREN / LBRACKET / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
+// [36, atom → • UNDERSCORE, EOI / EOF / AS / UNDERSCORE / LPAREN / LBRACKET / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
+// [37, atom → • EOF, EOI / EOF / AS / UNDERSCORE / LPAREN / LBRACKET / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
+// [38, character_class → • LBRACKET character_class_inner RBRACKET, EOI / EOF / AS / UNDERSCORE / LPAREN / LBRACKET / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
+// [39, character_class → • LBRACKET CARET character_class_inner RBRACKET, EOI / EOF / AS / UNDERSCORE / LPAREN / LBRACKET / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
+// [45, regex_eoi_prime → • regex_eoi, $]
 fn yy_state_0(_lookahead : YYSymbol) -> YYDecision {
   match _lookahead {
     NT_regex_eoi => Shift(yy_state_1)
@@ -673,28 +640,28 @@ fn yy_state_0(_lookahead : YYSymbol) -> YYDecision {
     T_LC_IDENT => Shift(yy_state_17)
     NT_character_class => Shift(yy_state_18)
     T_LPAREN => Shift(yy_state_19)
-    NT_atom => Shift(yy_state_24)
-    NT_differentiation => Shift(yy_state_30)
-    NT_repetition => Shift(yy_state_33)
-    NT_concatenation => Shift(yy_state_35)
-    NT_alternation => Shift(yy_state_38)
-    NT_alias => Shift(yy_state_43)
-    NT_regex => Shift(yy_state_44)
+    NT_atom => Shift(yy_state_22)
+    NT_differentiation => Shift(yy_state_28)
+    NT_repetition => Shift(yy_state_31)
+    NT_concatenation => Shift(yy_state_33)
+    NT_alternation => Shift(yy_state_36)
+    NT_alias => Shift(yy_state_39)
+    NT_regex => Shift(yy_state_40)
     _ => Error
   }
 }
 
-// [46, regex_eoi_prime → regex_eoi •, $]
+// [45, regex_eoi_prime → regex_eoi •, $]
 fn yy_state_1(_lookahead : YYSymbol) -> YYDecision {
   Accept
 }
 
-// [39, character_class → LBRACKET • character_class_inner RBRACKET, EOI / EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / SEMICOLON / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-// [40, character_class → LBRACKET • CARET character_class_inner RBRACKET, EOI / EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / SEMICOLON / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-// [41, character_class_inner → • character_class_item character_class_inner, RBRACKET]
-// [42, character_class_inner → • character_class_item, RBRACKET]
-// [43, character_class_item → • CHAR, RBRACKET / CHAR]
-// [44, character_class_item → • CHAR MINUS CHAR, RBRACKET / CHAR]
+// [38, character_class → LBRACKET • character_class_inner RBRACKET, EOI / EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / SEMICOLON / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
+// [39, character_class → LBRACKET • CARET character_class_inner RBRACKET, EOI / EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / SEMICOLON / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
+// [40, character_class_inner → • character_class_item character_class_inner, RBRACKET]
+// [41, character_class_inner → • character_class_item, RBRACKET]
+// [42, character_class_item → • CHAR, RBRACKET / CHAR]
+// [43, character_class_item → • CHAR MINUS CHAR, RBRACKET / CHAR]
 fn yy_state_2(_lookahead : YYSymbol) -> YYDecision {
   match _lookahead {
     T_CHAR => Shift(yy_state_3)
@@ -705,17 +672,17 @@ fn yy_state_2(_lookahead : YYSymbol) -> YYDecision {
   }
 }
 
-// [43, character_class_item → CHAR •, RBRACKET / CHAR]
-// [44, character_class_item → CHAR • MINUS CHAR, RBRACKET / CHAR]
+// [42, character_class_item → CHAR •, RBRACKET / CHAR]
+// [43, character_class_item → CHAR • MINUS CHAR, RBRACKET / CHAR]
 fn yy_state_3(_lookahead : YYSymbol) -> YYDecision {
   match _lookahead {
     T_MINUS => Shift(yy_state_4)
-    T_RBRACKET | T_CHAR => Reduce(1, NT_character_class_item, yy_action_21)
+    T_RBRACKET | T_CHAR => Reduce(1, NT_character_class_item, yy_action_12)
     _ => Error
   }
 }
 
-// [44, character_class_item → CHAR MINUS • CHAR, RBRACKET / CHAR]
+// [43, character_class_item → CHAR MINUS • CHAR, RBRACKET / CHAR]
 fn yy_state_4(_lookahead : YYSymbol) -> YYDecision {
   match _lookahead {
     T_CHAR => Shift(yy_state_5)
@@ -723,37 +690,37 @@ fn yy_state_4(_lookahead : YYSymbol) -> YYDecision {
   }
 }
 
-// [44, character_class_item → CHAR MINUS CHAR •, RBRACKET / CHAR]
+// [43, character_class_item → CHAR MINUS CHAR •, RBRACKET / CHAR]
 fn yy_state_5(_lookahead : YYSymbol) -> YYDecision {
   ReduceNoLookahead(3, NT_character_class_item, yy_action_36)
 }
 
-// [41, character_class_inner → • character_class_item character_class_inner, RBRACKET]
-// [41, character_class_inner → character_class_item • character_class_inner, RBRACKET]
-// [42, character_class_inner → • character_class_item, RBRACKET]
-// [42, character_class_inner → character_class_item •, RBRACKET]
-// [43, character_class_item → • CHAR, RBRACKET / CHAR]
-// [44, character_class_item → • CHAR MINUS CHAR, RBRACKET / CHAR]
+// [40, character_class_inner → • character_class_item character_class_inner, RBRACKET]
+// [40, character_class_inner → character_class_item • character_class_inner, RBRACKET]
+// [41, character_class_inner → • character_class_item, RBRACKET]
+// [41, character_class_inner → character_class_item •, RBRACKET]
+// [42, character_class_item → • CHAR, RBRACKET / CHAR]
+// [43, character_class_item → • CHAR MINUS CHAR, RBRACKET / CHAR]
 fn yy_state_6(_lookahead : YYSymbol) -> YYDecision {
   match _lookahead {
     T_CHAR => Shift(yy_state_3)
     NT_character_class_item => Shift(yy_state_6)
     NT_character_class_inner => Shift(yy_state_7)
-    T_RBRACKET => Reduce(1, NT_character_class_inner, yy_action_38)
+    T_RBRACKET => Reduce(1, NT_character_class_inner, yy_action_43)
     _ => Error
   }
 }
 
-// [41, character_class_inner → character_class_item character_class_inner •, RBRACKET]
+// [40, character_class_inner → character_class_item character_class_inner •, RBRACKET]
 fn yy_state_7(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(2, NT_character_class_inner, yy_action_12)
+  ReduceNoLookahead(2, NT_character_class_inner, yy_action_25)
 }
 
-// [40, character_class → LBRACKET CARET • character_class_inner RBRACKET, EOI / EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / SEMICOLON / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-// [41, character_class_inner → • character_class_item character_class_inner, RBRACKET]
-// [42, character_class_inner → • character_class_item, RBRACKET]
-// [43, character_class_item → • CHAR, RBRACKET / CHAR]
-// [44, character_class_item → • CHAR MINUS CHAR, RBRACKET / CHAR]
+// [39, character_class → LBRACKET CARET • character_class_inner RBRACKET, EOI / EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / SEMICOLON / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
+// [40, character_class_inner → • character_class_item character_class_inner, RBRACKET]
+// [41, character_class_inner → • character_class_item, RBRACKET]
+// [42, character_class_item → • CHAR, RBRACKET / CHAR]
+// [43, character_class_item → • CHAR MINUS CHAR, RBRACKET / CHAR]
 fn yy_state_8(_lookahead : YYSymbol) -> YYDecision {
   match _lookahead {
     T_CHAR => Shift(yy_state_3)
@@ -763,7 +730,7 @@ fn yy_state_8(_lookahead : YYSymbol) -> YYDecision {
   }
 }
 
-// [40, character_class → LBRACKET CARET character_class_inner • RBRACKET, EOI / EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / SEMICOLON / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
+// [39, character_class → LBRACKET CARET character_class_inner • RBRACKET, EOI / EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / SEMICOLON / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
 fn yy_state_9(_lookahead : YYSymbol) -> YYDecision {
   match _lookahead {
     T_RBRACKET => Shift(yy_state_10)
@@ -771,12 +738,12 @@ fn yy_state_9(_lookahead : YYSymbol) -> YYDecision {
   }
 }
 
-// [40, character_class → LBRACKET CARET character_class_inner RBRACKET •, EOI / EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / SEMICOLON / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
+// [39, character_class → LBRACKET CARET character_class_inner RBRACKET •, EOI / EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / SEMICOLON / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
 fn yy_state_10(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(4, NT_character_class, yy_action_44)
+  ReduceNoLookahead(4, NT_character_class, yy_action_8)
 }
 
-// [39, character_class → LBRACKET character_class_inner • RBRACKET, EOI / EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / SEMICOLON / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
+// [38, character_class → LBRACKET character_class_inner • RBRACKET, EOI / EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / SEMICOLON / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
 fn yy_state_11(_lookahead : YYSymbol) -> YYDecision {
   match _lookahead {
     T_RBRACKET => Shift(yy_state_12)
@@ -784,39 +751,39 @@ fn yy_state_11(_lookahead : YYSymbol) -> YYDecision {
   }
 }
 
-// [39, character_class → LBRACKET character_class_inner RBRACKET •, EOI / EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / SEMICOLON / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
+// [38, character_class → LBRACKET character_class_inner RBRACKET •, EOI / EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / SEMICOLON / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
 fn yy_state_12(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(3, NT_character_class, yy_action_26)
+  ReduceNoLookahead(3, NT_character_class, yy_action_24)
 }
 
-// [38, atom → EOF •, EOI / EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / SEMICOLON / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
+// [37, atom → EOF •, EOI / EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / SEMICOLON / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
 fn yy_state_13(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_atom, yy_action_8)
-}
-
-// [37, atom → UNDERSCORE •, EOI / EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / SEMICOLON / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-fn yy_state_14(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_atom, yy_action_25)
-}
-
-// [36, atom → STRING •, EOI / EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / SEMICOLON / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-fn yy_state_15(_lookahead : YYSymbol) -> YYDecision {
   ReduceNoLookahead(1, NT_atom, yy_action_7)
 }
 
-// [35, atom → CHAR •, EOI / EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / SEMICOLON / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-fn yy_state_16(_lookahead : YYSymbol) -> YYDecision {
+// [36, atom → UNDERSCORE •, EOI / EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / SEMICOLON / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
+fn yy_state_14(_lookahead : YYSymbol) -> YYDecision {
   ReduceNoLookahead(1, NT_atom, yy_action_0)
 }
 
-// [34, atom → LC_IDENT •, EOI / EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / SEMICOLON / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-fn yy_state_17(_lookahead : YYSymbol) -> YYDecision {
+// [35, atom → STRING •, EOI / EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / SEMICOLON / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
+fn yy_state_15(_lookahead : YYSymbol) -> YYDecision {
   ReduceNoLookahead(1, NT_atom, yy_action_11)
 }
 
-// [33, atom → character_class •, EOI / EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / SEMICOLON / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
+// [34, atom → CHAR •, EOI / EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / SEMICOLON / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
+fn yy_state_16(_lookahead : YYSymbol) -> YYDecision {
+  ReduceNoLookahead(1, NT_atom, yy_action_41)
+}
+
+// [33, atom → LC_IDENT •, EOI / EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / SEMICOLON / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
+fn yy_state_17(_lookahead : YYSymbol) -> YYDecision {
+  ReduceNoLookahead(1, NT_atom, yy_action_6)
+}
+
+// [32, atom → character_class •, EOI / EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / SEMICOLON / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
 fn yy_state_18(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_atom, yy_action_42)
+  ReduceNoLookahead(1, NT_atom, yy_action_32)
 }
 
 // [18, alias → • alternation, RPAREN]
@@ -834,16 +801,14 @@ fn yy_state_18(_lookahead : YYSymbol) -> YYDecision {
 // [30, repetition → • atom QUESTION, EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / BAR / LC_IDENT / CHAR / STRING]
 // [31, atom → • LPAREN alias RPAREN, EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
 // [31, atom → LPAREN • alias RPAREN, EOI / EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / SEMICOLON / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-// [32, atom → • LPAREN LC_IDENT COLON alias RPAREN, EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-// [32, atom → LPAREN • LC_IDENT COLON alias RPAREN, EOI / EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / SEMICOLON / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-// [33, atom → • character_class, EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-// [34, atom → • LC_IDENT, EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-// [35, atom → • CHAR, EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-// [36, atom → • STRING, EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-// [37, atom → • UNDERSCORE, EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-// [38, atom → • EOF, EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-// [39, character_class → • LBRACKET character_class_inner RBRACKET, EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-// [40, character_class → • LBRACKET CARET character_class_inner RBRACKET, EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
+// [32, atom → • character_class, EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
+// [33, atom → • LC_IDENT, EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
+// [34, atom → • CHAR, EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
+// [35, atom → • STRING, EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
+// [36, atom → • UNDERSCORE, EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
+// [37, atom → • EOF, EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
+// [38, character_class → • LBRACKET character_class_inner RBRACKET, EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
+// [39, character_class → • LBRACKET CARET character_class_inner RBRACKET, EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
 fn yy_state_19(_lookahead : YYSymbol) -> YYDecision {
   match _lookahead {
     T_LBRACKET => Shift(yy_state_2)
@@ -851,84 +816,30 @@ fn yy_state_19(_lookahead : YYSymbol) -> YYDecision {
     T_UNDERSCORE => Shift(yy_state_14)
     T_STRING => Shift(yy_state_15)
     T_CHAR => Shift(yy_state_16)
-    NT_character_class => Shift(yy_state_18)
-    T_LPAREN => Shift(yy_state_19)
-    T_LC_IDENT => Shift(yy_state_20)
-    NT_atom => Shift(yy_state_24)
-    NT_differentiation => Shift(yy_state_30)
-    NT_repetition => Shift(yy_state_33)
-    NT_concatenation => Shift(yy_state_35)
-    NT_alternation => Shift(yy_state_38)
-    NT_alias => Shift(yy_state_41)
-    _ => Error
-  }
-}
-
-// [32, atom → LPAREN LC_IDENT • COLON alias RPAREN, EOI / EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / SEMICOLON / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-// [34, atom → LC_IDENT •, EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-fn yy_state_20(_lookahead : YYSymbol) -> YYDecision {
-  match _lookahead {
-    T_COLON => Shift(yy_state_21)
-    T_EOF | T_AS | T_UNDERSCORE | T_LPAREN | T_RPAREN | T_LBRACKET | T_BAR | T_STAR | T_PLUS | T_QUESTION | T_BACKSLASH | T_LC_IDENT | T_CHAR | T_STRING => Reduce(1, NT_atom, yy_action_11)
-    _ => Error
-  }
-}
-
-// [18, alias → • alternation, RPAREN]
-// [19, alias → • alternation AS LC_IDENT, RPAREN]
-// [20, alternation → • concatenation, AS / RPAREN]
-// [21, alternation → • concatenation BAR alternation, AS / RPAREN]
-// [22, concatenation → • repetition, AS / RPAREN / BAR]
-// [23, concatenation → • repetition concatenation, AS / RPAREN / BAR]
-// [24, concatenation → • differentiation, AS / RPAREN / BAR]
-// [25, differentiation → • atom BACKSLASH atom, AS / RPAREN / BAR / BACKSLASH]
-// [26, differentiation → • differentiation BACKSLASH atom, AS / RPAREN / BAR / BACKSLASH]
-// [27, repetition → • atom, EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / BAR / LC_IDENT / CHAR / STRING]
-// [28, repetition → • atom STAR, EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / BAR / LC_IDENT / CHAR / STRING]
-// [29, repetition → • atom PLUS, EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / BAR / LC_IDENT / CHAR / STRING]
-// [30, repetition → • atom QUESTION, EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / BAR / LC_IDENT / CHAR / STRING]
-// [31, atom → • LPAREN alias RPAREN, EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-// [32, atom → • LPAREN LC_IDENT COLON alias RPAREN, EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-// [32, atom → LPAREN LC_IDENT COLON • alias RPAREN, EOI / EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / SEMICOLON / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-// [33, atom → • character_class, EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-// [34, atom → • LC_IDENT, EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-// [35, atom → • CHAR, EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-// [36, atom → • STRING, EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-// [37, atom → • UNDERSCORE, EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-// [38, atom → • EOF, EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-// [39, character_class → • LBRACKET character_class_inner RBRACKET, EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-// [40, character_class → • LBRACKET CARET character_class_inner RBRACKET, EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-fn yy_state_21(_lookahead : YYSymbol) -> YYDecision {
-  match _lookahead {
-    T_LBRACKET => Shift(yy_state_2)
-    T_EOF => Shift(yy_state_13)
-    T_UNDERSCORE => Shift(yy_state_14)
-    T_STRING => Shift(yy_state_15)
-    T_CHAR => Shift(yy_state_16)
     T_LC_IDENT => Shift(yy_state_17)
     NT_character_class => Shift(yy_state_18)
     T_LPAREN => Shift(yy_state_19)
-    NT_alias => Shift(yy_state_22)
-    NT_atom => Shift(yy_state_24)
-    NT_differentiation => Shift(yy_state_30)
-    NT_repetition => Shift(yy_state_33)
-    NT_concatenation => Shift(yy_state_35)
-    NT_alternation => Shift(yy_state_38)
+    NT_alias => Shift(yy_state_20)
+    NT_atom => Shift(yy_state_22)
+    NT_differentiation => Shift(yy_state_28)
+    NT_repetition => Shift(yy_state_31)
+    NT_concatenation => Shift(yy_state_33)
+    NT_alternation => Shift(yy_state_36)
     _ => Error
   }
 }
 
-// [32, atom → LPAREN LC_IDENT COLON alias • RPAREN, EOI / EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / SEMICOLON / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-fn yy_state_22(_lookahead : YYSymbol) -> YYDecision {
+// [31, atom → LPAREN alias • RPAREN, EOI / EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / SEMICOLON / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
+fn yy_state_20(_lookahead : YYSymbol) -> YYDecision {
   match _lookahead {
-    T_RPAREN => Shift(yy_state_23)
+    T_RPAREN => Shift(yy_state_21)
     _ => Error
   }
 }
 
-// [32, atom → LPAREN LC_IDENT COLON alias RPAREN •, EOI / EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / SEMICOLON / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-fn yy_state_23(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(5, NT_atom, yy_action_6)
+// [31, atom → LPAREN alias RPAREN •, EOI / EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / SEMICOLON / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
+fn yy_state_21(_lookahead : YYSymbol) -> YYDecision {
+  ReduceNoLookahead(3, NT_atom, yy_action_5)
 }
 
 // [25, differentiation → atom • BACKSLASH atom, EOI / AS / RPAREN / SEMICOLON / FAT_ARROW / BAR / BACKSLASH]
@@ -936,44 +847,43 @@ fn yy_state_23(_lookahead : YYSymbol) -> YYDecision {
 // [28, repetition → atom • STAR, EOI / EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / SEMICOLON / FAT_ARROW / BAR / LC_IDENT / CHAR / STRING]
 // [29, repetition → atom • PLUS, EOI / EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / SEMICOLON / FAT_ARROW / BAR / LC_IDENT / CHAR / STRING]
 // [30, repetition → atom • QUESTION, EOI / EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / SEMICOLON / FAT_ARROW / BAR / LC_IDENT / CHAR / STRING]
-fn yy_state_24(_lookahead : YYSymbol) -> YYDecision {
+fn yy_state_22(_lookahead : YYSymbol) -> YYDecision {
   match _lookahead {
-    T_QUESTION => Shift(yy_state_25)
-    T_PLUS => Shift(yy_state_26)
-    T_STAR => Shift(yy_state_27)
-    T_BACKSLASH => Shift(yy_state_28)
-    T_EOI | T_EOF | T_AS | T_UNDERSCORE | T_LPAREN | T_RPAREN | T_LBRACKET | T_SEMICOLON | T_FAT_ARROW | T_BAR | T_LC_IDENT | T_CHAR | T_STRING => Reduce(1, NT_repetition, yy_action_37)
+    T_QUESTION => Shift(yy_state_23)
+    T_PLUS => Shift(yy_state_24)
+    T_STAR => Shift(yy_state_25)
+    T_BACKSLASH => Shift(yy_state_26)
+    T_EOI | T_EOF | T_AS | T_UNDERSCORE | T_LPAREN | T_RPAREN | T_LBRACKET | T_SEMICOLON | T_FAT_ARROW | T_BAR | T_LC_IDENT | T_CHAR | T_STRING => Reduce(1, NT_repetition, yy_action_27)
     _ => Error
   }
 }
 
 // [30, repetition → atom QUESTION •, EOI / EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / SEMICOLON / FAT_ARROW / BAR / LC_IDENT / CHAR / STRING]
-fn yy_state_25(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(2, NT_repetition, yy_action_5)
+fn yy_state_23(_lookahead : YYSymbol) -> YYDecision {
+  ReduceNoLookahead(2, NT_repetition, yy_action_21)
 }
 
 // [29, repetition → atom PLUS •, EOI / EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / SEMICOLON / FAT_ARROW / BAR / LC_IDENT / CHAR / STRING]
-fn yy_state_26(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(2, NT_repetition, yy_action_22)
+fn yy_state_24(_lookahead : YYSymbol) -> YYDecision {
+  ReduceNoLookahead(2, NT_repetition, yy_action_38)
 }
 
 // [28, repetition → atom STAR •, EOI / EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / SEMICOLON / FAT_ARROW / BAR / LC_IDENT / CHAR / STRING]
-fn yy_state_27(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(2, NT_repetition, yy_action_39)
+fn yy_state_25(_lookahead : YYSymbol) -> YYDecision {
+  ReduceNoLookahead(2, NT_repetition, yy_action_35)
 }
 
 // [25, differentiation → atom BACKSLASH • atom, EOI / AS / RPAREN / SEMICOLON / FAT_ARROW / BAR / BACKSLASH]
 // [31, atom → • LPAREN alias RPAREN, EOI / AS / RPAREN / SEMICOLON / FAT_ARROW / BAR / BACKSLASH]
-// [32, atom → • LPAREN LC_IDENT COLON alias RPAREN, EOI / AS / RPAREN / SEMICOLON / FAT_ARROW / BAR / BACKSLASH]
-// [33, atom → • character_class, EOI / AS / RPAREN / SEMICOLON / FAT_ARROW / BAR / BACKSLASH]
-// [34, atom → • LC_IDENT, EOI / AS / RPAREN / SEMICOLON / FAT_ARROW / BAR / BACKSLASH]
-// [35, atom → • CHAR, EOI / AS / RPAREN / SEMICOLON / FAT_ARROW / BAR / BACKSLASH]
-// [36, atom → • STRING, EOI / AS / RPAREN / SEMICOLON / FAT_ARROW / BAR / BACKSLASH]
-// [37, atom → • UNDERSCORE, EOI / AS / RPAREN / SEMICOLON / FAT_ARROW / BAR / BACKSLASH]
-// [38, atom → • EOF, EOI / AS / RPAREN / SEMICOLON / FAT_ARROW / BAR / BACKSLASH]
-// [39, character_class → • LBRACKET character_class_inner RBRACKET, EOI / AS / RPAREN / SEMICOLON / FAT_ARROW / BAR / BACKSLASH]
-// [40, character_class → • LBRACKET CARET character_class_inner RBRACKET, EOI / AS / RPAREN / SEMICOLON / FAT_ARROW / BAR / BACKSLASH]
-fn yy_state_28(_lookahead : YYSymbol) -> YYDecision {
+// [32, atom → • character_class, EOI / AS / RPAREN / SEMICOLON / FAT_ARROW / BAR / BACKSLASH]
+// [33, atom → • LC_IDENT, EOI / AS / RPAREN / SEMICOLON / FAT_ARROW / BAR / BACKSLASH]
+// [34, atom → • CHAR, EOI / AS / RPAREN / SEMICOLON / FAT_ARROW / BAR / BACKSLASH]
+// [35, atom → • STRING, EOI / AS / RPAREN / SEMICOLON / FAT_ARROW / BAR / BACKSLASH]
+// [36, atom → • UNDERSCORE, EOI / AS / RPAREN / SEMICOLON / FAT_ARROW / BAR / BACKSLASH]
+// [37, atom → • EOF, EOI / AS / RPAREN / SEMICOLON / FAT_ARROW / BAR / BACKSLASH]
+// [38, character_class → • LBRACKET character_class_inner RBRACKET, EOI / AS / RPAREN / SEMICOLON / FAT_ARROW / BAR / BACKSLASH]
+// [39, character_class → • LBRACKET CARET character_class_inner RBRACKET, EOI / AS / RPAREN / SEMICOLON / FAT_ARROW / BAR / BACKSLASH]
+fn yy_state_26(_lookahead : YYSymbol) -> YYDecision {
   match _lookahead {
     T_LBRACKET => Shift(yy_state_2)
     T_EOF => Shift(yy_state_13)
@@ -983,38 +893,37 @@ fn yy_state_28(_lookahead : YYSymbol) -> YYDecision {
     T_LC_IDENT => Shift(yy_state_17)
     NT_character_class => Shift(yy_state_18)
     T_LPAREN => Shift(yy_state_19)
-    NT_atom => Shift(yy_state_29)
+    NT_atom => Shift(yy_state_27)
     _ => Error
   }
 }
 
 // [25, differentiation → atom BACKSLASH atom •, EOI / AS / RPAREN / SEMICOLON / FAT_ARROW / BAR / BACKSLASH]
-fn yy_state_29(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(3, NT_differentiation, yy_action_3)
+fn yy_state_27(_lookahead : YYSymbol) -> YYDecision {
+  ReduceNoLookahead(3, NT_differentiation, yy_action_42)
 }
 
 // [24, concatenation → differentiation •, EOI / AS / RPAREN / SEMICOLON / FAT_ARROW / BAR]
 // [26, differentiation → differentiation • BACKSLASH atom, EOI / AS / RPAREN / SEMICOLON / FAT_ARROW / BAR / BACKSLASH]
-fn yy_state_30(_lookahead : YYSymbol) -> YYDecision {
+fn yy_state_28(_lookahead : YYSymbol) -> YYDecision {
   match _lookahead {
-    T_BACKSLASH => Shift(yy_state_31)
-    T_EOI | T_AS | T_RPAREN | T_SEMICOLON | T_FAT_ARROW | T_BAR => Reduce(1, NT_concatenation, yy_action_43)
+    T_BACKSLASH => Shift(yy_state_29)
+    T_EOI | T_AS | T_RPAREN | T_SEMICOLON | T_FAT_ARROW | T_BAR => Reduce(1, NT_concatenation, yy_action_9)
     _ => Error
   }
 }
 
 // [26, differentiation → differentiation BACKSLASH • atom, EOI / AS / RPAREN / SEMICOLON / FAT_ARROW / BAR / BACKSLASH]
 // [31, atom → • LPAREN alias RPAREN, EOI / AS / RPAREN / SEMICOLON / FAT_ARROW / BAR / BACKSLASH]
-// [32, atom → • LPAREN LC_IDENT COLON alias RPAREN, EOI / AS / RPAREN / SEMICOLON / FAT_ARROW / BAR / BACKSLASH]
-// [33, atom → • character_class, EOI / AS / RPAREN / SEMICOLON / FAT_ARROW / BAR / BACKSLASH]
-// [34, atom → • LC_IDENT, EOI / AS / RPAREN / SEMICOLON / FAT_ARROW / BAR / BACKSLASH]
-// [35, atom → • CHAR, EOI / AS / RPAREN / SEMICOLON / FAT_ARROW / BAR / BACKSLASH]
-// [36, atom → • STRING, EOI / AS / RPAREN / SEMICOLON / FAT_ARROW / BAR / BACKSLASH]
-// [37, atom → • UNDERSCORE, EOI / AS / RPAREN / SEMICOLON / FAT_ARROW / BAR / BACKSLASH]
-// [38, atom → • EOF, EOI / AS / RPAREN / SEMICOLON / FAT_ARROW / BAR / BACKSLASH]
-// [39, character_class → • LBRACKET character_class_inner RBRACKET, EOI / AS / RPAREN / SEMICOLON / FAT_ARROW / BAR / BACKSLASH]
-// [40, character_class → • LBRACKET CARET character_class_inner RBRACKET, EOI / AS / RPAREN / SEMICOLON / FAT_ARROW / BAR / BACKSLASH]
-fn yy_state_31(_lookahead : YYSymbol) -> YYDecision {
+// [32, atom → • character_class, EOI / AS / RPAREN / SEMICOLON / FAT_ARROW / BAR / BACKSLASH]
+// [33, atom → • LC_IDENT, EOI / AS / RPAREN / SEMICOLON / FAT_ARROW / BAR / BACKSLASH]
+// [34, atom → • CHAR, EOI / AS / RPAREN / SEMICOLON / FAT_ARROW / BAR / BACKSLASH]
+// [35, atom → • STRING, EOI / AS / RPAREN / SEMICOLON / FAT_ARROW / BAR / BACKSLASH]
+// [36, atom → • UNDERSCORE, EOI / AS / RPAREN / SEMICOLON / FAT_ARROW / BAR / BACKSLASH]
+// [37, atom → • EOF, EOI / AS / RPAREN / SEMICOLON / FAT_ARROW / BAR / BACKSLASH]
+// [38, character_class → • LBRACKET character_class_inner RBRACKET, EOI / AS / RPAREN / SEMICOLON / FAT_ARROW / BAR / BACKSLASH]
+// [39, character_class → • LBRACKET CARET character_class_inner RBRACKET, EOI / AS / RPAREN / SEMICOLON / FAT_ARROW / BAR / BACKSLASH]
+fn yy_state_29(_lookahead : YYSymbol) -> YYDecision {
   match _lookahead {
     T_LBRACKET => Shift(yy_state_2)
     T_EOF => Shift(yy_state_13)
@@ -1024,14 +933,14 @@ fn yy_state_31(_lookahead : YYSymbol) -> YYDecision {
     T_LC_IDENT => Shift(yy_state_17)
     NT_character_class => Shift(yy_state_18)
     T_LPAREN => Shift(yy_state_19)
-    NT_atom => Shift(yy_state_32)
+    NT_atom => Shift(yy_state_30)
     _ => Error
   }
 }
 
 // [26, differentiation → differentiation BACKSLASH atom •, EOI / AS / RPAREN / SEMICOLON / FAT_ARROW / BAR / BACKSLASH]
-fn yy_state_32(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(3, NT_differentiation, yy_action_28)
+fn yy_state_30(_lookahead : YYSymbol) -> YYDecision {
+  ReduceNoLookahead(3, NT_differentiation, yy_action_3)
 }
 
 // [22, concatenation → • repetition, EOI / AS / RPAREN / SEMICOLON / FAT_ARROW / BAR]
@@ -1046,16 +955,15 @@ fn yy_state_32(_lookahead : YYSymbol) -> YYDecision {
 // [29, repetition → • atom PLUS, EOI / EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / SEMICOLON / FAT_ARROW / BAR / LC_IDENT / CHAR / STRING]
 // [30, repetition → • atom QUESTION, EOI / EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / SEMICOLON / FAT_ARROW / BAR / LC_IDENT / CHAR / STRING]
 // [31, atom → • LPAREN alias RPAREN, EOI / EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / SEMICOLON / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-// [32, atom → • LPAREN LC_IDENT COLON alias RPAREN, EOI / EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / SEMICOLON / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-// [33, atom → • character_class, EOI / EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / SEMICOLON / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-// [34, atom → • LC_IDENT, EOI / EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / SEMICOLON / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-// [35, atom → • CHAR, EOI / EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / SEMICOLON / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-// [36, atom → • STRING, EOI / EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / SEMICOLON / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-// [37, atom → • UNDERSCORE, EOI / EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / SEMICOLON / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-// [38, atom → • EOF, EOI / EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / SEMICOLON / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-// [39, character_class → • LBRACKET character_class_inner RBRACKET, EOI / EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / SEMICOLON / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-// [40, character_class → • LBRACKET CARET character_class_inner RBRACKET, EOI / EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / SEMICOLON / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-fn yy_state_33(_lookahead : YYSymbol) -> YYDecision {
+// [32, atom → • character_class, EOI / EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / SEMICOLON / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
+// [33, atom → • LC_IDENT, EOI / EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / SEMICOLON / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
+// [34, atom → • CHAR, EOI / EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / SEMICOLON / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
+// [35, atom → • STRING, EOI / EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / SEMICOLON / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
+// [36, atom → • UNDERSCORE, EOI / EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / SEMICOLON / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
+// [37, atom → • EOF, EOI / EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / SEMICOLON / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
+// [38, character_class → • LBRACKET character_class_inner RBRACKET, EOI / EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / SEMICOLON / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
+// [39, character_class → • LBRACKET CARET character_class_inner RBRACKET, EOI / EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / SEMICOLON / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
+fn yy_state_31(_lookahead : YYSymbol) -> YYDecision {
   match _lookahead {
     T_LBRACKET => Shift(yy_state_2)
     T_EOF => Shift(yy_state_13)
@@ -1065,26 +973,26 @@ fn yy_state_33(_lookahead : YYSymbol) -> YYDecision {
     T_LC_IDENT => Shift(yy_state_17)
     NT_character_class => Shift(yy_state_18)
     T_LPAREN => Shift(yy_state_19)
-    NT_atom => Shift(yy_state_24)
-    NT_differentiation => Shift(yy_state_30)
-    NT_repetition => Shift(yy_state_33)
-    NT_concatenation => Shift(yy_state_34)
-    T_EOI | T_AS | T_RPAREN | T_SEMICOLON | T_FAT_ARROW | T_BAR => Reduce(1, NT_concatenation, yy_action_14)
+    NT_atom => Shift(yy_state_22)
+    NT_differentiation => Shift(yy_state_28)
+    NT_repetition => Shift(yy_state_31)
+    NT_concatenation => Shift(yy_state_32)
+    T_EOI | T_AS | T_RPAREN | T_SEMICOLON | T_FAT_ARROW | T_BAR => Reduce(1, NT_concatenation, yy_action_26)
     _ => Error
   }
 }
 
 // [23, concatenation → repetition concatenation •, EOI / AS / RPAREN / SEMICOLON / FAT_ARROW / BAR]
-fn yy_state_34(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(2, NT_concatenation, yy_action_9)
+fn yy_state_32(_lookahead : YYSymbol) -> YYDecision {
+  ReduceNoLookahead(2, NT_concatenation, yy_action_14)
 }
 
 // [20, alternation → concatenation •, EOI / AS / RPAREN / SEMICOLON / FAT_ARROW]
 // [21, alternation → concatenation • BAR alternation, EOI / AS / RPAREN / SEMICOLON / FAT_ARROW]
-fn yy_state_35(_lookahead : YYSymbol) -> YYDecision {
+fn yy_state_33(_lookahead : YYSymbol) -> YYDecision {
   match _lookahead {
-    T_BAR => Shift(yy_state_36)
-    T_EOI | T_AS | T_RPAREN | T_SEMICOLON | T_FAT_ARROW => Reduce(1, NT_alternation, yy_action_2)
+    T_BAR => Shift(yy_state_34)
+    T_EOI | T_AS | T_RPAREN | T_SEMICOLON | T_FAT_ARROW => Reduce(1, NT_alternation, yy_action_17)
     _ => Error
   }
 }
@@ -1102,16 +1010,15 @@ fn yy_state_35(_lookahead : YYSymbol) -> YYDecision {
 // [29, repetition → • atom PLUS, EOI / EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / SEMICOLON / FAT_ARROW / BAR / LC_IDENT / CHAR / STRING]
 // [30, repetition → • atom QUESTION, EOI / EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / SEMICOLON / FAT_ARROW / BAR / LC_IDENT / CHAR / STRING]
 // [31, atom → • LPAREN alias RPAREN, EOI / EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / SEMICOLON / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-// [32, atom → • LPAREN LC_IDENT COLON alias RPAREN, EOI / EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / SEMICOLON / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-// [33, atom → • character_class, EOI / EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / SEMICOLON / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-// [34, atom → • LC_IDENT, EOI / EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / SEMICOLON / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-// [35, atom → • CHAR, EOI / EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / SEMICOLON / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-// [36, atom → • STRING, EOI / EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / SEMICOLON / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-// [37, atom → • UNDERSCORE, EOI / EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / SEMICOLON / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-// [38, atom → • EOF, EOI / EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / SEMICOLON / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-// [39, character_class → • LBRACKET character_class_inner RBRACKET, EOI / EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / SEMICOLON / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-// [40, character_class → • LBRACKET CARET character_class_inner RBRACKET, EOI / EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / SEMICOLON / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-fn yy_state_36(_lookahead : YYSymbol) -> YYDecision {
+// [32, atom → • character_class, EOI / EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / SEMICOLON / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
+// [33, atom → • LC_IDENT, EOI / EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / SEMICOLON / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
+// [34, atom → • CHAR, EOI / EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / SEMICOLON / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
+// [35, atom → • STRING, EOI / EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / SEMICOLON / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
+// [36, atom → • UNDERSCORE, EOI / EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / SEMICOLON / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
+// [37, atom → • EOF, EOI / EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / SEMICOLON / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
+// [38, character_class → • LBRACKET character_class_inner RBRACKET, EOI / EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / SEMICOLON / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
+// [39, character_class → • LBRACKET CARET character_class_inner RBRACKET, EOI / EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / SEMICOLON / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
+fn yy_state_34(_lookahead : YYSymbol) -> YYDecision {
   match _lookahead {
     T_LBRACKET => Shift(yy_state_2)
     T_EOF => Shift(yy_state_13)
@@ -1121,72 +1028,59 @@ fn yy_state_36(_lookahead : YYSymbol) -> YYDecision {
     T_LC_IDENT => Shift(yy_state_17)
     NT_character_class => Shift(yy_state_18)
     T_LPAREN => Shift(yy_state_19)
-    NT_atom => Shift(yy_state_24)
-    NT_differentiation => Shift(yy_state_30)
-    NT_repetition => Shift(yy_state_33)
-    NT_concatenation => Shift(yy_state_35)
-    NT_alternation => Shift(yy_state_37)
+    NT_atom => Shift(yy_state_22)
+    NT_differentiation => Shift(yy_state_28)
+    NT_repetition => Shift(yy_state_31)
+    NT_concatenation => Shift(yy_state_33)
+    NT_alternation => Shift(yy_state_35)
     _ => Error
   }
 }
 
 // [21, alternation → concatenation BAR alternation •, EOI / AS / RPAREN / SEMICOLON / FAT_ARROW]
-fn yy_state_37(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(3, NT_alternation, yy_action_27)
+fn yy_state_35(_lookahead : YYSymbol) -> YYDecision {
+  ReduceNoLookahead(3, NT_alternation, yy_action_2)
 }
 
 // [18, alias → alternation •, EOI / RPAREN / SEMICOLON / FAT_ARROW]
 // [19, alias → alternation • AS LC_IDENT, EOI / RPAREN / SEMICOLON / FAT_ARROW]
-fn yy_state_38(_lookahead : YYSymbol) -> YYDecision {
+fn yy_state_36(_lookahead : YYSymbol) -> YYDecision {
   match _lookahead {
-    T_AS => Shift(yy_state_39)
-    T_EOI | T_RPAREN | T_SEMICOLON | T_FAT_ARROW => Reduce(1, NT_alias, yy_action_1)
+    T_AS => Shift(yy_state_37)
+    T_EOI | T_RPAREN | T_SEMICOLON | T_FAT_ARROW => Reduce(1, NT_alias, yy_action_4)
     _ => Error
   }
 }
 
 // [19, alias → alternation AS • LC_IDENT, EOI / RPAREN / SEMICOLON / FAT_ARROW]
-fn yy_state_39(_lookahead : YYSymbol) -> YYDecision {
+fn yy_state_37(_lookahead : YYSymbol) -> YYDecision {
   match _lookahead {
-    T_LC_IDENT => Shift(yy_state_40)
+    T_LC_IDENT => Shift(yy_state_38)
     _ => Error
   }
 }
 
 // [19, alias → alternation AS LC_IDENT •, EOI / RPAREN / SEMICOLON / FAT_ARROW]
-fn yy_state_40(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(3, NT_alias, yy_action_17)
-}
-
-// [31, atom → LPAREN alias • RPAREN, EOI / EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / SEMICOLON / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-fn yy_state_41(_lookahead : YYSymbol) -> YYDecision {
-  match _lookahead {
-    T_RPAREN => Shift(yy_state_42)
-    _ => Error
-  }
-}
-
-// [31, atom → LPAREN alias RPAREN •, EOI / EOF / AS / UNDERSCORE / LPAREN / RPAREN / LBRACKET / SEMICOLON / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-fn yy_state_42(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(3, NT_atom, yy_action_33)
+fn yy_state_38(_lookahead : YYSymbol) -> YYDecision {
+  ReduceNoLookahead(3, NT_alias, yy_action_1)
 }
 
 // [17, regex → alias •, EOI / SEMICOLON / FAT_ARROW]
-fn yy_state_43(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_regex, yy_action_4)
+fn yy_state_39(_lookahead : YYSymbol) -> YYDecision {
+  ReduceNoLookahead(1, NT_regex, yy_action_13)
 }
 
 // [1, regex_eoi → regex • EOI, $]
-fn yy_state_44(_lookahead : YYSymbol) -> YYDecision {
+fn yy_state_40(_lookahead : YYSymbol) -> YYDecision {
   match _lookahead {
-    T_EOI => Shift(yy_state_45)
+    T_EOI => Shift(yy_state_41)
     _ => Error
   }
 }
 
 // [1, regex_eoi → regex EOI •, $]
-fn yy_state_45(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(2, NT_regex_eoi, yy_action_34)
+fn yy_state_41(_lookahead : YYSymbol) -> YYDecision {
+  ReduceNoLookahead(2, NT_regex_eoi, yy_action_15)
 }
 
 // [0, lex_eoi → • lex EOI, $]
@@ -1194,55 +1088,55 @@ fn yy_state_45(_lookahead : YYSymbol) -> YYDecision {
 // [3, lex → • header named_regex_list nonempty_rule_list trailer, EOI]
 // [4, header → • LBRACE_CODE_RBRACE, REGEX / RULE_LC_IDENT_LPAREN_CODE_RPAREN_ARROW_CODE_LBRACE]
 // [5, header → •, REGEX / RULE_LC_IDENT_LPAREN_CODE_RPAREN_ARROW_CODE_LBRACE]
-// [45, lex_eoi_prime → • lex_eoi, $]
-fn yy_state_46(_lookahead : YYSymbol) -> YYDecision {
+// [44, lex_eoi_prime → • lex_eoi, $]
+fn yy_state_42(_lookahead : YYSymbol) -> YYDecision {
   match _lookahead {
-    NT_lex_eoi => Shift(yy_state_47)
-    T_LBRACE_CODE_RBRACE => Shift(yy_state_48)
-    NT_header => Shift(yy_state_49)
-    NT_lex => Shift(yy_state_73)
-    T_EOI => Reduce(0, NT_lex, yy_action_20)
-    T_REGEX | T_RULE_LC_IDENT_LPAREN_CODE_RPAREN_ARROW_CODE_LBRACE => Reduce(0, NT_header, yy_action_32)
+    NT_lex_eoi => Shift(yy_state_43)
+    T_LBRACE_CODE_RBRACE => Shift(yy_state_44)
+    NT_header => Shift(yy_state_45)
+    NT_lex => Shift(yy_state_69)
+    T_EOI => Reduce(0, NT_lex, yy_action_33)
+    T_REGEX | T_RULE_LC_IDENT_LPAREN_CODE_RPAREN_ARROW_CODE_LBRACE => Reduce(0, NT_header, yy_action_34)
     _ => Error
   }
 }
 
-// [45, lex_eoi_prime → lex_eoi •, $]
-fn yy_state_47(_lookahead : YYSymbol) -> YYDecision {
+// [44, lex_eoi_prime → lex_eoi •, $]
+fn yy_state_43(_lookahead : YYSymbol) -> YYDecision {
   Accept
 }
 
 // [4, header → LBRACE_CODE_RBRACE •, REGEX / RULE_LC_IDENT_LPAREN_CODE_RPAREN_ARROW_CODE_LBRACE]
-fn yy_state_48(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_header, yy_action_35)
+fn yy_state_44(_lookahead : YYSymbol) -> YYDecision {
+  ReduceNoLookahead(1, NT_header, yy_action_29)
 }
 
 // [3, lex → header • named_regex_list nonempty_rule_list trailer, EOI]
 // [8, named_regex_list → • named_regex named_regex_list, RULE_LC_IDENT_LPAREN_CODE_RPAREN_ARROW_CODE_LBRACE]
 // [9, named_regex_list → •, RULE_LC_IDENT_LPAREN_CODE_RPAREN_ARROW_CODE_LBRACE]
 // [10, named_regex → • REGEX LC_IDENT EQ regex SEMICOLON, REGEX / RULE_LC_IDENT_LPAREN_CODE_RPAREN_ARROW_CODE_LBRACE]
-fn yy_state_49(_lookahead : YYSymbol) -> YYDecision {
+fn yy_state_45(_lookahead : YYSymbol) -> YYDecision {
   match _lookahead {
-    T_REGEX => Shift(yy_state_50)
-    NT_named_regex => Shift(yy_state_55)
-    NT_named_regex_list => Shift(yy_state_57)
-    T_RULE_LC_IDENT_LPAREN_CODE_RPAREN_ARROW_CODE_LBRACE => Reduce(0, NT_named_regex_list, yy_action_40)
+    T_REGEX => Shift(yy_state_46)
+    NT_named_regex => Shift(yy_state_51)
+    NT_named_regex_list => Shift(yy_state_53)
+    T_RULE_LC_IDENT_LPAREN_CODE_RPAREN_ARROW_CODE_LBRACE => Reduce(0, NT_named_regex_list, yy_action_22)
     _ => Error
   }
 }
 
 // [10, named_regex → REGEX • LC_IDENT EQ regex SEMICOLON, REGEX / RULE_LC_IDENT_LPAREN_CODE_RPAREN_ARROW_CODE_LBRACE]
-fn yy_state_50(_lookahead : YYSymbol) -> YYDecision {
+fn yy_state_46(_lookahead : YYSymbol) -> YYDecision {
   match _lookahead {
-    T_LC_IDENT => Shift(yy_state_51)
+    T_LC_IDENT => Shift(yy_state_47)
     _ => Error
   }
 }
 
 // [10, named_regex → REGEX LC_IDENT • EQ regex SEMICOLON, REGEX / RULE_LC_IDENT_LPAREN_CODE_RPAREN_ARROW_CODE_LBRACE]
-fn yy_state_51(_lookahead : YYSymbol) -> YYDecision {
+fn yy_state_47(_lookahead : YYSymbol) -> YYDecision {
   match _lookahead {
-    T_EQ => Shift(yy_state_52)
+    T_EQ => Shift(yy_state_48)
     _ => Error
   }
 }
@@ -1263,16 +1157,15 @@ fn yy_state_51(_lookahead : YYSymbol) -> YYDecision {
 // [29, repetition → • atom PLUS, EOF / AS / UNDERSCORE / LPAREN / LBRACKET / SEMICOLON / BAR / LC_IDENT / CHAR / STRING]
 // [30, repetition → • atom QUESTION, EOF / AS / UNDERSCORE / LPAREN / LBRACKET / SEMICOLON / BAR / LC_IDENT / CHAR / STRING]
 // [31, atom → • LPAREN alias RPAREN, EOF / AS / UNDERSCORE / LPAREN / LBRACKET / SEMICOLON / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-// [32, atom → • LPAREN LC_IDENT COLON alias RPAREN, EOF / AS / UNDERSCORE / LPAREN / LBRACKET / SEMICOLON / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-// [33, atom → • character_class, EOF / AS / UNDERSCORE / LPAREN / LBRACKET / SEMICOLON / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-// [34, atom → • LC_IDENT, EOF / AS / UNDERSCORE / LPAREN / LBRACKET / SEMICOLON / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-// [35, atom → • CHAR, EOF / AS / UNDERSCORE / LPAREN / LBRACKET / SEMICOLON / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-// [36, atom → • STRING, EOF / AS / UNDERSCORE / LPAREN / LBRACKET / SEMICOLON / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-// [37, atom → • UNDERSCORE, EOF / AS / UNDERSCORE / LPAREN / LBRACKET / SEMICOLON / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-// [38, atom → • EOF, EOF / AS / UNDERSCORE / LPAREN / LBRACKET / SEMICOLON / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-// [39, character_class → • LBRACKET character_class_inner RBRACKET, EOF / AS / UNDERSCORE / LPAREN / LBRACKET / SEMICOLON / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-// [40, character_class → • LBRACKET CARET character_class_inner RBRACKET, EOF / AS / UNDERSCORE / LPAREN / LBRACKET / SEMICOLON / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-fn yy_state_52(_lookahead : YYSymbol) -> YYDecision {
+// [32, atom → • character_class, EOF / AS / UNDERSCORE / LPAREN / LBRACKET / SEMICOLON / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
+// [33, atom → • LC_IDENT, EOF / AS / UNDERSCORE / LPAREN / LBRACKET / SEMICOLON / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
+// [34, atom → • CHAR, EOF / AS / UNDERSCORE / LPAREN / LBRACKET / SEMICOLON / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
+// [35, atom → • STRING, EOF / AS / UNDERSCORE / LPAREN / LBRACKET / SEMICOLON / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
+// [36, atom → • UNDERSCORE, EOF / AS / UNDERSCORE / LPAREN / LBRACKET / SEMICOLON / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
+// [37, atom → • EOF, EOF / AS / UNDERSCORE / LPAREN / LBRACKET / SEMICOLON / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
+// [38, character_class → • LBRACKET character_class_inner RBRACKET, EOF / AS / UNDERSCORE / LPAREN / LBRACKET / SEMICOLON / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
+// [39, character_class → • LBRACKET CARET character_class_inner RBRACKET, EOF / AS / UNDERSCORE / LPAREN / LBRACKET / SEMICOLON / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
+fn yy_state_48(_lookahead : YYSymbol) -> YYDecision {
   match _lookahead {
     T_LBRACKET => Shift(yy_state_2)
     T_EOF => Shift(yy_state_13)
@@ -1282,46 +1175,46 @@ fn yy_state_52(_lookahead : YYSymbol) -> YYDecision {
     T_LC_IDENT => Shift(yy_state_17)
     NT_character_class => Shift(yy_state_18)
     T_LPAREN => Shift(yy_state_19)
-    NT_atom => Shift(yy_state_24)
-    NT_differentiation => Shift(yy_state_30)
-    NT_repetition => Shift(yy_state_33)
-    NT_concatenation => Shift(yy_state_35)
-    NT_alternation => Shift(yy_state_38)
-    NT_alias => Shift(yy_state_43)
-    NT_regex => Shift(yy_state_53)
+    NT_atom => Shift(yy_state_22)
+    NT_differentiation => Shift(yy_state_28)
+    NT_repetition => Shift(yy_state_31)
+    NT_concatenation => Shift(yy_state_33)
+    NT_alternation => Shift(yy_state_36)
+    NT_alias => Shift(yy_state_39)
+    NT_regex => Shift(yy_state_49)
     _ => Error
   }
 }
 
 // [10, named_regex → REGEX LC_IDENT EQ regex • SEMICOLON, REGEX / RULE_LC_IDENT_LPAREN_CODE_RPAREN_ARROW_CODE_LBRACE]
-fn yy_state_53(_lookahead : YYSymbol) -> YYDecision {
+fn yy_state_49(_lookahead : YYSymbol) -> YYDecision {
   match _lookahead {
-    T_SEMICOLON => Shift(yy_state_54)
+    T_SEMICOLON => Shift(yy_state_50)
     _ => Error
   }
 }
 
 // [10, named_regex → REGEX LC_IDENT EQ regex SEMICOLON •, REGEX / RULE_LC_IDENT_LPAREN_CODE_RPAREN_ARROW_CODE_LBRACE]
-fn yy_state_54(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(5, NT_named_regex, yy_action_19)
+fn yy_state_50(_lookahead : YYSymbol) -> YYDecision {
+  ReduceNoLookahead(5, NT_named_regex, yy_action_39)
 }
 
 // [8, named_regex_list → • named_regex named_regex_list, RULE_LC_IDENT_LPAREN_CODE_RPAREN_ARROW_CODE_LBRACE]
 // [8, named_regex_list → named_regex • named_regex_list, RULE_LC_IDENT_LPAREN_CODE_RPAREN_ARROW_CODE_LBRACE]
 // [9, named_regex_list → •, RULE_LC_IDENT_LPAREN_CODE_RPAREN_ARROW_CODE_LBRACE]
 // [10, named_regex → • REGEX LC_IDENT EQ regex SEMICOLON, REGEX / RULE_LC_IDENT_LPAREN_CODE_RPAREN_ARROW_CODE_LBRACE]
-fn yy_state_55(_lookahead : YYSymbol) -> YYDecision {
+fn yy_state_51(_lookahead : YYSymbol) -> YYDecision {
   match _lookahead {
-    T_REGEX => Shift(yy_state_50)
-    NT_named_regex => Shift(yy_state_55)
-    NT_named_regex_list => Shift(yy_state_56)
-    T_RULE_LC_IDENT_LPAREN_CODE_RPAREN_ARROW_CODE_LBRACE => Reduce(0, NT_named_regex_list, yy_action_40)
+    T_REGEX => Shift(yy_state_46)
+    NT_named_regex => Shift(yy_state_51)
+    NT_named_regex_list => Shift(yy_state_52)
+    T_RULE_LC_IDENT_LPAREN_CODE_RPAREN_ARROW_CODE_LBRACE => Reduce(0, NT_named_regex_list, yy_action_22)
     _ => Error
   }
 }
 
 // [8, named_regex_list → named_regex named_regex_list •, RULE_LC_IDENT_LPAREN_CODE_RPAREN_ARROW_CODE_LBRACE]
-fn yy_state_56(_lookahead : YYSymbol) -> YYDecision {
+fn yy_state_52(_lookahead : YYSymbol) -> YYDecision {
   ReduceNoLookahead(2, NT_named_regex_list, yy_action_23)
 }
 
@@ -1329,19 +1222,19 @@ fn yy_state_56(_lookahead : YYSymbol) -> YYDecision {
 // [11, nonempty_rule_list → • rule, EOI / LBRACE_CODE_RBRACE]
 // [12, nonempty_rule_list → • rule nonempty_rule_list, EOI / LBRACE_CODE_RBRACE]
 // [13, rule → • RULE_LC_IDENT_LPAREN_CODE_RPAREN_ARROW_CODE_LBRACE PARSE_LBRACE rule_item_list RBRACE RBRACE, EOI / RULE_LC_IDENT_LPAREN_CODE_RPAREN_ARROW_CODE_LBRACE / LBRACE_CODE_RBRACE]
-fn yy_state_57(_lookahead : YYSymbol) -> YYDecision {
+fn yy_state_53(_lookahead : YYSymbol) -> YYDecision {
   match _lookahead {
-    T_RULE_LC_IDENT_LPAREN_CODE_RPAREN_ARROW_CODE_LBRACE => Shift(yy_state_58)
-    NT_rule => Shift(yy_state_68)
-    NT_nonempty_rule_list => Shift(yy_state_70)
+    T_RULE_LC_IDENT_LPAREN_CODE_RPAREN_ARROW_CODE_LBRACE => Shift(yy_state_54)
+    NT_rule => Shift(yy_state_64)
+    NT_nonempty_rule_list => Shift(yy_state_66)
     _ => Error
   }
 }
 
 // [13, rule → RULE_LC_IDENT_LPAREN_CODE_RPAREN_ARROW_CODE_LBRACE • PARSE_LBRACE rule_item_list RBRACE RBRACE, EOI / RULE_LC_IDENT_LPAREN_CODE_RPAREN_ARROW_CODE_LBRACE / LBRACE_CODE_RBRACE]
-fn yy_state_58(_lookahead : YYSymbol) -> YYDecision {
+fn yy_state_54(_lookahead : YYSymbol) -> YYDecision {
   match _lookahead {
-    T_PARSE_LBRACE => Shift(yy_state_59)
+    T_PARSE_LBRACE => Shift(yy_state_55)
     _ => Error
   }
 }
@@ -1365,16 +1258,15 @@ fn yy_state_58(_lookahead : YYSymbol) -> YYDecision {
 // [29, repetition → • atom PLUS, EOF / AS / UNDERSCORE / LPAREN / LBRACKET / FAT_ARROW / BAR / LC_IDENT / CHAR / STRING]
 // [30, repetition → • atom QUESTION, EOF / AS / UNDERSCORE / LPAREN / LBRACKET / FAT_ARROW / BAR / LC_IDENT / CHAR / STRING]
 // [31, atom → • LPAREN alias RPAREN, EOF / AS / UNDERSCORE / LPAREN / LBRACKET / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-// [32, atom → • LPAREN LC_IDENT COLON alias RPAREN, EOF / AS / UNDERSCORE / LPAREN / LBRACKET / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-// [33, atom → • character_class, EOF / AS / UNDERSCORE / LPAREN / LBRACKET / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-// [34, atom → • LC_IDENT, EOF / AS / UNDERSCORE / LPAREN / LBRACKET / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-// [35, atom → • CHAR, EOF / AS / UNDERSCORE / LPAREN / LBRACKET / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-// [36, atom → • STRING, EOF / AS / UNDERSCORE / LPAREN / LBRACKET / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-// [37, atom → • UNDERSCORE, EOF / AS / UNDERSCORE / LPAREN / LBRACKET / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-// [38, atom → • EOF, EOF / AS / UNDERSCORE / LPAREN / LBRACKET / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-// [39, character_class → • LBRACKET character_class_inner RBRACKET, EOF / AS / UNDERSCORE / LPAREN / LBRACKET / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-// [40, character_class → • LBRACKET CARET character_class_inner RBRACKET, EOF / AS / UNDERSCORE / LPAREN / LBRACKET / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-fn yy_state_59(_lookahead : YYSymbol) -> YYDecision {
+// [32, atom → • character_class, EOF / AS / UNDERSCORE / LPAREN / LBRACKET / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
+// [33, atom → • LC_IDENT, EOF / AS / UNDERSCORE / LPAREN / LBRACKET / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
+// [34, atom → • CHAR, EOF / AS / UNDERSCORE / LPAREN / LBRACKET / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
+// [35, atom → • STRING, EOF / AS / UNDERSCORE / LPAREN / LBRACKET / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
+// [36, atom → • UNDERSCORE, EOF / AS / UNDERSCORE / LPAREN / LBRACKET / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
+// [37, atom → • EOF, EOF / AS / UNDERSCORE / LPAREN / LBRACKET / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
+// [38, character_class → • LBRACKET character_class_inner RBRACKET, EOF / AS / UNDERSCORE / LPAREN / LBRACKET / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
+// [39, character_class → • LBRACKET CARET character_class_inner RBRACKET, EOF / AS / UNDERSCORE / LPAREN / LBRACKET / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
+fn yy_state_55(_lookahead : YYSymbol) -> YYDecision {
   match _lookahead {
     T_LBRACKET => Shift(yy_state_2)
     T_EOF => Shift(yy_state_13)
@@ -1384,39 +1276,39 @@ fn yy_state_59(_lookahead : YYSymbol) -> YYDecision {
     T_LC_IDENT => Shift(yy_state_17)
     NT_character_class => Shift(yy_state_18)
     T_LPAREN => Shift(yy_state_19)
-    NT_atom => Shift(yy_state_24)
-    NT_differentiation => Shift(yy_state_30)
-    NT_repetition => Shift(yy_state_33)
-    NT_concatenation => Shift(yy_state_35)
-    NT_alternation => Shift(yy_state_38)
-    NT_alias => Shift(yy_state_43)
-    NT_regex => Shift(yy_state_60)
-    NT_rule_item => Shift(yy_state_63)
-    NT_rule_item_list => Shift(yy_state_65)
-    T_RBRACE => Reduce(0, NT_rule_item_list, yy_action_10)
+    NT_atom => Shift(yy_state_22)
+    NT_differentiation => Shift(yy_state_28)
+    NT_repetition => Shift(yy_state_31)
+    NT_concatenation => Shift(yy_state_33)
+    NT_alternation => Shift(yy_state_36)
+    NT_alias => Shift(yy_state_39)
+    NT_regex => Shift(yy_state_56)
+    NT_rule_item => Shift(yy_state_59)
+    NT_rule_item_list => Shift(yy_state_61)
+    T_RBRACE => Reduce(0, NT_rule_item_list, yy_action_18)
     _ => Error
   }
 }
 
 // [16, rule_item → regex • FAT_ARROW LBRACE_CODE_RBRACE, EOF / UNDERSCORE / RBRACE / LPAREN / LBRACKET / LC_IDENT / CHAR / STRING]
-fn yy_state_60(_lookahead : YYSymbol) -> YYDecision {
+fn yy_state_56(_lookahead : YYSymbol) -> YYDecision {
   match _lookahead {
-    T_FAT_ARROW => Shift(yy_state_61)
+    T_FAT_ARROW => Shift(yy_state_57)
     _ => Error
   }
 }
 
 // [16, rule_item → regex FAT_ARROW • LBRACE_CODE_RBRACE, EOF / UNDERSCORE / RBRACE / LPAREN / LBRACKET / LC_IDENT / CHAR / STRING]
-fn yy_state_61(_lookahead : YYSymbol) -> YYDecision {
+fn yy_state_57(_lookahead : YYSymbol) -> YYDecision {
   match _lookahead {
-    T_LBRACE_CODE_RBRACE => Shift(yy_state_62)
+    T_LBRACE_CODE_RBRACE => Shift(yy_state_58)
     _ => Error
   }
 }
 
 // [16, rule_item → regex FAT_ARROW LBRACE_CODE_RBRACE •, EOF / UNDERSCORE / RBRACE / LPAREN / LBRACKET / LC_IDENT / CHAR / STRING]
-fn yy_state_62(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(3, NT_rule_item, yy_action_13)
+fn yy_state_58(_lookahead : YYSymbol) -> YYDecision {
+  ReduceNoLookahead(3, NT_rule_item, yy_action_10)
 }
 
 // [14, rule_item_list → • rule_item rule_item_list, RBRACE]
@@ -1438,16 +1330,15 @@ fn yy_state_62(_lookahead : YYSymbol) -> YYDecision {
 // [29, repetition → • atom PLUS, EOF / AS / UNDERSCORE / LPAREN / LBRACKET / FAT_ARROW / BAR / LC_IDENT / CHAR / STRING]
 // [30, repetition → • atom QUESTION, EOF / AS / UNDERSCORE / LPAREN / LBRACKET / FAT_ARROW / BAR / LC_IDENT / CHAR / STRING]
 // [31, atom → • LPAREN alias RPAREN, EOF / AS / UNDERSCORE / LPAREN / LBRACKET / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-// [32, atom → • LPAREN LC_IDENT COLON alias RPAREN, EOF / AS / UNDERSCORE / LPAREN / LBRACKET / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-// [33, atom → • character_class, EOF / AS / UNDERSCORE / LPAREN / LBRACKET / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-// [34, atom → • LC_IDENT, EOF / AS / UNDERSCORE / LPAREN / LBRACKET / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-// [35, atom → • CHAR, EOF / AS / UNDERSCORE / LPAREN / LBRACKET / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-// [36, atom → • STRING, EOF / AS / UNDERSCORE / LPAREN / LBRACKET / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-// [37, atom → • UNDERSCORE, EOF / AS / UNDERSCORE / LPAREN / LBRACKET / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-// [38, atom → • EOF, EOF / AS / UNDERSCORE / LPAREN / LBRACKET / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-// [39, character_class → • LBRACKET character_class_inner RBRACKET, EOF / AS / UNDERSCORE / LPAREN / LBRACKET / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-// [40, character_class → • LBRACKET CARET character_class_inner RBRACKET, EOF / AS / UNDERSCORE / LPAREN / LBRACKET / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
-fn yy_state_63(_lookahead : YYSymbol) -> YYDecision {
+// [32, atom → • character_class, EOF / AS / UNDERSCORE / LPAREN / LBRACKET / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
+// [33, atom → • LC_IDENT, EOF / AS / UNDERSCORE / LPAREN / LBRACKET / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
+// [34, atom → • CHAR, EOF / AS / UNDERSCORE / LPAREN / LBRACKET / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
+// [35, atom → • STRING, EOF / AS / UNDERSCORE / LPAREN / LBRACKET / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
+// [36, atom → • UNDERSCORE, EOF / AS / UNDERSCORE / LPAREN / LBRACKET / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
+// [37, atom → • EOF, EOF / AS / UNDERSCORE / LPAREN / LBRACKET / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
+// [38, character_class → • LBRACKET character_class_inner RBRACKET, EOF / AS / UNDERSCORE / LPAREN / LBRACKET / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
+// [39, character_class → • LBRACKET CARET character_class_inner RBRACKET, EOF / AS / UNDERSCORE / LPAREN / LBRACKET / FAT_ARROW / BAR / STAR / PLUS / QUESTION / BACKSLASH / LC_IDENT / CHAR / STRING]
+fn yy_state_59(_lookahead : YYSymbol) -> YYDecision {
   match _lookahead {
     T_LBRACKET => Shift(yy_state_2)
     T_EOF => Shift(yy_state_13)
@@ -1457,44 +1348,44 @@ fn yy_state_63(_lookahead : YYSymbol) -> YYDecision {
     T_LC_IDENT => Shift(yy_state_17)
     NT_character_class => Shift(yy_state_18)
     T_LPAREN => Shift(yy_state_19)
-    NT_atom => Shift(yy_state_24)
-    NT_differentiation => Shift(yy_state_30)
-    NT_repetition => Shift(yy_state_33)
-    NT_concatenation => Shift(yy_state_35)
-    NT_alternation => Shift(yy_state_38)
-    NT_alias => Shift(yy_state_43)
-    NT_regex => Shift(yy_state_60)
-    NT_rule_item => Shift(yy_state_63)
-    NT_rule_item_list => Shift(yy_state_64)
-    T_RBRACE => Reduce(0, NT_rule_item_list, yy_action_10)
+    NT_atom => Shift(yy_state_22)
+    NT_differentiation => Shift(yy_state_28)
+    NT_repetition => Shift(yy_state_31)
+    NT_concatenation => Shift(yy_state_33)
+    NT_alternation => Shift(yy_state_36)
+    NT_alias => Shift(yy_state_39)
+    NT_regex => Shift(yy_state_56)
+    NT_rule_item => Shift(yy_state_59)
+    NT_rule_item_list => Shift(yy_state_60)
+    T_RBRACE => Reduce(0, NT_rule_item_list, yy_action_18)
     _ => Error
   }
 }
 
 // [14, rule_item_list → rule_item rule_item_list •, RBRACE]
-fn yy_state_64(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(2, NT_rule_item_list, yy_action_18)
+fn yy_state_60(_lookahead : YYSymbol) -> YYDecision {
+  ReduceNoLookahead(2, NT_rule_item_list, yy_action_16)
 }
 
 // [13, rule → RULE_LC_IDENT_LPAREN_CODE_RPAREN_ARROW_CODE_LBRACE PARSE_LBRACE rule_item_list • RBRACE RBRACE, EOI / RULE_LC_IDENT_LPAREN_CODE_RPAREN_ARROW_CODE_LBRACE / LBRACE_CODE_RBRACE]
-fn yy_state_65(_lookahead : YYSymbol) -> YYDecision {
+fn yy_state_61(_lookahead : YYSymbol) -> YYDecision {
   match _lookahead {
-    T_RBRACE => Shift(yy_state_66)
+    T_RBRACE => Shift(yy_state_62)
     _ => Error
   }
 }
 
 // [13, rule → RULE_LC_IDENT_LPAREN_CODE_RPAREN_ARROW_CODE_LBRACE PARSE_LBRACE rule_item_list RBRACE • RBRACE, EOI / RULE_LC_IDENT_LPAREN_CODE_RPAREN_ARROW_CODE_LBRACE / LBRACE_CODE_RBRACE]
-fn yy_state_66(_lookahead : YYSymbol) -> YYDecision {
+fn yy_state_62(_lookahead : YYSymbol) -> YYDecision {
   match _lookahead {
-    T_RBRACE => Shift(yy_state_67)
+    T_RBRACE => Shift(yy_state_63)
     _ => Error
   }
 }
 
 // [13, rule → RULE_LC_IDENT_LPAREN_CODE_RPAREN_ARROW_CODE_LBRACE PARSE_LBRACE rule_item_list RBRACE RBRACE •, EOI / RULE_LC_IDENT_LPAREN_CODE_RPAREN_ARROW_CODE_LBRACE / LBRACE_CODE_RBRACE]
-fn yy_state_67(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(5, NT_rule, yy_action_16)
+fn yy_state_63(_lookahead : YYSymbol) -> YYDecision {
+  ReduceNoLookahead(5, NT_rule, yy_action_28)
 }
 
 // [11, nonempty_rule_list → • rule, EOI / LBRACE_CODE_RBRACE]
@@ -1502,54 +1393,54 @@ fn yy_state_67(_lookahead : YYSymbol) -> YYDecision {
 // [12, nonempty_rule_list → • rule nonempty_rule_list, EOI / LBRACE_CODE_RBRACE]
 // [12, nonempty_rule_list → rule • nonempty_rule_list, EOI / LBRACE_CODE_RBRACE]
 // [13, rule → • RULE_LC_IDENT_LPAREN_CODE_RPAREN_ARROW_CODE_LBRACE PARSE_LBRACE rule_item_list RBRACE RBRACE, EOI / RULE_LC_IDENT_LPAREN_CODE_RPAREN_ARROW_CODE_LBRACE / LBRACE_CODE_RBRACE]
-fn yy_state_68(_lookahead : YYSymbol) -> YYDecision {
+fn yy_state_64(_lookahead : YYSymbol) -> YYDecision {
   match _lookahead {
-    T_RULE_LC_IDENT_LPAREN_CODE_RPAREN_ARROW_CODE_LBRACE => Shift(yy_state_58)
-    NT_rule => Shift(yy_state_68)
-    NT_nonempty_rule_list => Shift(yy_state_69)
-    T_EOI | T_LBRACE_CODE_RBRACE => Reduce(1, NT_nonempty_rule_list, yy_action_30)
+    T_RULE_LC_IDENT_LPAREN_CODE_RPAREN_ARROW_CODE_LBRACE => Shift(yy_state_54)
+    NT_rule => Shift(yy_state_64)
+    NT_nonempty_rule_list => Shift(yy_state_65)
+    T_EOI | T_LBRACE_CODE_RBRACE => Reduce(1, NT_nonempty_rule_list, yy_action_19)
     _ => Error
   }
 }
 
 // [12, nonempty_rule_list → rule nonempty_rule_list •, EOI / LBRACE_CODE_RBRACE]
-fn yy_state_69(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(2, NT_nonempty_rule_list, yy_action_29)
+fn yy_state_65(_lookahead : YYSymbol) -> YYDecision {
+  ReduceNoLookahead(2, NT_nonempty_rule_list, yy_action_30)
 }
 
 // [3, lex → header named_regex_list nonempty_rule_list • trailer, EOI]
 // [6, trailer → • LBRACE_CODE_RBRACE, EOI]
 // [7, trailer → •, EOI]
-fn yy_state_70(_lookahead : YYSymbol) -> YYDecision {
+fn yy_state_66(_lookahead : YYSymbol) -> YYDecision {
   match _lookahead {
-    T_LBRACE_CODE_RBRACE => Shift(yy_state_71)
-    NT_trailer => Shift(yy_state_72)
-    T_EOI => Reduce(0, NT_trailer, yy_action_24)
+    T_LBRACE_CODE_RBRACE => Shift(yy_state_67)
+    NT_trailer => Shift(yy_state_68)
+    T_EOI => Reduce(0, NT_trailer, yy_action_40)
     _ => Error
   }
 }
 
 // [6, trailer → LBRACE_CODE_RBRACE •, EOI]
-fn yy_state_71(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_trailer, yy_action_41)
+fn yy_state_67(_lookahead : YYSymbol) -> YYDecision {
+  ReduceNoLookahead(1, NT_trailer, yy_action_31)
 }
 
 // [3, lex → header named_regex_list nonempty_rule_list trailer •, EOI]
-fn yy_state_72(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(4, NT_lex, yy_action_31)
+fn yy_state_68(_lookahead : YYSymbol) -> YYDecision {
+  ReduceNoLookahead(4, NT_lex, yy_action_20)
 }
 
 // [0, lex_eoi → lex • EOI, $]
-fn yy_state_73(_lookahead : YYSymbol) -> YYDecision {
+fn yy_state_69(_lookahead : YYSymbol) -> YYDecision {
   match _lookahead {
-    T_EOI => Shift(yy_state_74)
+    T_EOI => Shift(yy_state_70)
     _ => Error
   }
 }
 
 // [0, lex_eoi → lex EOI •, $]
-fn yy_state_74(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(2, NT_lex_eoi, yy_action_15)
+fn yy_state_70(_lookahead : YYSymbol) -> YYDecision {
+  ReduceNoLookahead(2, NT_lex_eoi, yy_action_37)
 }
 
 fn yy_parse[T](
@@ -1657,7 +1548,7 @@ fn error(stack : @immut/list.T[YYState], token : Token, loc : (Position, Positio
     }
     go(stack)
   }
-  for term in ([(T_EOI, TK_EOI), (T_EOF, TK_EOF), (T_PARSE_LBRACE, TK_PARSE_LBRACE), (T_REGEX, TK_REGEX), (T_AS, TK_AS), (T_UNDERSCORE, TK_UNDERSCORE), (T_RBRACE, TK_RBRACE), (T_LPAREN, TK_LPAREN), (T_RPAREN, TK_RPAREN), (T_LBRACKET, TK_LBRACKET), (T_RBRACKET, TK_RBRACKET), (T_EQ, TK_EQ), (T_COLON, TK_COLON), (T_SEMICOLON, TK_SEMICOLON), (T_FAT_ARROW, TK_FAT_ARROW), (T_BAR, TK_BAR), (T_STAR, TK_STAR), (T_PLUS, TK_PLUS), (T_QUESTION, TK_QUESTION), (T_MINUS, TK_MINUS), (T_CARET, TK_CARET), (T_BACKSLASH, TK_BACKSLASH), (T_RULE_LC_IDENT_LPAREN_CODE_RPAREN_ARROW_CODE_LBRACE, TK_RULE_LC_IDENT_LPAREN_CODE_RPAREN_ARROW_CODE_LBRACE), (T_LBRACE_CODE_RBRACE, TK_LBRACE_CODE_RBRACE), (T_LC_IDENT, TK_LC_IDENT), (T_CHAR, TK_CHAR), (T_STRING, TK_STRING)] : Array[(YYSymbol, TokenKind)]) {
+  for term in ([(T_EOI, TK_EOI), (T_EOF, TK_EOF), (T_PARSE_LBRACE, TK_PARSE_LBRACE), (T_REGEX, TK_REGEX), (T_AS, TK_AS), (T_UNDERSCORE, TK_UNDERSCORE), (T_RBRACE, TK_RBRACE), (T_LPAREN, TK_LPAREN), (T_RPAREN, TK_RPAREN), (T_LBRACKET, TK_LBRACKET), (T_RBRACKET, TK_RBRACKET), (T_EQ, TK_EQ), (T_SEMICOLON, TK_SEMICOLON), (T_FAT_ARROW, TK_FAT_ARROW), (T_BAR, TK_BAR), (T_STAR, TK_STAR), (T_PLUS, TK_PLUS), (T_QUESTION, TK_QUESTION), (T_MINUS, TK_MINUS), (T_CARET, TK_CARET), (T_BACKSLASH, TK_BACKSLASH), (T_RULE_LC_IDENT_LPAREN_CODE_RPAREN_ARROW_CODE_LBRACE, TK_RULE_LC_IDENT_LPAREN_CODE_RPAREN_ARROW_CODE_LBRACE), (T_LBRACE_CODE_RBRACE, TK_LBRACE_CODE_RBRACE), (T_LC_IDENT, TK_LC_IDENT), (T_CHAR, TK_CHAR), (T_STRING, TK_STRING)] : Array[(YYSymbol, TokenKind)]) {
     try_add(term.0, term.1)
   }
   raise UnexpectedToken(token, loc, expected)
@@ -1667,7 +1558,7 @@ pub fn lex_eoi(read_token : () -> (Token, Position, Position), start_pos : Posit
   yy_parse!(
     read_token,
     start_pos,
-    yy_state_46,
+    yy_state_42,
     fn {
       YYObj__Context______type_Lex(result) => result
       _ => panic()
