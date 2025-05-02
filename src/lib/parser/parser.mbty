@@ -33,146 +33,139 @@
 %token<Char> CHAR
 %token<String> STRING
 
-%{
-let named_regexes: Map[String, @type.Regex] = {}
-
-fn cleanup() -> Unit {
-  named_regexes.clear()
-}
-%}
-
 %%
 
-lex_eoi -> @type.Lex
-  : lex cleanup EOI                     { $1 }
+lex_eoi                                 -> (Context) -> @type.Lex
+  : lex EOI                             { $1 }
   ;
 
-cleanup -> Unit
-  :                                     { cleanup() }
-  ;
-
-regex_eoi -> @type.Regex
+regex_eoi                               -> (Context) -> @type.Regex
   : regex EOI                           { $1 }
   ;
 
-lex -> @type.Lex
-  :                                     {
-                                          { header: "", rules: [],  trailer: "" }
-                                        }
+lex                                     -> (Context) -> @type.Lex
+  :                                     { fn { _ctx => { header: "", rules: [],  trailer: "" } } }
   | header named_regex_list nonempty_rule_list trailer 
                                         {
-                                          { header: $1, rules: $3.to_array(), trailer: $4 }
+                                          fn (ctx) {
+                                            let ctx = $2(ctx)
+                                            { header: $1, rules: $3(ctx).to_array(), trailer: $4 }
+                                          } 
                                         }
   ;
 
-header -> String
+header                                  -> String
   : LBRACE_CODE_RBRACE                  { $1 }
   |                                     { "" }
   ;
 
-trailer -> String 
+trailer                                 -> String 
   : LBRACE_CODE_RBRACE                  { $1 }
   |                                     { "" }
   ;
 
-named_regex_list -> Unit
-  : named_regex named_regex_list        {}
-  |                                     {}
+named_regex_list                        -> (Context) -> Context
+  : named_regex named_regex_list        { fn { ctx => $2($1(ctx)) } }
+  |                                     { fn { ctx => ctx } }
   ;
 
-named_regex -> Unit
-  : "regex" LC_IDENT "=" regex ";"        { named_regexes.set($2, $4) }
+named_regex                             -> (Context) -> Context
+  : "regex" LC_IDENT "=" regex ";"      { fn { ctx => ctx.define_regex($2, $4(ctx)) } }
   ;
 
-nonempty_rule_list -> @immut/list.T[@type.Rule]
-  : rule                                { Cons($1, Nil) }
-  | rule nonempty_rule_list             { Cons($1, $2) }
+nonempty_rule_list                      -> (Context) -> @immut/list.T[@type.Rule]
+  : rule                                { fn { ctx => Cons($1(ctx), Nil) } }
+  | rule nonempty_rule_list             { fn { ctx => Cons($1(ctx), $2(ctx)) } }
   ;
 
-rule -> @type.Rule
+rule                                    -> (Context) -> @type.Rule
   : RULE_LC_IDENT_LPAREN_CODE_RPAREN_ARROW_CODE_LBRACE "parse {" rule_item_list "}" "}" 
-                                        {
-                                          { name: $1.0, signature: $1.1, patterns: $3.to_array() }
-                                        }
+                                        { fn { ctx => { name: $1.0, signature: $1.1, patterns: $3(ctx).to_array() } } }
   ;
 
-rule_item_list -> @immut/list.T[(@type.Regex, @type.CodeBlock)]
-  : rule_item rule_item_list            { Cons($1, $2) }
-  |                                     { Nil }
+rule_item_list                          -> (Context) -> @immut/list.T[(@type.Regex, @type.CodeBlock)]
+  : rule_item rule_item_list            { fn { ctx => Cons($1(ctx), $2(ctx)) } }
+  |                                     { fn { _ctx => Nil } }
   ;
 
-rule_item -> (@type.Regex, @type.CodeBlock)
-  : regex "=>" LBRACE_CODE_RBRACE       { ($1, $3) }
+rule_item                               -> (Context) -> (@type.Regex, @type.CodeBlock)
+  : regex "=>" LBRACE_CODE_RBRACE       { fn { ctx => ($1(ctx), $3) } }
   ;
 
-regex -> @type.Regex
+regex                                   -> (Context) -> @type.Regex
   : alias                               { $1 }
   ;
 
-alias -> @type.Regex
+alias                                   -> (Context) -> @type.Regex
   : alternation                         { $1 }
-  | alternation "as" LC_IDENT           { @regex.bind($1, $3) }
+  | alternation "as" LC_IDENT           { fn { ctx => @regex.bind($1(ctx), $3) } }
   ;
 
-alternation -> @type.Regex
+alternation                             -> (Context) -> @type.Regex
   : concatenation                       { $1 }
-  | concatenation "|" alternation       { @regex.alt($1, $3) }
+  | concatenation "|" alternation       { fn { ctx => @regex.alt($1(ctx), $3(ctx)) } }
   ;
 
-concatenation -> @type.Regex
+concatenation                           -> (Context) -> @type.Regex
   : repetition                          { $1 }
-  | repetition concatenation            { @regex.seq($1, $2) }
+  | repetition concatenation            { fn { ctx => @regex.seq($1(ctx), $2(ctx)) } }
   | differentiation                     { $1 }
   ;
 
-differentiation -> @type.Regex
+differentiation                         -> (Context) -> @type.Regex
   : atom BACKSLASH atom                 {
-                                          guard $1 is Character(cset1) && $3 is Character(cset2)
-                                          @regex.char_class(cset1.difference(cset2))
+                                          fn (ctx) {
+                                            guard $1(ctx) is Character(cset1) && $3(ctx) is Character(cset2)
+                                            @regex.char_class(cset1.difference(cset2))
+                                          }
                                         }
-  | differentiation BACKSLASH atom      { 
-                                          guard $1 is Character(cset1) && $3 is Character(cset2)
-                                          @regex.char_class(cset1.difference(cset2))
+  | differentiation BACKSLASH atom      {
+                                          fn (ctx) {
+                                            guard $1(ctx) is Character(cset1) && $3(ctx) is Character(cset2)
+                                            @regex.char_class(cset1.difference(cset2))
+                                          }
                                         }
   ;
 
-repetition -> @type.Regex
+repetition                              -> (Context) -> @type.Regex
   : atom                                { $1 }
-  | atom "*"                            { @regex.star($1) }
-  | atom "+"                            { @regex.plus($1) }
-  | atom "?"                            { @regex.opt($1) }
+  | atom "*"                            { fn { ctx => @regex.star($1(ctx)) } }
+  | atom "+"                            { fn { ctx => @regex.plus($1(ctx)) } }
+  | atom "?"                            { fn { ctx => @regex.opt($1(ctx)) } }
   ;
 
-atom -> @type.Regex
+atom                                    -> (Context) -> @type.Regex
   : "(" alias ")"                       { $2 }
-  | "(" LC_IDENT ":" alias ")"          { 
-                                          match $2 {
-                                            "ascii" => @regex.embed($4, encoding=Ascii)
-                                            "latin1" => @regex.embed($4, encoding=Latin1)
-                                            "utf8" => @regex.embed($4, encoding=Utf8)
-                                            _ => panic()
-                                          } 
+  | "(" LC_IDENT ":" alias ")"          {
+                                          fn (ctx) {
+                                            match $2 {
+                                              "ascii" => @regex.embed($4(ctx), encoding=Ascii)
+                                              "latin1" => @regex.embed($4(ctx), encoding=Latin1)
+                                              "utf8" => @regex.embed($4(ctx), encoding=Utf8)
+                                              _ => panic()
+                                            }
+                                          }
                                         }
-  | character_class                     { @regex.char_class($1) }
-  | LC_IDENT                            { named_regexes.get($1).unwrap() }
-  | CHAR                                { @regex.char_class(@char_set.singleton($1)) }
-  | STRING                              { $1.iter().fold(init=@regex.epsilon, fn(acc, c) { @regex.seq(acc, @regex.char_class(@char_set.singleton(c))) }) }
-  | UNDERSCORE                          { @regex.char_class(@char_set.any) }
-  | EOF                                 { @regex.eof }
+  | character_class                     { fn { _ctx => @regex.char_class($1) } }
+  | LC_IDENT                            { fn { ctx => ctx.named_regexes.get($1).unwrap() } }
+  | CHAR                                { fn { _ctx => @regex.char_class(@char_set.singleton($1)) } }
+  | STRING                              { fn { _ctx => $1.iter().fold(init=@regex.epsilon, fn(acc, c) { @regex.seq(acc, @regex.char_class(@char_set.singleton(c))) }) } }
+  | UNDERSCORE                          { fn { _ctx => @regex.char_class(@char_set.any) } }
+  | EOF                                 { fn { _ctx => @regex.eof } }
   ;
 
-character_class -> @char_set.T
+character_class                         -> @char_set.T
   : "[" character_class_inner "]"       { $2 }
   | "[" "^" character_class_inner "]"   { $3.negated() }
   ;
 
-character_class_inner -> @char_set.T
+character_class_inner                   -> @char_set.T
   : character_class_item character_class_inner 
                                         { $1 + $2 }
   | character_class_item                { $1 }
   ;
 
-character_class_item -> @char_set.T
+character_class_item                    -> @char_set.T
   : CHAR                                { @char_set.singleton($1) }
   | CHAR "-" CHAR                       { @char_set.range($1, $3)}
   ;
