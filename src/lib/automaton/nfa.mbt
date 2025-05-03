@@ -219,11 +219,11 @@ fn register_regex_rec(
 ///|
 fn get_eps_closure(
   self : NFA
-) -> Array[@immut/hashmap.T[NFANode, @immut/sorted_set.T[Tag]]] {
+) -> Array[@immut/sorted_map.T[NFANode, @immut/sorted_set.T[Tag]]] {
   Array::map(self.graph, fn(x) {
-    let result = Map::from_array([(x, @immut/sorted_set.new())])
+    let mut result = @immut/sorted_map.new().add(x, @immut/sorted_set.new())
     fn get_tags(n : NFANode) -> @immut/sorted_set.T[Tag] {
-      result.get_or_default(n, @immut/sorted_set.new())
+      result.get(n).or(@immut/sorted_set.new())
     }
 
     let queue = @queue.from_array([x])
@@ -236,11 +236,11 @@ fn get_eps_closure(
           new_u_tags = new_u_tags.add(tag)
         }
         if Some(new_u_tags) != result.get(u) {
-          result.set(u, new_u_tags)
+          result = result.add(u, new_u_tags)
           queue.push(u)
         }
       }
     }
-    @immut/hashmap.from_iter(result.iter())
+    result
   })
 }

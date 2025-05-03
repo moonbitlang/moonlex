@@ -125,7 +125,7 @@ fn DFA::add_edge(self : DFA, from : Int, e : @eof_char_set.T, to : Int) -> Unit 
 }
 
 ///|
-typealias State = @immut/hashmap.T[NFANode, TagState]
+typealias State = @immut/sorted_map.T[NFANode, TagState]
 
 ///|
 fn state_canonicalize(state : State, tag_count : Int) -> (State, TagAction) {
@@ -151,7 +151,7 @@ fn state_canonicalize(state : State, tag_count : Int) -> (State, TagAction) {
       })
       (pair.0, TagState(tags))
     })
-    |> @immut/hashmap.from_iter
+    |> @immut/sorted_map.from_iter
   let tag_action = []
   for tag_index, ops in mat {
     for dest_rank, src_rank in ops {
@@ -208,7 +208,7 @@ fn DFA::from_nfa(nfa : NFA) -> DFA {
   let initial_state = initial
     .iter()
     .map(fn { (x, y) => (x, TagState::new().update_by_tags(y)) })
-    |> @immut/hashmap.from_iter
+    |> @immut/sorted_map.from_iter
   let (initial_state, start_action) = state_canonicalize(
     initial_state,
     nfa.tag_count,
@@ -275,7 +275,7 @@ fn DFA::from_nfa(nfa : NFA) -> DFA {
       for target in targets {
         let (step_node, from_tagState) = target
         let mut state_map = next_states[cset].or_else(fn() {
-          @immut/hashmap.new()
+          @immut/sorted_map.new()
         })
         let step_tagState = from_tagState
         for pair in eps_closure[step_node.num] {
