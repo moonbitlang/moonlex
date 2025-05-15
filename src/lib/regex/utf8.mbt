@@ -57,7 +57,7 @@ fn lower_unicode_charclass_to_utf8(
                 ..min_bytes
                 .iter()
                 .map(fn(byte) {
-                  @char_set.singleton(Char::from_int(byte.to_int()))
+                  @char_set.singleton(byte.to_int().unsafe_to_char())
                 }),
               ],
             )
@@ -70,12 +70,12 @@ fn lower_unicode_charclass_to_utf8(
                 ..common_prefix
                 .iter()
                 .map(fn(byte) {
-                  @char_set.singleton(Char::from_int(byte.to_int()))
+                  @char_set.singleton(byte.to_int().unsafe_to_char())
                 })
                 .to_array(),
                 @char_set.range(
-                  Char::from_int(min_bytes[pin_index].to_int()),
-                  Char::from_int(max_bytes[pin_index].to_int()),
+                  (min_bytes[pin_index].to_int().unsafe_to_char()),
+                  (max_bytes[pin_index].to_int().unsafe_to_char()),
                 ),
                 ..[@char_set.range('\u{80}', '\u{bf}')].repeat(
                   num_bytes - pin_index - 1,

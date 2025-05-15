@@ -108,7 +108,7 @@ fn scan_codeblock_rbrace[T : @lexbuf.IStringLexbuf](subst : Array[SubstItem], le
         65..=90 => 5
         95 => 5
         97..=109 => 5
-        110 => 9
+        110 => 8
         111..=122 => 5
         _ => break
       }
@@ -125,7 +125,7 @@ fn scan_codeblock_rbrace[T : @lexbuf.IStringLexbuf](subst : Array[SubstItem], le
         65..=90 => 5
         95 => 5
         97..=115 => 5
-        116 => 8
+        116 => 9
         117..=122 => 5
         _ => break
       }
@@ -141,8 +141,9 @@ fn scan_codeblock_rbrace[T : @lexbuf.IStringLexbuf](subst : Array[SubstItem], le
         48..=57 => 5
         65..=90 => 5
         95 => 5
-        97 => 10
-        98..=122 => 5
+        97..=99 => 5
+        100 => 10
+        101..=122 => 5
         _ => break
       }
     }
@@ -157,9 +158,8 @@ fn scan_codeblock_rbrace[T : @lexbuf.IStringLexbuf](subst : Array[SubstItem], le
         48..=57 => 5
         65..=90 => 5
         95 => 5
-        97..=99 => 5
-        100 => 11
-        101..=122 => 5
+        97 => 11
+        98..=122 => 5
         _ => break
       }
     }
@@ -174,9 +174,9 @@ fn scan_codeblock_rbrace[T : @lexbuf.IStringLexbuf](subst : Array[SubstItem], le
         48..=57 => 5
         65..=90 => 5
         95 => 5
-        97..=113 => 5
-        114 => 12
-        115..=122 => 5
+        97..=111 => 5
+        112 => 12
+        113..=122 => 5
         _ => break
       }
     }
@@ -191,9 +191,9 @@ fn scan_codeblock_rbrace[T : @lexbuf.IStringLexbuf](subst : Array[SubstItem], le
         48..=57 => 5
         65..=90 => 5
         95 => 5
-        97..=111 => 5
-        112 => 13
-        113..=122 => 5
+        97..=113 => 5
+        114 => 13
+        115..=122 => 5
         _ => break
       }
     }
@@ -208,9 +208,9 @@ fn scan_codeblock_rbrace[T : @lexbuf.IStringLexbuf](subst : Array[SubstItem], le
         48..=57 => 5
         65..=90 => 5
         95 => 5
-        97..=115 => 5
-        116 => 11
-        117..=122 => 5
+        97..=110 => 5
+        111 => 14
+        112..=122 => 5
         _ => break
       }
     }
@@ -225,9 +225,9 @@ fn scan_codeblock_rbrace[T : @lexbuf.IStringLexbuf](subst : Array[SubstItem], le
         48..=57 => 5
         65..=90 => 5
         95 => 5
-        97..=110 => 5
-        111 => 14
-        112..=122 => 5
+        97..=115 => 5
+        116 => 10
+        117..=122 => 5
         _ => break
       }
     }

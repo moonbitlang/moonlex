@@ -44,6 +44,6 @@ pub fn EofChar::repr(self : EofChar) -> EofCharRepr {
   if self._ == -1 {
     Eof
   } else {
-    Char(Char::from_int(self._))
+    Char(self._.unsafe_to_char())
   }
 }

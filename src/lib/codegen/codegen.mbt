@@ -50,7 +50,7 @@ fn group_trans(
   let char_set_by_state = {}
   for tran in trans {
     let (char_set, next_state) = tran
-    match char_set_by_state[next_state] {
+    match char_set_by_state.get(next_state) {
       None => char_set_by_state[next_state] = char_set
       Some(existing_char_set) =>
         char_set_by_state[next_state] = char_set.union(existing_char_set)
@@ -185,11 +185,11 @@ fn codegen_rule(
       }
     }
 
-    if gen_inline_tag_action(dfa.tag_actions[state_num].unwrap())
+    if gen_inline_tag_action(dfa.tag_actions.get(state_num).unwrap())
       is Some(tag_action_code) {
       out.write_string("\{tag_action_code}\n")
     }
-    if dfa.end_nodes[state_num] is Some((pattern_id, captures)) {
+    if dfa.end_nodes.get(state_num) is Some((pattern_id, captures)) {
       out.write_string(
         $|      if matched >= \{pattern_id} {
         $|        matched = \{pattern_id}

@@ -17,14 +17,14 @@ fn DFA::minimize_tags(self : DFA) -> DFA {
         Set(dest~) | Copy(dest~, ..) => {
           // If Copy, dest.0 == src.0
           let op2 = map_op(op)
-          match tag_to_state_actions_map[dest.0] {
+          match tag_to_state_actions_map.get(dest.0) {
             None =>
               tag_to_state_actions_map[dest.0] = @immut/sorted_map.new().add(
                 node,
                 [op2],
               )
             Some(map) =>
-              match map[node] {
+              match map.get(node) {
                 None => tag_to_state_actions_map[dest.0] = map.add(node, [op2])
                 Some(ops) => ops.push(op2)
               }
@@ -40,7 +40,8 @@ fn DFA::minimize_tags(self : DFA) -> DFA {
   }
   let groups = @sorted_map.new()
   for tag, state_actions_map in tag_to_state_actions_map {
-    groups[state_actions_map] = groups[state_actions_map]
+    groups[state_actions_map] = groups
+      .get(state_actions_map)
       .or(@immut/sorted_set.new())
       .add(tag)
   }
@@ -54,7 +55,8 @@ fn DFA::minimize_tags(self : DFA) -> DFA {
     }
   }
   fn map_capture_pos(pos : DFACapturePosition) -> DFACapturePosition {
-    if pos is Dynamic_dfa(tag_var) && tag_to_new_tag[tag_var.0] is Some(new_tag) {
+    if pos is Dynamic_dfa(tag_var) &&
+      tag_to_new_tag.get(tag_var.0) is Some(new_tag) {
       Dynamic_dfa((new_tag, tag_var.1))
     } else {
       pos
@@ -71,11 +73,12 @@ fn DFA::minimize_tags(self : DFA) -> DFA {
         let (node_id, action) = item
         let ops = action._.map(fn(op) {
           match op {
-            Set(dest~) => Set(dest=(tag_to_new_tag[dest.0].unwrap(), dest.1))
+            Set(dest~) =>
+              Set(dest=(tag_to_new_tag.get(dest.0).unwrap(), dest.1))
             Copy(dest~, src~) =>
               Copy(
-                dest=(tag_to_new_tag[dest.0].unwrap(), dest.1),
-                src=(tag_to_new_tag[src.0].unwrap(), src.1),
+                dest=(tag_to_new_tag.get(dest.0).unwrap(), dest.1),
+                src=(tag_to_new_tag.get(src.0).unwrap(), src.1),
               )
           }
         })

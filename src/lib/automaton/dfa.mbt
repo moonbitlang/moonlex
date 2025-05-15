@@ -33,7 +33,7 @@ fn TagState::new() -> TagState {
 
 ///|
 fn update_by_tag(self : TagState, tag : Tag, rank : Int) -> TagState {
-  match self._[tag] {
+  match self._.get(tag) {
     None => self._.add(tag, rank)
     Some(old_rank) => if old_rank > rank { self._.add(tag, rank) } else { self }
   }
@@ -53,7 +53,7 @@ fn tagState_min(self : TagState, other : TagState) -> TagState {
   let tags = @immut/sorted_set.from_array(self._.keys()) +
     @immut/sorted_set.from_array(other._.keys())
   for tag in tags {
-    match (self._[tag], other._[tag]) {
+    match (self._.get(tag), other._.get(tag)) {
       (None, _) => break other
       (_, None) => break self
       (Some(r1), Some(r2)) =>
@@ -189,11 +189,11 @@ fn register_node(self : DFA, nfa : NFA, node : Int, os : State) -> Unit {
     (_name, (begin, end)) =>
       (
         match begin {
-          Dynamic_nfa(tag) => Dynamic_dfa((tag, tagState._[tag].unwrap()))
+          Dynamic_nfa(tag) => Dynamic_dfa((tag, tagState._.get(tag).unwrap()))
           Static_nfa(info) => Static_dfa(info)
         },
         match end {
-          Dynamic_nfa(tag) => Dynamic_dfa((tag, tagState._[tag].unwrap()))
+          Dynamic_nfa(tag) => Dynamic_dfa((tag, tagState._.get(tag).unwrap()))
           Static_nfa(info) => Static_dfa(info)
         },
       )
@@ -240,7 +240,7 @@ fn DFA::from_nfa(nfa : NFA) -> DFA {
     let char_set_by_nfa_target = {}
     for nfa_tran in nfa_trans {
       let (cset, target) = nfa_tran
-      match char_set_by_nfa_target[target] {
+      match char_set_by_nfa_target.get(target) {
         None => char_set_by_nfa_target[target] = cset
         Some(old_cset) => char_set_by_nfa_target[target] = old_cset + cset
       }
@@ -274,9 +274,9 @@ fn DFA::from_nfa(nfa : NFA) -> DFA {
       let (cset, targets) = tran
       for target in targets {
         let (step_node, from_tagState) = target
-        let mut state_map = next_states[cset].or_else(fn() {
-          @immut/sorted_map.new()
-        })
+        let mut state_map = next_states
+          .get(cset)
+          .or_else(fn() { @immut/sorted_map.new() })
         let step_tagState = from_tagState
         for pair in eps_closure[step_node.num] {
           let (eps_node, tags) = pair

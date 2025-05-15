@@ -42,15 +42,15 @@ rule token[T : @lexbuf.IStringLexbuf](lexbuf : T) -> (Token, Int, Int) {
     '\'' "\\'" '\'' => { (CHAR('\''), $startpos, $endpos) }
     '\'' "\\x" ((hex_digit hex_digit) as t) '\'' => {
       let code = @strconv.parse_int?(t, base=16).unwrap()
-      (CHAR(Char::from_int(code)), $startpos, $endpos)
+      (CHAR(code.unsafe_to_char()), $startpos, $endpos)
     }
     '\'' "\\u" ((hex_digit hex_digit hex_digit hex_digit) as t) '\'' => {
       let code = @strconv.parse_int?(t, base=16).unwrap()
-      (CHAR(Char::from_int(code)), $startpos, $endpos)
+      (CHAR(code.unsafe_to_char()), $startpos, $endpos)
     }
     '\'' "\\u{" (hex_digit+ as t) '}' '\'' => {
       let code = @strconv.parse_int?(t, base=16).unwrap()
-      (CHAR(Char::from_int(code)), $startpos, $endpos)
+      (CHAR(code.unsafe_to_char()), $startpos, $endpos)
     }
     '"' => {
       let buffer = StringBuilder::new()
@@ -101,17 +101,17 @@ rule string_inner_rquote[T : @lexbuf.IStringLexbuf](buffer : StringBuilder, lexb
     }
     "\\x" ((hex_digit hex_digit) as t) '\'' => {
       let code = @strconv.parse_int?(t, base=16).unwrap()
-      buffer.write_char(Char::from_int(code))
+      buffer.write_char(code.unsafe_to_char())
       string_inner_rquote(buffer, lexbuf)
     }
     "\\u" ((hex_digit hex_digit hex_digit hex_digit) as t) '\'' => {
       let code = @strconv.parse_int?(t, base=16).unwrap()
-      buffer.write_char(Char::from_int(code))
+      buffer.write_char(code.unsafe_to_char())
       string_inner_rquote(buffer, lexbuf)
     }
     "\\u{" (hex_digit+ as t) '}' '\'' => {
       let code = @strconv.parse_int?(t, base=16).unwrap()
-      buffer.write_char(Char::from_int(code))
+      buffer.write_char(code.unsafe_to_char())
       string_inner_rquote(buffer, lexbuf)
     }
     _ as t => {
