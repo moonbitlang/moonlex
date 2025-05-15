@@ -3,7 +3,9 @@ priv type InorderIterator[N] Array[Tree[N]]
 
 ///|
 fn InorderIterator::new[N](root : T[N]) -> InorderIterator[N] {
-  InorderIterator([])..move_left(root)
+  let it = InorderIterator([])
+  it.move_left(root)
+  it
 }
 
 ///|

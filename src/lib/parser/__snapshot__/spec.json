@@ -1923,7 +1923,7 @@
             },
             "len": 6
           },
-          "\n      let code = @strconv.parse_int?(t, base=16).unwrap()\n      (CHAR(Char::from_int(code)), $startpos, $endpos)\n    "
+          "\n      let code = @strconv.parse_int?(t, base=16).unwrap()\n      (CHAR(code.unsafe_to_char()), $startpos, $endpos)\n    "
         ],
         [
           {
@@ -2151,7 +2151,7 @@
             },
             "len": 8
           },
-          "\n      let code = @strconv.parse_int?(t, base=16).unwrap()\n      (CHAR(Char::from_int(code)), $startpos, $endpos)\n    "
+          "\n      let code = @strconv.parse_int?(t, base=16).unwrap()\n      (CHAR(code.unsafe_to_char()), $startpos, $endpos)\n    "
         ],
         [
           {
@@ -2333,7 +2333,7 @@
               "$tag": "String"
             }
           },
-          "\n      let code = @strconv.parse_int?(t, base=16).unwrap()\n      (CHAR(Char::from_int(code)), $startpos, $endpos)\n    "
+          "\n      let code = @strconv.parse_int?(t, base=16).unwrap()\n      (CHAR(code.unsafe_to_char()), $startpos, $endpos)\n    "
         ],
         [
           {
@@ -2900,7 +2900,7 @@
             },
             "len": 5
           },
-          "\n      let code = @strconv.parse_int?(t, base=16).unwrap()\n      buffer.write_char(Char::from_int(code))\n      string_inner_rquote(buffer, lexbuf)\n    "
+          "\n      let code = @strconv.parse_int?(t, base=16).unwrap()\n      buffer.write_char(code.unsafe_to_char())\n      string_inner_rquote(buffer, lexbuf)\n    "
         ],
         [
           {
@@ -3104,7 +3104,7 @@
             },
             "len": 7
           },
-          "\n      let code = @strconv.parse_int?(t, base=16).unwrap()\n      buffer.write_char(Char::from_int(code))\n      string_inner_rquote(buffer, lexbuf)\n    "
+          "\n      let code = @strconv.parse_int?(t, base=16).unwrap()\n      buffer.write_char(code.unsafe_to_char())\n      string_inner_rquote(buffer, lexbuf)\n    "
         ],
         [
           {
@@ -3263,7 +3263,7 @@
               "$tag": "String"
             }
           },
-          "\n      let code = @strconv.parse_int?(t, base=16).unwrap()\n      buffer.write_char(Char::from_int(code))\n      string_inner_rquote(buffer, lexbuf)\n    "
+          "\n      let code = @strconv.parse_int?(t, base=16).unwrap()\n      buffer.write_char(code.unsafe_to_char())\n      string_inner_rquote(buffer, lexbuf)\n    "
         ],
         [
           {

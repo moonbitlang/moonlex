@@ -31,11 +31,11 @@ fn DFA::minimize(dfa : DFA) -> DFA {
   for pattern_id in 0..<dfa.code_blocks.length() {
     let mut groups = @immut/sorted_map.new()
     for end_node, end_node_info in dfa.end_nodes {
-      let tag_action = dfa.tag_actions[end_node].unwrap()
+      let tag_action = dfa.tag_actions.get(end_node).unwrap()
       if end_node_info.0 == pattern_id {
         groups = groups.add(
           tag_action,
-          groups[tag_action].or(@immut/sorted_set.new()).add(end_node),
+          groups.get(tag_action).or(@immut/sorted_set.new()).add(end_node),
         )
       }
     }
@@ -45,10 +45,10 @@ fn DFA::minimize(dfa : DFA) -> DFA {
   }
   let mut groups = @immut/sorted_map.new()
   for state in all_states.difference(final_states) {
-    let tag_action = dfa.tag_actions[state].unwrap()
+    let tag_action = dfa.tag_actions.get(state).unwrap()
     groups = groups.add(
       tag_action,
-      groups[tag_action].or(@immut/sorted_set.new()).add(state),
+      groups.get(tag_action).or(@immut/sorted_set.new()).add(state),
     )
   }
   for _, partition in groups {
@@ -63,10 +63,10 @@ fn DFA::minimize(dfa : DFA) -> DFA {
         let (input, target) = tran
         for symbol in symbols {
           if symbol.char_set.subset(input) {
-            let map = result[target].or(@immut/sorted_map.new())
+            let map = result.get(target).or(@immut/sorted_map.new())
             let map = map.add(
               symbol,
-              map[symbol].or(@immut/sorted_set.new()).add(source),
+              map.get(symbol).or(@immut/sorted_set.new()).add(source),
             )
             result[target] = map
           }
@@ -93,9 +93,9 @@ fn DFA::minimize(dfa : DFA) -> DFA {
       // }
       // ```
       for target in a {
-        let sources = match symbolized_invert_map[target] {
+        let sources = match symbolized_invert_map.get(target) {
           None => @immut/sorted_set.new()
-          Some(map) => map[symbol].or(@immut/sorted_set.new())
+          Some(map) => map.get(symbol).or(@immut/sorted_set.new())
         }
         x = x + sources
       }
@@ -133,8 +133,8 @@ fn DFA::minimize(dfa : DFA) -> DFA {
   let partition_to_new_state = {}
   let state_to_new_state = {}
   fn get_new_state(state : Int) -> Int {
-    let partition = state_to_partition[state].unwrap()
-    match partition_to_new_state[partition] {
+    let partition = state_to_partition.get(state).unwrap()
+    match partition_to_new_state.get(partition) {
       Some(new_state) => new_state
       None => {
         let new_state = new_dfa.new_node()
@@ -163,15 +163,15 @@ fn DFA::minimize(dfa : DFA) -> DFA {
     }
   }
   for node, tag_action in dfa.tag_actions {
-    if state_to_new_state[node] is Some(new_state) {
+    if state_to_new_state.get(node) is Some(new_state) {
       new_dfa.tag_actions[new_state] = tag_action
     }
   }
   for end_state, end_state_info in dfa.end_nodes {
-    if state_to_new_state[end_state] is Some(new_end_state) {
-      guard new_dfa.end_nodes[new_end_state] is None ||
+    if state_to_new_state.get(end_state) is Some(new_end_state) {
+      guard new_dfa.end_nodes.get(new_end_state) is None ||
         (
-          new_dfa.end_nodes[new_end_state] is Some(end_state_info2) &&
+          new_dfa.end_nodes.get(new_end_state) is Some(end_state_info2) &&
           end_state_info2 == end_state_info
         )
       new_dfa.end_nodes[new_end_state] = end_state_info
