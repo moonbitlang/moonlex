@@ -11,6 +11,8 @@ pub(all) enum Token {
   ATTRIBUTE(String)
   LIDENT(String)
   UIDENT(String)
+  LIDENT_LEX
+  UIDENT_BYTES_REGEX
   POST_LABEL(String)
   COMMENT(Comment)
   NEWLINE
@@ -109,6 +111,8 @@ pub fn Token::kind(self : Token) -> TokenKind {
     ATTRIBUTE(_) => TK_ATTRIBUTE
     LIDENT(_) => TK_LIDENT
     UIDENT(_) => TK_UIDENT
+    LIDENT_LEX => TK_LIDENT_LEX
+    UIDENT_BYTES_REGEX => TK_UIDENT_BYTES_REGEX
     POST_LABEL(_) => TK_POST_LABEL
     COMMENT(_) => TK_COMMENT
     NEWLINE => TK_NEWLINE
@@ -207,6 +211,8 @@ pub(all) enum TokenKind {
   TK_ATTRIBUTE
   TK_LIDENT
   TK_UIDENT
+  TK_LIDENT_LEX
+  TK_UIDENT_BYTES_REGEX
   TK_POST_LABEL
   TK_COMMENT
   TK_NEWLINE
@@ -306,6 +312,8 @@ pub impl Show for TokenKind with output(self, logger) {
       TK_ATTRIBUTE => "ATTRIBUTE"
       TK_LIDENT => "LIDENT"
       TK_UIDENT => "UIDENT"
+      TK_LIDENT_LEX => "\"lex\""
+      TK_UIDENT_BYTES_REGEX => "\"BytesRegex\""
       TK_POST_LABEL => "POST_LABEL"
       TK_COMMENT => "COMMENT"
       TK_NEWLINE => "NEWLINE"

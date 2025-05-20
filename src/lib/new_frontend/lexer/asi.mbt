@@ -96,7 +96,9 @@ fn can_occur_before_semicolon(token : Token) -> Bool {
     | AMPER
     | CARET
     | RAISE
-    | ATTRIBUTE(_) => false
+    | ATTRIBUTE(_)
+    | LIDENT_LEX
+    | UIDENT_BYTES_REGEX => false
   }
 }
 
@@ -155,7 +157,9 @@ fn can_occur_after_semicolon(token : Token) -> Bool {
     | FOR
     | ELLIPSIS
     | POST_LABEL(_)
-    | ATTRIBUTE(_) => true
+    | ATTRIBUTE(_)
+    | LIDENT_LEX
+    | UIDENT_BYTES_REGEX => true
     // the lexer should skip these two tokens before trying to insert semi
     COMMENT(_) | NEWLINE => true
     // [MINUS] is both a binary operator and a unary operator.

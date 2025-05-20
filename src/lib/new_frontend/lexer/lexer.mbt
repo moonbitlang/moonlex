@@ -4115,7 +4115,12 @@ fn tokens(lexbuf : Lexbuf, env~ : LexEnv, preserve_comment~ : (Comment, Int, Int
       ()
       let raw = lexbuf.get_string(_capture_0_start, _capture_0_end)
 
-      env.add_token_with_loc(UIDENT(raw), start=_start_pos, end=_end_pos)
+      let token : Token = if raw is "BytesRegex" {
+        UIDENT_BYTES_REGEX
+      } else {
+        UIDENT(raw)
+      }
+      env.add_token_with_loc(token, start=_start_pos, end=_end_pos)
       tokens(lexbuf, env~, preserve_comment~)
     
     }
