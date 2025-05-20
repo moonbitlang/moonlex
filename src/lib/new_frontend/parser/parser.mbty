@@ -1,8 +1,10 @@
 // revision: b596cbbe0b642858aae4fe6947670712b6f16f8b
 
 %derive<Show> Token
+%derive<Show> ParseError
+%position<@ast_types.Position>
 
-%start<Unit> start
+%start<@ast.Program> start
 
 %token<CharLiteral> CHAR
 %token<String> INT
@@ -63,7 +65,7 @@
 %token DOT_LPAREN ".("
 %token COLONCOLON "::"
 %token COLON ":"
-%token<Bool> SEMI
+%token<Bool> SEMI ";"
 %token LBRACKET "["
 %token PLUS "+"
 %token RBRACKET "]"
@@ -101,8 +103,212 @@
 %token IN "in"
 %token IS "is"
 
+%right CHAR INT BYTE BYTES FLOAT STRING MULTILINE_STRING MULTILINE_INTERP INTERP ATTRIBUTE LIDENT UIDENT LIDENT_LEX UIDENT_BYTES_REGEX POST_LABEL COMMENT NEWLINE INFIX1 INFIX2 INFIX3 INFIX4 AUGMENTED_ASSIGNMENT EOF FALSE TRUE PUB PRIV READONLY IMPORT EXTERN BREAK CONTINUE STRUCT ENUM TRAIT DERIVE IMPL WITH RAISE THROW TRY CATCH ASYNC TYPEALIAS TRAITALIAS FNALIAS EQUAL LPAREN RPAREN COMMA MINUS QUESTION EXCLAMATION DOT_LIDENT DOT_UIDENT DOT_INT DOT_LPAREN COLONCOLON COLON SEMI LBRACKET PLUS RBRACKET UNDERSCORE BAR LBRACE RBRACE AMPERAMPER AMPER CARET BARBAR PACKAGE_NAME AS PIPE ELSE FN IF LET CONST MATCH MUTABLE TYPE FAT_ARROW THIN_ARROW WHILE RETURN DOTDOT RANGE_INCLUSIVE RANGE_EXCLUSIVE ELLIPSIS TEST LOOP GUARD FOR IN IS
+%nonassoc prec_HIGHEST
+
+%{
+fn mkloc(loc : (Position, Position)) -> Location {
+  {start: loc.0, end: loc.1}
+}
+
+fn normalize(terms : Array[@ast.Term]) -> Array[@ast.Term] {
+  terms
+    .iter()
+    .flat_map(fn (term) {
+      if term is Nested(terms, ..) {
+        terms.iter()
+      } else {
+        Iter::singleton(term)
+      }
+    })
+    .to_array()
+    .chunk_by(fn (term1, term2) {
+      (term1, term2) is (Code(_), Code(_))
+    })
+    .map(fn (terms) {
+      match terms {
+        [Code(_) as c1, .., Code(_) as c2] => {
+          Code(loc={start: c1.loc.start, end: c2.loc.end})
+        }
+        [term] => term
+        _ => panic()
+      }
+    })
+}
+%}
+
 %%
 
-start
-  : {}
+start -> @ast.Program
+  : terms { {body: $1, loc: mkloc($sloc)} }
+  ;
+
+terms -> Array[@ast.Term]
+  : term_list { normalize($1.to_array()) }
+  ;
+
+term_list -> @list.T[@ast.Term]
+  : { @list.empty() }
+  | term term_list { @list.prepend($2, $1) }
+  ;
+
+term -> @ast.Term
+  : "const" uident ":" "BytesRegex" "=" regex ";" %prec prec_HIGHEST { NamedRegex($2, $6, loc=mkloc($sloc)) }
+  | "lex" lident "{" lex_cases "}" { LexDef($2, $4.to_array(), loc=mkloc($sloc)) }
+  | simple_term { Code(loc=mkloc($sloc)) }
+  | grouped_term {
+    let (loc1, terms, loc2) = $1
+    match normalize([Code(loc=loc1), ..terms, Code(loc=loc2)]) {
+      [Code(_)] => Code(loc=mkloc($sloc))
+      terms => Nested(terms, loc=mkloc($sloc))
+    }
+  }
+  ;
+
+lex_cases -> @list.T[@ast.LexCase]
+  : lex_case { @list.singleton($1) }
+  | lex_case ";" { @list.singleton($1) }
+  | lex_case ";" lex_cases { @list.prepend($3, $1) }
+  ;
+
+lex_case -> @ast.LexCase
+  : regex_pattern "=>" braced_term { {pattern: $1.to_array(), action: $3, loc: mkloc($sloc)} }
+  ;
+
+regex_pattern -> @list.T[@ast.LexPatternItem]
+  : regex_pattern_item { @list.singleton($1) }
+  | regex_pattern_item "," regex_pattern { @list.prepend($3, $1) }
+  ;
+
+regex_pattern_item -> @ast.LexPatternItem
+  : regex { Regex($1) }
+  | regex "as" lident { RegexAs($1, $3, loc=mkloc($sloc)) }
+  ;
+
+regex -> @ast.Regex
+  : STRING { Literal($1, loc=mkloc($sloc)) }
+  | INTERP { Interp($1, loc=mkloc($sloc)) }
+  | uident { Named($1) }
+  ;
+
+braced_term -> @ast.Term
+  : "{" terms "}" { 
+    match normalize([Code(loc=mkloc($loc($1))), ..$2, Code(loc=mkloc($loc($3)))]) {
+      [Code(_)] => Code(loc=mkloc($sloc))
+      terms => Nested(terms, loc=mkloc($sloc))
+    }
+  }
+  ;
+
+grouped_term -> (Location, Array[@ast.Term], Location)
+  : "(" terms ")" { (mkloc($loc($1)), $2, mkloc($loc($3))) }
+  | "{" terms "}" { (mkloc($loc($1)), $2, mkloc($loc($3))) }
+  | "[" terms "]" { (mkloc($loc($1)), $2, mkloc($loc($3))) }
+  ;
+
+%inline simple_term
+  : CHAR {}
+  | INT {}
+  | BYTE {}
+  | BYTES {}
+  | FLOAT {}
+  | STRING {}
+  | MULTILINE_STRING {}
+  | MULTILINE_INTERP {}
+  | INTERP {}
+  | ATTRIBUTE {}
+  | LIDENT {}
+  | UIDENT {}
+  | LIDENT_LEX {}
+  | UIDENT_BYTES_REGEX {}
+  | POST_LABEL {}
+  | COMMENT {}
+  | NEWLINE {}
+  | INFIX1 {}
+  | INFIX2 {}
+  | INFIX3 {}
+  | INFIX4 {}
+  | AUGMENTED_ASSIGNMENT {}
+  | EOF {}
+  | FALSE {}
+  | TRUE {}
+  | PUB {}
+  | PRIV {}
+  | READONLY {}
+  | IMPORT {}
+  | EXTERN {}
+  | BREAK {}
+  | CONTINUE {}
+  | STRUCT {}
+  | ENUM {}
+  | TRAIT {}
+  | DERIVE {}
+  | IMPL {}
+  | WITH {}
+  | RAISE {}
+  | THROW {}
+  | TRY {}
+  | CATCH {}
+  | ASYNC {}
+  | TYPEALIAS {}
+  | TRAITALIAS {}
+  | FNALIAS {}
+  | EQUAL {}
+//  | LPAREN {}
+//  | RPAREN {}
+  | COMMA {}
+  | MINUS {}
+  | QUESTION {}
+  | EXCLAMATION {}
+  | DOT_LIDENT {}
+  | DOT_UIDENT {}
+  | DOT_INT {}
+  | DOT_LPAREN {}
+  | COLONCOLON {}
+  | COLON {}
+  | SEMI {}
+//  | LBRACKET {}
+  | PLUS {}
+//  | RBRACKET {}
+  | UNDERSCORE {}
+  | BAR {}
+//  | LBRACE {}
+//  | RBRACE {}
+  | AMPERAMPER {}
+  | AMPER {}
+  | CARET {}
+  | BARBAR {}
+  | PACKAGE_NAME {}
+  | AS {}
+  | PIPE {}
+  | ELSE {}
+  | FN {}
+  | IF {}
+  | LET {}
+  | CONST {}
+  | MATCH {}
+  | MUTABLE {}
+  | TYPE {}
+  | FAT_ARROW {}
+  | THIN_ARROW {}
+  | WHILE {}
+  | RETURN {}
+  | DOTDOT {}
+  | RANGE_INCLUSIVE {}
+  | RANGE_EXCLUSIVE {}
+  | ELLIPSIS {}
+  | TEST {}
+  | LOOP {}
+  | GUARD {}
+  | FOR {}
+  | IN {}
+  | IS {}
+  ;
+
+uident -> @ast.Ident
+  : UIDENT { {name: $1, loc: mkloc($sloc)} }
+  ;
+
+lident -> @ast.Ident
+  : LIDENT { {name: $1, loc: mkloc($sloc)} }
   ;

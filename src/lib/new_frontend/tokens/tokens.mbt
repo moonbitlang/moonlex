@@ -359,7 +359,7 @@ pub impl Show for TokenKind with output(self, logger) {
       TK_DOT_LPAREN => "\".(\""
       TK_COLONCOLON => "\"::\""
       TK_COLON => "\":\""
-      TK_SEMI => "SEMI"
+      TK_SEMI => "\";\""
       TK_LBRACKET => "\"[\""
       TK_PLUS => "\"+\""
       TK_RBRACKET => "\"]\""

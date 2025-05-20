@@ -14,13 +14,13 @@ pub typealias BytesLiteral = String
 pub(all) struct InterpSource {
   source : String
   loc : Location
-} derive(Show)
+} derive(Show, ToJson)
 
 ///|
 pub(all) enum InterpElem {
   InterpLit(repr~ : String, loc~ : Location)
   InterpSource(InterpSource)
-} derive(Show)
+} derive(Show, ToJson)
 
 ///|
 pub typealias InterpLiteral = Array[InterpElem]
