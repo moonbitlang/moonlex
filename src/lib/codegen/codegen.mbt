@@ -85,7 +85,7 @@ fn group_trans(
 }
 
 ///|
-fn codegen_rule(
+pub fn codegen_rule_inner(
   rule : Rule,
   code_unit~ : @type.CodeUnit,
   default_encoding~ : @type.Encoding?
@@ -103,7 +103,6 @@ fn codegen_rule(
     .or(0)
   let max_pattern_id = dfa.code_blocks.length() - 1
   out.write_string(
-    $|fn \{rule.signature} {
     $|  // The matched pattern id
     $|  let mut matched = @int.max_value
     $|  let mut _end_pos = -1
@@ -365,10 +364,21 @@ fn codegen_rule(
   out.write_string(
     $|    _ => panic()
     $|  }
-    $|}
-    $|
-    $|
     ,
   )
   out.to_string()
+}
+
+///|
+fn codegen_rule(
+  rule : Rule,
+  code_unit~ : @type.CodeUnit,
+  default_encoding~ : @type.Encoding?
+) -> String {
+  let inner = codegen_rule_inner(rule, code_unit~, default_encoding~)
+  $|fn \{rule.signature} {
+  $|\{inner}
+  $|}
+  $|
+  $|
 }
