@@ -1,6 +1,6 @@
 ///|
 pub(all) struct Program {
-  body : Array[Term]
+  body : Term
   loc : Location
 } derive(ToJson)
 
@@ -10,7 +10,19 @@ pub(all) enum Term {
   Nested(Array[Term], loc~ : Location)
   NamedRegex(Ident, Regex, loc~ : Location)
   LexDef(Ident, Array[LexCase], loc~ : Location)
+  GeneratedCode(String, loc~ : Location)
 } derive(ToJson)
+
+///|
+pub fn Term::loc(self : Term) -> Location {
+  match self {
+    Code(loc~) => loc
+    Nested(_, loc~) => loc
+    NamedRegex(_, _, loc~) => loc
+    LexDef(_, _, loc~) => loc
+    GeneratedCode(_, loc~) => loc
+  }
+}
 
 ///|
 pub(all) struct LexCase {
@@ -22,13 +34,13 @@ pub(all) struct LexCase {
 ///|
 pub(all) enum LexPatternItem {
   Regex(Regex)
-  RegexAs(Regex, Ident, loc~: Location)
+  RegexAs(Regex, Ident, loc~ : Location)
 } derive(ToJson)
 
 ///|
 pub(all) enum Regex {
-  Literal(StringLiteral, loc~: Location)
-  Interp(InterpLiteral, loc~: Location)
+  Literal(StringLiteral, loc~ : Location)
+  Interp(InterpLiteral, loc~ : Location)
   Named(Ident)
 } derive(ToJson)
 

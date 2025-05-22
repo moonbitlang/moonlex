@@ -7,6 +7,12 @@ pub(all) struct Position {
 } derive(Show, ToJson)
 
 ///|
+pub impl Compare for Position with compare(self, other) {
+  guard self.fname == other.fname
+  self.cnum.compare(other.cnum)
+}
+
+///|
 pub impl Eq for Position with op_equal(self, other) {
   self.fname == other.fname && self.cnum == other.cnum
 }

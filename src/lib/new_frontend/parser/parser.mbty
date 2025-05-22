@@ -112,7 +112,7 @@ fn mkloc(loc : (Position, Position)) -> Location {
 }
 
 fn normalize(terms : Array[@ast.Term]) -> Array[@ast.Term] {
-  terms
+  let terms = terms
     .iter()
     .flat_map(fn (term) {
       if term is Nested(terms, ..) {
@@ -122,25 +122,38 @@ fn normalize(terms : Array[@ast.Term]) -> Array[@ast.Term] {
       }
     })
     .to_array()
-    .chunk_by(fn (term1, term2) {
-      (term1, term2) is (Code(_), Code(_))
-    })
-    .map(fn (terms) {
-      match terms {
-        [Code(_) as c1, .., Code(_) as c2] => {
-          Code(loc={start: c1.loc.start, end: c2.loc.end})
+  match terms {
+    [] => []
+    [x] => [x]
+    terms => {
+      let first_start = terms[0].loc().start
+      let last_end = terms[terms.length() - 1].loc().end
+      let mut last = first_start
+      let new_terms : Array[@ast.Term] = []
+      for term in terms {
+        if term is (Nested(_) | NamedRegex(_) | LexDef(_)) {
+          let term_start = term.loc().start
+          let term_end = term.loc().end
+          if term_start > last {
+            new_terms.push(Code(loc={start: last, end: term_start}))
+          }
+          new_terms.push(term)
+          last = term_end
         }
-        [term] => term
-        _ => panic()
       }
-    })
+      if last < last_end {
+        new_terms.push(Code(loc={start: last, end: last_end}))
+      }
+      new_terms
+    }
+  }
 }
 %}
 
 %%
 
 start -> @ast.Program
-  : terms { {body: $1, loc: mkloc($sloc)} }
+  : terms { {body: Nested($1, loc=mkloc($sloc)), loc: mkloc($sloc)} }
   ;
 
 terms -> Array[@ast.Term]

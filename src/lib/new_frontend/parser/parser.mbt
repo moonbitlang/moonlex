@@ -4,7 +4,7 @@ fn mkloc(loc : (Position, Position)) -> Location {
 }
 
 fn normalize(terms : Array[@ast.Term]) -> Array[@ast.Term] {
-  terms
+  let terms = terms
     .iter()
     .flat_map(fn (term) {
       if term is Nested(terms, ..) {
@@ -14,18 +14,31 @@ fn normalize(terms : Array[@ast.Term]) -> Array[@ast.Term] {
       }
     })
     .to_array()
-    .chunk_by(fn (term1, term2) {
-      (term1, term2) is (Code(_), Code(_))
-    })
-    .map(fn (terms) {
-      match terms {
-        [Code(_) as c1, .., Code(_) as c2] => {
-          Code(loc={start: c1.loc.start, end: c2.loc.end})
+  match terms {
+    [] => []
+    [x] => [x]
+    terms => {
+      let first_start = terms[0].loc().start
+      let last_end = terms[terms.length() - 1].loc().end
+      let mut last = first_start
+      let new_terms : Array[@ast.Term] = []
+      for term in terms {
+        if term is (Nested(_) | NamedRegex(_) | LexDef(_)) {
+          let term_start = term.loc().start
+          let term_end = term.loc().end
+          if term_start > last {
+            new_terms.push(Code(loc={start: last, end: term_start}))
+          }
+          new_terms.push(term)
+          last = term_end
         }
-        [term] => term
-        _ => panic()
       }
-    })
+      if last < last_end {
+        new_terms.push(Code(loc={start: last, end: last_end}))
+      }
+      new_terms
+    }
+  }
 }
 pub(all) typealias Position = @ast_types.Position
 
@@ -210,7 +223,7 @@ fn init {
 }
 
 // file:///./parser.mbty
-// 158|    simple_term { Code(loc=mkloc($sloc)) }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_0(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_1(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -219,7 +232,7 @@ fn yy_action_0(_last_pos : Position, _args : ArrayView[(YYObj, Position, Positio
 }
 
 // file:///./parser.mbty
-// 158|    simple_term { Code(loc=mkloc($sloc)) }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_2(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_3(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -228,7 +241,7 @@ fn yy_action_2(_last_pos : Position, _args : ArrayView[(YYObj, Position, Positio
 }
 
 // file:///./parser.mbty
-// 158|    simple_term { Code(loc=mkloc($sloc)) }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_4(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_5(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -237,13 +250,13 @@ fn yy_action_4(_last_pos : Position, _args : ArrayView[(YYObj, Position, Positio
 }
 
 // file:///./parser.mbty
-// 236|    PRIV {}
+// 249|    PRIV {}
 fn yy_action_6(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 158|    simple_term { Code(loc=mkloc($sloc)) }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_7(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_8(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -252,7 +265,7 @@ fn yy_action_7(_last_pos : Position, _args : ArrayView[(YYObj, Position, Positio
 }
 
 // file:///./parser.mbty
-// 158|    simple_term { Code(loc=mkloc($sloc)) }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_9(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_10(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -261,7 +274,7 @@ fn yy_action_9(_last_pos : Position, _args : ArrayView[(YYObj, Position, Positio
 }
 
 // file:///./parser.mbty
-// 158|    simple_term { Code(loc=mkloc($sloc)) }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_11(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_12(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -270,7 +283,7 @@ fn yy_action_11(_last_pos : Position, _args : ArrayView[(YYObj, Position, Positi
 }
 
 // file:///./parser.mbty
-// 158|    simple_term { Code(loc=mkloc($sloc)) }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_13(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_14(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -279,19 +292,19 @@ fn yy_action_13(_last_pos : Position, _args : ArrayView[(YYObj, Position, Positi
 }
 
 // file:///./parser.mbty
-// 253|    TYPEALIAS {}
+// 266|    TYPEALIAS {}
 fn yy_action_15(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 285|    FN {}
+// 298|    FN {}
 fn yy_action_16(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 158|    simple_term { Code(loc=mkloc($sloc)) }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_17(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_18(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -300,19 +313,19 @@ fn yy_action_17(_last_pos : Position, _args : ArrayView[(YYObj, Position, Positi
 }
 
 // file:///./parser.mbty
-// 244|    TRAIT {}
+// 257|    TRAIT {}
 fn yy_action_19(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 262|    EXCLAMATION {}
+// 275|    EXCLAMATION {}
 fn yy_action_20(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 158|    simple_term { Code(loc=mkloc($sloc)) }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_21(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_22(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -321,7 +334,7 @@ fn yy_action_21(_last_pos : Position, _args : ArrayView[(YYObj, Position, Positi
 }
 
 // file:///./parser.mbty
-// 158|    simple_term { Code(loc=mkloc($sloc)) }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_23(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_24(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -330,7 +343,7 @@ fn yy_action_23(_last_pos : Position, _args : ArrayView[(YYObj, Position, Positi
 }
 
 // file:///./parser.mbty
-// 158|    simple_term { Code(loc=mkloc($sloc)) }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_25(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_26(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -339,13 +352,13 @@ fn yy_action_25(_last_pos : Position, _args : ArrayView[(YYObj, Position, Positi
 }
 
 // file:///./parser.mbty
-// 231|    AUGMENTED_ASSIGNMENT {}
+// 244|    AUGMENTED_ASSIGNMENT {}
 fn yy_action_1(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 158|    simple_term { Code(loc=mkloc($sloc)) }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_27(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_28(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -354,31 +367,31 @@ fn yy_action_27(_last_pos : Position, _args : ArrayView[(YYObj, Position, Positi
 }
 
 // file:///./parser.mbty
-// 274|    BAR {}
+// 287|    BAR {}
 fn yy_action_29(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 282|    AS {}
+// 295|    AS {}
 fn yy_action_30(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 291|    TYPE {}
+// 304|    TYPE {}
 fn yy_action_31(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 243|    ENUM {}
+// 256|    ENUM {}
 fn yy_action_32(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 185|    regex "as" lident { RegexAs($1, $3, loc=mkloc($sloc)) }
+// 198|    regex "as" lident { RegexAs($1, $3, loc=mkloc($sloc)) }
 fn yy_action_33(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   guard _args[0].0 is YYObj__ast_Regex(_dollar1)
   guard _args[2].0 is YYObj__ast_Ident(_dollar3)
@@ -388,13 +401,13 @@ fn yy_action_33(_last_pos : Position, _args : ArrayView[(YYObj, Position, Positi
 }
 
 // file:///./parser.mbty
-// 289|    MATCH {}
+// 302|    MATCH {}
 fn yy_action_34(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 158|    simple_term { Code(loc=mkloc($sloc)) }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_35(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_36(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -403,20 +416,20 @@ fn yy_action_35(_last_pos : Position, _args : ArrayView[(YYObj, Position, Positi
 }
 
 // file:///./parser.mbty
-// 179|    regex_pattern_item { @list.singleton($1) }
+// 192|    regex_pattern_item { @list.singleton($1) }
 fn yy_action_37(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   guard _args[0].0 is YYObj__ast_LexPatternItem(_dollar1)
   YYObj__list_T__ast_LexPatternItem_({();  @list.singleton(_dollar1) })
 }
 
 // file:///./parser.mbty
-// 219|    ATTRIBUTE {}
+// 232|    ATTRIBUTE {}
 fn yy_action_38(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 158|    simple_term { Code(loc=mkloc($sloc)) }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_39(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_40(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -425,7 +438,7 @@ fn yy_action_39(_last_pos : Position, _args : ArrayView[(YYObj, Position, Positi
 }
 
 // file:///./parser.mbty
-// 158|    simple_term { Code(loc=mkloc($sloc)) }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_41(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_42(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -434,7 +447,7 @@ fn yy_action_41(_last_pos : Position, _args : ArrayView[(YYObj, Position, Positi
 }
 
 // file:///./parser.mbty
-// 158|    simple_term { Code(loc=mkloc($sloc)) }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_43(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_44(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -443,19 +456,19 @@ fn yy_action_43(_last_pos : Position, _args : ArrayView[(YYObj, Position, Positi
 }
 
 // file:///./parser.mbty
-// 273|    UNDERSCORE {}
+// 286|    UNDERSCORE {}
 fn yy_action_44(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 252|    ASYNC {}
+// 265|    ASYNC {}
 fn yy_action_45(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 158|    simple_term { Code(loc=mkloc($sloc)) }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_46(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_47(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -464,19 +477,19 @@ fn yy_action_46(_last_pos : Position, _args : ArrayView[(YYObj, Position, Positi
 }
 
 // file:///./parser.mbty
-// 301|    LOOP {}
+// 314|    LOOP {}
 fn yy_action_10(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 304|    IN {}
+// 317|    IN {}
 fn yy_action_48(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 158|    simple_term { Code(loc=mkloc($sloc)) }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_49(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_50(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -485,19 +498,19 @@ fn yy_action_49(_last_pos : Position, _args : ArrayView[(YYObj, Position, Positi
 }
 
 // file:///./parser.mbty
-// 286|    IF {}
+// 299|    IF {}
 fn yy_action_24(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 251|    CATCH {}
+// 264|    CATCH {}
 fn yy_action_47(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 158|    simple_term { Code(loc=mkloc($sloc)) }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_51(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_48(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -506,7 +519,7 @@ fn yy_action_51(_last_pos : Position, _args : ArrayView[(YYObj, Position, Positi
 }
 
 // file:///./parser.mbty
-// 158|    simple_term { Code(loc=mkloc($sloc)) }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_52(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_53(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -515,7 +528,7 @@ fn yy_action_52(_last_pos : Position, _args : ArrayView[(YYObj, Position, Positi
 }
 
 // file:///./parser.mbty
-// 205|    "{" terms "}" { (mkloc($loc($1)), $2, mkloc($loc($3))) }
+// 218|    "{" terms "}" { (mkloc($loc($1)), $2, mkloc($loc($3))) }
 fn yy_action_54(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _start_pos_of_item0 = _args[0].1
   let _end_pos_of_item0 = _args[0].2
@@ -526,7 +539,7 @@ fn yy_action_54(_last_pos : Position, _args : ArrayView[(YYObj, Position, Positi
 }
 
 // file:///./parser.mbty
-// 158|    simple_term { Code(loc=mkloc($sloc)) }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_55(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_15(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -535,7 +548,7 @@ fn yy_action_55(_last_pos : Position, _args : ArrayView[(YYObj, Position, Positi
 }
 
 // file:///./parser.mbty
-// 175|    regex_pattern "=>" braced_term { {pattern: $1.to_array(), action: $3, loc: mkloc($sloc)} }
+// 188|    regex_pattern "=>" braced_term { {pattern: $1.to_array(), action: $3, loc: mkloc($sloc)} }
 fn yy_action_56(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   guard _args[0].0 is YYObj__list_T__ast_LexPatternItem_(_dollar1)
   guard _args[2].0 is YYObj__ast_Term(_dollar3)
@@ -545,7 +558,7 @@ fn yy_action_56(_last_pos : Position, _args : ArrayView[(YYObj, Position, Positi
 }
 
 // file:///./parser.mbty
-// 158|    simple_term { Code(loc=mkloc($sloc)) }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_57(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_58(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -554,13 +567,13 @@ fn yy_action_57(_last_pos : Position, _args : ArrayView[(YYObj, Position, Positi
 }
 
 // file:///./parser.mbty
-// 151|    { @list.empty() }
+// 164|    { @list.empty() }
 fn yy_action_59(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj__list_T__ast_Term_({();  @list.empty() })
 }
 
 // file:///./parser.mbty
-// 158|    simple_term { Code(loc=mkloc($sloc)) }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_60(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_61(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -569,37 +582,37 @@ fn yy_action_60(_last_pos : Position, _args : ArrayView[(YYObj, Position, Positi
 }
 
 // file:///./parser.mbty
-// 238|    IMPORT {}
+// 251|    IMPORT {}
 fn yy_action_62(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 269|    SEMI {}
+// 282|    SEMI {}
 fn yy_action_63(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 235|    PUB {}
+// 248|    PUB {}
 fn yy_action_64(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 299|    ELLIPSIS {}
+// 312|    ELLIPSIS {}
 fn yy_action_65(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 292|    FAT_ARROW {}
+// 305|    FAT_ARROW {}
 fn yy_action_66(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 158|    simple_term { Code(loc=mkloc($sloc)) }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_67(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_68(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -608,7 +621,7 @@ fn yy_action_67(_last_pos : Position, _args : ArrayView[(YYObj, Position, Positi
 }
 
 // file:///./parser.mbty
-// 189|    STRING { Literal($1, loc=mkloc($sloc)) }
+// 202|    STRING { Literal($1, loc=mkloc($sloc)) }
 fn yy_action_69(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   guard _args[0].0 is YYObj_StringLiteral(_dollar1)
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -617,7 +630,7 @@ fn yy_action_69(_last_pos : Position, _args : ArrayView[(YYObj, Position, Positi
 }
 
 // file:///./parser.mbty
-// 158|    simple_term { Code(loc=mkloc($sloc)) }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_70(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_38(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -626,7 +639,7 @@ fn yy_action_70(_last_pos : Position, _args : ArrayView[(YYObj, Position, Positi
 }
 
 // file:///./parser.mbty
-// 158|    simple_term { Code(loc=mkloc($sloc)) }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_71(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_62(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -635,7 +648,7 @@ fn yy_action_71(_last_pos : Position, _args : ArrayView[(YYObj, Position, Positi
 }
 
 // file:///./parser.mbty
-// 158|    simple_term { Code(loc=mkloc($sloc)) }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_72(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_73(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -644,7 +657,7 @@ fn yy_action_72(_last_pos : Position, _args : ArrayView[(YYObj, Position, Positi
 }
 
 // file:///./parser.mbty
-// 158|    simple_term { Code(loc=mkloc($sloc)) }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_74(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_75(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -653,13 +666,13 @@ fn yy_action_74(_last_pos : Position, _args : ArrayView[(YYObj, Position, Positi
 }
 
 // file:///./parser.mbty
-// 237|    READONLY {}
+// 250|    READONLY {}
 fn yy_action_76(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 158|    simple_term { Code(loc=mkloc($sloc)) }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_77(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_78(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -668,32 +681,32 @@ fn yy_action_77(_last_pos : Position, _args : ArrayView[(YYObj, Position, Positi
 }
 
 // file:///./parser.mbty
-// 147|    term_list { normalize($1.to_array()) }
+// 160|    term_list { normalize($1.to_array()) }
 fn yy_action_79(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   guard _args[0].0 is YYObj__list_T__ast_Term_(_dollar1)
   YYObj_Array__ast_Term_({();  normalize(_dollar1.to_array()) })
 }
 
 // file:///./parser.mbty
-// 265|    DOT_INT {}
+// 278|    DOT_INT {}
 fn yy_action_80(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 284|    ELSE {}
+// 297|    ELSE {}
 fn yy_action_81(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 240|    BREAK {}
+// 253|    BREAK {}
 fn yy_action_82(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 158|    simple_term { Code(loc=mkloc($sloc)) }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_83(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_29(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -702,13 +715,13 @@ fn yy_action_83(_last_pos : Position, _args : ArrayView[(YYObj, Position, Positi
 }
 
 // file:///./parser.mbty
-// 220|    LIDENT {}
+// 233|    LIDENT {}
 fn yy_action_84(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 158|    simple_term { Code(loc=mkloc($sloc)) }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_85(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_86(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -717,7 +730,7 @@ fn yy_action_85(_last_pos : Position, _args : ArrayView[(YYObj, Position, Positi
 }
 
 // file:///./parser.mbty
-// 158|    simple_term { Code(loc=mkloc($sloc)) }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_87(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_76(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -726,13 +739,13 @@ fn yy_action_87(_last_pos : Position, _args : ArrayView[(YYObj, Position, Positi
 }
 
 // file:///./parser.mbty
-// 260|    MINUS {}
+// 273|    MINUS {}
 fn yy_action_88(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 158|    simple_term { Code(loc=mkloc($sloc)) }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_89(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_63(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -741,19 +754,19 @@ fn yy_action_89(_last_pos : Position, _args : ArrayView[(YYObj, Position, Positi
 }
 
 // file:///./parser.mbty
-// 264|    DOT_UIDENT {}
+// 277|    DOT_UIDENT {}
 fn yy_action_53(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 247|    WITH {}
+// 260|    WITH {}
 fn yy_action_90(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 158|    simple_term { Code(loc=mkloc($sloc)) }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_91(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_92(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -762,7 +775,7 @@ fn yy_action_91(_last_pos : Position, _args : ArrayView[(YYObj, Position, Positi
 }
 
 // file:///./parser.mbty
-// 180|    regex_pattern_item "," regex_pattern { @list.prepend($3, $1) }
+// 193|    regex_pattern_item "," regex_pattern { @list.prepend($3, $1) }
 fn yy_action_93(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   guard _args[2].0 is YYObj__list_T__ast_LexPatternItem_(_dollar3)
   guard _args[0].0 is YYObj__ast_LexPatternItem(_dollar1)
@@ -770,7 +783,7 @@ fn yy_action_93(_last_pos : Position, _args : ArrayView[(YYObj, Position, Positi
 }
 
 // file:///./parser.mbty
-// 158|    simple_term { Code(loc=mkloc($sloc)) }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_94(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_95(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -779,19 +792,19 @@ fn yy_action_94(_last_pos : Position, _args : ArrayView[(YYObj, Position, Positi
 }
 
 // file:///./parser.mbty
-// 287|    LET {}
+// 300|    LET {}
 fn yy_action_18(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 242|    STRUCT {}
+// 255|    STRUCT {}
 fn yy_action_96(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 158|    simple_term { Code(loc=mkloc($sloc)) }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_97(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_98(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -800,7 +813,7 @@ fn yy_action_97(_last_pos : Position, _args : ArrayView[(YYObj, Position, Positi
 }
 
 // file:///./parser.mbty
-// 158|    simple_term { Code(loc=mkloc($sloc)) }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_99(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_100(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -809,20 +822,20 @@ fn yy_action_99(_last_pos : Position, _args : ArrayView[(YYObj, Position, Positi
 }
 
 // file:///./parser.mbty
-// 215|    STRING {}
+// 228|    STRING {}
 fn yy_action_5(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 191|    uident { Named($1) }
+// 204|    uident { Named($1) }
 fn yy_action_101(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   guard _args[0].0 is YYObj__ast_Ident(_dollar1)
   YYObj__ast_Regex({();  Named(_dollar1) })
 }
 
 // file:///./parser.mbty
-// 158|    simple_term { Code(loc=mkloc($sloc)) }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_102(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_32(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -831,13 +844,13 @@ fn yy_action_102(_last_pos : Position, _args : ArrayView[(YYObj, Position, Posit
 }
 
 // file:///./parser.mbty
-// 212|    BYTE {}
+// 225|    BYTE {}
 fn yy_action_103(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 158|    simple_term { Code(loc=mkloc($sloc)) }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_104(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_31(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -846,14 +859,14 @@ fn yy_action_104(_last_pos : Position, _args : ArrayView[(YYObj, Position, Posit
 }
 
 // file:///./parser.mbty
-// 170|    lex_case ";" { @list.singleton($1) }
+// 183|    lex_case ";" { @list.singleton($1) }
 fn yy_action_105(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   guard _args[0].0 is YYObj__ast_LexCase(_dollar1)
   YYObj__list_T__ast_LexCase_({();  @list.singleton(_dollar1) })
 }
 
 // file:///./parser.mbty
-// 158|    simple_term { Code(loc=mkloc($sloc)) }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_106(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_107(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -862,7 +875,7 @@ fn yy_action_106(_last_pos : Position, _args : ArrayView[(YYObj, Position, Posit
 }
 
 // file:///./parser.mbty
-// 158|    simple_term { Code(loc=mkloc($sloc)) }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_108(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_45(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -871,14 +884,14 @@ fn yy_action_108(_last_pos : Position, _args : ArrayView[(YYObj, Position, Posit
 }
 
 // file:///./parser.mbty
-// 169|    lex_case { @list.singleton($1) }
+// 182|    lex_case { @list.singleton($1) }
 fn yy_action_109(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   guard _args[0].0 is YYObj__ast_LexCase(_dollar1)
   YYObj__list_T__ast_LexCase_({();  @list.singleton(_dollar1) })
 }
 
 // file:///./parser.mbty
-// 158|    simple_term { Code(loc=mkloc($sloc)) }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_110(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_20(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -887,37 +900,37 @@ fn yy_action_110(_last_pos : Position, _args : ArrayView[(YYObj, Position, Posit
 }
 
 // file:///./parser.mbty
-// 234|    TRUE {}
+// 247|    TRUE {}
 fn yy_action_50(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 216|    MULTILINE_STRING {}
+// 229|    MULTILINE_STRING {}
 fn yy_action_111(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 267|    COLONCOLON {}
+// 280|    COLONCOLON {}
 fn yy_action_26(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 222|    LIDENT_LEX {}
+// 235|    LIDENT_LEX {}
 fn yy_action_112(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 280|    BARBAR {}
+// 293|    BARBAR {}
 fn yy_action_113(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 152|    term term_list { @list.prepend($2, $1) }
+// 165|    term term_list { @list.prepend($2, $1) }
 fn yy_action_114(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   guard _args[1].0 is YYObj__list_T__ast_Term_(_dollar2)
   guard _args[0].0 is YYObj__ast_Term(_dollar1)
@@ -925,13 +938,13 @@ fn yy_action_114(_last_pos : Position, _args : ArrayView[(YYObj, Position, Posit
 }
 
 // file:///./parser.mbty
-// 214|    FLOAT {}
+// 227|    FLOAT {}
 fn yy_action_98(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 158|    simple_term { Code(loc=mkloc($sloc)) }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_115(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_116(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -940,19 +953,19 @@ fn yy_action_115(_last_pos : Position, _args : ArrayView[(YYObj, Position, Posit
 }
 
 // file:///./parser.mbty
-// 232|    EOF {}
+// 245|    EOF {}
 fn yy_action_73(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 239|    EXTERN {}
+// 252|    EXTERN {}
 fn yy_action_117(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 158|    simple_term { Code(loc=mkloc($sloc)) }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_118(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_6(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -961,19 +974,19 @@ fn yy_action_118(_last_pos : Position, _args : ArrayView[(YYObj, Position, Posit
 }
 
 // file:///./parser.mbty
-// 224|    POST_LABEL {}
+// 237|    POST_LABEL {}
 fn yy_action_119(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 283|    PIPE {}
+// 296|    PIPE {}
 fn yy_action_28(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 158|    simple_term { Code(loc=mkloc($sloc)) }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_120(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_121(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -982,13 +995,13 @@ fn yy_action_120(_last_pos : Position, _args : ArrayView[(YYObj, Position, Posit
 }
 
 // file:///./parser.mbty
-// 302|    GUARD {}
+// 315|    GUARD {}
 fn yy_action_122(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 204|    "(" terms ")" { (mkloc($loc($1)), $2, mkloc($loc($3))) }
+// 217|    "(" terms ")" { (mkloc($loc($1)), $2, mkloc($loc($3))) }
 fn yy_action_123(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _start_pos_of_item0 = _args[0].1
   let _end_pos_of_item0 = _args[0].2
@@ -999,7 +1012,7 @@ fn yy_action_123(_last_pos : Position, _args : ArrayView[(YYObj, Position, Posit
 }
 
 // file:///./parser.mbty
-// 158|    simple_term { Code(loc=mkloc($sloc)) }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_124(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_125(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -1008,7 +1021,7 @@ fn yy_action_124(_last_pos : Position, _args : ArrayView[(YYObj, Position, Posit
 }
 
 // file:///./parser.mbty
-// 158|    simple_term { Code(loc=mkloc($sloc)) }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_126(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_127(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -1017,7 +1030,7 @@ fn yy_action_126(_last_pos : Position, _args : ArrayView[(YYObj, Position, Posit
 }
 
 // file:///./parser.mbty
-// 190|    INTERP { Interp($1, loc=mkloc($sloc)) }
+// 203|    INTERP { Interp($1, loc=mkloc($sloc)) }
 fn yy_action_128(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   guard _args[0].0 is YYObj_InterpLiteral(_dollar1)
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -1026,7 +1039,7 @@ fn yy_action_128(_last_pos : Position, _args : ArrayView[(YYObj, Position, Posit
 }
 
 // file:///./parser.mbty
-// 158|    simple_term { Code(loc=mkloc($sloc)) }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_129(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_122(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -1035,7 +1048,7 @@ fn yy_action_129(_last_pos : Position, _args : ArrayView[(YYObj, Position, Posit
 }
 
 // file:///./parser.mbty
-// 158|    simple_term { Code(loc=mkloc($sloc)) }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_130(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_96(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -1044,14 +1057,14 @@ fn yy_action_130(_last_pos : Position, _args : ArrayView[(YYObj, Position, Posit
 }
 
 // file:///./parser.mbty
-// 184|    regex { Regex($1) }
+// 197|    regex { Regex($1) }
 fn yy_action_131(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   guard _args[0].0 is YYObj__ast_Regex(_dollar1)
   YYObj__ast_LexPatternItem({();  Regex(_dollar1) })
 }
 
 // file:///./parser.mbty
-// 158|    simple_term { Code(loc=mkloc($sloc)) }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_132(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_34(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -1060,37 +1073,37 @@ fn yy_action_132(_last_pos : Position, _args : ArrayView[(YYObj, Position, Posit
 }
 
 // file:///./parser.mbty
-// 225|    COMMENT {}
+// 238|    COMMENT {}
 fn yy_action_133(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 281|    PACKAGE_NAME {}
+// 294|    PACKAGE_NAME {}
 fn yy_action_134(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 298|    RANGE_EXCLUSIVE {}
+// 311|    RANGE_EXCLUSIVE {}
 fn yy_action_135(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 305|    IS {}
+// 318|    IS {}
 fn yy_action_95(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 261|    QUESTION {}
+// 274|    QUESTION {}
 fn yy_action_136(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 158|    simple_term { Code(loc=mkloc($sloc)) }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_137(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_138(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -1099,13 +1112,13 @@ fn yy_action_137(_last_pos : Position, _args : ArrayView[(YYObj, Position, Posit
 }
 
 // file:///./parser.mbty
-// 294|    WHILE {}
+// 307|    WHILE {}
 fn yy_action_139(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 158|    simple_term { Code(loc=mkloc($sloc)) }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_140(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_141(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -1114,22 +1127,22 @@ fn yy_action_140(_last_pos : Position, _args : ArrayView[(YYObj, Position, Posit
 }
 
 // file:///./parser.mbty
-// 293|    THIN_ARROW {}
+// 306|    THIN_ARROW {}
 fn yy_action_8(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 143|    terms { {body: $1, loc: mkloc($sloc)} }
+// 156|    terms { {body: Nested($1, loc=mkloc($sloc)), loc: mkloc($sloc)} }
 fn yy_action_142(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   guard _args[0].0 is YYObj_Array__ast_Term_(_dollar1)
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
   let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
-  YYObj__ast_Program({();  {body: _dollar1, loc: mkloc((_symbol_start_pos, _end_pos))} })
+  YYObj__ast_Program({();  {body: Nested(_dollar1, loc=mkloc((_symbol_start_pos, _end_pos))), loc: mkloc((_symbol_start_pos, _end_pos))} })
 }
 
 // file:///./parser.mbty
-// 158|    simple_term { Code(loc=mkloc($sloc)) }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_143(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_144(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -1138,25 +1151,25 @@ fn yy_action_143(_last_pos : Position, _args : ArrayView[(YYObj, Position, Posit
 }
 
 // file:///./parser.mbty
-// 271|    PLUS {}
+// 284|    PLUS {}
 fn yy_action_12(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 256|    EQUAL {}
+// 269|    EQUAL {}
 fn yy_action_107(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 254|    TRAITALIAS {}
+// 267|    TRAITALIAS {}
 fn yy_action_92(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 158|    simple_term { Code(loc=mkloc($sloc)) }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_145(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_84(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -1165,7 +1178,7 @@ fn yy_action_145(_last_pos : Position, _args : ArrayView[(YYObj, Position, Posit
 }
 
 // file:///./parser.mbty
-// 158|    simple_term { Code(loc=mkloc($sloc)) }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_146(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_147(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -1174,7 +1187,7 @@ fn yy_action_146(_last_pos : Position, _args : ArrayView[(YYObj, Position, Posit
 }
 
 // file:///./parser.mbty
-// 158|    simple_term { Code(loc=mkloc($sloc)) }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_148(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_119(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -1183,7 +1196,7 @@ fn yy_action_148(_last_pos : Position, _args : ArrayView[(YYObj, Position, Posit
 }
 
 // file:///./parser.mbty
-// 158|    simple_term { Code(loc=mkloc($sloc)) }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_149(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_66(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -1192,7 +1205,7 @@ fn yy_action_149(_last_pos : Position, _args : ArrayView[(YYObj, Position, Posit
 }
 
 // file:///./parser.mbty
-// 158|    simple_term { Code(loc=mkloc($sloc)) }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_150(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_30(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -1201,7 +1214,7 @@ fn yy_action_150(_last_pos : Position, _args : ArrayView[(YYObj, Position, Posit
 }
 
 // file:///./parser.mbty
-// 158|    simple_term { Code(loc=mkloc($sloc)) }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_151(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_152(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -1210,7 +1223,7 @@ fn yy_action_151(_last_pos : Position, _args : ArrayView[(YYObj, Position, Posit
 }
 
 // file:///./parser.mbty
-// 158|    simple_term { Code(loc=mkloc($sloc)) }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_153(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_133(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -1219,13 +1232,13 @@ fn yy_action_153(_last_pos : Position, _args : ArrayView[(YYObj, Position, Posit
 }
 
 // file:///./parser.mbty
-// 227|    INFIX1 {}
+// 240|    INFIX1 {}
 fn yy_action_141(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 158|    simple_term { Code(loc=mkloc($sloc)) }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_154(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_111(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -1234,7 +1247,7 @@ fn yy_action_154(_last_pos : Position, _args : ArrayView[(YYObj, Position, Posit
 }
 
 // file:///./parser.mbty
-// 158|    simple_term { Code(loc=mkloc($sloc)) }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_155(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_156(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -1243,7 +1256,7 @@ fn yy_action_155(_last_pos : Position, _args : ArrayView[(YYObj, Position, Posit
 }
 
 // file:///./parser.mbty
-// 206|    "[" terms "]" { (mkloc($loc($1)), $2, mkloc($loc($3))) }
+// 219|    "[" terms "]" { (mkloc($loc($1)), $2, mkloc($loc($3))) }
 fn yy_action_157(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _start_pos_of_item0 = _args[0].1
   let _end_pos_of_item0 = _args[0].2
@@ -1254,19 +1267,19 @@ fn yy_action_157(_last_pos : Position, _args : ArrayView[(YYObj, Position, Posit
 }
 
 // file:///./parser.mbty
-// 213|    BYTES {}
+// 226|    BYTES {}
 fn yy_action_158(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 266|    DOT_LPAREN {}
+// 279|    DOT_LPAREN {}
 fn yy_action_152(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 158|    simple_term { Code(loc=mkloc($sloc)) }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_159(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_160(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -1275,7 +1288,7 @@ fn yy_action_159(_last_pos : Position, _args : ArrayView[(YYObj, Position, Posit
 }
 
 // file:///./parser.mbty
-// 158|    simple_term { Code(loc=mkloc($sloc)) }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_161(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_139(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -1284,7 +1297,7 @@ fn yy_action_161(_last_pos : Position, _args : ArrayView[(YYObj, Position, Posit
 }
 
 // file:///./parser.mbty
-// 158|    simple_term { Code(loc=mkloc($sloc)) }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_162(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_163(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -1293,7 +1306,7 @@ fn yy_action_162(_last_pos : Position, _args : ArrayView[(YYObj, Position, Posit
 }
 
 // file:///./parser.mbty
-// 158|    simple_term { Code(loc=mkloc($sloc)) }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_164(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_82(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -1302,19 +1315,19 @@ fn yy_action_164(_last_pos : Position, _args : ArrayView[(YYObj, Position, Posit
 }
 
 // file:///./parser.mbty
-// 249|    THROW {}
+// 262|    THROW {}
 fn yy_action_42(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 279|    CARET {}
+// 292|    CARET {}
 fn yy_action_86(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 158|    simple_term { Code(loc=mkloc($sloc)) }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_165(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_166(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -1323,19 +1336,19 @@ fn yy_action_165(_last_pos : Position, _args : ArrayView[(YYObj, Position, Posit
 }
 
 // file:///./parser.mbty
-// 229|    INFIX3 {}
+// 242|    INFIX3 {}
 fn yy_action_75(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 277|    AMPERAMPER {}
+// 290|    AMPERAMPER {}
 fn yy_action_36(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 158|    simple_term { Code(loc=mkloc($sloc)) }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_167(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_136(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -1344,19 +1357,19 @@ fn yy_action_167(_last_pos : Position, _args : ArrayView[(YYObj, Position, Posit
 }
 
 // file:///./parser.mbty
-// 290|    MUTABLE {}
+// 303|    MUTABLE {}
 fn yy_action_168(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 241|    CONTINUE {}
+// 254|    CONTINUE {}
 fn yy_action_169(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 158|    simple_term { Code(loc=mkloc($sloc)) }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_170(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_88(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -1365,7 +1378,7 @@ fn yy_action_170(_last_pos : Position, _args : ArrayView[(YYObj, Position, Posit
 }
 
 // file:///./parser.mbty
-// 158|    simple_term { Code(loc=mkloc($sloc)) }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_171(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_158(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -1374,31 +1387,31 @@ fn yy_action_171(_last_pos : Position, _args : ArrayView[(YYObj, Position, Posit
 }
 
 // file:///./parser.mbty
-// 230|    INFIX4 {}
+// 243|    INFIX4 {}
 fn yy_action_40(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 288|    CONST {}
+// 301|    CONST {}
 fn yy_action_121(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 217|    MULTILINE_INTERP {}
+// 230|    MULTILINE_INTERP {}
 fn yy_action_78(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 303|    FOR {}
+// 316|    FOR {}
 fn yy_action_138(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 313|    LIDENT { {name: $1, loc: mkloc($sloc)} }
+// 326|    LIDENT { {name: $1, loc: mkloc($sloc)} }
 fn yy_action_172(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   guard _args[0].0 is YYObj_String(_dollar1)
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -1407,12 +1420,12 @@ fn yy_action_172(_last_pos : Position, _args : ArrayView[(YYObj, Position, Posit
 }
 
 // file:///./parser.mbty
-// 195|    "{" terms "}" { 
-// 196|    match normalize([Code(loc=mkloc($loc($1))), ..$2, Code(loc=mkloc($loc($3)))]) {
-// 197|      [Code(_)] => Code(loc=mkloc($sloc))
-// 198|      terms => Nested(terms, loc=mkloc($sloc))
-// 199|    }
-// 200|  }
+// 208|    "{" terms "}" { 
+// 209|    match normalize([Code(loc=mkloc($loc($1))), ..$2, Code(loc=mkloc($loc($3)))]) {
+// 210|      [Code(_)] => Code(loc=mkloc($sloc))
+// 211|      terms => Nested(terms, loc=mkloc($sloc))
+// 212|    }
+// 213|  }
 fn yy_action_173(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _start_pos_of_item0 = _args[0].1
   let _end_pos_of_item0 = _args[0].2
@@ -1430,7 +1443,7 @@ fn yy_action_173(_last_pos : Position, _args : ArrayView[(YYObj, Position, Posit
 }
 
 // file:///./parser.mbty
-// 156|    "const" uident ":" "BytesRegex" "=" regex ";" %prec prec_HIGHEST { NamedRegex($2, $6, loc=mkloc($sloc)) }
+// 169|    "const" uident ":" "BytesRegex" "=" regex ";" %prec prec_HIGHEST { NamedRegex($2, $6, loc=mkloc($sloc)) }
 fn yy_action_174(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   guard _args[1].0 is YYObj__ast_Ident(_dollar2)
   guard _args[5].0 is YYObj__ast_Regex(_dollar6)
@@ -1440,7 +1453,7 @@ fn yy_action_174(_last_pos : Position, _args : ArrayView[(YYObj, Position, Posit
 }
 
 // file:///./parser.mbty
-// 158|    simple_term { Code(loc=mkloc($sloc)) }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_175(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_169(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -1449,13 +1462,13 @@ fn yy_action_175(_last_pos : Position, _args : ArrayView[(YYObj, Position, Posit
 }
 
 // file:///./parser.mbty
-// 300|    TEST {}
+// 313|    TEST {}
 fn yy_action_127(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 171|    lex_case ";" lex_cases { @list.prepend($3, $1) }
+// 184|    lex_case ";" lex_cases { @list.prepend($3, $1) }
 fn yy_action_176(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   guard _args[2].0 is YYObj__list_T__ast_LexCase_(_dollar3)
   guard _args[0].0 is YYObj__ast_LexCase(_dollar1)
@@ -1463,7 +1476,7 @@ fn yy_action_176(_last_pos : Position, _args : ArrayView[(YYObj, Position, Posit
 }
 
 // file:///./parser.mbty
-// 158|    simple_term { Code(loc=mkloc($sloc)) }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_177(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_90(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -1472,7 +1485,7 @@ fn yy_action_177(_last_pos : Position, _args : ArrayView[(YYObj, Position, Posit
 }
 
 // file:///./parser.mbty
-// 158|    simple_term { Code(loc=mkloc($sloc)) }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_178(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_80(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -1481,13 +1494,13 @@ fn yy_action_178(_last_pos : Position, _args : ArrayView[(YYObj, Position, Posit
 }
 
 // file:///./parser.mbty
-// 268|    COLON {}
+// 281|    COLON {}
 fn yy_action_156(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 157|    "lex" lident "{" lex_cases "}" { LexDef($2, $4.to_array(), loc=mkloc($sloc)) }
+// 170|    "lex" lident "{" lex_cases "}" { LexDef($2, $4.to_array(), loc=mkloc($sloc)) }
 fn yy_action_179(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   guard _args[1].0 is YYObj__ast_Ident(_dollar2)
   guard _args[3].0 is YYObj__list_T__ast_LexCase_(_dollar4)
@@ -1497,13 +1510,13 @@ fn yy_action_179(_last_pos : Position, _args : ArrayView[(YYObj, Position, Posit
 }
 
 // file:///./parser.mbty
-// 259|    COMMA {}
+// 272|    COMMA {}
 fn yy_action_3(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 158|    simple_term { Code(loc=mkloc($sloc)) }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_180(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_181(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -1512,13 +1525,13 @@ fn yy_action_180(_last_pos : Position, _args : ArrayView[(YYObj, Position, Posit
 }
 
 // file:///./parser.mbty
-// 233|    FALSE {}
+// 246|    FALSE {}
 fn yy_action_61(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 158|    simple_term { Code(loc=mkloc($sloc)) }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_182(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_16(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -1527,19 +1540,19 @@ fn yy_action_182(_last_pos : Position, _args : ArrayView[(YYObj, Position, Posit
 }
 
 // file:///./parser.mbty
-// 263|    DOT_LIDENT {}
+// 276|    DOT_LIDENT {}
 fn yy_action_14(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 228|    INFIX2 {}
+// 241|    INFIX2 {}
 fn yy_action_68(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 158|    simple_term { Code(loc=mkloc($sloc)) }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_183(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_81(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -1548,25 +1561,25 @@ fn yy_action_183(_last_pos : Position, _args : ArrayView[(YYObj, Position, Posit
 }
 
 // file:///./parser.mbty
-// 250|    TRY {}
+// 263|    TRY {}
 fn yy_action_184(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 246|    IMPL {}
+// 259|    IMPL {}
 fn yy_action_185(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 295|    RETURN {}
+// 308|    RETURN {}
 fn yy_action_144(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 158|    simple_term { Code(loc=mkloc($sloc)) }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_186(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_65(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -1575,7 +1588,7 @@ fn yy_action_186(_last_pos : Position, _args : ArrayView[(YYObj, Position, Posit
 }
 
 // file:///./parser.mbty
-// 158|    simple_term { Code(loc=mkloc($sloc)) }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_187(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_168(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -1584,7 +1597,7 @@ fn yy_action_187(_last_pos : Position, _args : ArrayView[(YYObj, Position, Posit
 }
 
 // file:///./parser.mbty
-// 158|    simple_term { Code(loc=mkloc($sloc)) }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_188(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_64(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -1593,19 +1606,19 @@ fn yy_action_188(_last_pos : Position, _args : ArrayView[(YYObj, Position, Posit
 }
 
 // file:///./parser.mbty
-// 278|    AMPER {}
+// 291|    AMPER {}
 fn yy_action_22(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 210|    CHAR {}
+// 223|    CHAR {}
 fn yy_action_116(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 158|    simple_term { Code(loc=mkloc($sloc)) }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_189(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_134(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -1614,13 +1627,13 @@ fn yy_action_189(_last_pos : Position, _args : ArrayView[(YYObj, Position, Posit
 }
 
 // file:///./parser.mbty
-// 296|    DOTDOT {}
+// 309|    DOTDOT {}
 fn yy_action_160(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 158|    simple_term { Code(loc=mkloc($sloc)) }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_190(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_103(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -1629,13 +1642,13 @@ fn yy_action_190(_last_pos : Position, _args : ArrayView[(YYObj, Position, Posit
 }
 
 // file:///./parser.mbty
-// 211|    INT {}
+// 224|    INT {}
 fn yy_action_191(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 158|    simple_term { Code(loc=mkloc($sloc)) }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_192(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_135(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -1644,7 +1657,7 @@ fn yy_action_192(_last_pos : Position, _args : ArrayView[(YYObj, Position, Posit
 }
 
 // file:///./parser.mbty
-// 158|    simple_term { Code(loc=mkloc($sloc)) }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_193(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_19(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -1653,13 +1666,13 @@ fn yy_action_193(_last_pos : Position, _args : ArrayView[(YYObj, Position, Posit
 }
 
 // file:///./parser.mbty
-// 218|    INTERP {}
+// 231|    INTERP {}
 fn yy_action_147(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 158|    simple_term { Code(loc=mkloc($sloc)) }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_194(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_195(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -1668,13 +1681,13 @@ fn yy_action_194(_last_pos : Position, _args : ArrayView[(YYObj, Position, Posit
 }
 
 // file:///./parser.mbty
-// 221|    UIDENT {}
+// 234|    UIDENT {}
 fn yy_action_195(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 309|    UIDENT { {name: $1, loc: mkloc($sloc)} }
+// 322|    UIDENT { {name: $1, loc: mkloc($sloc)} }
 fn yy_action_196(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   guard _args[0].0 is YYObj_String(_dollar1)
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -1683,19 +1696,19 @@ fn yy_action_196(_last_pos : Position, _args : ArrayView[(YYObj, Position, Posit
 }
 
 // file:///./parser.mbty
-// 248|    RAISE {}
+// 261|    RAISE {}
 fn yy_action_163(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 159|    grouped_term {
-// 160|    let (loc1, terms, loc2) = $1
-// 161|    match normalize([Code(loc=loc1), ..terms, Code(loc=loc2)]) {
-// 162|      [Code(_)] => Code(loc=mkloc($sloc))
-// 163|      terms => Nested(terms, loc=mkloc($sloc))
-// 164|    }
-// 165|  }
+// 172|    grouped_term {
+// 173|    let (loc1, terms, loc2) = $1
+// 174|    match normalize([Code(loc=loc1), ..terms, Code(loc=loc2)]) {
+// 175|      [Code(_)] => Code(loc=mkloc($sloc))
+// 176|      terms => Nested(terms, loc=mkloc($sloc))
+// 177|    }
+// 178|  }
 fn yy_action_197(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   guard _args[0].0 is YYObj__Location__Array__ast_Term___Location_(_dollar1)
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -1710,13 +1723,13 @@ fn yy_action_197(_last_pos : Position, _args : ArrayView[(YYObj, Position, Posit
 }
 
 // file:///./parser.mbty
-// 226|    NEWLINE {}
+// 239|    NEWLINE {}
 fn yy_action_100(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 158|    simple_term { Code(loc=mkloc($sloc)) }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_198(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_117(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -1725,7 +1738,7 @@ fn yy_action_198(_last_pos : Position, _args : ArrayView[(YYObj, Position, Posit
 }
 
 // file:///./parser.mbty
-// 158|    simple_term { Code(loc=mkloc($sloc)) }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_199(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_113(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -1734,13 +1747,13 @@ fn yy_action_199(_last_pos : Position, _args : ArrayView[(YYObj, Position, Posit
 }
 
 // file:///./parser.mbty
-// 245|    DERIVE {}
+// 258|    DERIVE {}
 fn yy_action_125(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 158|    simple_term { Code(loc=mkloc($sloc)) }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_200(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_185(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -1749,7 +1762,7 @@ fn yy_action_200(_last_pos : Position, _args : ArrayView[(YYObj, Position, Posit
 }
 
 // file:///./parser.mbty
-// 158|    simple_term { Code(loc=mkloc($sloc)) }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_201(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_184(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -1758,19 +1771,19 @@ fn yy_action_201(_last_pos : Position, _args : ArrayView[(YYObj, Position, Posit
 }
 
 // file:///./parser.mbty
-// 255|    FNALIAS {}
+// 268|    FNALIAS {}
 fn yy_action_58(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 297|    RANGE_INCLUSIVE {}
+// 310|    RANGE_INCLUSIVE {}
 fn yy_action_166(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 158|    simple_term { Code(loc=mkloc($sloc)) }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_202(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_191(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
@@ -1779,13 +1792,13 @@ fn yy_action_202(_last_pos : Position, _args : ArrayView[(YYObj, Position, Posit
 }
 
 // file:///./parser.mbty
-// 223|    UIDENT_BYTES_REGEX {}
+// 236|    UIDENT_BYTES_REGEX {}
 fn yy_action_181(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 158|    simple_term { Code(loc=mkloc($sloc)) }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_203(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_112(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
