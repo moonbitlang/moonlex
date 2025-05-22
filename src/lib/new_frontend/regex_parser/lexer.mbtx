@@ -1,0 +1,43 @@
+regex uident = ['A'-'Z'] ['A'-'Z' 'a'-'z' '_' '0'-'9']*;
+regex hex_digit = ['0'-'9' 'A'-'F' 'a'-'f'];
+regex integer = '0' | ['1'-'9'] ['0'-'9']*;
+
+rule token(lexbuf : StringLexbuf) -> Token {
+  parse {
+    eof => { EOF }
+    "{{cgLv3pS_" (uident as t) "}}" => { TOKEN(t) }
+    "." => { DOT }
+    "$" => { DOLLAR }
+    "[" => { LBRACKET }
+    "]" => { RBRACKET }
+    "^" => { CARET }
+    "-" => { MINUS }
+    "*" => { STAR }
+    "+" => { PLUS }
+    "?" => { QUESTION }
+    "{" (integer as t1) "," (integer as t2) "}" => { REPEAT((parse_integer(t1), Some(parse_integer(t2)))) }
+    "{" (integer as t) "," "}" => { REPEAT((parse_integer(t), None)) }
+    "{" (integer as t) "}" => {
+      let n = parse_integer(t)
+      REPEAT((n, Some(n)))
+    }
+    "(" => { LPAREN }
+    ")" => { RPAREN }
+    "|" => { BAR }
+    "\\\\" as t => { CHAR_ESCAPE(('\\', t)) }
+    "\\(" as t => { CHAR_ESCAPE(('(', t)) }
+    "\\)" as t => { CHAR_ESCAPE((')', t)) }
+    "\\[" as t => { CHAR_ESCAPE(('[', t)) }
+    "\\]" as t => { CHAR_ESCAPE((']', t)) }
+    "\\." as t => { CHAR_ESCAPE(('.', t)) }
+    "\\$" as t => { CHAR_ESCAPE(('$', t)) }
+    "\\^" as t => { CHAR_ESCAPE(('^', t)) }
+    "\\+" as t => { CHAR_ESCAPE(('+', t)) }
+    "\\*" as t => { CHAR_ESCAPE(('*', t)) }
+    "\\?" as t => { CHAR_ESCAPE(('?', t)) }
+    "\\|" as t => { CHAR_ESCAPE(('|', t)) }
+    "\\u{" (hex_digit+ as t1) "}" as t => { CHAR_ESCAPE((parse_hex_integer(t1).unsafe_to_char(), t)) }
+    "\\u" (hex_digit hex_digit hex_digit hex_digit as t1) as t => { CHAR_ESCAPE((parse_hex_integer(t1).unsafe_to_char(), t)) }
+    _ as t => { CHAR(t) }
+  }
+}

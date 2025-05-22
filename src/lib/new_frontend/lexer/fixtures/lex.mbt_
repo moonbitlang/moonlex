@@ -1,0 +1,8 @@
+let x : Int = 1
+const DIGIT : BytesRegex = "[0-9]"
+const NUM : BytesRegex = "\{DIGIT}+"
+fn foo(lexbuf : Lexbuf) -> Unit {
+  lex lexbuf {
+    NUM => {}
+  }
+}

@@ -4,6 +4,7 @@
     {
       "name": "token",
       "signature": "token[T : @lexbuf.IStringLexbuf](lexbuf : T) -> (Token, Int, Int) ",
+      "lexbuf_var": "lexbuf",
       "patterns": [
         [
           {
@@ -2449,6 +2450,7 @@
     {
       "name": "string_inner_rquote",
       "signature": "string_inner_rquote[T : @lexbuf.IStringLexbuf](buffer : StringBuilder, lexbuf : T) -> Int ",
+      "lexbuf_var": "lexbuf",
       "patterns": [
         [
           {
@@ -3309,6 +3311,7 @@
     {
       "name": "code_rbrace",
       "signature": "code_rbrace[T : @lexbuf.IStringLexbuf](buffer : StringBuilder, lexbuf : T) -> Int ",
+      "lexbuf_var": "lexbuf",
       "patterns": [
         [
           {

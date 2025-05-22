@@ -8,7 +8,8 @@
     "moonbitlang/x/sys",
     "moonbitlang/x/fs",
     "moonbitlang/ulex/main/util",
-    "moonbitlang/ulex/lib/regex"
+    "moonbitlang/ulex/lib/regex",
+    "moonbitlang/ulex/lib/new_frontend/driver"
   ],
   "bin-name": "moonlex",
   "bin-target": "js"

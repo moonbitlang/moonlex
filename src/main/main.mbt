@@ -9,8 +9,31 @@ fn main {
   let input_file = @ref.new("")
   let mut code_unit = @type.CodeUnit4
   let mut default_encoding : @type.Encoding? = None
+  let mut new_syntax = false
   @ArgParser.parse(
     [
+      ("--new-syntax", "", Unit(fn() { new_syntax = true }), "Use new syntax"),
+      (
+        "--input-file",
+        "-i",
+        Set_string(input_file),
+        "Input file (lexer specification)",
+      ),
+      (
+        "--output-format",
+        "-f",
+        String(fn(format) {
+          output_file.val = match format {
+            "rust" => "out.rs"
+            "c" => "out.c"
+            _ => {
+              abort("Invalid output format: \{format}")
+              return
+            }
+          }
+        }),
+        "Output format (rust or c)",
+      ),
       ("--output-file", "-o", Set_string(output_file), "Output file"),
       (
         "--version",
@@ -62,20 +85,23 @@ fn main {
     @sys.get_cli_args(),
   )
   guard input_file.val != "" else { abort("Input file is required") }
-  let lexer_spec_src = @fs.read_file_to_string?(input_file.val).unwrap()
-  let lex = try {
-    @parser.parse_lex_from_string!(lexer_spec_src)
-  } catch {
-    @parser.UnexpectedToken(token, loc, expected) => {
-      let loc_str = loc_to_string(input_file.val, lexer_spec_src, loc)
-      let expected_str = array_to_or_list(expected.map(Show::to_string)[:])
-      println_to_stderr(
-        "SyntaxError: Unexpected token \{token.kind()}, expected \{expected_str}.\n  at \{loc_str}",
-      )
-      exit(1)
+  let output = if new_syntax {
+    let lexer_spec_src = @fs.read_file_to_bytes?(input_file.val).unwrap()
+    @driver.compile(lexer_spec_src, filename=input_file.val)
+  } else {
+    let lexer_spec_src = @fs.read_file_to_string?(input_file.val).unwrap()
+    let lex = try @parser.parse_lex_from_string!(lexer_spec_src) catch {
+      @parser.UnexpectedToken(token, loc, expected) => {
+        let loc_str = loc_to_string(input_file.val, lexer_spec_src, loc)
+        let expected_str = array_to_or_list(expected.map(Show::to_string)[:])
+        println_to_stderr(
+          "SyntaxError: Unexpected token \{token.kind()}, expected \{expected_str}.\n  at \{loc_str}",
+        )
+        exit(1)
+      }
     }
+    @codegen.codegen_lex(lex, code_unit~, default_encoding~)
   }
-  let output = @codegen.codegen_lex(lex, code_unit~, default_encoding~)
   if output_file.val == "" {
     println(output)
   } else {

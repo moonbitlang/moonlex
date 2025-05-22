@@ -1,0 +1,18 @@
+{
+  "pre-build": [
+    {
+      "command": "node $mod_dir/boot/moonyacc.js -- --external-tokens --input-mode array $input -o $output",
+      "input": "parser.mbty",
+      "output": "parser.mbt"
+    }
+  ],
+  "test-import": [
+    "moonbitlang/x/encoding",
+    "moonbitlang/ulex/lib/new_frontend/lexer"
+  ],
+  "import": [
+    "moonbitlang/ulex/lib/new_frontend/tokens",
+    "moonbitlang/ulex/lib/new_frontend/ast_types",
+    "moonbitlang/ulex/lib/new_frontend/ast"
+  ]
+}

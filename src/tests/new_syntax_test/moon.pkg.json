@@ -1,0 +1,13 @@
+{
+    "pre-build": [
+        {
+            "command": "node $mod_dir/boot/snapshot/moonlex.js --new-syntax $input -o $output",
+            "input": "calc.lex.mbt_",
+            "output": "calc.mbt"
+        }
+    ],
+    "warn-list": "-1-13",
+    "import": [
+        "moonbitlang/ulex-runtime/lexbuf"
+    ]
+}

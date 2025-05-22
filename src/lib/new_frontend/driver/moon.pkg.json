@@ -1,0 +1,13 @@
+{
+  "import": [
+    "moonbitlang/ulex/lib/new_frontend/ast_types",
+    "moonbitlang/ulex/lib/new_frontend/tokens",
+    "moonbitlang/ulex/lib/new_frontend/lexer",
+    "moonbitlang/ulex/lib/new_frontend/parser",
+    "moonbitlang/ulex/lib/new_frontend/ast",
+    "moonbitlang/ulex/lib/regex",
+    "moonbitlang/ulex/lib/new_frontend/regex_parser",
+    "moonbitlang/ulex/lib/type",
+    "moonbitlang/ulex/lib/codegen"
+  ]
+}

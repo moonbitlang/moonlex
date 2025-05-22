@@ -450,11 +450,11 @@ fn yy_action_27(_last_pos : Position, _args : ArrayView[(YYObj, Position, Positi
 
 // file:///./parser.mbty
 // 81|    RULE_LC_IDENT_LPAREN_CODE_RPAREN_ARROW_CODE_LBRACE "parse {" rule_item_list "}" "}" 
-// 82|                                        { fn { ctx => { name: $1.0, signature: $1.1, patterns: $3(ctx).to_array() } } }
+// 82|                                        { fn { ctx => { name: $1.0, signature: $1.1, lexbuf_var: "lexbuf", patterns: $3(ctx).to_array() } } }
 fn yy_action_28(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   guard _args[0].0 is YYObj__String__String_(_dollar1)
   guard _args[2].0 is YYObj__Context______immut_list_T___type_Regex___type_CodeBlock__(_dollar3)
-  YYObj__Context______type_Rule({();  fn { ctx => { name: _dollar1.0, signature: _dollar1.1, patterns: _dollar3(ctx).to_array() } } })
+  YYObj__Context______type_Rule({();  fn { ctx => { name: _dollar1.0, signature: _dollar1.1, lexbuf_var: "lexbuf", patterns: _dollar3(ctx).to_array() } } })
 }
 
 // file:///./parser.mbty

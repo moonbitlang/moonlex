@@ -1,0 +1,16 @@
+{
+  "pre-build": [
+    {
+      "command": "node boot/snapshot/moonlex.js -- --code-unit 1 --default-encoding utf8 $input -o $output",
+      "input": "lexer.mbtx",
+      "output": "lexer.mbt"
+    }
+  ],
+  "test-import": [
+    "moonbitlang/x/fs"
+  ],
+  "import": [
+    "moonbitlang/ulex/lib/new_frontend/tokens",
+    "moonbitlang/ulex/lib/new_frontend/ast_types"
+  ]
+}
