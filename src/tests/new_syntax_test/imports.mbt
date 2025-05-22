@@ -1,0 +1,1 @@
+typealias @lexbuf.BytesLexbuf

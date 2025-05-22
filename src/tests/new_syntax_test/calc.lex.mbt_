@@ -1,0 +1,20 @@
+fn parse_integer(input : @bytes.View) -> Int {
+  loop 0, input {
+    acc, [] => acc
+    acc, ['0'..='9' as c, .. rest] =>
+      continue acc * 10 + (c.to_int() - '0'), rest
+    _, _ => panic()
+  }
+}
+
+test {
+  const DIGIT : BytesRegex = "[0-9]"
+  const NUMBER : BytesRegex = "\{DIGIT}+"
+
+  let lexbuf = BytesLexbuf::from_bytes("42")
+  inspect!(
+    lex lexbuf {
+      NUMBER as t => { parse_integer(t) }
+    }
+  )
+}
