@@ -105,7 +105,7 @@ pub fn codegen_rule_inner(
   out.write_string(
     $|  // The matched pattern id
     $|  let mut _match_pattern = @int.max_value
-    $|  let mut _match_start = \{rule.lexee_var}.curr_pos()
+    $|  let mut _match_start = \{rule.lexee}.curr_pos()
     $|  let mut _match_end = -1
     $|
     ,
@@ -152,7 +152,7 @@ pub fn codegen_rule_inner(
   let start_tags = @sorted_set.new()
   for tag in start_tags {
     out.write_string(
-      $|  \{gen_tag_var((tag, 0))} = \{rule.lexee_var}.curr_pos()
+      $|  \{gen_tag_var((tag, 0))} = \{rule.lexee}.curr_pos()
       $|
       ,
     )
@@ -173,7 +173,7 @@ pub fn codegen_rule_inner(
       for op in tag_action._ {
         match op {
           Set(dest~) =>
-            buf.push("\{gen_tag_var(dest)} = \{rule.lexee_var}.curr_pos()")
+            buf.push("\{gen_tag_var(dest)} = \{rule.lexee}.curr_pos()")
           Copy(dest~, src~) =>
             buf.push("\{gen_tag_var(dest)} = \{gen_tag_var(src)}")
         }
@@ -193,7 +193,7 @@ pub fn codegen_rule_inner(
       out.write_string(
         $|      if _match_pattern >= \{pattern_id} {
         $|        _match_pattern = \{pattern_id}
-        $|        _match_end = \{rule.lexee_var}.curr_pos()
+        $|        _match_end = \{rule.lexee}.curr_pos()
         $|
         ,
       )
@@ -261,7 +261,7 @@ pub fn codegen_rule_inner(
       )
     } else {
       out.write_string(
-        $|      continue match \{rule.lexee_var}.next_as_int() {
+        $|      continue match \{rule.lexee}.next_as_int() {
         $|
         ,
       )
@@ -304,7 +304,7 @@ pub fn codegen_rule_inner(
     $|    panic()
     $|  }
     $|
-    $|  \{rule.lexee_var}.reset(pos=_match_end)
+    $|  \{rule.lexee}.reset(pos=_match_end)
     $|  match _match_pattern {
     $|
     ,
@@ -334,13 +334,13 @@ pub fn codegen_rule_inner(
       match var_type {
         Char =>
           out.write_string(
-            $|      let \{name} = \{rule.lexee_var}.get_char(_capture_\{capture_id}_start, _capture_\{capture_id}_end)
+            $|      let \{name} = \{rule.lexee}.get_char(_capture_\{capture_id}_start, _capture_\{capture_id}_end)
             $|
             ,
           )
         String =>
           out.write_string(
-            $|      let \{name} = \{rule.lexee_var}.get_string(_capture_\{capture_id}_start, _capture_\{capture_id}_end)
+            $|      let \{name} = \{rule.lexee}.get_string(_capture_\{capture_id}_start, _capture_\{capture_id}_end)
             $|
             ,
           )
@@ -391,7 +391,7 @@ pub fn codegen_rule_new_syntax(
     .or(0)
   let max_pattern_id = dfa.code_blocks.length() - 1
   out.write_string(
-    $|loop \{rule.lexee_var} { _lexee => {
+    $|loop \{rule.lexee} { _lexee => {
     $|  let _data = _lexee.data()
     $|  let mut _cursor = _lexee.start_offset()
     $|  let _end = _cursor + _lexee.length()

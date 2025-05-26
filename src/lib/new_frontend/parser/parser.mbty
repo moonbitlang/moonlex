@@ -167,7 +167,7 @@ term_list -> @list.T[@ast.Term]
 
 term -> @ast.Term
   : "const" uident ":" "Regex" "=" regex ";" %prec prec_HIGHEST { NamedRegex($2, $6, loc=mkloc($sloc)) }
-  | "lex" lident "{" lex_cases "}" { LexDef($2, $4.to_array(), loc=mkloc($sloc)) }
+  | "lex" lexee_code "{" lex_cases "}" { LexDef($2, $4.to_array(), loc=mkloc($sloc)) }
   | simple_term { Code(loc=mkloc($sloc)) }
   | grouped_term {
     let (loc1, terms, loc2) = $1
@@ -176,6 +176,15 @@ term -> @ast.Term
       terms => Nested(terms, loc=mkloc($sloc))
     }
   }
+  ;
+
+lexee_code -> @ast.Code
+  : lexee_code_def { { loc: mkloc($sloc) } }
+  ;
+
+lexee_code_def -> Unit
+  : any_token_except_brace {}
+  | any_token_except_brace lexee_code_def {}
   ;
 
 lex_cases -> @list.T[@ast.LexCase]
@@ -352,4 +361,103 @@ uident -> @ast.Ident
 
 lident -> @ast.Ident
   : LIDENT { {name: $1, loc: mkloc($sloc)} }
+  ;
+
+any_token_except_brace -> Unit
+  : CHAR {}
+  | INT {}
+  | BYTE {}
+  | BYTES {}
+  | FLOAT {}
+  | STRING {}
+  | MULTILINE_STRING {}
+  | MULTILINE_INTERP {}
+  | INTERP {}
+  | ATTRIBUTE {}
+  | LIDENT {}
+  | UIDENT {}
+  | LIDENT_LEX {}
+  | UIDENT_REGEX {}
+  | POST_LABEL {}
+  | COMMENT {}
+  | NEWLINE {}
+  | INFIX1 {}
+  | INFIX2 {}
+  | INFIX3 {}
+  | INFIX4 {}
+  | AUGMENTED_ASSIGNMENT {}
+  | EOF {}
+  | FALSE {}
+  | TRUE {}
+  | PUB {}
+  | PRIV {}
+  | READONLY {}
+  | IMPORT {}
+  | EXTERN {}
+  | BREAK {}
+  | CONTINUE {}
+  | STRUCT {}
+  | ENUM {}
+  | TRAIT {}
+  | DERIVE {}
+  | IMPL {}
+  | WITH {}
+  | RAISE {}
+  | THROW {}
+  | TRY {}
+  | CATCH {}
+  | ASYNC {}
+  | TYPEALIAS {}
+  | TRAITALIAS {}
+  | FNALIAS {}
+  | EQUAL {}
+  | LPAREN {}
+  | RPAREN {}
+  | COMMA {}
+  | MINUS {}
+  | QUESTION {}
+  | EXCLAMATION {}
+  | DOT_LIDENT {}
+  | DOT_UIDENT {}
+  | DOT_INT {}
+  | DOT_LPAREN {}
+  | COLONCOLON {}
+  | COLON {}
+  | SEMI {}
+  | LBRACKET {}
+  | PLUS {}
+  | RBRACKET {}
+  | UNDERSCORE {}
+  | BAR {}
+//  | LBRACE {}
+//  | RBRACE {}
+  | AMPERAMPER {}
+  | AMPER {}
+  | CARET {}
+  | BARBAR {}
+  | PACKAGE_NAME {}
+  | AS {}
+  | PIPE {}
+  | ELSE {}
+  | FN {}
+  | IF {}
+  | LET {}
+  | CONST {}
+  | MATCH {}
+  | MUTABLE {}
+  | TYPE {}
+  | FAT_ARROW {}
+  | THIN_ARROW {}
+  | WHILE {}
+  | RETURN {}
+  | DOTDOT {}
+  | RANGE_INCLUSIVE {}
+  | RANGE_EXCLUSIVE {}
+  | ELLIPSIS {}
+  | TEST {}
+  | LOOP {}
+  | GUARD {}
+  | FOR {}
+  | IN {}
+  | IS {}
   ;

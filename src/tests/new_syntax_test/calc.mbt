@@ -12,8 +12,7 @@ fn eval(input : Bytes) -> Int {
   
 
   let stack : Array[Int] = []
-  let x = input[:]
-  loop x { _lexee => {
+  loop input[:] { _lexee => {
   let _data = _lexee.data()
   let mut _cursor = _lexee.start_offset()
   let _end = _cursor + _lexee.length()
@@ -106,36 +105,36 @@ fn eval(input : Bytes) -> Int {
     }
     1 => {
       ()
-      let y = _data[_match_end:]
-{ continue y }
+      let rest = _data[_match_end:]
+{ continue rest }
     }
     2 => {
       ()
       let t = _data[_capture_0_start:_capture_0_end]
-      let y = _data[_match_end:]
+      let rest = _data[_match_end:]
 { 
       stack.push(parse_integer(t))
-      continue y
+      continue rest
     }
     }
     3 => {
       ()
-      let y = _data[_match_end:]
+      let rest = _data[_match_end:]
 {
       let arg2 = stack.unsafe_pop()
       let arg1 = stack.unsafe_pop()
       stack.push(arg1 + arg2)
-      continue y
+      continue rest
     }
     }
     4 => {
       ()
-      let y = _data[_match_end:]
+      let rest = _data[_match_end:]
 {
       let arg2 = stack.unsafe_pop()
       let arg1 = stack.unsafe_pop()
       stack.push(arg1 - arg2)
-      continue y
+      continue rest
     }
     }
     _ => panic()

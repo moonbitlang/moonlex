@@ -55,7 +55,7 @@ test {
         { "$tag": "Code", "loc": "test.mbt:3:31-5:2" },
         {
           "$tag": "LexDef",
-          "0": { "name": "lexbuf", "loc": "test.mbt:5:6-5:12" },
+          "0": { "loc": "test.mbt:5:6-5:12" },
           "1": [
             {
               "pattern": {

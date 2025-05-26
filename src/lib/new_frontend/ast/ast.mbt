@@ -9,7 +9,7 @@ pub(all) enum Term {
   Code(loc~ : Location)
   Nested(Array[Term], loc~ : Location)
   NamedRegex(Ident, Regex, loc~ : Location)
-  LexDef(Ident, Array[LexCase], loc~ : Location)
+  LexDef(Code, Array[LexCase], loc~ : Location)
   GeneratedCode(String, loc~ : Location)
 } derive(ToJson)
 
@@ -53,5 +53,10 @@ pub(all) enum Regex {
 ///|
 pub(all) struct Ident {
   name : String
+  loc : Location
+} derive(ToJson)
+
+///|
+pub(all) struct Code {
   loc : Location
 } derive(ToJson)

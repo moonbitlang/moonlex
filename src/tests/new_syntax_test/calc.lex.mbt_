@@ -12,25 +12,24 @@ fn eval(input : Bytes) -> Int {
   const NUMBER : Regex = "\{DIGIT}+"
 
   let stack : Array[Int] = []
-  let x = input[:]
-  lex x {
+  lex input[:] {
     [] => { break }
-    [" ", .. y] => { continue y }
-    [NUMBER as t, .. y] => { 
+    [" ", .. rest] => { continue rest }
+    [NUMBER as t, .. rest] => { 
       stack.push(parse_integer(t))
-      continue y
+      continue rest
     }
-    ["\\+", .. y] => {
+    ["\\+", .. rest] => {
       let arg2 = stack.unsafe_pop()
       let arg1 = stack.unsafe_pop()
       stack.push(arg1 + arg2)
-      continue y
+      continue rest
     }
-    ["-", .. y] => {
+    ["-", .. rest] => {
       let arg2 = stack.unsafe_pop()
       let arg1 = stack.unsafe_pop()
       stack.push(arg1 - arg2)
-      continue y
+      continue rest
     }
   }
   stack.unsafe_pop()

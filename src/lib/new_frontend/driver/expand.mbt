@@ -32,11 +32,11 @@ fn expand_term(
     Code(_) | GeneratedCode(_) | NamedRegex(_) => term
     Nested(terms, loc~) =>
       Nested(expand_terms(terms, named_regexes~, source~), loc~)
-    LexDef(id, cases, loc~) => {
+    LexDef(lexee, cases, loc~) => {
       let rule : @type.Rule = {
         name: "",
         signature: "",
-        lexee_var: id.name,
+        lexee: decode_utf8(source[lexee.loc.start.cnum:lexee.loc.end.cnum]),
         patterns: cases.map(fn(case) {
           let (items, open, rest) = match case.pattern {
             OpenPattern(items, rest~, ..) => (items, true, rest)

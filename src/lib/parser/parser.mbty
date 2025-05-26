@@ -79,7 +79,7 @@ nonempty_rule_list                      -> (Context) -> @immut/list.T[@type.Rule
 
 rule                                    -> (Context) -> @type.Rule
   : RULE_LC_IDENT_LPAREN_CODE_RPAREN_ARROW_CODE_LBRACE "parse {" rule_item_list "}" "}" 
-                                        { fn { ctx => { name: $1.0, signature: $1.1, lexee_var: "lexbuf", patterns: $3(ctx).to_array() } } }
+                                        { fn { ctx => { name: $1.0, signature: $1.1, lexee: "lexbuf", patterns: $3(ctx).to_array() } } }
   ;
 
 rule_item_list                          -> (Context) -> @immut/list.T[(@type.Regex, String?, @type.CodeBlock)]

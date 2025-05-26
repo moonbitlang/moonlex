@@ -15,7 +15,7 @@ pub typealias CodeBlock = String
 pub(all) struct Rule {
   name : String
   signature : String
-  lexee_var : String
+  lexee : String
   // rest_binder is only used in new syntax
   patterns : Array[(Regex, String?, CodeBlock)] // (regex, rest_binder, action)
 } derive(Show, ToJson)
