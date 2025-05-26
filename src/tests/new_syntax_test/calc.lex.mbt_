@@ -7,14 +7,28 @@ fn parse_integer(input : @bytes.View) -> Int {
   }
 }
 
-test {
+fn eval(input : Bytes) -> Int {
   const DIGIT : BytesRegex = "[0-9]"
   const NUMBER : BytesRegex = "\{DIGIT}+"
 
-  let lexbuf = BytesLexbuf::from_bytes("42")
-  inspect!(
+  let lexbuf = BytesLexbuf::from_bytes(input)
+  let stack : Array[Int] = []
+  for {
     lex lexbuf {
-      NUMBER as t => { parse_integer(t) }
+      "$" => { break }
+      " " => { continue }
+      NUMBER as t => { stack.push(parse_integer(t)) }
+      "\\+" => {
+        let arg2 = stack.unsafe_pop()
+        let arg1 = stack.unsafe_pop()
+        stack.push(arg1 + arg2)
+      }
+      "-" => {
+        let arg2 = stack.unsafe_pop()
+        let arg1 = stack.unsafe_pop()
+        stack.push(arg1 - arg2)
+      }
     }
-  )
+  }
+  stack.unsafe_pop()
 }
