@@ -38,6 +38,7 @@
               "$tag": "String"
             }
           },
+          null,
           " token(lexbuf) "
         ],
         [
@@ -171,6 +172,7 @@
               "$tag": "String"
             }
           },
+          null,
           " token(lexbuf) "
         ],
         [
@@ -182,6 +184,7 @@
               "$tag": "String"
             }
           },
+          null,
           " (EOI, $startpos, $endpos) "
         ],
         [
@@ -527,6 +530,7 @@
               "$tag": "String"
             }
           },
+          null,
           "\n      (RULE_LC_IDENT_LPAREN_CODE_RPAREN_ARROW_CODE_LBRACE((t1, t2)), $startpos, $endpos)\n    "
         ],
         [
@@ -716,6 +720,7 @@
               "$tag": "String"
             }
           },
+          null,
           " (PARSE_LBRACE, $startpos, $endpos) "
         ],
         [
@@ -758,6 +763,7 @@
             },
             "len": 2
           },
+          null,
           " (FAT_ARROW, $startpos, $endpos) "
         ],
         [
@@ -776,6 +782,7 @@
             },
             "len": 1
           },
+          null,
           " (UNDERSCORE, $startpos, $endpos) "
         ],
         [
@@ -794,6 +801,7 @@
             },
             "len": 1
           },
+          null,
           " \n      let buffer = StringBuilder::new()\n      let end_pos = code_rbrace(buffer, lexbuf)\n      (LBRACE_CODE_RBRACE(buffer.to_string()), $startpos, end_pos)\n    "
         ],
         [
@@ -812,6 +820,7 @@
             },
             "len": 1
           },
+          null,
           " (RBRACE, $startpos, $endpos) "
         ],
         [
@@ -830,6 +839,7 @@
             },
             "len": 1
           },
+          null,
           " (LPAREN, $startpos, $endpos) "
         ],
         [
@@ -848,6 +858,7 @@
             },
             "len": 1
           },
+          null,
           " (RPAREN, $startpos, $endpos) "
         ],
         [
@@ -866,6 +877,7 @@
             },
             "len": 1
           },
+          null,
           " (LBRACKET, $startpos, $endpos) "
         ],
         [
@@ -884,6 +896,7 @@
             },
             "len": 1
           },
+          null,
           " (RBRACKET, $startpos, $endpos) "
         ],
         [
@@ -902,6 +915,7 @@
             },
             "len": 1
           },
+          null,
           " (EQ, $startpos, $endpos) "
         ],
         [
@@ -920,6 +934,7 @@
             },
             "len": 1
           },
+          null,
           " (SEMICOLON, $startpos, $endpos) "
         ],
         [
@@ -938,6 +953,7 @@
             },
             "len": 1
           },
+          null,
           " (BAR, $startpos, $endpos) "
         ],
         [
@@ -956,6 +972,7 @@
             },
             "len": 1
           },
+          null,
           " (STAR, $startpos, $endpos) "
         ],
         [
@@ -974,6 +991,7 @@
             },
             "len": 1
           },
+          null,
           " (PLUS, $startpos, $endpos) "
         ],
         [
@@ -992,6 +1010,7 @@
             },
             "len": 1
           },
+          null,
           " (QUESTION, $startpos, $endpos) "
         ],
         [
@@ -1010,6 +1029,7 @@
             },
             "len": 1
           },
+          null,
           " (MINUS, $startpos, $endpos) "
         ],
         [
@@ -1028,6 +1048,7 @@
             },
             "len": 1
           },
+          null,
           " (CARET, $startpos, $endpos) "
         ],
         [
@@ -1046,6 +1067,7 @@
             },
             "len": 1
           },
+          null,
           " (BACKSLASH, $startpos, $endpos) "
         ],
         [
@@ -1130,6 +1152,7 @@
             },
             "len": 3
           },
+          null,
           " (CHAR(t), $startpos, $endpos) "
         ],
         [
@@ -1220,6 +1243,7 @@
             },
             "len": 4
           },
+          null,
           " (CHAR('\\u{08}'), $startpos, $endpos) "
         ],
         [
@@ -1310,6 +1334,7 @@
             },
             "len": 4
           },
+          null,
           " (CHAR('\\t'), $startpos, $endpos) "
         ],
         [
@@ -1400,6 +1425,7 @@
             },
             "len": 4
           },
+          null,
           " (CHAR('\\u{0b}'), $startpos, $endpos) "
         ],
         [
@@ -1490,6 +1516,7 @@
             },
             "len": 4
           },
+          null,
           " (CHAR('\\r'), $startpos, $endpos) "
         ],
         [
@@ -1580,6 +1607,7 @@
             },
             "len": 4
           },
+          null,
           " (CHAR('\\n'), $startpos, $endpos) "
         ],
         [
@@ -1670,6 +1698,7 @@
             },
             "len": 4
           },
+          null,
           " (CHAR('\\\\'), $startpos, $endpos) "
         ],
         [
@@ -1760,6 +1789,7 @@
             },
             "len": 4
           },
+          null,
           " (CHAR('\\''), $startpos, $endpos) "
         ],
         [
@@ -1924,6 +1954,7 @@
             },
             "len": 6
           },
+          null,
           "\n      let code = @strconv.parse_int?(t, base=16).unwrap()\n      (CHAR(code.unsafe_to_char()), $startpos, $endpos)\n    "
         ],
         [
@@ -2152,6 +2183,7 @@
             },
             "len": 8
           },
+          null,
           "\n      let code = @strconv.parse_int?(t, base=16).unwrap()\n      (CHAR(code.unsafe_to_char()), $startpos, $endpos)\n    "
         ],
         [
@@ -2334,6 +2366,7 @@
               "$tag": "String"
             }
           },
+          null,
           "\n      let code = @strconv.parse_int?(t, base=16).unwrap()\n      (CHAR(code.unsafe_to_char()), $startpos, $endpos)\n    "
         ],
         [
@@ -2352,6 +2385,7 @@
             },
             "len": 1
           },
+          null,
           "\n      let buffer = StringBuilder::new()\n      let end_pos = string_inner_rquote(buffer, lexbuf)\n      (STRING(buffer.to_string()), $startpos, end_pos)\n    "
         ],
         [
@@ -2443,6 +2477,7 @@
               "$tag": "String"
             }
           },
+          null,
           "\n      (match t {\n        \"eof\" => EOF\n        \"regex\" => REGEX\n        \"as\" => AS\n        _ => LC_IDENT(t)\n      }, $startpos, $endpos)\n    "
         ]
       ]
@@ -2468,6 +2503,7 @@
             },
             "len": 1
           },
+          null,
           " $endpos "
         ],
         [
@@ -2510,6 +2546,7 @@
             },
             "len": 2
           },
+          null,
           "\n      buffer.write_char('\\u{08}')\n      string_inner_rquote(buffer, lexbuf)\n    "
         ],
         [
@@ -2552,6 +2589,7 @@
             },
             "len": 2
           },
+          null,
           "\n      buffer.write_char('\\t')\n      string_inner_rquote(buffer, lexbuf)\n    "
         ],
         [
@@ -2594,6 +2632,7 @@
             },
             "len": 2
           },
+          null,
           "\n      buffer.write_char('\\u{0b}')\n      string_inner_rquote(buffer, lexbuf)\n    "
         ],
         [
@@ -2636,6 +2675,7 @@
             },
             "len": 2
           },
+          null,
           "\n      buffer.write_char('\\r')\n      string_inner_rquote(buffer, lexbuf)\n    "
         ],
         [
@@ -2678,6 +2718,7 @@
             },
             "len": 2
           },
+          null,
           "\n      buffer.write_char('\\n')\n      string_inner_rquote(buffer, lexbuf)\n    "
         ],
         [
@@ -2720,6 +2761,7 @@
             },
             "len": 2
           },
+          null,
           "\n      buffer.write_char('\\\\')\n      string_inner_rquote(buffer, lexbuf)\n    "
         ],
         [
@@ -2762,6 +2804,7 @@
             },
             "len": 2
           },
+          null,
           "\n      buffer.write_char('\"')\n      string_inner_rquote(buffer, lexbuf)\n    "
         ],
         [
@@ -2902,6 +2945,7 @@
             },
             "len": 5
           },
+          null,
           "\n      let code = @strconv.parse_int?(t, base=16).unwrap()\n      buffer.write_char(code.unsafe_to_char())\n      string_inner_rquote(buffer, lexbuf)\n    "
         ],
         [
@@ -3106,6 +3150,7 @@
             },
             "len": 7
           },
+          null,
           "\n      let code = @strconv.parse_int?(t, base=16).unwrap()\n      buffer.write_char(code.unsafe_to_char())\n      string_inner_rquote(buffer, lexbuf)\n    "
         ],
         [
@@ -3265,6 +3310,7 @@
               "$tag": "String"
             }
           },
+          null,
           "\n      let code = @strconv.parse_int?(t, base=16).unwrap()\n      buffer.write_char(code.unsafe_to_char())\n      string_inner_rquote(buffer, lexbuf)\n    "
         ],
         [
@@ -3293,6 +3339,7 @@
             },
             "len": 1
           },
+          null,
           "\n      buffer.write_char(t)\n      string_inner_rquote(buffer, lexbuf)\n    "
         ],
         [
@@ -3304,6 +3351,7 @@
               "$tag": "String"
             }
           },
+          null,
           " abort(\"Unexpected end of input\") "
         ]
       ]
@@ -3419,6 +3467,7 @@
               "$tag": "String"
             }
           },
+          null,
           "\n      buffer.write_string(t)\n      code_rbrace(buffer, lexbuf)\n    "
         ],
         [
@@ -3572,6 +3621,7 @@
               "$tag": "String"
             }
           },
+          null,
           "\n      buffer.write_string(t)\n      code_rbrace(buffer, lexbuf)\n    "
         ],
         [
@@ -3656,6 +3706,7 @@
             },
             "len": 3
           },
+          null,
           "\n      buffer.write_string(t)\n      code_rbrace(buffer, lexbuf)\n    "
         ],
         [
@@ -3674,6 +3725,7 @@
             },
             "len": 1
           },
+          null,
           "\n      buffer.write_string(\"{\")\n      let _ = code_rbrace(buffer, lexbuf)\n      buffer.write_string(\"}\")\n      code_rbrace(buffer, lexbuf)\n    "
         ],
         [
@@ -3692,6 +3744,7 @@
             },
             "len": 1
           },
+          null,
           " $endpos "
         ],
         [
@@ -3720,6 +3773,7 @@
             },
             "len": 1
           },
+          null,
           "\n      buffer.write_char(t)\n      code_rbrace(buffer, lexbuf)\n    "
         ],
         [
@@ -3731,6 +3785,7 @@
               "$tag": "String"
             }
           },
+          null,
           " abort(\"Unexpected end of input\") "
         ]
       ]

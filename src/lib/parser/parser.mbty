@@ -82,13 +82,13 @@ rule                                    -> (Context) -> @type.Rule
                                         { fn { ctx => { name: $1.0, signature: $1.1, lexee_var: "lexbuf", patterns: $3(ctx).to_array() } } }
   ;
 
-rule_item_list                          -> (Context) -> @immut/list.T[(@type.Regex, @type.CodeBlock)]
+rule_item_list                          -> (Context) -> @immut/list.T[(@type.Regex, String?, @type.CodeBlock)]
   : rule_item rule_item_list            { fn { ctx => Cons($1(ctx), $2(ctx)) } }
   |                                     { fn { _ctx => Nil } }
   ;
 
-rule_item                               -> (Context) -> (@type.Regex, @type.CodeBlock)
-  : regex "=>" LBRACE_CODE_RBRACE       { fn { ctx => ($1(ctx), $3) } }
+rule_item                               -> (Context) -> (@type.Regex, String?, @type.CodeBlock)
+  : regex "=>" LBRACE_CODE_RBRACE       { fn { ctx => ($1(ctx), None, $3) } }
   ;
 
 regex                                   -> (Context) -> @type.Regex

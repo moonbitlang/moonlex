@@ -16,7 +16,8 @@ pub(all) struct Rule {
   name : String
   signature : String
   lexee_var : String
-  patterns : Array[(Regex, CodeBlock)]
+  // rest_binder is only used in new syntax
+  patterns : Array[(Regex, String?, CodeBlock)] // (regex, rest_binder, action)
 } derive(Show, ToJson)
 
 ///|

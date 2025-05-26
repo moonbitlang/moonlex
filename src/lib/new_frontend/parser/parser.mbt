@@ -79,6 +79,8 @@ priv type! YYObj__ast_LexCase @ast.LexCase
 
 priv type! YYObj__ast_Program @ast.Program
 
+priv type! YYObj__ast_LexPattern @ast.LexPattern
+
 priv type! YYObj__ast_LexPatternItem @ast.LexPatternItem
 
 priv type! YYObj__list_T__ast_Term_ @list.T[@ast.Term]
@@ -86,6 +88,10 @@ priv type! YYObj__list_T__ast_Term_ @list.T[@ast.Term]
 priv type! YYObj__list_T__ast_LexCase_ @list.T[@ast.LexCase]
 
 priv type! YYObj__list_T__ast_LexPatternItem_ @list.T[@ast.LexPatternItem]
+
+priv type! YYObj__ast_Ident_ @ast.Ident?
+
+priv type! YYObj___list_T__ast_LexPatternItem____ast_Ident___ (@list.T[@ast.LexPatternItem], @ast.Ident??)
 
 priv type! YYObj__Location__Array__ast_Term___Location_ (Location, Array[@ast.Term], Location)
 
@@ -204,6 +210,8 @@ priv enum YYSymbol {
   NT_term
   NT_lex_cases
   NT_lex_case
+  NT_lex_pattern
+  NT_regex_pattern_with_opt_rest
   NT_regex_pattern
   NT_regex_pattern_item
   NT_regex
@@ -232,27 +240,26 @@ fn yy_action_0(_last_pos : Position, _args : ArrayView[(YYObj, Position, Positio
 }
 
 // file:///./parser.mbty
-// 171|    simple_term { Code(loc=mkloc($sloc)) }
+// 334|    THIN_ARROW {}
 fn yy_action_2(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  let _sub_action_0_result = yy_action_3(_last_pos, _args[0:1])
-  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
-  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
-  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
+  YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
 // 171|    simple_term { Code(loc=mkloc($sloc)) }
-fn yy_action_4(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  let _sub_action_0_result = yy_action_5(_last_pos, _args[0:1])
+fn yy_action_3(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  let _sub_action_0_result = yy_action_4(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
   let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
   YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
 }
 
 // file:///./parser.mbty
-// 249|    PRIV {}
-fn yy_action_6(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  YYObj_Unit({(); })
+// 206|    rest { (@list.empty(), Some($1)) }
+fn yy_action_5(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  let _sub_action_0_result = yy_action_6(_last_pos, _args[0:2])
+  guard _sub_action_0_result is YYObj__ast_Ident_(_dollar1)
+  YYObj___list_T__ast_LexPatternItem____ast_Ident___({();  (@list.empty(), Some(_dollar1)) })
 }
 
 // file:///./parser.mbty
@@ -265,69 +272,84 @@ fn yy_action_7(_last_pos : Position, _args : ArrayView[(YYObj, Position, Positio
 }
 
 // file:///./parser.mbty
-// 171|    simple_term { Code(loc=mkloc($sloc)) }
+// 257|    MULTILINE_STRING {}
 fn yy_action_9(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  let _sub_action_0_result = yy_action_10(_last_pos, _args[0:1])
-  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
-  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
-  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
-}
-
-// file:///./parser.mbty
-// 171|    simple_term { Code(loc=mkloc($sloc)) }
-fn yy_action_11(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  let _sub_action_0_result = yy_action_12(_last_pos, _args[0:1])
-  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
-  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
-  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
-}
-
-// file:///./parser.mbty
-// 171|    simple_term { Code(loc=mkloc($sloc)) }
-fn yy_action_13(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  let _sub_action_0_result = yy_action_14(_last_pos, _args[0:1])
-  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
-  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
-  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
-}
-
-// file:///./parser.mbty
-// 266|    TYPEALIAS {}
-fn yy_action_15(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 298|    FN {}
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
+fn yy_action_10(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  let _sub_action_0_result = yy_action_11(_last_pos, _args[0:1])
+  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
+  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
+  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
+}
+
+// file:///./parser.mbty
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
+fn yy_action_12(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  let _sub_action_0_result = yy_action_13(_last_pos, _args[0:1])
+  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
+  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
+  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
+}
+
+// file:///./parser.mbty
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
+fn yy_action_14(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  let _sub_action_0_result = yy_action_15(_last_pos, _args[0:1])
+  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
+  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
+  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
+}
+
+// file:///./parser.mbty
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_16(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  YYObj_Unit({(); })
-}
-
-// file:///./parser.mbty
-// 171|    simple_term { Code(loc=mkloc($sloc)) }
-fn yy_action_17(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  let _sub_action_0_result = yy_action_18(_last_pos, _args[0:1])
+  let _sub_action_0_result = yy_action_17(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
   let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
   YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
 }
 
 // file:///./parser.mbty
-// 257|    TRAIT {}
+// 274|    FALSE {}
+fn yy_action_18(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  YYObj_Unit({(); })
+}
+
+// file:///./parser.mbty
+// 302|    QUESTION {}
 fn yy_action_19(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 275|    EXCLAMATION {}
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_20(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  let _sub_action_0_result = yy_action_21(_last_pos, _args[0:1])
+  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
+  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
+  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
+}
+
+// file:///./parser.mbty
+// 265|    POST_LABEL {}
+fn yy_action_22(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  YYObj_Unit({(); })
+}
+
+// file:///./parser.mbty
+// 281|    BREAK {}
+fn yy_action_23(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
 // 171|    simple_term { Code(loc=mkloc($sloc)) }
-fn yy_action_21(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  let _sub_action_0_result = yy_action_22(_last_pos, _args[0:1])
+fn yy_action_24(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  let _sub_action_0_result = yy_action_25(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
   let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
   YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
@@ -335,8 +357,8 @@ fn yy_action_21(_last_pos : Position, _args : ArrayView[(YYObj, Position, Positi
 
 // file:///./parser.mbty
 // 171|    simple_term { Code(loc=mkloc($sloc)) }
-fn yy_action_23(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  let _sub_action_0_result = yy_action_24(_last_pos, _args[0:1])
+fn yy_action_26(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  let _sub_action_0_result = yy_action_27(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
   let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
   YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
@@ -344,127 +366,106 @@ fn yy_action_23(_last_pos : Position, _args : ArrayView[(YYObj, Position, Positi
 
 // file:///./parser.mbty
 // 171|    simple_term { Code(loc=mkloc($sloc)) }
-fn yy_action_25(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  let _sub_action_0_result = yy_action_26(_last_pos, _args[0:1])
+fn yy_action_28(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  let _sub_action_0_result = yy_action_29(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
   let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
   YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
 }
 
 // file:///./parser.mbty
-// 244|    AUGMENTED_ASSIGNMENT {}
+// 252|    INT {}
 fn yy_action_1(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 171|    simple_term { Code(loc=mkloc($sloc)) }
-fn yy_action_27(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  let _sub_action_0_result = yy_action_28(_last_pos, _args[0:1])
-  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
-  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
-  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
-}
-
-// file:///./parser.mbty
-// 287|    BAR {}
-fn yy_action_29(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  YYObj_Unit({(); })
-}
-
-// file:///./parser.mbty
-// 295|    AS {}
+// 291|    TRY {}
 fn yy_action_30(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 304|    TYPE {}
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_31(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  YYObj_Unit({(); })
-}
-
-// file:///./parser.mbty
-// 256|    ENUM {}
-fn yy_action_32(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  YYObj_Unit({(); })
-}
-
-// file:///./parser.mbty
-// 198|    regex "as" lident { RegexAs($1, $3, loc=mkloc($sloc)) }
-fn yy_action_33(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  guard _args[0].0 is YYObj__ast_Regex(_dollar1)
-  guard _args[2].0 is YYObj__ast_Ident(_dollar3)
+  let _sub_action_0_result = yy_action_32(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
   let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
-  YYObj__ast_LexPatternItem({();  RegexAs(_dollar1, _dollar3, loc=mkloc((_symbol_start_pos, _end_pos))) })
+  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
 }
 
 // file:///./parser.mbty
-// 302|    MATCH {}
+// 297|    EQUAL {}
+fn yy_action_33(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  YYObj_Unit({(); })
+}
+
+// file:///./parser.mbty
+// 308|    COLONCOLON {}
 fn yy_action_34(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 171|    simple_term { Code(loc=mkloc($sloc)) }
+// 264|    UIDENT_BYTES_REGEX {}
 fn yy_action_35(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  let _sub_action_0_result = yy_action_36(_last_pos, _args[0:1])
+  YYObj_Unit({(); })
+}
+
+// file:///./parser.mbty
+// 170|    "lex" lident "{" lex_cases "}" { LexDef($2, $4.to_array(), loc=mkloc($sloc)) }
+fn yy_action_36(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  guard _args[1].0 is YYObj__ast_Ident(_dollar2)
+  guard _args[3].0 is YYObj__list_T__ast_LexCase_(_dollar4)
+  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
+  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
+  YYObj__ast_Term({();  LexDef(_dollar2, _dollar4.to_array(), loc=mkloc((_symbol_start_pos, _end_pos))) })
+}
+
+// file:///./parser.mbty
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
+fn yy_action_37(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  let _sub_action_0_result = yy_action_38(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
   let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
   YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
 }
 
 // file:///./parser.mbty
-// 192|    regex_pattern_item { @list.singleton($1) }
-fn yy_action_37(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+// 306|    DOT_INT {}
+fn yy_action_39(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  YYObj_Unit({(); })
+}
+
+// file:///./parser.mbty
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
+fn yy_action_40(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  let _sub_action_0_result = yy_action_41(_last_pos, _args[0:1])
+  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
+  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
+  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
+}
+
+// file:///./parser.mbty
+// 164|    { @list.empty() }
+fn yy_action_42(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  YYObj__list_T__ast_Term_({();  @list.empty() })
+}
+
+// file:///./parser.mbty
+// 220|    regex_pattern_item { @list.singleton($1) }
+fn yy_action_43(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   guard _args[0].0 is YYObj__ast_LexPatternItem(_dollar1)
   YYObj__list_T__ast_LexPatternItem_({();  @list.singleton(_dollar1) })
 }
 
 // file:///./parser.mbty
-// 232|    ATTRIBUTE {}
-fn yy_action_38(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  YYObj_Unit({(); })
-}
-
-// file:///./parser.mbty
 // 171|    simple_term { Code(loc=mkloc($sloc)) }
-fn yy_action_39(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  let _sub_action_0_result = yy_action_40(_last_pos, _args[0:1])
-  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
-  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
-  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
-}
-
-// file:///./parser.mbty
-// 171|    simple_term { Code(loc=mkloc($sloc)) }
-fn yy_action_41(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  let _sub_action_0_result = yy_action_42(_last_pos, _args[0:1])
-  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
-  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
-  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
-}
-
-// file:///./parser.mbty
-// 171|    simple_term { Code(loc=mkloc($sloc)) }
-fn yy_action_43(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  let _sub_action_0_result = yy_action_44(_last_pos, _args[0:1])
-  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
-  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
-  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
-}
-
-// file:///./parser.mbty
-// 286|    UNDERSCORE {}
 fn yy_action_44(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  YYObj_Unit({(); })
-}
-
-// file:///./parser.mbty
-// 265|    ASYNC {}
-fn yy_action_45(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  YYObj_Unit({(); })
+  let _sub_action_0_result = yy_action_45(_last_pos, _args[0:1])
+  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
+  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
+  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
 }
 
 // file:///./parser.mbty
@@ -477,99 +478,93 @@ fn yy_action_46(_last_pos : Position, _args : ArrayView[(YYObj, Position, Positi
 }
 
 // file:///./parser.mbty
-// 314|    LOOP {}
-fn yy_action_10(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  YYObj_Unit({(); })
-}
-
-// file:///./parser.mbty
-// 317|    IN {}
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_48(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  YYObj_Unit({(); })
-}
-
-// file:///./parser.mbty
-// 171|    simple_term { Code(loc=mkloc($sloc)) }
-fn yy_action_49(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  let _sub_action_0_result = yy_action_50(_last_pos, _args[0:1])
+  let _sub_action_0_result = yy_action_49(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
   let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
   YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
 }
 
 // file:///./parser.mbty
-// 299|    IF {}
-fn yy_action_24(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  YYObj_Unit({(); })
-}
-
-// file:///./parser.mbty
-// 264|    CATCH {}
-fn yy_action_47(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  YYObj_Unit({(); })
-}
-
-// file:///./parser.mbty
 // 171|    simple_term { Code(loc=mkloc($sloc)) }
+fn yy_action_50(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  let _sub_action_0_result = yy_action_51(_last_pos, _args[0:1])
+  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
+  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
+  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
+}
+
+// file:///./parser.mbty
+// 290|    THROW {}
 fn yy_action_51(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  let _sub_action_0_result = yy_action_48(_last_pos, _args[0:1])
-  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
-  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
-  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
+  YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 171|    simple_term { Code(loc=mkloc($sloc)) }
+// 273|    EOF {}
 fn yy_action_52(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  let _sub_action_0_result = yy_action_53(_last_pos, _args[0:1])
+  YYObj_Unit({(); })
+}
+
+// file:///./parser.mbty
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
+fn yy_action_53(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  let _sub_action_0_result = yy_action_54(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
   let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
   YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
 }
 
 // file:///./parser.mbty
-// 218|    "{" terms "}" { (mkloc($loc($1)), $2, mkloc($loc($3))) }
-fn yy_action_54(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  let _start_pos_of_item0 = _args[0].1
-  let _end_pos_of_item0 = _args[0].2
-  guard _args[1].0 is YYObj_Array__ast_Term_(_dollar2)
-  let _start_pos_of_item2 = _args[2].1
-  let _end_pos_of_item2 = _args[2].2
-  YYObj__Location__Array__ast_Term___Location_({();  (mkloc((_start_pos_of_item0, _end_pos_of_item0)), _dollar2, mkloc((_start_pos_of_item2, _end_pos_of_item2))) })
+// 322|    PACKAGE_NAME {}
+fn yy_action_13(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 171|    simple_term { Code(loc=mkloc($sloc)) }
+// 325|    ELSE {}
 fn yy_action_55(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  let _sub_action_0_result = yy_action_15(_last_pos, _args[0:1])
-  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
-  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
-  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
-}
-
-// file:///./parser.mbty
-// 188|    regex_pattern "=>" braced_term { {pattern: $1.to_array(), action: $3, loc: mkloc($sloc)} }
-fn yy_action_56(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  guard _args[0].0 is YYObj__list_T__ast_LexPatternItem_(_dollar1)
-  guard _args[2].0 is YYObj__ast_Term(_dollar3)
-  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
-  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
-  YYObj__ast_LexCase({();  {pattern: _dollar1.to_array(), action: _dollar3, loc: mkloc((_symbol_start_pos, _end_pos))} })
+  YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
 // 171|    simple_term { Code(loc=mkloc($sloc)) }
-fn yy_action_57(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  let _sub_action_0_result = yy_action_58(_last_pos, _args[0:1])
+fn yy_action_56(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  let _sub_action_0_result = yy_action_57(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
   let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
   YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
 }
 
 // file:///./parser.mbty
-// 164|    { @list.empty() }
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
+fn yy_action_58(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  let _sub_action_0_result = yy_action_2(_last_pos, _args[0:1])
+  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
+  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
+  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
+}
+
+// file:///./parser.mbty
+// 303|    EXCLAMATION {}
+fn yy_action_27(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  YYObj_Unit({(); })
+}
+
+// file:///./parser.mbty
+// 272|    AUGMENTED_ASSIGNMENT {}
+fn yy_action_54(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  YYObj_Unit({(); })
+}
+
+// file:///./parser.mbty
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_59(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  YYObj__list_T__ast_Term_({();  @list.empty() })
+  let _sub_action_0_result = yy_action_55(_last_pos, _args[0:1])
+  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
+  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
+  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
 }
 
 // file:///./parser.mbty
@@ -582,33 +577,38 @@ fn yy_action_60(_last_pos : Position, _args : ArrayView[(YYObj, Position, Positi
 }
 
 // file:///./parser.mbty
-// 251|    IMPORT {}
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_62(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  YYObj_Unit({(); })
+  let _sub_action_0_result = yy_action_18(_last_pos, _args[0:1])
+  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
+  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
+  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
 }
 
 // file:///./parser.mbty
-// 282|    SEMI {}
+// 188|    lex_pattern "=>" braced_term { {pattern: $1, action: $3, loc: mkloc($sloc)} }
 fn yy_action_63(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  YYObj_Unit({(); })
+  guard _args[0].0 is YYObj__ast_LexPattern(_dollar1)
+  guard _args[2].0 is YYObj__ast_Term(_dollar3)
+  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
+  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
+  YYObj__ast_LexCase({();  {pattern: _dollar1, action: _dollar3, loc: mkloc((_symbol_start_pos, _end_pos))} })
 }
 
 // file:///./parser.mbty
-// 248|    PUB {}
+// 160|    term_list { normalize($1.to_array()) }
 fn yy_action_64(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  YYObj_Unit({(); })
+  guard _args[0].0 is YYObj__list_T__ast_Term_(_dollar1)
+  YYObj_Array__ast_Term_({();  normalize(_dollar1.to_array()) })
 }
 
 // file:///./parser.mbty
-// 312|    ELLIPSIS {}
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_65(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  YYObj_Unit({(); })
-}
-
-// file:///./parser.mbty
-// 305|    FAT_ARROW {}
-fn yy_action_66(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  YYObj_Unit({(); })
+  let _sub_action_0_result = yy_action_66(_last_pos, _args[0:1])
+  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
+  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
+  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
 }
 
 // file:///./parser.mbty
@@ -621,39 +621,31 @@ fn yy_action_67(_last_pos : Position, _args : ArrayView[(YYObj, Position, Positi
 }
 
 // file:///./parser.mbty
-// 202|    STRING { Literal($1, loc=mkloc($sloc)) }
+// 194|    "[" rest "]" { OpenPattern([], rest=$2, loc=mkloc($sloc)) }
 fn yy_action_69(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  guard _args[0].0 is YYObj_StringLiteral(_dollar1)
+  let _sub_action_0_result = yy_action_70(_args[0].2, _args[1:2])
+  guard _sub_action_0_result is YYObj__ast_Ident_(_dollar2)
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
   let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
-  YYObj__ast_Regex({();  Literal(_dollar1, loc=mkloc((_symbol_start_pos, _end_pos))) })
+  YYObj__ast_LexPattern({();  OpenPattern([], rest=_dollar2, loc=mkloc((_symbol_start_pos, _end_pos))) })
 }
 
 // file:///./parser.mbty
-// 171|    simple_term { Code(loc=mkloc($sloc)) }
-fn yy_action_70(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  let _sub_action_0_result = yy_action_38(_last_pos, _args[0:1])
-  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
-  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
-  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
-}
-
-// file:///./parser.mbty
-// 171|    simple_term { Code(loc=mkloc($sloc)) }
+// 259|    INTERP {}
 fn yy_action_71(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  let _sub_action_0_result = yy_action_62(_last_pos, _args[0:1])
-  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
-  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
-  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
+  YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 171|    simple_term { Code(loc=mkloc($sloc)) }
+// 288|    WITH {}
 fn yy_action_72(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  let _sub_action_0_result = yy_action_73(_last_pos, _args[0:1])
-  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
-  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
-  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
+  YYObj_Unit({(); })
+}
+
+// file:///./parser.mbty
+// 256|    STRING {}
+fn yy_action_73(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
@@ -666,120 +658,128 @@ fn yy_action_74(_last_pos : Position, _args : ArrayView[(YYObj, Position, Positi
 }
 
 // file:///./parser.mbty
-// 250|    READONLY {}
+// 320|    CARET {}
 fn yy_action_76(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 171|    simple_term { Code(loc=mkloc($sloc)) }
+// 309|    COLON {}
 fn yy_action_77(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  let _sub_action_0_result = yy_action_78(_last_pos, _args[0:1])
+  YYObj_Unit({(); })
+}
+
+// file:///./parser.mbty
+// 350|    UIDENT { {name: $1, loc: mkloc($sloc)} }
+fn yy_action_78(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  guard _args[0].0 is YYObj_String(_dollar1)
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
   let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
-  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
+  YYObj__ast_Ident({();  {name: _dollar1, loc: mkloc((_symbol_start_pos, _end_pos))} })
 }
 
 // file:///./parser.mbty
-// 160|    term_list { normalize($1.to_array()) }
-fn yy_action_79(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  guard _args[0].0 is YYObj__list_T__ast_Term_(_dollar1)
-  YYObj_Array__ast_Term_({();  normalize(_dollar1.to_array()) })
-}
-
-// file:///./parser.mbty
-// 278|    DOT_INT {}
-fn yy_action_80(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  YYObj_Unit({(); })
-}
-
-// file:///./parser.mbty
-// 297|    ELSE {}
-fn yy_action_81(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  YYObj_Unit({(); })
-}
-
-// file:///./parser.mbty
-// 253|    BREAK {}
-fn yy_action_82(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+// 338|    RANGE_INCLUSIVE {}
+fn yy_action_38(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
 // 171|    simple_term { Code(loc=mkloc($sloc)) }
-fn yy_action_83(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  let _sub_action_0_result = yy_action_29(_last_pos, _args[0:1])
+fn yy_action_79(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  let _sub_action_0_result = yy_action_71(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
   let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
   YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
 }
 
 // file:///./parser.mbty
-// 233|    LIDENT {}
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
+fn yy_action_80(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  let _sub_action_0_result = yy_action_81(_last_pos, _args[0:1])
+  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
+  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
+  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
+}
+
+// file:///./parser.mbty
+// 354|    LIDENT { {name: $1, loc: mkloc($sloc)} }
+fn yy_action_82(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  guard _args[0].0 is YYObj_String(_dollar1)
+  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
+  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
+  YYObj__ast_Ident({();  {name: _dollar1, loc: mkloc((_symbol_start_pos, _end_pos))} })
+}
+
+// file:///./parser.mbty
+// 258|    MULTILINE_INTERP {}
+fn yy_action_83(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  YYObj_Unit({(); })
+}
+
+// file:///./parser.mbty
+// 336|    RETURN {}
 fn yy_action_84(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 171|    simple_term { Code(loc=mkloc($sloc)) }
+// 284|    ENUM {}
 fn yy_action_85(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  let _sub_action_0_result = yy_action_86(_last_pos, _args[0:1])
-  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
-  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
-  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
+  YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 171|    simple_term { Code(loc=mkloc($sloc)) }
+// 301|    MINUS {}
+fn yy_action_86(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  YYObj_Unit({(); })
+}
+
+// file:///./parser.mbty
+// 261|    LIDENT {}
 fn yy_action_87(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  let _sub_action_0_result = yy_action_76(_last_pos, _args[0:1])
-  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
-  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
-  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
+  YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 273|    MINUS {}
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_88(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  YYObj_Unit({(); })
+  let _sub_action_0_result = yy_action_30(_last_pos, _args[0:1])
+  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
+  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
+  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
 }
 
 // file:///./parser.mbty
-// 171|    simple_term { Code(loc=mkloc($sloc)) }
+// 221|    regex_pattern_item "," regex_pattern { @list.prepend($3, $1) }
 fn yy_action_89(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  let _sub_action_0_result = yy_action_63(_last_pos, _args[0:1])
-  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
-  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
-  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
-}
-
-// file:///./parser.mbty
-// 277|    DOT_UIDENT {}
-fn yy_action_53(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  YYObj_Unit({(); })
-}
-
-// file:///./parser.mbty
-// 260|    WITH {}
-fn yy_action_90(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  YYObj_Unit({(); })
-}
-
-// file:///./parser.mbty
-// 171|    simple_term { Code(loc=mkloc($sloc)) }
-fn yy_action_91(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  let _sub_action_0_result = yy_action_92(_last_pos, _args[0:1])
-  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
-  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
-  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
-}
-
-// file:///./parser.mbty
-// 193|    regex_pattern_item "," regex_pattern { @list.prepend($3, $1) }
-fn yy_action_93(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   guard _args[2].0 is YYObj__list_T__ast_LexPatternItem_(_dollar3)
   guard _args[0].0 is YYObj__ast_LexPatternItem(_dollar1)
   YYObj__list_T__ast_LexPatternItem_({();  @list.prepend(_dollar3, _dollar1) })
+}
+
+// file:///./parser.mbty
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
+fn yy_action_90(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  let _sub_action_0_result = yy_action_91(_last_pos, _args[0:1])
+  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
+  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
+  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
+}
+
+// file:///./parser.mbty
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
+fn yy_action_92(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  let _sub_action_0_result = yy_action_83(_last_pos, _args[0:1])
+  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
+  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
+  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
+}
+
+// file:///./parser.mbty
+// 279|    IMPORT {}
+fn yy_action_93(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
@@ -792,223 +792,264 @@ fn yy_action_94(_last_pos : Position, _args : ArrayView[(YYObj, Position, Positi
 }
 
 // file:///./parser.mbty
-// 300|    LET {}
-fn yy_action_18(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  YYObj_Unit({(); })
-}
-
-// file:///./parser.mbty
-// 255|    STRUCT {}
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_96(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  let _sub_action_0_result = yy_action_72(_last_pos, _args[0:1])
+  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
+  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
+  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
+}
+
+// file:///./parser.mbty
+// 283|    STRUCT {}
+fn yy_action_61(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 171|    simple_term { Code(loc=mkloc($sloc)) }
+// 268|    INFIX1 {}
 fn yy_action_97(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  let _sub_action_0_result = yy_action_98(_last_pos, _args[0:1])
-  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
-  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
-  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
-}
-
-// file:///./parser.mbty
-// 171|    simple_term { Code(loc=mkloc($sloc)) }
-fn yy_action_99(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  let _sub_action_0_result = yy_action_100(_last_pos, _args[0:1])
-  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
-  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
-  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
-}
-
-// file:///./parser.mbty
-// 228|    STRING {}
-fn yy_action_5(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  YYObj_Unit({(); })
-}
-
-// file:///./parser.mbty
-// 204|    uident { Named($1) }
-fn yy_action_101(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  guard _args[0].0 is YYObj__ast_Ident(_dollar1)
-  YYObj__ast_Regex({();  Named(_dollar1) })
-}
-
-// file:///./parser.mbty
-// 171|    simple_term { Code(loc=mkloc($sloc)) }
-fn yy_action_102(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  let _sub_action_0_result = yy_action_32(_last_pos, _args[0:1])
-  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
-  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
-  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
-}
-
-// file:///./parser.mbty
-// 225|    BYTE {}
-fn yy_action_103(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
 // 171|    simple_term { Code(loc=mkloc($sloc)) }
-fn yy_action_104(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  let _sub_action_0_result = yy_action_31(_last_pos, _args[0:1])
+fn yy_action_98(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  let _sub_action_0_result = yy_action_99(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
   let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
   YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
-}
-
-// file:///./parser.mbty
-// 183|    lex_case ";" { @list.singleton($1) }
-fn yy_action_105(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  guard _args[0].0 is YYObj__ast_LexCase(_dollar1)
-  YYObj__list_T__ast_LexCase_({();  @list.singleton(_dollar1) })
-}
-
-// file:///./parser.mbty
-// 171|    simple_term { Code(loc=mkloc($sloc)) }
-fn yy_action_106(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  let _sub_action_0_result = yy_action_107(_last_pos, _args[0:1])
-  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
-  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
-  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
-}
-
-// file:///./parser.mbty
-// 171|    simple_term { Code(loc=mkloc($sloc)) }
-fn yy_action_108(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  let _sub_action_0_result = yy_action_45(_last_pos, _args[0:1])
-  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
-  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
-  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
-}
-
-// file:///./parser.mbty
-// 182|    lex_case { @list.singleton($1) }
-fn yy_action_109(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  guard _args[0].0 is YYObj__ast_LexCase(_dollar1)
-  YYObj__list_T__ast_LexCase_({();  @list.singleton(_dollar1) })
-}
-
-// file:///./parser.mbty
-// 171|    simple_term { Code(loc=mkloc($sloc)) }
-fn yy_action_110(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  let _sub_action_0_result = yy_action_20(_last_pos, _args[0:1])
-  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
-  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
-  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
-}
-
-// file:///./parser.mbty
-// 247|    TRUE {}
-fn yy_action_50(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  YYObj_Unit({(); })
-}
-
-// file:///./parser.mbty
-// 229|    MULTILINE_STRING {}
-fn yy_action_111(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  YYObj_Unit({(); })
-}
-
-// file:///./parser.mbty
-// 280|    COLONCOLON {}
-fn yy_action_26(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  YYObj_Unit({(); })
-}
-
-// file:///./parser.mbty
-// 235|    LIDENT_LEX {}
-fn yy_action_112(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  YYObj_Unit({(); })
-}
-
-// file:///./parser.mbty
-// 293|    BARBAR {}
-fn yy_action_113(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
 // 165|    term term_list { @list.prepend($2, $1) }
-fn yy_action_114(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+fn yy_action_100(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   guard _args[1].0 is YYObj__list_T__ast_Term_(_dollar2)
   guard _args[0].0 is YYObj__ast_Term(_dollar1)
   YYObj__list_T__ast_Term_({();  @list.prepend(_dollar2, _dollar1) })
 }
 
 // file:///./parser.mbty
-// 227|    FLOAT {}
-fn yy_action_98(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  YYObj_Unit({(); })
-}
-
-// file:///./parser.mbty
 // 171|    simple_term { Code(loc=mkloc($sloc)) }
-fn yy_action_115(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  let _sub_action_0_result = yy_action_116(_last_pos, _args[0:1])
+fn yy_action_101(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  let _sub_action_0_result = yy_action_102(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
   let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
   YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
 }
 
 // file:///./parser.mbty
-// 245|    EOF {}
-fn yy_action_73(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+// 304|    DOT_LIDENT {}
+fn yy_action_21(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 252|    EXTERN {}
+// 263|    LIDENT_LEX {}
+fn yy_action_103(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  YYObj_Unit({(); })
+}
+
+// file:///./parser.mbty
+// 333|    FAT_ARROW {}
+fn yy_action_104(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  YYObj_Unit({(); })
+}
+
+// file:///./parser.mbty
+// 345|    IN {}
+fn yy_action_75(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  YYObj_Unit({(); })
+}
+
+// file:///./parser.mbty
+// 207|    regex_pattern_item "," regex_pattern_with_opt_rest {
+// 208|    let (items, rest) = $3
+// 209|    (@list.prepend(items, $1), rest)
+// 210|  }
+fn yy_action_105(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  guard _args[2].0 is YYObj___list_T__ast_LexPatternItem____ast_Ident___(_dollar3)
+  guard _args[0].0 is YYObj__ast_LexPatternItem(_dollar1)
+  YYObj___list_T__ast_LexPatternItem____ast_Ident___({(); 
+    let (items, rest) = _dollar3
+    (@list.prepend(items, _dollar1), rest)
+  })
+}
+
+// file:///./parser.mbty
+// 182|    lex_case { @list.singleton($1) }
+fn yy_action_106(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  guard _args[0].0 is YYObj__ast_LexCase(_dollar1)
+  YYObj__list_T__ast_LexCase_({();  @list.singleton(_dollar1) })
+}
+
+// file:///./parser.mbty
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
+fn yy_action_107(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  let _sub_action_0_result = yy_action_35(_last_pos, _args[0:1])
+  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
+  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
+  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
+}
+
+// file:///./parser.mbty
+// 195|    "[" regex_pattern_with_opt_rest "]" {
+// 196|    let (items, rest) = $2
+// 197|    match rest {
+// 198|      None => ClosedPattern(items.to_array(), loc=mkloc($sloc))
+// 199|      Some(rest) => OpenPattern(items.to_array(), rest~, loc=mkloc($sloc))
+// 200|    }
+// 201|  }
+fn yy_action_108(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  guard _args[1].0 is YYObj___list_T__ast_LexPatternItem____ast_Ident___(_dollar2)
+  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
+  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
+  YYObj__ast_LexPattern({(); 
+    let (items, rest) = _dollar2
+    match rest {
+      None => ClosedPattern(items.to_array(), loc=mkloc((_symbol_start_pos, _end_pos)))
+      Some(rest) => OpenPattern(items.to_array(), rest~, loc=mkloc((_symbol_start_pos, _end_pos)))
+    }
+  })
+}
+
+// file:///./parser.mbty
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
+fn yy_action_109(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  let _sub_action_0_result = yy_action_34(_last_pos, _args[0:1])
+  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
+  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
+  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
+}
+
+// file:///./parser.mbty
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
+fn yy_action_110(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  let _sub_action_0_result = yy_action_111(_last_pos, _args[0:1])
+  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
+  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
+  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
+}
+
+// file:///./parser.mbty
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
+fn yy_action_112(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  let _sub_action_0_result = yy_action_113(_last_pos, _args[0:1])
+  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
+  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
+  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
+}
+
+// file:///./parser.mbty
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
+fn yy_action_114(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  let _sub_action_0_result = yy_action_52(_last_pos, _args[0:1])
+  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
+  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
+  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
+}
+
+// file:///./parser.mbty
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
+fn yy_action_115(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  let _sub_action_0_result = yy_action_23(_last_pos, _args[0:1])
+  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
+  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
+  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
+}
+
+// file:///./parser.mbty
+// 255|    FLOAT {}
+fn yy_action_57(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  YYObj_Unit({(); })
+}
+
+// file:///./parser.mbty
+// 214|    ".." { None }
+fn yy_action_70(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  YYObj__ast_Ident_({();  None })
+}
+
+// file:///./parser.mbty
+// 226|    regex "as" lident { RegexAs($1, $3, loc=mkloc($sloc)) }
+fn yy_action_116(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  guard _args[0].0 is YYObj__ast_Regex(_dollar1)
+  guard _args[2].0 is YYObj__ast_Ident(_dollar3)
+  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
+  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
+  YYObj__ast_LexPatternItem({();  RegexAs(_dollar1, _dollar3, loc=mkloc((_symbol_start_pos, _end_pos))) })
+}
+
+// file:///./parser.mbty
+// 286|    DERIVE {}
+fn yy_action_29(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  YYObj_Unit({(); })
+}
+
+// file:///./parser.mbty
+// 295|    TRAITALIAS {}
 fn yy_action_117(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  YYObj_Unit({(); })
+}
+
+// file:///./parser.mbty
+// 329|    CONST {}
+fn yy_action_111(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
 // 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_118(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  let _sub_action_0_result = yy_action_6(_last_pos, _args[0:1])
+  let _sub_action_0_result = yy_action_84(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
   let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
   YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
 }
 
 // file:///./parser.mbty
-// 237|    POST_LABEL {}
-fn yy_action_119(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+// 253|    BYTE {}
+fn yy_action_81(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 296|    PIPE {}
-fn yy_action_28(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+// 260|    ATTRIBUTE {}
+fn yy_action_119(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
 // 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_120(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  let _sub_action_0_result = yy_action_121(_last_pos, _args[0:1])
+  let _sub_action_0_result = yy_action_9(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
   let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
   YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
 }
 
 // file:///./parser.mbty
-// 315|    GUARD {}
-fn yy_action_122(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+// 231|    INTERP { Interp($1, loc=mkloc($sloc)) }
+fn yy_action_121(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  guard _args[0].0 is YYObj_InterpLiteral(_dollar1)
+  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
+  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
+  YYObj__ast_Regex({();  Interp(_dollar1, loc=mkloc((_symbol_start_pos, _end_pos))) })
+}
+
+// file:///./parser.mbty
+// 300|    COMMA {}
+fn yy_action_32(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 217|    "(" terms ")" { (mkloc($loc($1)), $2, mkloc($loc($3))) }
-fn yy_action_123(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  let _start_pos_of_item0 = _args[0].1
-  let _end_pos_of_item0 = _args[0].2
-  guard _args[1].0 is YYObj_Array__ast_Term_(_dollar2)
-  let _start_pos_of_item2 = _args[2].1
-  let _end_pos_of_item2 = _args[2].2
-  YYObj__Location__Array__ast_Term___Location_({();  (mkloc((_start_pos_of_item0, _end_pos_of_item0)), _dollar2, mkloc((_start_pos_of_item2, _end_pos_of_item2))) })
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
+fn yy_action_122(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  let _sub_action_0_result = yy_action_123(_last_pos, _args[0:1])
+  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
+  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
+  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
 }
 
 // file:///./parser.mbty
@@ -1021,160 +1062,144 @@ fn yy_action_124(_last_pos : Position, _args : ArrayView[(YYObj, Position, Posit
 }
 
 // file:///./parser.mbty
-// 171|    simple_term { Code(loc=mkloc($sloc)) }
+// 323|    AS {}
 fn yy_action_126(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  let _sub_action_0_result = yy_action_127(_last_pos, _args[0:1])
-  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
-  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
-  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
+  YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 203|    INTERP { Interp($1, loc=mkloc($sloc)) }
-fn yy_action_128(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  guard _args[0].0 is YYObj_InterpLiteral(_dollar1)
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
+fn yy_action_127(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  let _sub_action_0_result = yy_action_128(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
   let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
-  YYObj__ast_Regex({();  Interp(_dollar1, loc=mkloc((_symbol_start_pos, _end_pos))) })
+  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
 }
 
 // file:///./parser.mbty
 // 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_129(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  let _sub_action_0_result = yy_action_122(_last_pos, _args[0:1])
+  let _sub_action_0_result = yy_action_130(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
   let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
   YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
 }
 
 // file:///./parser.mbty
-// 171|    simple_term { Code(loc=mkloc($sloc)) }
-fn yy_action_130(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  let _sub_action_0_result = yy_action_96(_last_pos, _args[0:1])
-  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
-  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
-  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
-}
-
-// file:///./parser.mbty
-// 197|    regex { Regex($1) }
+// 184|    lex_case ";" lex_cases { @list.prepend($3, $1) }
 fn yy_action_131(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  guard _args[0].0 is YYObj__ast_Regex(_dollar1)
-  YYObj__ast_LexPatternItem({();  Regex(_dollar1) })
+  guard _args[2].0 is YYObj__list_T__ast_LexCase_(_dollar3)
+  guard _args[0].0 is YYObj__ast_LexCase(_dollar1)
+  YYObj__list_T__ast_LexCase_({();  @list.prepend(_dollar3, _dollar1) })
 }
 
 // file:///./parser.mbty
 // 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_132(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  let _sub_action_0_result = yy_action_34(_last_pos, _args[0:1])
+  let _sub_action_0_result = yy_action_133(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
   let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
   YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
 }
 
 // file:///./parser.mbty
-// 238|    COMMENT {}
-fn yy_action_133(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  YYObj_Unit({(); })
-}
-
-// file:///./parser.mbty
-// 294|    PACKAGE_NAME {}
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_134(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  YYObj_Unit({(); })
+  let _sub_action_0_result = yy_action_135(_last_pos, _args[0:1])
+  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
+  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
+  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
 }
 
 // file:///./parser.mbty
-// 311|    RANGE_EXCLUSIVE {}
-fn yy_action_135(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  YYObj_Unit({(); })
-}
-
-// file:///./parser.mbty
-// 318|    IS {}
-fn yy_action_95(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  YYObj_Unit({(); })
-}
-
-// file:///./parser.mbty
-// 274|    QUESTION {}
+// 172|    grouped_term {
+// 173|    let (loc1, terms, loc2) = $1
+// 174|    match normalize([Code(loc=loc1), ..terms, Code(loc=loc2)]) {
+// 175|      [Code(_)] => Code(loc=mkloc($sloc))
+// 176|      terms => Nested(terms, loc=mkloc($sloc))
+// 177|    }
+// 178|  }
 fn yy_action_136(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  YYObj_Unit({(); })
+  guard _args[0].0 is YYObj__Location__Array__ast_Term___Location_(_dollar1)
+  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
+  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
+  YYObj__ast_Term({(); 
+    let (loc1, terms, loc2) = _dollar1
+    match normalize([Code(loc=loc1), ..terms, Code(loc=loc2)]) {
+      [Code(_)] => Code(loc=mkloc((_symbol_start_pos, _end_pos)))
+      terms => Nested(terms, loc=mkloc((_symbol_start_pos, _end_pos)))
+    }
+  })
 }
 
 // file:///./parser.mbty
 // 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_137(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  let _sub_action_0_result = yy_action_138(_last_pos, _args[0:1])
+  let _sub_action_0_result = yy_action_126(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
   let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
   YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
 }
 
 // file:///./parser.mbty
-// 307|    WHILE {}
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
+fn yy_action_138(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  let _sub_action_0_result = yy_action_103(_last_pos, _args[0:1])
+  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
+  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
+  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
+}
+
+// file:///./parser.mbty
+// 206|    rest { (@list.empty(), Some($1)) }
 fn yy_action_139(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  YYObj_Unit({(); })
+  let _sub_action_0_result = yy_action_140(_last_pos, _args[0:3])
+  guard _sub_action_0_result is YYObj__ast_Ident_(_dollar1)
+  YYObj___list_T__ast_LexPatternItem____ast_Ident___({();  (@list.empty(), Some(_dollar1)) })
+}
+
+// file:///./parser.mbty
+// 169|    "const" uident ":" "BytesRegex" "=" regex ";" %prec prec_HIGHEST { NamedRegex($2, $6, loc=mkloc($sloc)) }
+fn yy_action_141(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  guard _args[1].0 is YYObj__ast_Ident(_dollar2)
+  guard _args[5].0 is YYObj__ast_Regex(_dollar6)
+  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
+  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
+  YYObj__ast_Term({();  NamedRegex(_dollar2, _dollar6, loc=mkloc((_symbol_start_pos, _end_pos))) })
 }
 
 // file:///./parser.mbty
 // 171|    simple_term { Code(loc=mkloc($sloc)) }
-fn yy_action_140(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  let _sub_action_0_result = yy_action_141(_last_pos, _args[0:1])
-  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
-  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
-  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
-}
-
-// file:///./parser.mbty
-// 306|    THIN_ARROW {}
-fn yy_action_8(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  YYObj_Unit({(); })
-}
-
-// file:///./parser.mbty
-// 156|    terms { {body: Nested($1, loc=mkloc($sloc)), loc: mkloc($sloc)} }
 fn yy_action_142(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  guard _args[0].0 is YYObj_Array__ast_Term_(_dollar1)
+  let _sub_action_0_result = yy_action_39(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
   let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
-  YYObj__ast_Program({();  {body: Nested(_dollar1, loc=mkloc((_symbol_start_pos, _end_pos))), loc: mkloc((_symbol_start_pos, _end_pos))} })
+  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
 }
 
 // file:///./parser.mbty
-// 171|    simple_term { Code(loc=mkloc($sloc)) }
+// 232|    uident { Named($1) }
 fn yy_action_143(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  let _sub_action_0_result = yy_action_144(_last_pos, _args[0:1])
-  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
-  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
-  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
+  guard _args[0].0 is YYObj__ast_Ident(_dollar1)
+  YYObj__ast_Regex({();  Named(_dollar1) })
 }
 
 // file:///./parser.mbty
-// 284|    PLUS {}
-fn yy_action_12(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+// 296|    FNALIAS {}
+fn yy_action_144(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 269|    EQUAL {}
-fn yy_action_107(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  YYObj_Unit({(); })
-}
-
-// file:///./parser.mbty
-// 267|    TRAITALIAS {}
-fn yy_action_92(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  YYObj_Unit({(); })
-}
-
-// file:///./parser.mbty
-// 171|    simple_term { Code(loc=mkloc($sloc)) }
+// 319|    AMPER {}
 fn yy_action_145(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  let _sub_action_0_result = yy_action_84(_last_pos, _args[0:1])
-  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
-  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
-  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
+  YYObj_Unit({(); })
+}
+
+// file:///./parser.mbty
+// 326|    FN {}
+fn yy_action_102(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
@@ -1189,28 +1214,16 @@ fn yy_action_146(_last_pos : Position, _args : ArrayView[(YYObj, Position, Posit
 // file:///./parser.mbty
 // 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_148(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  let _sub_action_0_result = yy_action_119(_last_pos, _args[0:1])
+  let _sub_action_0_result = yy_action_149(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
   let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
   YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
 }
 
 // file:///./parser.mbty
-// 171|    simple_term { Code(loc=mkloc($sloc)) }
-fn yy_action_149(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  let _sub_action_0_result = yy_action_66(_last_pos, _args[0:1])
-  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
-  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
-  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
-}
-
-// file:///./parser.mbty
-// 171|    simple_term { Code(loc=mkloc($sloc)) }
+// 280|    EXTERN {}
 fn yy_action_150(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  let _sub_action_0_result = yy_action_30(_last_pos, _args[0:1])
-  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
-  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
-  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
+  YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
@@ -1223,24 +1236,72 @@ fn yy_action_151(_last_pos : Position, _args : ArrayView[(YYObj, Position, Posit
 }
 
 // file:///./parser.mbty
-// 171|    simple_term { Code(loc=mkloc($sloc)) }
+// 312|    PLUS {}
 fn yy_action_153(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  let _sub_action_0_result = yy_action_133(_last_pos, _args[0:1])
-  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
-  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
-  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
+  YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 240|    INFIX1 {}
-fn yy_action_141(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+// 346|    IS {}
+fn yy_action_49(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  YYObj_Unit({(); })
+}
+
+// file:///./parser.mbty
+// 310|    SEMI {}
+fn yy_action_11(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
 // 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_154(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  let _sub_action_0_result = yy_action_111(_last_pos, _args[0:1])
+  let _sub_action_0_result = yy_action_155(_last_pos, _args[0:1])
+  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
+  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
+  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
+}
+
+// file:///./parser.mbty
+// 289|    RAISE {}
+fn yy_action_15(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  YYObj_Unit({(); })
+}
+
+// file:///./parser.mbty
+// 339|    RANGE_EXCLUSIVE {}
+fn yy_action_156(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  YYObj_Unit({(); })
+}
+
+// file:///./parser.mbty
+// 277|    PRIV {}
+fn yy_action_113(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  YYObj_Unit({(); })
+}
+
+// file:///./parser.mbty
+// 275|    TRUE {}
+fn yy_action_99(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  YYObj_Unit({(); })
+}
+
+// file:///./parser.mbty
+// 337|    DOTDOT {}
+fn yy_action_147(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  YYObj_Unit({(); })
+}
+
+// file:///./parser.mbty
+// 343|    GUARD {}
+fn yy_action_157(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  YYObj_Unit({(); })
+}
+
+// file:///./parser.mbty
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
+fn yy_action_158(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  let _sub_action_0_result = yy_action_77(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
   let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
   YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
@@ -1248,16 +1309,31 @@ fn yy_action_154(_last_pos : Position, _args : ArrayView[(YYObj, Position, Posit
 
 // file:///./parser.mbty
 // 171|    simple_term { Code(loc=mkloc($sloc)) }
-fn yy_action_155(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  let _sub_action_0_result = yy_action_156(_last_pos, _args[0:1])
+fn yy_action_159(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  let _sub_action_0_result = yy_action_33(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
   let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
   YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
 }
 
 // file:///./parser.mbty
-// 219|    "[" terms "]" { (mkloc($loc($1)), $2, mkloc($loc($3))) }
-fn yy_action_157(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
+fn yy_action_160(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  let _sub_action_0_result = yy_action_161(_last_pos, _args[0:1])
+  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
+  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
+  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
+}
+
+// file:///./parser.mbty
+// 344|    FOR {}
+fn yy_action_125(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  YYObj_Unit({(); })
+}
+
+// file:///./parser.mbty
+// 245|    "(" terms ")" { (mkloc($loc($1)), $2, mkloc($loc($3))) }
+fn yy_action_162(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _start_pos_of_item0 = _args[0].1
   let _end_pos_of_item0 = _args[0].2
   guard _args[1].0 is YYObj_Array__ast_Term_(_dollar2)
@@ -1267,111 +1343,55 @@ fn yy_action_157(_last_pos : Position, _args : ArrayView[(YYObj, Position, Posit
 }
 
 // file:///./parser.mbty
-// 226|    BYTES {}
-fn yy_action_158(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+// 335|    WHILE {}
+fn yy_action_163(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
-}
-
-// file:///./parser.mbty
-// 279|    DOT_LPAREN {}
-fn yy_action_152(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  YYObj_Unit({(); })
-}
-
-// file:///./parser.mbty
-// 171|    simple_term { Code(loc=mkloc($sloc)) }
-fn yy_action_159(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  let _sub_action_0_result = yy_action_160(_last_pos, _args[0:1])
-  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
-  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
-  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
-}
-
-// file:///./parser.mbty
-// 171|    simple_term { Code(loc=mkloc($sloc)) }
-fn yy_action_161(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  let _sub_action_0_result = yy_action_139(_last_pos, _args[0:1])
-  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
-  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
-  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
-}
-
-// file:///./parser.mbty
-// 171|    simple_term { Code(loc=mkloc($sloc)) }
-fn yy_action_162(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  let _sub_action_0_result = yy_action_163(_last_pos, _args[0:1])
-  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
-  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
-  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
 }
 
 // file:///./parser.mbty
 // 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_164(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  let _sub_action_0_result = yy_action_82(_last_pos, _args[0:1])
+  let _sub_action_0_result = yy_action_165(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
   let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
   YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
 }
 
 // file:///./parser.mbty
-// 262|    THROW {}
-fn yy_action_42(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  YYObj_Unit({(); })
-}
-
-// file:///./parser.mbty
-// 292|    CARET {}
-fn yy_action_86(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  YYObj_Unit({(); })
-}
-
-// file:///./parser.mbty
-// 171|    simple_term { Code(loc=mkloc($sloc)) }
-fn yy_action_165(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  let _sub_action_0_result = yy_action_166(_last_pos, _args[0:1])
+// 192|    regex_pattern { OpenPattern($1.to_array(), rest=None, loc=mkloc($sloc)) }
+fn yy_action_166(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  guard _args[0].0 is YYObj__list_T__ast_LexPatternItem_(_dollar1)
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
   let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
-  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
+  YYObj__ast_LexPattern({();  OpenPattern(_dollar1.to_array(), rest=None, loc=mkloc((_symbol_start_pos, _end_pos))) })
 }
 
 // file:///./parser.mbty
-// 242|    INFIX3 {}
-fn yy_action_75(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  YYObj_Unit({(); })
-}
-
-// file:///./parser.mbty
-// 290|    AMPERAMPER {}
-fn yy_action_36(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  YYObj_Unit({(); })
-}
-
-// file:///./parser.mbty
-// 171|    simple_term { Code(loc=mkloc($sloc)) }
+// 205|    regex_pattern_item { (@list.singleton($1), None) }
 fn yy_action_167(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  let _sub_action_0_result = yy_action_136(_last_pos, _args[0:1])
+  guard _args[0].0 is YYObj__ast_LexPatternItem(_dollar1)
+  YYObj___list_T__ast_LexPatternItem____ast_Ident___({();  (@list.singleton(_dollar1), None) })
+}
+
+// file:///./parser.mbty
+// 285|    TRAIT {}
+fn yy_action_161(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  YYObj_Unit({(); })
+}
+
+// file:///./parser.mbty
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
+fn yy_action_168(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  let _sub_action_0_result = yy_action_169(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
   let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
   YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
-}
-
-// file:///./parser.mbty
-// 303|    MUTABLE {}
-fn yy_action_168(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  YYObj_Unit({(); })
-}
-
-// file:///./parser.mbty
-// 254|    CONTINUE {}
-fn yy_action_169(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
 // 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_170(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  let _sub_action_0_result = yy_action_88(_last_pos, _args[0:1])
+  let _sub_action_0_result = yy_action_153(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
   let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
   YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
@@ -1380,53 +1400,435 @@ fn yy_action_170(_last_pos : Position, _args : ArrayView[(YYObj, Position, Posit
 // file:///./parser.mbty
 // 171|    simple_term { Code(loc=mkloc($sloc)) }
 fn yy_action_171(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  let _sub_action_0_result = yy_action_158(_last_pos, _args[0:1])
+  let _sub_action_0_result = yy_action_172(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
   let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
   YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
 }
 
 // file:///./parser.mbty
-// 243|    INFIX4 {}
-fn yy_action_40(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  YYObj_Unit({(); })
-}
-
-// file:///./parser.mbty
-// 301|    CONST {}
-fn yy_action_121(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  YYObj_Unit({(); })
-}
-
-// file:///./parser.mbty
-// 230|    MULTILINE_INTERP {}
-fn yy_action_78(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  YYObj_Unit({(); })
-}
-
-// file:///./parser.mbty
-// 316|    FOR {}
-fn yy_action_138(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  YYObj_Unit({(); })
-}
-
-// file:///./parser.mbty
-// 326|    LIDENT { {name: $1, loc: mkloc($sloc)} }
-fn yy_action_172(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  guard _args[0].0 is YYObj_String(_dollar1)
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
+fn yy_action_173(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  let _sub_action_0_result = yy_action_87(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
   let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
-  YYObj__ast_Ident({();  {name: _dollar1, loc: mkloc((_symbol_start_pos, _end_pos))} })
+  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
 }
 
 // file:///./parser.mbty
-// 208|    "{" terms "}" { 
-// 209|    match normalize([Code(loc=mkloc($loc($1))), ..$2, Code(loc=mkloc($loc($3)))]) {
-// 210|      [Code(_)] => Code(loc=mkloc($sloc))
-// 211|      terms => Nested(terms, loc=mkloc($sloc))
-// 212|    }
-// 213|  }
-fn yy_action_173(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
+fn yy_action_174(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  let _sub_action_0_result = yy_action_104(_last_pos, _args[0:1])
+  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
+  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
+  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
+}
+
+// file:///./parser.mbty
+// 270|    INFIX3 {}
+fn yy_action_47(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  YYObj_Unit({(); })
+}
+
+// file:///./parser.mbty
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
+fn yy_action_175(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  let _sub_action_0_result = yy_action_176(_last_pos, _args[0:1])
+  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
+  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
+  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
+}
+
+// file:///./parser.mbty
+// 294|    TYPEALIAS {}
+fn yy_action_91(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  YYObj_Unit({(); })
+}
+
+// file:///./parser.mbty
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
+fn yy_action_177(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  let _sub_action_0_result = yy_action_178(_last_pos, _args[0:1])
+  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
+  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
+  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
+}
+
+// file:///./parser.mbty
+// 247|    "[" terms "]" { (mkloc($loc($1)), $2, mkloc($loc($3))) }
+fn yy_action_179(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  let _start_pos_of_item0 = _args[0].1
+  let _end_pos_of_item0 = _args[0].2
+  guard _args[1].0 is YYObj_Array__ast_Term_(_dollar2)
+  let _start_pos_of_item2 = _args[2].1
+  let _end_pos_of_item2 = _args[2].2
+  YYObj__Location__Array__ast_Term___Location_({();  (mkloc((_start_pos_of_item0, _end_pos_of_item0)), _dollar2, mkloc((_start_pos_of_item2, _end_pos_of_item2))) })
+}
+
+// file:///./parser.mbty
+// 194|    "[" rest "]" { OpenPattern([], rest=$2, loc=mkloc($sloc)) }
+fn yy_action_180(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  let _sub_action_0_result = yy_action_6(_args[0].2, _args[1:3])
+  guard _sub_action_0_result is YYObj__ast_Ident_(_dollar2)
+  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
+  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
+  YYObj__ast_LexPattern({();  OpenPattern([], rest=_dollar2, loc=mkloc((_symbol_start_pos, _end_pos))) })
+}
+
+// file:///./parser.mbty
+// 292|    CATCH {}
+fn yy_action_41(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  YYObj_Unit({(); })
+}
+
+// file:///./parser.mbty
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
+fn yy_action_181(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  let _sub_action_0_result = yy_action_150(_last_pos, _args[0:1])
+  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
+  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
+  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
+}
+
+// file:///./parser.mbty
+// 307|    DOT_LPAREN {}
+fn yy_action_182(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  YYObj_Unit({(); })
+}
+
+// file:///./parser.mbty
+// 262|    UIDENT {}
+fn yy_action_183(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  YYObj_Unit({(); })
+}
+
+// file:///./parser.mbty
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
+fn yy_action_184(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  let _sub_action_0_result = yy_action_93(_last_pos, _args[0:1])
+  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
+  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
+  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
+}
+
+// file:///./parser.mbty
+// 332|    TYPE {}
+fn yy_action_149(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  YYObj_Unit({(); })
+}
+
+// file:///./parser.mbty
+// 251|    CHAR {}
+fn yy_action_45(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  YYObj_Unit({(); })
+}
+
+// file:///./parser.mbty
+// 305|    DOT_UIDENT {}
+fn yy_action_123(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  YYObj_Unit({(); })
+}
+
+// file:///./parser.mbty
+// 215|    ".." lident { Some($2) }
+fn yy_action_6(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  guard _args[1].0 is YYObj__ast_Ident(_dollar2)
+  YYObj__ast_Ident_({();  Some(_dollar2) })
+}
+
+// file:///./parser.mbty
+// 324|    PIPE {}
+fn yy_action_152(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  YYObj_Unit({(); })
+}
+
+// file:///./parser.mbty
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
+fn yy_action_185(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  let _sub_action_0_result = yy_action_163(_last_pos, _args[0:1])
+  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
+  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
+  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
+}
+
+// file:///./parser.mbty
+// 328|    LET {}
+fn yy_action_95(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  YYObj_Unit({(); })
+}
+
+// file:///./parser.mbty
+// 183|    lex_case ";" { @list.singleton($1) }
+fn yy_action_186(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  guard _args[0].0 is YYObj__ast_LexCase(_dollar1)
+  YYObj__list_T__ast_LexCase_({();  @list.singleton(_dollar1) })
+}
+
+// file:///./parser.mbty
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
+fn yy_action_187(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  let _sub_action_0_result = yy_action_183(_last_pos, _args[0:1])
+  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
+  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
+  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
+}
+
+// file:///./parser.mbty
+// 206|    rest { (@list.empty(), Some($1)) }
+fn yy_action_188(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  let _sub_action_0_result = yy_action_70(_last_pos, _args[0:1])
+  guard _sub_action_0_result is YYObj__ast_Ident_(_dollar1)
+  YYObj___list_T__ast_LexPatternItem____ast_Ident___({();  (@list.empty(), Some(_dollar1)) })
+}
+
+// file:///./parser.mbty
+// 321|    BARBAR {}
+fn yy_action_135(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  YYObj_Unit({(); })
+}
+
+// file:///./parser.mbty
+// 156|    terms { {body: Nested($1, loc=mkloc($sloc)), loc: mkloc($sloc)} }
+fn yy_action_189(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  guard _args[0].0 is YYObj_Array__ast_Term_(_dollar1)
+  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
+  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
+  YYObj__ast_Program({();  {body: Nested(_dollar1, loc=mkloc((_symbol_start_pos, _end_pos))), loc: mkloc((_symbol_start_pos, _end_pos))} })
+}
+
+// file:///./parser.mbty
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
+fn yy_action_190(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  let _sub_action_0_result = yy_action_97(_last_pos, _args[0:1])
+  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
+  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
+  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
+}
+
+// file:///./parser.mbty
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
+fn yy_action_191(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  let _sub_action_0_result = yy_action_85(_last_pos, _args[0:1])
+  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
+  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
+  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
+}
+
+// file:///./parser.mbty
+// 287|    IMPL {}
+fn yy_action_165(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  YYObj_Unit({(); })
+}
+
+// file:///./parser.mbty
+// 278|    READONLY {}
+fn yy_action_4(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  YYObj_Unit({(); })
+}
+
+// file:///./parser.mbty
+// 342|    LOOP {}
+fn yy_action_128(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  YYObj_Unit({(); })
+}
+
+// file:///./parser.mbty
+// 254|    BYTES {}
+fn yy_action_68(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  YYObj_Unit({(); })
+}
+
+// file:///./parser.mbty
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
+fn yy_action_192(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  let _sub_action_0_result = yy_action_19(_last_pos, _args[0:1])
+  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
+  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
+  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
+}
+
+// file:///./parser.mbty
+// 246|    "{" terms "}" { (mkloc($loc($1)), $2, mkloc($loc($3))) }
+fn yy_action_193(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  let _start_pos_of_item0 = _args[0].1
+  let _end_pos_of_item0 = _args[0].2
+  guard _args[1].0 is YYObj_Array__ast_Term_(_dollar2)
+  let _start_pos_of_item2 = _args[2].1
+  let _end_pos_of_item2 = _args[2].2
+  YYObj__Location__Array__ast_Term___Location_({();  (mkloc((_start_pos_of_item0, _end_pos_of_item0)), _dollar2, mkloc((_start_pos_of_item2, _end_pos_of_item2))) })
+}
+
+// file:///./parser.mbty
+// 282|    CONTINUE {}
+fn yy_action_17(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  YYObj_Unit({(); })
+}
+
+// file:///./parser.mbty
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
+fn yy_action_194(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  let _sub_action_0_result = yy_action_86(_last_pos, _args[0:1])
+  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
+  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
+  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
+}
+
+// file:///./parser.mbty
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
+fn yy_action_195(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  let _sub_action_0_result = yy_action_157(_last_pos, _args[0:1])
+  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
+  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
+  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
+}
+
+// file:///./parser.mbty
+// 271|    INFIX4 {}
+fn yy_action_196(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  YYObj_Unit({(); })
+}
+
+// file:///./parser.mbty
+// 267|    NEWLINE {}
+fn yy_action_197(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  YYObj_Unit({(); })
+}
+
+// file:///./parser.mbty
+// 314|    UNDERSCORE {}
+fn yy_action_155(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  YYObj_Unit({(); })
+}
+
+// file:///./parser.mbty
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
+fn yy_action_198(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  let _sub_action_0_result = yy_action_76(_last_pos, _args[0:1])
+  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
+  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
+  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
+}
+
+// file:///./parser.mbty
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
+fn yy_action_199(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  let _sub_action_0_result = yy_action_182(_last_pos, _args[0:1])
+  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
+  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
+  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
+}
+
+// file:///./parser.mbty
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
+fn yy_action_200(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  let _sub_action_0_result = yy_action_73(_last_pos, _args[0:1])
+  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
+  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
+  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
+}
+
+// file:///./parser.mbty
+// 293|    ASYNC {}
+fn yy_action_25(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  YYObj_Unit({(); })
+}
+
+// file:///./parser.mbty
+// 193|    "[" "]" { ClosedPattern([], loc=mkloc($sloc)) }
+fn yy_action_201(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
+  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
+  YYObj__ast_LexPattern({();  ClosedPattern([], loc=mkloc((_symbol_start_pos, _end_pos))) })
+}
+
+// file:///./parser.mbty
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
+fn yy_action_202(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  let _sub_action_0_result = yy_action_144(_last_pos, _args[0:1])
+  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
+  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
+  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
+}
+
+// file:///./parser.mbty
+// 315|    BAR {}
+fn yy_action_169(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  YYObj_Unit({(); })
+}
+
+// file:///./parser.mbty
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
+fn yy_action_203(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  let _sub_action_0_result = yy_action_156(_last_pos, _args[0:1])
+  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
+  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
+  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
+}
+
+// file:///./parser.mbty
+// 331|    MUTABLE {}
+fn yy_action_176(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  YYObj_Unit({(); })
+}
+
+// file:///./parser.mbty
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
+fn yy_action_204(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  let _sub_action_0_result = yy_action_145(_last_pos, _args[0:1])
+  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
+  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
+  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
+}
+
+// file:///./parser.mbty
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
+fn yy_action_205(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  let _sub_action_0_result = yy_action_22(_last_pos, _args[0:1])
+  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
+  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
+  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
+}
+
+// file:///./parser.mbty
+// 216|    ".." "as" lident { Some($3) }
+fn yy_action_140(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  guard _args[2].0 is YYObj__ast_Ident(_dollar3)
+  YYObj__ast_Ident_({();  Some(_dollar3) })
+}
+
+// file:///./parser.mbty
+// 340|    ELLIPSIS {}
+fn yy_action_8(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  YYObj_Unit({(); })
+}
+
+// file:///./parser.mbty
+// 225|    regex { Regex($1) }
+fn yy_action_206(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  guard _args[0].0 is YYObj__ast_Regex(_dollar1)
+  YYObj__ast_LexPatternItem({();  Regex(_dollar1) })
+}
+
+// file:///./parser.mbty
+// 327|    IF {}
+fn yy_action_207(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  YYObj_Unit({(); })
+}
+
+// file:///./parser.mbty
+// 269|    INFIX2 {}
+fn yy_action_172(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  YYObj_Unit({(); })
+}
+
+// file:///./parser.mbty
+// 236|    "{" terms "}" { 
+// 237|    match normalize([Code(loc=mkloc($loc($1))), ..$2, Code(loc=mkloc($loc($3)))]) {
+// 238|      [Code(_)] => Code(loc=mkloc($sloc))
+// 239|      terms => Nested(terms, loc=mkloc($sloc))
+// 240|    }
+// 241|  }
+fn yy_action_208(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _start_pos_of_item0 = _args[0].1
   let _end_pos_of_item0 = _args[0].2
   guard _args[1].0 is YYObj_Array__ast_Term_(_dollar2)
@@ -1443,42 +1845,9 @@ fn yy_action_173(_last_pos : Position, _args : ArrayView[(YYObj, Position, Posit
 }
 
 // file:///./parser.mbty
-// 169|    "const" uident ":" "BytesRegex" "=" regex ";" %prec prec_HIGHEST { NamedRegex($2, $6, loc=mkloc($sloc)) }
-fn yy_action_174(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  guard _args[1].0 is YYObj__ast_Ident(_dollar2)
-  guard _args[5].0 is YYObj__ast_Regex(_dollar6)
-  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
-  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
-  YYObj__ast_Term({();  NamedRegex(_dollar2, _dollar6, loc=mkloc((_symbol_start_pos, _end_pos))) })
-}
-
-// file:///./parser.mbty
 // 171|    simple_term { Code(loc=mkloc($sloc)) }
-fn yy_action_175(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  let _sub_action_0_result = yy_action_169(_last_pos, _args[0:1])
-  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
-  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
-  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
-}
-
-// file:///./parser.mbty
-// 313|    TEST {}
-fn yy_action_127(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  YYObj_Unit({(); })
-}
-
-// file:///./parser.mbty
-// 184|    lex_case ";" lex_cases { @list.prepend($3, $1) }
-fn yy_action_176(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  guard _args[2].0 is YYObj__list_T__ast_LexCase_(_dollar3)
-  guard _args[0].0 is YYObj__ast_LexCase(_dollar1)
-  YYObj__list_T__ast_LexCase_({();  @list.prepend(_dollar3, _dollar1) })
-}
-
-// file:///./parser.mbty
-// 171|    simple_term { Code(loc=mkloc($sloc)) }
-fn yy_action_177(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  let _sub_action_0_result = yy_action_90(_last_pos, _args[0:1])
+fn yy_action_209(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  let _sub_action_0_result = yy_action_119(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
   let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
   YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
@@ -1486,251 +1855,7 @@ fn yy_action_177(_last_pos : Position, _args : ArrayView[(YYObj, Position, Posit
 
 // file:///./parser.mbty
 // 171|    simple_term { Code(loc=mkloc($sloc)) }
-fn yy_action_178(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  let _sub_action_0_result = yy_action_80(_last_pos, _args[0:1])
-  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
-  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
-  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
-}
-
-// file:///./parser.mbty
-// 281|    COLON {}
-fn yy_action_156(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  YYObj_Unit({(); })
-}
-
-// file:///./parser.mbty
-// 170|    "lex" lident "{" lex_cases "}" { LexDef($2, $4.to_array(), loc=mkloc($sloc)) }
-fn yy_action_179(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  guard _args[1].0 is YYObj__ast_Ident(_dollar2)
-  guard _args[3].0 is YYObj__list_T__ast_LexCase_(_dollar4)
-  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
-  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
-  YYObj__ast_Term({();  LexDef(_dollar2, _dollar4.to_array(), loc=mkloc((_symbol_start_pos, _end_pos))) })
-}
-
-// file:///./parser.mbty
-// 272|    COMMA {}
-fn yy_action_3(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  YYObj_Unit({(); })
-}
-
-// file:///./parser.mbty
-// 171|    simple_term { Code(loc=mkloc($sloc)) }
-fn yy_action_180(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  let _sub_action_0_result = yy_action_181(_last_pos, _args[0:1])
-  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
-  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
-  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
-}
-
-// file:///./parser.mbty
-// 246|    FALSE {}
-fn yy_action_61(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  YYObj_Unit({(); })
-}
-
-// file:///./parser.mbty
-// 171|    simple_term { Code(loc=mkloc($sloc)) }
-fn yy_action_182(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  let _sub_action_0_result = yy_action_16(_last_pos, _args[0:1])
-  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
-  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
-  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
-}
-
-// file:///./parser.mbty
-// 276|    DOT_LIDENT {}
-fn yy_action_14(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  YYObj_Unit({(); })
-}
-
-// file:///./parser.mbty
-// 241|    INFIX2 {}
-fn yy_action_68(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  YYObj_Unit({(); })
-}
-
-// file:///./parser.mbty
-// 171|    simple_term { Code(loc=mkloc($sloc)) }
-fn yy_action_183(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  let _sub_action_0_result = yy_action_81(_last_pos, _args[0:1])
-  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
-  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
-  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
-}
-
-// file:///./parser.mbty
-// 263|    TRY {}
-fn yy_action_184(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  YYObj_Unit({(); })
-}
-
-// file:///./parser.mbty
-// 259|    IMPL {}
-fn yy_action_185(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  YYObj_Unit({(); })
-}
-
-// file:///./parser.mbty
-// 308|    RETURN {}
-fn yy_action_144(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  YYObj_Unit({(); })
-}
-
-// file:///./parser.mbty
-// 171|    simple_term { Code(loc=mkloc($sloc)) }
-fn yy_action_186(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  let _sub_action_0_result = yy_action_65(_last_pos, _args[0:1])
-  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
-  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
-  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
-}
-
-// file:///./parser.mbty
-// 171|    simple_term { Code(loc=mkloc($sloc)) }
-fn yy_action_187(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  let _sub_action_0_result = yy_action_168(_last_pos, _args[0:1])
-  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
-  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
-  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
-}
-
-// file:///./parser.mbty
-// 171|    simple_term { Code(loc=mkloc($sloc)) }
-fn yy_action_188(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  let _sub_action_0_result = yy_action_64(_last_pos, _args[0:1])
-  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
-  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
-  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
-}
-
-// file:///./parser.mbty
-// 291|    AMPER {}
-fn yy_action_22(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  YYObj_Unit({(); })
-}
-
-// file:///./parser.mbty
-// 223|    CHAR {}
-fn yy_action_116(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  YYObj_Unit({(); })
-}
-
-// file:///./parser.mbty
-// 171|    simple_term { Code(loc=mkloc($sloc)) }
-fn yy_action_189(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  let _sub_action_0_result = yy_action_134(_last_pos, _args[0:1])
-  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
-  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
-  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
-}
-
-// file:///./parser.mbty
-// 309|    DOTDOT {}
-fn yy_action_160(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  YYObj_Unit({(); })
-}
-
-// file:///./parser.mbty
-// 171|    simple_term { Code(loc=mkloc($sloc)) }
-fn yy_action_190(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  let _sub_action_0_result = yy_action_103(_last_pos, _args[0:1])
-  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
-  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
-  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
-}
-
-// file:///./parser.mbty
-// 224|    INT {}
-fn yy_action_191(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  YYObj_Unit({(); })
-}
-
-// file:///./parser.mbty
-// 171|    simple_term { Code(loc=mkloc($sloc)) }
-fn yy_action_192(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  let _sub_action_0_result = yy_action_135(_last_pos, _args[0:1])
-  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
-  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
-  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
-}
-
-// file:///./parser.mbty
-// 171|    simple_term { Code(loc=mkloc($sloc)) }
-fn yy_action_193(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  let _sub_action_0_result = yy_action_19(_last_pos, _args[0:1])
-  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
-  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
-  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
-}
-
-// file:///./parser.mbty
-// 231|    INTERP {}
-fn yy_action_147(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  YYObj_Unit({(); })
-}
-
-// file:///./parser.mbty
-// 171|    simple_term { Code(loc=mkloc($sloc)) }
-fn yy_action_194(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  let _sub_action_0_result = yy_action_195(_last_pos, _args[0:1])
-  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
-  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
-  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
-}
-
-// file:///./parser.mbty
-// 234|    UIDENT {}
-fn yy_action_195(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  YYObj_Unit({(); })
-}
-
-// file:///./parser.mbty
-// 322|    UIDENT { {name: $1, loc: mkloc($sloc)} }
-fn yy_action_196(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  guard _args[0].0 is YYObj_String(_dollar1)
-  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
-  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
-  YYObj__ast_Ident({();  {name: _dollar1, loc: mkloc((_symbol_start_pos, _end_pos))} })
-}
-
-// file:///./parser.mbty
-// 261|    RAISE {}
-fn yy_action_163(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  YYObj_Unit({(); })
-}
-
-// file:///./parser.mbty
-// 172|    grouped_term {
-// 173|    let (loc1, terms, loc2) = $1
-// 174|    match normalize([Code(loc=loc1), ..terms, Code(loc=loc2)]) {
-// 175|      [Code(_)] => Code(loc=mkloc($sloc))
-// 176|      terms => Nested(terms, loc=mkloc($sloc))
-// 177|    }
-// 178|  }
-fn yy_action_197(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  guard _args[0].0 is YYObj__Location__Array__ast_Term___Location_(_dollar1)
-  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
-  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
-  YYObj__ast_Term({(); 
-    let (loc1, terms, loc2) = _dollar1
-    match normalize([Code(loc=loc1), ..terms, Code(loc=loc2)]) {
-      [Code(_)] => Code(loc=mkloc((_symbol_start_pos, _end_pos)))
-      terms => Nested(terms, loc=mkloc((_symbol_start_pos, _end_pos)))
-    }
-  })
-}
-
-// file:///./parser.mbty
-// 239|    NEWLINE {}
-fn yy_action_100(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  YYObj_Unit({(); })
-}
-
-// file:///./parser.mbty
-// 171|    simple_term { Code(loc=mkloc($sloc)) }
-fn yy_action_198(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+fn yy_action_210(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   let _sub_action_0_result = yy_action_117(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
   let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
@@ -1738,24 +1863,15 @@ fn yy_action_198(_last_pos : Position, _args : ArrayView[(YYObj, Position, Posit
 }
 
 // file:///./parser.mbty
-// 171|    simple_term { Code(loc=mkloc($sloc)) }
-fn yy_action_199(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  let _sub_action_0_result = yy_action_113(_last_pos, _args[0:1])
-  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
-  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
-  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
-}
-
-// file:///./parser.mbty
-// 258|    DERIVE {}
-fn yy_action_125(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+// 266|    COMMENT {}
+fn yy_action_130(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
 // 171|    simple_term { Code(loc=mkloc($sloc)) }
-fn yy_action_200(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  let _sub_action_0_result = yy_action_185(_last_pos, _args[0:1])
+fn yy_action_211(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  let _sub_action_0_result = yy_action_197(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
   let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
   YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
@@ -1763,47 +1879,72 @@ fn yy_action_200(_last_pos : Position, _args : ArrayView[(YYObj, Position, Posit
 
 // file:///./parser.mbty
 // 171|    simple_term { Code(loc=mkloc($sloc)) }
-fn yy_action_201(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  let _sub_action_0_result = yy_action_184(_last_pos, _args[0:1])
+fn yy_action_212(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  let _sub_action_0_result = yy_action_196(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
   let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
   YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
 }
 
 // file:///./parser.mbty
-// 268|    FNALIAS {}
-fn yy_action_58(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  YYObj_Unit({(); })
+// 171|    simple_term { Code(loc=mkloc($sloc)) }
+fn yy_action_213(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  let _sub_action_0_result = yy_action_214(_last_pos, _args[0:1])
+  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
+  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
+  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
 }
 
 // file:///./parser.mbty
-// 310|    RANGE_INCLUSIVE {}
-fn yy_action_166(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+// 276|    PUB {}
+fn yy_action_66(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
 // 171|    simple_term { Code(loc=mkloc($sloc)) }
-fn yy_action_202(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  let _sub_action_0_result = yy_action_191(_last_pos, _args[0:1])
+fn yy_action_215(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  let _sub_action_0_result = yy_action_207(_last_pos, _args[0:1])
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
   let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
   YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
 }
 
 // file:///./parser.mbty
-// 236|    UIDENT_BYTES_REGEX {}
-fn yy_action_181(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+// 318|    AMPERAMPER {}
+fn yy_action_178(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   YYObj_Unit({(); })
 }
 
 // file:///./parser.mbty
-// 171|    simple_term { Code(loc=mkloc($sloc)) }
-fn yy_action_203(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  let _sub_action_0_result = yy_action_112(_last_pos, _args[0:1])
+// 330|    MATCH {}
+fn yy_action_133(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  YYObj_Unit({(); })
+}
+
+// file:///./parser.mbty
+// 194|    "[" rest "]" { OpenPattern([], rest=$2, loc=mkloc($sloc)) }
+fn yy_action_216(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  let _sub_action_0_result = yy_action_140(_args[0].2, _args[1:4])
+  guard _sub_action_0_result is YYObj__ast_Ident_(_dollar2)
   let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
   let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
-  YYObj__ast_Term({();  Code(loc=mkloc((_symbol_start_pos, _end_pos))) })
+  YYObj__ast_LexPattern({();  OpenPattern([], rest=_dollar2, loc=mkloc((_symbol_start_pos, _end_pos))) })
+}
+
+// file:///./parser.mbty
+// 230|    STRING { Literal($1, loc=mkloc($sloc)) }
+fn yy_action_217(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  guard _args[0].0 is YYObj_StringLiteral(_dollar1)
+  let _symbol_start_pos = _get_symbol_start_pos(_args, _last_pos)
+  let _end_pos = if _args.length() == 0 { _last_pos } else { _args[_args.length() - 1].2 }
+  YYObj__ast_Regex({();  Literal(_dollar1, loc=mkloc((_symbol_start_pos, _end_pos))) })
+}
+
+// file:///./parser.mbty
+// 341|    TEST {}
+fn yy_action_214(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  YYObj_Unit({(); })
 }
 
 fn yy_input(token : Token, _start_pos : Position, _end_pos : Position) -> (YYSymbol, YYObj) {
@@ -2004,10 +2145,10 @@ fn yy_input(token : Token, _start_pos : Position, _end_pos : Position) -> (YYSym
 // [94, term → • IN, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / UNDERSCORE / BAR / LBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 // [95, term → • IS, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / UNDERSCORE / BAR / LBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 // [96, term → • grouped_term, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / UNDERSCORE / BAR / LBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
-// [109, grouped_term → • LPAREN terms RPAREN, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / UNDERSCORE / BAR / LBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
-// [110, grouped_term → • LBRACE terms RBRACE, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / UNDERSCORE / BAR / LBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
-// [111, grouped_term → • LBRACKET terms RBRACKET, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / UNDERSCORE / BAR / LBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
-// [114, start_prime → • start, $]
+// [120, grouped_term → • LPAREN terms RPAREN, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / UNDERSCORE / BAR / LBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
+// [121, grouped_term → • LBRACE terms RBRACE, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / UNDERSCORE / BAR / LBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
+// [122, grouped_term → • LBRACKET terms RBRACKET, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / UNDERSCORE / BAR / LBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
+// [125, start_prime → • start, $]
 fn yy_state_0(_lookahead : YYSymbol) -> YYDecision {
   match _lookahead {
     NT_start => Shift(yy_state_1)
@@ -2104,16 +2245,16 @@ fn yy_state_0(_lookahead : YYSymbol) -> YYDecision {
     T_INT => Shift(yy_state_98)
     T_CHAR => Shift(yy_state_99)
     T_LIDENT_LEX => Shift(yy_state_100)
-    T_CONST => Shift(yy_state_119)
-    NT_term => Shift(yy_state_126)
-    NT_term_list => Shift(yy_state_128)
-    NT_terms => Shift(yy_state_135)
-    EOI => Reduce(0, NT_term_list, yy_action_59)
+    T_CONST => Shift(yy_state_138)
+    NT_term => Shift(yy_state_145)
+    NT_term_list => Shift(yy_state_147)
+    NT_terms => Shift(yy_state_154)
+    EOI => Reduce(0, NT_term_list, yy_action_42)
     _ => Error
   }
 }
 
-// [114, start_prime → start •, $]
+// [125, start_prime → start •, $]
 fn yy_state_1(_lookahead : YYSymbol) -> YYDecision {
   Accept
 }
@@ -2214,10 +2355,10 @@ fn yy_state_1(_lookahead : YYSymbol) -> YYDecision {
 // [94, term → • IN, CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 // [95, term → • IS, CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 // [96, term → • grouped_term, CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
-// [109, grouped_term → • LPAREN terms RPAREN, CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
-// [110, grouped_term → • LBRACE terms RBRACE, CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
-// [111, grouped_term → • LBRACKET terms RBRACKET, CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
-// [111, grouped_term → LBRACKET • terms RBRACKET, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
+// [120, grouped_term → • LPAREN terms RPAREN, CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
+// [121, grouped_term → • LBRACE terms RBRACE, CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
+// [122, grouped_term → • LBRACKET terms RBRACKET, CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
+// [122, grouped_term → LBRACKET • terms RBRACKET, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_2(_lookahead : YYSymbol) -> YYDecision {
   match _lookahead {
     T_LBRACKET => Shift(yy_state_2)
@@ -2314,15 +2455,15 @@ fn yy_state_2(_lookahead : YYSymbol) -> YYDecision {
     T_INT => Shift(yy_state_98)
     T_CHAR => Shift(yy_state_99)
     T_LIDENT_LEX => Shift(yy_state_100)
-    T_CONST => Shift(yy_state_119)
-    NT_term => Shift(yy_state_126)
-    NT_term_list => Shift(yy_state_128)
-    T_RBRACKET => Reduce(0, NT_term_list, yy_action_59)
+    T_CONST => Shift(yy_state_138)
+    NT_term => Shift(yy_state_145)
+    NT_term_list => Shift(yy_state_147)
+    T_RBRACKET => Reduce(0, NT_term_list, yy_action_42)
     _ => Error
   }
 }
 
-// [111, grouped_term → LBRACKET terms • RBRACKET, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
+// [122, grouped_term → LBRACKET terms • RBRACKET, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_3(_lookahead : YYSymbol) -> YYDecision {
   match _lookahead {
     T_RBRACKET => Shift(yy_state_4)
@@ -2330,9 +2471,9 @@ fn yy_state_3(_lookahead : YYSymbol) -> YYDecision {
   }
 }
 
-// [111, grouped_term → LBRACKET terms RBRACKET •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
+// [122, grouped_term → LBRACKET terms RBRACKET •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_4(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(3, NT_grouped_term, yy_action_157)
+  ReduceNoLookahead(3, NT_grouped_term, yy_action_179)
 }
 
 // [1, terms → • term_list, RBRACE]
@@ -2431,10 +2572,10 @@ fn yy_state_4(_lookahead : YYSymbol) -> YYDecision {
 // [94, term → • IN, CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 // [95, term → • IS, CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 // [96, term → • grouped_term, CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
-// [109, grouped_term → • LPAREN terms RPAREN, CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
-// [110, grouped_term → • LBRACE terms RBRACE, CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
-// [110, grouped_term → LBRACE • terms RBRACE, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
-// [111, grouped_term → • LBRACKET terms RBRACKET, CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
+// [120, grouped_term → • LPAREN terms RPAREN, CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
+// [121, grouped_term → • LBRACE terms RBRACE, CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
+// [121, grouped_term → LBRACE • terms RBRACE, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
+// [122, grouped_term → • LBRACKET terms RBRACKET, CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_5(_lookahead : YYSymbol) -> YYDecision {
   match _lookahead {
     T_LBRACKET => Shift(yy_state_2)
@@ -2531,15 +2672,15 @@ fn yy_state_5(_lookahead : YYSymbol) -> YYDecision {
     T_INT => Shift(yy_state_98)
     T_CHAR => Shift(yy_state_99)
     T_LIDENT_LEX => Shift(yy_state_100)
-    T_CONST => Shift(yy_state_119)
-    NT_term => Shift(yy_state_126)
-    NT_term_list => Shift(yy_state_128)
-    T_RBRACE => Reduce(0, NT_term_list, yy_action_59)
+    T_CONST => Shift(yy_state_138)
+    NT_term => Shift(yy_state_145)
+    NT_term_list => Shift(yy_state_147)
+    T_RBRACE => Reduce(0, NT_term_list, yy_action_42)
     _ => Error
   }
 }
 
-// [110, grouped_term → LBRACE terms • RBRACE, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
+// [121, grouped_term → LBRACE terms • RBRACE, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_6(_lookahead : YYSymbol) -> YYDecision {
   match _lookahead {
     T_RBRACE => Shift(yy_state_7)
@@ -2547,9 +2688,9 @@ fn yy_state_6(_lookahead : YYSymbol) -> YYDecision {
   }
 }
 
-// [110, grouped_term → LBRACE terms RBRACE •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
+// [121, grouped_term → LBRACE terms RBRACE •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_7(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(3, NT_grouped_term, yy_action_54)
+  ReduceNoLookahead(3, NT_grouped_term, yy_action_193)
 }
 
 // [1, terms → • term_list, RPAREN]
@@ -2648,10 +2789,10 @@ fn yy_state_7(_lookahead : YYSymbol) -> YYDecision {
 // [94, term → • IN, CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / UNDERSCORE / BAR / LBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 // [95, term → • IS, CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / UNDERSCORE / BAR / LBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 // [96, term → • grouped_term, CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / UNDERSCORE / BAR / LBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
-// [109, grouped_term → • LPAREN terms RPAREN, CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / UNDERSCORE / BAR / LBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
-// [109, grouped_term → LPAREN • terms RPAREN, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
-// [110, grouped_term → • LBRACE terms RBRACE, CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / UNDERSCORE / BAR / LBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
-// [111, grouped_term → • LBRACKET terms RBRACKET, CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / UNDERSCORE / BAR / LBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
+// [120, grouped_term → • LPAREN terms RPAREN, CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / UNDERSCORE / BAR / LBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
+// [120, grouped_term → LPAREN • terms RPAREN, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
+// [121, grouped_term → • LBRACE terms RBRACE, CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / UNDERSCORE / BAR / LBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
+// [122, grouped_term → • LBRACKET terms RBRACKET, CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / UNDERSCORE / BAR / LBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_8(_lookahead : YYSymbol) -> YYDecision {
   match _lookahead {
     T_LBRACKET => Shift(yy_state_2)
@@ -2748,15 +2889,15 @@ fn yy_state_8(_lookahead : YYSymbol) -> YYDecision {
     T_INT => Shift(yy_state_98)
     T_CHAR => Shift(yy_state_99)
     T_LIDENT_LEX => Shift(yy_state_100)
-    T_CONST => Shift(yy_state_119)
-    NT_term => Shift(yy_state_126)
-    NT_term_list => Shift(yy_state_128)
-    T_RPAREN => Reduce(0, NT_term_list, yy_action_59)
+    T_CONST => Shift(yy_state_138)
+    NT_term => Shift(yy_state_145)
+    NT_term_list => Shift(yy_state_147)
+    T_RPAREN => Reduce(0, NT_term_list, yy_action_42)
     _ => Error
   }
 }
 
-// [109, grouped_term → LPAREN terms • RPAREN, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
+// [120, grouped_term → LPAREN terms • RPAREN, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_9(_lookahead : YYSymbol) -> YYDecision {
   match _lookahead {
     T_RPAREN => Shift(yy_state_10)
@@ -2764,94 +2905,94 @@ fn yy_state_9(_lookahead : YYSymbol) -> YYDecision {
   }
 }
 
-// [109, grouped_term → LPAREN terms RPAREN •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
+// [120, grouped_term → LPAREN terms RPAREN •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_10(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(3, NT_grouped_term, yy_action_123)
+  ReduceNoLookahead(3, NT_grouped_term, yy_action_162)
 }
 
 // [96, term → grouped_term •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_11(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_term, yy_action_197)
+  ReduceNoLookahead(1, NT_term, yy_action_136)
 }
 
 // [95, term → IS •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_12(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_term, yy_action_94)
+  ReduceNoLookahead(1, NT_term, yy_action_48)
 }
 
 // [94, term → IN •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_13(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_term, yy_action_51)
+  ReduceNoLookahead(1, NT_term, yy_action_74)
 }
 
 // [93, term → FOR •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_14(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_term, yy_action_137)
+  ReduceNoLookahead(1, NT_term, yy_action_124)
 }
 
 // [92, term → GUARD •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_15(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_term, yy_action_129)
+  ReduceNoLookahead(1, NT_term, yy_action_195)
 }
 
 // [91, term → LOOP •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_16(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_term, yy_action_9)
+  ReduceNoLookahead(1, NT_term, yy_action_127)
 }
 
 // [90, term → TEST •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_17(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_term, yy_action_126)
+  ReduceNoLookahead(1, NT_term, yy_action_213)
 }
 
 // [89, term → ELLIPSIS •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_18(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_term, yy_action_186)
+  ReduceNoLookahead(1, NT_term, yy_action_7)
 }
 
 // [88, term → RANGE_EXCLUSIVE •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_19(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_term, yy_action_192)
+  ReduceNoLookahead(1, NT_term, yy_action_203)
 }
 
 // [87, term → RANGE_INCLUSIVE •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_20(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_term, yy_action_165)
+  ReduceNoLookahead(1, NT_term, yy_action_37)
 }
 
 // [86, term → DOTDOT •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_21(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_term, yy_action_159)
+  ReduceNoLookahead(1, NT_term, yy_action_146)
 }
 
 // [85, term → RETURN •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_22(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_term, yy_action_143)
+  ReduceNoLookahead(1, NT_term, yy_action_118)
 }
 
 // [84, term → WHILE •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_23(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_term, yy_action_161)
+  ReduceNoLookahead(1, NT_term, yy_action_185)
 }
 
 // [83, term → THIN_ARROW •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_24(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_term, yy_action_7)
+  ReduceNoLookahead(1, NT_term, yy_action_58)
 }
 
 // [82, term → FAT_ARROW •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_25(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_term, yy_action_149)
+  ReduceNoLookahead(1, NT_term, yy_action_174)
 }
 
 // [81, term → TYPE •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_26(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_term, yy_action_104)
+  ReduceNoLookahead(1, NT_term, yy_action_148)
 }
 
 // [80, term → MUTABLE •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_27(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_term, yy_action_187)
+  ReduceNoLookahead(1, NT_term, yy_action_175)
 }
 
 // [79, term → MATCH •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
@@ -2861,374 +3002,374 @@ fn yy_state_28(_lookahead : YYSymbol) -> YYDecision {
 
 // [77, term → LET •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_29(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_term, yy_action_17)
+  ReduceNoLookahead(1, NT_term, yy_action_94)
 }
 
 // [76, term → IF •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_30(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_term, yy_action_23)
+  ReduceNoLookahead(1, NT_term, yy_action_215)
 }
 
 // [75, term → FN •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_31(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_term, yy_action_182)
+  ReduceNoLookahead(1, NT_term, yy_action_101)
 }
 
 // [74, term → ELSE •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_32(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_term, yy_action_183)
+  ReduceNoLookahead(1, NT_term, yy_action_59)
 }
 
 // [73, term → PIPE •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_33(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_term, yy_action_27)
+  ReduceNoLookahead(1, NT_term, yy_action_151)
 }
 
 // [72, term → AS •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_34(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_term, yy_action_150)
+  ReduceNoLookahead(1, NT_term, yy_action_137)
 }
 
 // [71, term → PACKAGE_NAME •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_35(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_term, yy_action_189)
+  ReduceNoLookahead(1, NT_term, yy_action_12)
 }
 
 // [70, term → BARBAR •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_36(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_term, yy_action_199)
+  ReduceNoLookahead(1, NT_term, yy_action_134)
 }
 
 // [69, term → CARET •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_37(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_term, yy_action_85)
+  ReduceNoLookahead(1, NT_term, yy_action_198)
 }
 
 // [68, term → AMPER •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_38(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_term, yy_action_21)
+  ReduceNoLookahead(1, NT_term, yy_action_204)
 }
 
 // [67, term → AMPERAMPER •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_39(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_term, yy_action_35)
+  ReduceNoLookahead(1, NT_term, yy_action_177)
 }
 
 // [66, term → BAR •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_40(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_term, yy_action_83)
+  ReduceNoLookahead(1, NT_term, yy_action_168)
 }
 
 // [65, term → UNDERSCORE •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_41(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_term, yy_action_43)
+  ReduceNoLookahead(1, NT_term, yy_action_154)
 }
 
 // [64, term → PLUS •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_42(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_term, yy_action_11)
+  ReduceNoLookahead(1, NT_term, yy_action_170)
 }
 
 // [63, term → SEMI •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_43(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_term, yy_action_89)
+  ReduceNoLookahead(1, NT_term, yy_action_10)
 }
 
 // [62, term → COLON •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_44(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_term, yy_action_155)
+  ReduceNoLookahead(1, NT_term, yy_action_158)
 }
 
 // [61, term → COLONCOLON •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_45(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_term, yy_action_25)
+  ReduceNoLookahead(1, NT_term, yy_action_109)
 }
 
 // [60, term → DOT_LPAREN •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_46(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_term, yy_action_151)
+  ReduceNoLookahead(1, NT_term, yy_action_199)
 }
 
 // [59, term → DOT_INT •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_47(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_term, yy_action_178)
+  ReduceNoLookahead(1, NT_term, yy_action_142)
 }
 
 // [58, term → DOT_UIDENT •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_48(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_term, yy_action_52)
+  ReduceNoLookahead(1, NT_term, yy_action_122)
 }
 
 // [57, term → DOT_LIDENT •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_49(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_term, yy_action_13)
+  ReduceNoLookahead(1, NT_term, yy_action_20)
 }
 
 // [56, term → EXCLAMATION •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_50(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_term, yy_action_110)
+  ReduceNoLookahead(1, NT_term, yy_action_26)
 }
 
 // [55, term → QUESTION •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_51(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_term, yy_action_167)
+  ReduceNoLookahead(1, NT_term, yy_action_192)
 }
 
 // [54, term → MINUS •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_52(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_term, yy_action_170)
+  ReduceNoLookahead(1, NT_term, yy_action_194)
 }
 
 // [53, term → COMMA •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_53(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_term, yy_action_2)
+  ReduceNoLookahead(1, NT_term, yy_action_31)
 }
 
 // [52, term → EQUAL •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_54(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_term, yy_action_106)
+  ReduceNoLookahead(1, NT_term, yy_action_159)
 }
 
 // [51, term → FNALIAS •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_55(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_term, yy_action_57)
+  ReduceNoLookahead(1, NT_term, yy_action_202)
 }
 
 // [50, term → TRAITALIAS •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_56(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_term, yy_action_91)
+  ReduceNoLookahead(1, NT_term, yy_action_210)
 }
 
 // [49, term → TYPEALIAS •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_57(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_term, yy_action_55)
+  ReduceNoLookahead(1, NT_term, yy_action_90)
 }
 
 // [48, term → ASYNC •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_58(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_term, yy_action_108)
+  ReduceNoLookahead(1, NT_term, yy_action_24)
 }
 
 // [47, term → CATCH •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_59(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_term, yy_action_46)
+  ReduceNoLookahead(1, NT_term, yy_action_40)
 }
 
 // [46, term → TRY •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_60(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_term, yy_action_201)
+  ReduceNoLookahead(1, NT_term, yy_action_88)
 }
 
 // [45, term → THROW •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_61(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_term, yy_action_41)
+  ReduceNoLookahead(1, NT_term, yy_action_50)
 }
 
 // [44, term → RAISE •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_62(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_term, yy_action_162)
+  ReduceNoLookahead(1, NT_term, yy_action_14)
 }
 
 // [43, term → WITH •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_63(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_term, yy_action_177)
+  ReduceNoLookahead(1, NT_term, yy_action_96)
 }
 
 // [42, term → IMPL •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_64(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_term, yy_action_200)
+  ReduceNoLookahead(1, NT_term, yy_action_164)
 }
 
 // [41, term → DERIVE •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_65(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_term, yy_action_124)
+  ReduceNoLookahead(1, NT_term, yy_action_28)
 }
 
 // [40, term → TRAIT •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_66(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_term, yy_action_193)
+  ReduceNoLookahead(1, NT_term, yy_action_160)
 }
 
 // [39, term → ENUM •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_67(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_term, yy_action_102)
+  ReduceNoLookahead(1, NT_term, yy_action_191)
 }
 
 // [38, term → STRUCT •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_68(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_term, yy_action_130)
+  ReduceNoLookahead(1, NT_term, yy_action_60)
 }
 
 // [37, term → CONTINUE •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_69(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_term, yy_action_175)
+  ReduceNoLookahead(1, NT_term, yy_action_16)
 }
 
 // [36, term → BREAK •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_70(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_term, yy_action_164)
+  ReduceNoLookahead(1, NT_term, yy_action_115)
 }
 
 // [35, term → EXTERN •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_71(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_term, yy_action_198)
+  ReduceNoLookahead(1, NT_term, yy_action_181)
 }
 
 // [34, term → IMPORT •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_72(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_term, yy_action_71)
+  ReduceNoLookahead(1, NT_term, yy_action_184)
 }
 
 // [33, term → READONLY •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_73(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_term, yy_action_87)
+  ReduceNoLookahead(1, NT_term, yy_action_3)
 }
 
 // [32, term → PRIV •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_74(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_term, yy_action_118)
+  ReduceNoLookahead(1, NT_term, yy_action_112)
 }
 
 // [31, term → PUB •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_75(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_term, yy_action_188)
+  ReduceNoLookahead(1, NT_term, yy_action_65)
 }
 
 // [30, term → TRUE •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_76(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_term, yy_action_49)
+  ReduceNoLookahead(1, NT_term, yy_action_98)
 }
 
 // [29, term → FALSE •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_77(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_term, yy_action_60)
+  ReduceNoLookahead(1, NT_term, yy_action_62)
 }
 
 // [28, term → EOF •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_78(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_term, yy_action_72)
+  ReduceNoLookahead(1, NT_term, yy_action_114)
 }
 
 // [27, term → AUGMENTED_ASSIGNMENT •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_79(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_term, yy_action_0)
+  ReduceNoLookahead(1, NT_term, yy_action_53)
 }
 
 // [26, term → INFIX4 •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_80(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_term, yy_action_39)
+  ReduceNoLookahead(1, NT_term, yy_action_212)
 }
 
 // [25, term → INFIX3 •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_81(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_term, yy_action_74)
+  ReduceNoLookahead(1, NT_term, yy_action_46)
 }
 
 // [24, term → INFIX2 •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_82(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_term, yy_action_67)
+  ReduceNoLookahead(1, NT_term, yy_action_171)
 }
 
 // [23, term → INFIX1 •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_83(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_term, yy_action_140)
+  ReduceNoLookahead(1, NT_term, yy_action_190)
 }
 
 // [22, term → NEWLINE •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_84(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_term, yy_action_99)
+  ReduceNoLookahead(1, NT_term, yy_action_211)
 }
 
 // [21, term → COMMENT •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_85(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_term, yy_action_153)
+  ReduceNoLookahead(1, NT_term, yy_action_129)
 }
 
 // [20, term → POST_LABEL •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_86(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_term, yy_action_148)
+  ReduceNoLookahead(1, NT_term, yy_action_205)
 }
 
 // [19, term → UIDENT_BYTES_REGEX •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_87(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_term, yy_action_180)
+  ReduceNoLookahead(1, NT_term, yy_action_107)
 }
 
 // [17, term → UIDENT •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_88(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_term, yy_action_194)
+  ReduceNoLookahead(1, NT_term, yy_action_187)
 }
 
 // [16, term → LIDENT •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_89(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_term, yy_action_145)
+  ReduceNoLookahead(1, NT_term, yy_action_173)
 }
 
 // [15, term → ATTRIBUTE •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_90(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_term, yy_action_70)
+  ReduceNoLookahead(1, NT_term, yy_action_209)
 }
 
 // [14, term → INTERP •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_91(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_term, yy_action_146)
+  ReduceNoLookahead(1, NT_term, yy_action_79)
 }
 
 // [13, term → MULTILINE_INTERP •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_92(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_term, yy_action_77)
+  ReduceNoLookahead(1, NT_term, yy_action_92)
 }
 
 // [12, term → MULTILINE_STRING •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_93(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_term, yy_action_154)
+  ReduceNoLookahead(1, NT_term, yy_action_120)
 }
 
 // [11, term → STRING •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_94(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_term, yy_action_4)
+  ReduceNoLookahead(1, NT_term, yy_action_200)
 }
 
 // [10, term → FLOAT •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_95(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_term, yy_action_97)
+  ReduceNoLookahead(1, NT_term, yy_action_56)
 }
 
 // [9, term → BYTES •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_96(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_term, yy_action_171)
+  ReduceNoLookahead(1, NT_term, yy_action_67)
 }
 
 // [8, term → BYTE •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_97(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_term, yy_action_190)
+  ReduceNoLookahead(1, NT_term, yy_action_80)
 }
 
 // [7, term → INT •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_98(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_term, yy_action_202)
+  ReduceNoLookahead(1, NT_term, yy_action_0)
 }
 
 // [6, term → CHAR •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 fn yy_state_99(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_term, yy_action_115)
+  ReduceNoLookahead(1, NT_term, yy_action_44)
 }
 
 // [5, term → LIDENT_LEX • lident LBRACE lex_cases RBRACE, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 // [18, term → LIDENT_LEX •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
-// [113, lident → • LIDENT, LBRACE]
+// [124, lident → • LIDENT, LBRACE]
 fn yy_state_100(_lookahead : YYSymbol) -> YYDecision {
   match _lookahead {
     T_LIDENT => Shift(yy_state_101)
     NT_lident => Shift(yy_state_102)
-    T_CHAR | T_INT | T_BYTE | T_BYTES | T_FLOAT | T_STRING | T_MULTILINE_STRING | T_MULTILINE_INTERP | T_INTERP | T_ATTRIBUTE | T_UIDENT | T_LIDENT_LEX | T_UIDENT_BYTES_REGEX | T_POST_LABEL | T_COMMENT | T_NEWLINE | T_INFIX1 | T_INFIX2 | T_INFIX3 | T_INFIX4 | T_AUGMENTED_ASSIGNMENT | T_EOF | T_FALSE | T_TRUE | T_PUB | T_PRIV | T_READONLY | T_IMPORT | T_EXTERN | T_BREAK | T_CONTINUE | T_STRUCT | T_ENUM | T_TRAIT | T_DERIVE | T_IMPL | T_WITH | T_RAISE | T_THROW | T_TRY | T_CATCH | T_ASYNC | T_TYPEALIAS | T_TRAITALIAS | T_FNALIAS | T_EQUAL | T_LPAREN | T_RPAREN | T_COMMA | T_MINUS | T_QUESTION | T_EXCLAMATION | T_DOT_LIDENT | T_DOT_UIDENT | T_DOT_INT | T_DOT_LPAREN | T_COLONCOLON | T_COLON | T_SEMI | T_LBRACKET | T_PLUS | T_RBRACKET | T_UNDERSCORE | T_BAR | T_LBRACE | T_RBRACE | T_AMPERAMPER | T_AMPER | T_CARET | T_BARBAR | T_PACKAGE_NAME | T_AS | T_PIPE | T_ELSE | T_FN | T_IF | T_LET | T_CONST | T_MATCH | T_MUTABLE | T_TYPE | T_FAT_ARROW | T_THIN_ARROW | T_WHILE | T_RETURN | T_DOTDOT | T_RANGE_INCLUSIVE | T_RANGE_EXCLUSIVE | T_ELLIPSIS | T_TEST | T_LOOP | T_GUARD | T_FOR | T_IN | T_IS | EOI => Reduce(1, NT_term, yy_action_203)
+    T_CHAR | T_INT | T_BYTE | T_BYTES | T_FLOAT | T_STRING | T_MULTILINE_STRING | T_MULTILINE_INTERP | T_INTERP | T_ATTRIBUTE | T_UIDENT | T_LIDENT_LEX | T_UIDENT_BYTES_REGEX | T_POST_LABEL | T_COMMENT | T_NEWLINE | T_INFIX1 | T_INFIX2 | T_INFIX3 | T_INFIX4 | T_AUGMENTED_ASSIGNMENT | T_EOF | T_FALSE | T_TRUE | T_PUB | T_PRIV | T_READONLY | T_IMPORT | T_EXTERN | T_BREAK | T_CONTINUE | T_STRUCT | T_ENUM | T_TRAIT | T_DERIVE | T_IMPL | T_WITH | T_RAISE | T_THROW | T_TRY | T_CATCH | T_ASYNC | T_TYPEALIAS | T_TRAITALIAS | T_FNALIAS | T_EQUAL | T_LPAREN | T_RPAREN | T_COMMA | T_MINUS | T_QUESTION | T_EXCLAMATION | T_DOT_LIDENT | T_DOT_UIDENT | T_DOT_INT | T_DOT_LPAREN | T_COLONCOLON | T_COLON | T_SEMI | T_LBRACKET | T_PLUS | T_RBRACKET | T_UNDERSCORE | T_BAR | T_LBRACE | T_RBRACE | T_AMPERAMPER | T_AMPER | T_CARET | T_BARBAR | T_PACKAGE_NAME | T_AS | T_PIPE | T_ELSE | T_FN | T_IF | T_LET | T_CONST | T_MATCH | T_MUTABLE | T_TYPE | T_FAT_ARROW | T_THIN_ARROW | T_WHILE | T_RETURN | T_DOTDOT | T_RANGE_INCLUSIVE | T_RANGE_EXCLUSIVE | T_ELLIPSIS | T_TEST | T_LOOP | T_GUARD | T_FOR | T_IN | T_IS | EOI => Reduce(1, NT_term, yy_action_138)
     _ => Error
   }
 }
 
-// [113, lident → LIDENT •, COMMA / LBRACE / FAT_ARROW]
+// [124, lident → LIDENT •, COMMA / RBRACKET / LBRACE / FAT_ARROW]
 fn yy_state_101(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_lident, yy_action_172)
+  ReduceNoLookahead(1, NT_lident, yy_action_82)
 }
 
 // [5, term → LIDENT_LEX lident • LBRACE lex_cases RBRACE, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
@@ -3243,15 +3384,21 @@ fn yy_state_102(_lookahead : YYSymbol) -> YYDecision {
 // [97, lex_cases → • lex_case, RBRACE]
 // [98, lex_cases → • lex_case SEMI, RBRACE]
 // [99, lex_cases → • lex_case SEMI lex_cases, RBRACE]
-// [100, lex_case → • regex_pattern FAT_ARROW braced_term, SEMI / RBRACE]
-// [101, regex_pattern → • regex_pattern_item, FAT_ARROW]
-// [102, regex_pattern → • regex_pattern_item COMMA regex_pattern, FAT_ARROW]
-// [103, regex_pattern_item → • regex, COMMA / FAT_ARROW]
-// [104, regex_pattern_item → • regex AS lident, COMMA / FAT_ARROW]
-// [105, regex → • STRING, COMMA / AS / FAT_ARROW]
-// [106, regex → • INTERP, COMMA / AS / FAT_ARROW]
-// [107, regex → • uident, COMMA / AS / FAT_ARROW]
-// [112, uident → • UIDENT, COMMA / AS / FAT_ARROW]
+// [100, lex_case → • lex_pattern FAT_ARROW braced_term, SEMI / RBRACE]
+// [101, lex_pattern → • regex_pattern, FAT_ARROW]
+// [102, lex_pattern → • LBRACKET RBRACKET, FAT_ARROW]
+// [103, lex_pattern → • LBRACKET DOTDOT RBRACKET, FAT_ARROW]
+// [104, lex_pattern → • LBRACKET DOTDOT lident RBRACKET, FAT_ARROW]
+// [105, lex_pattern → • LBRACKET DOTDOT AS lident RBRACKET, FAT_ARROW]
+// [106, lex_pattern → • LBRACKET regex_pattern_with_opt_rest RBRACKET, FAT_ARROW]
+// [112, regex_pattern → • regex_pattern_item, FAT_ARROW]
+// [113, regex_pattern → • regex_pattern_item COMMA regex_pattern, FAT_ARROW]
+// [114, regex_pattern_item → • regex, COMMA / FAT_ARROW]
+// [115, regex_pattern_item → • regex AS lident, COMMA / FAT_ARROW]
+// [116, regex → • STRING, COMMA / AS / FAT_ARROW]
+// [117, regex → • INTERP, COMMA / AS / FAT_ARROW]
+// [118, regex → • uident, COMMA / AS / FAT_ARROW]
+// [123, uident → • UIDENT, COMMA / AS / FAT_ARROW]
 fn yy_state_103(_lookahead : YYSymbol) -> YYDecision {
   match _lookahead {
     T_UIDENT => Shift(yy_state_104)
@@ -3260,45 +3407,47 @@ fn yy_state_103(_lookahead : YYSymbol) -> YYDecision {
     T_STRING => Shift(yy_state_107)
     NT_regex => Shift(yy_state_108)
     NT_regex_pattern_item => Shift(yy_state_111)
-    NT_regex_pattern => Shift(yy_state_114)
-    NT_lex_case => Shift(yy_state_130)
-    NT_lex_cases => Shift(yy_state_133)
+    T_LBRACKET => Shift(yy_state_114)
+    NT_regex_pattern => Shift(yy_state_132)
+    NT_lex_pattern => Shift(yy_state_133)
+    NT_lex_case => Shift(yy_state_149)
+    NT_lex_cases => Shift(yy_state_152)
     _ => Error
   }
 }
 
-// [112, uident → UIDENT •, COMMA / COLON / SEMI / AS / FAT_ARROW]
+// [123, uident → UIDENT •, COMMA / COLON / SEMI / RBRACKET / AS / FAT_ARROW]
 fn yy_state_104(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_uident, yy_action_196)
+  ReduceNoLookahead(1, NT_uident, yy_action_78)
 }
 
-// [107, regex → uident •, COMMA / SEMI / AS / FAT_ARROW]
+// [118, regex → uident •, COMMA / SEMI / RBRACKET / AS / FAT_ARROW]
 fn yy_state_105(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_regex, yy_action_101)
+  ReduceNoLookahead(1, NT_regex, yy_action_143)
 }
 
-// [106, regex → INTERP •, COMMA / SEMI / AS / FAT_ARROW]
+// [117, regex → INTERP •, COMMA / SEMI / RBRACKET / AS / FAT_ARROW]
 fn yy_state_106(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_regex, yy_action_128)
+  ReduceNoLookahead(1, NT_regex, yy_action_121)
 }
 
-// [105, regex → STRING •, COMMA / SEMI / AS / FAT_ARROW]
+// [116, regex → STRING •, COMMA / SEMI / RBRACKET / AS / FAT_ARROW]
 fn yy_state_107(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_regex, yy_action_69)
+  ReduceNoLookahead(1, NT_regex, yy_action_217)
 }
 
-// [103, regex_pattern_item → regex •, COMMA / FAT_ARROW]
-// [104, regex_pattern_item → regex • AS lident, COMMA / FAT_ARROW]
+// [114, regex_pattern_item → regex •, COMMA / RBRACKET / FAT_ARROW]
+// [115, regex_pattern_item → regex • AS lident, COMMA / RBRACKET / FAT_ARROW]
 fn yy_state_108(_lookahead : YYSymbol) -> YYDecision {
   match _lookahead {
     T_AS => Shift(yy_state_109)
-    T_COMMA | T_FAT_ARROW => Reduce(1, NT_regex_pattern_item, yy_action_131)
+    T_COMMA | T_RBRACKET | T_FAT_ARROW => Reduce(1, NT_regex_pattern_item, yy_action_206)
     _ => Error
   }
 }
 
-// [104, regex_pattern_item → regex AS • lident, COMMA / FAT_ARROW]
-// [113, lident → • LIDENT, COMMA / FAT_ARROW]
+// [115, regex_pattern_item → regex AS • lident, COMMA / RBRACKET / FAT_ARROW]
+// [124, lident → • LIDENT, COMMA / RBRACKET / FAT_ARROW]
 fn yy_state_109(_lookahead : YYSymbol) -> YYDecision {
   match _lookahead {
     T_LIDENT => Shift(yy_state_101)
@@ -3307,30 +3456,30 @@ fn yy_state_109(_lookahead : YYSymbol) -> YYDecision {
   }
 }
 
-// [104, regex_pattern_item → regex AS lident •, COMMA / FAT_ARROW]
+// [115, regex_pattern_item → regex AS lident •, COMMA / RBRACKET / FAT_ARROW]
 fn yy_state_110(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(3, NT_regex_pattern_item, yy_action_33)
+  ReduceNoLookahead(3, NT_regex_pattern_item, yy_action_116)
 }
 
-// [101, regex_pattern → regex_pattern_item •, FAT_ARROW]
-// [102, regex_pattern → regex_pattern_item • COMMA regex_pattern, FAT_ARROW]
+// [112, regex_pattern → regex_pattern_item •, FAT_ARROW]
+// [113, regex_pattern → regex_pattern_item • COMMA regex_pattern, FAT_ARROW]
 fn yy_state_111(_lookahead : YYSymbol) -> YYDecision {
   match _lookahead {
     T_COMMA => Shift(yy_state_112)
-    T_FAT_ARROW => Reduce(1, NT_regex_pattern, yy_action_37)
+    T_FAT_ARROW => Reduce(1, NT_regex_pattern, yy_action_43)
     _ => Error
   }
 }
 
-// [101, regex_pattern → • regex_pattern_item, FAT_ARROW]
-// [102, regex_pattern → • regex_pattern_item COMMA regex_pattern, FAT_ARROW]
-// [102, regex_pattern → regex_pattern_item COMMA • regex_pattern, FAT_ARROW]
-// [103, regex_pattern_item → • regex, COMMA / FAT_ARROW]
-// [104, regex_pattern_item → • regex AS lident, COMMA / FAT_ARROW]
-// [105, regex → • STRING, COMMA / AS / FAT_ARROW]
-// [106, regex → • INTERP, COMMA / AS / FAT_ARROW]
-// [107, regex → • uident, COMMA / AS / FAT_ARROW]
-// [112, uident → • UIDENT, COMMA / AS / FAT_ARROW]
+// [112, regex_pattern → • regex_pattern_item, FAT_ARROW]
+// [113, regex_pattern → • regex_pattern_item COMMA regex_pattern, FAT_ARROW]
+// [113, regex_pattern → regex_pattern_item COMMA • regex_pattern, FAT_ARROW]
+// [114, regex_pattern_item → • regex, COMMA / FAT_ARROW]
+// [115, regex_pattern_item → • regex AS lident, COMMA / FAT_ARROW]
+// [116, regex → • STRING, COMMA / AS / FAT_ARROW]
+// [117, regex → • INTERP, COMMA / AS / FAT_ARROW]
+// [118, regex → • uident, COMMA / AS / FAT_ARROW]
+// [123, uident → • UIDENT, COMMA / AS / FAT_ARROW]
 fn yy_state_112(_lookahead : YYSymbol) -> YYDecision {
   match _lookahead {
     T_UIDENT => Shift(yy_state_104)
@@ -3344,25 +3493,215 @@ fn yy_state_112(_lookahead : YYSymbol) -> YYDecision {
   }
 }
 
-// [102, regex_pattern → regex_pattern_item COMMA regex_pattern •, FAT_ARROW]
+// [113, regex_pattern → regex_pattern_item COMMA regex_pattern •, FAT_ARROW]
 fn yy_state_113(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(3, NT_regex_pattern, yy_action_93)
+  ReduceNoLookahead(3, NT_regex_pattern, yy_action_89)
 }
 
-// [100, lex_case → regex_pattern • FAT_ARROW braced_term, SEMI / RBRACE]
+// [102, lex_pattern → LBRACKET • RBRACKET, FAT_ARROW]
+// [103, lex_pattern → LBRACKET • DOTDOT RBRACKET, FAT_ARROW]
+// [104, lex_pattern → LBRACKET • DOTDOT lident RBRACKET, FAT_ARROW]
+// [105, lex_pattern → LBRACKET • DOTDOT AS lident RBRACKET, FAT_ARROW]
+// [106, lex_pattern → LBRACKET • regex_pattern_with_opt_rest RBRACKET, FAT_ARROW]
+// [107, regex_pattern_with_opt_rest → • regex_pattern_item, RBRACKET]
+// [108, regex_pattern_with_opt_rest → • DOTDOT, RBRACKET]
+// [109, regex_pattern_with_opt_rest → • DOTDOT lident, RBRACKET]
+// [110, regex_pattern_with_opt_rest → • DOTDOT AS lident, RBRACKET]
+// [111, regex_pattern_with_opt_rest → • regex_pattern_item COMMA regex_pattern_with_opt_rest, RBRACKET]
+// [114, regex_pattern_item → • regex, COMMA / RBRACKET]
+// [115, regex_pattern_item → • regex AS lident, COMMA / RBRACKET]
+// [116, regex → • STRING, COMMA / RBRACKET / AS]
+// [117, regex → • INTERP, COMMA / RBRACKET / AS]
+// [118, regex → • uident, COMMA / RBRACKET / AS]
+// [123, uident → • UIDENT, COMMA / RBRACKET / AS]
 fn yy_state_114(_lookahead : YYSymbol) -> YYDecision {
   match _lookahead {
-    T_FAT_ARROW => Shift(yy_state_115)
+    T_UIDENT => Shift(yy_state_104)
+    NT_uident => Shift(yy_state_105)
+    T_INTERP => Shift(yy_state_106)
+    T_STRING => Shift(yy_state_107)
+    NT_regex => Shift(yy_state_108)
+    NT_regex_pattern_item => Shift(yy_state_115)
+    NT_regex_pattern_with_opt_rest => Shift(yy_state_122)
+    T_DOTDOT => Shift(yy_state_124)
+    T_RBRACKET => Shift(yy_state_131)
     _ => Error
   }
 }
 
-// [100, lex_case → regex_pattern FAT_ARROW • braced_term, SEMI / RBRACE]
-// [108, braced_term → • LBRACE terms RBRACE, SEMI / RBRACE]
+// [107, regex_pattern_with_opt_rest → regex_pattern_item •, RBRACKET]
+// [111, regex_pattern_with_opt_rest → regex_pattern_item • COMMA regex_pattern_with_opt_rest, RBRACKET]
 fn yy_state_115(_lookahead : YYSymbol) -> YYDecision {
   match _lookahead {
-    T_LBRACE => Shift(yy_state_116)
-    NT_braced_term => Shift(yy_state_129)
+    T_COMMA => Shift(yy_state_116)
+    T_RBRACKET => Reduce(1, NT_regex_pattern_with_opt_rest, yy_action_167)
+    _ => Error
+  }
+}
+
+// [107, regex_pattern_with_opt_rest → • regex_pattern_item, RBRACKET]
+// [108, regex_pattern_with_opt_rest → • DOTDOT, RBRACKET]
+// [109, regex_pattern_with_opt_rest → • DOTDOT lident, RBRACKET]
+// [110, regex_pattern_with_opt_rest → • DOTDOT AS lident, RBRACKET]
+// [111, regex_pattern_with_opt_rest → • regex_pattern_item COMMA regex_pattern_with_opt_rest, RBRACKET]
+// [111, regex_pattern_with_opt_rest → regex_pattern_item COMMA • regex_pattern_with_opt_rest, RBRACKET]
+// [114, regex_pattern_item → • regex, COMMA / RBRACKET]
+// [115, regex_pattern_item → • regex AS lident, COMMA / RBRACKET]
+// [116, regex → • STRING, COMMA / RBRACKET / AS]
+// [117, regex → • INTERP, COMMA / RBRACKET / AS]
+// [118, regex → • uident, COMMA / RBRACKET / AS]
+// [123, uident → • UIDENT, COMMA / RBRACKET / AS]
+fn yy_state_116(_lookahead : YYSymbol) -> YYDecision {
+  match _lookahead {
+    T_UIDENT => Shift(yy_state_104)
+    NT_uident => Shift(yy_state_105)
+    T_INTERP => Shift(yy_state_106)
+    T_STRING => Shift(yy_state_107)
+    NT_regex => Shift(yy_state_108)
+    NT_regex_pattern_item => Shift(yy_state_115)
+    NT_regex_pattern_with_opt_rest => Shift(yy_state_117)
+    T_DOTDOT => Shift(yy_state_118)
+    _ => Error
+  }
+}
+
+// [111, regex_pattern_with_opt_rest → regex_pattern_item COMMA regex_pattern_with_opt_rest •, RBRACKET]
+fn yy_state_117(_lookahead : YYSymbol) -> YYDecision {
+  ReduceNoLookahead(3, NT_regex_pattern_with_opt_rest, yy_action_105)
+}
+
+// [108, regex_pattern_with_opt_rest → DOTDOT •, RBRACKET]
+// [109, regex_pattern_with_opt_rest → DOTDOT • lident, RBRACKET]
+// [110, regex_pattern_with_opt_rest → DOTDOT • AS lident, RBRACKET]
+// [124, lident → • LIDENT, RBRACKET]
+fn yy_state_118(_lookahead : YYSymbol) -> YYDecision {
+  match _lookahead {
+    T_LIDENT => Shift(yy_state_101)
+    T_AS => Shift(yy_state_119)
+    NT_lident => Shift(yy_state_121)
+    T_RBRACKET => Reduce(1, NT_regex_pattern_with_opt_rest, yy_action_188)
+    _ => Error
+  }
+}
+
+// [110, regex_pattern_with_opt_rest → DOTDOT AS • lident, RBRACKET]
+// [124, lident → • LIDENT, RBRACKET]
+fn yy_state_119(_lookahead : YYSymbol) -> YYDecision {
+  match _lookahead {
+    T_LIDENT => Shift(yy_state_101)
+    NT_lident => Shift(yy_state_120)
+    _ => Error
+  }
+}
+
+// [110, regex_pattern_with_opt_rest → DOTDOT AS lident •, RBRACKET]
+fn yy_state_120(_lookahead : YYSymbol) -> YYDecision {
+  ReduceNoLookahead(3, NT_regex_pattern_with_opt_rest, yy_action_139)
+}
+
+// [109, regex_pattern_with_opt_rest → DOTDOT lident •, RBRACKET]
+fn yy_state_121(_lookahead : YYSymbol) -> YYDecision {
+  ReduceNoLookahead(2, NT_regex_pattern_with_opt_rest, yy_action_5)
+}
+
+// [106, lex_pattern → LBRACKET regex_pattern_with_opt_rest • RBRACKET, FAT_ARROW]
+fn yy_state_122(_lookahead : YYSymbol) -> YYDecision {
+  match _lookahead {
+    T_RBRACKET => Shift(yy_state_123)
+    _ => Error
+  }
+}
+
+// [106, lex_pattern → LBRACKET regex_pattern_with_opt_rest RBRACKET •, FAT_ARROW]
+fn yy_state_123(_lookahead : YYSymbol) -> YYDecision {
+  ReduceNoLookahead(3, NT_lex_pattern, yy_action_108)
+}
+
+// [103, lex_pattern → LBRACKET DOTDOT • RBRACKET, FAT_ARROW]
+// [104, lex_pattern → LBRACKET DOTDOT • lident RBRACKET, FAT_ARROW]
+// [105, lex_pattern → LBRACKET DOTDOT • AS lident RBRACKET, FAT_ARROW]
+// [108, regex_pattern_with_opt_rest → DOTDOT •, RBRACKET]
+// [109, regex_pattern_with_opt_rest → DOTDOT • lident, RBRACKET]
+// [110, regex_pattern_with_opt_rest → DOTDOT • AS lident, RBRACKET]
+// [124, lident → • LIDENT, RBRACKET]
+fn yy_state_124(_lookahead : YYSymbol) -> YYDecision {
+  match _lookahead {
+    T_LIDENT => Shift(yy_state_101)
+    T_AS => Shift(yy_state_125)
+    NT_lident => Shift(yy_state_128)
+    T_RBRACKET => Shift(yy_state_130)
+    _ => Error
+  }
+}
+
+// [105, lex_pattern → LBRACKET DOTDOT AS • lident RBRACKET, FAT_ARROW]
+// [110, regex_pattern_with_opt_rest → DOTDOT AS • lident, RBRACKET]
+// [124, lident → • LIDENT, RBRACKET]
+fn yy_state_125(_lookahead : YYSymbol) -> YYDecision {
+  match _lookahead {
+    T_LIDENT => Shift(yy_state_101)
+    NT_lident => Shift(yy_state_126)
+    _ => Error
+  }
+}
+
+// [105, lex_pattern → LBRACKET DOTDOT AS lident • RBRACKET, FAT_ARROW]
+// [110, regex_pattern_with_opt_rest → DOTDOT AS lident •, RBRACKET]
+fn yy_state_126(_lookahead : YYSymbol) -> YYDecision {
+  match _lookahead {
+    T_RBRACKET => Shift(yy_state_127)
+    _ => Error
+  }
+}
+
+// [105, lex_pattern → LBRACKET DOTDOT AS lident RBRACKET •, FAT_ARROW]
+fn yy_state_127(_lookahead : YYSymbol) -> YYDecision {
+  ReduceNoLookahead(5, NT_lex_pattern, yy_action_216)
+}
+
+// [104, lex_pattern → LBRACKET DOTDOT lident • RBRACKET, FAT_ARROW]
+// [109, regex_pattern_with_opt_rest → DOTDOT lident •, RBRACKET]
+fn yy_state_128(_lookahead : YYSymbol) -> YYDecision {
+  match _lookahead {
+    T_RBRACKET => Shift(yy_state_129)
+    _ => Error
+  }
+}
+
+// [104, lex_pattern → LBRACKET DOTDOT lident RBRACKET •, FAT_ARROW]
+fn yy_state_129(_lookahead : YYSymbol) -> YYDecision {
+  ReduceNoLookahead(4, NT_lex_pattern, yy_action_180)
+}
+
+// [103, lex_pattern → LBRACKET DOTDOT RBRACKET •, FAT_ARROW]
+fn yy_state_130(_lookahead : YYSymbol) -> YYDecision {
+  ReduceNoLookahead(3, NT_lex_pattern, yy_action_69)
+}
+
+// [102, lex_pattern → LBRACKET RBRACKET •, FAT_ARROW]
+fn yy_state_131(_lookahead : YYSymbol) -> YYDecision {
+  ReduceNoLookahead(2, NT_lex_pattern, yy_action_201)
+}
+
+// [101, lex_pattern → regex_pattern •, FAT_ARROW]
+fn yy_state_132(_lookahead : YYSymbol) -> YYDecision {
+  ReduceNoLookahead(1, NT_lex_pattern, yy_action_166)
+}
+
+// [100, lex_case → lex_pattern • FAT_ARROW braced_term, SEMI / RBRACE]
+fn yy_state_133(_lookahead : YYSymbol) -> YYDecision {
+  match _lookahead {
+    T_FAT_ARROW => Shift(yy_state_134)
+    _ => Error
+  }
+}
+
+// [100, lex_case → lex_pattern FAT_ARROW • braced_term, SEMI / RBRACE]
+// [119, braced_term → • LBRACE terms RBRACE, SEMI / RBRACE]
+fn yy_state_134(_lookahead : YYSymbol) -> YYDecision {
+  match _lookahead {
+    T_LBRACE => Shift(yy_state_135)
+    NT_braced_term => Shift(yy_state_148)
     _ => Error
   }
 }
@@ -3463,11 +3802,11 @@ fn yy_state_115(_lookahead : YYSymbol) -> YYDecision {
 // [94, term → • IN, CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 // [95, term → • IS, CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 // [96, term → • grouped_term, CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
-// [108, braced_term → LBRACE • terms RBRACE, SEMI / RBRACE]
-// [109, grouped_term → • LPAREN terms RPAREN, CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
-// [110, grouped_term → • LBRACE terms RBRACE, CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
-// [111, grouped_term → • LBRACKET terms RBRACKET, CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
-fn yy_state_116(_lookahead : YYSymbol) -> YYDecision {
+// [119, braced_term → LBRACE • terms RBRACE, SEMI / RBRACE]
+// [120, grouped_term → • LPAREN terms RPAREN, CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
+// [121, grouped_term → • LBRACE terms RBRACE, CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
+// [122, grouped_term → • LBRACKET terms RBRACKET, CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
+fn yy_state_135(_lookahead : YYSymbol) -> YYDecision {
   match _lookahead {
     T_LBRACKET => Shift(yy_state_2)
     T_LBRACE => Shift(yy_state_5)
@@ -3562,91 +3901,91 @@ fn yy_state_116(_lookahead : YYSymbol) -> YYDecision {
     T_INT => Shift(yy_state_98)
     T_CHAR => Shift(yy_state_99)
     T_LIDENT_LEX => Shift(yy_state_100)
-    NT_terms => Shift(yy_state_117)
-    T_CONST => Shift(yy_state_119)
-    NT_term => Shift(yy_state_126)
-    NT_term_list => Shift(yy_state_128)
-    T_RBRACE => Reduce(0, NT_term_list, yy_action_59)
+    NT_terms => Shift(yy_state_136)
+    T_CONST => Shift(yy_state_138)
+    NT_term => Shift(yy_state_145)
+    NT_term_list => Shift(yy_state_147)
+    T_RBRACE => Reduce(0, NT_term_list, yy_action_42)
     _ => Error
   }
 }
 
-// [108, braced_term → LBRACE terms • RBRACE, SEMI / RBRACE]
-fn yy_state_117(_lookahead : YYSymbol) -> YYDecision {
+// [119, braced_term → LBRACE terms • RBRACE, SEMI / RBRACE]
+fn yy_state_136(_lookahead : YYSymbol) -> YYDecision {
   match _lookahead {
-    T_RBRACE => Shift(yy_state_118)
+    T_RBRACE => Shift(yy_state_137)
     _ => Error
   }
 }
 
-// [108, braced_term → LBRACE terms RBRACE •, SEMI / RBRACE]
-fn yy_state_118(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(3, NT_braced_term, yy_action_173)
+// [119, braced_term → LBRACE terms RBRACE •, SEMI / RBRACE]
+fn yy_state_137(_lookahead : YYSymbol) -> YYDecision {
+  ReduceNoLookahead(3, NT_braced_term, yy_action_208)
 }
 
 // [4, term → CONST • uident COLON UIDENT_BYTES_REGEX EQUAL regex SEMI, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 // [78, term → CONST •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
-// [112, uident → • UIDENT, COLON]
-fn yy_state_119(_lookahead : YYSymbol) -> YYDecision {
+// [123, uident → • UIDENT, COLON]
+fn yy_state_138(_lookahead : YYSymbol) -> YYDecision {
   match _lookahead {
     T_UIDENT => Shift(yy_state_104)
-    NT_uident => Shift(yy_state_120)
-    T_CHAR | T_INT | T_BYTE | T_BYTES | T_FLOAT | T_STRING | T_MULTILINE_STRING | T_MULTILINE_INTERP | T_INTERP | T_ATTRIBUTE | T_LIDENT | T_LIDENT_LEX | T_UIDENT_BYTES_REGEX | T_POST_LABEL | T_COMMENT | T_NEWLINE | T_INFIX1 | T_INFIX2 | T_INFIX3 | T_INFIX4 | T_AUGMENTED_ASSIGNMENT | T_EOF | T_FALSE | T_TRUE | T_PUB | T_PRIV | T_READONLY | T_IMPORT | T_EXTERN | T_BREAK | T_CONTINUE | T_STRUCT | T_ENUM | T_TRAIT | T_DERIVE | T_IMPL | T_WITH | T_RAISE | T_THROW | T_TRY | T_CATCH | T_ASYNC | T_TYPEALIAS | T_TRAITALIAS | T_FNALIAS | T_EQUAL | T_LPAREN | T_RPAREN | T_COMMA | T_MINUS | T_QUESTION | T_EXCLAMATION | T_DOT_LIDENT | T_DOT_UIDENT | T_DOT_INT | T_DOT_LPAREN | T_COLONCOLON | T_COLON | T_SEMI | T_LBRACKET | T_PLUS | T_RBRACKET | T_UNDERSCORE | T_BAR | T_LBRACE | T_RBRACE | T_AMPERAMPER | T_AMPER | T_CARET | T_BARBAR | T_PACKAGE_NAME | T_AS | T_PIPE | T_ELSE | T_FN | T_IF | T_LET | T_CONST | T_MATCH | T_MUTABLE | T_TYPE | T_FAT_ARROW | T_THIN_ARROW | T_WHILE | T_RETURN | T_DOTDOT | T_RANGE_INCLUSIVE | T_RANGE_EXCLUSIVE | T_ELLIPSIS | T_TEST | T_LOOP | T_GUARD | T_FOR | T_IN | T_IS | EOI => Reduce(1, NT_term, yy_action_120)
+    NT_uident => Shift(yy_state_139)
+    T_CHAR | T_INT | T_BYTE | T_BYTES | T_FLOAT | T_STRING | T_MULTILINE_STRING | T_MULTILINE_INTERP | T_INTERP | T_ATTRIBUTE | T_LIDENT | T_LIDENT_LEX | T_UIDENT_BYTES_REGEX | T_POST_LABEL | T_COMMENT | T_NEWLINE | T_INFIX1 | T_INFIX2 | T_INFIX3 | T_INFIX4 | T_AUGMENTED_ASSIGNMENT | T_EOF | T_FALSE | T_TRUE | T_PUB | T_PRIV | T_READONLY | T_IMPORT | T_EXTERN | T_BREAK | T_CONTINUE | T_STRUCT | T_ENUM | T_TRAIT | T_DERIVE | T_IMPL | T_WITH | T_RAISE | T_THROW | T_TRY | T_CATCH | T_ASYNC | T_TYPEALIAS | T_TRAITALIAS | T_FNALIAS | T_EQUAL | T_LPAREN | T_RPAREN | T_COMMA | T_MINUS | T_QUESTION | T_EXCLAMATION | T_DOT_LIDENT | T_DOT_UIDENT | T_DOT_INT | T_DOT_LPAREN | T_COLONCOLON | T_COLON | T_SEMI | T_LBRACKET | T_PLUS | T_RBRACKET | T_UNDERSCORE | T_BAR | T_LBRACE | T_RBRACE | T_AMPERAMPER | T_AMPER | T_CARET | T_BARBAR | T_PACKAGE_NAME | T_AS | T_PIPE | T_ELSE | T_FN | T_IF | T_LET | T_CONST | T_MATCH | T_MUTABLE | T_TYPE | T_FAT_ARROW | T_THIN_ARROW | T_WHILE | T_RETURN | T_DOTDOT | T_RANGE_INCLUSIVE | T_RANGE_EXCLUSIVE | T_ELLIPSIS | T_TEST | T_LOOP | T_GUARD | T_FOR | T_IN | T_IS | EOI => Reduce(1, NT_term, yy_action_110)
     _ => Error
   }
 }
 
 // [4, term → CONST uident • COLON UIDENT_BYTES_REGEX EQUAL regex SEMI, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
-fn yy_state_120(_lookahead : YYSymbol) -> YYDecision {
+fn yy_state_139(_lookahead : YYSymbol) -> YYDecision {
   match _lookahead {
-    T_COLON => Shift(yy_state_121)
+    T_COLON => Shift(yy_state_140)
     _ => Error
   }
 }
 
 // [4, term → CONST uident COLON • UIDENT_BYTES_REGEX EQUAL regex SEMI, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
-fn yy_state_121(_lookahead : YYSymbol) -> YYDecision {
+fn yy_state_140(_lookahead : YYSymbol) -> YYDecision {
   match _lookahead {
-    T_UIDENT_BYTES_REGEX => Shift(yy_state_122)
+    T_UIDENT_BYTES_REGEX => Shift(yy_state_141)
     _ => Error
   }
 }
 
 // [4, term → CONST uident COLON UIDENT_BYTES_REGEX • EQUAL regex SEMI, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
-fn yy_state_122(_lookahead : YYSymbol) -> YYDecision {
+fn yy_state_141(_lookahead : YYSymbol) -> YYDecision {
   match _lookahead {
-    T_EQUAL => Shift(yy_state_123)
+    T_EQUAL => Shift(yy_state_142)
     _ => Error
   }
 }
 
 // [4, term → CONST uident COLON UIDENT_BYTES_REGEX EQUAL • regex SEMI, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
-// [105, regex → • STRING, SEMI]
-// [106, regex → • INTERP, SEMI]
-// [107, regex → • uident, SEMI]
-// [112, uident → • UIDENT, SEMI]
-fn yy_state_123(_lookahead : YYSymbol) -> YYDecision {
+// [116, regex → • STRING, SEMI]
+// [117, regex → • INTERP, SEMI]
+// [118, regex → • uident, SEMI]
+// [123, uident → • UIDENT, SEMI]
+fn yy_state_142(_lookahead : YYSymbol) -> YYDecision {
   match _lookahead {
     T_UIDENT => Shift(yy_state_104)
     NT_uident => Shift(yy_state_105)
     T_INTERP => Shift(yy_state_106)
     T_STRING => Shift(yy_state_107)
-    NT_regex => Shift(yy_state_124)
+    NT_regex => Shift(yy_state_143)
     _ => Error
   }
 }
 
 // [4, term → CONST uident COLON UIDENT_BYTES_REGEX EQUAL regex • SEMI, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
-fn yy_state_124(_lookahead : YYSymbol) -> YYDecision {
+fn yy_state_143(_lookahead : YYSymbol) -> YYDecision {
   match _lookahead {
-    T_SEMI => Shift(yy_state_125)
+    T_SEMI => Shift(yy_state_144)
     _ => Error
   }
 }
 
 // [4, term → CONST uident COLON UIDENT_BYTES_REGEX EQUAL regex SEMI •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
-fn yy_state_125(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(7, NT_term, yy_action_174)
+fn yy_state_144(_lookahead : YYSymbol) -> YYDecision {
+  ReduceNoLookahead(7, NT_term, yy_action_141)
 }
 
 // [2, term_list → •, $ / RPAREN / RBRACKET / RBRACE]
@@ -3745,10 +4084,10 @@ fn yy_state_125(_lookahead : YYSymbol) -> YYDecision {
 // [94, term → • IN, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 // [95, term → • IS, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
 // [96, term → • grouped_term, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
-// [109, grouped_term → • LPAREN terms RPAREN, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
-// [110, grouped_term → • LBRACE terms RBRACE, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
-// [111, grouped_term → • LBRACKET terms RBRACKET, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
-fn yy_state_126(_lookahead : YYSymbol) -> YYDecision {
+// [120, grouped_term → • LPAREN terms RPAREN, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
+// [121, grouped_term → • LBRACE terms RBRACE, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
+// [122, grouped_term → • LBRACKET terms RBRACKET, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
+fn yy_state_145(_lookahead : YYSymbol) -> YYDecision {
   match _lookahead {
     T_LBRACKET => Shift(yy_state_2)
     T_LBRACE => Shift(yy_state_5)
@@ -3843,36 +4182,36 @@ fn yy_state_126(_lookahead : YYSymbol) -> YYDecision {
     T_INT => Shift(yy_state_98)
     T_CHAR => Shift(yy_state_99)
     T_LIDENT_LEX => Shift(yy_state_100)
-    T_CONST => Shift(yy_state_119)
-    NT_term => Shift(yy_state_126)
-    NT_term_list => Shift(yy_state_127)
-    T_RPAREN | T_RBRACKET | T_RBRACE | EOI => Reduce(0, NT_term_list, yy_action_59)
+    T_CONST => Shift(yy_state_138)
+    NT_term => Shift(yy_state_145)
+    NT_term_list => Shift(yy_state_146)
+    T_RPAREN | T_RBRACKET | T_RBRACE | EOI => Reduce(0, NT_term_list, yy_action_42)
     _ => Error
   }
 }
 
 // [3, term_list → term term_list •, $ / RPAREN / RBRACKET / RBRACE]
-fn yy_state_127(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(2, NT_term_list, yy_action_114)
+fn yy_state_146(_lookahead : YYSymbol) -> YYDecision {
+  ReduceNoLookahead(2, NT_term_list, yy_action_100)
 }
 
 // [1, terms → term_list •, $ / RPAREN / RBRACKET / RBRACE]
-fn yy_state_128(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_terms, yy_action_79)
+fn yy_state_147(_lookahead : YYSymbol) -> YYDecision {
+  ReduceNoLookahead(1, NT_terms, yy_action_64)
 }
 
-// [100, lex_case → regex_pattern FAT_ARROW braced_term •, SEMI / RBRACE]
-fn yy_state_129(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(3, NT_lex_case, yy_action_56)
+// [100, lex_case → lex_pattern FAT_ARROW braced_term •, SEMI / RBRACE]
+fn yy_state_148(_lookahead : YYSymbol) -> YYDecision {
+  ReduceNoLookahead(3, NT_lex_case, yy_action_63)
 }
 
 // [97, lex_cases → lex_case •, RBRACE]
 // [98, lex_cases → lex_case • SEMI, RBRACE]
 // [99, lex_cases → lex_case • SEMI lex_cases, RBRACE]
-fn yy_state_130(_lookahead : YYSymbol) -> YYDecision {
+fn yy_state_149(_lookahead : YYSymbol) -> YYDecision {
   match _lookahead {
-    T_SEMI => Shift(yy_state_131)
-    T_RBRACE => Reduce(1, NT_lex_cases, yy_action_109)
+    T_SEMI => Shift(yy_state_150)
+    T_RBRACE => Reduce(1, NT_lex_cases, yy_action_106)
     _ => Error
   }
 }
@@ -3882,16 +4221,22 @@ fn yy_state_130(_lookahead : YYSymbol) -> YYDecision {
 // [98, lex_cases → lex_case SEMI •, RBRACE]
 // [99, lex_cases → • lex_case SEMI lex_cases, RBRACE]
 // [99, lex_cases → lex_case SEMI • lex_cases, RBRACE]
-// [100, lex_case → • regex_pattern FAT_ARROW braced_term, SEMI / RBRACE]
-// [101, regex_pattern → • regex_pattern_item, FAT_ARROW]
-// [102, regex_pattern → • regex_pattern_item COMMA regex_pattern, FAT_ARROW]
-// [103, regex_pattern_item → • regex, COMMA / FAT_ARROW]
-// [104, regex_pattern_item → • regex AS lident, COMMA / FAT_ARROW]
-// [105, regex → • STRING, COMMA / AS / FAT_ARROW]
-// [106, regex → • INTERP, COMMA / AS / FAT_ARROW]
-// [107, regex → • uident, COMMA / AS / FAT_ARROW]
-// [112, uident → • UIDENT, COMMA / AS / FAT_ARROW]
-fn yy_state_131(_lookahead : YYSymbol) -> YYDecision {
+// [100, lex_case → • lex_pattern FAT_ARROW braced_term, SEMI / RBRACE]
+// [101, lex_pattern → • regex_pattern, FAT_ARROW]
+// [102, lex_pattern → • LBRACKET RBRACKET, FAT_ARROW]
+// [103, lex_pattern → • LBRACKET DOTDOT RBRACKET, FAT_ARROW]
+// [104, lex_pattern → • LBRACKET DOTDOT lident RBRACKET, FAT_ARROW]
+// [105, lex_pattern → • LBRACKET DOTDOT AS lident RBRACKET, FAT_ARROW]
+// [106, lex_pattern → • LBRACKET regex_pattern_with_opt_rest RBRACKET, FAT_ARROW]
+// [112, regex_pattern → • regex_pattern_item, FAT_ARROW]
+// [113, regex_pattern → • regex_pattern_item COMMA regex_pattern, FAT_ARROW]
+// [114, regex_pattern_item → • regex, COMMA / FAT_ARROW]
+// [115, regex_pattern_item → • regex AS lident, COMMA / FAT_ARROW]
+// [116, regex → • STRING, COMMA / AS / FAT_ARROW]
+// [117, regex → • INTERP, COMMA / AS / FAT_ARROW]
+// [118, regex → • uident, COMMA / AS / FAT_ARROW]
+// [123, uident → • UIDENT, COMMA / AS / FAT_ARROW]
+fn yy_state_150(_lookahead : YYSymbol) -> YYDecision {
   match _lookahead {
     T_UIDENT => Shift(yy_state_104)
     NT_uident => Shift(yy_state_105)
@@ -3899,35 +4244,37 @@ fn yy_state_131(_lookahead : YYSymbol) -> YYDecision {
     T_STRING => Shift(yy_state_107)
     NT_regex => Shift(yy_state_108)
     NT_regex_pattern_item => Shift(yy_state_111)
-    NT_regex_pattern => Shift(yy_state_114)
-    NT_lex_case => Shift(yy_state_130)
-    NT_lex_cases => Shift(yy_state_132)
-    T_RBRACE => Reduce(2, NT_lex_cases, yy_action_105)
+    T_LBRACKET => Shift(yy_state_114)
+    NT_regex_pattern => Shift(yy_state_132)
+    NT_lex_pattern => Shift(yy_state_133)
+    NT_lex_case => Shift(yy_state_149)
+    NT_lex_cases => Shift(yy_state_151)
+    T_RBRACE => Reduce(2, NT_lex_cases, yy_action_186)
     _ => Error
   }
 }
 
 // [99, lex_cases → lex_case SEMI lex_cases •, RBRACE]
-fn yy_state_132(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(3, NT_lex_cases, yy_action_176)
+fn yy_state_151(_lookahead : YYSymbol) -> YYDecision {
+  ReduceNoLookahead(3, NT_lex_cases, yy_action_131)
 }
 
 // [5, term → LIDENT_LEX lident LBRACE lex_cases • RBRACE, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
-fn yy_state_133(_lookahead : YYSymbol) -> YYDecision {
+fn yy_state_152(_lookahead : YYSymbol) -> YYDecision {
   match _lookahead {
-    T_RBRACE => Shift(yy_state_134)
+    T_RBRACE => Shift(yy_state_153)
     _ => Error
   }
 }
 
 // [5, term → LIDENT_LEX lident LBRACE lex_cases RBRACE •, $ / CHAR / INT / BYTE / BYTES / FLOAT / STRING / MULTILINE_STRING / MULTILINE_INTERP / INTERP / ATTRIBUTE / LIDENT / UIDENT / LIDENT_LEX / UIDENT_BYTES_REGEX / POST_LABEL / COMMENT / NEWLINE / INFIX1 / INFIX2 / INFIX3 / INFIX4 / AUGMENTED_ASSIGNMENT / EOF / FALSE / TRUE / PUB / PRIV / READONLY / IMPORT / EXTERN / BREAK / CONTINUE / STRUCT / ENUM / TRAIT / DERIVE / IMPL / WITH / RAISE / THROW / TRY / CATCH / ASYNC / TYPEALIAS / TRAITALIAS / FNALIAS / EQUAL / LPAREN / RPAREN / COMMA / MINUS / QUESTION / EXCLAMATION / DOT_LIDENT / DOT_UIDENT / DOT_INT / DOT_LPAREN / COLONCOLON / COLON / SEMI / LBRACKET / PLUS / RBRACKET / UNDERSCORE / BAR / LBRACE / RBRACE / AMPERAMPER / AMPER / CARET / BARBAR / PACKAGE_NAME / AS / PIPE / ELSE / FN / IF / LET / CONST / MATCH / MUTABLE / TYPE / FAT_ARROW / THIN_ARROW / WHILE / RETURN / DOTDOT / RANGE_INCLUSIVE / RANGE_EXCLUSIVE / ELLIPSIS / TEST / LOOP / GUARD / FOR / IN / IS]
-fn yy_state_134(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(5, NT_term, yy_action_179)
+fn yy_state_153(_lookahead : YYSymbol) -> YYDecision {
+  ReduceNoLookahead(5, NT_term, yy_action_36)
 }
 
 // [0, start → terms •, $]
-fn yy_state_135(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_start, yy_action_142)
+fn yy_state_154(_lookahead : YYSymbol) -> YYDecision {
+  ReduceNoLookahead(1, NT_start, yy_action_189)
 }
 
 fn yy_parse[T](

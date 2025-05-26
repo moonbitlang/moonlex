@@ -80,7 +80,8 @@ pub(all) struct DFA {
   end_nodes : Map[Int, (Int, Array[(DFACapturePosition, DFACapturePosition)])]
   // (pattern_id, [(begin_tag, rank), (end_tag, rank))])
   code_blocks : Array[CodeBlock] // indexed by pattern_id
-  captures : Array[Array[(String, VarType)]] // indexed by pattern_id
+  // String? is rest_binder
+  captures : Array[(Array[(String, VarType)], String?)] // indexed by pattern_id
   mut node_count : Int
 } derive(Show)
 
@@ -90,7 +91,7 @@ pub typealias DFANode = Int
 ///|
 fn DFA::new(
   code_blocks : Array[CodeBlock],
-  captures : Array[Array[(String, VarType)]]
+  captures : Array[(Array[(String, VarType)], String?)]
 ) -> DFA {
   {
     graph: [],
@@ -185,7 +186,7 @@ fn register_node(self : DFA, nfa : NFA, node : Int, os : State) -> Unit {
     abort("error")
   }
   let tagState = end_nodes[0].1
-  let min_tags = nfa.captures[min_code_block].map(fn {
+  let min_tags = nfa.captures[min_code_block].0.map(fn {
     (_name, (begin, end)) =>
       (
         match begin {
@@ -213,7 +214,7 @@ fn DFA::from_nfa(nfa : NFA) -> DFA {
     initial_state,
     nfa.tag_count,
   )
-  let captures = nfa.captures.map(fn(x) { x.map(fn(y) { y.0 }) })
+  let captures = nfa.captures.map(fn(x) { (x.0.map(fn(y) { y.0 }), x.1) })
   let dfa = DFA::new(nfa.code_blocks, captures)
   let node_map : Map[State, Int] = Map::new()
   let queue = @queue.new()
