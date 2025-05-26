@@ -4,7 +4,7 @@ pub fn parse(
   named_regexes~ : @immut/sorted_map.T[String, Regex]
 ) -> Regex {
   let source = match regex {
-    Literal(lit, ..) => lit
+    Literal(lit, ..) => parse_string_literal(lit)
     Named(id) =>
       // "cgLv3pS_" is a magic prefix to avoid clashes with user's input
       "{{cgLv3pS_\{id.name}}}"
@@ -12,7 +12,7 @@ pub fn parse(
       interps
       .map(fn(elem) {
         match elem {
-          InterpLit(repr~, ..) => repr
+          InterpLit(repr~, ..) => parse_string_literal(repr)
           InterpSource({ source, .. }) => "{{cgLv3pS_\{source}}}"
         }
       })
