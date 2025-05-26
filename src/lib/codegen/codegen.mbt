@@ -106,7 +106,7 @@ pub fn codegen_rule_inner(
     $|  // The matched pattern id
     $|  let mut matched = @int.max_value
     $|  let mut _end_pos = -1
-    $|  let mut _start_pos = \{rule.lexbuf_var}.curr_pos()
+    $|  let mut _start_pos = \{rule.lexee_var}.curr_pos()
     $|
     ,
   )
@@ -152,7 +152,7 @@ pub fn codegen_rule_inner(
   let start_tags = @sorted_set.new()
   for tag in start_tags {
     out.write_string(
-      $|  \{gen_tag_var((tag, 0))} = \{rule.lexbuf_var}.curr_pos()
+      $|  \{gen_tag_var((tag, 0))} = \{rule.lexee_var}.curr_pos()
       $|
       ,
     )
@@ -172,7 +172,7 @@ pub fn codegen_rule_inner(
       let buf = []
       for op in tag_action._ {
         match op {
-          Set(dest~) => buf.push("\{gen_tag_var(dest)} = \{rule.lexbuf_var}.curr_pos()")
+          Set(dest~) => buf.push("\{gen_tag_var(dest)} = \{rule.lexee_var}.curr_pos()")
           Copy(dest~, src~) =>
             buf.push("\{gen_tag_var(dest)} = \{gen_tag_var(src)}")
         }
@@ -192,7 +192,7 @@ pub fn codegen_rule_inner(
       out.write_string(
         $|      if matched >= \{pattern_id} {
         $|        matched = \{pattern_id}
-        $|        _end_pos = \{rule.lexbuf_var}.curr_pos()
+        $|        _end_pos = \{rule.lexee_var}.curr_pos()
         $|
         ,
       )
@@ -258,7 +258,7 @@ pub fn codegen_rule_inner(
       )
     } else {
       out.write_string(
-        $|      continue match \{rule.lexbuf_var}.next_as_int() {
+        $|      continue match \{rule.lexee_var}.next_as_int() {
         $|
         ,
       )
@@ -301,7 +301,7 @@ pub fn codegen_rule_inner(
     $|    panic()
     $|  }
     $|
-    $|  \{rule.lexbuf_var}.reset(pos=_end_pos)
+    $|  \{rule.lexee_var}.reset(pos=_end_pos)
     $|  match matched {
     $|
     ,
@@ -331,13 +331,13 @@ pub fn codegen_rule_inner(
       match var_type {
         Char =>
           out.write_string(
-            $|      let \{name} = \{rule.lexbuf_var}.get_char(_capture_\{capture_id}_start, _capture_\{capture_id}_end)
+            $|      let \{name} = \{rule.lexee_var}.get_char(_capture_\{capture_id}_start, _capture_\{capture_id}_end)
             $|
             ,
           )
         String =>
           out.write_string(
-            $|      let \{name} = \{rule.lexbuf_var}.get_string(_capture_\{capture_id}_start, _capture_\{capture_id}_end)
+            $|      let \{name} = \{rule.lexee_var}.get_string(_capture_\{capture_id}_start, _capture_\{capture_id}_end)
             $|
             ,
           )

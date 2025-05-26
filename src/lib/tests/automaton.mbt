@@ -1,7 +1,7 @@
 ///|
 fn simple_rule(re_str : String) -> @type.Rule {
   let re = @parser.parse_regex_from_string?(re_str).unwrap()
-  { name: "", signature: "", lexbuf_var: "lexbuf", patterns: [(re, "")] }
+  { name: "", signature: "", lexee_var: "lexbuf", patterns: [(re, "")] }
 }
 
 ///|

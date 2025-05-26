@@ -36,7 +36,7 @@ fn expand_term(
       let rule : @type.Rule = {
         name: "",
         signature: "",
-        lexbuf_var: id.name,
+        lexee_var: id.name,
         patterns: cases.map(fn(case) {
           let re = loop @regex.epsilon, case.pattern[:] {
             acc, [] => acc
