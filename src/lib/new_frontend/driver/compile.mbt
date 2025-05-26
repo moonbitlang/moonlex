@@ -5,11 +5,16 @@ pub fn compile(content : Bytes, filename~ : String) -> String {
     content,
     comment=false,
   )
-  let ast = @parser.start?(
+  let ast = try @parser.start(
     lex_result.tokens.filter(fn(triple) {
       not(triple.0 is (NEWLINE | COMMENT(_)))
     }),
     initial_pos={ fname: filename, lnum: 1, bol: 0, cnum: 0 },
-  ).unwrap()
+  ) catch {
+    err => {
+      println(err)
+      panic()
+    }
+  }
   generate(ast.body, source=content)
 }

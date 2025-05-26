@@ -185,7 +185,35 @@ lex_cases -> @list.T[@ast.LexCase]
   ;
 
 lex_case -> @ast.LexCase
-  : regex_pattern "=>" braced_term { {pattern: $1.to_array(), action: $3, loc: mkloc($sloc)} }
+  : lex_pattern "=>" braced_term { {pattern: $1, action: $3, loc: mkloc($sloc)} }
+  ;
+
+lex_pattern -> @ast.LexPattern
+  : regex_pattern { OpenPattern($1.to_array(), rest=None, loc=mkloc($sloc)) }
+  | "[" "]" { ClosedPattern([], loc=mkloc($sloc)) }
+  | "[" rest "]" { OpenPattern([], rest=$2, loc=mkloc($sloc)) }
+  | "[" regex_pattern_with_opt_rest "]" {
+    let (items, rest) = $2
+    match rest {
+      None => ClosedPattern(items.to_array(), loc=mkloc($sloc))
+      Some(rest) => OpenPattern(items.to_array(), rest~, loc=mkloc($sloc))
+    }
+  }
+  ;
+
+regex_pattern_with_opt_rest -> (@list.T[@ast.LexPatternItem], @ast.Ident??)
+  : regex_pattern_item { (@list.singleton($1), None) }
+  | rest { (@list.empty(), Some($1)) }
+  | regex_pattern_item "," regex_pattern_with_opt_rest {
+    let (items, rest) = $3
+    (@list.prepend(items, $1), rest)
+  }
+  ;
+
+%inline rest -> @ast.Ident?
+  : ".." { None }
+  | ".." lident { Some($2) }
+  | ".." "as" lident { Some($3) }
   ;
 
 regex_pattern -> @list.T[@ast.LexPatternItem]

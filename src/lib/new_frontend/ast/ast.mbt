@@ -26,9 +26,15 @@ pub fn Term::loc(self : Term) -> Location {
 
 ///|
 pub(all) struct LexCase {
-  pattern : Array[LexPatternItem]
+  pattern : LexPattern
   action : Term
   loc : Location
+} derive(ToJson)
+
+///|
+pub(all) enum LexPattern {
+  OpenPattern(Array[LexPatternItem], rest~ : Ident?, loc~ : Location)
+  ClosedPattern(Array[LexPatternItem], loc~ : Location)
 } derive(ToJson)
 
 ///|

@@ -19,8 +19,12 @@ pub(all) struct NFA {
   graph : Array[NFANode]
   end_nodes : Map[Int, Int] // from node_id to pattern_id
   code_blocks : Array[CodeBlock] // indexed by pattern_id
+  // String? is rest_binder
   captures : Array[
-    Array[((String, VarType), (NFACapturePosition, NFACapturePosition))],
+    (
+      Array[((String, VarType), (NFACapturePosition, NFACapturePosition))],
+      String?,
+    ),
   ] // indexed_by pattern_id
   mut start_node : Int
   mut node_count : Int
@@ -74,7 +78,7 @@ pub fn NFA::from_rule(rule : Rule, encoding? : @type.Encoding) -> NFA {
   }
 
   for pattern in rule.patterns {
-    let (re, code_block) = pattern
+    let (re, rest_binder, code_block) = pattern
     let lowered_re = re.lower(encoding~)
     let capture_names = get_regex_captures(re, lowered_re).map(fn(it) {
       let (name, (var_type, (begin, end))) = it
@@ -99,7 +103,7 @@ pub fn NFA::from_rule(rule : Rule, encoding? : @type.Encoding) -> NFA {
     nfa.register_regex(node, lowered_re, code_block, fn(x) {
       map.get(x).unwrap()
     })
-    nfa.captures.push(capture_names)
+    nfa.captures.push((capture_names, rest_binder))
   }
   nfa
 }

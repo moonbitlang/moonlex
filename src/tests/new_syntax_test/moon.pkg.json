@@ -6,8 +6,5 @@
             "output": "calc.mbt"
         }
     ],
-    "warn-list": "-1-13",
-    "import": [
-        "moonbitlang/ulex-runtime/lexbuf"
-    ]
+    "warn-list": "-1-13"
 }

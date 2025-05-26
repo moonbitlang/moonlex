@@ -38,7 +38,11 @@ fn expand_term(
         signature: "",
         lexee_var: id.name,
         patterns: cases.map(fn(case) {
-          let re = loop @regex.epsilon, case.pattern[:] {
+          let (items, open, rest) = match case.pattern {
+            OpenPattern(items, rest~, ..) => (items, true, rest)
+            ClosedPattern(items, ..) => (items, false, None)
+          }
+          let re = loop @regex.epsilon, items[:] {
             acc, [] => acc
             acc, [Regex(re), .. rest] =>
               continue @regex.seq(acc, @regex_parser.parse(re, named_regexes~)),
@@ -50,19 +54,23 @@ fn expand_term(
                 ),
                 rest
           }
-          (re, generate(case.action, source~))
+          let (re, rest_binder) = match (open, rest) {
+            (true, rest) => (re, rest)
+            (false, Some(_)) => panic()
+            (false, None) => (@regex.seq(re, @regex.eof), None)
+          }
+          let rest_binder = match rest_binder {
+            Some(id) => Some(id.name)
+            None => None
+          }
+          (re, rest_binder, generate(case.action, source~))
         }),
       }
-      let code = @codegen.codegen_rule_inner(
+      let code = @codegen.codegen_rule_new_syntax(
         rule,
         code_unit=CodeUnit1,
         default_encoding=Some(Utf8),
       )
-      let code =
-        $|{
-        $|  ()
-        $|\{code}
-        $|}
       GeneratedCode(code, loc~)
     }
   }

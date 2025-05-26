@@ -148,9 +148,9 @@ priv type! YYObj__Context______type_Regex (Context) -> @type.Regex
 
 priv type! YYObj__Context______immut_list_T__type_Rule_ (Context) -> @immut/list.T[@type.Rule]
 
-priv type! YYObj__Context______immut_list_T___type_Regex___type_CodeBlock__ (Context) -> @immut/list.T[(@type.Regex, @type.CodeBlock)]
+priv type! YYObj__Context______immut_list_T___type_Regex__String____type_CodeBlock__ (Context) -> @immut/list.T[(@type.Regex, String?, @type.CodeBlock)]
 
-priv type! YYObj__Context_______type_Regex___type_CodeBlock_ (Context) -> (@type.Regex, @type.CodeBlock)
+priv type! YYObj__Context_______type_Regex__String____type_CodeBlock_ (Context) -> (@type.Regex, String?, @type.CodeBlock)
 
 typealias YYState = (YYSymbol) -> YYDecision
 
@@ -305,11 +305,11 @@ fn yy_action_9(_last_pos : Position, _args : ArrayView[(YYObj, Position, Positio
 }
 
 // file:///./parser.mbty
-// 91|    regex "=>" LBRACE_CODE_RBRACE       { fn { ctx => ($1(ctx), $3) } }
+// 91|    regex "=>" LBRACE_CODE_RBRACE       { fn { ctx => ($1(ctx), None, $3) } }
 fn yy_action_10(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   guard _args[0].0 is YYObj__Context______type_Regex(_dollar1)
   guard _args[2].0 is YYObj_String(_dollar3)
-  YYObj__Context_______type_Regex___type_CodeBlock_({();  fn { ctx => (_dollar1(ctx), _dollar3) } })
+  YYObj__Context_______type_Regex__String____type_CodeBlock_({();  fn { ctx => (_dollar1(ctx), None, _dollar3) } })
 }
 
 // file:///./parser.mbty
@@ -351,9 +351,9 @@ fn yy_action_15(_last_pos : Position, _args : ArrayView[(YYObj, Position, Positi
 // file:///./parser.mbty
 // 86|    rule_item rule_item_list            { fn { ctx => Cons($1(ctx), $2(ctx)) } }
 fn yy_action_16(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  guard _args[0].0 is YYObj__Context_______type_Regex___type_CodeBlock_(_dollar1)
-  guard _args[1].0 is YYObj__Context______immut_list_T___type_Regex___type_CodeBlock__(_dollar2)
-  YYObj__Context______immut_list_T___type_Regex___type_CodeBlock__({();  fn { ctx => Cons(_dollar1(ctx), _dollar2(ctx)) } })
+  guard _args[0].0 is YYObj__Context_______type_Regex__String____type_CodeBlock_(_dollar1)
+  guard _args[1].0 is YYObj__Context______immut_list_T___type_Regex__String____type_CodeBlock__(_dollar2)
+  YYObj__Context______immut_list_T___type_Regex__String____type_CodeBlock__({();  fn { ctx => Cons(_dollar1(ctx), _dollar2(ctx)) } })
 }
 
 // file:///./parser.mbty
@@ -366,7 +366,7 @@ fn yy_action_17(_last_pos : Position, _args : ArrayView[(YYObj, Position, Positi
 // file:///./parser.mbty
 // 87|                                        { fn { _ctx => Nil } }
 fn yy_action_18(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  YYObj__Context______immut_list_T___type_Regex___type_CodeBlock__({();  fn { _ctx => Nil } })
+  YYObj__Context______immut_list_T___type_Regex__String____type_CodeBlock__({();  fn { _ctx => Nil } })
 }
 
 // file:///./parser.mbty
@@ -453,7 +453,7 @@ fn yy_action_27(_last_pos : Position, _args : ArrayView[(YYObj, Position, Positi
 // 82|                                        { fn { ctx => { name: $1.0, signature: $1.1, lexee_var: "lexbuf", patterns: $3(ctx).to_array() } } }
 fn yy_action_28(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   guard _args[0].0 is YYObj__String__String_(_dollar1)
-  guard _args[2].0 is YYObj__Context______immut_list_T___type_Regex___type_CodeBlock__(_dollar3)
+  guard _args[2].0 is YYObj__Context______immut_list_T___type_Regex__String____type_CodeBlock__(_dollar3)
   YYObj__Context______type_Rule({();  fn { ctx => { name: _dollar1.0, signature: _dollar1.1, lexee_var: "lexbuf", patterns: _dollar3(ctx).to_array() } } })
 }
 
