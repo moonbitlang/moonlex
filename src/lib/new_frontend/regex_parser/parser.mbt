@@ -71,129 +71,129 @@ fn init {
 }
 
 // file:///./parser.mbty
-// 51|    "." { fn { _ctx => @regex.char_class(@char_set.any) }  }
-fn yy_action_0(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  YYObj__Context_____Regex({();  fn { _ctx => @regex.char_class(@char_set.any) }  })
-}
-
-// file:///./parser.mbty
-// 72|    CHAR_ESCAPE { $1.0 }
-fn yy_action_1(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  guard _args[0].0 is YYObj__Char__String_(_dollar1)
-  YYObj_Char({();  _dollar1.0 })
-}
-
-// file:///./parser.mbty
-// 41|    primary "+" { fn { ctx => @regex.plus($1(ctx)) } }
-fn yy_action_2(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  guard _args[0].0 is YYObj__Context_____Regex(_dollar1)
-  YYObj__Context_____Regex({();  fn { ctx => @regex.plus(_dollar1(ctx)) } })
-}
-
-// file:///./parser.mbty
-// 56|    "[" character_class_inner "]" { $2 }
-fn yy_action_3(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  guard _args[1].0 is YYObj__char_set_T(_dollar2)
-  YYObj__char_set_T({();  _dollar2 })
-}
-
-// file:///./parser.mbty
-// 48|    TOKEN { fn { ctx => ctx.named_regexes.get($1).unwrap() } }
-fn yy_action_4(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  guard _args[0].0 is YYObj_String(_dollar1)
-  YYObj__Context_____Regex({();  fn { ctx => ctx.named_regexes.get(_dollar1).unwrap() } })
-}
-
-// file:///./parser.mbty
-// 62|    character_class_item character_class_inner { @char_set.union($1, $2) }
-fn yy_action_5(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  guard _args[0].0 is YYObj__char_set_T(_dollar1)
-  guard _args[1].0 is YYObj__char_set_T(_dollar2)
-  YYObj__char_set_T({();  @char_set.union(_dollar1, _dollar2) })
-}
-
-// file:///./parser.mbty
-// 49|    character_class { fn { _ctx => @regex.char_class($1) } }
-fn yy_action_6(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  guard _args[0].0 is YYObj__char_set_T(_dollar1)
-  YYObj__Context_____Regex({();  fn { _ctx => @regex.char_class(_dollar1) } })
-}
-
-// file:///./parser.mbty
-// 43|    primary REPEAT { fn { ctx => @regex.repeat($1(ctx), min_times=$2.0, max_times?=$2.1) } }
-fn yy_action_7(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  guard _args[0].0 is YYObj__Context_____Regex(_dollar1)
-  guard _args[1].0 is YYObj__Int__Int__(_dollar2)
-  YYObj__Context_____Regex({();  fn { ctx => @regex.repeat(_dollar1(ctx), min_times=_dollar2.0, max_times?=_dollar2.1) } })
-}
-
-// file:///./parser.mbty
-// 71|    CHAR { $1 }
-fn yy_action_8(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  guard _args[0].0 is YYObj_Char(_dollar1)
-  YYObj_Char({();  _dollar1 })
-}
-
-// file:///./parser.mbty
-// 25|    alternation EOF { $1 }
-fn yy_action_9(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  guard _args[0].0 is YYObj__Context_____Regex(_dollar1)
-  YYObj__Context_____Regex({();  _dollar1 })
-}
-
-// file:///./parser.mbty
-// 52|    "$" { fn { _ctx => @regex.eof } }
-fn yy_action_10(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  YYObj__Context_____Regex({();  fn { _ctx => @regex.eof } })
-}
-
-// file:///./parser.mbty
-// 40|    primary "*" { fn { ctx => @regex.star($1(ctx)) } }
-fn yy_action_11(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  guard _args[0].0 is YYObj__Context_____Regex(_dollar1)
-  YYObj__Context_____Regex({();  fn { ctx => @regex.star(_dollar1(ctx)) } })
-}
-
-// file:///./parser.mbty
-// 61|    { @char_set.empty }
-fn yy_action_12(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  YYObj__char_set_T({();  @char_set.empty })
-}
-
-// file:///./parser.mbty
 // 50|    character { fn { _ctx => @regex.char_class(@char_set.singleton($1)) } }
-fn yy_action_13(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+fn yy_action_0(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   guard _args[0].0 is YYObj_Char(_dollar1)
   YYObj__Context_____Regex({();  fn { _ctx => @regex.char_class(@char_set.singleton(_dollar1)) } })
 }
 
 // file:///./parser.mbty
-// 67|    character "-" character { @char_set.range($1, $3) }
-fn yy_action_14(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+// 68|    character "-" character { @char_set.range($1, $3) }
+fn yy_action_1(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   guard _args[0].0 is YYObj_Char(_dollar1)
   guard _args[2].0 is YYObj_Char(_dollar3)
   YYObj__char_set_T({();  @char_set.range(_dollar1, _dollar3) })
 }
 
 // file:///./parser.mbty
-// 66|    character { @char_set.singleton($1) }
-fn yy_action_15(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  guard _args[0].0 is YYObj_Char(_dollar1)
-  YYObj__char_set_T({();  @char_set.singleton(_dollar1) })
+// 40|    primary "*" { fn { ctx => @regex.star($1(ctx)) } }
+fn yy_action_2(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  guard _args[0].0 is YYObj__Context_____Regex(_dollar1)
+  YYObj__Context_____Regex({();  fn { ctx => @regex.star(_dollar1(ctx)) } })
+}
+
+// file:///./parser.mbty
+// 52|    "." { fn { _ctx => @regex.char_class(@char_set.any) }  }
+fn yy_action_3(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  YYObj__Context_____Regex({();  fn { _ctx => @regex.char_class(@char_set.any) }  })
 }
 
 // file:///./parser.mbty
 // 47|    "(" alternation ")" { fn { ctx => $2(ctx) } }
-fn yy_action_16(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+fn yy_action_4(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   guard _args[1].0 is YYObj__Context_____Regex(_dollar2)
   YYObj__Context_____Regex({();  fn { ctx => _dollar2(ctx) } })
 }
 
 // file:///./parser.mbty
+// 58|    "[" "^" character_class_inner "]" { @char_set.complement($3) }
+fn yy_action_5(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  guard _args[2].0 is YYObj__char_set_T(_dollar3)
+  YYObj__char_set_T({();  @char_set.complement(_dollar3) })
+}
+
+// file:///./parser.mbty
+// 72|    CHAR { $1 }
+fn yy_action_6(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  guard _args[0].0 is YYObj_Char(_dollar1)
+  YYObj_Char({();  _dollar1 })
+}
+
+// file:///./parser.mbty
+// 48|    TOKEN { fn { ctx => ctx.named_regexes.get($1).unwrap() } }
+fn yy_action_7(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  guard _args[0].0 is YYObj_String(_dollar1)
+  YYObj__Context_____Regex({();  fn { ctx => ctx.named_regexes.get(_dollar1).unwrap() } })
+}
+
+// file:///./parser.mbty
+// 42|    primary "?" { fn { ctx => @regex.opt($1(ctx)) } }
+fn yy_action_8(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  guard _args[0].0 is YYObj__Context_____Regex(_dollar1)
+  YYObj__Context_____Regex({();  fn { ctx => @regex.opt(_dollar1(ctx)) } })
+}
+
+// file:///./parser.mbty
+// 67|    character { @char_set.singleton($1) }
+fn yy_action_9(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  guard _args[0].0 is YYObj_Char(_dollar1)
+  YYObj__char_set_T({();  @char_set.singleton(_dollar1) })
+}
+
+// file:///./parser.mbty
+// 73|    CHAR_ESCAPE { $1.0 }
+fn yy_action_10(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  guard _args[0].0 is YYObj__Char__String_(_dollar1)
+  YYObj_Char({();  _dollar1.0 })
+}
+
+// file:///./parser.mbty
+// 51|    "-" { fn { _ctx => @regex.char_class(@char_set.singleton('-')) } }
+fn yy_action_11(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  YYObj__Context_____Regex({();  fn { _ctx => @regex.char_class(@char_set.singleton('-')) } })
+}
+
+// file:///./parser.mbty
 // 39|    primary { $1 }
-fn yy_action_17(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+fn yy_action_12(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   guard _args[0].0 is YYObj__Context_____Regex(_dollar1)
   YYObj__Context_____Regex({();  _dollar1 })
+}
+
+// file:///./parser.mbty
+// 57|    "[" character_class_inner "]" { $2 }
+fn yy_action_13(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  guard _args[1].0 is YYObj__char_set_T(_dollar2)
+  YYObj__char_set_T({();  _dollar2 })
+}
+
+// file:///./parser.mbty
+// 49|    character_class { fn { _ctx => @regex.char_class($1) } }
+fn yy_action_14(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  guard _args[0].0 is YYObj__char_set_T(_dollar1)
+  YYObj__Context_____Regex({();  fn { _ctx => @regex.char_class(_dollar1) } })
+}
+
+// file:///./parser.mbty
+// 63|    character_class_item character_class_inner { @char_set.union($1, $2) }
+fn yy_action_15(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  guard _args[0].0 is YYObj__char_set_T(_dollar1)
+  guard _args[1].0 is YYObj__char_set_T(_dollar2)
+  YYObj__char_set_T({();  @char_set.union(_dollar1, _dollar2) })
+}
+
+// file:///./parser.mbty
+// 62|    { @char_set.empty }
+fn yy_action_16(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  YYObj__char_set_T({();  @char_set.empty })
+}
+
+// file:///./parser.mbty
+// 43|    primary REPEAT { fn { ctx => @regex.repeat($1(ctx), min_times=$2.0, max_times?=$2.1) } }
+fn yy_action_17(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  guard _args[0].0 is YYObj__Context_____Regex(_dollar1)
+  guard _args[1].0 is YYObj__Int__Int__(_dollar2)
+  YYObj__Context_____Regex({();  fn { ctx => @regex.repeat(_dollar1(ctx), min_times=_dollar2.0, max_times?=_dollar2.1) } })
 }
 
 // file:///./parser.mbty
@@ -205,39 +205,45 @@ fn yy_action_18(_last_pos : Position, _args : ArrayView[(YYObj, Position, Positi
 }
 
 // file:///./parser.mbty
-// 30|    concatenation "|" alternation { fn { ctx => @regex.alt($1(ctx), $3(ctx)) } }
+// 34|    repetition { $1 }
 fn yy_action_19(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  guard _args[0].0 is YYObj__Context_____Regex(_dollar1)
-  guard _args[2].0 is YYObj__Context_____Regex(_dollar3)
-  YYObj__Context_____Regex({();  fn { ctx => @regex.alt(_dollar1(ctx), _dollar3(ctx)) } })
-}
-
-// file:///./parser.mbty
-// 42|    primary "?" { fn { ctx => @regex.opt($1(ctx)) } }
-fn yy_action_20(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  guard _args[0].0 is YYObj__Context_____Regex(_dollar1)
-  YYObj__Context_____Regex({();  fn { ctx => @regex.opt(_dollar1(ctx)) } })
-}
-
-// file:///./parser.mbty
-// 29|    concatenation { $1 }
-fn yy_action_21(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   guard _args[0].0 is YYObj__Context_____Regex(_dollar1)
   YYObj__Context_____Regex({();  _dollar1 })
 }
 
 // file:///./parser.mbty
-// 34|    repetition { $1 }
+// 29|    concatenation { $1 }
+fn yy_action_20(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  guard _args[0].0 is YYObj__Context_____Regex(_dollar1)
+  YYObj__Context_____Regex({();  _dollar1 })
+}
+
+// file:///./parser.mbty
+// 41|    primary "+" { fn { ctx => @regex.plus($1(ctx)) } }
+fn yy_action_21(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  guard _args[0].0 is YYObj__Context_____Regex(_dollar1)
+  YYObj__Context_____Regex({();  fn { ctx => @regex.plus(_dollar1(ctx)) } })
+}
+
+// file:///./parser.mbty
+// 25|    alternation EOF { $1 }
 fn yy_action_22(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   guard _args[0].0 is YYObj__Context_____Regex(_dollar1)
   YYObj__Context_____Regex({();  _dollar1 })
 }
 
 // file:///./parser.mbty
-// 57|    "[" "^" character_class_inner "]" { @char_set.complement($3) }
+// 30|    concatenation "|" alternation { fn { ctx => @regex.alt($1(ctx), $3(ctx)) } }
 fn yy_action_23(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
-  guard _args[2].0 is YYObj__char_set_T(_dollar3)
-  YYObj__char_set_T({();  @char_set.complement(_dollar3) })
+  guard _args[0].0 is YYObj__Context_____Regex(_dollar1)
+  guard _args[2].0 is YYObj__Context_____Regex(_dollar3)
+  YYObj__Context_____Regex({();  fn { ctx => @regex.alt(_dollar1(ctx), _dollar3(ctx)) } })
+}
+
+// file:///./parser.mbty
+// 53|    "$" { fn { _ctx => @regex.eof } }
+fn yy_action_24(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
+  YYObj__Context_____Regex({();  fn { _ctx => @regex.eof } })
 }
 
 fn yy_input(token : Token, _start_pos : Position, _end_pos : Position) -> (YYSymbol, YYObj) {
@@ -267,22 +273,23 @@ fn yy_input(token : Token, _start_pos : Position, _end_pos : Position) -> (YYSym
 // [2, alternation → • concatenation BAR alternation, EOF]
 // [3, concatenation → • repetition, EOF / BAR]
 // [4, concatenation → • repetition concatenation, EOF / BAR]
-// [5, repetition → • primary, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / LPAREN / BAR / TOKEN]
-// [6, repetition → • primary STAR, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / LPAREN / BAR / TOKEN]
-// [7, repetition → • primary PLUS, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / LPAREN / BAR / TOKEN]
-// [8, repetition → • primary QUESTION, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / LPAREN / BAR / TOKEN]
-// [9, repetition → • primary REPEAT, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / LPAREN / BAR / TOKEN]
-// [10, primary → • LPAREN alternation RPAREN, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / STAR / PLUS / QUESTION / REPEAT / LPAREN / BAR / TOKEN]
-// [11, primary → • TOKEN, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / STAR / PLUS / QUESTION / REPEAT / LPAREN / BAR / TOKEN]
-// [12, primary → • character_class, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / STAR / PLUS / QUESTION / REPEAT / LPAREN / BAR / TOKEN]
-// [13, primary → • character, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / STAR / PLUS / QUESTION / REPEAT / LPAREN / BAR / TOKEN]
-// [14, primary → • DOT, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / STAR / PLUS / QUESTION / REPEAT / LPAREN / BAR / TOKEN]
-// [15, primary → • DOLLAR, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / STAR / PLUS / QUESTION / REPEAT / LPAREN / BAR / TOKEN]
-// [16, character_class → • LBRACKET character_class_inner RBRACKET, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / STAR / PLUS / QUESTION / REPEAT / LPAREN / BAR / TOKEN]
-// [17, character_class → • LBRACKET CARET character_class_inner RBRACKET, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / STAR / PLUS / QUESTION / REPEAT / LPAREN / BAR / TOKEN]
-// [22, character → • CHAR, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / STAR / PLUS / QUESTION / REPEAT / LPAREN / BAR / TOKEN]
-// [23, character → • CHAR_ESCAPE, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / STAR / PLUS / QUESTION / REPEAT / LPAREN / BAR / TOKEN]
-// [24, regex_eof_prime → • regex_eof, $]
+// [5, repetition → • primary, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / MINUS / LPAREN / BAR / TOKEN]
+// [6, repetition → • primary STAR, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / MINUS / LPAREN / BAR / TOKEN]
+// [7, repetition → • primary PLUS, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / MINUS / LPAREN / BAR / TOKEN]
+// [8, repetition → • primary QUESTION, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / MINUS / LPAREN / BAR / TOKEN]
+// [9, repetition → • primary REPEAT, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / MINUS / LPAREN / BAR / TOKEN]
+// [10, primary → • LPAREN alternation RPAREN, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / MINUS / STAR / PLUS / QUESTION / REPEAT / LPAREN / BAR / TOKEN]
+// [11, primary → • TOKEN, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / MINUS / STAR / PLUS / QUESTION / REPEAT / LPAREN / BAR / TOKEN]
+// [12, primary → • character_class, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / MINUS / STAR / PLUS / QUESTION / REPEAT / LPAREN / BAR / TOKEN]
+// [13, primary → • character, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / MINUS / STAR / PLUS / QUESTION / REPEAT / LPAREN / BAR / TOKEN]
+// [14, primary → • MINUS, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / MINUS / STAR / PLUS / QUESTION / REPEAT / LPAREN / BAR / TOKEN]
+// [15, primary → • DOT, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / MINUS / STAR / PLUS / QUESTION / REPEAT / LPAREN / BAR / TOKEN]
+// [16, primary → • DOLLAR, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / MINUS / STAR / PLUS / QUESTION / REPEAT / LPAREN / BAR / TOKEN]
+// [17, character_class → • LBRACKET character_class_inner RBRACKET, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / MINUS / STAR / PLUS / QUESTION / REPEAT / LPAREN / BAR / TOKEN]
+// [18, character_class → • LBRACKET CARET character_class_inner RBRACKET, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / MINUS / STAR / PLUS / QUESTION / REPEAT / LPAREN / BAR / TOKEN]
+// [23, character → • CHAR, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / MINUS / STAR / PLUS / QUESTION / REPEAT / LPAREN / BAR / TOKEN]
+// [24, character → • CHAR_ESCAPE, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / MINUS / STAR / PLUS / QUESTION / REPEAT / LPAREN / BAR / TOKEN]
+// [25, regex_eof_prime → • regex_eof, $]
 fn yy_state_0(_lookahead : YYSymbol) -> YYDecision {
   match _lookahead {
     NT_regex_eof => Shift(yy_state_1)
@@ -291,41 +298,42 @@ fn yy_state_0(_lookahead : YYSymbol) -> YYDecision {
     T_LBRACKET => Shift(yy_state_4)
     T_DOLLAR => Shift(yy_state_15)
     T_DOT => Shift(yy_state_16)
-    NT_character => Shift(yy_state_17)
-    NT_character_class => Shift(yy_state_18)
-    T_TOKEN => Shift(yy_state_19)
-    T_LPAREN => Shift(yy_state_20)
-    NT_primary => Shift(yy_state_23)
-    NT_repetition => Shift(yy_state_28)
-    NT_concatenation => Shift(yy_state_30)
-    NT_alternation => Shift(yy_state_33)
+    T_MINUS => Shift(yy_state_17)
+    NT_character => Shift(yy_state_18)
+    NT_character_class => Shift(yy_state_19)
+    T_TOKEN => Shift(yy_state_20)
+    T_LPAREN => Shift(yy_state_21)
+    NT_primary => Shift(yy_state_24)
+    NT_repetition => Shift(yy_state_29)
+    NT_concatenation => Shift(yy_state_31)
+    NT_alternation => Shift(yy_state_34)
     _ => Error
   }
 }
 
-// [24, regex_eof_prime → regex_eof •, $]
+// [25, regex_eof_prime → regex_eof •, $]
 fn yy_state_1(_lookahead : YYSymbol) -> YYDecision {
   Accept
 }
 
-// [23, character → CHAR_ESCAPE •, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / RBRACKET / MINUS / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
+// [24, character → CHAR_ESCAPE •, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / RBRACKET / MINUS / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
 fn yy_state_2(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_character, yy_action_1)
+  ReduceNoLookahead(1, NT_character, yy_action_10)
 }
 
-// [22, character → CHAR •, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / RBRACKET / MINUS / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
+// [23, character → CHAR •, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / RBRACKET / MINUS / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
 fn yy_state_3(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_character, yy_action_8)
+  ReduceNoLookahead(1, NT_character, yy_action_6)
 }
 
-// [16, character_class → LBRACKET • character_class_inner RBRACKET, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
-// [17, character_class → LBRACKET • CARET character_class_inner RBRACKET, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
-// [18, character_class_inner → •, RBRACKET]
-// [19, character_class_inner → • character_class_item character_class_inner, RBRACKET]
-// [20, character_class_item → • character, CHAR / CHAR_ESCAPE / RBRACKET]
-// [21, character_class_item → • character MINUS character, CHAR / CHAR_ESCAPE / RBRACKET]
-// [22, character → • CHAR, CHAR / CHAR_ESCAPE / RBRACKET / MINUS]
-// [23, character → • CHAR_ESCAPE, CHAR / CHAR_ESCAPE / RBRACKET / MINUS]
+// [17, character_class → LBRACKET • character_class_inner RBRACKET, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / MINUS / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
+// [18, character_class → LBRACKET • CARET character_class_inner RBRACKET, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / MINUS / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
+// [19, character_class_inner → •, RBRACKET]
+// [20, character_class_inner → • character_class_item character_class_inner, RBRACKET]
+// [21, character_class_item → • character, CHAR / CHAR_ESCAPE / RBRACKET]
+// [22, character_class_item → • character MINUS character, CHAR / CHAR_ESCAPE / RBRACKET]
+// [23, character → • CHAR, CHAR / CHAR_ESCAPE / RBRACKET / MINUS]
+// [24, character → • CHAR_ESCAPE, CHAR / CHAR_ESCAPE / RBRACKET / MINUS]
 fn yy_state_4(_lookahead : YYSymbol) -> YYDecision {
   match _lookahead {
     T_CHAR_ESCAPE => Shift(yy_state_2)
@@ -334,24 +342,24 @@ fn yy_state_4(_lookahead : YYSymbol) -> YYDecision {
     NT_character_class_item => Shift(yy_state_8)
     T_CARET => Shift(yy_state_10)
     NT_character_class_inner => Shift(yy_state_13)
-    T_RBRACKET => Reduce(0, NT_character_class_inner, yy_action_12)
+    T_RBRACKET => Reduce(0, NT_character_class_inner, yy_action_16)
     _ => Error
   }
 }
 
-// [20, character_class_item → character •, CHAR / CHAR_ESCAPE / RBRACKET]
-// [21, character_class_item → character • MINUS character, CHAR / CHAR_ESCAPE / RBRACKET]
+// [21, character_class_item → character •, CHAR / CHAR_ESCAPE / RBRACKET]
+// [22, character_class_item → character • MINUS character, CHAR / CHAR_ESCAPE / RBRACKET]
 fn yy_state_5(_lookahead : YYSymbol) -> YYDecision {
   match _lookahead {
     T_MINUS => Shift(yy_state_6)
-    T_CHAR | T_CHAR_ESCAPE | T_RBRACKET => Reduce(1, NT_character_class_item, yy_action_15)
+    T_CHAR | T_CHAR_ESCAPE | T_RBRACKET => Reduce(1, NT_character_class_item, yy_action_9)
     _ => Error
   }
 }
 
-// [21, character_class_item → character MINUS • character, CHAR / CHAR_ESCAPE / RBRACKET]
-// [22, character → • CHAR, CHAR / CHAR_ESCAPE / RBRACKET]
-// [23, character → • CHAR_ESCAPE, CHAR / CHAR_ESCAPE / RBRACKET]
+// [22, character_class_item → character MINUS • character, CHAR / CHAR_ESCAPE / RBRACKET]
+// [23, character → • CHAR, CHAR / CHAR_ESCAPE / RBRACKET]
+// [24, character → • CHAR_ESCAPE, CHAR / CHAR_ESCAPE / RBRACKET]
 fn yy_state_6(_lookahead : YYSymbol) -> YYDecision {
   match _lookahead {
     T_CHAR_ESCAPE => Shift(yy_state_2)
@@ -361,18 +369,18 @@ fn yy_state_6(_lookahead : YYSymbol) -> YYDecision {
   }
 }
 
-// [21, character_class_item → character MINUS character •, CHAR / CHAR_ESCAPE / RBRACKET]
+// [22, character_class_item → character MINUS character •, CHAR / CHAR_ESCAPE / RBRACKET]
 fn yy_state_7(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(3, NT_character_class_item, yy_action_14)
+  ReduceNoLookahead(3, NT_character_class_item, yy_action_1)
 }
 
-// [18, character_class_inner → •, RBRACKET]
-// [19, character_class_inner → • character_class_item character_class_inner, RBRACKET]
-// [19, character_class_inner → character_class_item • character_class_inner, RBRACKET]
-// [20, character_class_item → • character, CHAR / CHAR_ESCAPE / RBRACKET]
-// [21, character_class_item → • character MINUS character, CHAR / CHAR_ESCAPE / RBRACKET]
-// [22, character → • CHAR, CHAR / CHAR_ESCAPE / RBRACKET / MINUS]
-// [23, character → • CHAR_ESCAPE, CHAR / CHAR_ESCAPE / RBRACKET / MINUS]
+// [19, character_class_inner → •, RBRACKET]
+// [20, character_class_inner → • character_class_item character_class_inner, RBRACKET]
+// [20, character_class_inner → character_class_item • character_class_inner, RBRACKET]
+// [21, character_class_item → • character, CHAR / CHAR_ESCAPE / RBRACKET]
+// [22, character_class_item → • character MINUS character, CHAR / CHAR_ESCAPE / RBRACKET]
+// [23, character → • CHAR, CHAR / CHAR_ESCAPE / RBRACKET / MINUS]
+// [24, character → • CHAR_ESCAPE, CHAR / CHAR_ESCAPE / RBRACKET / MINUS]
 fn yy_state_8(_lookahead : YYSymbol) -> YYDecision {
   match _lookahead {
     T_CHAR_ESCAPE => Shift(yy_state_2)
@@ -380,23 +388,23 @@ fn yy_state_8(_lookahead : YYSymbol) -> YYDecision {
     NT_character => Shift(yy_state_5)
     NT_character_class_item => Shift(yy_state_8)
     NT_character_class_inner => Shift(yy_state_9)
-    T_RBRACKET => Reduce(0, NT_character_class_inner, yy_action_12)
+    T_RBRACKET => Reduce(0, NT_character_class_inner, yy_action_16)
     _ => Error
   }
 }
 
-// [19, character_class_inner → character_class_item character_class_inner •, RBRACKET]
+// [20, character_class_inner → character_class_item character_class_inner •, RBRACKET]
 fn yy_state_9(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(2, NT_character_class_inner, yy_action_5)
+  ReduceNoLookahead(2, NT_character_class_inner, yy_action_15)
 }
 
-// [17, character_class → LBRACKET CARET • character_class_inner RBRACKET, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
-// [18, character_class_inner → •, RBRACKET]
-// [19, character_class_inner → • character_class_item character_class_inner, RBRACKET]
-// [20, character_class_item → • character, CHAR / CHAR_ESCAPE / RBRACKET]
-// [21, character_class_item → • character MINUS character, CHAR / CHAR_ESCAPE / RBRACKET]
-// [22, character → • CHAR, CHAR / CHAR_ESCAPE / RBRACKET / MINUS]
-// [23, character → • CHAR_ESCAPE, CHAR / CHAR_ESCAPE / RBRACKET / MINUS]
+// [18, character_class → LBRACKET CARET • character_class_inner RBRACKET, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / MINUS / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
+// [19, character_class_inner → •, RBRACKET]
+// [20, character_class_inner → • character_class_item character_class_inner, RBRACKET]
+// [21, character_class_item → • character, CHAR / CHAR_ESCAPE / RBRACKET]
+// [22, character_class_item → • character MINUS character, CHAR / CHAR_ESCAPE / RBRACKET]
+// [23, character → • CHAR, CHAR / CHAR_ESCAPE / RBRACKET / MINUS]
+// [24, character → • CHAR_ESCAPE, CHAR / CHAR_ESCAPE / RBRACKET / MINUS]
 fn yy_state_10(_lookahead : YYSymbol) -> YYDecision {
   match _lookahead {
     T_CHAR_ESCAPE => Shift(yy_state_2)
@@ -404,12 +412,12 @@ fn yy_state_10(_lookahead : YYSymbol) -> YYDecision {
     NT_character => Shift(yy_state_5)
     NT_character_class_item => Shift(yy_state_8)
     NT_character_class_inner => Shift(yy_state_11)
-    T_RBRACKET => Reduce(0, NT_character_class_inner, yy_action_12)
+    T_RBRACKET => Reduce(0, NT_character_class_inner, yy_action_16)
     _ => Error
   }
 }
 
-// [17, character_class → LBRACKET CARET character_class_inner • RBRACKET, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
+// [18, character_class → LBRACKET CARET character_class_inner • RBRACKET, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / MINUS / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
 fn yy_state_11(_lookahead : YYSymbol) -> YYDecision {
   match _lookahead {
     T_RBRACKET => Shift(yy_state_12)
@@ -417,12 +425,12 @@ fn yy_state_11(_lookahead : YYSymbol) -> YYDecision {
   }
 }
 
-// [17, character_class → LBRACKET CARET character_class_inner RBRACKET •, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
+// [18, character_class → LBRACKET CARET character_class_inner RBRACKET •, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / MINUS / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
 fn yy_state_12(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(4, NT_character_class, yy_action_23)
+  ReduceNoLookahead(4, NT_character_class, yy_action_5)
 }
 
-// [16, character_class → LBRACKET character_class_inner • RBRACKET, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
+// [17, character_class → LBRACKET character_class_inner • RBRACKET, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / MINUS / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
 fn yy_state_13(_lookahead : YYSymbol) -> YYDecision {
   match _lookahead {
     T_RBRACKET => Shift(yy_state_14)
@@ -430,173 +438,182 @@ fn yy_state_13(_lookahead : YYSymbol) -> YYDecision {
   }
 }
 
-// [16, character_class → LBRACKET character_class_inner RBRACKET •, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
+// [17, character_class → LBRACKET character_class_inner RBRACKET •, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / MINUS / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
 fn yy_state_14(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(3, NT_character_class, yy_action_3)
+  ReduceNoLookahead(3, NT_character_class, yy_action_13)
 }
 
-// [15, primary → DOLLAR •, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
+// [16, primary → DOLLAR •, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / MINUS / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
 fn yy_state_15(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_primary, yy_action_10)
+  ReduceNoLookahead(1, NT_primary, yy_action_24)
 }
 
-// [14, primary → DOT •, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
+// [15, primary → DOT •, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / MINUS / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
 fn yy_state_16(_lookahead : YYSymbol) -> YYDecision {
+  ReduceNoLookahead(1, NT_primary, yy_action_3)
+}
+
+// [14, primary → MINUS •, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / MINUS / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
+fn yy_state_17(_lookahead : YYSymbol) -> YYDecision {
+  ReduceNoLookahead(1, NT_primary, yy_action_11)
+}
+
+// [13, primary → character •, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / MINUS / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
+fn yy_state_18(_lookahead : YYSymbol) -> YYDecision {
   ReduceNoLookahead(1, NT_primary, yy_action_0)
 }
 
-// [13, primary → character •, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
-fn yy_state_17(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_primary, yy_action_13)
-}
-
-// [12, primary → character_class •, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
-fn yy_state_18(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_primary, yy_action_6)
-}
-
-// [11, primary → TOKEN •, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
+// [12, primary → character_class •, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / MINUS / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
 fn yy_state_19(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(1, NT_primary, yy_action_4)
+  ReduceNoLookahead(1, NT_primary, yy_action_14)
+}
+
+// [11, primary → TOKEN •, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / MINUS / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
+fn yy_state_20(_lookahead : YYSymbol) -> YYDecision {
+  ReduceNoLookahead(1, NT_primary, yy_action_7)
 }
 
 // [1, alternation → • concatenation, RPAREN]
 // [2, alternation → • concatenation BAR alternation, RPAREN]
 // [3, concatenation → • repetition, RPAREN / BAR]
 // [4, concatenation → • repetition concatenation, RPAREN / BAR]
-// [5, repetition → • primary, CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / LPAREN / RPAREN / BAR / TOKEN]
-// [6, repetition → • primary STAR, CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / LPAREN / RPAREN / BAR / TOKEN]
-// [7, repetition → • primary PLUS, CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / LPAREN / RPAREN / BAR / TOKEN]
-// [8, repetition → • primary QUESTION, CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / LPAREN / RPAREN / BAR / TOKEN]
-// [9, repetition → • primary REPEAT, CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / LPAREN / RPAREN / BAR / TOKEN]
-// [10, primary → • LPAREN alternation RPAREN, CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
-// [10, primary → LPAREN • alternation RPAREN, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
-// [11, primary → • TOKEN, CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
-// [12, primary → • character_class, CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
-// [13, primary → • character, CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
-// [14, primary → • DOT, CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
-// [15, primary → • DOLLAR, CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
-// [16, character_class → • LBRACKET character_class_inner RBRACKET, CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
-// [17, character_class → • LBRACKET CARET character_class_inner RBRACKET, CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
-// [22, character → • CHAR, CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
-// [23, character → • CHAR_ESCAPE, CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
-fn yy_state_20(_lookahead : YYSymbol) -> YYDecision {
+// [5, repetition → • primary, CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / MINUS / LPAREN / RPAREN / BAR / TOKEN]
+// [6, repetition → • primary STAR, CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / MINUS / LPAREN / RPAREN / BAR / TOKEN]
+// [7, repetition → • primary PLUS, CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / MINUS / LPAREN / RPAREN / BAR / TOKEN]
+// [8, repetition → • primary QUESTION, CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / MINUS / LPAREN / RPAREN / BAR / TOKEN]
+// [9, repetition → • primary REPEAT, CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / MINUS / LPAREN / RPAREN / BAR / TOKEN]
+// [10, primary → • LPAREN alternation RPAREN, CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / MINUS / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
+// [10, primary → LPAREN • alternation RPAREN, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / MINUS / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
+// [11, primary → • TOKEN, CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / MINUS / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
+// [12, primary → • character_class, CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / MINUS / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
+// [13, primary → • character, CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / MINUS / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
+// [14, primary → • MINUS, CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / MINUS / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
+// [15, primary → • DOT, CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / MINUS / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
+// [16, primary → • DOLLAR, CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / MINUS / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
+// [17, character_class → • LBRACKET character_class_inner RBRACKET, CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / MINUS / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
+// [18, character_class → • LBRACKET CARET character_class_inner RBRACKET, CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / MINUS / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
+// [23, character → • CHAR, CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / MINUS / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
+// [24, character → • CHAR_ESCAPE, CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / MINUS / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
+fn yy_state_21(_lookahead : YYSymbol) -> YYDecision {
   match _lookahead {
     T_CHAR_ESCAPE => Shift(yy_state_2)
     T_CHAR => Shift(yy_state_3)
     T_LBRACKET => Shift(yy_state_4)
     T_DOLLAR => Shift(yy_state_15)
     T_DOT => Shift(yy_state_16)
-    NT_character => Shift(yy_state_17)
-    NT_character_class => Shift(yy_state_18)
-    T_TOKEN => Shift(yy_state_19)
-    T_LPAREN => Shift(yy_state_20)
-    NT_alternation => Shift(yy_state_21)
-    NT_primary => Shift(yy_state_23)
-    NT_repetition => Shift(yy_state_28)
-    NT_concatenation => Shift(yy_state_30)
+    T_MINUS => Shift(yy_state_17)
+    NT_character => Shift(yy_state_18)
+    NT_character_class => Shift(yy_state_19)
+    T_TOKEN => Shift(yy_state_20)
+    T_LPAREN => Shift(yy_state_21)
+    NT_alternation => Shift(yy_state_22)
+    NT_primary => Shift(yy_state_24)
+    NT_repetition => Shift(yy_state_29)
+    NT_concatenation => Shift(yy_state_31)
     _ => Error
   }
 }
 
-// [10, primary → LPAREN alternation • RPAREN, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
-fn yy_state_21(_lookahead : YYSymbol) -> YYDecision {
-  match _lookahead {
-    T_RPAREN => Shift(yy_state_22)
-    _ => Error
-  }
-}
-
-// [10, primary → LPAREN alternation RPAREN •, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
+// [10, primary → LPAREN alternation • RPAREN, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / MINUS / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
 fn yy_state_22(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(3, NT_primary, yy_action_16)
-}
-
-// [5, repetition → primary •, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / LPAREN / RPAREN / BAR / TOKEN]
-// [6, repetition → primary • STAR, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / LPAREN / RPAREN / BAR / TOKEN]
-// [7, repetition → primary • PLUS, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / LPAREN / RPAREN / BAR / TOKEN]
-// [8, repetition → primary • QUESTION, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / LPAREN / RPAREN / BAR / TOKEN]
-// [9, repetition → primary • REPEAT, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / LPAREN / RPAREN / BAR / TOKEN]
-fn yy_state_23(_lookahead : YYSymbol) -> YYDecision {
   match _lookahead {
-    T_REPEAT => Shift(yy_state_24)
-    T_QUESTION => Shift(yy_state_25)
-    T_PLUS => Shift(yy_state_26)
-    T_STAR => Shift(yy_state_27)
-    T_EOF | T_CHAR | T_CHAR_ESCAPE | T_DOT | T_DOLLAR | T_LBRACKET | T_LPAREN | T_RPAREN | T_BAR | T_TOKEN => Reduce(1, NT_repetition, yy_action_17)
+    T_RPAREN => Shift(yy_state_23)
     _ => Error
   }
 }
 
-// [9, repetition → primary REPEAT •, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / LPAREN / RPAREN / BAR / TOKEN]
+// [10, primary → LPAREN alternation RPAREN •, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / MINUS / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
+fn yy_state_23(_lookahead : YYSymbol) -> YYDecision {
+  ReduceNoLookahead(3, NT_primary, yy_action_4)
+}
+
+// [5, repetition → primary •, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / MINUS / LPAREN / RPAREN / BAR / TOKEN]
+// [6, repetition → primary • STAR, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / MINUS / LPAREN / RPAREN / BAR / TOKEN]
+// [7, repetition → primary • PLUS, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / MINUS / LPAREN / RPAREN / BAR / TOKEN]
+// [8, repetition → primary • QUESTION, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / MINUS / LPAREN / RPAREN / BAR / TOKEN]
+// [9, repetition → primary • REPEAT, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / MINUS / LPAREN / RPAREN / BAR / TOKEN]
 fn yy_state_24(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(2, NT_repetition, yy_action_7)
+  match _lookahead {
+    T_REPEAT => Shift(yy_state_25)
+    T_QUESTION => Shift(yy_state_26)
+    T_PLUS => Shift(yy_state_27)
+    T_STAR => Shift(yy_state_28)
+    T_EOF | T_CHAR | T_CHAR_ESCAPE | T_DOT | T_DOLLAR | T_LBRACKET | T_MINUS | T_LPAREN | T_RPAREN | T_BAR | T_TOKEN => Reduce(1, NT_repetition, yy_action_12)
+    _ => Error
+  }
 }
 
-// [8, repetition → primary QUESTION •, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / LPAREN / RPAREN / BAR / TOKEN]
+// [9, repetition → primary REPEAT •, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / MINUS / LPAREN / RPAREN / BAR / TOKEN]
 fn yy_state_25(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(2, NT_repetition, yy_action_20)
+  ReduceNoLookahead(2, NT_repetition, yy_action_17)
 }
 
-// [7, repetition → primary PLUS •, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / LPAREN / RPAREN / BAR / TOKEN]
+// [8, repetition → primary QUESTION •, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / MINUS / LPAREN / RPAREN / BAR / TOKEN]
 fn yy_state_26(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(2, NT_repetition, yy_action_2)
+  ReduceNoLookahead(2, NT_repetition, yy_action_8)
 }
 
-// [6, repetition → primary STAR •, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / LPAREN / RPAREN / BAR / TOKEN]
+// [7, repetition → primary PLUS •, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / MINUS / LPAREN / RPAREN / BAR / TOKEN]
 fn yy_state_27(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(2, NT_repetition, yy_action_11)
+  ReduceNoLookahead(2, NT_repetition, yy_action_21)
+}
+
+// [6, repetition → primary STAR •, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / MINUS / LPAREN / RPAREN / BAR / TOKEN]
+fn yy_state_28(_lookahead : YYSymbol) -> YYDecision {
+  ReduceNoLookahead(2, NT_repetition, yy_action_2)
 }
 
 // [3, concatenation → • repetition, EOF / RPAREN / BAR]
 // [3, concatenation → repetition •, EOF / RPAREN / BAR]
 // [4, concatenation → • repetition concatenation, EOF / RPAREN / BAR]
 // [4, concatenation → repetition • concatenation, EOF / RPAREN / BAR]
-// [5, repetition → • primary, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / LPAREN / RPAREN / BAR / TOKEN]
-// [6, repetition → • primary STAR, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / LPAREN / RPAREN / BAR / TOKEN]
-// [7, repetition → • primary PLUS, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / LPAREN / RPAREN / BAR / TOKEN]
-// [8, repetition → • primary QUESTION, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / LPAREN / RPAREN / BAR / TOKEN]
-// [9, repetition → • primary REPEAT, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / LPAREN / RPAREN / BAR / TOKEN]
-// [10, primary → • LPAREN alternation RPAREN, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
-// [11, primary → • TOKEN, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
-// [12, primary → • character_class, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
-// [13, primary → • character, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
-// [14, primary → • DOT, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
-// [15, primary → • DOLLAR, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
-// [16, character_class → • LBRACKET character_class_inner RBRACKET, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
-// [17, character_class → • LBRACKET CARET character_class_inner RBRACKET, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
-// [22, character → • CHAR, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
-// [23, character → • CHAR_ESCAPE, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
-fn yy_state_28(_lookahead : YYSymbol) -> YYDecision {
+// [5, repetition → • primary, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / MINUS / LPAREN / RPAREN / BAR / TOKEN]
+// [6, repetition → • primary STAR, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / MINUS / LPAREN / RPAREN / BAR / TOKEN]
+// [7, repetition → • primary PLUS, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / MINUS / LPAREN / RPAREN / BAR / TOKEN]
+// [8, repetition → • primary QUESTION, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / MINUS / LPAREN / RPAREN / BAR / TOKEN]
+// [9, repetition → • primary REPEAT, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / MINUS / LPAREN / RPAREN / BAR / TOKEN]
+// [10, primary → • LPAREN alternation RPAREN, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / MINUS / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
+// [11, primary → • TOKEN, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / MINUS / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
+// [12, primary → • character_class, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / MINUS / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
+// [13, primary → • character, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / MINUS / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
+// [14, primary → • MINUS, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / MINUS / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
+// [15, primary → • DOT, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / MINUS / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
+// [16, primary → • DOLLAR, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / MINUS / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
+// [17, character_class → • LBRACKET character_class_inner RBRACKET, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / MINUS / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
+// [18, character_class → • LBRACKET CARET character_class_inner RBRACKET, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / MINUS / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
+// [23, character → • CHAR, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / MINUS / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
+// [24, character → • CHAR_ESCAPE, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / MINUS / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
+fn yy_state_29(_lookahead : YYSymbol) -> YYDecision {
   match _lookahead {
     T_CHAR_ESCAPE => Shift(yy_state_2)
     T_CHAR => Shift(yy_state_3)
     T_LBRACKET => Shift(yy_state_4)
     T_DOLLAR => Shift(yy_state_15)
     T_DOT => Shift(yy_state_16)
-    NT_character => Shift(yy_state_17)
-    NT_character_class => Shift(yy_state_18)
-    T_TOKEN => Shift(yy_state_19)
-    T_LPAREN => Shift(yy_state_20)
-    NT_primary => Shift(yy_state_23)
-    NT_repetition => Shift(yy_state_28)
-    NT_concatenation => Shift(yy_state_29)
-    T_EOF | T_RPAREN | T_BAR => Reduce(1, NT_concatenation, yy_action_22)
+    T_MINUS => Shift(yy_state_17)
+    NT_character => Shift(yy_state_18)
+    NT_character_class => Shift(yy_state_19)
+    T_TOKEN => Shift(yy_state_20)
+    T_LPAREN => Shift(yy_state_21)
+    NT_primary => Shift(yy_state_24)
+    NT_repetition => Shift(yy_state_29)
+    NT_concatenation => Shift(yy_state_30)
+    T_EOF | T_RPAREN | T_BAR => Reduce(1, NT_concatenation, yy_action_19)
     _ => Error
   }
 }
 
 // [4, concatenation → repetition concatenation •, EOF / RPAREN / BAR]
-fn yy_state_29(_lookahead : YYSymbol) -> YYDecision {
+fn yy_state_30(_lookahead : YYSymbol) -> YYDecision {
   ReduceNoLookahead(2, NT_concatenation, yy_action_18)
 }
 
 // [1, alternation → concatenation •, EOF / RPAREN]
 // [2, alternation → concatenation • BAR alternation, EOF / RPAREN]
-fn yy_state_30(_lookahead : YYSymbol) -> YYDecision {
+fn yy_state_31(_lookahead : YYSymbol) -> YYDecision {
   match _lookahead {
-    T_BAR => Shift(yy_state_31)
-    T_EOF | T_RPAREN => Reduce(1, NT_alternation, yy_action_21)
+    T_BAR => Shift(yy_state_32)
+    T_EOF | T_RPAREN => Reduce(1, NT_alternation, yy_action_20)
     _ => Error
   }
 }
@@ -606,56 +623,58 @@ fn yy_state_30(_lookahead : YYSymbol) -> YYDecision {
 // [2, alternation → concatenation BAR • alternation, EOF / RPAREN]
 // [3, concatenation → • repetition, EOF / RPAREN / BAR]
 // [4, concatenation → • repetition concatenation, EOF / RPAREN / BAR]
-// [5, repetition → • primary, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / LPAREN / RPAREN / BAR / TOKEN]
-// [6, repetition → • primary STAR, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / LPAREN / RPAREN / BAR / TOKEN]
-// [7, repetition → • primary PLUS, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / LPAREN / RPAREN / BAR / TOKEN]
-// [8, repetition → • primary QUESTION, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / LPAREN / RPAREN / BAR / TOKEN]
-// [9, repetition → • primary REPEAT, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / LPAREN / RPAREN / BAR / TOKEN]
-// [10, primary → • LPAREN alternation RPAREN, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
-// [11, primary → • TOKEN, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
-// [12, primary → • character_class, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
-// [13, primary → • character, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
-// [14, primary → • DOT, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
-// [15, primary → • DOLLAR, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
-// [16, character_class → • LBRACKET character_class_inner RBRACKET, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
-// [17, character_class → • LBRACKET CARET character_class_inner RBRACKET, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
-// [22, character → • CHAR, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
-// [23, character → • CHAR_ESCAPE, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
-fn yy_state_31(_lookahead : YYSymbol) -> YYDecision {
+// [5, repetition → • primary, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / MINUS / LPAREN / RPAREN / BAR / TOKEN]
+// [6, repetition → • primary STAR, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / MINUS / LPAREN / RPAREN / BAR / TOKEN]
+// [7, repetition → • primary PLUS, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / MINUS / LPAREN / RPAREN / BAR / TOKEN]
+// [8, repetition → • primary QUESTION, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / MINUS / LPAREN / RPAREN / BAR / TOKEN]
+// [9, repetition → • primary REPEAT, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / MINUS / LPAREN / RPAREN / BAR / TOKEN]
+// [10, primary → • LPAREN alternation RPAREN, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / MINUS / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
+// [11, primary → • TOKEN, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / MINUS / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
+// [12, primary → • character_class, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / MINUS / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
+// [13, primary → • character, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / MINUS / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
+// [14, primary → • MINUS, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / MINUS / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
+// [15, primary → • DOT, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / MINUS / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
+// [16, primary → • DOLLAR, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / MINUS / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
+// [17, character_class → • LBRACKET character_class_inner RBRACKET, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / MINUS / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
+// [18, character_class → • LBRACKET CARET character_class_inner RBRACKET, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / MINUS / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
+// [23, character → • CHAR, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / MINUS / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
+// [24, character → • CHAR_ESCAPE, EOF / CHAR / CHAR_ESCAPE / DOT / DOLLAR / LBRACKET / MINUS / STAR / PLUS / QUESTION / REPEAT / LPAREN / RPAREN / BAR / TOKEN]
+fn yy_state_32(_lookahead : YYSymbol) -> YYDecision {
   match _lookahead {
     T_CHAR_ESCAPE => Shift(yy_state_2)
     T_CHAR => Shift(yy_state_3)
     T_LBRACKET => Shift(yy_state_4)
     T_DOLLAR => Shift(yy_state_15)
     T_DOT => Shift(yy_state_16)
-    NT_character => Shift(yy_state_17)
-    NT_character_class => Shift(yy_state_18)
-    T_TOKEN => Shift(yy_state_19)
-    T_LPAREN => Shift(yy_state_20)
-    NT_primary => Shift(yy_state_23)
-    NT_repetition => Shift(yy_state_28)
-    NT_concatenation => Shift(yy_state_30)
-    NT_alternation => Shift(yy_state_32)
+    T_MINUS => Shift(yy_state_17)
+    NT_character => Shift(yy_state_18)
+    NT_character_class => Shift(yy_state_19)
+    T_TOKEN => Shift(yy_state_20)
+    T_LPAREN => Shift(yy_state_21)
+    NT_primary => Shift(yy_state_24)
+    NT_repetition => Shift(yy_state_29)
+    NT_concatenation => Shift(yy_state_31)
+    NT_alternation => Shift(yy_state_33)
     _ => Error
   }
 }
 
 // [2, alternation → concatenation BAR alternation •, EOF / RPAREN]
-fn yy_state_32(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(3, NT_alternation, yy_action_19)
+fn yy_state_33(_lookahead : YYSymbol) -> YYDecision {
+  ReduceNoLookahead(3, NT_alternation, yy_action_23)
 }
 
 // [0, regex_eof → alternation • EOF, $]
-fn yy_state_33(_lookahead : YYSymbol) -> YYDecision {
+fn yy_state_34(_lookahead : YYSymbol) -> YYDecision {
   match _lookahead {
-    T_EOF => Shift(yy_state_34)
+    T_EOF => Shift(yy_state_35)
     _ => Error
   }
 }
 
 // [0, regex_eof → alternation EOF •, $]
-fn yy_state_34(_lookahead : YYSymbol) -> YYDecision {
-  ReduceNoLookahead(2, NT_regex_eof, yy_action_9)
+fn yy_state_35(_lookahead : YYSymbol) -> YYDecision {
+  ReduceNoLookahead(2, NT_regex_eof, yy_action_22)
 }
 
 fn yy_parse[T](

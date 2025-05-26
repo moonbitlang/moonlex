@@ -48,6 +48,7 @@ primary -> (Context) -> Regex
   | TOKEN { fn { ctx => ctx.named_regexes.get($1).unwrap() } }
   | character_class { fn { _ctx => @regex.char_class($1) } }
   | character { fn { _ctx => @regex.char_class(@char_set.singleton($1)) } }
+  | "-" { fn { _ctx => @regex.char_class(@char_set.singleton('-')) } }
   | "." { fn { _ctx => @regex.char_class(@char_set.any) }  }
   | "$" { fn { _ctx => @regex.eof } }
   ;

@@ -670,6 +670,23 @@ function $64$moonbitlang$47$core$47$list$46$T$More$30$(param0, param1) {
   this._1 = param1;
 }
 $64$moonbitlang$47$core$47$list$46$T$More$30$.prototype.$tag = 1;
+const $64$moonbitlang$47$core$47$builtin$46$ForeachResult$Continue$31$ = { $tag: 0 };
+function $64$moonbitlang$47$core$47$builtin$46$ForeachResult$Break$31$(param0) {
+  this._0 = param0;
+}
+$64$moonbitlang$47$core$47$builtin$46$ForeachResult$Break$31$.prototype.$tag = 1;
+function $64$moonbitlang$47$core$47$builtin$46$ForeachResult$Return$31$(param0) {
+  this._0 = param0;
+}
+$64$moonbitlang$47$core$47$builtin$46$ForeachResult$Return$31$.prototype.$tag = 2;
+function $64$moonbitlang$47$core$47$builtin$46$ForeachResult$Error$31$(param0) {
+  this._0 = param0;
+}
+$64$moonbitlang$47$core$47$builtin$46$ForeachResult$Error$31$.prototype.$tag = 3;
+function $64$moonbitlang$47$core$47$builtin$46$ForeachResult$JumpOuter$31$(param0) {
+  this._0 = param0;
+}
+$64$moonbitlang$47$core$47$builtin$46$ForeachResult$JumpOuter$31$.prototype.$tag = 4;
 const $64$moonbitlang$47$x$47$encoding$46$Decode$End = { $tag: 0 };
 function $64$moonbitlang$47$x$47$encoding$46$Decode$Refill(param0) {
   this._0 = param0;
@@ -743,14 +760,6 @@ function $64$moonbitlang$47$ulex$47$lib$47$parser$46$Token$STRING(param0) {
   this._0 = param0;
 }
 $64$moonbitlang$47$ulex$47$lib$47$parser$46$Token$STRING.prototype.$tag = 25;
-function Result$Err$31$(param0) {
-  this._0 = param0;
-}
-Result$Err$31$.prototype.$tag = 0;
-function Result$Ok$31$(param0) {
-  this._0 = param0;
-}
-Result$Ok$31$.prototype.$tag = 1;
 function Result$Err$32$(param0) {
   this._0 = param0;
 }
@@ -759,6 +768,14 @@ function Result$Ok$32$(param0) {
   this._0 = param0;
 }
 Result$Ok$32$.prototype.$tag = 1;
+function Result$Err$33$(param0) {
+  this._0 = param0;
+}
+Result$Err$33$.prototype.$tag = 0;
+function Result$Ok$33$(param0) {
+  this._0 = param0;
+}
+Result$Ok$33$.prototype.$tag = 1;
 const $64$moonbitlang$47$ulex$47$lib$47$parser$46$YYDecision$Accept = { $tag: 0 };
 function $64$moonbitlang$47$ulex$47$lib$47$parser$46$YYDecision$Shift(param0) {
   this._0 = param0;
@@ -777,26 +794,26 @@ function $64$moonbitlang$47$ulex$47$lib$47$parser$46$YYDecision$ReduceNoLookahea
 }
 $64$moonbitlang$47$ulex$47$lib$47$parser$46$YYDecision$ReduceNoLookahead.prototype.$tag = 3;
 const $64$moonbitlang$47$ulex$47$lib$47$parser$46$YYDecision$Error = { $tag: 4 };
-const $64$moonbitlang$47$core$47$immut$47$list$46$T$Nil$33$ = { $tag: 0 };
-function $64$moonbitlang$47$core$47$immut$47$list$46$T$Cons$33$(param0, param1) {
-  this._0 = param0;
-  this._1 = param1;
-}
-$64$moonbitlang$47$core$47$immut$47$list$46$T$Cons$33$.prototype.$tag = 1;
 const $64$moonbitlang$47$core$47$immut$47$list$46$T$Nil$34$ = { $tag: 0 };
 function $64$moonbitlang$47$core$47$immut$47$list$46$T$Cons$34$(param0, param1) {
   this._0 = param0;
   this._1 = param1;
 }
 $64$moonbitlang$47$core$47$immut$47$list$46$T$Cons$34$.prototype.$tag = 1;
-function Result$Err$35$(param0) {
+const $64$moonbitlang$47$core$47$immut$47$list$46$T$Nil$35$ = { $tag: 0 };
+function $64$moonbitlang$47$core$47$immut$47$list$46$T$Cons$35$(param0, param1) {
+  this._0 = param0;
+  this._1 = param1;
+}
+$64$moonbitlang$47$core$47$immut$47$list$46$T$Cons$35$.prototype.$tag = 1;
+function Result$Err$36$(param0) {
   this._0 = param0;
 }
-Result$Err$35$.prototype.$tag = 0;
-function Result$Ok$35$(param0) {
+Result$Err$36$.prototype.$tag = 0;
+function Result$Ok$36$(param0) {
   this._0 = param0;
 }
-Result$Ok$35$.prototype.$tag = 1;
+Result$Ok$36$.prototype.$tag = 1;
 const $64$moonbitlang$47$ulex$47$lib$47$util$47$eof_char_set$46$EofCharRepr$Eof = { $tag: 0 };
 function $64$moonbitlang$47$ulex$47$lib$47$util$47$eof_char_set$46$EofCharRepr$Char(param0) {
   this._0 = param0;
@@ -810,40 +827,6 @@ function $64$moonbitlang$47$ulex$47$lib$47$automaton$46$StaticKnownTagPosition$R
   this._0 = param0;
 }
 $64$moonbitlang$47$ulex$47$lib$47$automaton$46$StaticKnownTagPosition$RelativeToEnd.prototype.$tag = 1;
-const $64$moonbitlang$47$core$47$builtin$46$ForeachResult$Continue$36$ = { $tag: 0 };
-function $64$moonbitlang$47$core$47$builtin$46$ForeachResult$Break$36$(param0) {
-  this._0 = param0;
-}
-$64$moonbitlang$47$core$47$builtin$46$ForeachResult$Break$36$.prototype.$tag = 1;
-function $64$moonbitlang$47$core$47$builtin$46$ForeachResult$Return$36$(param0) {
-  this._0 = param0;
-}
-$64$moonbitlang$47$core$47$builtin$46$ForeachResult$Return$36$.prototype.$tag = 2;
-function $64$moonbitlang$47$core$47$builtin$46$ForeachResult$Error$36$(param0) {
-  this._0 = param0;
-}
-$64$moonbitlang$47$core$47$builtin$46$ForeachResult$Error$36$.prototype.$tag = 3;
-function $64$moonbitlang$47$core$47$builtin$46$ForeachResult$JumpOuter$36$(param0) {
-  this._0 = param0;
-}
-$64$moonbitlang$47$core$47$builtin$46$ForeachResult$JumpOuter$36$.prototype.$tag = 4;
-function $64$moonbitlang$47$ulex$47$lib$47$automaton$46$TagOp$Set(param0) {
-  this._0 = param0;
-}
-$64$moonbitlang$47$ulex$47$lib$47$automaton$46$TagOp$Set.prototype.$tag = 0;
-function $64$moonbitlang$47$ulex$47$lib$47$automaton$46$TagOp$Copy(param0, param1) {
-  this._0 = param0;
-  this._1 = param1;
-}
-$64$moonbitlang$47$ulex$47$lib$47$automaton$46$TagOp$Copy.prototype.$tag = 1;
-function $64$moonbitlang$47$ulex$47$lib$47$automaton$46$DFACapturePosition$Dynamic_dfa(param0) {
-  this._0 = param0;
-}
-$64$moonbitlang$47$ulex$47$lib$47$automaton$46$DFACapturePosition$Dynamic_dfa.prototype.$tag = 0;
-function $64$moonbitlang$47$ulex$47$lib$47$automaton$46$DFACapturePosition$Static_dfa(param0) {
-  this._0 = param0;
-}
-$64$moonbitlang$47$ulex$47$lib$47$automaton$46$DFACapturePosition$Static_dfa.prototype.$tag = 1;
 const $64$moonbitlang$47$core$47$builtin$46$ForeachResult$Continue$37$ = { $tag: 0 };
 function $64$moonbitlang$47$core$47$builtin$46$ForeachResult$Break$37$(param0) {
   this._0 = param0;
@@ -861,6 +844,40 @@ function $64$moonbitlang$47$core$47$builtin$46$ForeachResult$JumpOuter$37$(param
   this._0 = param0;
 }
 $64$moonbitlang$47$core$47$builtin$46$ForeachResult$JumpOuter$37$.prototype.$tag = 4;
+function $64$moonbitlang$47$ulex$47$lib$47$automaton$46$TagOp$Set(param0) {
+  this._0 = param0;
+}
+$64$moonbitlang$47$ulex$47$lib$47$automaton$46$TagOp$Set.prototype.$tag = 0;
+function $64$moonbitlang$47$ulex$47$lib$47$automaton$46$TagOp$Copy(param0, param1) {
+  this._0 = param0;
+  this._1 = param1;
+}
+$64$moonbitlang$47$ulex$47$lib$47$automaton$46$TagOp$Copy.prototype.$tag = 1;
+function $64$moonbitlang$47$ulex$47$lib$47$automaton$46$DFACapturePosition$Dynamic_dfa(param0) {
+  this._0 = param0;
+}
+$64$moonbitlang$47$ulex$47$lib$47$automaton$46$DFACapturePosition$Dynamic_dfa.prototype.$tag = 0;
+function $64$moonbitlang$47$ulex$47$lib$47$automaton$46$DFACapturePosition$Static_dfa(param0) {
+  this._0 = param0;
+}
+$64$moonbitlang$47$ulex$47$lib$47$automaton$46$DFACapturePosition$Static_dfa.prototype.$tag = 1;
+const $64$moonbitlang$47$core$47$builtin$46$ForeachResult$Continue$38$ = { $tag: 0 };
+function $64$moonbitlang$47$core$47$builtin$46$ForeachResult$Break$38$(param0) {
+  this._0 = param0;
+}
+$64$moonbitlang$47$core$47$builtin$46$ForeachResult$Break$38$.prototype.$tag = 1;
+function $64$moonbitlang$47$core$47$builtin$46$ForeachResult$Return$38$(param0) {
+  this._0 = param0;
+}
+$64$moonbitlang$47$core$47$builtin$46$ForeachResult$Return$38$.prototype.$tag = 2;
+function $64$moonbitlang$47$core$47$builtin$46$ForeachResult$Error$38$(param0) {
+  this._0 = param0;
+}
+$64$moonbitlang$47$core$47$builtin$46$ForeachResult$Error$38$.prototype.$tag = 3;
+function $64$moonbitlang$47$core$47$builtin$46$ForeachResult$JumpOuter$38$(param0) {
+  this._0 = param0;
+}
+$64$moonbitlang$47$core$47$builtin$46$ForeachResult$JumpOuter$38$.prototype.$tag = 4;
 const $64$moonbitlang$47$ulex$47$lib$47$automaton$46$Input$Eps = { $tag: 0 };
 function $64$moonbitlang$47$ulex$47$lib$47$automaton$46$Input$EpsWithTag(param0) {
   this._0 = param0;
@@ -938,14 +955,6 @@ const moonbitlang$x$fs$$get_file_content_ffi = function() {
 const moonbitlang$x$fs$$get_error_message_ffi = function() {
    return globalThis.errorMessage || '';
  };
-function Result$Err$38$(param0) {
-  this._0 = param0;
-}
-Result$Err$38$.prototype.$tag = 0;
-function Result$Ok$38$(param0) {
-  this._0 = param0;
-}
-Result$Ok$38$.prototype.$tag = 1;
 function Result$Err$39$(param0) {
   this._0 = param0;
 }
@@ -986,25 +995,33 @@ function Result$Ok$43$(param0) {
   this._0 = param0;
 }
 Result$Ok$43$.prototype.$tag = 1;
+function Result$Err$44$(param0) {
+  this._0 = param0;
+}
+Result$Err$44$.prototype.$tag = 0;
+function Result$Ok$44$(param0) {
+  this._0 = param0;
+}
+Result$Ok$44$.prototype.$tag = 1;
 const moonbitlang$ulex$main$util$$ffi_exit = (code) => { process.exit(code); };
 const moonbitlang$ulex$main$util$$println_to_stderr = (msg) => { console.error("%s", msg); };
-const $64$moonbitlang$47$core$47$builtin$46$ForeachResult$Continue$44$ = { $tag: 0 };
-function $64$moonbitlang$47$core$47$builtin$46$ForeachResult$Break$44$(param0) {
+const $64$moonbitlang$47$core$47$builtin$46$ForeachResult$Continue$45$ = { $tag: 0 };
+function $64$moonbitlang$47$core$47$builtin$46$ForeachResult$Break$45$(param0) {
   this._0 = param0;
 }
-$64$moonbitlang$47$core$47$builtin$46$ForeachResult$Break$44$.prototype.$tag = 1;
-function $64$moonbitlang$47$core$47$builtin$46$ForeachResult$Return$44$(param0) {
+$64$moonbitlang$47$core$47$builtin$46$ForeachResult$Break$45$.prototype.$tag = 1;
+function $64$moonbitlang$47$core$47$builtin$46$ForeachResult$Return$45$(param0) {
   this._0 = param0;
 }
-$64$moonbitlang$47$core$47$builtin$46$ForeachResult$Return$44$.prototype.$tag = 2;
-function $64$moonbitlang$47$core$47$builtin$46$ForeachResult$Error$44$(param0) {
+$64$moonbitlang$47$core$47$builtin$46$ForeachResult$Return$45$.prototype.$tag = 2;
+function $64$moonbitlang$47$core$47$builtin$46$ForeachResult$Error$45$(param0) {
   this._0 = param0;
 }
-$64$moonbitlang$47$core$47$builtin$46$ForeachResult$Error$44$.prototype.$tag = 3;
-function $64$moonbitlang$47$core$47$builtin$46$ForeachResult$JumpOuter$44$(param0) {
+$64$moonbitlang$47$core$47$builtin$46$ForeachResult$Error$45$.prototype.$tag = 3;
+function $64$moonbitlang$47$core$47$builtin$46$ForeachResult$JumpOuter$45$(param0) {
   this._0 = param0;
 }
-$64$moonbitlang$47$core$47$builtin$46$ForeachResult$JumpOuter$44$.prototype.$tag = 4;
+$64$moonbitlang$47$core$47$builtin$46$ForeachResult$JumpOuter$45$.prototype.$tag = 4;
 function $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$lexer$46$LexicalError$IllegalCharacter(param0) {
   this._0 = param0;
 }
@@ -1114,14 +1131,6 @@ function $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$parser$46$YYDecision$
 }
 $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$parser$46$YYDecision$ReduceNoLookahead.prototype.$tag = 3;
 const $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$parser$46$YYDecision$Error = { $tag: 4 };
-function Result$Err$45$(param0) {
-  this._0 = param0;
-}
-Result$Err$45$.prototype.$tag = 0;
-function Result$Ok$45$(param0) {
-  this._0 = param0;
-}
-Result$Ok$45$.prototype.$tag = 1;
 function Result$Err$46$(param0) {
   this._0 = param0;
 }
@@ -1130,6 +1139,14 @@ function Result$Ok$46$(param0) {
   this._0 = param0;
 }
 Result$Ok$46$.prototype.$tag = 1;
+function Result$Err$47$(param0) {
+  this._0 = param0;
+}
+Result$Err$47$.prototype.$tag = 0;
+function Result$Ok$47$(param0) {
+  this._0 = param0;
+}
+Result$Ok$47$.prototype.$tag = 1;
 const $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$Token$EOF = { $tag: 0 };
 function $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$Token$CHAR(param0) {
   this._0 = param0;
@@ -1159,14 +1176,6 @@ function $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$Token
   this._0 = param0;
 }
 $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$Token$TOKEN.prototype.$tag = 16;
-function Result$Err$47$(param0) {
-  this._0 = param0;
-}
-Result$Err$47$.prototype.$tag = 0;
-function Result$Ok$47$(param0) {
-  this._0 = param0;
-}
-Result$Ok$47$.prototype.$tag = 1;
 function Result$Err$48$(param0) {
   this._0 = param0;
 }
@@ -1175,6 +1184,14 @@ function Result$Ok$48$(param0) {
   this._0 = param0;
 }
 Result$Ok$48$.prototype.$tag = 1;
+function Result$Err$49$(param0) {
+  this._0 = param0;
+}
+Result$Err$49$.prototype.$tag = 0;
+function Result$Ok$49$(param0) {
+  this._0 = param0;
+}
+Result$Ok$49$.prototype.$tag = 1;
 const $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Accept = { $tag: 0 };
 function $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Shift(param0) {
   this._0 = param0;
@@ -12787,6 +12804,15 @@ function moonbitlang$core$queue$$T$pop$99$(self) {
 function moonbitlang$core$string$$String$view(self, start_offset, end_offset) {
   return start_offset >= 0 && (start_offset <= end_offset && end_offset <= self.length) ? { str: self, start: start_offset, end: end_offset } : moonbitlang$core$abort$$abort$19$("Invalid index for View");
 }
+function moonbitlang$core$string$$StringView$view(self, start_offset, end_offset) {
+  return start_offset >= 0 && (start_offset <= end_offset && end_offset <= (self.end - self.start | 0)) ? { str: self.str, start: self.start + start_offset | 0, end: self.start + end_offset | 0 } : moonbitlang$core$abort$$abort$19$("Invalid index for View");
+}
+function moonbitlang$core$string$$StringView$charcodes(self, start, end) {
+  return moonbitlang$core$string$$StringView$view(self, start, end);
+}
+function moonbitlang$core$string$$StringView$charcodes$46$end$46$default(self) {
+  return self.end - self.start | 0;
+}
 function moonbitlang$core$string$$String$offset_of_nth_char_backward(self, n, start_offset, end_offset) {
   let char_count = 0;
   let utf16_offset = end_offset;
@@ -12896,8 +12922,58 @@ function moonbitlang$core$string$$String$char_length_ge(self, len, start_offset,
     }
   }
 }
+function moonbitlang$core$builtin$$Show$to_string$19$(self) {
+  return moonbitlang$core$string$$String$substring(self.str, self.start, self.end);
+}
 function moonbitlang$core$string$$code_point_of_surrogate_pair(leading, trailing) {
   return (((Math.imul(leading - 55296 | 0, 1024) | 0) + trailing | 0) - 56320 | 0) + 65536 | 0;
+}
+function moonbitlang$core$string$$StringView$iter2(self) {
+  const _p = (yield_) => {
+    const len = self.end - self.start | 0;
+    let _tmp = 0;
+    let _tmp$2 = 0;
+    while (true) {
+      const index = _tmp;
+      const n = _tmp$2;
+      if (index < len) {
+        const _tmp$3 = self.str;
+        const _tmp$4 = self.start + index | 0;
+        const c1 = _tmp$3.charCodeAt(_tmp$4);
+        if (55296 <= c1 && c1 <= 56319 && (index + 1 | 0) < len) {
+          const _tmp$5 = self.str;
+          const _tmp$6 = (self.start + index | 0) + 1 | 0;
+          const c2 = _tmp$5.charCodeAt(_tmp$6);
+          if (56320 <= c2 && c2 <= 57343) {
+            const c = moonbitlang$core$string$$code_point_of_surrogate_pair(c1, c2);
+            const _bind = yield_(n, c);
+            if (_bind === 1) {
+              const _tmp$7 = index + 2 | 0;
+              const _tmp$8 = n + 1 | 0;
+              _tmp = _tmp$7;
+              _tmp$2 = _tmp$8;
+              continue;
+            } else {
+              return 0;
+            }
+          }
+        }
+        const _bind = yield_(n, c1);
+        if (_bind === 1) {
+        } else {
+          return 0;
+        }
+        const _tmp$5 = index + 1 | 0;
+        const _tmp$6 = n + 1 | 0;
+        _tmp = _tmp$5;
+        _tmp$2 = _tmp$6;
+        continue;
+      } else {
+        return 1;
+      }
+    }
+  };
+  return _p;
 }
 function moonbitlang$core$string$$String$from_array(chars) {
   const buf = moonbitlang$core$builtin$$StringBuilder$new(Math.imul(chars.length, 4) | 0);
@@ -13045,6 +13121,40 @@ function moonbitlang$core$string$$String$to_array(self) {
     return 1;
   });
   return _acc.val;
+}
+function moonbitlang$core$string$$StringView$find_by(self, pred) {
+  const _foreach_result = { val: $64$moonbitlang$47$core$47$builtin$46$ForeachResult$Continue$31$ };
+  const _bind = moonbitlang$core$string$$StringView$iter2(self);
+  _bind((i, c) => {
+    if (pred(c)) {
+      _foreach_result.val = new $64$moonbitlang$47$core$47$builtin$46$ForeachResult$Return$31$(i);
+      return 0;
+    }
+    return 1;
+  });
+  const _tmp = _foreach_result.val;
+  switch (_tmp.$tag) {
+    case 0: {
+      break;
+    }
+    case 1: {
+      const _break = _tmp;
+      _break._0;
+      break;
+    }
+    case 2: {
+      const _return = _tmp;
+      return _return._0;
+    }
+    case 3: {
+      $panic();
+      break;
+    }
+    default: {
+      $panic();
+    }
+  }
+  return undefined;
 }
 function moonbitlang$core$buffer$$T$grow_if_necessary(self, required) {
   let enough_space = self.data.length;
@@ -17885,7 +17995,7 @@ function moonbitlang$ulex$lib$parser$$error(stack, token, loc) {
       break;
     }
   }
-  return new Result$Err$31$(new Error$moonbitlang$47$ulex$47$lib$47$parser$46$ParseError$46$UnexpectedToken(token, loc, expected));
+  return new Result$Err$32$(new Error$moonbitlang$47$ulex$47$lib$47$parser$46$ParseError$46$UnexpectedToken(token, loc, expected));
 }
 function moonbitlang$ulex$lib$parser$$yy_input(token, _start_pos, _end_pos) {
   switch (token.$tag) {
@@ -18027,7 +18137,7 @@ function moonbitlang$ulex$lib$parser$$yy_parse$195$(read_token, start_pos, start
       _L$2: {
         switch (decision.$tag) {
           case 0: {
-            return new Result$Ok$32$(return_(moonbitlang$core$array$$Array$unsafe_pop$15$(data_stack)._0));
+            return new Result$Ok$33$(return_(moonbitlang$core$array$$Array$unsafe_pop$15$(data_stack)._0));
           }
           case 1: {
             const _Shift = decision;
@@ -18129,7 +18239,7 @@ function moonbitlang$ulex$lib$parser$$yy_parse$195$(read_token, start_pos, start
           const _bind$3 = _func$2(symbol);
           switch (_bind$3.$tag) {
             case 0: {
-              return new Result$Ok$32$(return_(moonbitlang$core$array$$Array$unsafe_pop$15$(data_stack)._0));
+              return new Result$Ok$33$(return_(moonbitlang$core$array$$Array$unsafe_pop$15$(data_stack)._0));
             }
             case 1: {
               const _Shift = _bind$3;
@@ -19226,7 +19336,7 @@ function moonbitlang$ulex$lib$parser$$yy_state_51(_lookahead) {
   }
 }
 function moonbitlang$ulex$lib$parser$$yy_action_18(_last_pos, _args) {
-  return new Error$moonbitlang$47$ulex$47$lib$47$parser$46$YYObj__Context______immut_list_T___type_Regex___type_CodeBlock__$46$YYObj__Context______immut_list_T___type_Regex___type_CodeBlock__((_ctx) => $64$moonbitlang$47$core$47$immut$47$list$46$T$Nil$33$);
+  return new Error$moonbitlang$47$ulex$47$lib$47$parser$46$YYObj__Context______immut_list_T___type_Regex___type_CodeBlock__$46$YYObj__Context______immut_list_T___type_Regex___type_CodeBlock__((_ctx) => $64$moonbitlang$47$core$47$immut$47$list$46$T$Nil$34$);
 }
 function moonbitlang$ulex$lib$parser$$yy_action_10(_last_pos, _args) {
   const _bind = moonbitlang$core$array$$ArrayView$op_get$15$(_args, 0)._0;
@@ -19271,7 +19381,7 @@ function moonbitlang$ulex$lib$parser$$yy_action_16(_last_pos, _args) {
     if (_bind$2.$tag === 13) {
       const _YYObj__Context______immut_list_T___type_Regex___type_CodeBlock__ = _bind$2;
       const __dollar2 = _YYObj__Context______immut_list_T___type_Regex___type_CodeBlock__._0;
-      return new Error$moonbitlang$47$ulex$47$lib$47$parser$46$YYObj__Context______immut_list_T___type_Regex___type_CodeBlock__$46$YYObj__Context______immut_list_T___type_Regex___type_CodeBlock__((ctx) => new $64$moonbitlang$47$core$47$immut$47$list$46$T$Cons$33$(__dollar1(ctx), __dollar2(ctx)));
+      return new Error$moonbitlang$47$ulex$47$lib$47$parser$46$YYObj__Context______immut_list_T___type_Regex___type_CodeBlock__$46$YYObj__Context______immut_list_T___type_Regex___type_CodeBlock__((ctx) => new $64$moonbitlang$47$core$47$immut$47$list$46$T$Cons$34$(__dollar1(ctx), __dollar2(ctx)));
     } else {
       return $panic();
     }
@@ -19450,7 +19560,7 @@ function moonbitlang$ulex$lib$parser$$yy_action_19(_last_pos, _args) {
   if (_bind.$tag === 15) {
     const _YYObj__Context______type_Rule = _bind;
     const __dollar1 = _YYObj__Context______type_Rule._0;
-    return new Error$moonbitlang$47$ulex$47$lib$47$parser$46$YYObj__Context______immut_list_T__type_Rule_$46$YYObj__Context______immut_list_T__type_Rule_((ctx) => new $64$moonbitlang$47$core$47$immut$47$list$46$T$Cons$34$(__dollar1(ctx), $64$moonbitlang$47$core$47$immut$47$list$46$T$Nil$34$));
+    return new Error$moonbitlang$47$ulex$47$lib$47$parser$46$YYObj__Context______immut_list_T__type_Rule_$46$YYObj__Context______immut_list_T__type_Rule_((ctx) => new $64$moonbitlang$47$core$47$immut$47$list$46$T$Cons$35$(__dollar1(ctx), $64$moonbitlang$47$core$47$immut$47$list$46$T$Nil$35$));
   } else {
     return $panic();
   }
@@ -19464,7 +19574,7 @@ function moonbitlang$ulex$lib$parser$$yy_action_30(_last_pos, _args) {
     if (_bind$2.$tag === 16) {
       const _YYObj__Context______immut_list_T__type_Rule_ = _bind$2;
       const __dollar2 = _YYObj__Context______immut_list_T__type_Rule_._0;
-      return new Error$moonbitlang$47$ulex$47$lib$47$parser$46$YYObj__Context______immut_list_T__type_Rule_$46$YYObj__Context______immut_list_T__type_Rule_((ctx) => new $64$moonbitlang$47$core$47$immut$47$list$46$T$Cons$34$(__dollar1(ctx), __dollar2(ctx)));
+      return new Error$moonbitlang$47$ulex$47$lib$47$parser$46$YYObj__Context______immut_list_T__type_Rule_$46$YYObj__Context______immut_list_T__type_Rule_((ctx) => new $64$moonbitlang$47$core$47$immut$47$list$46$T$Cons$35$(__dollar1(ctx), __dollar2(ctx)));
     } else {
       return $panic();
     }
@@ -19676,7 +19786,7 @@ function moonbitlang$ulex$lib$parser$$parse_lex_from_string(input) {
   } else {
     return _bind;
   }
-  return new Result$Ok$35$(_func({ named_regexes: $64$moonbitlang$47$core$47$immut$47$sorted_map$46$T$Empty$13$ }));
+  return new Result$Ok$36$(_func({ named_regexes: $64$moonbitlang$47$core$47$immut$47$sorted_map$46$T$Empty$13$ }));
 }
 function moonbitlang$ulex$lib$parser$$Token$kind(self) {
   switch (self.$tag) {
@@ -20233,17 +20343,17 @@ function moonbitlang$ulex$lib$automaton$$TagState$update_by_tags(self, tags) {
 }
 function moonbitlang$ulex$lib$automaton$$TagState$tagState_min(self, other) {
   const tags = moonbitlang$core$builtin$$Add$op_add$74$(moonbitlang$core$immut$sorted_set$$from_array$8$(moonbitlang$core$immut$sorted_map$$T$keys$84$(self)), moonbitlang$core$immut$sorted_set$$from_array$8$(moonbitlang$core$immut$sorted_map$$T$keys$84$(other)));
-  const _foreach_result = { val: $64$moonbitlang$47$core$47$builtin$46$ForeachResult$Continue$36$ };
+  const _foreach_result = { val: $64$moonbitlang$47$core$47$builtin$46$ForeachResult$Continue$37$ };
   const _bind = moonbitlang$core$immut$sorted_set$$T$iter$8$(tags);
   _bind((tag) => {
     const _bind$2 = moonbitlang$core$immut$sorted_map$$T$get$84$(self, tag);
     const _bind$3 = moonbitlang$core$immut$sorted_map$$T$get$84$(other, tag);
     if (_bind$2 === undefined) {
-      _foreach_result.val = new $64$moonbitlang$47$core$47$builtin$46$ForeachResult$Break$36$(other);
+      _foreach_result.val = new $64$moonbitlang$47$core$47$builtin$46$ForeachResult$Break$37$(other);
       return 0;
     } else {
       if (_bind$3 === undefined) {
-        _foreach_result.val = new $64$moonbitlang$47$core$47$builtin$46$ForeachResult$Break$36$(self);
+        _foreach_result.val = new $64$moonbitlang$47$core$47$builtin$46$ForeachResult$Break$37$(self);
         return 0;
       } else {
         const _Some = _bind$2;
@@ -20251,7 +20361,7 @@ function moonbitlang$ulex$lib$automaton$$TagState$tagState_min(self, other) {
         const _Some$2 = _bind$3;
         const _r2 = _Some$2;
         if (_r1 !== _r2) {
-          _foreach_result.val = new $64$moonbitlang$47$core$47$builtin$46$ForeachResult$Break$36$(_r1 < _r2 ? self : other);
+          _foreach_result.val = new $64$moonbitlang$47$core$47$builtin$46$ForeachResult$Break$37$(_r1 < _r2 ? self : other);
           return 0;
         }
       }
@@ -20896,7 +21006,7 @@ function moonbitlang$ulex$lib$automaton$$DFA$minimize(dfa) {
     if (!moonbitlang$core$immut$sorted_set$$T$is_empty$20$(worklist.val)) {
       const a = moonbitlang$core$immut$sorted_set$$T$min$20$(worklist.val);
       worklist.val = moonbitlang$core$immut$sorted_set$$T$remove_min$20$(worklist.val);
-      let _foreach_result = $64$moonbitlang$47$core$47$builtin$46$ForeachResult$Continue$37$;
+      let _foreach_result = $64$moonbitlang$47$core$47$builtin$46$ForeachResult$Continue$38$;
       const _bind$3 = moonbitlang$core$immut$sorted_set$$T$iter$31$(symbols);
       _bind$3((symbol) => {
         const x = { val: $64$moonbitlang$47$core$47$immut$47$sorted_set$46$T$Empty$6$ };
@@ -22693,7 +22803,7 @@ function Yoorkin$trie$$T$lookup$197$(self, path) {
     }
   }
 }
-function Yoorkin$trie$$add$46$aux$47$7409(value, _param1, _param2) {
+function Yoorkin$trie$$add$46$aux$47$7440(value, _param1, _param2) {
   if (_param1.len === 0) {
     return { value: value, forks: _param2.forks };
   } else {
@@ -22703,12 +22813,12 @@ function Yoorkin$trie$$add$46$aux$47$7409(value, _param1, _param2) {
     const _some = _param1.len;
     const _x$2 = { buf: _tmp, start: _tmp$2, len: _some - 1 | 0 };
     const subtree = moonbitlang$core$option$$Option$or$111$(moonbitlang$core$immut$sorted_map$$T$op_get$86$(_param2.forks, _x), { value: undefined, forks: $64$moonbitlang$47$core$47$immut$47$sorted_map$46$T$Empty$12$ });
-    return { value: _param2.value, forks: moonbitlang$core$immut$sorted_map$$T$add$86$(_param2.forks, _x, Yoorkin$trie$$add$46$aux$47$7409(value, _x$2, subtree)) };
+    return { value: _param2.value, forks: moonbitlang$core$immut$sorted_map$$T$add$86$(_param2.forks, _x, Yoorkin$trie$$add$46$aux$47$7440(value, _x$2, subtree)) };
   }
 }
 function Yoorkin$trie$$T$add$197$(self, path, value) {
   const _bind = moonbitlang$core$string$$String$to_array(path);
-  return Yoorkin$trie$$add$46$aux$47$7409(value, { buf: _bind, start: 0, len: _bind.length }, self);
+  return Yoorkin$trie$$add$46$aux$47$7440(value, { buf: _bind, start: 0, len: _bind.length }, self);
 }
 function Yoorkin$trie$$empty$197$() {
   return { value: undefined, forks: $64$moonbitlang$47$core$47$immut$47$sorted_map$46$T$Empty$12$ };
@@ -22963,9 +23073,9 @@ function moonbitlang$x$sys$$get_cli_args() {
 function moonbitlang$x$fs$$read_file_to_bytes_internal(path) {
   const res = moonbitlang$x$fs$$read_file_ffi(path);
   if (res === -1) {
-    return new Result$Err$38$(new Error$moonbitlang$47$x$47$fs$46$IOError$46$IOError(moonbitlang$x$fs$$get_error_message_ffi()));
+    return new Result$Err$39$(new Error$moonbitlang$47$x$47$fs$46$IOError$46$IOError(moonbitlang$x$fs$$get_error_message_ffi()));
   }
-  return new Result$Ok$39$(moonbitlang$x$fs$$get_file_content_ffi());
+  return new Result$Ok$40$(moonbitlang$x$fs$$get_file_content_ffi());
 }
 function moonbitlang$x$fs$$read_file_to_string_internal(path, encoding) {
   if (encoding === "utf8") {
@@ -22977,17 +23087,17 @@ function moonbitlang$x$fs$$read_file_to_string_internal(path, encoding) {
     } else {
       return _bind;
     }
-    return new Result$Ok$41$(moonbitlang$x$internal$ffi$$utf8_bytes_to_mbt_string(bytes));
+    return new Result$Ok$42$(moonbitlang$x$internal$ffi$$utf8_bytes_to_mbt_string(bytes));
   } else {
-    return new Result$Err$40$(new Error$moonbitlang$47$x$47$fs$46$IOError$46$IOError(`Unsupported encoding: ${encoding}, only utf8 is supported for now`));
+    return new Result$Err$41$(new Error$moonbitlang$47$x$47$fs$46$IOError$46$IOError(`Unsupported encoding: ${encoding}, only utf8 is supported for now`));
   }
 }
 function moonbitlang$x$fs$$write_bytes_to_file_internal(path, content) {
   const res = moonbitlang$x$fs$$write_file_ffi(path, content);
   if (res === -1) {
-    return new Result$Err$43$(new Error$moonbitlang$47$x$47$fs$46$IOError$46$IOError(moonbitlang$x$fs$$get_error_message_ffi()));
+    return new Result$Err$44$(new Error$moonbitlang$47$x$47$fs$46$IOError$46$IOError(moonbitlang$x$fs$$get_error_message_ffi()));
   } else {
-    return new Result$Ok$42$(undefined);
+    return new Result$Ok$43$(undefined);
   }
 }
 function moonbitlang$x$fs$$write_string_to_file_internal(path, content, encoding) {
@@ -22995,7 +23105,7 @@ function moonbitlang$x$fs$$write_string_to_file_internal(path, content, encoding
     const bytes = moonbitlang$x$internal$ffi$$mbt_string_to_utf8_bytes(content, false);
     return moonbitlang$x$fs$$write_bytes_to_file_internal(path, bytes);
   } else {
-    return new Result$Err$43$(new Error$moonbitlang$47$x$47$fs$46$IOError$46$IOError(`Unsupported encoding: ${encoding}, only utf8 is supported for now`));
+    return new Result$Err$44$(new Error$moonbitlang$47$x$47$fs$46$IOError$46$IOError(`Unsupported encoding: ${encoding}, only utf8 is supported for now`));
   }
 }
 function moonbitlang$x$fs$$read_file_to_bytes(path) {
@@ -23017,6 +23127,304 @@ function moonbitlang$ulex$main$util$$exit$198$(code) {
 }
 function moonbitlang$core$builtin$$Compare$compare$112$(self, other) {
   return self.fname === other.fname ? $compare_int(self.cnum, other.cnum) : $panic();
+}
+function moonbitlang$ulex$lib$new_frontend$ast_types$$parse_string_literal$46$hex$124$2(c) {
+  return c >= 48 && c <= 57 ? c - 48 | 0 : c >= 97 && c <= 102 ? (c - 97 | 0) + 10 | 0 : c >= 65 && c <= 70 ? (c - 65 | 0) + 10 | 0 : $panic();
+}
+function moonbitlang$ulex$lib$new_frontend$ast_types$$parse_string_literal(lit) {
+  const buffer = moonbitlang$core$builtin$$StringBuilder$new(0);
+  const _bind = lit.length;
+  let _tmp = lit;
+  let _tmp$2 = 0;
+  let _tmp$3 = _bind;
+  _L: while (true) {
+    const _param_str = _tmp;
+    const _param_start = _tmp$2;
+    const _param_end = _tmp$3;
+    let rest;
+    let c;
+    _L$2: {
+      _L$3: {
+        let rest$2;
+        _L$4: {
+          if (moonbitlang$core$string$$String$char_length_eq(_param_str, 0, _param_start, _param_end)) {
+            break;
+          } else {
+            if (moonbitlang$core$string$$String$char_length_ge(_param_str, 2, _param_start, _param_end)) {
+              const _x = moonbitlang$core$string$$String$unsafe_char_at(_param_str, moonbitlang$core$string$$String$offset_of_nth_char(_param_str, 0, _param_start, _param_end));
+              if (_x === 92) {
+                const _x$2 = moonbitlang$core$string$$String$unsafe_char_at(_param_str, moonbitlang$core$string$$String$offset_of_nth_char(_param_str, 1, _param_start, _param_end));
+                switch (_x$2) {
+                  case 39: {
+                    const _bind$2 = moonbitlang$core$string$$String$offset_of_nth_char(_param_str, 2, _param_start, _param_end);
+                    let _bind$3;
+                    if (_bind$2 === undefined) {
+                      _bind$3 = _param_end;
+                    } else {
+                      const _Some = _bind$2;
+                      _bind$3 = _Some;
+                    }
+                    moonbitlang$core$builtin$$Logger$write_char$122$(buffer, 39);
+                    _tmp$2 = _bind$3;
+                    continue _L;
+                  }
+                  case 34: {
+                    const _bind$4 = moonbitlang$core$string$$String$offset_of_nth_char(_param_str, 2, _param_start, _param_end);
+                    let _bind$5;
+                    if (_bind$4 === undefined) {
+                      _bind$5 = _param_end;
+                    } else {
+                      const _Some = _bind$4;
+                      _bind$5 = _Some;
+                    }
+                    moonbitlang$core$builtin$$Logger$write_char$122$(buffer, 34);
+                    _tmp$2 = _bind$5;
+                    continue _L;
+                  }
+                  case 92: {
+                    const _bind$6 = moonbitlang$core$string$$String$offset_of_nth_char(_param_str, 2, _param_start, _param_end);
+                    let _bind$7;
+                    if (_bind$6 === undefined) {
+                      _bind$7 = _param_end;
+                    } else {
+                      const _Some = _bind$6;
+                      _bind$7 = _Some;
+                    }
+                    moonbitlang$core$builtin$$Logger$write_char$122$(buffer, 92);
+                    _tmp$2 = _bind$7;
+                    continue _L;
+                  }
+                  case 110: {
+                    const _bind$8 = moonbitlang$core$string$$String$offset_of_nth_char(_param_str, 2, _param_start, _param_end);
+                    let _bind$9;
+                    if (_bind$8 === undefined) {
+                      _bind$9 = _param_end;
+                    } else {
+                      const _Some = _bind$8;
+                      _bind$9 = _Some;
+                    }
+                    moonbitlang$core$builtin$$Logger$write_char$122$(buffer, 10);
+                    _tmp$2 = _bind$9;
+                    continue _L;
+                  }
+                  case 116: {
+                    const _bind$10 = moonbitlang$core$string$$String$offset_of_nth_char(_param_str, 2, _param_start, _param_end);
+                    let _bind$11;
+                    if (_bind$10 === undefined) {
+                      _bind$11 = _param_end;
+                    } else {
+                      const _Some = _bind$10;
+                      _bind$11 = _Some;
+                    }
+                    moonbitlang$core$builtin$$Logger$write_char$122$(buffer, 9);
+                    _tmp$2 = _bind$11;
+                    continue _L;
+                  }
+                  case 98: {
+                    const _bind$12 = moonbitlang$core$string$$String$offset_of_nth_char(_param_str, 2, _param_start, _param_end);
+                    let _bind$13;
+                    if (_bind$12 === undefined) {
+                      _bind$13 = _param_end;
+                    } else {
+                      const _Some = _bind$12;
+                      _bind$13 = _Some;
+                    }
+                    moonbitlang$core$builtin$$Logger$write_char$122$(buffer, 8);
+                    _tmp$2 = _bind$13;
+                    continue _L;
+                  }
+                  case 114: {
+                    const _bind$14 = moonbitlang$core$string$$String$offset_of_nth_char(_param_str, 2, _param_start, _param_end);
+                    let _bind$15;
+                    if (_bind$14 === undefined) {
+                      _bind$15 = _param_end;
+                    } else {
+                      const _Some = _bind$14;
+                      _bind$15 = _Some;
+                    }
+                    moonbitlang$core$builtin$$Logger$write_char$122$(buffer, 13);
+                    _tmp$2 = _bind$15;
+                    continue _L;
+                  }
+                  default: {
+                    if (moonbitlang$core$string$$String$char_length_ge(_param_str, 4, _param_start, _param_end)) {
+                      if (_x$2 === 120) {
+                        const _c1 = moonbitlang$core$string$$String$unsafe_char_at(_param_str, moonbitlang$core$string$$String$offset_of_nth_char(_param_str, 2, _param_start, _param_end));
+                        const _c2 = moonbitlang$core$string$$String$unsafe_char_at(_param_str, moonbitlang$core$string$$String$offset_of_nth_char(_param_str, 3, _param_start, _param_end));
+                        const _bind$16 = moonbitlang$core$string$$String$offset_of_nth_char(_param_str, 4, _param_start, _param_end);
+                        let _bind$17;
+                        if (_bind$16 === undefined) {
+                          _bind$17 = _param_end;
+                        } else {
+                          const _Some = _bind$16;
+                          _bind$17 = _Some;
+                        }
+                        const code = (Math.imul(moonbitlang$ulex$lib$new_frontend$ast_types$$parse_string_literal$46$hex$124$2(_c1), 16) | 0) + moonbitlang$ulex$lib$new_frontend$ast_types$$parse_string_literal$46$hex$124$2(_c2) | 0;
+                        moonbitlang$core$builtin$$Logger$write_char$122$(buffer, code);
+                        _tmp$2 = _bind$17;
+                        continue _L;
+                      } else {
+                        if (moonbitlang$core$string$$String$char_length_ge(_param_str, 6, _param_start, _param_end)) {
+                          if (_x$2 === 117) {
+                            const _c1 = moonbitlang$core$string$$String$unsafe_char_at(_param_str, moonbitlang$core$string$$String$offset_of_nth_char(_param_str, 2, _param_start, _param_end));
+                            const _c2 = moonbitlang$core$string$$String$unsafe_char_at(_param_str, moonbitlang$core$string$$String$offset_of_nth_char(_param_str, 3, _param_start, _param_end));
+                            const _c3 = moonbitlang$core$string$$String$unsafe_char_at(_param_str, moonbitlang$core$string$$String$offset_of_nth_char(_param_str, 4, _param_start, _param_end));
+                            const _c4 = moonbitlang$core$string$$String$unsafe_char_at(_param_str, moonbitlang$core$string$$String$offset_of_nth_char(_param_str, 5, _param_start, _param_end));
+                            const _bind$16 = moonbitlang$core$string$$String$offset_of_nth_char(_param_str, 6, _param_start, _param_end);
+                            let _bind$17;
+                            if (_bind$16 === undefined) {
+                              _bind$17 = _param_end;
+                            } else {
+                              const _Some = _bind$16;
+                              _bind$17 = _Some;
+                            }
+                            const code = (((Math.imul(Math.imul(Math.imul(moonbitlang$ulex$lib$new_frontend$ast_types$$parse_string_literal$46$hex$124$2(_c1), 16) | 0, 16) | 0, 16) | 0) + (Math.imul(Math.imul(moonbitlang$ulex$lib$new_frontend$ast_types$$parse_string_literal$46$hex$124$2(_c2), 16) | 0, 16) | 0) | 0) + (Math.imul(moonbitlang$ulex$lib$new_frontend$ast_types$$parse_string_literal$46$hex$124$2(_c3), 16) | 0) | 0) + moonbitlang$ulex$lib$new_frontend$ast_types$$parse_string_literal$46$hex$124$2(_c4) | 0;
+                            moonbitlang$core$builtin$$Logger$write_char$122$(buffer, code);
+                            _tmp$2 = _bind$17;
+                            continue _L;
+                          } else {
+                            break _L$3;
+                          }
+                        } else {
+                          if (_x$2 === 117) {
+                            const _x$3 = moonbitlang$core$string$$String$unsafe_char_at(_param_str, moonbitlang$core$string$$String$offset_of_nth_char(_param_str, 2, _param_start, _param_end));
+                            if (_x$3 === 123) {
+                              const _bind$16 = moonbitlang$core$string$$String$offset_of_nth_char(_param_str, 3, _param_start, _param_end);
+                              let _tmp$4;
+                              if (_bind$16 === undefined) {
+                                _tmp$4 = _param_end;
+                              } else {
+                                const _Some = _bind$16;
+                                _tmp$4 = _Some;
+                              }
+                              const _x$4 = { str: _param_str, start: _tmp$4, end: _param_end };
+                              rest$2 = _x$4;
+                              break _L$4;
+                            } else {
+                              break _L$3;
+                            }
+                          } else {
+                            break _L$3;
+                          }
+                        }
+                      }
+                    } else {
+                      if (moonbitlang$core$string$$String$char_length_ge(_param_str, 3, _param_start, _param_end)) {
+                        if (_x$2 === 117) {
+                          const _x$3 = moonbitlang$core$string$$String$unsafe_char_at(_param_str, moonbitlang$core$string$$String$offset_of_nth_char(_param_str, 2, _param_start, _param_end));
+                          if (_x$3 === 123) {
+                            const _bind$16 = moonbitlang$core$string$$String$offset_of_nth_char(_param_str, 3, _param_start, _param_end);
+                            let _tmp$4;
+                            if (_bind$16 === undefined) {
+                              _tmp$4 = _param_end;
+                            } else {
+                              const _Some = _bind$16;
+                              _tmp$4 = _Some;
+                            }
+                            const _x$4 = { str: _param_str, start: _tmp$4, end: _param_end };
+                            rest$2 = _x$4;
+                            break _L$4;
+                          } else {
+                            break _L$3;
+                          }
+                        } else {
+                          break _L$3;
+                        }
+                      } else {
+                        break _L$3;
+                      }
+                    }
+                  }
+                }
+              } else {
+                const _bind$2 = moonbitlang$core$string$$String$offset_of_nth_char(_param_str, 1, _param_start, _param_end);
+                let _tmp$4;
+                if (_bind$2 === undefined) {
+                  _tmp$4 = _param_end;
+                } else {
+                  const _Some = _bind$2;
+                  _tmp$4 = _Some;
+                }
+                const _x$2 = { str: _param_str, start: _tmp$4, end: _param_end };
+                rest = _x$2;
+                c = _x;
+                break _L$2;
+              }
+            } else {
+              const _x = moonbitlang$core$string$$String$unsafe_char_at(_param_str, moonbitlang$core$string$$String$offset_of_nth_char(_param_str, 0, _param_start, _param_end));
+              if (_x === 92) {
+                break _L$3;
+              } else {
+                const _bind$2 = moonbitlang$core$string$$String$offset_of_nth_char(_param_str, 1, _param_start, _param_end);
+                let _tmp$4;
+                if (_bind$2 === undefined) {
+                  _tmp$4 = _param_end;
+                } else {
+                  const _Some = _bind$2;
+                  _tmp$4 = _Some;
+                }
+                const _x$2 = { str: _param_str, start: _tmp$4, end: _param_end };
+                rest = _x$2;
+                c = _x;
+                break _L$2;
+              }
+            }
+          }
+        }
+        const rbrace_index = moonbitlang$core$option$$Option$unwrap$8$(moonbitlang$core$string$$StringView$find_by(rest$2, (c$2) => {
+          if (c$2 === 125) {
+            return true;
+          } else {
+            return false;
+          }
+        }));
+        const code_str = moonbitlang$core$string$$StringView$charcodes(rest$2, 0, rbrace_index);
+        let _tmp$4;
+        let _try_err;
+        _L$5: {
+          _L$6: {
+            const _bind$2 = moonbitlang$core$strconv$$parse_int(moonbitlang$core$builtin$$Show$to_string$19$(code_str), 16);
+            let _tmp$5;
+            if (_bind$2.$tag === 1) {
+              const _ok = _bind$2;
+              _tmp$5 = _ok._0;
+            } else {
+              const _err = _bind$2;
+              const _tmp$6 = _err._0;
+              _try_err = _tmp$6;
+              break _L$6;
+            }
+            _tmp$4 = new Result$Ok$5$(_tmp$5);
+            break _L$5;
+          }
+          _tmp$4 = new Result$Err$5$(_try_err);
+        }
+        const code = moonbitlang$core$result$$Result$unwrap$67$(_tmp$4);
+        moonbitlang$core$builtin$$Logger$write_char$122$(buffer, code);
+        const _arg = rbrace_index + 1 | 0;
+        const _arg$2 = moonbitlang$core$string$$StringView$charcodes$46$end$46$default(rest$2);
+        const _bind$2 = moonbitlang$core$string$$StringView$charcodes(rest$2, _arg, _arg$2);
+        const _tmp$5 = _bind$2.str;
+        const _tmp$6 = _bind$2.start;
+        const _tmp$7 = _bind$2.end;
+        _tmp = _tmp$5;
+        _tmp$2 = _tmp$6;
+        _tmp$3 = _tmp$7;
+        continue;
+      }
+      $panic();
+      break;
+    }
+    moonbitlang$core$builtin$$Logger$write_char$122$(buffer, c);
+    const _tmp$4 = rest.str;
+    const _tmp$5 = rest.start;
+    const _tmp$6 = rest.end;
+    _tmp = _tmp$4;
+    _tmp$2 = _tmp$5;
+    _tmp$3 = _tmp$6;
+    continue;
+  }
+  return buffer.val;
 }
 function moonbitlang$ulex$lib$new_frontend$lexer$$digit_value(c) {
   if (c >= 97 && c <= 102) {
@@ -23040,13 +23448,13 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$digit_value(c) {
 }
 function moonbitlang$ulex$lib$new_frontend$lexer$$char_for_hex_escape(hex) {
   const codep = { val: 0 };
-  const _foreach_result = { val: $64$moonbitlang$47$core$47$builtin$46$ForeachResult$Continue$44$ };
+  const _foreach_result = { val: $64$moonbitlang$47$core$47$builtin$46$ForeachResult$Continue$45$ };
   const _bind = moonbitlang$core$string$$String$iter(hex);
   _bind((c) => {
     const digit = moonbitlang$ulex$lib$new_frontend$lexer$$digit_value(c);
     codep.val = ((Math.imul(codep.val, 16) | 0) >>> 0) + (digit >>> 0) | 0;
     if (codep.val >>> 0 > 1114111 >>> 0) {
-      _foreach_result.val = new $64$moonbitlang$47$core$47$builtin$46$ForeachResult$Return$44$(undefined);
+      _foreach_result.val = new $64$moonbitlang$47$core$47$builtin$46$ForeachResult$Return$45$(undefined);
       return 0;
     }
     return 1;
@@ -36401,11 +36809,11 @@ function moonbitlang$ulex$lib$new_frontend$parser$$error(stack, token, loc) {
     }
   }
   if (token === undefined) {
-    return new Result$Err$45$(new Error$moonbitlang$47$ulex$47$lib$47$new_frontend$47$parser$46$ParseError$46$UnexpectedEndOfInput(loc._1, expected));
+    return new Result$Err$46$(new Error$moonbitlang$47$ulex$47$lib$47$new_frontend$47$parser$46$ParseError$46$UnexpectedEndOfInput(loc._1, expected));
   } else {
     const _Some = token;
     const _token = _Some;
-    return new Result$Err$45$(new Error$moonbitlang$47$ulex$47$lib$47$new_frontend$47$parser$46$ParseError$46$UnexpectedToken(_token, loc, expected));
+    return new Result$Err$46$(new Error$moonbitlang$47$ulex$47$lib$47$new_frontend$47$parser$46$ParseError$46$UnexpectedToken(_token, loc, expected));
   }
 }
 function moonbitlang$ulex$lib$new_frontend$parser$$yy_parse$6$(tokens, start, return_, initial_pos) {
@@ -36464,7 +36872,7 @@ function moonbitlang$ulex$lib$new_frontend$parser$$yy_parse$6$(tokens, start, re
       _L$2: {
         switch (decision.$tag) {
           case 0: {
-            return new Result$Ok$46$(return_(moonbitlang$core$array$$Array$unsafe_pop$11$(data_stack)._0));
+            return new Result$Ok$47$(return_(moonbitlang$core$array$$Array$unsafe_pop$11$(data_stack)._0));
           }
           case 1: {
             const _Shift = decision;
@@ -36566,7 +36974,7 @@ function moonbitlang$ulex$lib$new_frontend$parser$$yy_parse$6$(tokens, start, re
           const _bind$3 = _func$2(symbol);
           switch (_bind$3.$tag) {
             case 0: {
-              return new Result$Ok$46$(return_(moonbitlang$core$array$$Array$unsafe_pop$11$(data_stack)._0));
+              return new Result$Ok$47$(return_(moonbitlang$core$array$$Array$unsafe_pop$11$(data_stack)._0));
             }
             case 1: {
               const _Shift = _bind$3;
@@ -37804,7 +38212,7 @@ function moonbitlang$ulex$lib$new_frontend$regex_parser$$error(stack, token, loc
       break;
     }
   }
-  return new Result$Err$47$(new Error$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$ParseError$46$UnexpectedToken(token, loc, expected));
+  return new Result$Err$48$(new Error$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$ParseError$46$UnexpectedToken(token, loc, expected));
 }
 function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_input(token, _start_pos, _end_pos) {
   switch (token.$tag) {
@@ -37917,7 +38325,7 @@ function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_parse$17$(read_token
       _L$2: {
         switch (decision.$tag) {
           case 0: {
-            return new Result$Ok$48$(return_(moonbitlang$core$array$$Array$unsafe_pop$25$(data_stack)._0));
+            return new Result$Ok$49$(return_(moonbitlang$core$array$$Array$unsafe_pop$25$(data_stack)._0));
           }
           case 1: {
             const _Shift = decision;
@@ -38019,7 +38427,7 @@ function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_parse$17$(read_token
           const _bind$3 = _func$2(symbol);
           switch (_bind$3.$tag) {
             case 0: {
-              return new Result$Ok$48$(return_(moonbitlang$core$array$$Array$unsafe_pop$25$(data_stack)._0));
+              return new Result$Ok$49$(return_(moonbitlang$core$array$$Array$unsafe_pop$25$(data_stack)._0));
             }
             case 1: {
               const _Shift = _bind$3;
@@ -38066,19 +38474,25 @@ function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_parse$17$(read_token
 function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_1(_lookahead) {
   return $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Accept;
 }
-function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_10(_last_pos, _args) {
+function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_24(_last_pos, _args) {
   return new Error$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYObj__Context_____Regex$46$YYObj__Context_____Regex((_ctx) => moonbitlang$ulex$lib$regex$$eof);
 }
 function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_15(_lookahead) {
-  return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$ReduceNoLookahead(1, 21, moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_10);
+  return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$ReduceNoLookahead(1, 21, moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_24);
 }
-function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_0(_last_pos, _args) {
+function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_3(_last_pos, _args) {
   return new Error$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYObj__Context_____Regex$46$YYObj__Context_____Regex((_ctx) => moonbitlang$ulex$lib$regex$$char_class(moonbitlang$ulex$lib$util$char_set$$any, undefined));
 }
 function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_16(_lookahead) {
-  return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$ReduceNoLookahead(1, 21, moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_0);
+  return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$ReduceNoLookahead(1, 21, moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_3);
 }
-function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_13(_last_pos, _args) {
+function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_11(_last_pos, _args) {
+  return new Error$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYObj__Context_____Regex$46$YYObj__Context_____Regex((_ctx) => moonbitlang$ulex$lib$regex$$char_class(moonbitlang$ulex$lib$util$char_set$$singleton(45), undefined));
+}
+function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_17(_lookahead) {
+  return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$ReduceNoLookahead(1, 21, moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_11);
+}
+function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_0(_last_pos, _args) {
   const _bind = moonbitlang$core$array$$ArrayView$op_get$25$(_args, 0)._0;
   if (_bind.$tag === 39) {
     const _YYObj_Char = _bind;
@@ -38088,10 +38502,10 @@ function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_13(_last_pos,
     return $panic();
   }
 }
-function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_17(_lookahead) {
-  return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$ReduceNoLookahead(1, 21, moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_13);
+function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_18(_lookahead) {
+  return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$ReduceNoLookahead(1, 21, moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_0);
 }
-function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_6(_last_pos, _args) {
+function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_14(_last_pos, _args) {
   const _bind = moonbitlang$core$array$$ArrayView$op_get$25$(_args, 0)._0;
   if (_bind.$tag === 44) {
     const _YYObj__char_set_T = _bind;
@@ -38101,23 +38515,10 @@ function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_6(_last_pos, 
     return $panic();
   }
 }
-function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_18(_lookahead) {
-  return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$ReduceNoLookahead(1, 21, moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_6);
-}
-function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_4(_last_pos, _args) {
-  const _bind = moonbitlang$core$array$$ArrayView$op_get$25$(_args, 0)._0;
-  if (_bind.$tag === 42) {
-    const _YYObj_String = _bind;
-    const __dollar1 = _YYObj_String._0;
-    return new Error$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYObj__Context_____Regex$46$YYObj__Context_____Regex((ctx) => moonbitlang$core$option$$Option$unwrap$152$(moonbitlang$core$immut$sorted_map$$T$get$87$(ctx.named_regexes, __dollar1)));
-  } else {
-    return $panic();
-  }
-}
 function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_19(_lookahead) {
-  return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$ReduceNoLookahead(1, 21, moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_4);
+  return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$ReduceNoLookahead(1, 21, moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_14);
 }
-function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_1(_last_pos, _args) {
+function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_10(_last_pos, _args) {
   const _bind = moonbitlang$core$array$$ArrayView$op_get$25$(_args, 0)._0;
   if (_bind.$tag === 40) {
     const _YYObj__Char__String_ = _bind;
@@ -38128,9 +38529,22 @@ function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_1(_last_pos, 
   }
 }
 function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_2(_lookahead) {
-  return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$ReduceNoLookahead(1, 25, moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_1);
+  return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$ReduceNoLookahead(1, 25, moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_10);
 }
-function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_16(_last_pos, _args) {
+function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_7(_last_pos, _args) {
+  const _bind = moonbitlang$core$array$$ArrayView$op_get$25$(_args, 0)._0;
+  if (_bind.$tag === 42) {
+    const _YYObj_String = _bind;
+    const __dollar1 = _YYObj_String._0;
+    return new Error$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYObj__Context_____Regex$46$YYObj__Context_____Regex((ctx) => moonbitlang$core$option$$Option$unwrap$152$(moonbitlang$core$immut$sorted_map$$T$get$87$(ctx.named_regexes, __dollar1)));
+  } else {
+    return $panic();
+  }
+}
+function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_20(_lookahead) {
+  return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$ReduceNoLookahead(1, 21, moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_7);
+}
+function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_4(_last_pos, _args) {
   const _bind = moonbitlang$core$array$$ArrayView$op_get$25$(_args, 1)._0;
   if (_bind.$tag === 43) {
     const _YYObj__Context_____Regex = _bind;
@@ -38140,17 +38554,17 @@ function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_16(_last_pos,
     return $panic();
   }
 }
-function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_22(_lookahead) {
-  return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$ReduceNoLookahead(3, 21, moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_16);
+function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_23(_lookahead) {
+  return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$ReduceNoLookahead(3, 21, moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_4);
 }
-function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_21(_lookahead) {
+function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_22(_lookahead) {
   if (_lookahead === 14) {
-    return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Shift(moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_22);
+    return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Shift(moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_23);
   } else {
     return $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Error;
   }
 }
-function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_17(_last_pos, _args) {
+function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_12(_last_pos, _args) {
   const _bind = moonbitlang$core$array$$ArrayView$op_get$25$(_args, 0)._0;
   if (_bind.$tag === 43) {
     const _YYObj__Context_____Regex = _bind;
@@ -38160,7 +38574,7 @@ function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_17(_last_pos,
     return $panic();
   }
 }
-function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_7(_last_pos, _args) {
+function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_17(_last_pos, _args) {
   const _bind = moonbitlang$core$array$$ArrayView$op_get$25$(_args, 0)._0;
   if (_bind.$tag === 43) {
     const _YYObj__Context_____Regex = _bind;
@@ -38177,10 +38591,10 @@ function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_7(_last_pos, 
     return $panic();
   }
 }
-function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_24(_lookahead) {
-  return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$ReduceNoLookahead(2, 20, moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_7);
+function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_25(_lookahead) {
+  return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$ReduceNoLookahead(2, 20, moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_17);
 }
-function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_20(_last_pos, _args) {
+function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_8(_last_pos, _args) {
   const _bind = moonbitlang$core$array$$ArrayView$op_get$25$(_args, 0)._0;
   if (_bind.$tag === 43) {
     const _YYObj__Context_____Regex = _bind;
@@ -38190,10 +38604,10 @@ function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_20(_last_pos,
     return $panic();
   }
 }
-function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_25(_lookahead) {
-  return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$ReduceNoLookahead(2, 20, moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_20);
+function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_26(_lookahead) {
+  return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$ReduceNoLookahead(2, 20, moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_8);
 }
-function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_2(_last_pos, _args) {
+function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_21(_last_pos, _args) {
   const _bind = moonbitlang$core$array$$ArrayView$op_get$25$(_args, 0)._0;
   if (_bind.$tag === 43) {
     const _YYObj__Context_____Regex = _bind;
@@ -38203,10 +38617,10 @@ function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_2(_last_pos, 
     return $panic();
   }
 }
-function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_26(_lookahead) {
-  return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$ReduceNoLookahead(2, 20, moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_2);
+function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_27(_lookahead) {
+  return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$ReduceNoLookahead(2, 20, moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_21);
 }
-function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_11(_last_pos, _args) {
+function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_2(_last_pos, _args) {
   const _bind = moonbitlang$core$array$$ArrayView$op_get$25$(_args, 0)._0;
   if (_bind.$tag === 43) {
     const _YYObj__Context_____Regex = _bind;
@@ -38216,23 +38630,23 @@ function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_11(_last_pos,
     return $panic();
   }
 }
-function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_27(_lookahead) {
-  return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$ReduceNoLookahead(2, 20, moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_11);
+function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_28(_lookahead) {
+  return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$ReduceNoLookahead(2, 20, moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_2);
 }
-function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_23(_lookahead) {
+function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_24(_lookahead) {
   _L: {
     switch (_lookahead) {
       case 12: {
-        return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Shift(moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_24);
-      }
-      case 11: {
         return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Shift(moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_25);
       }
-      case 10: {
+      case 11: {
         return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Shift(moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_26);
       }
-      case 9: {
+      case 10: {
         return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Shift(moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_27);
+      }
+      case 9: {
+        return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Shift(moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_28);
       }
       case 0: {
         break _L;
@@ -38252,6 +38666,9 @@ function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_23(_lookahead)
       case 5: {
         break _L;
       }
+      case 8: {
+        break _L;
+      }
       case 13: {
         break _L;
       }
@@ -38269,9 +38686,9 @@ function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_23(_lookahead)
       }
     }
   }
-  return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Reduce(1, 20, moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_17);
+  return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Reduce(1, 20, moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_12);
 }
-function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_22(_last_pos, _args) {
+function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_19(_last_pos, _args) {
   const _bind = moonbitlang$core$array$$ArrayView$op_get$25$(_args, 0)._0;
   if (_bind.$tag === 43) {
     const _YYObj__Context_____Regex = _bind;
@@ -38280,6 +38697,19 @@ function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_22(_last_pos,
   } else {
     return $panic();
   }
+}
+function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_6(_last_pos, _args) {
+  const _bind = moonbitlang$core$array$$ArrayView$op_get$25$(_args, 0)._0;
+  if (_bind.$tag === 39) {
+    const _YYObj_Char = _bind;
+    const __dollar1 = _YYObj_Char._0;
+    return new Error$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYObj_Char$46$YYObj_Char(__dollar1);
+  } else {
+    return $panic();
+  }
+}
+function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_3(_lookahead) {
+  return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$ReduceNoLookahead(1, 25, moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_6);
 }
 function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_18(_last_pos, _args) {
   const _bind = moonbitlang$core$array$$ArrayView$op_get$25$(_args, 0)._0;
@@ -38298,26 +38728,13 @@ function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_18(_last_pos,
     return $panic();
   }
 }
-function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_29(_lookahead) {
+function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_30(_lookahead) {
   return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$ReduceNoLookahead(2, 19, moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_18);
 }
-function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_8(_last_pos, _args) {
-  const _bind = moonbitlang$core$array$$ArrayView$op_get$25$(_args, 0)._0;
-  if (_bind.$tag === 39) {
-    const _YYObj_Char = _bind;
-    const __dollar1 = _YYObj_Char._0;
-    return new Error$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYObj_Char$46$YYObj_Char(__dollar1);
-  } else {
-    return $panic();
-  }
-}
-function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_3(_lookahead) {
-  return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$ReduceNoLookahead(1, 25, moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_8);
-}
-function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_12(_last_pos, _args) {
+function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_16(_last_pos, _args) {
   return new Error$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYObj__char_set_T$46$YYObj__char_set_T(moonbitlang$ulex$lib$util$char_set$$empty);
 }
-function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_23(_last_pos, _args) {
+function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_5(_last_pos, _args) {
   const _bind = moonbitlang$core$array$$ArrayView$op_get$25$(_args, 2)._0;
   if (_bind.$tag === 44) {
     const _YYObj__char_set_T = _bind;
@@ -38328,7 +38745,7 @@ function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_23(_last_pos,
   }
 }
 function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_12(_lookahead) {
-  return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$ReduceNoLookahead(4, 22, moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_23);
+  return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$ReduceNoLookahead(4, 22, moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_5);
 }
 function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_11(_lookahead) {
   if (_lookahead === 6) {
@@ -38337,7 +38754,7 @@ function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_11(_lookahead)
     return $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Error;
   }
 }
-function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_15(_last_pos, _args) {
+function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_9(_last_pos, _args) {
   const _bind = moonbitlang$core$array$$ArrayView$op_get$25$(_args, 0)._0;
   if (_bind.$tag === 39) {
     const _YYObj_Char = _bind;
@@ -38347,7 +38764,7 @@ function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_15(_last_pos,
     return $panic();
   }
 }
-function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_14(_last_pos, _args) {
+function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_1(_last_pos, _args) {
   const _bind = moonbitlang$core$array$$ArrayView$op_get$25$(_args, 0)._0;
   if (_bind.$tag === 39) {
     const _YYObj_Char = _bind;
@@ -38365,7 +38782,7 @@ function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_14(_last_pos,
   }
 }
 function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_7(_lookahead) {
-  return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$ReduceNoLookahead(3, 24, moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_14);
+  return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$ReduceNoLookahead(3, 24, moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_1);
 }
 function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_6(_lookahead) {
   switch (_lookahead) {
@@ -38403,9 +38820,9 @@ function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_5(_lookahead) 
       }
     }
   }
-  return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Reduce(1, 24, moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_15);
+  return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Reduce(1, 24, moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_9);
 }
-function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_5(_last_pos, _args) {
+function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_15(_last_pos, _args) {
   const _bind = moonbitlang$core$array$$ArrayView$op_get$25$(_args, 0)._0;
   if (_bind.$tag === 44) {
     const _YYObj__char_set_T = _bind;
@@ -38423,7 +38840,7 @@ function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_5(_last_pos, 
   }
 }
 function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_9(_lookahead) {
-  return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$ReduceNoLookahead(2, 23, moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_5);
+  return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$ReduceNoLookahead(2, 23, moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_15);
 }
 function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_8(_lookahead) {
   switch (_lookahead) {
@@ -38443,7 +38860,7 @@ function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_8(_lookahead) 
       return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Shift(moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_9);
     }
     case 6: {
-      return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Reduce(0, 23, moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_12);
+      return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Reduce(0, 23, moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_16);
     }
     default: {
       return $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Error;
@@ -38468,14 +38885,14 @@ function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_10(_lookahead)
       return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Shift(moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_11);
     }
     case 6: {
-      return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Reduce(0, 23, moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_12);
+      return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Reduce(0, 23, moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_16);
     }
     default: {
       return $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Error;
     }
   }
 }
-function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_3(_last_pos, _args) {
+function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_13(_last_pos, _args) {
   const _bind = moonbitlang$core$array$$ArrayView$op_get$25$(_args, 1)._0;
   if (_bind.$tag === 44) {
     const _YYObj__char_set_T = _bind;
@@ -38486,7 +38903,7 @@ function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_3(_last_pos, 
   }
 }
 function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_14(_lookahead) {
-  return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$ReduceNoLookahead(3, 22, moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_3);
+  return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$ReduceNoLookahead(3, 22, moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_13);
 }
 function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_13(_lookahead) {
   if (_lookahead === 6) {
@@ -38516,14 +38933,14 @@ function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_4(_lookahead) 
       return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Shift(moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_13);
     }
     case 6: {
-      return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Reduce(0, 23, moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_12);
+      return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Reduce(0, 23, moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_16);
     }
     default: {
       return $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Error;
     }
   }
 }
-function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_21(_last_pos, _args) {
+function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_20(_last_pos, _args) {
   const _bind = moonbitlang$core$array$$ArrayView$op_get$25$(_args, 0)._0;
   if (_bind.$tag === 43) {
     const _YYObj__Context_____Regex = _bind;
@@ -38533,7 +38950,7 @@ function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_21(_last_pos,
     return $panic();
   }
 }
-function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_19(_last_pos, _args) {
+function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_23(_last_pos, _args) {
   const _bind = moonbitlang$core$array$$ArrayView$op_get$25$(_args, 0)._0;
   if (_bind.$tag === 43) {
     const _YYObj__Context_____Regex = _bind;
@@ -38550,10 +38967,10 @@ function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_19(_last_pos,
     return $panic();
   }
 }
-function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_32(_lookahead) {
-  return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$ReduceNoLookahead(3, 18, moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_19);
+function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_33(_lookahead) {
+  return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$ReduceNoLookahead(3, 18, moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_23);
 }
-function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_20(_lookahead) {
+function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_21(_lookahead) {
   switch (_lookahead) {
     case 2: {
       return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Shift(moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_2);
@@ -38570,36 +38987,39 @@ function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_20(_lookahead)
     case 3: {
       return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Shift(moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_16);
     }
-    case 25: {
+    case 8: {
       return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Shift(moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_17);
     }
-    case 22: {
+    case 25: {
       return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Shift(moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_18);
     }
-    case 16: {
+    case 22: {
       return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Shift(moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_19);
     }
-    case 13: {
+    case 16: {
       return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Shift(moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_20);
     }
-    case 18: {
+    case 13: {
       return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Shift(moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_21);
     }
+    case 18: {
+      return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Shift(moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_22);
+    }
     case 21: {
-      return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Shift(moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_23);
+      return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Shift(moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_24);
     }
     case 20: {
-      return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Shift(moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_28);
+      return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Shift(moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_29);
     }
     case 19: {
-      return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Shift(moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_30);
+      return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Shift(moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_31);
     }
     default: {
       return $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Error;
     }
   }
 }
-function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_28(_lookahead) {
+function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_29(_lookahead) {
   _L: {
     switch (_lookahead) {
       case 2: {
@@ -38617,26 +39037,29 @@ function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_28(_lookahead)
       case 3: {
         return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Shift(moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_16);
       }
-      case 25: {
+      case 8: {
         return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Shift(moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_17);
       }
-      case 22: {
+      case 25: {
         return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Shift(moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_18);
       }
-      case 16: {
+      case 22: {
         return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Shift(moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_19);
       }
-      case 13: {
+      case 16: {
         return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Shift(moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_20);
       }
+      case 13: {
+        return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Shift(moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_21);
+      }
       case 21: {
-        return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Shift(moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_23);
+        return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Shift(moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_24);
       }
       case 20: {
-        return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Shift(moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_28);
+        return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Shift(moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_29);
       }
       case 19: {
-        return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Shift(moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_29);
+        return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Shift(moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_30);
       }
       case 0: {
         break _L;
@@ -38652,13 +39075,13 @@ function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_28(_lookahead)
       }
     }
   }
-  return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Reduce(1, 19, moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_22);
+  return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Reduce(1, 19, moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_19);
 }
-function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_30(_lookahead) {
+function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_31(_lookahead) {
   _L: {
     switch (_lookahead) {
       case 15: {
-        return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Shift(moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_31);
+        return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Shift(moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_32);
       }
       case 0: {
         break _L;
@@ -38671,9 +39094,9 @@ function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_30(_lookahead)
       }
     }
   }
-  return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Reduce(1, 18, moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_21);
+  return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Reduce(1, 18, moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_20);
 }
-function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_31(_lookahead) {
+function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_32(_lookahead) {
   switch (_lookahead) {
     case 2: {
       return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Shift(moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_2);
@@ -38690,36 +39113,39 @@ function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_31(_lookahead)
     case 3: {
       return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Shift(moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_16);
     }
-    case 25: {
+    case 8: {
       return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Shift(moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_17);
     }
-    case 22: {
+    case 25: {
       return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Shift(moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_18);
     }
-    case 16: {
+    case 22: {
       return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Shift(moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_19);
     }
-    case 13: {
+    case 16: {
       return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Shift(moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_20);
     }
+    case 13: {
+      return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Shift(moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_21);
+    }
     case 21: {
-      return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Shift(moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_23);
+      return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Shift(moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_24);
     }
     case 20: {
-      return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Shift(moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_28);
+      return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Shift(moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_29);
     }
     case 19: {
-      return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Shift(moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_30);
+      return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Shift(moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_31);
     }
     case 18: {
-      return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Shift(moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_32);
+      return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Shift(moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_33);
     }
     default: {
       return $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Error;
     }
   }
 }
-function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_9(_last_pos, _args) {
+function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_22(_last_pos, _args) {
   const _bind = moonbitlang$core$array$$ArrayView$op_get$25$(_args, 0)._0;
   if (_bind.$tag === 43) {
     const _YYObj__Context_____Regex = _bind;
@@ -38729,12 +39155,12 @@ function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_9(_last_pos, 
     return $panic();
   }
 }
-function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_34(_lookahead) {
-  return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$ReduceNoLookahead(2, 17, moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_9);
+function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_35(_lookahead) {
+  return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$ReduceNoLookahead(2, 17, moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_action_22);
 }
-function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_33(_lookahead) {
+function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_34(_lookahead) {
   if (_lookahead === 0) {
-    return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Shift(moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_34);
+    return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Shift(moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_35);
   } else {
     return $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Error;
   }
@@ -38759,29 +39185,32 @@ function moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_0(_lookahead) 
     case 3: {
       return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Shift(moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_16);
     }
-    case 25: {
+    case 8: {
       return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Shift(moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_17);
     }
-    case 22: {
+    case 25: {
       return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Shift(moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_18);
     }
-    case 16: {
+    case 22: {
       return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Shift(moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_19);
     }
-    case 13: {
+    case 16: {
       return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Shift(moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_20);
     }
+    case 13: {
+      return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Shift(moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_21);
+    }
     case 21: {
-      return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Shift(moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_23);
+      return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Shift(moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_24);
     }
     case 20: {
-      return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Shift(moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_28);
+      return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Shift(moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_29);
     }
     case 19: {
-      return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Shift(moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_30);
+      return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Shift(moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_31);
     }
     case 18: {
-      return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Shift(moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_33);
+      return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Shift(moonbitlang$ulex$lib$new_frontend$regex_parser$$yy_state_34);
     }
     default: {
       return $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$YYDecision$Error;
@@ -38805,7 +39234,7 @@ function moonbitlang$ulex$lib$new_frontend$regex_parser$$parse(regex, named_rege
     case 0: {
       const _Literal = regex;
       const _lit = _Literal._0;
-      source = _lit;
+      source = moonbitlang$ulex$lib$new_frontend$ast_types$$parse_string_literal(_lit);
       break;
     }
     case 2: {
@@ -38830,7 +39259,7 @@ function moonbitlang$ulex$lib$new_frontend$regex_parser$$parse(regex, named_rege
           if (elem.$tag === 0) {
             const _InterpLit = elem;
             const _repr = _InterpLit._0;
-            _tmp$2 = _repr;
+            _tmp$2 = moonbitlang$ulex$lib$new_frontend$ast_types$$parse_string_literal(_repr);
           } else {
             const _InterpSource = elem;
             const _x = _InterpSource._0;
