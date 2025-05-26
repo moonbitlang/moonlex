@@ -4115,8 +4115,8 @@ fn tokens(lexbuf : Lexbuf, env~ : LexEnv, preserve_comment~ : (Comment, Int, Int
       ()
       let raw = lexbuf.get_string(_capture_0_start, _capture_0_end)
 
-      let token : Token = if raw is "BytesRegex" {
-        UIDENT_BYTES_REGEX
+      let token : Token = if raw is "Regex" {
+        UIDENT_REGEX
       } else {
         UIDENT(raw)
       }

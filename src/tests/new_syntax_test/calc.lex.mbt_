@@ -8,8 +8,8 @@ fn parse_integer(input : @bytes.View) -> Int {
 }
 
 fn eval(input : Bytes) -> Int {
-  const DIGIT : BytesRegex = "[0-9]"
-  const NUMBER : BytesRegex = "\{DIGIT}+"
+  const DIGIT : Regex = "[0-9]"
+  const NUMBER : Regex = "\{DIGIT}+"
 
   let stack : Array[Int] = []
   let x = input[:]

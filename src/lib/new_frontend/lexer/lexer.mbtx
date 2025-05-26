@@ -571,8 +571,8 @@ rule tokens(lexbuf : Lexbuf, env~ : LexEnv, preserve_comment~ : (Comment, Int, I
       env.add_token_with_loc(EOF, start=end, end=end)
     }
     ['A'-'Z'] unicode_id_char* as raw => {
-      let token : Token = if raw is "BytesRegex" {
-        UIDENT_BYTES_REGEX
+      let token : Token = if raw is "Regex" {
+        UIDENT_REGEX
       } else {
         UIDENT(raw)
       }

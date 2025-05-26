@@ -3,8 +3,8 @@ test {
   let content = @encoding.encode(
     UTF8,
     #|let x : Int = 1
-    #|const DIGIT : BytesRegex = "[0-9]"
-    #|const NUM : BytesRegex = "\{DIGIT}+"
+    #|const DIGIT : Regex = "[0-9]"
+    #|const NUM : Regex = "\{DIGIT}+"
     #|fn foo(lexbuf : Lexbuf) -> Unit {
     #|  lex lexbuf {
     #|    NUM => {}
@@ -32,10 +32,10 @@ test {
         {
           "$tag": "NamedRegex",
           "0": { "name": "DIGIT", "loc": "test.mbt:2:6-2:11" },
-          "1": { "$tag": "Literal", "0": "[0-9]", "loc": "test.mbt:2:27-2:34" },
-          "loc": "test.mbt:2:0-2:34",
+          "1": { "$tag": "Literal", "0": "[0-9]", "loc": "test.mbt:2:22-2:29" },
+          "loc": "test.mbt:2:0-2:29",
         },
-        { "$tag": "Code", "loc": "test.mbt:2:34-3:0" },
+        { "$tag": "Code", "loc": "test.mbt:2:29-3:0" },
         {
           "$tag": "NamedRegex",
           "0": { "name": "NUM", "loc": "test.mbt:3:6-3:9" },
@@ -44,15 +44,15 @@ test {
             "0": [
               {
                 "$tag": "InterpSource",
-                "0": { "source": "DIGIT", "loc": "test.mbt:3:28-3:33" },
+                "0": { "source": "DIGIT", "loc": "test.mbt:3:23-3:28" },
               },
-              { "$tag": "InterpLit", "repr": "+", "loc": "test.mbt:3:25-3:36" },
+              { "$tag": "InterpLit", "repr": "+", "loc": "test.mbt:3:20-3:31" },
             ],
-            "loc": "test.mbt:3:25-3:36",
+            "loc": "test.mbt:3:20-3:31",
           },
-          "loc": "test.mbt:3:0-3:36",
+          "loc": "test.mbt:3:0-3:31",
         },
-        { "$tag": "Code", "loc": "test.mbt:3:36-5:2" },
+        { "$tag": "Code", "loc": "test.mbt:3:31-5:2" },
         {
           "$tag": "LexDef",
           "0": { "name": "lexbuf", "loc": "test.mbt:5:6-5:12" },

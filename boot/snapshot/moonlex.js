@@ -72,7 +72,7 @@ function $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$UIDEN
 }
 $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$UIDENT.prototype.$tag = 11;
 const $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$LIDENT_LEX = { $tag: 12 };
-const $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$UIDENT_BYTES_REGEX = { $tag: 13 };
+const $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$UIDENT_REGEX = { $tag: 13 };
 function $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$POST_LABEL(param0) {
   this._0 = param0;
 }
@@ -24225,7 +24225,7 @@ function moonbitlang$core$builtin$$Show$output$113$(_x_4, _x_5) {
       return;
     }
     case 13: {
-      _x_5.method_0(_x_5.self, "UIDENT_BYTES_REGEX");
+      _x_5.method_0(_x_5.self, "UIDENT_REGEX");
       return;
     }
     case 14: {
@@ -24662,7 +24662,7 @@ function moonbitlang$core$builtin$$Show$output$118$(self, logger) {
       break;
     }
     case 13: {
-      _tmp = "\"BytesRegex\"";
+      _tmp = "\"Regex\"";
       break;
     }
     case 14: {
@@ -33450,8 +33450,8 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
         case 67: {
           const raw = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$get_string(lexbuf$2, _capture_0_start.val, _capture_0_end.val);
           let token;
-          if (raw === "BytesRegex") {
-            token = $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$UIDENT_BYTES_REGEX;
+          if (raw === "Regex") {
+            token = $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$UIDENT_REGEX;
           } else {
             token = new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$UIDENT(raw);
           }
