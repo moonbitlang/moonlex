@@ -28,9 +28,9 @@ let invalid_byte_repr_buf : StringBuilder = StringBuilder::new()
 
 fn interp_handle(lexbuf : Lexbuf, env~ : LexEnv) -> Int  {
   // The matched pattern id
-  let mut matched = @int.max_value
-  let mut _end_pos = -1
-  let mut _start_pos = lexbuf.curr_pos()
+  let mut _match_pattern = @int.max_value
+  let mut _match_start = lexbuf.curr_pos()
+  let mut _match_end = -1
   let mut _capture_0_start = -1
   let mut _capture_0_end = -1
   let mut _capture_1_start = -1
@@ -69,27 +69,27 @@ fn interp_handle(lexbuf : Lexbuf, env~ : LexEnv) -> Int  {
       }
     }
     1 => {
-      if matched >= 1 {
-        matched = 1
-        _end_pos = lexbuf.curr_pos()
+      if _match_pattern >= 1 {
+        _match_pattern = 1
+        _match_end = lexbuf.curr_pos()
       }
       break
     }
     2 => {
-      if matched >= 4 {
-        matched = 4
-        _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _start_pos
-        _capture_0_end = _end_pos
+      if _match_pattern >= 4 {
+        _match_pattern = 4
+        _match_end = lexbuf.curr_pos()
+        _capture_0_start = _match_start
+        _capture_0_end = _match_end
       }
       break
     }
     3 => {
-      if matched >= 4 {
-        matched = 4
-        _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _start_pos
-        _capture_0_end = _end_pos
+      if _match_pattern >= 4 {
+        _match_pattern = 4
+        _match_end = lexbuf.curr_pos()
+        _capture_0_start = _match_start
+        _capture_0_end = _match_end
       }
       continue match lexbuf.next_as_int() {
         9 => 22
@@ -105,25 +105,25 @@ fn interp_handle(lexbuf : Lexbuf, env~ : LexEnv) -> Int  {
       }
     }
     4 => {
-      if matched >= 2 {
-        matched = 2
-        _end_pos = lexbuf.curr_pos()
+      if _match_pattern >= 2 {
+        _match_pattern = 2
+        _match_end = lexbuf.curr_pos()
       }
       break
     }
     5 => {
-      if matched >= 5 {
-        matched = 5
-        _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _start_pos
-        _capture_0_end = _end_pos
+      if _match_pattern >= 5 {
+        _match_pattern = 5
+        _match_end = lexbuf.curr_pos()
+        _capture_0_start = _match_start
+        _capture_0_end = _match_end
       }
       break
     }
     6 => {
-      if matched >= 0 {
-        matched = 0
-        _end_pos = lexbuf.curr_pos()
+      if _match_pattern >= 0 {
+        _match_pattern = 0
+        _match_end = lexbuf.curr_pos()
       }
       break
     }
@@ -307,39 +307,39 @@ fn interp_handle(lexbuf : Lexbuf, env~ : LexEnv) -> Int  {
     _ => panic()
   }
 
-  guard matched <= 5 else {
+  guard _match_pattern <= 5 else {
     // No pattern matched
     panic()
   }
 
-  lexbuf.reset(pos=_end_pos)
-  match matched {
+  lexbuf.reset(pos=_match_end)
+  match _match_pattern {
     0 => {
       ()
 
-      _start_pos
+      _match_start
     
     }
     1 => {
       ()
 
-      env.add_lexing_error(start=_start_pos, end = _end_pos, UnterminatedString)
-      _start_pos
+      env.add_lexing_error(start=_match_start, end = _match_end, UnterminatedString)
+      _match_start
     
     }
     2 => {
       ()
 
-      env.add_lexing_error(start=_start_pos, end = _end_pos, UnterminatedStringInVariableInterploation)
-      lexbuf.reset(pos=_start_pos)
-      _start_pos
+      env.add_lexing_error(start=_match_start, end = _match_end, UnterminatedStringInVariableInterploation)
+      lexbuf.reset(pos=_match_start)
+      _match_start
     
     }
     3 => {
       ()
 
-      env.add_lexing_error(start=_start_pos, end = _end_pos, UnterminatedStringInVariableInterploation)
-      _start_pos
+      env.add_lexing_error(start=_match_start, end = _match_end, UnterminatedStringInVariableInterploation)
+      _match_start
     
     }
     4 => {
@@ -355,7 +355,7 @@ fn interp_handle(lexbuf : Lexbuf, env~ : LexEnv) -> Int  {
       let c = lexbuf.get_char(_capture_0_start, _capture_0_end)
 
       // TODO: better error message when it is '"' etc
-      env.add_lexing_error(start=_start_pos, end = _end_pos, IllegalCharacter(c))
+      env.add_lexing_error(start=_match_start, end = _match_end, IllegalCharacter(c))
       interp_handle(lexbuf, env~)
     
     }
@@ -366,9 +366,9 @@ fn interp_handle(lexbuf : Lexbuf, env~ : LexEnv) -> Int  {
 
 fn normal(lexbuf : Lexbuf, env~ : LexEnv, end_with_newline~ : Bool, allow_interp~ : Bool, startpos~ : Int) -> Unit  {
   // The matched pattern id
-  let mut matched = @int.max_value
-  let mut _end_pos = -1
-  let mut _start_pos = lexbuf.curr_pos()
+  let mut _match_pattern = @int.max_value
+  let mut _match_start = lexbuf.curr_pos()
+  let mut _match_end = -1
   let mut _capture_0_start = -1
   let mut _capture_0_end = -1
   let mut _capture_1_start = -1
@@ -392,27 +392,27 @@ fn normal(lexbuf : Lexbuf, env~ : LexEnv, end_with_newline~ : Bool, allow_interp
       }
     }
     1 => {
-      if matched >= 11 {
-        matched = 11
-        _end_pos = lexbuf.curr_pos()
+      if _match_pattern >= 11 {
+        _match_pattern = 11
+        _match_end = lexbuf.curr_pos()
       }
       break
     }
     2 => {
-      if matched >= 13 {
-        matched = 13
-        _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _start_pos
-        _capture_0_end = _end_pos
+      if _match_pattern >= 13 {
+        _match_pattern = 13
+        _match_end = lexbuf.curr_pos()
+        _capture_0_start = _match_start
+        _capture_0_end = _match_end
       }
       break
     }
     3 => {
-      if matched >= 13 {
-        matched = 13
-        _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _start_pos
-        _capture_0_end = _end_pos
+      if _match_pattern >= 13 {
+        _match_pattern = 13
+        _match_end = lexbuf.curr_pos()
+        _capture_0_start = _match_start
+        _capture_0_end = _match_end
       }
       continue match lexbuf.next_as_int() {
         10 => 10
@@ -420,18 +420,18 @@ fn normal(lexbuf : Lexbuf, env~ : LexEnv, end_with_newline~ : Bool, allow_interp
       }
     }
     4 => {
-      if matched >= 0 {
-        matched = 0
-        _end_pos = lexbuf.curr_pos()
+      if _match_pattern >= 0 {
+        _match_pattern = 0
+        _match_end = lexbuf.curr_pos()
       }
       break
     }
     5 => {
-      if matched >= 13 {
-        matched = 13
-        _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _start_pos
-        _capture_0_end = _end_pos
+      if _match_pattern >= 13 {
+        _match_pattern = 13
+        _match_end = lexbuf.curr_pos()
+        _capture_0_start = _match_start
+        _capture_0_end = _match_end
       }
       continue match lexbuf.next_as_int() {
         0..=31 => 11
@@ -489,36 +489,36 @@ fn normal(lexbuf : Lexbuf, env~ : LexEnv, end_with_newline~ : Bool, allow_interp
       }
     }
     10 => {
-      if matched >= 12 {
-        matched = 12
-        _end_pos = lexbuf.curr_pos()
+      if _match_pattern >= 12 {
+        _match_pattern = 12
+        _match_end = lexbuf.curr_pos()
       }
       break
     }
     11 => {
-      if matched >= 10 {
-        matched = 10
-        _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _start_pos
-        _capture_0_end = _end_pos
+      if _match_pattern >= 10 {
+        _match_pattern = 10
+        _match_end = lexbuf.curr_pos()
+        _capture_0_start = _match_start
+        _capture_0_end = _match_end
       }
       break
     }
     12 => {
-      if matched >= 1 {
-        matched = 1
-        _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _start_pos
-        _capture_0_end = _start_pos + 2
+      if _match_pattern >= 1 {
+        _match_pattern = 1
+        _match_end = lexbuf.curr_pos()
+        _capture_0_start = _match_start
+        _capture_0_end = _match_start + 2
       }
       break
     }
     13 => {
-      if matched >= 10 {
-        matched = 10
-        _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _start_pos
-        _capture_0_end = _end_pos
+      if _match_pattern >= 10 {
+        _match_pattern = 10
+        _match_end = lexbuf.curr_pos()
+        _capture_0_start = _match_start
+        _capture_0_end = _match_end
       }
       continue match lexbuf.next_as_int() {
         0..=47 => 28
@@ -532,11 +532,11 @@ fn normal(lexbuf : Lexbuf, env~ : LexEnv, end_with_newline~ : Bool, allow_interp
       }
     }
     14 => {
-      if matched >= 10 {
-        matched = 10
-        _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _start_pos
-        _capture_0_end = _end_pos
+      if _match_pattern >= 10 {
+        _match_pattern = 10
+        _match_end = lexbuf.curr_pos()
+        _capture_0_start = _match_start
+        _capture_0_end = _match_end
       }
       continue match lexbuf.next_as_int() {
         48..=57 => 26
@@ -547,11 +547,11 @@ fn normal(lexbuf : Lexbuf, env~ : LexEnv, end_with_newline~ : Bool, allow_interp
       }
     }
     15 => {
-      if matched >= 10 {
-        matched = 10
-        _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _start_pos
-        _capture_0_end = _end_pos
+      if _match_pattern >= 10 {
+        _match_pattern = 10
+        _match_end = lexbuf.curr_pos()
+        _capture_0_start = _match_start
+        _capture_0_end = _match_end
       }
       continue match lexbuf.next_as_int() {
         0..=47 => 34
@@ -569,11 +569,11 @@ fn normal(lexbuf : Lexbuf, env~ : LexEnv, end_with_newline~ : Bool, allow_interp
       }
     }
     16 => {
-      if matched >= 9 {
-        matched = 9
-        _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _start_pos
-        _capture_0_end = _end_pos
+      if _match_pattern >= 9 {
+        _match_pattern = 9
+        _match_end = lexbuf.curr_pos()
+        _capture_0_start = _match_start
+        _capture_0_end = _match_end
       }
       continue match lexbuf.next_as_int() {
         9 => 16
@@ -826,11 +826,11 @@ fn normal(lexbuf : Lexbuf, env~ : LexEnv, end_with_newline~ : Bool, allow_interp
       }
     }
     46 => {
-      if matched >= 8 {
-        matched = 8
-        _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _start_pos
-        _capture_0_end = _end_pos
+      if _match_pattern >= 8 {
+        _match_pattern = 8
+        _match_end = lexbuf.curr_pos()
+        _capture_0_start = _match_start
+        _capture_0_end = _match_end
       }
       break
     }
@@ -913,11 +913,11 @@ fn normal(lexbuf : Lexbuf, env~ : LexEnv, end_with_newline~ : Bool, allow_interp
       }
     }
     58 => {
-      if matched >= 3 {
-        matched = 3
-        _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _start_pos
-        _capture_0_end = _end_pos
+      if _match_pattern >= 3 {
+        _match_pattern = 3
+        _match_end = lexbuf.curr_pos()
+        _capture_0_start = _match_start
+        _capture_0_end = _match_end
       }
       break
     }
@@ -946,20 +946,20 @@ fn normal(lexbuf : Lexbuf, env~ : LexEnv, end_with_newline~ : Bool, allow_interp
       }
     }
     63 => {
-      if matched >= 2 {
-        matched = 2
-        _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _start_pos
-        _capture_0_end = _start_pos + 4
+      if _match_pattern >= 2 {
+        _match_pattern = 2
+        _match_end = lexbuf.curr_pos()
+        _capture_0_start = _match_start
+        _capture_0_end = _match_start + 4
       }
       break
     }
     64 => {
-      if matched >= 7 {
-        matched = 7
-        _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _start_pos
-        _capture_0_end = _end_pos
+      if _match_pattern >= 7 {
+        _match_pattern = 7
+        _match_end = lexbuf.curr_pos()
+        _capture_0_start = _match_start
+        _capture_0_end = _match_end
       }
       break
     }
@@ -972,11 +972,11 @@ fn normal(lexbuf : Lexbuf, env~ : LexEnv, end_with_newline~ : Bool, allow_interp
       }
     }
     66 => {
-      if matched >= 5 {
-        matched = 5
-        _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _start_pos
-        _capture_0_end = _end_pos
+      if _match_pattern >= 5 {
+        _match_pattern = 5
+        _match_end = lexbuf.curr_pos()
+        _capture_0_start = _match_start
+        _capture_0_end = _match_end
       }
       break
     }
@@ -1005,33 +1005,33 @@ fn normal(lexbuf : Lexbuf, env~ : LexEnv, end_with_newline~ : Bool, allow_interp
       }
     }
     71 => {
-      if matched >= 4 {
-        matched = 4
-        _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _start_pos
-        _capture_0_end = _start_pos + 5
+      if _match_pattern >= 4 {
+        _match_pattern = 4
+        _match_end = lexbuf.curr_pos()
+        _capture_0_start = _match_start
+        _capture_0_end = _match_start + 5
       }
       break
     }
     72 => {
-      if matched >= 6 {
-        matched = 6
-        _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _start_pos
-        _capture_0_end = _start_pos + 6
+      if _match_pattern >= 6 {
+        _match_pattern = 6
+        _match_end = lexbuf.curr_pos()
+        _capture_0_start = _match_start
+        _capture_0_end = _match_start + 6
       }
       break
     }
     _ => panic()
   }
 
-  guard matched <= 13 else {
+  guard _match_pattern <= 13 else {
     // No pattern matched
     panic()
   }
 
-  lexbuf.reset(pos=_end_pos)
-  match matched {
+  lexbuf.reset(pos=_match_end)
+  match _match_pattern {
     0 => {
       ()
 
@@ -1043,7 +1043,7 @@ fn normal(lexbuf : Lexbuf, env~ : LexEnv, end_with_newline~ : Bool, allow_interp
           string_interps.val.push(
             InterpLit(
               repr=string_repr_buf.to_string(),
-              loc=Location::{ start : env.make_pos(startpos), end : env.make_pos(_end_pos) }
+              loc=Location::{ start : env.make_pos(startpos), end : env.make_pos(_match_end) }
             )
           )
         }
@@ -1070,7 +1070,7 @@ fn normal(lexbuf : Lexbuf, env~ : LexEnv, end_with_newline~ : Bool, allow_interp
       ()
       let repr = lexbuf.get_string(_capture_0_start, _capture_0_end)
 
-      env.add_lexing_error(start=_start_pos, end=_end_pos, InvalidEscapeSequence(repr))
+      env.add_lexing_error(start=_match_start, end=_match_end, InvalidEscapeSequence(repr))
       normal(lexbuf, env~, end_with_newline~, allow_interp~, startpos~)
     
     }
@@ -1086,7 +1086,7 @@ fn normal(lexbuf : Lexbuf, env~ : LexEnv, end_with_newline~ : Bool, allow_interp
       ()
       let repr = lexbuf.get_string(_capture_0_start, _capture_0_end)
 
-      env.add_lexing_error(start=_start_pos, end=_end_pos, InvalidEscapeSequence(repr))
+      env.add_lexing_error(start=_match_start, end=_match_end, InvalidEscapeSequence(repr))
       normal(lexbuf, env~, end_with_newline~, allow_interp~, startpos~)
     
     }
@@ -1110,7 +1110,7 @@ fn normal(lexbuf : Lexbuf, env~ : LexEnv, end_with_newline~ : Bool, allow_interp
       ()
       let repr = lexbuf.get_string(_capture_0_start, _capture_0_end)
 
-      env.add_lexing_error(start=_start_pos, end=_end_pos, InvalidEscapeSequence(repr))
+      env.add_lexing_error(start=_match_start, end=_match_end, InvalidEscapeSequence(repr))
       normal(lexbuf, env~, end_with_newline~, allow_interp~, startpos~)
     
     }
@@ -1123,16 +1123,16 @@ fn normal(lexbuf : Lexbuf, env~ : LexEnv, end_with_newline~ : Bool, allow_interp
           string_interps.val.push(
             InterpLit(
               repr=string_repr_buf.to_string(),
-              loc=Location::{ start : env.make_pos(startpos), end : env.make_pos(_end_pos) }
+              loc=Location::{ start : env.make_pos(startpos), end : env.make_pos(_match_end) }
             )
           )
         }
         string_repr_buf.reset()
-        let apos = _end_pos
+        let apos = _match_end
         let bpos = interp_handle(lexbuf, env~)
         let loc = Location::{ start: env.make_pos(apos), end : env.make_pos(bpos) }
         if string_repr_buf.is_empty() {
-          env.add_lexing_error(start=_start_pos, end=_end_pos, InterpMissingExpression)
+          env.add_lexing_error(start=_match_start, end=_match_end, InterpMissingExpression)
         } else {
           let source = string_repr_buf.to_string()
           string_interps.val.push(
@@ -1143,7 +1143,7 @@ fn normal(lexbuf : Lexbuf, env~ : LexEnv, end_with_newline~ : Bool, allow_interp
         }
         string_repr_buf.reset()
       } else {
-        env.add_lexing_error(start=_start_pos, end=_end_pos, InvalidEscapeSequence(repr))
+        env.add_lexing_error(start=_match_start, end=_match_end, InvalidEscapeSequence(repr))
       }
       normal(lexbuf, env~, end_with_newline~, allow_interp~, startpos~)
     
@@ -1152,19 +1152,19 @@ fn normal(lexbuf : Lexbuf, env~ : LexEnv, end_with_newline~ : Bool, allow_interp
       ()
       let repr = lexbuf.get_string(_capture_0_start, _capture_0_end)
 
-      env.add_lexing_error(start=_start_pos, end=_end_pos, InvalidEscapeSequence(repr))
+      env.add_lexing_error(start=_match_start, end=_match_end, InvalidEscapeSequence(repr))
       normal(lexbuf, env~, end_with_newline~, allow_interp~, startpos~)
     
     }
     11 => {
       ()
 
-      env.add_lexing_error(start=_start_pos, end=_end_pos, UnterminatedString)
+      env.add_lexing_error(start=_match_start, end=_match_end, UnterminatedString)
       if not(string_repr_buf.is_empty()) {
         string_interps.val.push(
           InterpLit(
             repr=string_repr_buf.to_string(),
-            loc=Location::{ start : env.make_pos(startpos), end : env.make_pos(_end_pos) }
+            loc=Location::{ start : env.make_pos(startpos), end : env.make_pos(_match_end) }
           )
         )
       }
@@ -1176,13 +1176,13 @@ fn normal(lexbuf : Lexbuf, env~ : LexEnv, end_with_newline~ : Bool, allow_interp
       // we need insert a NEWLINE token here, so back off to main tokenizer
       lexbuf.reset(pos=lexbuf.curr_pos() - 1)
       if not(end_with_newline) {
-        env.add_lexing_error(start=_start_pos, end=_end_pos, UnterminatedString)
+        env.add_lexing_error(start=_match_start, end=_match_end, UnterminatedString)
       }
       if not(string_repr_buf.is_empty()) {
         string_interps.val.push(
           InterpLit(
             repr=string_repr_buf.to_string(),
-            loc=Location::{ start: env.make_pos(startpos), end: env.make_pos(_end_pos) }
+            loc=Location::{ start: env.make_pos(startpos), end: env.make_pos(_match_end) }
           )
         )
       }
@@ -1203,9 +1203,9 @@ fn normal(lexbuf : Lexbuf, env~ : LexEnv, end_with_newline~ : Bool, allow_interp
 
 fn invalid_byte(lexbuf : Lexbuf, env~ : LexEnv, start~ : Int) -> Unit  {
   // The matched pattern id
-  let mut matched = @int.max_value
-  let mut _end_pos = -1
-  let mut _start_pos = lexbuf.curr_pos()
+  let mut _match_pattern = @int.max_value
+  let mut _match_start = lexbuf.curr_pos()
+  let mut _match_end = -1
   let mut _capture_0_start = -1
   let mut _capture_0_end = -1
   let mut _capture_1_start = -1
@@ -1231,18 +1231,18 @@ fn invalid_byte(lexbuf : Lexbuf, env~ : LexEnv, start~ : Int) -> Unit  {
       }
     }
     1 => {
-      if matched >= 0 {
-        matched = 0
-        _end_pos = lexbuf.curr_pos()
+      if _match_pattern >= 0 {
+        _match_pattern = 0
+        _match_end = lexbuf.curr_pos()
       }
       break
     }
     2 => {
-      if matched >= 1 {
-        matched = 1
-        _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _start_pos
-        _capture_0_end = _end_pos
+      if _match_pattern >= 1 {
+        _match_pattern = 1
+        _match_end = lexbuf.curr_pos()
+        _capture_0_start = _match_start
+        _capture_0_end = _match_end
       }
       break
     }
@@ -1284,26 +1284,26 @@ fn invalid_byte(lexbuf : Lexbuf, env~ : LexEnv, start~ : Int) -> Unit  {
       }
     }
     9 => {
-      if matched >= 2 {
-        matched = 2
-        _end_pos = lexbuf.curr_pos()
+      if _match_pattern >= 2 {
+        _match_pattern = 2
+        _match_end = lexbuf.curr_pos()
       }
       break
     }
     _ => panic()
   }
 
-  guard matched <= 2 else {
+  guard _match_pattern <= 2 else {
     // No pattern matched
     panic()
   }
 
-  lexbuf.reset(pos=_end_pos)
-  match matched {
+  lexbuf.reset(pos=_match_end)
+  match _match_pattern {
     0 => {
       ()
 
-      env.add_lexing_error(InvalidByteLiteral(invalid_byte_repr_buf.to_string()), start~, end=_end_pos)
+      env.add_lexing_error(InvalidByteLiteral(invalid_byte_repr_buf.to_string()), start~, end=_match_end)
       invalid_byte_repr_buf.reset()
     
     }
@@ -1328,9 +1328,9 @@ fn invalid_byte(lexbuf : Lexbuf, env~ : LexEnv, start~ : Int) -> Unit  {
 
 fn tokens(lexbuf : Lexbuf, env~ : LexEnv, preserve_comment~ : (Comment, Int, Int) -> Unit) -> Unit  {
   // The matched pattern id
-  let mut matched = @int.max_value
-  let mut _end_pos = -1
-  let mut _start_pos = lexbuf.curr_pos()
+  let mut _match_pattern = @int.max_value
+  let mut _match_start = lexbuf.curr_pos()
+  let mut _match_end = -1
   let mut _capture_0_start = -1
   let mut _capture_0_end = -1
   let mut _capture_1_start = -1
@@ -1408,25 +1408,25 @@ fn tokens(lexbuf : Lexbuf, env~ : LexEnv, preserve_comment~ : (Comment, Int, Int
       }
     }
     1 => {
-      if matched >= 66 {
-        matched = 66
-        _end_pos = lexbuf.curr_pos()
+      if _match_pattern >= 66 {
+        _match_pattern = 66
+        _match_end = lexbuf.curr_pos()
       }
       break
     }
     2 => {
-      if matched >= 70 {
-        matched = 70
-        _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _start_pos
-        _capture_0_end = _end_pos
+      if _match_pattern >= 70 {
+        _match_pattern = 70
+        _match_end = lexbuf.curr_pos()
+        _capture_0_start = _match_start
+        _capture_0_end = _match_end
       }
       break
     }
     3 => {
-      if matched >= 1 {
-        matched = 1
-        _end_pos = lexbuf.curr_pos()
+      if _match_pattern >= 1 {
+        _match_pattern = 1
+        _match_end = lexbuf.curr_pos()
       }
       continue match lexbuf.next_as_int() {
         9 => 3
@@ -1441,16 +1441,16 @@ fn tokens(lexbuf : Lexbuf, env~ : LexEnv, preserve_comment~ : (Comment, Int, Int
       }
     }
     4 => {
-      if matched >= 0 {
-        matched = 0
-        _end_pos = lexbuf.curr_pos()
+      if _match_pattern >= 0 {
+        _match_pattern = 0
+        _match_end = lexbuf.curr_pos()
       }
       break
     }
     5 => {
-      if matched >= 0 {
-        matched = 0
-        _end_pos = lexbuf.curr_pos()
+      if _match_pattern >= 0 {
+        _match_pattern = 0
+        _match_end = lexbuf.curr_pos()
       }
       continue match lexbuf.next_as_int() {
         10 => 4
@@ -1458,9 +1458,9 @@ fn tokens(lexbuf : Lexbuf, env~ : LexEnv, preserve_comment~ : (Comment, Int, Int
       }
     }
     6 => {
-      if matched >= 62 {
-        matched = 62
-        _end_pos = lexbuf.curr_pos()
+      if _match_pattern >= 62 {
+        _match_pattern = 62
+        _match_end = lexbuf.curr_pos()
       }
       continue match lexbuf.next_as_int() {
         61 => 86
@@ -1468,18 +1468,18 @@ fn tokens(lexbuf : Lexbuf, env~ : LexEnv, preserve_comment~ : (Comment, Int, Int
       }
     }
     7 => {
-      if matched >= 11 {
-        matched = 11
-        _end_pos = lexbuf.curr_pos()
+      if _match_pattern >= 11 {
+        _match_pattern = 11
+        _match_end = lexbuf.curr_pos()
       }
       break
     }
     8 => {
-      if matched >= 70 {
-        matched = 70
-        _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _start_pos
-        _capture_0_end = _end_pos
+      if _match_pattern >= 70 {
+        _match_pattern = 70
+        _match_end = lexbuf.curr_pos()
+        _capture_0_start = _match_start
+        _capture_0_end = _match_end
       }
       continue match lexbuf.next_as_int() {
         65..=90 => 114
@@ -1489,11 +1489,11 @@ fn tokens(lexbuf : Lexbuf, env~ : LexEnv, preserve_comment~ : (Comment, Int, Int
       }
     }
     9 => {
-      if matched >= 70 {
-        matched = 70
-        _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _start_pos
-        _capture_0_end = _end_pos
+      if _match_pattern >= 70 {
+        _match_pattern = 70
+        _match_end = lexbuf.curr_pos()
+        _capture_0_start = _match_start
+        _capture_0_end = _match_end
       }
       continue match lexbuf.next_as_int() {
         124 => 116
@@ -1501,9 +1501,9 @@ fn tokens(lexbuf : Lexbuf, env~ : LexEnv, preserve_comment~ : (Comment, Int, Int
       }
     }
     10 => {
-      if matched >= 30 {
-        matched = 30
-        _end_pos = lexbuf.curr_pos()
+      if _match_pattern >= 30 {
+        _match_pattern = 30
+        _match_end = lexbuf.curr_pos()
       }
       continue match lexbuf.next_as_int() {
         61 => 111
@@ -1511,9 +1511,9 @@ fn tokens(lexbuf : Lexbuf, env~ : LexEnv, preserve_comment~ : (Comment, Int, Int
       }
     }
     11 => {
-      if matched >= 23 {
-        matched = 23
-        _end_pos = lexbuf.curr_pos()
+      if _match_pattern >= 23 {
+        _match_pattern = 23
+        _match_end = lexbuf.curr_pos()
       }
       continue match lexbuf.next_as_int() {
         38 => 112
@@ -1521,11 +1521,11 @@ fn tokens(lexbuf : Lexbuf, env~ : LexEnv, preserve_comment~ : (Comment, Int, Int
       }
     }
     12 => {
-      if matched >= 70 {
-        matched = 70
-        _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _start_pos
-        _capture_0_end = _end_pos
+      if _match_pattern >= 70 {
+        _match_pattern = 70
+        _match_end = lexbuf.curr_pos()
+        _capture_0_start = _match_start
+        _capture_0_end = _match_end
       }
       continue match lexbuf.next_as_int() {
         0..=9 => 119
@@ -1542,23 +1542,23 @@ fn tokens(lexbuf : Lexbuf, env~ : LexEnv, preserve_comment~ : (Comment, Int, Int
       }
     }
     13 => {
-      if matched >= 25 {
-        matched = 25
-        _end_pos = lexbuf.curr_pos()
+      if _match_pattern >= 25 {
+        _match_pattern = 25
+        _match_end = lexbuf.curr_pos()
       }
       break
     }
     14 => {
-      if matched >= 26 {
-        matched = 26
-        _end_pos = lexbuf.curr_pos()
+      if _match_pattern >= 26 {
+        _match_pattern = 26
+        _match_end = lexbuf.curr_pos()
       }
       break
     }
     15 => {
-      if matched >= 28 {
-        matched = 28
-        _end_pos = lexbuf.curr_pos()
+      if _match_pattern >= 28 {
+        _match_pattern = 28
+        _match_end = lexbuf.curr_pos()
       }
       continue match lexbuf.next_as_int() {
         61 => 111
@@ -1566,9 +1566,9 @@ fn tokens(lexbuf : Lexbuf, env~ : LexEnv, preserve_comment~ : (Comment, Int, Int
       }
     }
     16 => {
-      if matched >= 58 {
-        matched = 58
-        _end_pos = lexbuf.curr_pos()
+      if _match_pattern >= 58 {
+        _match_pattern = 58
+        _match_end = lexbuf.curr_pos()
       }
       continue match lexbuf.next_as_int() {
         61 => 111
@@ -1576,16 +1576,16 @@ fn tokens(lexbuf : Lexbuf, env~ : LexEnv, preserve_comment~ : (Comment, Int, Int
       }
     }
     17 => {
-      if matched >= 31 {
-        matched = 31
-        _end_pos = lexbuf.curr_pos()
+      if _match_pattern >= 31 {
+        _match_pattern = 31
+        _match_end = lexbuf.curr_pos()
       }
       break
     }
     18 => {
-      if matched >= 59 {
-        matched = 59
-        _end_pos = lexbuf.curr_pos()
+      if _match_pattern >= 59 {
+        _match_pattern = 59
+        _match_end = lexbuf.curr_pos()
       }
       continue match lexbuf.next_as_int() {
         61 => 111
@@ -1594,11 +1594,11 @@ fn tokens(lexbuf : Lexbuf, env~ : LexEnv, preserve_comment~ : (Comment, Int, Int
       }
     }
     19 => {
-      if matched >= 70 {
-        matched = 70
-        _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _start_pos
-        _capture_0_end = _end_pos
+      if _match_pattern >= 70 {
+        _match_pattern = 70
+        _match_end = lexbuf.curr_pos()
+        _capture_0_start = _match_start
+        _capture_0_end = _match_end
       }
       continue match lexbuf.next_as_int() {
         40 => 94
@@ -1624,9 +1624,9 @@ fn tokens(lexbuf : Lexbuf, env~ : LexEnv, preserve_comment~ : (Comment, Int, Int
       }
     }
     20 => {
-      if matched >= 29 {
-        matched = 29
-        _end_pos = lexbuf.curr_pos()
+      if _match_pattern >= 29 {
+        _match_pattern = 29
+        _match_end = lexbuf.curr_pos()
       }
       continue match lexbuf.next_as_int() {
         47 => 125
@@ -1635,11 +1635,11 @@ fn tokens(lexbuf : Lexbuf, env~ : LexEnv, preserve_comment~ : (Comment, Int, Int
       }
     }
     21 => {
-      if matched >= 65 {
-        matched = 65
-        _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _start_pos
-        _capture_0_end = _end_pos
+      if _match_pattern >= 65 {
+        _match_pattern = 65
+        _match_end = lexbuf.curr_pos()
+        _capture_0_start = _match_start
+        _capture_0_end = _match_end
       }
       continue match lexbuf.next_as_int() {
         46 => 80
@@ -1658,11 +1658,11 @@ fn tokens(lexbuf : Lexbuf, env~ : LexEnv, preserve_comment~ : (Comment, Int, Int
       }
     }
     22 => {
-      if matched >= 65 {
-        matched = 65
-        _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _start_pos
-        _capture_0_end = _end_pos
+      if _match_pattern >= 65 {
+        _match_pattern = 65
+        _match_end = lexbuf.curr_pos()
+        _capture_0_start = _match_start
+        _capture_0_end = _match_end
       }
       continue match lexbuf.next_as_int() {
         46 => 80
@@ -1675,9 +1675,9 @@ fn tokens(lexbuf : Lexbuf, env~ : LexEnv, preserve_comment~ : (Comment, Int, Int
       }
     }
     23 => {
-      if matched >= 41 {
-        matched = 41
-        _end_pos = lexbuf.curr_pos()
+      if _match_pattern >= 41 {
+        _match_pattern = 41
+        _match_end = lexbuf.curr_pos()
       }
       continue match lexbuf.next_as_int() {
         58 => 93
@@ -1685,16 +1685,16 @@ fn tokens(lexbuf : Lexbuf, env~ : LexEnv, preserve_comment~ : (Comment, Int, Int
       }
     }
     24 => {
-      if matched >= 42 {
-        matched = 42
-        _end_pos = lexbuf.curr_pos()
+      if _match_pattern >= 42 {
+        _match_pattern = 42
+        _match_end = lexbuf.curr_pos()
       }
       break
     }
     25 => {
-      if matched >= 50 {
-        matched = 50
-        _end_pos = lexbuf.curr_pos()
+      if _match_pattern >= 50 {
+        _match_pattern = 50
+        _match_end = lexbuf.curr_pos()
       }
       continue match lexbuf.next_as_int() {
         60 => 91
@@ -1703,9 +1703,9 @@ fn tokens(lexbuf : Lexbuf, env~ : LexEnv, preserve_comment~ : (Comment, Int, Int
       }
     }
     26 => {
-      if matched >= 44 {
-        matched = 44
-        _end_pos = lexbuf.curr_pos()
+      if _match_pattern >= 44 {
+        _match_pattern = 44
+        _match_end = lexbuf.curr_pos()
       }
       continue match lexbuf.next_as_int() {
         61 => 127
@@ -1714,9 +1714,9 @@ fn tokens(lexbuf : Lexbuf, env~ : LexEnv, preserve_comment~ : (Comment, Int, Int
       }
     }
     27 => {
-      if matched >= 48 {
-        matched = 48
-        _end_pos = lexbuf.curr_pos()
+      if _match_pattern >= 48 {
+        _match_pattern = 48
+        _match_end = lexbuf.curr_pos()
       }
       continue match lexbuf.next_as_int() {
         61 => 89
@@ -1725,18 +1725,18 @@ fn tokens(lexbuf : Lexbuf, env~ : LexEnv, preserve_comment~ : (Comment, Int, Int
       }
     }
     28 => {
-      if matched >= 60 {
-        matched = 60
-        _end_pos = lexbuf.curr_pos()
+      if _match_pattern >= 60 {
+        _match_pattern = 60
+        _match_end = lexbuf.curr_pos()
       }
       break
     }
     29 => {
-      if matched >= 70 {
-        matched = 70
-        _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _start_pos
-        _capture_0_end = _end_pos
+      if _match_pattern >= 70 {
+        _match_pattern = 70
+        _match_end = lexbuf.curr_pos()
+        _capture_0_start = _match_start
+        _capture_0_end = _match_end
       }
       continue match lexbuf.next_as_int() {
         65..=90 => 113
@@ -1746,11 +1746,11 @@ fn tokens(lexbuf : Lexbuf, env~ : LexEnv, preserve_comment~ : (Comment, Int, Int
       }
     }
     30 => {
-      if matched >= 67 {
-        matched = 67
-        _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _start_pos
-        _capture_0_end = _end_pos
+      if _match_pattern >= 67 {
+        _match_pattern = 67
+        _match_end = lexbuf.curr_pos()
+        _capture_0_start = _match_start
+        _capture_0_end = _match_end
       }
       continue match lexbuf.next_as_int() {
         48..=57 => 30
@@ -1774,32 +1774,32 @@ fn tokens(lexbuf : Lexbuf, env~ : LexEnv, preserve_comment~ : (Comment, Int, Int
       }
     }
     31 => {
-      if matched >= 51 {
-        matched = 51
-        _end_pos = lexbuf.curr_pos()
+      if _match_pattern >= 51 {
+        _match_pattern = 51
+        _match_end = lexbuf.curr_pos()
       }
       break
     }
     32 => {
-      if matched >= 52 {
-        matched = 52
-        _end_pos = lexbuf.curr_pos()
+      if _match_pattern >= 52 {
+        _match_pattern = 52
+        _match_end = lexbuf.curr_pos()
       }
       break
     }
     33 => {
-      if matched >= 24 {
-        matched = 24
-        _end_pos = lexbuf.curr_pos()
+      if _match_pattern >= 24 {
+        _match_pattern = 24
+        _match_end = lexbuf.curr_pos()
       }
       break
     }
     34 => {
-      if matched >= 69 {
-        matched = 69
-        _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _start_pos
-        _capture_0_end = _end_pos
+      if _match_pattern >= 69 {
+        _match_pattern = 69
+        _match_end = lexbuf.curr_pos()
+        _capture_0_start = _match_start
+        _capture_0_end = _match_end
       }
       continue match lexbuf.next_as_int() {
         48..=57 => 34
@@ -1824,11 +1824,11 @@ fn tokens(lexbuf : Lexbuf, env~ : LexEnv, preserve_comment~ : (Comment, Int, Int
       }
     }
     35 => {
-      if matched >= 69 {
-        matched = 69
-        _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _start_pos
-        _capture_0_end = _end_pos
+      if _match_pattern >= 69 {
+        _match_pattern = 69
+        _match_end = lexbuf.curr_pos()
+        _capture_0_start = _match_start
+        _capture_0_end = _match_end
       }
       continue match lexbuf.next_as_int() {
         34 => 117
@@ -1855,16 +1855,16 @@ fn tokens(lexbuf : Lexbuf, env~ : LexEnv, preserve_comment~ : (Comment, Int, Int
       }
     }
     36 => {
-      if matched >= 53 {
-        matched = 53
-        _end_pos = lexbuf.curr_pos()
+      if _match_pattern >= 53 {
+        _match_pattern = 53
+        _match_end = lexbuf.curr_pos()
       }
       break
     }
     37 => {
-      if matched >= 57 {
-        matched = 57
-        _end_pos = lexbuf.curr_pos()
+      if _match_pattern >= 57 {
+        _match_pattern = 57
+        _match_end = lexbuf.curr_pos()
       }
       continue match lexbuf.next_as_int() {
         62 => 87
@@ -1873,9 +1873,9 @@ fn tokens(lexbuf : Lexbuf, env~ : LexEnv, preserve_comment~ : (Comment, Int, Int
       }
     }
     38 => {
-      if matched >= 54 {
-        matched = 54
-        _end_pos = lexbuf.curr_pos()
+      if _match_pattern >= 54 {
+        _match_pattern = 54
+        _match_end = lexbuf.curr_pos()
       }
       break
     }
@@ -2030,11 +2030,11 @@ fn tokens(lexbuf : Lexbuf, env~ : LexEnv, preserve_comment~ : (Comment, Int, Int
       }
     }
     57 => {
-      if matched >= 68 {
-        matched = 68
-        _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _start_pos
-        _capture_0_end = _end_pos + -1
+      if _match_pattern >= 68 {
+        _match_pattern = 68
+        _match_end = lexbuf.curr_pos()
+        _capture_0_start = _match_start
+        _capture_0_end = _match_end + -1
       }
       break
     }
@@ -2191,11 +2191,11 @@ fn tokens(lexbuf : Lexbuf, env~ : LexEnv, preserve_comment~ : (Comment, Int, Int
       }
     }
     80 => {
-      if matched >= 64 {
-        matched = 64
-        _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _start_pos
-        _capture_0_end = _end_pos
+      if _match_pattern >= 64 {
+        _match_pattern = 64
+        _match_end = lexbuf.curr_pos()
+        _capture_0_start = _match_start
+        _capture_0_end = _match_end
       }
       continue match lexbuf.next_as_int() {
         46 => 148
@@ -2213,11 +2213,11 @@ fn tokens(lexbuf : Lexbuf, env~ : LexEnv, preserve_comment~ : (Comment, Int, Int
       }
     }
     82 => {
-      if matched >= 65 {
-        matched = 65
-        _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _start_pos
-        _capture_0_end = _end_pos
+      if _match_pattern >= 65 {
+        _match_pattern = 65
+        _match_end = lexbuf.curr_pos()
+        _capture_0_start = _match_start
+        _capture_0_end = _match_end
       }
       continue match lexbuf.next_as_int() {
         46 => 151
@@ -2231,11 +2231,11 @@ fn tokens(lexbuf : Lexbuf, env~ : LexEnv, preserve_comment~ : (Comment, Int, Int
       }
     }
     84 => {
-      if matched >= 65 {
-        matched = 65
-        _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _start_pos
-        _capture_0_end = _end_pos
+      if _match_pattern >= 65 {
+        _match_pattern = 65
+        _match_end = lexbuf.curr_pos()
+        _capture_0_start = _match_start
+        _capture_0_end = _match_end
       }
       continue match lexbuf.next_as_int() {
         46 => 151
@@ -2252,72 +2252,72 @@ fn tokens(lexbuf : Lexbuf, env~ : LexEnv, preserve_comment~ : (Comment, Int, Int
       }
     }
     86 => {
-      if matched >= 61 {
-        matched = 61
-        _end_pos = lexbuf.curr_pos()
+      if _match_pattern >= 61 {
+        _match_pattern = 61
+        _match_end = lexbuf.curr_pos()
       }
       break
     }
     87 => {
-      if matched >= 55 {
-        matched = 55
-        _end_pos = lexbuf.curr_pos()
+      if _match_pattern >= 55 {
+        _match_pattern = 55
+        _match_end = lexbuf.curr_pos()
       }
       break
     }
     88 => {
-      if matched >= 56 {
-        matched = 56
-        _end_pos = lexbuf.curr_pos()
+      if _match_pattern >= 56 {
+        _match_pattern = 56
+        _match_end = lexbuf.curr_pos()
       }
       break
     }
     89 => {
-      if matched >= 46 {
-        matched = 46
-        _end_pos = lexbuf.curr_pos()
+      if _match_pattern >= 46 {
+        _match_pattern = 46
+        _match_end = lexbuf.curr_pos()
       }
       break
     }
     90 => {
-      if matched >= 47 {
-        matched = 47
-        _end_pos = lexbuf.curr_pos()
+      if _match_pattern >= 47 {
+        _match_pattern = 47
+        _match_end = lexbuf.curr_pos()
       }
       break
     }
     91 => {
-      if matched >= 49 {
-        matched = 49
-        _end_pos = lexbuf.curr_pos()
+      if _match_pattern >= 49 {
+        _match_pattern = 49
+        _match_end = lexbuf.curr_pos()
       }
       break
     }
     92 => {
-      if matched >= 45 {
-        matched = 45
-        _end_pos = lexbuf.curr_pos()
+      if _match_pattern >= 45 {
+        _match_pattern = 45
+        _match_end = lexbuf.curr_pos()
       }
       break
     }
     93 => {
-      if matched >= 40 {
-        matched = 40
-        _end_pos = lexbuf.curr_pos()
+      if _match_pattern >= 40 {
+        _match_pattern = 40
+        _match_end = lexbuf.curr_pos()
       }
       break
     }
     94 => {
-      if matched >= 32 {
-        matched = 32
-        _end_pos = lexbuf.curr_pos()
+      if _match_pattern >= 32 {
+        _match_pattern = 32
+        _match_end = lexbuf.curr_pos()
       }
       break
     }
     95 => {
-      if matched >= 37 {
-        matched = 37
-        _end_pos = lexbuf.curr_pos()
+      if _match_pattern >= 37 {
+        _match_pattern = 37
+        _match_end = lexbuf.curr_pos()
       }
       continue match lexbuf.next_as_int() {
         46 => 171
@@ -2327,13 +2327,13 @@ fn tokens(lexbuf : Lexbuf, env~ : LexEnv, preserve_comment~ : (Comment, Int, Int
       }
     }
     96 => {
-      if matched >= 33 {
-        matched = 33
-        _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _start_pos
-        _capture_0_end = _end_pos
-        _capture_1_start = _start_pos + 1
-        _capture_1_end = _end_pos
+      if _match_pattern >= 33 {
+        _match_pattern = 33
+        _match_end = lexbuf.curr_pos()
+        _capture_0_start = _match_start
+        _capture_0_end = _match_end
+        _capture_1_start = _match_start + 1
+        _capture_1_end = _match_end
       }
       continue match lexbuf.next_as_int() {
         48..=57 => 96
@@ -2341,11 +2341,11 @@ fn tokens(lexbuf : Lexbuf, env~ : LexEnv, preserve_comment~ : (Comment, Int, Int
       }
     }
     97 => {
-      if matched >= 38 {
-        matched = 38
-        _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _start_pos + 1
-        _capture_0_end = _end_pos
+      if _match_pattern >= 38 {
+        _match_pattern = 38
+        _match_end = lexbuf.curr_pos()
+        _capture_0_start = _match_start + 1
+        _capture_0_end = _match_end
       }
       continue match lexbuf.next_as_int() {
         48..=57 => 97
@@ -2369,11 +2369,11 @@ fn tokens(lexbuf : Lexbuf, env~ : LexEnv, preserve_comment~ : (Comment, Int, Int
       }
     }
     98 => {
-      if matched >= 39 {
-        matched = 39
-        _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _start_pos + 1
-        _capture_0_end = _end_pos
+      if _match_pattern >= 39 {
+        _match_pattern = 39
+        _match_end = lexbuf.curr_pos()
+        _capture_0_start = _match_start + 1
+        _capture_0_end = _match_end
       }
       continue match lexbuf.next_as_int() {
         48..=57 => 98
@@ -2479,29 +2479,29 @@ fn tokens(lexbuf : Lexbuf, env~ : LexEnv, preserve_comment~ : (Comment, Int, Int
       }
     }
     111 => {
-      if matched >= 27 {
-        matched = 27
-        _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _start_pos
-        _capture_0_end = _start_pos + 1
-        _capture_1_start = _start_pos
-        _capture_1_end = _start_pos + 2
+      if _match_pattern >= 27 {
+        _match_pattern = 27
+        _match_end = lexbuf.curr_pos()
+        _capture_0_start = _match_start
+        _capture_0_end = _match_start + 1
+        _capture_1_start = _match_start
+        _capture_1_end = _match_start + 2
       }
       break
     }
     112 => {
-      if matched >= 22 {
-        matched = 22
-        _end_pos = lexbuf.curr_pos()
+      if _match_pattern >= 22 {
+        _match_pattern = 22
+        _match_end = lexbuf.curr_pos()
       }
       break
     }
     113 => {
-      if matched >= 16 {
-        matched = 16
-        _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _start_pos + 1
-        _capture_0_end = _end_pos
+      if _match_pattern >= 16 {
+        _match_pattern = 16
+        _match_end = lexbuf.curr_pos()
+        _capture_0_start = _match_start + 1
+        _capture_0_end = _match_end
       }
       continue match lexbuf.next_as_int() {
         47 => 174
@@ -2513,11 +2513,11 @@ fn tokens(lexbuf : Lexbuf, env~ : LexEnv, preserve_comment~ : (Comment, Int, Int
       }
     }
     114 => {
-      if matched >= 15 {
-        matched = 15
-        _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _start_pos + 1
-        _capture_0_end = _end_pos
+      if _match_pattern >= 15 {
+        _match_pattern = 15
+        _match_end = lexbuf.curr_pos()
+        _capture_0_start = _match_start + 1
+        _capture_0_end = _match_end
       }
       continue match lexbuf.next_as_int() {
         0..=9 => 114
@@ -2531,11 +2531,11 @@ fn tokens(lexbuf : Lexbuf, env~ : LexEnv, preserve_comment~ : (Comment, Int, Int
       }
     }
     115 => {
-      if matched >= 14 {
-        matched = 14
-        _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _start_pos + 2
-        _capture_0_end = _end_pos
+      if _match_pattern >= 14 {
+        _match_pattern = 14
+        _match_end = lexbuf.curr_pos()
+        _capture_0_start = _match_start + 2
+        _capture_0_end = _match_end
       }
       continue match lexbuf.next_as_int() {
         0..=9 => 115
@@ -2549,25 +2549,25 @@ fn tokens(lexbuf : Lexbuf, env~ : LexEnv, preserve_comment~ : (Comment, Int, Int
       }
     }
     116 => {
-      if matched >= 13 {
-        matched = 13
-        _end_pos = lexbuf.curr_pos()
+      if _match_pattern >= 13 {
+        _match_pattern = 13
+        _match_end = lexbuf.curr_pos()
       }
       break
     }
     117 => {
-      if matched >= 12 {
-        matched = 12
-        _end_pos = lexbuf.curr_pos()
+      if _match_pattern >= 12 {
+        _match_pattern = 12
+        _match_end = lexbuf.curr_pos()
       }
       break
     }
     118 => {
-      if matched >= 21 {
-        matched = 21
-        _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _start_pos
-        _capture_0_end = _start_pos + 2
+      if _match_pattern >= 21 {
+        _match_pattern = 21
+        _match_end = lexbuf.curr_pos()
+        _capture_0_start = _match_start
+        _capture_0_end = _match_start + 2
       }
       continue match lexbuf.next_as_int() {
         0..=91 => 183
@@ -2623,11 +2623,11 @@ fn tokens(lexbuf : Lexbuf, env~ : LexEnv, preserve_comment~ : (Comment, Int, Int
       }
     }
     125 => {
-      if matched >= 4 {
-        matched = 4
-        _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _start_pos
-        _capture_0_end = _end_pos
+      if _match_pattern >= 4 {
+        _match_pattern = 4
+        _match_end = lexbuf.curr_pos()
+        _capture_0_start = _match_start
+        _capture_0_end = _match_end
       }
       continue match lexbuf.next_as_int() {
         0..=9 => 125
@@ -2641,23 +2641,23 @@ fn tokens(lexbuf : Lexbuf, env~ : LexEnv, preserve_comment~ : (Comment, Int, Int
       }
     }
     126 => {
-      if matched >= 3 {
-        matched = 3
-        _end_pos = lexbuf.curr_pos()
+      if _match_pattern >= 3 {
+        _match_pattern = 3
+        _match_end = lexbuf.curr_pos()
       }
       break
     }
     127 => {
-      if matched >= 43 {
-        matched = 43
-        _end_pos = lexbuf.curr_pos()
+      if _match_pattern >= 43 {
+        _match_pattern = 43
+        _match_end = lexbuf.curr_pos()
       }
       break
     }
     128 => {
-      if matched >= 2 {
-        matched = 2
-        _end_pos = lexbuf.curr_pos()
+      if _match_pattern >= 2 {
+        _match_pattern = 2
+        _match_end = lexbuf.curr_pos()
       }
       break
     }
@@ -2788,20 +2788,20 @@ fn tokens(lexbuf : Lexbuf, env~ : LexEnv, preserve_comment~ : (Comment, Int, Int
       }
     }
     148 => {
-      if matched >= 63 {
-        matched = 63
-        _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _start_pos
-        _capture_0_end = _end_pos + -2
+      if _match_pattern >= 63 {
+        _match_pattern = 63
+        _match_end = lexbuf.curr_pos()
+        _capture_0_start = _match_start
+        _capture_0_end = _match_end + -2
       }
       break
     }
     149 => {
-      if matched >= 64 {
-        matched = 64
-        _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _start_pos
-        _capture_0_end = _end_pos
+      if _match_pattern >= 64 {
+        _match_pattern = 64
+        _match_end = lexbuf.curr_pos()
+        _capture_0_start = _match_start
+        _capture_0_end = _match_end
       }
       continue match lexbuf.next_as_int() {
         48..=57 => 149
@@ -2826,11 +2826,11 @@ fn tokens(lexbuf : Lexbuf, env~ : LexEnv, preserve_comment~ : (Comment, Int, Int
       }
     }
     152 => {
-      if matched >= 65 {
-        matched = 65
-        _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _start_pos
-        _capture_0_end = _end_pos
+      if _match_pattern >= 65 {
+        _match_pattern = 65
+        _match_end = lexbuf.curr_pos()
+        _capture_0_start = _match_start
+        _capture_0_end = _match_end
       }
       continue match lexbuf.next_as_int() {
         46 => 151
@@ -2843,11 +2843,11 @@ fn tokens(lexbuf : Lexbuf, env~ : LexEnv, preserve_comment~ : (Comment, Int, Int
       }
     }
     153 => {
-      if matched >= 65 {
-        matched = 65
-        _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _start_pos
-        _capture_0_end = _end_pos
+      if _match_pattern >= 65 {
+        _match_pattern = 65
+        _match_end = lexbuf.curr_pos()
+        _capture_0_start = _match_start
+        _capture_0_end = _match_end
       }
       continue match lexbuf.next_as_int() {
         46 => 151
@@ -2860,11 +2860,11 @@ fn tokens(lexbuf : Lexbuf, env~ : LexEnv, preserve_comment~ : (Comment, Int, Int
       }
     }
     154 => {
-      if matched >= 65 {
-        matched = 65
-        _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _start_pos
-        _capture_0_end = _end_pos
+      if _match_pattern >= 65 {
+        _match_pattern = 65
+        _match_end = lexbuf.curr_pos()
+        _capture_0_start = _match_start
+        _capture_0_end = _match_end
       }
       continue match lexbuf.next_as_int() {
         46 => 201
@@ -2985,23 +2985,23 @@ fn tokens(lexbuf : Lexbuf, env~ : LexEnv, preserve_comment~ : (Comment, Int, Int
       }
     }
     171 => {
-      if matched >= 34 {
-        matched = 34
-        _end_pos = lexbuf.curr_pos()
+      if _match_pattern >= 34 {
+        _match_pattern = 34
+        _match_end = lexbuf.curr_pos()
       }
       break
     }
     172 => {
-      if matched >= 36 {
-        matched = 36
-        _end_pos = lexbuf.curr_pos()
+      if _match_pattern >= 36 {
+        _match_pattern = 36
+        _match_end = lexbuf.curr_pos()
       }
       break
     }
     173 => {
-      if matched >= 35 {
-        matched = 35
-        _end_pos = lexbuf.curr_pos()
+      if _match_pattern >= 35 {
+        _match_pattern = 35
+        _match_end = lexbuf.curr_pos()
       }
       break
     }
@@ -3112,11 +3112,11 @@ fn tokens(lexbuf : Lexbuf, env~ : LexEnv, preserve_comment~ : (Comment, Int, Int
       }
     }
     189 => {
-      if matched >= 5 {
-        matched = 5
-        _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _start_pos
-        _capture_0_end = _end_pos
+      if _match_pattern >= 5 {
+        _match_pattern = 5
+        _match_end = lexbuf.curr_pos()
+        _capture_0_start = _match_start
+        _capture_0_end = _match_end
       }
       break
     }
@@ -3145,9 +3145,9 @@ fn tokens(lexbuf : Lexbuf, env~ : LexEnv, preserve_comment~ : (Comment, Int, Int
       }
     }
     194 => {
-      if matched >= 1 {
-        matched = 1
-        _end_pos = lexbuf.curr_pos()
+      if _match_pattern >= 1 {
+        _match_pattern = 1
+        _match_end = lexbuf.curr_pos()
       }
       continue match lexbuf.next_as_int() {
         9 => 3
@@ -3206,11 +3206,11 @@ fn tokens(lexbuf : Lexbuf, env~ : LexEnv, preserve_comment~ : (Comment, Int, Int
       }
     }
     200 => {
-      if matched >= 64 {
-        matched = 64
-        _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _start_pos
-        _capture_0_end = _end_pos
+      if _match_pattern >= 64 {
+        _match_pattern = 64
+        _match_end = lexbuf.curr_pos()
+        _capture_0_start = _match_start
+        _capture_0_end = _match_end
       }
       continue match lexbuf.next_as_int() {
         48..=57 => 200
@@ -3219,11 +3219,11 @@ fn tokens(lexbuf : Lexbuf, env~ : LexEnv, preserve_comment~ : (Comment, Int, Int
       }
     }
     201 => {
-      if matched >= 64 {
-        matched = 64
-        _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _start_pos
-        _capture_0_end = _end_pos
+      if _match_pattern >= 64 {
+        _match_pattern = 64
+        _match_end = lexbuf.curr_pos()
+        _capture_0_start = _match_start
+        _capture_0_end = _match_end
       }
       continue match lexbuf.next_as_int() {
         46 => 148
@@ -3261,11 +3261,11 @@ fn tokens(lexbuf : Lexbuf, env~ : LexEnv, preserve_comment~ : (Comment, Int, Int
       }
     }
     206 => {
-      if matched >= 19 {
-        matched = 19
-        _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _start_pos + 2
-        _capture_0_end = _start_pos + 3
+      if _match_pattern >= 19 {
+        _match_pattern = 19
+        _match_end = lexbuf.curr_pos()
+        _capture_0_start = _match_start + 2
+        _capture_0_end = _match_start + 3
       }
       break
     }
@@ -3276,11 +3276,11 @@ fn tokens(lexbuf : Lexbuf, env~ : LexEnv, preserve_comment~ : (Comment, Int, Int
       }
     }
     208 => {
-      if matched >= 19 {
-        matched = 19
-        _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _start_pos + 2
-        _capture_0_end = _start_pos + 3
+      if _match_pattern >= 19 {
+        _match_pattern = 19
+        _match_end = lexbuf.curr_pos()
+        _capture_0_start = _match_start + 2
+        _capture_0_end = _match_start + 3
       }
       continue match lexbuf.next_as_int() {
         39 => 222
@@ -3333,11 +3333,11 @@ fn tokens(lexbuf : Lexbuf, env~ : LexEnv, preserve_comment~ : (Comment, Int, Int
       }
     }
     215 => {
-      if matched >= 6 {
-        matched = 6
-        _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _start_pos
-        _capture_0_end = _start_pos + 4
+      if _match_pattern >= 6 {
+        _match_pattern = 6
+        _match_end = lexbuf.curr_pos()
+        _capture_0_start = _match_start
+        _capture_0_end = _match_start + 4
       }
       break
     }
@@ -3385,11 +3385,11 @@ fn tokens(lexbuf : Lexbuf, env~ : LexEnv, preserve_comment~ : (Comment, Int, Int
       }
     }
     221 => {
-      if matched >= 64 {
-        matched = 64
-        _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _start_pos
-        _capture_0_end = _end_pos
+      if _match_pattern >= 64 {
+        _match_pattern = 64
+        _match_end = lexbuf.curr_pos()
+        _capture_0_start = _match_start
+        _capture_0_end = _match_end
       }
       continue match lexbuf.next_as_int() {
         48..=57 => 221
@@ -3402,11 +3402,11 @@ fn tokens(lexbuf : Lexbuf, env~ : LexEnv, preserve_comment~ : (Comment, Int, Int
       }
     }
     222 => {
-      if matched >= 20 {
-        matched = 20
-        _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _start_pos + 3
-        _capture_0_end = _start_pos + 4
+      if _match_pattern >= 20 {
+        _match_pattern = 20
+        _match_end = lexbuf.curr_pos()
+        _capture_0_start = _match_start + 3
+        _capture_0_end = _match_start + 4
       }
       break
     }
@@ -3463,13 +3463,13 @@ fn tokens(lexbuf : Lexbuf, env~ : LexEnv, preserve_comment~ : (Comment, Int, Int
       }
     }
     231 => {
-      if matched >= 10 {
-        matched = 10
-        _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _start_pos + 4
-        _capture_0_end = _end_pos + -2
-        _capture_1_start = _start_pos
-        _capture_1_end = _end_pos
+      if _match_pattern >= 10 {
+        _match_pattern = 10
+        _match_end = lexbuf.curr_pos()
+        _capture_0_start = _match_start + 4
+        _capture_0_end = _match_end + -2
+        _capture_1_start = _match_start
+        _capture_1_end = _match_end
       }
       break
     }
@@ -3488,11 +3488,11 @@ fn tokens(lexbuf : Lexbuf, env~ : LexEnv, preserve_comment~ : (Comment, Int, Int
       }
     }
     234 => {
-      if matched >= 7 {
-        matched = 7
-        _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _start_pos
-        _capture_0_end = _start_pos + 6
+      if _match_pattern >= 7 {
+        _match_pattern = 7
+        _match_end = lexbuf.curr_pos()
+        _capture_0_start = _match_start
+        _capture_0_end = _match_start + 6
       }
       break
     }
@@ -3503,11 +3503,11 @@ fn tokens(lexbuf : Lexbuf, env~ : LexEnv, preserve_comment~ : (Comment, Int, Int
       }
     }
     236 => {
-      if matched >= 17 {
-        matched = 17
-        _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _start_pos + 4
-        _capture_0_end = _start_pos + 6
+      if _match_pattern >= 17 {
+        _match_pattern = 17
+        _match_end = lexbuf.curr_pos()
+        _capture_0_start = _match_start + 4
+        _capture_0_end = _match_start + 6
       }
       break
     }
@@ -3518,47 +3518,47 @@ fn tokens(lexbuf : Lexbuf, env~ : LexEnv, preserve_comment~ : (Comment, Int, Int
       }
     }
     238 => {
-      if matched >= 8 {
-        matched = 8
-        _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _start_pos
-        _capture_0_end = _start_pos + 7
+      if _match_pattern >= 8 {
+        _match_pattern = 8
+        _match_end = lexbuf.curr_pos()
+        _capture_0_start = _match_start
+        _capture_0_end = _match_start + 7
       }
       break
     }
     239 => {
-      if matched >= 18 {
-        matched = 18
-        _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _start_pos + 4
-        _capture_0_end = _start_pos + 7
+      if _match_pattern >= 18 {
+        _match_pattern = 18
+        _match_end = lexbuf.curr_pos()
+        _capture_0_start = _match_start + 4
+        _capture_0_end = _match_start + 7
       }
       break
     }
     240 => {
-      if matched >= 9 {
-        matched = 9
-        _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _start_pos
-        _capture_0_end = _start_pos + 8
+      if _match_pattern >= 9 {
+        _match_pattern = 9
+        _match_end = lexbuf.curr_pos()
+        _capture_0_start = _match_start
+        _capture_0_end = _match_start + 8
       }
       break
     }
     _ => panic()
   }
 
-  guard matched <= 70 else {
+  guard _match_pattern <= 70 else {
     // No pattern matched
     panic()
   }
 
-  lexbuf.reset(pos=_end_pos)
-  match matched {
+  lexbuf.reset(pos=_match_end)
+  match _match_pattern {
     0 => {
       ()
 
-      env.add_token_with_loc(NEWLINE, start=_start_pos, end=_end_pos)
-      env.current_bol = _end_pos
+      env.add_token_with_loc(NEWLINE, start=_match_start, end=_match_end)
+      env.current_bol = _match_end
       env.current_line += 1
       tokens(lexbuf, env~, preserve_comment~)
     
@@ -3572,14 +3572,14 @@ fn tokens(lexbuf : Lexbuf, env~ : LexEnv, preserve_comment~ : (Comment, Int, Int
     2 => {
       ()
 
-      env.add_token_with_loc(FAT_ARROW, start=_start_pos, end=_end_pos)
+      env.add_token_with_loc(FAT_ARROW, start=_match_start, end=_match_end)
       tokens(lexbuf, env~, preserve_comment~)
     
     }
     3 => {
       ()
 
-      env.add_token_with_loc(THIN_ARROW, start=_start_pos, end=_end_pos)
+      env.add_token_with_loc(THIN_ARROW, start=_match_start, end=_match_end)
       tokens(lexbuf, env~, preserve_comment~)
     
     }
@@ -3588,7 +3588,7 @@ fn tokens(lexbuf : Lexbuf, env~ : LexEnv, preserve_comment~ : (Comment, Int, Int
       let repr = lexbuf.get_string(_capture_0_start, _capture_0_end)
 
       if env.is_interpolation {
-        env.add_lexing_error(start=_start_pos, end = _end_pos,InterpInvalidComment)
+        env.add_lexing_error(start=_match_start, end = _match_end,InterpInvalidComment)
       }
       if env.comment {
         let comment = Comment::{
@@ -3596,8 +3596,8 @@ fn tokens(lexbuf : Lexbuf, env~ : LexEnv, preserve_comment~ : (Comment, Int, Int
           kind : InlineTrailing,
           consumed_by_docstring : @ref.new(false)
         }
-        preserve_comment(comment, _start_pos, _end_pos)
-        env.add_token_with_loc(COMMENT(comment), start=_start_pos, end=_end_pos)
+        preserve_comment(comment, _match_start, _match_end)
+        env.add_token_with_loc(COMMENT(comment), start=_match_start, end=_match_end)
       }
       tokens(lexbuf, env~, preserve_comment~)
     
@@ -3606,7 +3606,7 @@ fn tokens(lexbuf : Lexbuf, env~ : LexEnv, preserve_comment~ : (Comment, Int, Int
       ()
       let repr = lexbuf.get_string(_capture_0_start, _capture_0_end)
 
-      env.add_token_with_loc(CHAR(repr), start=_start_pos, end=_end_pos)
+      env.add_token_with_loc(CHAR(repr), start=_match_start, end=_match_end)
       tokens(lexbuf, env~, preserve_comment~)
     
     }
@@ -3614,7 +3614,7 @@ fn tokens(lexbuf : Lexbuf, env~ : LexEnv, preserve_comment~ : (Comment, Int, Int
       ()
       let repr = lexbuf.get_string(_capture_0_start, _capture_0_end)
 
-      env.add_token_with_loc(CHAR(repr), start=_start_pos, end=_end_pos)
+      env.add_token_with_loc(CHAR(repr), start=_match_start, end=_match_end)
       tokens(lexbuf, env~, preserve_comment~)
     
     }
@@ -3622,7 +3622,7 @@ fn tokens(lexbuf : Lexbuf, env~ : LexEnv, preserve_comment~ : (Comment, Int, Int
       ()
       let repr = lexbuf.get_string(_capture_0_start, _capture_0_end)
 
-      env.add_token_with_loc(CHAR(repr), start=_start_pos, end=_end_pos)
+      env.add_token_with_loc(CHAR(repr), start=_match_start, end=_match_end)
       tokens(lexbuf, env~, preserve_comment~)
     
     }
@@ -3630,7 +3630,7 @@ fn tokens(lexbuf : Lexbuf, env~ : LexEnv, preserve_comment~ : (Comment, Int, Int
       ()
       let repr = lexbuf.get_string(_capture_0_start, _capture_0_end)
 
-      env.add_token_with_loc(CHAR(repr), start=_start_pos, end=_end_pos)
+      env.add_token_with_loc(CHAR(repr), start=_match_start, end=_match_end)
       tokens(lexbuf, env~, preserve_comment~)
     
     }
@@ -3638,7 +3638,7 @@ fn tokens(lexbuf : Lexbuf, env~ : LexEnv, preserve_comment~ : (Comment, Int, Int
       ()
       let repr = lexbuf.get_string(_capture_0_start, _capture_0_end)
 
-      env.add_token_with_loc(CHAR(repr), start=_start_pos, end=_end_pos)
+      env.add_token_with_loc(CHAR(repr), start=_match_start, end=_match_end)
       tokens(lexbuf, env~, preserve_comment~)
     
     }
@@ -3652,14 +3652,14 @@ fn tokens(lexbuf : Lexbuf, env~ : LexEnv, preserve_comment~ : (Comment, Int, Int
         // Overflow
         env.add_lexing_error(start=_capture_1_start, end = _capture_1_end, InvalidEscapeSequence(repr))
       }
-      env.add_token_with_loc(CHAR(repr), start=_start_pos, end=_end_pos)
+      env.add_token_with_loc(CHAR(repr), start=_match_start, end=_match_end)
       tokens(lexbuf, env~, preserve_comment~)
     
     }
     11 => {
       ()
 
-      let startpos = _start_pos
+      let startpos = _match_start
       let tok : Token =
         match string(lexbuf, env~, end_with_newline = false, allow_interp = true, startpos~) {
           [ InterpLit(repr~, ..) ] => STRING(repr)
@@ -3673,7 +3673,7 @@ fn tokens(lexbuf : Lexbuf, env~ : LexEnv, preserve_comment~ : (Comment, Int, Int
     12 => {
       ()
 
-      let startpos = _start_pos
+      let startpos = _match_start
       let tok : Token =
         match string(lexbuf, env~, end_with_newline = false, allow_interp = false, startpos~) {
           [ InterpLit(repr~, ..) ] => STRING(repr)
@@ -3688,9 +3688,9 @@ fn tokens(lexbuf : Lexbuf, env~ : LexEnv, preserve_comment~ : (Comment, Int, Int
       ()
 
       if env.is_interpolation {
-        env.add_lexing_error(start=_start_pos, end = _end_pos, InterpInvalidMultilineString)
+        env.add_lexing_error(start=_match_start, end = _match_end, InterpInvalidMultilineString)
       }
-      let startpos = _start_pos
+      let startpos = _match_start
       let tok : Token = MULTILINE_INTERP(string(lexbuf, env~, end_with_newline = true, allow_interp = true, startpos~))
       let endpos = lexbuf.curr_pos()
       env.add_token(tok, env.make_pos(startpos), env.make_pos(endpos))
@@ -3702,9 +3702,9 @@ fn tokens(lexbuf : Lexbuf, env~ : LexEnv, preserve_comment~ : (Comment, Int, Int
       let s = lexbuf.get_string(_capture_0_start, _capture_0_end)
 
       if env.is_interpolation {
-        env.add_lexing_error(start=_start_pos, end=_end_pos, InterpInvalidMultilineString)
+        env.add_lexing_error(start=_match_start, end=_match_end, InterpInvalidMultilineString)
       }
-      env.add_token_with_loc(MULTILINE_STRING(s), start=_start_pos, end=_end_pos)
+      env.add_token_with_loc(MULTILINE_STRING(s), start=_match_start, end=_match_end)
       tokens(lexbuf, env~, preserve_comment~)
     
     }
@@ -3713,9 +3713,9 @@ fn tokens(lexbuf : Lexbuf, env~ : LexEnv, preserve_comment~ : (Comment, Int, Int
       let attr = lexbuf.get_string(_capture_0_start, _capture_0_end)
 
       if env.is_interpolation {
-        env.add_lexing_error(start=_start_pos, end=_end_pos, InterpInvalidAttribute)
+        env.add_lexing_error(start=_match_start, end=_match_end, InterpInvalidAttribute)
       }
-      env.add_token_with_loc(ATTRIBUTE(attr), start=_start_pos, end=_end_pos)
+      env.add_token_with_loc(ATTRIBUTE(attr), start=_match_start, end=_match_end)
       tokens(lexbuf, env~, preserve_comment~)
     
     }
@@ -3723,7 +3723,7 @@ fn tokens(lexbuf : Lexbuf, env~ : LexEnv, preserve_comment~ : (Comment, Int, Int
       ()
       let pkgname = lexbuf.get_string(_capture_0_start, _capture_0_end)
 
-      env.add_token_with_loc(PACKAGE_NAME(pkgname), start=_start_pos, end=_end_pos)
+      env.add_token_with_loc(PACKAGE_NAME(pkgname), start=_match_start, end=_match_end)
       tokens(lexbuf, env~, preserve_comment~)
     
     }
@@ -3732,7 +3732,7 @@ fn tokens(lexbuf : Lexbuf, env~ : LexEnv, preserve_comment~ : (Comment, Int, Int
       let hex = lexbuf.get_string(_capture_0_start, _capture_0_end)
 
       let literal = "\\x" + hex
-      env.add_token_with_loc(BYTE(literal), start=_start_pos, end=_end_pos)
+      env.add_token_with_loc(BYTE(literal), start=_match_start, end=_match_end)
       tokens(lexbuf, env~, preserve_comment~)
     
     }
@@ -3741,7 +3741,7 @@ fn tokens(lexbuf : Lexbuf, env~ : LexEnv, preserve_comment~ : (Comment, Int, Int
       let oct = lexbuf.get_string(_capture_0_start, _capture_0_end)
 
       let literal = "\\o" + oct
-      env.add_token_with_loc(BYTE(literal), start=_start_pos, end=_end_pos)
+      env.add_token_with_loc(BYTE(literal), start=_match_start, end=_match_end)
       tokens(lexbuf, env~, preserve_comment~)
     
     }
@@ -3750,7 +3750,7 @@ fn tokens(lexbuf : Lexbuf, env~ : LexEnv, preserve_comment~ : (Comment, Int, Int
       let ascii = lexbuf.get_char(_capture_0_start, _capture_0_end)
 
       let literal = ascii
-      env.add_token_with_loc(BYTE([literal]), start=_start_pos, end=_end_pos)
+      env.add_token_with_loc(BYTE([literal]), start=_match_start, end=_match_end)
       tokens(lexbuf, env~, preserve_comment~)
     
     }
@@ -3759,7 +3759,7 @@ fn tokens(lexbuf : Lexbuf, env~ : LexEnv, preserve_comment~ : (Comment, Int, Int
       let e = lexbuf.get_char(_capture_0_start, _capture_0_end)
 
       let literal = "\\" + [e]
-      env.add_token_with_loc(BYTE(literal), start=_start_pos, end=_end_pos)
+      env.add_token_with_loc(BYTE(literal), start=_match_start, end=_match_end)
       tokens(lexbuf, env~, preserve_comment~)
     
     }
@@ -3775,35 +3775,35 @@ fn tokens(lexbuf : Lexbuf, env~ : LexEnv, preserve_comment~ : (Comment, Int, Int
     22 => {
       ()
 
-      env.add_token_with_loc(AMPERAMPER, start=_start_pos, end=_end_pos)
+      env.add_token_with_loc(AMPERAMPER, start=_match_start, end=_match_end)
       tokens(lexbuf, env~, preserve_comment~)
     
     }
     23 => {
       ()
 
-      env.add_token_with_loc(AMPER, start=_start_pos, end=_end_pos)
+      env.add_token_with_loc(AMPER, start=_match_start, end=_match_end)
       tokens(lexbuf, env~, preserve_comment~)
     
     }
     24 => {
       ()
 
-      env.add_token_with_loc(CARET, start=_start_pos, end=_end_pos)
+      env.add_token_with_loc(CARET, start=_match_start, end=_match_end)
       tokens(lexbuf, env~, preserve_comment~)
     
     }
     25 => {
       ()
 
-      env.add_token_with_loc(LPAREN, start=_start_pos, end=_end_pos)
+      env.add_token_with_loc(LPAREN, start=_match_start, end=_match_end)
       tokens(lexbuf, env~, preserve_comment~)
     
     }
     26 => {
       ()
 
-      env.add_token_with_loc(RPAREN, start=_start_pos, end=_end_pos)
+      env.add_token_with_loc(RPAREN, start=_match_start, end=_match_end)
       tokens(lexbuf, env~, preserve_comment~)
     
     }
@@ -3820,35 +3820,35 @@ fn tokens(lexbuf : Lexbuf, env~ : LexEnv, preserve_comment~ : (Comment, Int, Int
     28 => {
       ()
 
-      env.add_token_with_loc(INFIX3("*"), start=_start_pos, end=_end_pos)
+      env.add_token_with_loc(INFIX3("*"), start=_match_start, end=_match_end)
       tokens(lexbuf, env~, preserve_comment~)
     
     }
     29 => {
       ()
 
-      env.add_token_with_loc(INFIX3("/"), start=_start_pos, end=_end_pos)
+      env.add_token_with_loc(INFIX3("/"), start=_match_start, end=_match_end)
       tokens(lexbuf, env~, preserve_comment~)
     
     }
     30 => {
       ()
 
-      env.add_token_with_loc(INFIX3("%"), start=_start_pos, end=_end_pos)
+      env.add_token_with_loc(INFIX3("%"), start=_match_start, end=_match_end)
       tokens(lexbuf, env~, preserve_comment~)
     
     }
     31 => {
       ()
 
-      env.add_token_with_loc(COMMA, start=_start_pos, end=_end_pos)
+      env.add_token_with_loc(COMMA, start=_match_start, end=_match_end)
       tokens(lexbuf, env~, preserve_comment~)
     
     }
     32 => {
       ()
 
-      env.add_token_with_loc(DOT_LPAREN, start=_start_pos, end=_end_pos)
+      env.add_token_with_loc(DOT_LPAREN, start=_match_start, end=_match_end)
       tokens(lexbuf, env~, preserve_comment~)
     
     }
@@ -3874,28 +3874,28 @@ fn tokens(lexbuf : Lexbuf, env~ : LexEnv, preserve_comment~ : (Comment, Int, Int
     34 => {
       ()
 
-      env.add_token_with_loc(ELLIPSIS, start=_start_pos, end=_end_pos)
+      env.add_token_with_loc(ELLIPSIS, start=_match_start, end=_match_end)
       tokens(lexbuf, env~, preserve_comment~)
     
     }
     35 => {
       ()
 
-      env.add_token_with_loc(RANGE_INCLUSIVE, start=_start_pos, end=_end_pos)
+      env.add_token_with_loc(RANGE_INCLUSIVE, start=_match_start, end=_match_end)
       tokens(lexbuf, env~, preserve_comment~)
     
     }
     36 => {
       ()
 
-      env.add_token_with_loc(RANGE_EXCLUSIVE, start=_start_pos, end=_end_pos)
+      env.add_token_with_loc(RANGE_EXCLUSIVE, start=_match_start, end=_match_end)
       tokens(lexbuf, env~, preserve_comment~)
     
     }
     37 => {
       ()
 
-      env.add_token_with_loc(DOTDOT, start=_start_pos, end=_end_pos)
+      env.add_token_with_loc(DOTDOT, start=_match_start, end=_match_end)
       tokens(lexbuf, env~, preserve_comment~)
     
     }
@@ -3920,161 +3920,161 @@ fn tokens(lexbuf : Lexbuf, env~ : LexEnv, preserve_comment~ : (Comment, Int, Int
     40 => {
       ()
 
-      env.add_token_with_loc(COLONCOLON, start=_start_pos, end=_end_pos)
+      env.add_token_with_loc(COLONCOLON, start=_match_start, end=_match_end)
       tokens(lexbuf, env~, preserve_comment~)
     
     }
     41 => {
       ()
 
-      env.add_token_with_loc(COLON, start=_start_pos, end=_end_pos)
+      env.add_token_with_loc(COLON, start=_match_start, end=_match_end)
       tokens(lexbuf, env~, preserve_comment~)
     
     }
     42 => {
       ()
 
-      env.add_token_with_loc(SEMI(true), start=_start_pos, end=_end_pos)
+      env.add_token_with_loc(SEMI(true), start=_match_start, end=_match_end)
       tokens(lexbuf, env~, preserve_comment~)
     
     }
     43 => {
       ()
 
-      env.add_token_with_loc(INFIX1("=="), start=_start_pos, end=_end_pos)
+      env.add_token_with_loc(INFIX1("=="), start=_match_start, end=_match_end)
       tokens(lexbuf, env~, preserve_comment~)
     
     }
     44 => {
       ()
 
-      env.add_token_with_loc(EQUAL, start=_start_pos, end=_end_pos)
+      env.add_token_with_loc(EQUAL, start=_match_start, end=_match_end)
       tokens(lexbuf, env~, preserve_comment~)
     
     }
     45 => {
       ()
 
-      env.add_token_with_loc(INFIX1("<="), start=_start_pos, end=_end_pos)
+      env.add_token_with_loc(INFIX1("<="), start=_match_start, end=_match_end)
       tokens(lexbuf, env~, preserve_comment~)
     
     }
     46 => {
       ()
 
-      env.add_token_with_loc(INFIX1(">="), start=_start_pos, end=_end_pos)
+      env.add_token_with_loc(INFIX1(">="), start=_match_start, end=_match_end)
       tokens(lexbuf, env~, preserve_comment~)
     
     }
     47 => {
       ()
 
-      env.add_token_with_loc(INFIX2(">>"), start=_start_pos, end=_end_pos)
+      env.add_token_with_loc(INFIX2(">>"), start=_match_start, end=_match_end)
       tokens(lexbuf, env~, preserve_comment~)
     
     }
     48 => {
       ()
 
-      env.add_token_with_loc(INFIX1(">"), start=_start_pos, end=_end_pos)
+      env.add_token_with_loc(INFIX1(">"), start=_match_start, end=_match_end)
       tokens(lexbuf, env~, preserve_comment~)
     
     }
     49 => {
       ()
 
-      env.add_token_with_loc(INFIX2("<<"), start=_start_pos, end=_end_pos)
+      env.add_token_with_loc(INFIX2("<<"), start=_match_start, end=_match_end)
       tokens(lexbuf, env~, preserve_comment~)
     
     }
     50 => {
       ()
 
-      env.add_token_with_loc(INFIX1("<"), start=_start_pos, end=_end_pos)
+      env.add_token_with_loc(INFIX1("<"), start=_match_start, end=_match_end)
       tokens(lexbuf, env~, preserve_comment~)
     
     }
     51 => {
       ()
 
-      env.add_token_with_loc(LBRACKET, start=_start_pos, end=_end_pos)
+      env.add_token_with_loc(LBRACKET, start=_match_start, end=_match_end)
       tokens(lexbuf, env~, preserve_comment~)
     
     }
     52 => {
       ()
 
-      env.add_token_with_loc(RBRACKET, start=_start_pos, end=_end_pos)
+      env.add_token_with_loc(RBRACKET, start=_match_start, end=_match_end)
       tokens(lexbuf, env~, preserve_comment~)
     
     }
     53 => {
       ()
 
-      env.add_token_with_loc(LBRACE, start=_start_pos, end=_end_pos)
+      env.add_token_with_loc(LBRACE, start=_match_start, end=_match_end)
       tokens(lexbuf, env~, preserve_comment~)
     
     }
     54 => {
       ()
 
-      env.add_token_with_loc(RBRACE, start=_start_pos, end=_end_pos)
+      env.add_token_with_loc(RBRACE, start=_match_start, end=_match_end)
       tokens(lexbuf, env~, preserve_comment~)
     
     }
     55 => {
       ()
 
-      env.add_token_with_loc(PIPE, start=_start_pos, end=_end_pos)
+      env.add_token_with_loc(PIPE, start=_match_start, end=_match_end)
       tokens(lexbuf, env~, preserve_comment~)
     
     }
     56 => {
       ()
 
-      env.add_token_with_loc(BARBAR, start=_start_pos, end=_end_pos)
+      env.add_token_with_loc(BARBAR, start=_match_start, end=_match_end)
       tokens(lexbuf, env~, preserve_comment~)
     
     }
     57 => {
       ()
 
-      env.add_token_with_loc(BAR, start=_start_pos, end=_end_pos)
+      env.add_token_with_loc(BAR, start=_match_start, end=_match_end)
       tokens(lexbuf, env~, preserve_comment~)
     
     }
     58 => {
       ()
 
-      env.add_token_with_loc(PLUS, start=_start_pos, end=_end_pos)
+      env.add_token_with_loc(PLUS, start=_match_start, end=_match_end)
       tokens(lexbuf, env~, preserve_comment~)
     
     }
     59 => {
       ()
 
-      env.add_token_with_loc(MINUS, start=_start_pos, end=_end_pos)
+      env.add_token_with_loc(MINUS, start=_match_start, end=_match_end)
       tokens(lexbuf, env~, preserve_comment~)
     
     }
     60 => {
       ()
 
-      env.add_token_with_loc(QUESTION, start=_start_pos, end=_end_pos)
+      env.add_token_with_loc(QUESTION, start=_match_start, end=_match_end)
       tokens(lexbuf, env~, preserve_comment~)
     
     }
     61 => {
       ()
 
-      env.add_token_with_loc(INFIX1("!="), start=_start_pos, end=_end_pos)
+      env.add_token_with_loc(INFIX1("!="), start=_match_start, end=_match_end)
       tokens(lexbuf, env~, preserve_comment~)
     
     }
     62 => {
       ()
 
-      env.add_token_with_loc(EXCLAMATION, start=_start_pos, end=_end_pos)
+      env.add_token_with_loc(EXCLAMATION, start=_match_start, end=_match_end)
       tokens(lexbuf, env~, preserve_comment~)
     
     }
@@ -4092,7 +4092,7 @@ fn tokens(lexbuf : Lexbuf, env~ : LexEnv, preserve_comment~ : (Comment, Int, Int
       ()
       let float = lexbuf.get_string(_capture_0_start, _capture_0_end)
 
-      env.add_token_with_loc(FLOAT(float), start=_start_pos, end=_end_pos)
+      env.add_token_with_loc(FLOAT(float), start=_match_start, end=_match_end)
       tokens(lexbuf, env~, preserve_comment~)
     
     }
@@ -4100,7 +4100,7 @@ fn tokens(lexbuf : Lexbuf, env~ : LexEnv, preserve_comment~ : (Comment, Int, Int
       ()
       let integer = lexbuf.get_string(_capture_0_start, _capture_0_end)
 
-      env.add_token_with_loc(INT(integer), start=_start_pos, end=_end_pos)
+      env.add_token_with_loc(INT(integer), start=_match_start, end=_match_end)
       tokens(lexbuf, env~, preserve_comment~)
     
     }
@@ -4120,7 +4120,7 @@ fn tokens(lexbuf : Lexbuf, env~ : LexEnv, preserve_comment~ : (Comment, Int, Int
       } else {
         UIDENT(raw)
       }
-      env.add_token_with_loc(token, start=_start_pos, end=_end_pos)
+      env.add_token_with_loc(token, start=_match_start, end=_match_end)
       tokens(lexbuf, env~, preserve_comment~)
     
     }
@@ -4128,7 +4128,7 @@ fn tokens(lexbuf : Lexbuf, env~ : LexEnv, preserve_comment~ : (Comment, Int, Int
       ()
       let raw = lexbuf.get_string(_capture_0_start, _capture_0_end)
 
-      env.add_token_with_loc(POST_LABEL(raw), start=_start_pos, end=_end_pos)
+      env.add_token_with_loc(POST_LABEL(raw), start=_match_start, end=_match_end)
       tokens(lexbuf, env~, preserve_comment~)
     
     }
@@ -4137,14 +4137,14 @@ fn tokens(lexbuf : Lexbuf, env~ : LexEnv, preserve_comment~ : (Comment, Int, Int
       let raw = lexbuf.get_string(_capture_0_start, _capture_0_end)
 
       if reserved_keyword_table.contains(raw) {
-        env.add_lexing_error(Reserved_keyword(raw), start=_start_pos, end=_end_pos)
+        env.add_lexing_error(Reserved_keyword(raw), start=_match_start, end=_match_end)
       }
       env.add_token_with_loc(
         match keyword_table.get(raw) {
           None => LIDENT(raw)
           Some(tok) => tok
         },
-        start=_start_pos, end=_end_pos
+        start=_match_start, end=_match_end
       )
       tokens(lexbuf, env~, preserve_comment~)
     
@@ -4153,7 +4153,7 @@ fn tokens(lexbuf : Lexbuf, env~ : LexEnv, preserve_comment~ : (Comment, Int, Int
       ()
       let c = lexbuf.get_char(_capture_0_start, _capture_0_end)
 
-      env.add_lexing_error(IllegalCharacter(c), start=_start_pos, end=_end_pos)
+      env.add_lexing_error(IllegalCharacter(c), start=_match_start, end=_match_end)
       tokens(lexbuf, env~, preserve_comment~)
     
     }

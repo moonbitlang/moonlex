@@ -2,9 +2,9 @@
 
 fn lex_unicode(lexbuf : @lexbuf.T) -> Int  {
   // The matched pattern id
-  let mut matched = @int.max_value
-  let mut _end_pos = -1
-  let mut _start_pos = lexbuf.curr_pos()
+  let mut _match_pattern = @int.max_value
+  let mut _match_start = lexbuf.curr_pos()
+  let mut _match_end = -1
   let mut _capture_0_start = -1
   let mut _capture_0_end = -1
   let mut _capture_1_start = -1
@@ -25,9 +25,9 @@ fn lex_unicode(lexbuf : @lexbuf.T) -> Int  {
       }
     }
     1 => {
-      if matched >= 3 {
-        matched = 3
-        _end_pos = lexbuf.curr_pos()
+      if _match_pattern >= 3 {
+        _match_pattern = 3
+        _match_end = lexbuf.curr_pos()
       }
       break
     }
@@ -96,11 +96,11 @@ fn lex_unicode(lexbuf : @lexbuf.T) -> Int  {
       }
     }
     11 => {
-      if matched >= 2 {
-        matched = 2
-        _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _start_pos
-        _capture_0_end = _start_pos + 3
+      if _match_pattern >= 2 {
+        _match_pattern = 2
+        _match_end = lexbuf.curr_pos()
+        _capture_0_start = _match_start
+        _capture_0_end = _match_start + 3
       }
       break
     }
@@ -113,9 +113,9 @@ fn lex_unicode(lexbuf : @lexbuf.T) -> Int  {
       }
     }
     13 => {
-      if matched >= 3 {
-        matched = 3
-        _end_pos = lexbuf.curr_pos()
+      if _match_pattern >= 3 {
+        _match_pattern = 3
+        _match_end = lexbuf.curr_pos()
       }
       continue match lexbuf.next_as_int() {
         231 => 15
@@ -123,9 +123,9 @@ fn lex_unicode(lexbuf : @lexbuf.T) -> Int  {
       }
     }
     14 => {
-      if matched >= 1 {
-        matched = 1
-        _end_pos = lexbuf.curr_pos()
+      if _match_pattern >= 1 {
+        _match_pattern = 1
+        _match_end = lexbuf.curr_pos()
       }
       break
     }
@@ -178,22 +178,22 @@ fn lex_unicode(lexbuf : @lexbuf.T) -> Int  {
       }
     }
     23 => {
-      if matched >= 0 {
-        matched = 0
-        _end_pos = lexbuf.curr_pos()
+      if _match_pattern >= 0 {
+        _match_pattern = 0
+        _match_end = lexbuf.curr_pos()
       }
       break
     }
     _ => panic()
   }
 
-  guard matched <= 3 else {
+  guard _match_pattern <= 3 else {
     // No pattern matched
     panic()
   }
 
-  lexbuf.reset(pos=_end_pos)
-  match matched {
+  lexbuf.reset(pos=_match_end)
+  match _match_pattern {
     0 => {
       ()
  1 

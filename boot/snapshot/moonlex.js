@@ -15466,9 +15466,9 @@ function moonbitlang$ulex$lib$parser$$code_rbrace$194$(buffer, lexbuf) {
   _L: while (true) {
     const buffer$2 = _tmp;
     const lexbuf$2 = _tmp$2;
-    let matched = moonbitlang$core$int$$max_value;
-    let _end_pos = -1;
-    let _start_pos = lexbuf$2.pos;
+    let match_pattern = moonbitlang$core$int$$max_value;
+    let _match_start = lexbuf$2.pos;
+    let _match_end = -1;
     let _capture_0_start = -1;
     let _capture_0_end = -1;
     let _tmp$3 = 0;
@@ -15531,27 +15531,27 @@ function moonbitlang$ulex$lib$parser$$code_rbrace$194$(buffer, lexbuf) {
           continue _L$2;
         }
         case 1: {
-          if (matched >= 6) {
-            matched = 6;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 6) {
+            match_pattern = 6;
+            _match_end = lexbuf$2.pos;
           }
           break _L$2;
         }
         case 2: {
-          if (matched >= 5) {
-            matched = 5;
-            _end_pos = lexbuf$2.pos;
-            _capture_0_start = _start_pos;
-            _capture_0_end = _start_pos + 1 | 0;
+          if (match_pattern >= 5) {
+            match_pattern = 5;
+            _match_end = lexbuf$2.pos;
+            _capture_0_start = _match_start;
+            _capture_0_end = _match_start + 1 | 0;
           }
           break _L$2;
         }
         case 3: {
-          if (matched >= 5) {
-            matched = 5;
-            _end_pos = lexbuf$2.pos;
-            _capture_0_start = _start_pos;
-            _capture_0_end = _start_pos + 1 | 0;
+          if (match_pattern >= 5) {
+            match_pattern = 5;
+            _match_end = lexbuf$2.pos;
+            _capture_0_start = _match_start;
+            _capture_0_end = _match_start + 1 | 0;
           }
           const _bind$2 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$next_as_int$194$(lexbuf$2);
           let _tmp$5;
@@ -15580,11 +15580,11 @@ function moonbitlang$ulex$lib$parser$$code_rbrace$194$(buffer, lexbuf) {
           continue _L$2;
         }
         case 4: {
-          if (matched >= 5) {
-            matched = 5;
-            _end_pos = lexbuf$2.pos;
-            _capture_0_start = _start_pos;
-            _capture_0_end = _start_pos + 1 | 0;
+          if (match_pattern >= 5) {
+            match_pattern = 5;
+            _match_end = lexbuf$2.pos;
+            _capture_0_start = _match_start;
+            _capture_0_end = _match_start + 1 | 0;
           }
           const _bind$3 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$next_as_int$194$(lexbuf$2);
           let _tmp$6;
@@ -15605,11 +15605,11 @@ function moonbitlang$ulex$lib$parser$$code_rbrace$194$(buffer, lexbuf) {
           continue _L$2;
         }
         case 5: {
-          if (matched >= 5) {
-            matched = 5;
-            _end_pos = lexbuf$2.pos;
-            _capture_0_start = _start_pos;
-            _capture_0_end = _start_pos + 1 | 0;
+          if (match_pattern >= 5) {
+            match_pattern = 5;
+            _match_end = lexbuf$2.pos;
+            _capture_0_start = _match_start;
+            _capture_0_end = _match_start + 1 | 0;
           }
           const _bind$4 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$next_as_int$194$(lexbuf$2);
           let _tmp$7;
@@ -15622,16 +15622,16 @@ function moonbitlang$ulex$lib$parser$$code_rbrace$194$(buffer, lexbuf) {
           continue _L$2;
         }
         case 6: {
-          if (matched >= 3) {
-            matched = 3;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 3) {
+            match_pattern = 3;
+            _match_end = lexbuf$2.pos;
           }
           break _L$2;
         }
         case 7: {
-          if (matched >= 4) {
-            matched = 4;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 4) {
+            match_pattern = 4;
+            _match_end = lexbuf$2.pos;
           }
           break _L$2;
         }
@@ -15674,11 +15674,11 @@ function moonbitlang$ulex$lib$parser$$code_rbrace$194$(buffer, lexbuf) {
           continue _L$2;
         }
         case 10: {
-          if (matched >= 1) {
-            matched = 1;
-            _end_pos = lexbuf$2.pos;
-            _capture_0_start = _start_pos;
-            _capture_0_end = _end_pos;
+          if (match_pattern >= 1) {
+            match_pattern = 1;
+            _match_end = lexbuf$2.pos;
+            _capture_0_start = _match_start;
+            _capture_0_end = _match_end;
           }
           break _L$2;
         }
@@ -15709,11 +15709,11 @@ function moonbitlang$ulex$lib$parser$$code_rbrace$194$(buffer, lexbuf) {
           continue _L$2;
         }
         case 13: {
-          if (matched >= 2) {
-            matched = 2;
-            _end_pos = lexbuf$2.pos;
-            _capture_0_start = _start_pos;
-            _capture_0_end = _start_pos + 3 | 0;
+          if (match_pattern >= 2) {
+            match_pattern = 2;
+            _match_end = lexbuf$2.pos;
+            _capture_0_start = _match_start;
+            _capture_0_end = _match_start + 3 | 0;
           }
           break _L$2;
         }
@@ -15737,11 +15737,11 @@ function moonbitlang$ulex$lib$parser$$code_rbrace$194$(buffer, lexbuf) {
           continue _L$2;
         }
         case 15: {
-          if (matched >= 0) {
-            matched = 0;
-            _end_pos = lexbuf$2.pos;
-            _capture_0_start = _start_pos;
-            _capture_0_end = _end_pos;
+          if (match_pattern >= 0) {
+            match_pattern = 0;
+            _match_end = lexbuf$2.pos;
+            _capture_0_start = _match_start;
+            _capture_0_end = _match_end;
           }
           break _L$2;
         }
@@ -15751,9 +15751,9 @@ function moonbitlang$ulex$lib$parser$$code_rbrace$194$(buffer, lexbuf) {
         }
       }
     }
-    if (matched <= 6) {
-      moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$reset$194$(lexbuf$2, _end_pos);
-      const _bind = matched;
+    if (match_pattern <= 6) {
+      moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$reset$194$(lexbuf$2, _match_end);
+      const _bind = match_pattern;
       switch (_bind) {
         case 0: {
           const t = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$get_string$194$(lexbuf$2, _capture_0_start, _capture_0_end);
@@ -15777,7 +15777,7 @@ function moonbitlang$ulex$lib$parser$$code_rbrace$194$(buffer, lexbuf) {
           continue _L;
         }
         case 4: {
-          return _end_pos;
+          return _match_end;
         }
         case 5: {
           const t$4 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$get_char$194$(lexbuf$2, _capture_0_start, _capture_0_end);
@@ -15802,9 +15802,9 @@ function moonbitlang$ulex$lib$parser$$string_inner_rquote$194$(buffer, lexbuf) {
   _L: while (true) {
     const buffer$2 = _tmp;
     const lexbuf$2 = _tmp$2;
-    let matched = moonbitlang$core$int$$max_value;
-    let _end_pos = -1;
-    let _start_pos = lexbuf$2.pos;
+    let match_pattern = moonbitlang$core$int$$max_value;
+    let _match_start = lexbuf$2.pos;
+    let _match_end = -1;
     let _capture_0_start = -1;
     let _capture_0_end = -1;
     let _tmp$3 = 0;
@@ -15843,34 +15843,34 @@ function moonbitlang$ulex$lib$parser$$string_inner_rquote$194$(buffer, lexbuf) {
           continue _L$2;
         }
         case 1: {
-          if (matched >= 12) {
-            matched = 12;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 12) {
+            match_pattern = 12;
+            _match_end = lexbuf$2.pos;
           }
           break _L$2;
         }
         case 2: {
-          if (matched >= 11) {
-            matched = 11;
-            _end_pos = lexbuf$2.pos;
-            _capture_0_start = _start_pos;
-            _capture_0_end = _start_pos + 1 | 0;
+          if (match_pattern >= 11) {
+            match_pattern = 11;
+            _match_end = lexbuf$2.pos;
+            _capture_0_start = _match_start;
+            _capture_0_end = _match_start + 1 | 0;
           }
           break _L$2;
         }
         case 3: {
-          if (matched >= 0) {
-            matched = 0;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 0) {
+            match_pattern = 0;
+            _match_end = lexbuf$2.pos;
           }
           break _L$2;
         }
         case 4: {
-          if (matched >= 11) {
-            matched = 11;
-            _end_pos = lexbuf$2.pos;
-            _capture_0_start = _start_pos;
-            _capture_0_end = _start_pos + 1 | 0;
+          if (match_pattern >= 11) {
+            match_pattern = 11;
+            _match_end = lexbuf$2.pos;
+            _capture_0_start = _match_start;
+            _capture_0_end = _match_start + 1 | 0;
           }
           const _bind$2 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$next_as_int$194$(lexbuf$2);
           let _tmp$5;
@@ -15919,44 +15919,44 @@ function moonbitlang$ulex$lib$parser$$string_inner_rquote$194$(buffer, lexbuf) {
           continue _L$2;
         }
         case 5: {
-          if (matched >= 7) {
-            matched = 7;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 7) {
+            match_pattern = 7;
+            _match_end = lexbuf$2.pos;
           }
           break _L$2;
         }
         case 6: {
-          if (matched >= 6) {
-            matched = 6;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 6) {
+            match_pattern = 6;
+            _match_end = lexbuf$2.pos;
           }
           break _L$2;
         }
         case 7: {
-          if (matched >= 1) {
-            matched = 1;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 1) {
+            match_pattern = 1;
+            _match_end = lexbuf$2.pos;
           }
           break _L$2;
         }
         case 8: {
-          if (matched >= 5) {
-            matched = 5;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 5) {
+            match_pattern = 5;
+            _match_end = lexbuf$2.pos;
           }
           break _L$2;
         }
         case 9: {
-          if (matched >= 4) {
-            matched = 4;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 4) {
+            match_pattern = 4;
+            _match_end = lexbuf$2.pos;
           }
           break _L$2;
         }
         case 10: {
-          if (matched >= 2) {
-            matched = 2;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 2) {
+            match_pattern = 2;
+            _match_end = lexbuf$2.pos;
           }
           break _L$2;
         }
@@ -15984,9 +15984,9 @@ function moonbitlang$ulex$lib$parser$$string_inner_rquote$194$(buffer, lexbuf) {
           continue _L$2;
         }
         case 12: {
-          if (matched >= 3) {
-            matched = 3;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 3) {
+            match_pattern = 3;
+            _match_end = lexbuf$2.pos;
           }
           break _L$2;
         }
@@ -16150,20 +16150,20 @@ function moonbitlang$ulex$lib$parser$$string_inner_rquote$194$(buffer, lexbuf) {
           continue _L$2;
         }
         case 22: {
-          if (matched >= 8) {
-            matched = 8;
-            _end_pos = lexbuf$2.pos;
-            _capture_0_start = _start_pos + 2 | 0;
-            _capture_0_end = _start_pos + 4 | 0;
+          if (match_pattern >= 8) {
+            match_pattern = 8;
+            _match_end = lexbuf$2.pos;
+            _capture_0_start = _match_start + 2 | 0;
+            _capture_0_end = _match_start + 4 | 0;
           }
           break _L$2;
         }
         case 23: {
-          if (matched >= 10) {
-            matched = 10;
-            _end_pos = lexbuf$2.pos;
-            _capture_0_start = _start_pos + 3 | 0;
-            _capture_0_end = _end_pos + -2 | 0;
+          if (match_pattern >= 10) {
+            match_pattern = 10;
+            _match_end = lexbuf$2.pos;
+            _capture_0_start = _match_start + 3 | 0;
+            _capture_0_end = _match_end + -2 | 0;
           }
           break _L$2;
         }
@@ -16179,11 +16179,11 @@ function moonbitlang$ulex$lib$parser$$string_inner_rquote$194$(buffer, lexbuf) {
           continue _L$2;
         }
         case 25: {
-          if (matched >= 9) {
-            matched = 9;
-            _end_pos = lexbuf$2.pos;
-            _capture_0_start = _start_pos + 2 | 0;
-            _capture_0_end = _start_pos + 6 | 0;
+          if (match_pattern >= 9) {
+            match_pattern = 9;
+            _match_end = lexbuf$2.pos;
+            _capture_0_start = _match_start + 2 | 0;
+            _capture_0_end = _match_start + 6 | 0;
           }
           break _L$2;
         }
@@ -16193,12 +16193,12 @@ function moonbitlang$ulex$lib$parser$$string_inner_rquote$194$(buffer, lexbuf) {
         }
       }
     }
-    if (matched <= 12) {
-      moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$reset$194$(lexbuf$2, _end_pos);
-      const _bind = matched;
+    if (match_pattern <= 12) {
+      moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$reset$194$(lexbuf$2, _match_end);
+      const _bind = match_pattern;
       switch (_bind) {
         case 0: {
-          return _end_pos;
+          return _match_end;
         }
         case 1: {
           moonbitlang$core$builtin$$Logger$write_char$122$(buffer$2, 8);
@@ -16267,9 +16267,9 @@ function moonbitlang$ulex$lib$parser$$token$194$(lexbuf) {
   let _tmp = lexbuf;
   _L: while (true) {
     const lexbuf$2 = _tmp;
-    let matched = moonbitlang$core$int$$max_value;
-    let _end_pos = -1;
-    let _start_pos = lexbuf$2.pos;
+    let match_pattern = moonbitlang$core$int$$max_value;
+    let _match_start = lexbuf$2.pos;
+    let _match_end = -1;
     let _capture_0_start = -1;
     let _capture_0_end = -1;
     let _capture_1_start = -1;
@@ -16403,16 +16403,16 @@ function moonbitlang$ulex$lib$parser$$token$194$(lexbuf) {
           continue _L$2;
         }
         case 1: {
-          if (matched >= 2) {
-            matched = 2;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 2) {
+            match_pattern = 2;
+            _match_end = lexbuf$2.pos;
           }
           break _L$2;
         }
         case 2: {
-          if (matched >= 0) {
-            matched = 0;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 0) {
+            match_pattern = 0;
+            _match_end = lexbuf$2.pos;
           }
           const _bind$2 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$next_as_int$194$(lexbuf$2);
           let _tmp$4;
@@ -16433,9 +16433,9 @@ function moonbitlang$ulex$lib$parser$$token$194$(lexbuf) {
           continue _L$2;
         }
         case 3: {
-          if (matched >= 33) {
-            matched = 33;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 33) {
+            match_pattern = 33;
+            _match_end = lexbuf$2.pos;
           }
           break _L$2;
         }
@@ -16463,37 +16463,37 @@ function moonbitlang$ulex$lib$parser$$token$194$(lexbuf) {
           continue _L$2;
         }
         case 5: {
-          if (matched >= 9) {
-            matched = 9;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 9) {
+            match_pattern = 9;
+            _match_end = lexbuf$2.pos;
           }
           break _L$2;
         }
         case 6: {
-          if (matched >= 10) {
-            matched = 10;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 10) {
+            match_pattern = 10;
+            _match_end = lexbuf$2.pos;
           }
           break _L$2;
         }
         case 7: {
-          if (matched >= 16) {
-            matched = 16;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 16) {
+            match_pattern = 16;
+            _match_end = lexbuf$2.pos;
           }
           break _L$2;
         }
         case 8: {
-          if (matched >= 17) {
-            matched = 17;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 17) {
+            match_pattern = 17;
+            _match_end = lexbuf$2.pos;
           }
           break _L$2;
         }
         case 9: {
-          if (matched >= 19) {
-            matched = 19;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 19) {
+            match_pattern = 19;
+            _match_end = lexbuf$2.pos;
           }
           break _L$2;
         }
@@ -16509,16 +16509,16 @@ function moonbitlang$ulex$lib$parser$$token$194$(lexbuf) {
           continue _L$2;
         }
         case 11: {
-          if (matched >= 14) {
-            matched = 14;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 14) {
+            match_pattern = 14;
+            _match_end = lexbuf$2.pos;
           }
           break _L$2;
         }
         case 12: {
-          if (matched >= 13) {
-            matched = 13;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 13) {
+            match_pattern = 13;
+            _match_end = lexbuf$2.pos;
           }
           const _bind$5 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$next_as_int$194$(lexbuf$2);
           let _tmp$7;
@@ -16531,44 +16531,44 @@ function moonbitlang$ulex$lib$parser$$token$194$(lexbuf) {
           continue _L$2;
         }
         case 13: {
-          if (matched >= 18) {
-            matched = 18;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 18) {
+            match_pattern = 18;
+            _match_end = lexbuf$2.pos;
           }
           break _L$2;
         }
         case 14: {
-          if (matched >= 11) {
-            matched = 11;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 11) {
+            match_pattern = 11;
+            _match_end = lexbuf$2.pos;
           }
           break _L$2;
         }
         case 15: {
-          if (matched >= 21) {
-            matched = 21;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 21) {
+            match_pattern = 21;
+            _match_end = lexbuf$2.pos;
           }
           break _L$2;
         }
         case 16: {
-          if (matched >= 12) {
-            matched = 12;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 12) {
+            match_pattern = 12;
+            _match_end = lexbuf$2.pos;
           }
           break _L$2;
         }
         case 17: {
-          if (matched >= 20) {
-            matched = 20;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 20) {
+            match_pattern = 20;
+            _match_end = lexbuf$2.pos;
           }
           break _L$2;
         }
         case 18: {
-          if (matched >= 6) {
-            matched = 6;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 6) {
+            match_pattern = 6;
+            _match_end = lexbuf$2.pos;
           }
           const _bind$6 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$next_as_int$194$(lexbuf$2);
           let _tmp$8;
@@ -16593,11 +16593,11 @@ function moonbitlang$ulex$lib$parser$$token$194$(lexbuf) {
           continue _L$2;
         }
         case 19: {
-          if (matched >= 34) {
-            matched = 34;
-            _end_pos = lexbuf$2.pos;
-            _capture_0_start = _start_pos;
-            _capture_0_end = _end_pos;
+          if (match_pattern >= 34) {
+            match_pattern = 34;
+            _match_end = lexbuf$2.pos;
+            _capture_0_start = _match_start;
+            _capture_0_end = _match_end;
           }
           const _bind$7 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$next_as_int$194$(lexbuf$2);
           let _tmp$9;
@@ -16622,11 +16622,11 @@ function moonbitlang$ulex$lib$parser$$token$194$(lexbuf) {
           continue _L$2;
         }
         case 20: {
-          if (matched >= 34) {
-            matched = 34;
-            _end_pos = lexbuf$2.pos;
-            _capture_0_start = _start_pos;
-            _capture_0_end = _end_pos;
+          if (match_pattern >= 34) {
+            match_pattern = 34;
+            _match_end = lexbuf$2.pos;
+            _capture_0_start = _match_start;
+            _capture_0_end = _match_end;
           }
           const _bind$8 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$next_as_int$194$(lexbuf$2);
           let _tmp$10;
@@ -16655,11 +16655,11 @@ function moonbitlang$ulex$lib$parser$$token$194$(lexbuf) {
           continue _L$2;
         }
         case 21: {
-          if (matched >= 34) {
-            matched = 34;
-            _end_pos = lexbuf$2.pos;
-            _capture_0_start = _start_pos;
-            _capture_0_end = _end_pos;
+          if (match_pattern >= 34) {
+            match_pattern = 34;
+            _match_end = lexbuf$2.pos;
+            _capture_0_start = _match_start;
+            _capture_0_end = _match_end;
           }
           const _bind$9 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$next_as_int$194$(lexbuf$2);
           let _tmp$11;
@@ -16692,23 +16692,23 @@ function moonbitlang$ulex$lib$parser$$token$194$(lexbuf) {
           continue _L$2;
         }
         case 22: {
-          if (matched >= 7) {
-            matched = 7;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 7) {
+            match_pattern = 7;
+            _match_end = lexbuf$2.pos;
           }
           break _L$2;
         }
         case 23: {
-          if (matched >= 15) {
-            matched = 15;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 15) {
+            match_pattern = 15;
+            _match_end = lexbuf$2.pos;
           }
           break _L$2;
         }
         case 24: {
-          if (matched >= 8) {
-            matched = 8;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 8) {
+            match_pattern = 8;
+            _match_end = lexbuf$2.pos;
           }
           break _L$2;
         }
@@ -16771,18 +16771,18 @@ function moonbitlang$ulex$lib$parser$$token$194$(lexbuf) {
           continue _L$2;
         }
         case 27: {
-          if (matched >= 5) {
-            matched = 5;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 5) {
+            match_pattern = 5;
+            _match_end = lexbuf$2.pos;
           }
           break _L$2;
         }
         case 28: {
-          if (matched >= 34) {
-            matched = 34;
-            _end_pos = lexbuf$2.pos;
-            _capture_0_start = _start_pos;
-            _capture_0_end = _end_pos;
+          if (match_pattern >= 34) {
+            match_pattern = 34;
+            _match_end = lexbuf$2.pos;
+            _capture_0_start = _match_start;
+            _capture_0_end = _match_end;
           }
           const _bind$12 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$next_as_int$194$(lexbuf$2);
           let _tmp$14;
@@ -16815,11 +16815,11 @@ function moonbitlang$ulex$lib$parser$$token$194$(lexbuf) {
           continue _L$2;
         }
         case 29: {
-          if (matched >= 34) {
-            matched = 34;
-            _end_pos = lexbuf$2.pos;
-            _capture_0_start = _start_pos;
-            _capture_0_end = _end_pos;
+          if (match_pattern >= 34) {
+            match_pattern = 34;
+            _match_end = lexbuf$2.pos;
+            _capture_0_start = _match_start;
+            _capture_0_end = _match_end;
           }
           const _bind$13 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$next_as_int$194$(lexbuf$2);
           let _tmp$15;
@@ -16852,9 +16852,9 @@ function moonbitlang$ulex$lib$parser$$token$194$(lexbuf) {
           continue _L$2;
         }
         case 30: {
-          if (matched >= 1) {
-            matched = 1;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 1) {
+            match_pattern = 1;
+            _match_end = lexbuf$2.pos;
           }
           const _bind$14 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$next_as_int$194$(lexbuf$2);
           let _tmp$16;
@@ -16994,20 +16994,20 @@ function moonbitlang$ulex$lib$parser$$token$194$(lexbuf) {
           continue _L$2;
         }
         case 40: {
-          if (matched >= 22) {
-            matched = 22;
-            _end_pos = lexbuf$2.pos;
-            _capture_0_start = _start_pos + 1 | 0;
-            _capture_0_end = _start_pos + 2 | 0;
+          if (match_pattern >= 22) {
+            match_pattern = 22;
+            _match_end = lexbuf$2.pos;
+            _capture_0_start = _match_start + 1 | 0;
+            _capture_0_end = _match_start + 2 | 0;
           }
           break _L$2;
         }
         case 41: {
-          if (matched >= 34) {
-            matched = 34;
-            _end_pos = lexbuf$2.pos;
-            _capture_0_start = _start_pos;
-            _capture_0_end = _end_pos;
+          if (match_pattern >= 34) {
+            match_pattern = 34;
+            _match_end = lexbuf$2.pos;
+            _capture_0_start = _match_start;
+            _capture_0_end = _match_end;
           }
           const _bind$24 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$next_as_int$194$(lexbuf$2);
           let _tmp$26;
@@ -17040,11 +17040,11 @@ function moonbitlang$ulex$lib$parser$$token$194$(lexbuf) {
           continue _L$2;
         }
         case 42: {
-          if (matched >= 34) {
-            matched = 34;
-            _end_pos = lexbuf$2.pos;
-            _capture_0_start = _start_pos;
-            _capture_0_end = _end_pos;
+          if (match_pattern >= 34) {
+            match_pattern = 34;
+            _match_end = lexbuf$2.pos;
+            _capture_0_start = _match_start;
+            _capture_0_end = _match_end;
           }
           const _bind$25 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$next_as_int$194$(lexbuf$2);
           let _tmp$27;
@@ -17077,9 +17077,9 @@ function moonbitlang$ulex$lib$parser$$token$194$(lexbuf) {
           continue _L$2;
         }
         case 43: {
-          if (matched >= 1) {
-            matched = 1;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 1) {
+            match_pattern = 1;
+            _match_end = lexbuf$2.pos;
           }
           break _L$2;
         }
@@ -17141,60 +17141,60 @@ function moonbitlang$ulex$lib$parser$$token$194$(lexbuf) {
           continue _L$2;
         }
         case 47: {
-          if (matched >= 29) {
-            matched = 29;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 29) {
+            match_pattern = 29;
+            _match_end = lexbuf$2.pos;
           }
           break _L$2;
         }
         case 48: {
-          if (matched >= 28) {
-            matched = 28;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 28) {
+            match_pattern = 28;
+            _match_end = lexbuf$2.pos;
           }
           break _L$2;
         }
         case 49: {
-          if (matched >= 27) {
-            matched = 27;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 27) {
+            match_pattern = 27;
+            _match_end = lexbuf$2.pos;
           }
           break _L$2;
         }
         case 50: {
-          if (matched >= 26) {
-            matched = 26;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 26) {
+            match_pattern = 26;
+            _match_end = lexbuf$2.pos;
           }
           break _L$2;
         }
         case 51: {
-          if (matched >= 25) {
-            matched = 25;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 25) {
+            match_pattern = 25;
+            _match_end = lexbuf$2.pos;
           }
           break _L$2;
         }
         case 52: {
-          if (matched >= 24) {
-            matched = 24;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 24) {
+            match_pattern = 24;
+            _match_end = lexbuf$2.pos;
           }
           break _L$2;
         }
         case 53: {
-          if (matched >= 23) {
-            matched = 23;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 23) {
+            match_pattern = 23;
+            _match_end = lexbuf$2.pos;
           }
           break _L$2;
         }
         case 54: {
-          if (matched >= 34) {
-            matched = 34;
-            _end_pos = lexbuf$2.pos;
-            _capture_0_start = _start_pos;
-            _capture_0_end = _end_pos;
+          if (match_pattern >= 34) {
+            match_pattern = 34;
+            _match_end = lexbuf$2.pos;
+            _capture_0_start = _match_start;
+            _capture_0_end = _match_end;
           }
           const _bind$29 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$next_as_int$194$(lexbuf$2);
           let _tmp$31;
@@ -17227,11 +17227,11 @@ function moonbitlang$ulex$lib$parser$$token$194$(lexbuf) {
           continue _L$2;
         }
         case 55: {
-          if (matched >= 34) {
-            matched = 34;
-            _end_pos = lexbuf$2.pos;
-            _capture_0_start = _start_pos;
-            _capture_0_end = _end_pos;
+          if (match_pattern >= 34) {
+            match_pattern = 34;
+            _match_end = lexbuf$2.pos;
+            _capture_0_start = _match_start;
+            _capture_0_end = _match_end;
           }
           const _bind$30 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$next_as_int$194$(lexbuf$2);
           let _tmp$32;
@@ -17321,11 +17321,11 @@ function moonbitlang$ulex$lib$parser$$token$194$(lexbuf) {
           continue _L$2;
         }
         case 59: {
-          if (matched >= 34) {
-            matched = 34;
-            _end_pos = lexbuf$2.pos;
-            _capture_0_start = _start_pos;
-            _capture_0_end = _end_pos;
+          if (match_pattern >= 34) {
+            match_pattern = 34;
+            _match_end = lexbuf$2.pos;
+            _capture_0_start = _match_start;
+            _capture_0_end = _match_end;
           }
           const _bind$34 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$next_as_int$194$(lexbuf$2);
           let _tmp$36;
@@ -17424,11 +17424,11 @@ function moonbitlang$ulex$lib$parser$$token$194$(lexbuf) {
           continue _L$2;
         }
         case 63: {
-          if (matched >= 30) {
-            matched = 30;
-            _end_pos = lexbuf$2.pos;
-            _capture_0_start = _start_pos + 3 | 0;
-            _capture_0_end = _start_pos + 5 | 0;
+          if (match_pattern >= 30) {
+            match_pattern = 30;
+            _match_end = lexbuf$2.pos;
+            _capture_0_start = _match_start + 3 | 0;
+            _capture_0_end = _match_start + 5 | 0;
           }
           break _L$2;
         }
@@ -17456,9 +17456,9 @@ function moonbitlang$ulex$lib$parser$$token$194$(lexbuf) {
           continue _L$2;
         }
         case 65: {
-          if (matched >= 4) {
-            matched = 4;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 4) {
+            match_pattern = 4;
+            _match_end = lexbuf$2.pos;
           }
           break _L$2;
         }
@@ -17507,11 +17507,11 @@ function moonbitlang$ulex$lib$parser$$token$194$(lexbuf) {
           continue _L$2;
         }
         case 67: {
-          if (matched >= 32) {
-            matched = 32;
-            _end_pos = lexbuf$2.pos;
-            _capture_0_start = _start_pos + 4 | 0;
-            _capture_0_end = _end_pos + -2 | 0;
+          if (match_pattern >= 32) {
+            match_pattern = 32;
+            _match_end = lexbuf$2.pos;
+            _capture_0_start = _match_start + 4 | 0;
+            _capture_0_end = _match_end + -2 | 0;
           }
           break _L$2;
         }
@@ -17645,11 +17645,11 @@ function moonbitlang$ulex$lib$parser$$token$194$(lexbuf) {
           continue _L$2;
         }
         case 71: {
-          if (matched >= 31) {
-            matched = 31;
-            _end_pos = lexbuf$2.pos;
-            _capture_0_start = _start_pos + 3 | 0;
-            _capture_0_end = _start_pos + 7 | 0;
+          if (match_pattern >= 31) {
+            match_pattern = 31;
+            _match_end = lexbuf$2.pos;
+            _capture_0_start = _match_start + 3 | 0;
+            _capture_0_end = _match_start + 7 | 0;
           }
           break _L$2;
         }
@@ -17699,9 +17699,9 @@ function moonbitlang$ulex$lib$parser$$token$194$(lexbuf) {
           continue _L$2;
         }
         case 73: {
-          if (matched >= 3) {
-            matched = 3;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 3) {
+            match_pattern = 3;
+            _match_end = lexbuf$2.pos;
             _capture_0_start = _tag_0;
             _capture_0_end = _tag_1;
             _capture_1_start = _tag_0;
@@ -17715,9 +17715,9 @@ function moonbitlang$ulex$lib$parser$$token$194$(lexbuf) {
         }
       }
     }
-    if (matched <= 34) {
-      moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$reset$194$(lexbuf$2, _end_pos);
-      const _bind = matched;
+    if (match_pattern <= 34) {
+      moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$reset$194$(lexbuf$2, _match_end);
+      const _bind = match_pattern;
       switch (_bind) {
         case 0: {
           continue _L;
@@ -17726,113 +17726,113 @@ function moonbitlang$ulex$lib$parser$$token$194$(lexbuf) {
           continue _L;
         }
         case 2: {
-          return { _0: $64$moonbitlang$47$ulex$47$lib$47$parser$46$Token$EOI, _1: _start_pos, _2: _end_pos };
+          return { _0: $64$moonbitlang$47$ulex$47$lib$47$parser$46$Token$EOI, _1: _match_start, _2: _match_end };
         }
         case 3: {
           const t1 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$get_string$194$(lexbuf$2, _capture_0_start, _capture_0_end);
           const t2 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$get_string$194$(lexbuf$2, _capture_1_start, _capture_1_end);
-          return { _0: new $64$moonbitlang$47$ulex$47$lib$47$parser$46$Token$RULE_LC_IDENT_LPAREN_CODE_RPAREN_ARROW_CODE_LBRACE({ _0: t1, _1: t2 }), _1: _start_pos, _2: _end_pos };
+          return { _0: new $64$moonbitlang$47$ulex$47$lib$47$parser$46$Token$RULE_LC_IDENT_LPAREN_CODE_RPAREN_ARROW_CODE_LBRACE({ _0: t1, _1: t2 }), _1: _match_start, _2: _match_end };
         }
         case 4: {
-          return { _0: $64$moonbitlang$47$ulex$47$lib$47$parser$46$Token$PARSE_LBRACE, _1: _start_pos, _2: _end_pos };
+          return { _0: $64$moonbitlang$47$ulex$47$lib$47$parser$46$Token$PARSE_LBRACE, _1: _match_start, _2: _match_end };
         }
         case 5: {
-          return { _0: $64$moonbitlang$47$ulex$47$lib$47$parser$46$Token$FAT_ARROW, _1: _start_pos, _2: _end_pos };
+          return { _0: $64$moonbitlang$47$ulex$47$lib$47$parser$46$Token$FAT_ARROW, _1: _match_start, _2: _match_end };
         }
         case 6: {
-          return { _0: $64$moonbitlang$47$ulex$47$lib$47$parser$46$Token$UNDERSCORE, _1: _start_pos, _2: _end_pos };
+          return { _0: $64$moonbitlang$47$ulex$47$lib$47$parser$46$Token$UNDERSCORE, _1: _match_start, _2: _match_end };
         }
         case 7: {
           const buffer = moonbitlang$core$builtin$$StringBuilder$new(0);
           const end_pos = moonbitlang$ulex$lib$parser$$code_rbrace$194$(buffer, lexbuf$2);
-          return { _0: new $64$moonbitlang$47$ulex$47$lib$47$parser$46$Token$LBRACE_CODE_RBRACE(buffer.val), _1: _start_pos, _2: end_pos };
+          return { _0: new $64$moonbitlang$47$ulex$47$lib$47$parser$46$Token$LBRACE_CODE_RBRACE(buffer.val), _1: _match_start, _2: end_pos };
         }
         case 8: {
-          return { _0: $64$moonbitlang$47$ulex$47$lib$47$parser$46$Token$RBRACE, _1: _start_pos, _2: _end_pos };
+          return { _0: $64$moonbitlang$47$ulex$47$lib$47$parser$46$Token$RBRACE, _1: _match_start, _2: _match_end };
         }
         case 9: {
-          return { _0: $64$moonbitlang$47$ulex$47$lib$47$parser$46$Token$LPAREN, _1: _start_pos, _2: _end_pos };
+          return { _0: $64$moonbitlang$47$ulex$47$lib$47$parser$46$Token$LPAREN, _1: _match_start, _2: _match_end };
         }
         case 10: {
-          return { _0: $64$moonbitlang$47$ulex$47$lib$47$parser$46$Token$RPAREN, _1: _start_pos, _2: _end_pos };
+          return { _0: $64$moonbitlang$47$ulex$47$lib$47$parser$46$Token$RPAREN, _1: _match_start, _2: _match_end };
         }
         case 11: {
-          return { _0: $64$moonbitlang$47$ulex$47$lib$47$parser$46$Token$LBRACKET, _1: _start_pos, _2: _end_pos };
+          return { _0: $64$moonbitlang$47$ulex$47$lib$47$parser$46$Token$LBRACKET, _1: _match_start, _2: _match_end };
         }
         case 12: {
-          return { _0: $64$moonbitlang$47$ulex$47$lib$47$parser$46$Token$RBRACKET, _1: _start_pos, _2: _end_pos };
+          return { _0: $64$moonbitlang$47$ulex$47$lib$47$parser$46$Token$RBRACKET, _1: _match_start, _2: _match_end };
         }
         case 13: {
-          return { _0: $64$moonbitlang$47$ulex$47$lib$47$parser$46$Token$EQ, _1: _start_pos, _2: _end_pos };
+          return { _0: $64$moonbitlang$47$ulex$47$lib$47$parser$46$Token$EQ, _1: _match_start, _2: _match_end };
         }
         case 14: {
-          return { _0: $64$moonbitlang$47$ulex$47$lib$47$parser$46$Token$SEMICOLON, _1: _start_pos, _2: _end_pos };
+          return { _0: $64$moonbitlang$47$ulex$47$lib$47$parser$46$Token$SEMICOLON, _1: _match_start, _2: _match_end };
         }
         case 15: {
-          return { _0: $64$moonbitlang$47$ulex$47$lib$47$parser$46$Token$BAR, _1: _start_pos, _2: _end_pos };
+          return { _0: $64$moonbitlang$47$ulex$47$lib$47$parser$46$Token$BAR, _1: _match_start, _2: _match_end };
         }
         case 16: {
-          return { _0: $64$moonbitlang$47$ulex$47$lib$47$parser$46$Token$STAR, _1: _start_pos, _2: _end_pos };
+          return { _0: $64$moonbitlang$47$ulex$47$lib$47$parser$46$Token$STAR, _1: _match_start, _2: _match_end };
         }
         case 17: {
-          return { _0: $64$moonbitlang$47$ulex$47$lib$47$parser$46$Token$PLUS, _1: _start_pos, _2: _end_pos };
+          return { _0: $64$moonbitlang$47$ulex$47$lib$47$parser$46$Token$PLUS, _1: _match_start, _2: _match_end };
         }
         case 18: {
-          return { _0: $64$moonbitlang$47$ulex$47$lib$47$parser$46$Token$QUESTION, _1: _start_pos, _2: _end_pos };
+          return { _0: $64$moonbitlang$47$ulex$47$lib$47$parser$46$Token$QUESTION, _1: _match_start, _2: _match_end };
         }
         case 19: {
-          return { _0: $64$moonbitlang$47$ulex$47$lib$47$parser$46$Token$MINUS, _1: _start_pos, _2: _end_pos };
+          return { _0: $64$moonbitlang$47$ulex$47$lib$47$parser$46$Token$MINUS, _1: _match_start, _2: _match_end };
         }
         case 20: {
-          return { _0: $64$moonbitlang$47$ulex$47$lib$47$parser$46$Token$CARET, _1: _start_pos, _2: _end_pos };
+          return { _0: $64$moonbitlang$47$ulex$47$lib$47$parser$46$Token$CARET, _1: _match_start, _2: _match_end };
         }
         case 21: {
-          return { _0: $64$moonbitlang$47$ulex$47$lib$47$parser$46$Token$BACKSLASH, _1: _start_pos, _2: _end_pos };
+          return { _0: $64$moonbitlang$47$ulex$47$lib$47$parser$46$Token$BACKSLASH, _1: _match_start, _2: _match_end };
         }
         case 22: {
           const t = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$get_char$194$(lexbuf$2, _capture_0_start, _capture_0_end);
-          return { _0: new $64$moonbitlang$47$ulex$47$lib$47$parser$46$Token$CHAR(t), _1: _start_pos, _2: _end_pos };
+          return { _0: new $64$moonbitlang$47$ulex$47$lib$47$parser$46$Token$CHAR(t), _1: _match_start, _2: _match_end };
         }
         case 23: {
-          return { _0: new $64$moonbitlang$47$ulex$47$lib$47$parser$46$Token$CHAR(8), _1: _start_pos, _2: _end_pos };
+          return { _0: new $64$moonbitlang$47$ulex$47$lib$47$parser$46$Token$CHAR(8), _1: _match_start, _2: _match_end };
         }
         case 24: {
-          return { _0: new $64$moonbitlang$47$ulex$47$lib$47$parser$46$Token$CHAR(9), _1: _start_pos, _2: _end_pos };
+          return { _0: new $64$moonbitlang$47$ulex$47$lib$47$parser$46$Token$CHAR(9), _1: _match_start, _2: _match_end };
         }
         case 25: {
-          return { _0: new $64$moonbitlang$47$ulex$47$lib$47$parser$46$Token$CHAR(11), _1: _start_pos, _2: _end_pos };
+          return { _0: new $64$moonbitlang$47$ulex$47$lib$47$parser$46$Token$CHAR(11), _1: _match_start, _2: _match_end };
         }
         case 26: {
-          return { _0: new $64$moonbitlang$47$ulex$47$lib$47$parser$46$Token$CHAR(13), _1: _start_pos, _2: _end_pos };
+          return { _0: new $64$moonbitlang$47$ulex$47$lib$47$parser$46$Token$CHAR(13), _1: _match_start, _2: _match_end };
         }
         case 27: {
-          return { _0: new $64$moonbitlang$47$ulex$47$lib$47$parser$46$Token$CHAR(10), _1: _start_pos, _2: _end_pos };
+          return { _0: new $64$moonbitlang$47$ulex$47$lib$47$parser$46$Token$CHAR(10), _1: _match_start, _2: _match_end };
         }
         case 28: {
-          return { _0: new $64$moonbitlang$47$ulex$47$lib$47$parser$46$Token$CHAR(92), _1: _start_pos, _2: _end_pos };
+          return { _0: new $64$moonbitlang$47$ulex$47$lib$47$parser$46$Token$CHAR(92), _1: _match_start, _2: _match_end };
         }
         case 29: {
-          return { _0: new $64$moonbitlang$47$ulex$47$lib$47$parser$46$Token$CHAR(39), _1: _start_pos, _2: _end_pos };
+          return { _0: new $64$moonbitlang$47$ulex$47$lib$47$parser$46$Token$CHAR(39), _1: _match_start, _2: _match_end };
         }
         case 30: {
           const t$2 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$get_string$194$(lexbuf$2, _capture_0_start, _capture_0_end);
           const code = moonbitlang$core$result$$Result$unwrap$67$(moonbitlang$core$strconv$$parse_int(t$2, 16));
-          return { _0: new $64$moonbitlang$47$ulex$47$lib$47$parser$46$Token$CHAR(code), _1: _start_pos, _2: _end_pos };
+          return { _0: new $64$moonbitlang$47$ulex$47$lib$47$parser$46$Token$CHAR(code), _1: _match_start, _2: _match_end };
         }
         case 31: {
           const t$3 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$get_string$194$(lexbuf$2, _capture_0_start, _capture_0_end);
           const code$2 = moonbitlang$core$result$$Result$unwrap$67$(moonbitlang$core$strconv$$parse_int(t$3, 16));
-          return { _0: new $64$moonbitlang$47$ulex$47$lib$47$parser$46$Token$CHAR(code$2), _1: _start_pos, _2: _end_pos };
+          return { _0: new $64$moonbitlang$47$ulex$47$lib$47$parser$46$Token$CHAR(code$2), _1: _match_start, _2: _match_end };
         }
         case 32: {
           const t$4 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$get_string$194$(lexbuf$2, _capture_0_start, _capture_0_end);
           const code$3 = moonbitlang$core$result$$Result$unwrap$67$(moonbitlang$core$strconv$$parse_int(t$4, 16));
-          return { _0: new $64$moonbitlang$47$ulex$47$lib$47$parser$46$Token$CHAR(code$3), _1: _start_pos, _2: _end_pos };
+          return { _0: new $64$moonbitlang$47$ulex$47$lib$47$parser$46$Token$CHAR(code$3), _1: _match_start, _2: _match_end };
         }
         case 33: {
           const buffer$2 = moonbitlang$core$builtin$$StringBuilder$new(0);
           const end_pos$2 = moonbitlang$ulex$lib$parser$$string_inner_rquote$194$(buffer$2, lexbuf$2);
-          return { _0: new $64$moonbitlang$47$ulex$47$lib$47$parser$46$Token$STRING(buffer$2.val), _1: _start_pos, _2: end_pos$2 };
+          return { _0: new $64$moonbitlang$47$ulex$47$lib$47$parser$46$Token$STRING(buffer$2.val), _1: _match_start, _2: end_pos$2 };
         }
         case 34: {
           const t$5 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$get_string$194$(lexbuf$2, _capture_0_start, _capture_0_end);
@@ -17854,7 +17854,7 @@ function moonbitlang$ulex$lib$parser$$token$194$(lexbuf) {
               _tmp$3 = new $64$moonbitlang$47$ulex$47$lib$47$parser$46$Token$LC_IDENT(t$5);
             }
           }
-          return { _0: _tmp$3, _1: _start_pos, _2: _end_pos };
+          return { _0: _tmp$3, _1: _match_start, _2: _match_end };
         }
         default: {
           return $panic();
@@ -19462,7 +19462,7 @@ function moonbitlang$ulex$lib$parser$$yy_action_28(_last_pos, _args) {
     if (_bind$2.$tag === 13) {
       const _YYObj__Context______immut_list_T___type_Regex___type_CodeBlock__ = _bind$2;
       const __dollar3 = _YYObj__Context______immut_list_T___type_Regex___type_CodeBlock__._0;
-      return new Error$moonbitlang$47$ulex$47$lib$47$parser$46$YYObj__Context______type_Rule$46$YYObj__Context______type_Rule((ctx) => ({ name: __dollar1._0, signature: __dollar1._1, lexbuf_var: "lexbuf", patterns: moonbitlang$core$immut$list$$T$to_array$103$(__dollar3(ctx)) }));
+      return new Error$moonbitlang$47$ulex$47$lib$47$parser$46$YYObj__Context______type_Rule$46$YYObj__Context______type_Rule((ctx) => ({ name: __dollar1._0, signature: __dollar1._1, lexee_var: "lexbuf", patterns: moonbitlang$core$immut$list$$T$to_array$103$(__dollar3(ctx)) }));
     } else {
       return $panic();
     }
@@ -21564,9 +21564,9 @@ function moonbitlang$ulex$lib$codegen$internal$codeblock_parser$$scan_codeblock_
   _L: while (true) {
     const subst$2 = _tmp;
     const lexbuf$2 = _tmp$2;
-    let matched = moonbitlang$core$int$$max_value;
-    const _end_pos = { val: -1 };
-    const _start_pos = { val: lexbuf$2.pos };
+    let match_pattern = moonbitlang$core$int$$max_value;
+    const _match_start = { val: lexbuf$2.pos };
+    const _match_end = { val: -1 };
     let _capture_0_start = -1;
     let _capture_0_end = -1;
     let _capture_1_start = -1;
@@ -21579,9 +21579,9 @@ function moonbitlang$ulex$lib$codegen$internal$codeblock_parser$$scan_codeblock_
       const _param = _tmp$3;
       switch (_param) {
         case 0: {
-          if (matched >= 5) {
-            matched = 5;
-            _end_pos.val = lexbuf$2.pos;
+          if (match_pattern >= 5) {
+            match_pattern = 5;
+            _match_end.val = lexbuf$2.pos;
           }
           const _bind = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$next_as_int$194$(lexbuf$2);
           let _tmp$4;
@@ -21618,16 +21618,16 @@ function moonbitlang$ulex$lib$codegen$internal$codeblock_parser$$scan_codeblock_
           continue _L$2;
         }
         case 1: {
-          if (matched >= 4) {
-            matched = 4;
-            _end_pos.val = lexbuf$2.pos;
+          if (match_pattern >= 4) {
+            match_pattern = 4;
+            _match_end.val = lexbuf$2.pos;
           }
           break _L$2;
         }
         case 2: {
-          if (matched >= 4) {
-            matched = 4;
-            _end_pos.val = lexbuf$2.pos;
+          if (match_pattern >= 4) {
+            match_pattern = 4;
+            _match_end.val = lexbuf$2.pos;
           }
           const _bind$2 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$next_as_int$194$(lexbuf$2);
           let _tmp$5;
@@ -21664,25 +21664,25 @@ function moonbitlang$ulex$lib$codegen$internal$codeblock_parser$$scan_codeblock_
           continue _L$2;
         }
         case 3: {
-          if (matched >= 0) {
-            matched = 0;
-            _end_pos.val = lexbuf$2.pos;
+          if (match_pattern >= 0) {
+            match_pattern = 0;
+            _match_end.val = lexbuf$2.pos;
           }
           break _L$2;
         }
         case 4: {
-          if (matched >= 1) {
-            matched = 1;
-            _end_pos.val = lexbuf$2.pos;
+          if (match_pattern >= 1) {
+            match_pattern = 1;
+            _match_end.val = lexbuf$2.pos;
           }
           break _L$2;
         }
         case 5: {
-          if (matched >= 3) {
-            matched = 3;
-            _end_pos.val = lexbuf$2.pos;
-            _capture_0_start = _start_pos.val + 1 | 0;
-            _capture_0_end = _end_pos.val;
+          if (match_pattern >= 3) {
+            match_pattern = 3;
+            _match_end.val = lexbuf$2.pos;
+            _capture_0_start = _match_start.val + 1 | 0;
+            _capture_0_end = _match_end.val;
           }
           const _bind$3 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$next_as_int$194$(lexbuf$2);
           let _tmp$6;
@@ -21707,11 +21707,11 @@ function moonbitlang$ulex$lib$codegen$internal$codeblock_parser$$scan_codeblock_
           continue _L$2;
         }
         case 6: {
-          if (matched >= 3) {
-            matched = 3;
-            _end_pos.val = lexbuf$2.pos;
-            _capture_0_start = _start_pos.val + 1 | 0;
-            _capture_0_end = _end_pos.val;
+          if (match_pattern >= 3) {
+            match_pattern = 3;
+            _match_end.val = lexbuf$2.pos;
+            _capture_0_start = _match_start.val + 1 | 0;
+            _capture_0_end = _match_end.val;
           }
           const _bind$4 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$next_as_int$194$(lexbuf$2);
           let _tmp$7;
@@ -21744,11 +21744,11 @@ function moonbitlang$ulex$lib$codegen$internal$codeblock_parser$$scan_codeblock_
           continue _L$2;
         }
         case 7: {
-          if (matched >= 3) {
-            matched = 3;
-            _end_pos.val = lexbuf$2.pos;
-            _capture_0_start = _start_pos.val + 1 | 0;
-            _capture_0_end = _end_pos.val;
+          if (match_pattern >= 3) {
+            match_pattern = 3;
+            _match_end.val = lexbuf$2.pos;
+            _capture_0_start = _match_start.val + 1 | 0;
+            _capture_0_end = _match_end.val;
           }
           const _bind$5 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$next_as_int$194$(lexbuf$2);
           let _tmp$8;
@@ -21781,11 +21781,11 @@ function moonbitlang$ulex$lib$codegen$internal$codeblock_parser$$scan_codeblock_
           continue _L$2;
         }
         case 8: {
-          if (matched >= 3) {
-            matched = 3;
-            _end_pos.val = lexbuf$2.pos;
-            _capture_0_start = _start_pos.val + 1 | 0;
-            _capture_0_end = _end_pos.val;
+          if (match_pattern >= 3) {
+            match_pattern = 3;
+            _match_end.val = lexbuf$2.pos;
+            _capture_0_start = _match_start.val + 1 | 0;
+            _capture_0_end = _match_end.val;
           }
           const _bind$6 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$next_as_int$194$(lexbuf$2);
           let _tmp$9;
@@ -21818,11 +21818,11 @@ function moonbitlang$ulex$lib$codegen$internal$codeblock_parser$$scan_codeblock_
           continue _L$2;
         }
         case 9: {
-          if (matched >= 3) {
-            matched = 3;
-            _end_pos.val = lexbuf$2.pos;
-            _capture_0_start = _start_pos.val + 1 | 0;
-            _capture_0_end = _end_pos.val;
+          if (match_pattern >= 3) {
+            match_pattern = 3;
+            _match_end.val = lexbuf$2.pos;
+            _capture_0_start = _match_start.val + 1 | 0;
+            _capture_0_end = _match_end.val;
           }
           const _bind$7 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$next_as_int$194$(lexbuf$2);
           let _tmp$10;
@@ -21851,11 +21851,11 @@ function moonbitlang$ulex$lib$codegen$internal$codeblock_parser$$scan_codeblock_
           continue _L$2;
         }
         case 10: {
-          if (matched >= 3) {
-            matched = 3;
-            _end_pos.val = lexbuf$2.pos;
-            _capture_0_start = _start_pos.val + 1 | 0;
-            _capture_0_end = _end_pos.val;
+          if (match_pattern >= 3) {
+            match_pattern = 3;
+            _match_end.val = lexbuf$2.pos;
+            _capture_0_start = _match_start.val + 1 | 0;
+            _capture_0_end = _match_end.val;
           }
           const _bind$8 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$next_as_int$194$(lexbuf$2);
           let _tmp$11;
@@ -21888,11 +21888,11 @@ function moonbitlang$ulex$lib$codegen$internal$codeblock_parser$$scan_codeblock_
           continue _L$2;
         }
         case 11: {
-          if (matched >= 3) {
-            matched = 3;
-            _end_pos.val = lexbuf$2.pos;
-            _capture_0_start = _start_pos.val + 1 | 0;
-            _capture_0_end = _end_pos.val;
+          if (match_pattern >= 3) {
+            match_pattern = 3;
+            _match_end.val = lexbuf$2.pos;
+            _capture_0_start = _match_start.val + 1 | 0;
+            _capture_0_end = _match_end.val;
           }
           const _bind$9 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$next_as_int$194$(lexbuf$2);
           let _tmp$12;
@@ -21925,11 +21925,11 @@ function moonbitlang$ulex$lib$codegen$internal$codeblock_parser$$scan_codeblock_
           continue _L$2;
         }
         case 12: {
-          if (matched >= 3) {
-            matched = 3;
-            _end_pos.val = lexbuf$2.pos;
-            _capture_0_start = _start_pos.val + 1 | 0;
-            _capture_0_end = _end_pos.val;
+          if (match_pattern >= 3) {
+            match_pattern = 3;
+            _match_end.val = lexbuf$2.pos;
+            _capture_0_start = _match_start.val + 1 | 0;
+            _capture_0_end = _match_end.val;
           }
           const _bind$10 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$next_as_int$194$(lexbuf$2);
           let _tmp$13;
@@ -21962,11 +21962,11 @@ function moonbitlang$ulex$lib$codegen$internal$codeblock_parser$$scan_codeblock_
           continue _L$2;
         }
         case 13: {
-          if (matched >= 3) {
-            matched = 3;
-            _end_pos.val = lexbuf$2.pos;
-            _capture_0_start = _start_pos.val + 1 | 0;
-            _capture_0_end = _end_pos.val;
+          if (match_pattern >= 3) {
+            match_pattern = 3;
+            _match_end.val = lexbuf$2.pos;
+            _capture_0_start = _match_start.val + 1 | 0;
+            _capture_0_end = _match_end.val;
           }
           const _bind$11 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$next_as_int$194$(lexbuf$2);
           let _tmp$14;
@@ -21999,11 +21999,11 @@ function moonbitlang$ulex$lib$codegen$internal$codeblock_parser$$scan_codeblock_
           continue _L$2;
         }
         case 14: {
-          if (matched >= 3) {
-            matched = 3;
-            _end_pos.val = lexbuf$2.pos;
-            _capture_0_start = _start_pos.val + 1 | 0;
-            _capture_0_end = _end_pos.val;
+          if (match_pattern >= 3) {
+            match_pattern = 3;
+            _match_end.val = lexbuf$2.pos;
+            _capture_0_start = _match_start.val + 1 | 0;
+            _capture_0_end = _match_end.val;
           }
           const _bind$12 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$next_as_int$194$(lexbuf$2);
           let _tmp$15;
@@ -22037,11 +22037,11 @@ function moonbitlang$ulex$lib$codegen$internal$codeblock_parser$$scan_codeblock_
         }
         case 15: {
           _tag_0 = lexbuf$2.pos;
-          if (matched >= 3) {
-            matched = 3;
-            _end_pos.val = lexbuf$2.pos;
-            _capture_0_start = _start_pos.val + 1 | 0;
-            _capture_0_end = _end_pos.val;
+          if (match_pattern >= 3) {
+            match_pattern = 3;
+            _match_end.val = lexbuf$2.pos;
+            _capture_0_start = _match_start.val + 1 | 0;
+            _capture_0_end = _match_end.val;
           }
           const _bind$13 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$next_as_int$194$(lexbuf$2);
           let _tmp$16;
@@ -22157,10 +22157,10 @@ function moonbitlang$ulex$lib$codegen$internal$codeblock_parser$$scan_codeblock_
           continue _L$2;
         }
         case 19: {
-          if (matched >= 2) {
-            matched = 2;
-            _end_pos.val = lexbuf$2.pos;
-            _capture_0_start = _start_pos.val + 1 | 0;
+          if (match_pattern >= 2) {
+            match_pattern = 2;
+            _match_end.val = lexbuf$2.pos;
+            _capture_0_start = _match_start.val + 1 | 0;
             _capture_0_end = _tag_0;
             _capture_1_start = _tag_1;
             _capture_1_end = _tag_2;
@@ -22173,9 +22173,9 @@ function moonbitlang$ulex$lib$codegen$internal$codeblock_parser$$scan_codeblock_
         }
       }
     }
-    if (matched <= 5) {
-      moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$reset$194$(lexbuf$2, _end_pos.val);
-      const _bind = matched;
+    if (match_pattern <= 5) {
+      moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$reset$194$(lexbuf$2, _match_end.val);
+      const _bind = match_pattern;
       switch (_bind) {
         case 0: {
           moonbitlang$ulex$lib$codegen$internal$codeblock_parser$$scan_codeblock_rbrace$194$(subst$2, lexbuf$2);
@@ -22187,8 +22187,8 @@ function moonbitlang$ulex$lib$codegen$internal$codeblock_parser$$scan_codeblock_
         case 2: {
           const t1 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$get_string$194$(lexbuf$2, _capture_0_start, _capture_0_end);
           const t2 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$get_string$194$(lexbuf$2, _capture_1_start, _capture_1_end);
-          const _tmp$4 = _start_pos.val;
-          const _tmp$5 = _end_pos.val;
+          const _tmp$4 = _match_start.val;
+          const _tmp$5 = _match_end.val;
           let _tmp$6;
           switch (t1) {
             case "startpos": {
@@ -22220,8 +22220,8 @@ function moonbitlang$ulex$lib$codegen$internal$codeblock_parser$$scan_codeblock_
               }
               break _L$3;
             }
-            const _tmp$7 = _start_pos.val;
-            const _tmp$8 = _end_pos.val;
+            const _tmp$7 = _match_start.val;
+            const _tmp$8 = _match_end.val;
             let _tmp$9;
             switch (t1$2) {
               case "startpos": {
@@ -22374,11 +22374,11 @@ function moonbitlang$ulex$lib$codegen$$rewrite_codeblock(codeblock, subst, captu
           break;
         }
         case 2: {
-          moonbitlang$core$builtin$$Logger$write_string$122$(buf, "_start_pos");
+          moonbitlang$core$builtin$$Logger$write_string$122$(buf, "_match_start");
           break;
         }
         default: {
-          moonbitlang$core$builtin$$Logger$write_string$122$(buf, "_end_pos");
+          moonbitlang$core$builtin$$Logger$write_string$122$(buf, "_match_end");
         }
       }
       last_index = item.end;
@@ -22421,8 +22421,8 @@ function moonbitlang$ulex$lib$codegen$$codegen_rule_inner(rule, code_unit, defau
   const _bind = moonbitlang$core$array$$Array$iter$125$(dfa.captures);
   const max_num_capture_vars = moonbitlang$core$option$$Option$or$8$(moonbitlang$core$builtin$$Iter$maximum$8$((_p) => _bind((_p$2) => _p(_p$2.length))), 0);
   const max_pattern_id = dfa.code_blocks.length - 1 | 0;
-  const _p = rule.lexbuf_var;
-  moonbitlang$core$builtin$$Logger$write_string$122$(out, `  // The matched pattern id\n  let mut matched = @int.max_value\n  let mut _end_pos = -1\n  let mut _start_pos = ${_p}.curr_pos()\n`);
+  const _p = rule.lexee_var;
+  moonbitlang$core$builtin$$Logger$write_string$122$(out, `  // The matched pattern id\n  let mut _match_pattern = @int.max_value\n  let mut _match_start = ${_p}.curr_pos()\n  let mut _match_end = -1\n`);
   let _tmp = 0;
   while (true) {
     const i = _tmp;
@@ -22479,7 +22479,7 @@ function moonbitlang$ulex$lib$codegen$$codegen_rule_inner(rule, code_unit, defau
   const _bind$5 = moonbitlang$core$sorted_set$$T$iter$8$(start_tags);
   _bind$5((tag) => {
     const _p$2 = moonbitlang$ulex$lib$codegen$$codegen_rule_inner$46$gen_tag_var$124$33({ _0: tag, _1: 0 });
-    const _p$3 = rule.lexbuf_var;
+    const _p$3 = rule.lexee_var;
     moonbitlang$core$builtin$$Logger$write_string$122$(out, `  ${_p$2} = ${_p$3}.curr_pos()\n`);
     return 1;
   });
@@ -22505,7 +22505,7 @@ function moonbitlang$ulex$lib$codegen$$codegen_rule_inner(rule, code_unit, defau
             const _Set = op;
             const _dest = _Set._0;
             const _p$2 = moonbitlang$ulex$lib$codegen$$codegen_rule_inner$46$gen_tag_var$124$33(_dest);
-            const _p$3 = rule.lexbuf_var;
+            const _p$3 = rule.lexee_var;
             moonbitlang$core$array$$Array$push$0$(buf, `${_p$2} = ${_p$3}.curr_pos()`);
           } else {
             const _Copy = op;
@@ -22543,8 +22543,8 @@ function moonbitlang$ulex$lib$codegen$$codegen_rule_inner(rule, code_unit, defau
         const _captures = _x._1;
         const _tmp$4 = moonbitlang$core$builtin$$Show$to_string$8$(_pattern_id);
         const _tmp$5 = moonbitlang$core$builtin$$Show$to_string$8$(_pattern_id);
-        const _p$2 = rule.lexbuf_var;
-        moonbitlang$core$builtin$$Logger$write_string$122$(out, `      if matched >= ${_tmp$4} {\n        matched = ${_tmp$5}\n        _end_pos = ${_p$2}.curr_pos()\n`);
+        const _p$2 = rule.lexee_var;
+        moonbitlang$core$builtin$$Logger$write_string$122$(out, `      if _match_pattern >= ${_tmp$4} {\n        _match_pattern = ${_tmp$5}\n        _match_end = ${_p$2}.curr_pos()\n`);
         const _len$3 = _captures.length;
         let _tmp$6 = 0;
         while (true) {
@@ -22566,17 +22566,17 @@ function moonbitlang$ulex$lib$codegen$$codegen_rule_inner(rule, code_unit, defau
                 const _RelativeToStart = _x$2;
                 const _offset = _RelativeToStart._0;
                 if (_offset === 0) {
-                  moonbitlang$core$builtin$$Logger$write_string$122$(out, `        _capture_${moonbitlang$core$builtin$$Show$to_string$8$(_i$2)}_start = _start_pos\n`);
+                  moonbitlang$core$builtin$$Logger$write_string$122$(out, `        _capture_${moonbitlang$core$builtin$$Show$to_string$8$(_i$2)}_start = _match_start\n`);
                 } else {
-                  moonbitlang$core$builtin$$Logger$write_string$122$(out, `        _capture_${moonbitlang$core$builtin$$Show$to_string$8$(_i$2)}_start = _start_pos + ${moonbitlang$core$builtin$$Show$to_string$8$(_offset)}\n`);
+                  moonbitlang$core$builtin$$Logger$write_string$122$(out, `        _capture_${moonbitlang$core$builtin$$Show$to_string$8$(_i$2)}_start = _match_start + ${moonbitlang$core$builtin$$Show$to_string$8$(_offset)}\n`);
                 }
               } else {
                 const _RelativeToEnd = _x$2;
                 const _offset = _RelativeToEnd._0;
                 if (_offset === 0) {
-                  moonbitlang$core$builtin$$Logger$write_string$122$(out, `        _capture_${moonbitlang$core$builtin$$Show$to_string$8$(_i$2)}_start = _end_pos\n`);
+                  moonbitlang$core$builtin$$Logger$write_string$122$(out, `        _capture_${moonbitlang$core$builtin$$Show$to_string$8$(_i$2)}_start = _match_end\n`);
                 } else {
-                  moonbitlang$core$builtin$$Logger$write_string$122$(out, `        _capture_${moonbitlang$core$builtin$$Show$to_string$8$(_i$2)}_start = _end_pos + ${moonbitlang$core$builtin$$Show$to_string$8$(_offset)}\n`);
+                  moonbitlang$core$builtin$$Logger$write_string$122$(out, `        _capture_${moonbitlang$core$builtin$$Show$to_string$8$(_i$2)}_start = _match_end + ${moonbitlang$core$builtin$$Show$to_string$8$(_offset)}\n`);
                 }
               }
             }
@@ -22593,17 +22593,17 @@ function moonbitlang$ulex$lib$codegen$$codegen_rule_inner(rule, code_unit, defau
                 const _RelativeToStart = _x$2;
                 const _offset = _RelativeToStart._0;
                 if (_offset === 0) {
-                  moonbitlang$core$builtin$$Logger$write_string$122$(out, `        _capture_${moonbitlang$core$builtin$$Show$to_string$8$(_i$2)}_end = _start_pos\n`);
+                  moonbitlang$core$builtin$$Logger$write_string$122$(out, `        _capture_${moonbitlang$core$builtin$$Show$to_string$8$(_i$2)}_end = _match_start\n`);
                 } else {
-                  moonbitlang$core$builtin$$Logger$write_string$122$(out, `        _capture_${moonbitlang$core$builtin$$Show$to_string$8$(_i$2)}_end = _start_pos + ${moonbitlang$core$builtin$$Show$to_string$8$(_offset)}\n`);
+                  moonbitlang$core$builtin$$Logger$write_string$122$(out, `        _capture_${moonbitlang$core$builtin$$Show$to_string$8$(_i$2)}_end = _match_start + ${moonbitlang$core$builtin$$Show$to_string$8$(_offset)}\n`);
                 }
               } else {
                 const _RelativeToEnd = _x$2;
                 const _offset = _RelativeToEnd._0;
                 if (_offset === 0) {
-                  moonbitlang$core$builtin$$Logger$write_string$122$(out, `        _capture_${moonbitlang$core$builtin$$Show$to_string$8$(_i$2)}_end = _end_pos\n`);
+                  moonbitlang$core$builtin$$Logger$write_string$122$(out, `        _capture_${moonbitlang$core$builtin$$Show$to_string$8$(_i$2)}_end = _match_end\n`);
                 } else {
-                  moonbitlang$core$builtin$$Logger$write_string$122$(out, `        _capture_${moonbitlang$core$builtin$$Show$to_string$8$(_i$2)}_end = _end_pos + ${moonbitlang$core$builtin$$Show$to_string$8$(_offset)}\n`);
+                  moonbitlang$core$builtin$$Logger$write_string$122$(out, `        _capture_${moonbitlang$core$builtin$$Show$to_string$8$(_i$2)}_end = _match_end + ${moonbitlang$core$builtin$$Show$to_string$8$(_offset)}\n`);
                 }
               }
             }
@@ -22619,7 +22619,7 @@ function moonbitlang$ulex$lib$codegen$$codegen_rule_inner(rule, code_unit, defau
       if (grouped_trans.length === 0) {
         moonbitlang$core$builtin$$Logger$write_string$122$(out, "      break\n");
       } else {
-        const _p$2 = rule.lexbuf_var;
+        const _p$2 = rule.lexee_var;
         moonbitlang$core$builtin$$Logger$write_string$122$(out, `      continue match ${_p$2}.next_as_int() {\n`);
         const _len$3 = grouped_trans.length;
         let _tmp$4 = 0;
@@ -22650,8 +22650,8 @@ function moonbitlang$ulex$lib$codegen$$codegen_rule_inner(rule, code_unit, defau
   }
   moonbitlang$core$builtin$$Logger$write_string$122$(out, "    _ => panic()\n  }\n");
   const _tmp$3 = moonbitlang$core$builtin$$Show$to_string$8$(max_pattern_id);
-  const _p$2 = rule.lexbuf_var;
-  moonbitlang$core$builtin$$Logger$write_string$122$(out, `\n  guard matched <= ${_tmp$3} else {\n    // No pattern matched\n    panic()\n  }\n\n  ${_p$2}.reset(pos=_end_pos)\n  match matched {\n`);
+  const _p$2 = rule.lexee_var;
+  moonbitlang$core$builtin$$Logger$write_string$122$(out, `\n  guard _match_pattern <= ${_tmp$3} else {\n    // No pattern matched\n    panic()\n  }\n\n  ${_p$2}.reset(pos=_match_end)\n  match _match_pattern {\n`);
   const _arr$2 = dfa.code_blocks;
   const _len$2 = _arr$2.length;
   let _tmp$4 = 0;
@@ -22671,10 +22671,10 @@ function moonbitlang$ulex$lib$codegen$$codegen_rule_inner(rule, code_unit, defau
           const _name = capture._0;
           const _var_type = capture._1;
           if (_var_type === 0) {
-            const _p$3 = rule.lexbuf_var;
+            const _p$3 = rule.lexee_var;
             moonbitlang$core$builtin$$Logger$write_string$122$(out, `      let ${_name} = ${_p$3}.get_char(_capture_${moonbitlang$core$builtin$$Show$to_string$8$(_i$2)}_start, _capture_${moonbitlang$core$builtin$$Show$to_string$8$(_i$2)}_end)\n`);
           } else {
-            const _p$3 = rule.lexbuf_var;
+            const _p$3 = rule.lexee_var;
             moonbitlang$core$builtin$$Logger$write_string$122$(out, `      let ${_name} = ${_p$3}.get_string(_capture_${moonbitlang$core$builtin$$Show$to_string$8$(_i$2)}_start, _capture_${moonbitlang$core$builtin$$Show$to_string$8$(_i$2)}_end)\n`);
           }
           let _tmp$6;
@@ -23586,9 +23586,9 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$interp_handle(lexbuf, env) {
   _L: while (true) {
     const lexbuf$2 = _tmp;
     const env$2 = _tmp$2;
-    let matched = moonbitlang$core$int$$max_value;
-    let _end_pos = -1;
-    let _start_pos = lexbuf$2.pos;
+    let match_pattern = moonbitlang$core$int$$max_value;
+    let _match_start = lexbuf$2.pos;
+    let _match_end = -1;
     let _capture_0_start = -1;
     let _capture_0_end = -1;
     let _tmp$3 = 0;
@@ -23711,27 +23711,27 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$interp_handle(lexbuf, env) {
           continue _L$2;
         }
         case 1: {
-          if (matched >= 1) {
-            matched = 1;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 1) {
+            match_pattern = 1;
+            _match_end = lexbuf$2.pos;
           }
           break _L$2;
         }
         case 2: {
-          if (matched >= 4) {
-            matched = 4;
-            _end_pos = lexbuf$2.pos;
-            _capture_0_start = _start_pos;
-            _capture_0_end = _end_pos;
+          if (match_pattern >= 4) {
+            match_pattern = 4;
+            _match_end = lexbuf$2.pos;
+            _capture_0_start = _match_start;
+            _capture_0_end = _match_end;
           }
           break _L$2;
         }
         case 3: {
-          if (matched >= 4) {
-            matched = 4;
-            _end_pos = lexbuf$2.pos;
-            _capture_0_start = _start_pos;
-            _capture_0_end = _end_pos;
+          if (match_pattern >= 4) {
+            match_pattern = 4;
+            _match_end = lexbuf$2.pos;
+            _capture_0_start = _match_start;
+            _capture_0_end = _match_end;
           }
           const _bind$2 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf$2);
           let _tmp$5;
@@ -23776,25 +23776,25 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$interp_handle(lexbuf, env) {
           continue _L$2;
         }
         case 4: {
-          if (matched >= 2) {
-            matched = 2;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 2) {
+            match_pattern = 2;
+            _match_end = lexbuf$2.pos;
           }
           break _L$2;
         }
         case 5: {
-          if (matched >= 5) {
-            matched = 5;
-            _end_pos = lexbuf$2.pos;
-            _capture_0_start = _start_pos;
-            _capture_0_end = _end_pos;
+          if (match_pattern >= 5) {
+            match_pattern = 5;
+            _match_end = lexbuf$2.pos;
+            _capture_0_start = _match_start;
+            _capture_0_end = _match_end;
           }
           break _L$2;
         }
         case 6: {
-          if (matched >= 0) {
-            matched = 0;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 0) {
+            match_pattern = 0;
+            _match_end = lexbuf$2.pos;
           }
           break _L$2;
         }
@@ -24191,25 +24191,25 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$interp_handle(lexbuf, env) {
         }
       }
     }
-    if (matched <= 5) {
-      moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$reset(lexbuf$2, _end_pos);
-      const _bind = matched;
+    if (match_pattern <= 5) {
+      moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$reset(lexbuf$2, _match_end);
+      const _bind = match_pattern;
       switch (_bind) {
         case 0: {
-          return _start_pos;
+          return _match_start;
         }
         case 1: {
-          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_lexing_error(env$2, _start_pos, _end_pos, $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$lexer$46$LexicalError$UnterminatedString);
-          return _start_pos;
+          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_lexing_error(env$2, _match_start, _match_end, $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$lexer$46$LexicalError$UnterminatedString);
+          return _match_start;
         }
         case 2: {
-          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_lexing_error(env$2, _start_pos, _end_pos, $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$lexer$46$LexicalError$UnterminatedStringInVariableInterploation);
-          moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$reset(lexbuf$2, _start_pos);
-          return _start_pos;
+          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_lexing_error(env$2, _match_start, _match_end, $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$lexer$46$LexicalError$UnterminatedStringInVariableInterploation);
+          moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$reset(lexbuf$2, _match_start);
+          return _match_start;
         }
         case 3: {
-          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_lexing_error(env$2, _start_pos, _end_pos, $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$lexer$46$LexicalError$UnterminatedStringInVariableInterploation);
-          return _start_pos;
+          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_lexing_error(env$2, _match_start, _match_end, $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$lexer$46$LexicalError$UnterminatedStringInVariableInterploation);
+          return _match_start;
         }
         case 4: {
           const c = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$get_char(lexbuf$2, _capture_0_start, _capture_0_end);
@@ -24218,7 +24218,7 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$interp_handle(lexbuf, env) {
         }
         case 5: {
           const c$2 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$get_char(lexbuf$2, _capture_0_start, _capture_0_end);
-          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_lexing_error(env$2, _start_pos, _end_pos, new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$lexer$46$LexicalError$IllegalCharacter(c$2));
+          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_lexing_error(env$2, _match_start, _match_end, new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$lexer$46$LexicalError$IllegalCharacter(c$2));
           continue _L;
         }
         default: {
@@ -24375,9 +24375,9 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$normal(lexbuf, env, end_with_n
     const end_with_newline$2 = _tmp$3;
     const allow_interp$2 = _tmp$4;
     const startpos$2 = _tmp$5;
-    let matched = moonbitlang$core$int$$max_value;
-    let _end_pos = -1;
-    let _start_pos = lexbuf$2.pos;
+    let match_pattern = moonbitlang$core$int$$max_value;
+    let _match_start = lexbuf$2.pos;
+    let _match_end = -1;
     let _capture_0_start = -1;
     let _capture_0_end = -1;
     let _tmp$6 = 0;
@@ -24440,27 +24440,27 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$normal(lexbuf, env, end_with_n
           continue _L$2;
         }
         case 1: {
-          if (matched >= 11) {
-            matched = 11;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 11) {
+            match_pattern = 11;
+            _match_end = lexbuf$2.pos;
           }
           break _L$2;
         }
         case 2: {
-          if (matched >= 13) {
-            matched = 13;
-            _end_pos = lexbuf$2.pos;
-            _capture_0_start = _start_pos;
-            _capture_0_end = _end_pos;
+          if (match_pattern >= 13) {
+            match_pattern = 13;
+            _match_end = lexbuf$2.pos;
+            _capture_0_start = _match_start;
+            _capture_0_end = _match_end;
           }
           break _L$2;
         }
         case 3: {
-          if (matched >= 13) {
-            matched = 13;
-            _end_pos = lexbuf$2.pos;
-            _capture_0_start = _start_pos;
-            _capture_0_end = _end_pos;
+          if (match_pattern >= 13) {
+            match_pattern = 13;
+            _match_end = lexbuf$2.pos;
+            _capture_0_start = _match_start;
+            _capture_0_end = _match_end;
           }
           const _bind$2 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf$2);
           let _tmp$8;
@@ -24473,18 +24473,18 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$normal(lexbuf, env, end_with_n
           continue _L$2;
         }
         case 4: {
-          if (matched >= 0) {
-            matched = 0;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 0) {
+            match_pattern = 0;
+            _match_end = lexbuf$2.pos;
           }
           break _L$2;
         }
         case 5: {
-          if (matched >= 13) {
-            matched = 13;
-            _end_pos = lexbuf$2.pos;
-            _capture_0_start = _start_pos;
-            _capture_0_end = _end_pos;
+          if (match_pattern >= 13) {
+            match_pattern = 13;
+            _match_end = lexbuf$2.pos;
+            _capture_0_start = _match_start;
+            _capture_0_end = _match_end;
           }
           const _bind$3 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf$2);
           let _tmp$9;
@@ -24645,36 +24645,36 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$normal(lexbuf, env, end_with_n
           continue _L$2;
         }
         case 10: {
-          if (matched >= 12) {
-            matched = 12;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 12) {
+            match_pattern = 12;
+            _match_end = lexbuf$2.pos;
           }
           break _L$2;
         }
         case 11: {
-          if (matched >= 10) {
-            matched = 10;
-            _end_pos = lexbuf$2.pos;
-            _capture_0_start = _start_pos;
-            _capture_0_end = _end_pos;
+          if (match_pattern >= 10) {
+            match_pattern = 10;
+            _match_end = lexbuf$2.pos;
+            _capture_0_start = _match_start;
+            _capture_0_end = _match_end;
           }
           break _L$2;
         }
         case 12: {
-          if (matched >= 1) {
-            matched = 1;
-            _end_pos = lexbuf$2.pos;
-            _capture_0_start = _start_pos;
-            _capture_0_end = _start_pos + 2 | 0;
+          if (match_pattern >= 1) {
+            match_pattern = 1;
+            _match_end = lexbuf$2.pos;
+            _capture_0_start = _match_start;
+            _capture_0_end = _match_start + 2 | 0;
           }
           break _L$2;
         }
         case 13: {
-          if (matched >= 10) {
-            matched = 10;
-            _end_pos = lexbuf$2.pos;
-            _capture_0_start = _start_pos;
-            _capture_0_end = _end_pos;
+          if (match_pattern >= 10) {
+            match_pattern = 10;
+            _match_end = lexbuf$2.pos;
+            _capture_0_start = _match_start;
+            _capture_0_end = _match_end;
           }
           const _bind$8 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf$2);
           let _tmp$14;
@@ -24711,11 +24711,11 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$normal(lexbuf, env, end_with_n
           continue _L$2;
         }
         case 14: {
-          if (matched >= 10) {
-            matched = 10;
-            _end_pos = lexbuf$2.pos;
-            _capture_0_start = _start_pos;
-            _capture_0_end = _end_pos;
+          if (match_pattern >= 10) {
+            match_pattern = 10;
+            _match_end = lexbuf$2.pos;
+            _capture_0_start = _match_start;
+            _capture_0_end = _match_end;
           }
           const _bind$9 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf$2);
           let _tmp$15;
@@ -24740,11 +24740,11 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$normal(lexbuf, env, end_with_n
           continue _L$2;
         }
         case 15: {
-          if (matched >= 10) {
-            matched = 10;
-            _end_pos = lexbuf$2.pos;
-            _capture_0_start = _start_pos;
-            _capture_0_end = _end_pos;
+          if (match_pattern >= 10) {
+            match_pattern = 10;
+            _match_end = lexbuf$2.pos;
+            _capture_0_start = _match_start;
+            _capture_0_end = _match_end;
           }
           const _bind$10 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf$2);
           let _tmp$16;
@@ -24797,11 +24797,11 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$normal(lexbuf, env, end_with_n
           continue _L$2;
         }
         case 16: {
-          if (matched >= 9) {
-            matched = 9;
-            _end_pos = lexbuf$2.pos;
-            _capture_0_start = _start_pos;
-            _capture_0_end = _end_pos;
+          if (match_pattern >= 9) {
+            match_pattern = 9;
+            _match_end = lexbuf$2.pos;
+            _capture_0_start = _match_start;
+            _capture_0_end = _match_end;
           }
           const _bind$11 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf$2);
           let _tmp$17;
@@ -25421,11 +25421,11 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$normal(lexbuf, env, end_with_n
           continue _L$2;
         }
         case 46: {
-          if (matched >= 8) {
-            matched = 8;
-            _end_pos = lexbuf$2.pos;
-            _capture_0_start = _start_pos;
-            _capture_0_end = _end_pos;
+          if (match_pattern >= 8) {
+            match_pattern = 8;
+            _match_end = lexbuf$2.pos;
+            _capture_0_start = _match_start;
+            _capture_0_end = _match_end;
           }
           break _L$2;
         }
@@ -25599,11 +25599,11 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$normal(lexbuf, env, end_with_n
           continue _L$2;
         }
         case 58: {
-          if (matched >= 3) {
-            matched = 3;
-            _end_pos = lexbuf$2.pos;
-            _capture_0_start = _start_pos;
-            _capture_0_end = _end_pos;
+          if (match_pattern >= 3) {
+            match_pattern = 3;
+            _match_end = lexbuf$2.pos;
+            _capture_0_start = _match_start;
+            _capture_0_end = _match_end;
           }
           break _L$2;
         }
@@ -25652,20 +25652,20 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$normal(lexbuf, env, end_with_n
           continue _L$2;
         }
         case 63: {
-          if (matched >= 2) {
-            matched = 2;
-            _end_pos = lexbuf$2.pos;
-            _capture_0_start = _start_pos;
-            _capture_0_end = _start_pos + 4 | 0;
+          if (match_pattern >= 2) {
+            match_pattern = 2;
+            _match_end = lexbuf$2.pos;
+            _capture_0_start = _match_start;
+            _capture_0_end = _match_start + 4 | 0;
           }
           break _L$2;
         }
         case 64: {
-          if (matched >= 7) {
-            matched = 7;
-            _end_pos = lexbuf$2.pos;
-            _capture_0_start = _start_pos;
-            _capture_0_end = _end_pos;
+          if (match_pattern >= 7) {
+            match_pattern = 7;
+            _match_end = lexbuf$2.pos;
+            _capture_0_start = _match_start;
+            _capture_0_end = _match_end;
           }
           break _L$2;
         }
@@ -25689,11 +25689,11 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$normal(lexbuf, env, end_with_n
           continue _L$2;
         }
         case 66: {
-          if (matched >= 5) {
-            matched = 5;
-            _end_pos = lexbuf$2.pos;
-            _capture_0_start = _start_pos;
-            _capture_0_end = _end_pos;
+          if (match_pattern >= 5) {
+            match_pattern = 5;
+            _match_end = lexbuf$2.pos;
+            _capture_0_start = _match_start;
+            _capture_0_end = _match_end;
           }
           break _L$2;
         }
@@ -25742,20 +25742,20 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$normal(lexbuf, env, end_with_n
           continue _L$2;
         }
         case 71: {
-          if (matched >= 4) {
-            matched = 4;
-            _end_pos = lexbuf$2.pos;
-            _capture_0_start = _start_pos;
-            _capture_0_end = _start_pos + 5 | 0;
+          if (match_pattern >= 4) {
+            match_pattern = 4;
+            _match_end = lexbuf$2.pos;
+            _capture_0_start = _match_start;
+            _capture_0_end = _match_start + 5 | 0;
           }
           break _L$2;
         }
         case 72: {
-          if (matched >= 6) {
-            matched = 6;
-            _end_pos = lexbuf$2.pos;
-            _capture_0_start = _start_pos;
-            _capture_0_end = _start_pos + 6 | 0;
+          if (match_pattern >= 6) {
+            match_pattern = 6;
+            _match_end = lexbuf$2.pos;
+            _capture_0_start = _match_start;
+            _capture_0_end = _match_start + 6 | 0;
           }
           break _L$2;
         }
@@ -25765,9 +25765,9 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$normal(lexbuf, env, end_with_n
         }
       }
     }
-    if (matched <= 13) {
-      moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$reset(lexbuf$2, _end_pos);
-      const _bind = matched;
+    if (match_pattern <= 13) {
+      moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$reset(lexbuf$2, _match_end);
+      const _bind = match_pattern;
       switch (_bind) {
         case 0: {
           if (end_with_newline$2) {
@@ -25775,7 +25775,7 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$normal(lexbuf, env, end_with_n
             continue _L;
           } else {
             if (!(moonbitlang$ulex$lib$new_frontend$lexer$$string_repr_buf.val === "")) {
-              moonbitlang$core$array$$Array$push$170$(moonbitlang$ulex$lib$new_frontend$lexer$$string_interps.val, new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$ast_types$46$InterpElem$InterpLit(moonbitlang$ulex$lib$new_frontend$lexer$$string_repr_buf.val, { start: moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$make_pos(env$2, startpos$2), end: moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$make_pos(env$2, _end_pos) }));
+              moonbitlang$core$array$$Array$push$170$(moonbitlang$ulex$lib$new_frontend$lexer$$string_interps.val, new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$ast_types$46$InterpElem$InterpLit(moonbitlang$ulex$lib$new_frontend$lexer$$string_repr_buf.val, { start: moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$make_pos(env$2, startpos$2), end: moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$make_pos(env$2, _match_end) }));
               return;
             } else {
               return;
@@ -25794,7 +25794,7 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$normal(lexbuf, env, end_with_n
         }
         case 3: {
           const repr$3 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$get_string(lexbuf$2, _capture_0_start, _capture_0_end);
-          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_lexing_error(env$2, _start_pos, _end_pos, new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$lexer$46$LexicalError$InvalidEscapeSequence(repr$3));
+          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_lexing_error(env$2, _match_start, _match_end, new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$lexer$46$LexicalError$InvalidEscapeSequence(repr$3));
           continue _L;
         }
         case 4: {
@@ -25804,7 +25804,7 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$normal(lexbuf, env, end_with_n
         }
         case 5: {
           const repr$5 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$get_string(lexbuf$2, _capture_0_start, _capture_0_end);
-          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_lexing_error(env$2, _start_pos, _end_pos, new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$lexer$46$LexicalError$InvalidEscapeSequence(repr$5));
+          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_lexing_error(env$2, _match_start, _match_end, new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$lexer$46$LexicalError$InvalidEscapeSequence(repr$5));
           continue _L;
         }
         case 6: {
@@ -25819,40 +25819,40 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$normal(lexbuf, env, end_with_n
         }
         case 8: {
           const repr$8 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$get_string(lexbuf$2, _capture_0_start, _capture_0_end);
-          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_lexing_error(env$2, _start_pos, _end_pos, new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$lexer$46$LexicalError$InvalidEscapeSequence(repr$8));
+          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_lexing_error(env$2, _match_start, _match_end, new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$lexer$46$LexicalError$InvalidEscapeSequence(repr$8));
           continue _L;
         }
         case 9: {
           const repr$9 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$get_string(lexbuf$2, _capture_0_start, _capture_0_end);
           if (allow_interp$2) {
             if (!(moonbitlang$ulex$lib$new_frontend$lexer$$string_repr_buf.val === "")) {
-              moonbitlang$core$array$$Array$push$170$(moonbitlang$ulex$lib$new_frontend$lexer$$string_interps.val, new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$ast_types$46$InterpElem$InterpLit(moonbitlang$ulex$lib$new_frontend$lexer$$string_repr_buf.val, { start: moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$make_pos(env$2, startpos$2), end: moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$make_pos(env$2, _end_pos) }));
+              moonbitlang$core$array$$Array$push$170$(moonbitlang$ulex$lib$new_frontend$lexer$$string_interps.val, new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$ast_types$46$InterpElem$InterpLit(moonbitlang$ulex$lib$new_frontend$lexer$$string_repr_buf.val, { start: moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$make_pos(env$2, startpos$2), end: moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$make_pos(env$2, _match_end) }));
             }
             moonbitlang$core$builtin$$StringBuilder$reset(moonbitlang$ulex$lib$new_frontend$lexer$$string_repr_buf);
-            const apos = _end_pos;
+            const apos = _match_end;
             const bpos = moonbitlang$ulex$lib$new_frontend$lexer$$interp_handle(lexbuf$2, env$2);
             const loc = { start: moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$make_pos(env$2, apos), end: moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$make_pos(env$2, bpos) };
             if (moonbitlang$ulex$lib$new_frontend$lexer$$string_repr_buf.val === "") {
-              moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_lexing_error(env$2, _start_pos, _end_pos, $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$lexer$46$LexicalError$InterpMissingExpression);
+              moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_lexing_error(env$2, _match_start, _match_end, $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$lexer$46$LexicalError$InterpMissingExpression);
             } else {
               const source = moonbitlang$ulex$lib$new_frontend$lexer$$string_repr_buf.val;
               moonbitlang$core$array$$Array$push$170$(moonbitlang$ulex$lib$new_frontend$lexer$$string_interps.val, new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$ast_types$46$InterpElem$InterpSource({ source: source, loc: loc }));
             }
             moonbitlang$core$builtin$$StringBuilder$reset(moonbitlang$ulex$lib$new_frontend$lexer$$string_repr_buf);
           } else {
-            moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_lexing_error(env$2, _start_pos, _end_pos, new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$lexer$46$LexicalError$InvalidEscapeSequence(repr$9));
+            moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_lexing_error(env$2, _match_start, _match_end, new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$lexer$46$LexicalError$InvalidEscapeSequence(repr$9));
           }
           continue _L;
         }
         case 10: {
           const repr$10 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$get_string(lexbuf$2, _capture_0_start, _capture_0_end);
-          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_lexing_error(env$2, _start_pos, _end_pos, new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$lexer$46$LexicalError$InvalidEscapeSequence(repr$10));
+          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_lexing_error(env$2, _match_start, _match_end, new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$lexer$46$LexicalError$InvalidEscapeSequence(repr$10));
           continue _L;
         }
         case 11: {
-          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_lexing_error(env$2, _start_pos, _end_pos, $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$lexer$46$LexicalError$UnterminatedString);
+          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_lexing_error(env$2, _match_start, _match_end, $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$lexer$46$LexicalError$UnterminatedString);
           if (!(moonbitlang$ulex$lib$new_frontend$lexer$$string_repr_buf.val === "")) {
-            moonbitlang$core$array$$Array$push$170$(moonbitlang$ulex$lib$new_frontend$lexer$$string_interps.val, new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$ast_types$46$InterpElem$InterpLit(moonbitlang$ulex$lib$new_frontend$lexer$$string_repr_buf.val, { start: moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$make_pos(env$2, startpos$2), end: moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$make_pos(env$2, _end_pos) }));
+            moonbitlang$core$array$$Array$push$170$(moonbitlang$ulex$lib$new_frontend$lexer$$string_interps.val, new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$ast_types$46$InterpElem$InterpLit(moonbitlang$ulex$lib$new_frontend$lexer$$string_repr_buf.val, { start: moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$make_pos(env$2, startpos$2), end: moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$make_pos(env$2, _match_end) }));
             return;
           } else {
             return;
@@ -25861,10 +25861,10 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$normal(lexbuf, env, end_with_n
         case 12: {
           moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$reset(lexbuf$2, lexbuf$2.pos - 1 | 0);
           if (!end_with_newline$2) {
-            moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_lexing_error(env$2, _start_pos, _end_pos, $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$lexer$46$LexicalError$UnterminatedString);
+            moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_lexing_error(env$2, _match_start, _match_end, $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$lexer$46$LexicalError$UnterminatedString);
           }
           if (!(moonbitlang$ulex$lib$new_frontend$lexer$$string_repr_buf.val === "")) {
-            moonbitlang$core$array$$Array$push$170$(moonbitlang$ulex$lib$new_frontend$lexer$$string_interps.val, new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$ast_types$46$InterpElem$InterpLit(moonbitlang$ulex$lib$new_frontend$lexer$$string_repr_buf.val, { start: moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$make_pos(env$2, startpos$2), end: moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$make_pos(env$2, _end_pos) }));
+            moonbitlang$core$array$$Array$push$170$(moonbitlang$ulex$lib$new_frontend$lexer$$string_interps.val, new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$ast_types$46$InterpElem$InterpLit(moonbitlang$ulex$lib$new_frontend$lexer$$string_repr_buf.val, { start: moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$make_pos(env$2, startpos$2), end: moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$make_pos(env$2, _match_end) }));
             return;
           } else {
             return;
@@ -25908,9 +25908,9 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$invalid_byte(lexbuf, env, star
     const lexbuf$2 = _tmp;
     const env$2 = _tmp$2;
     const start$2 = _tmp$3;
-    let matched = moonbitlang$core$int$$max_value;
-    let _end_pos = -1;
-    let _start_pos = lexbuf$2.pos;
+    let match_pattern = moonbitlang$core$int$$max_value;
+    let _match_start = lexbuf$2.pos;
+    let _match_end = -1;
     let _capture_0_start = -1;
     let _capture_0_end = -1;
     let _tmp$4 = 0;
@@ -25981,18 +25981,18 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$invalid_byte(lexbuf, env, star
           continue _L$2;
         }
         case 1: {
-          if (matched >= 0) {
-            matched = 0;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 0) {
+            match_pattern = 0;
+            _match_end = lexbuf$2.pos;
           }
           break _L$2;
         }
         case 2: {
-          if (matched >= 1) {
-            matched = 1;
-            _end_pos = lexbuf$2.pos;
-            _capture_0_start = _start_pos;
-            _capture_0_end = _end_pos;
+          if (match_pattern >= 1) {
+            match_pattern = 1;
+            _match_end = lexbuf$2.pos;
+            _capture_0_start = _match_start;
+            _capture_0_end = _match_end;
           }
           break _L$2;
         }
@@ -26067,9 +26067,9 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$invalid_byte(lexbuf, env, star
           continue _L$2;
         }
         case 9: {
-          if (matched >= 2) {
-            matched = 2;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 2) {
+            match_pattern = 2;
+            _match_end = lexbuf$2.pos;
           }
           break _L$2;
         }
@@ -26079,12 +26079,12 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$invalid_byte(lexbuf, env, star
         }
       }
     }
-    if (matched <= 2) {
-      moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$reset(lexbuf$2, _end_pos);
-      const _bind = matched;
+    if (match_pattern <= 2) {
+      moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$reset(lexbuf$2, _match_end);
+      const _bind = match_pattern;
       switch (_bind) {
         case 0: {
-          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_lexing_error(env$2, start$2, _end_pos, new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$lexer$46$LexicalError$InvalidByteLiteral(moonbitlang$ulex$lib$new_frontend$lexer$$invalid_byte_repr_buf.val));
+          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_lexing_error(env$2, start$2, _match_end, new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$lexer$46$LexicalError$InvalidByteLiteral(moonbitlang$ulex$lib$new_frontend$lexer$$invalid_byte_repr_buf.val));
           moonbitlang$core$builtin$$StringBuilder$reset(moonbitlang$ulex$lib$new_frontend$lexer$$invalid_byte_repr_buf);
           return;
         }
@@ -26898,9 +26898,9 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
     const lexbuf$2 = _tmp;
     const env$2 = _tmp$2;
     const preserve_comment$2 = _tmp$3;
-    let matched = moonbitlang$core$int$$max_value;
-    let _end_pos = -1;
-    let _start_pos = lexbuf$2.pos;
+    let match_pattern = moonbitlang$core$int$$max_value;
+    let _match_start = lexbuf$2.pos;
+    let _match_end = -1;
     const _capture_0_start = { val: -1 };
     const _capture_0_end = { val: -1 };
     let _capture_1_start = -1;
@@ -27173,25 +27173,25 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           continue _L$2;
         }
         case 1: {
-          if (matched >= 66) {
-            matched = 66;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 66) {
+            match_pattern = 66;
+            _match_end = lexbuf$2.pos;
           }
           break _L$2;
         }
         case 2: {
-          if (matched >= 70) {
-            matched = 70;
-            _end_pos = lexbuf$2.pos;
-            _capture_0_start.val = _start_pos;
-            _capture_0_end.val = _end_pos;
+          if (match_pattern >= 70) {
+            match_pattern = 70;
+            _match_end = lexbuf$2.pos;
+            _capture_0_start.val = _match_start;
+            _capture_0_end.val = _match_end;
           }
           break _L$2;
         }
         case 3: {
-          if (matched >= 1) {
-            matched = 1;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 1) {
+            match_pattern = 1;
+            _match_end = lexbuf$2.pos;
           }
           const _bind$2 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf$2);
           let _tmp$6;
@@ -27232,16 +27232,16 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           continue _L$2;
         }
         case 4: {
-          if (matched >= 0) {
-            matched = 0;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 0) {
+            match_pattern = 0;
+            _match_end = lexbuf$2.pos;
           }
           break _L$2;
         }
         case 5: {
-          if (matched >= 0) {
-            matched = 0;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 0) {
+            match_pattern = 0;
+            _match_end = lexbuf$2.pos;
           }
           const _bind$3 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf$2);
           let _tmp$7;
@@ -27254,9 +27254,9 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           continue _L$2;
         }
         case 6: {
-          if (matched >= 62) {
-            matched = 62;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 62) {
+            match_pattern = 62;
+            _match_end = lexbuf$2.pos;
           }
           const _bind$4 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf$2);
           let _tmp$8;
@@ -27269,18 +27269,18 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           continue _L$2;
         }
         case 7: {
-          if (matched >= 11) {
-            matched = 11;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 11) {
+            match_pattern = 11;
+            _match_end = lexbuf$2.pos;
           }
           break _L$2;
         }
         case 8: {
-          if (matched >= 70) {
-            matched = 70;
-            _end_pos = lexbuf$2.pos;
-            _capture_0_start.val = _start_pos;
-            _capture_0_end.val = _end_pos;
+          if (match_pattern >= 70) {
+            match_pattern = 70;
+            _match_end = lexbuf$2.pos;
+            _capture_0_start.val = _match_start;
+            _capture_0_end.val = _match_end;
           }
           const _bind$5 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf$2);
           let _tmp$9;
@@ -27301,11 +27301,11 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           continue _L$2;
         }
         case 9: {
-          if (matched >= 70) {
-            matched = 70;
-            _end_pos = lexbuf$2.pos;
-            _capture_0_start.val = _start_pos;
-            _capture_0_end.val = _end_pos;
+          if (match_pattern >= 70) {
+            match_pattern = 70;
+            _match_end = lexbuf$2.pos;
+            _capture_0_start.val = _match_start;
+            _capture_0_end.val = _match_end;
           }
           const _bind$6 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf$2);
           let _tmp$10;
@@ -27318,9 +27318,9 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           continue _L$2;
         }
         case 10: {
-          if (matched >= 30) {
-            matched = 30;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 30) {
+            match_pattern = 30;
+            _match_end = lexbuf$2.pos;
           }
           const _bind$7 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf$2);
           let _tmp$11;
@@ -27333,9 +27333,9 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           continue _L$2;
         }
         case 11: {
-          if (matched >= 23) {
-            matched = 23;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 23) {
+            match_pattern = 23;
+            _match_end = lexbuf$2.pos;
           }
           const _bind$8 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf$2);
           let _tmp$12;
@@ -27348,11 +27348,11 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           continue _L$2;
         }
         case 12: {
-          if (matched >= 70) {
-            matched = 70;
-            _end_pos = lexbuf$2.pos;
-            _capture_0_start.val = _start_pos;
-            _capture_0_end.val = _end_pos;
+          if (match_pattern >= 70) {
+            match_pattern = 70;
+            _match_end = lexbuf$2.pos;
+            _capture_0_start.val = _match_start;
+            _capture_0_end.val = _match_end;
           }
           const _bind$9 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf$2);
           let _tmp$13;
@@ -27401,23 +27401,23 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           continue _L$2;
         }
         case 13: {
-          if (matched >= 25) {
-            matched = 25;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 25) {
+            match_pattern = 25;
+            _match_end = lexbuf$2.pos;
           }
           break _L$2;
         }
         case 14: {
-          if (matched >= 26) {
-            matched = 26;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 26) {
+            match_pattern = 26;
+            _match_end = lexbuf$2.pos;
           }
           break _L$2;
         }
         case 15: {
-          if (matched >= 28) {
-            matched = 28;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 28) {
+            match_pattern = 28;
+            _match_end = lexbuf$2.pos;
           }
           const _bind$10 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf$2);
           let _tmp$14;
@@ -27430,9 +27430,9 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           continue _L$2;
         }
         case 16: {
-          if (matched >= 58) {
-            matched = 58;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 58) {
+            match_pattern = 58;
+            _match_end = lexbuf$2.pos;
           }
           const _bind$11 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf$2);
           let _tmp$15;
@@ -27445,16 +27445,16 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           continue _L$2;
         }
         case 17: {
-          if (matched >= 31) {
-            matched = 31;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 31) {
+            match_pattern = 31;
+            _match_end = lexbuf$2.pos;
           }
           break _L$2;
         }
         case 18: {
-          if (matched >= 59) {
-            matched = 59;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 59) {
+            match_pattern = 59;
+            _match_end = lexbuf$2.pos;
           }
           const _bind$12 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf$2);
           let _tmp$16;
@@ -27475,11 +27475,11 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           continue _L$2;
         }
         case 19: {
-          if (matched >= 70) {
-            matched = 70;
-            _end_pos = lexbuf$2.pos;
-            _capture_0_start.val = _start_pos;
-            _capture_0_end.val = _end_pos;
+          if (match_pattern >= 70) {
+            match_pattern = 70;
+            _match_end = lexbuf$2.pos;
+            _capture_0_start.val = _match_start;
+            _capture_0_end.val = _match_end;
           }
           const _bind$13 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf$2);
           let _tmp$17;
@@ -27564,9 +27564,9 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           continue _L$2;
         }
         case 20: {
-          if (matched >= 29) {
-            matched = 29;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 29) {
+            match_pattern = 29;
+            _match_end = lexbuf$2.pos;
           }
           const _bind$14 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf$2);
           let _tmp$18;
@@ -27587,11 +27587,11 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           continue _L$2;
         }
         case 21: {
-          if (matched >= 65) {
-            matched = 65;
-            _end_pos = lexbuf$2.pos;
-            _capture_0_start.val = _start_pos;
-            _capture_0_end.val = _end_pos;
+          if (match_pattern >= 65) {
+            match_pattern = 65;
+            _match_end = lexbuf$2.pos;
+            _capture_0_start.val = _match_start;
+            _capture_0_end.val = _match_end;
           }
           const _bind$15 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf$2);
           let _tmp$19;
@@ -27648,11 +27648,11 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           continue _L$2;
         }
         case 22: {
-          if (matched >= 65) {
-            matched = 65;
-            _end_pos = lexbuf$2.pos;
-            _capture_0_start.val = _start_pos;
-            _capture_0_end.val = _end_pos;
+          if (match_pattern >= 65) {
+            match_pattern = 65;
+            _match_end = lexbuf$2.pos;
+            _capture_0_start.val = _match_start;
+            _capture_0_end.val = _match_end;
           }
           const _bind$16 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf$2);
           let _tmp$20;
@@ -27685,9 +27685,9 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           continue _L$2;
         }
         case 23: {
-          if (matched >= 41) {
-            matched = 41;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 41) {
+            match_pattern = 41;
+            _match_end = lexbuf$2.pos;
           }
           const _bind$17 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf$2);
           let _tmp$21;
@@ -27700,16 +27700,16 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           continue _L$2;
         }
         case 24: {
-          if (matched >= 42) {
-            matched = 42;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 42) {
+            match_pattern = 42;
+            _match_end = lexbuf$2.pos;
           }
           break _L$2;
         }
         case 25: {
-          if (matched >= 50) {
-            matched = 50;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 50) {
+            match_pattern = 50;
+            _match_end = lexbuf$2.pos;
           }
           const _bind$18 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf$2);
           let _tmp$22;
@@ -27730,9 +27730,9 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           continue _L$2;
         }
         case 26: {
-          if (matched >= 44) {
-            matched = 44;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 44) {
+            match_pattern = 44;
+            _match_end = lexbuf$2.pos;
           }
           const _bind$19 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf$2);
           let _tmp$23;
@@ -27753,9 +27753,9 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           continue _L$2;
         }
         case 27: {
-          if (matched >= 48) {
-            matched = 48;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 48) {
+            match_pattern = 48;
+            _match_end = lexbuf$2.pos;
           }
           const _bind$20 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf$2);
           let _tmp$24;
@@ -27776,18 +27776,18 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           continue _L$2;
         }
         case 28: {
-          if (matched >= 60) {
-            matched = 60;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 60) {
+            match_pattern = 60;
+            _match_end = lexbuf$2.pos;
           }
           break _L$2;
         }
         case 29: {
-          if (matched >= 70) {
-            matched = 70;
-            _end_pos = lexbuf$2.pos;
-            _capture_0_start.val = _start_pos;
-            _capture_0_end.val = _end_pos;
+          if (match_pattern >= 70) {
+            match_pattern = 70;
+            _match_end = lexbuf$2.pos;
+            _capture_0_start.val = _match_start;
+            _capture_0_end.val = _match_end;
           }
           const _bind$21 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf$2);
           let _tmp$25;
@@ -27808,11 +27808,11 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           continue _L$2;
         }
         case 30: {
-          if (matched >= 67) {
-            matched = 67;
-            _end_pos = lexbuf$2.pos;
-            _capture_0_start.val = _start_pos;
-            _capture_0_end.val = _end_pos;
+          if (match_pattern >= 67) {
+            match_pattern = 67;
+            _match_end = lexbuf$2.pos;
+            _capture_0_start.val = _match_start;
+            _capture_0_end.val = _match_end;
           }
           const _bind$22 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf$2);
           let _tmp$26;
@@ -27889,32 +27889,32 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           continue _L$2;
         }
         case 31: {
-          if (matched >= 51) {
-            matched = 51;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 51) {
+            match_pattern = 51;
+            _match_end = lexbuf$2.pos;
           }
           break _L$2;
         }
         case 32: {
-          if (matched >= 52) {
-            matched = 52;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 52) {
+            match_pattern = 52;
+            _match_end = lexbuf$2.pos;
           }
           break _L$2;
         }
         case 33: {
-          if (matched >= 24) {
-            matched = 24;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 24) {
+            match_pattern = 24;
+            _match_end = lexbuf$2.pos;
           }
           break _L$2;
         }
         case 34: {
-          if (matched >= 69) {
-            matched = 69;
-            _end_pos = lexbuf$2.pos;
-            _capture_0_start.val = _start_pos;
-            _capture_0_end.val = _end_pos;
+          if (match_pattern >= 69) {
+            match_pattern = 69;
+            _match_end = lexbuf$2.pos;
+            _capture_0_start.val = _match_start;
+            _capture_0_end.val = _match_end;
           }
           const _bind$23 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf$2);
           let _tmp$27;
@@ -27995,11 +27995,11 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           continue _L$2;
         }
         case 35: {
-          if (matched >= 69) {
-            matched = 69;
-            _end_pos = lexbuf$2.pos;
-            _capture_0_start.val = _start_pos;
-            _capture_0_end.val = _end_pos;
+          if (match_pattern >= 69) {
+            match_pattern = 69;
+            _match_end = lexbuf$2.pos;
+            _capture_0_start.val = _match_start;
+            _capture_0_end.val = _match_end;
           }
           const _bind$24 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf$2);
           let _tmp$28;
@@ -28088,16 +28088,16 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           continue _L$2;
         }
         case 36: {
-          if (matched >= 53) {
-            matched = 53;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 53) {
+            match_pattern = 53;
+            _match_end = lexbuf$2.pos;
           }
           break _L$2;
         }
         case 37: {
-          if (matched >= 57) {
-            matched = 57;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 57) {
+            match_pattern = 57;
+            _match_end = lexbuf$2.pos;
           }
           const _bind$25 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf$2);
           let _tmp$29;
@@ -28118,9 +28118,9 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           continue _L$2;
         }
         case 38: {
-          if (matched >= 54) {
-            matched = 54;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 54) {
+            match_pattern = 54;
+            _match_end = lexbuf$2.pos;
           }
           break _L$2;
         }
@@ -28491,11 +28491,11 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           continue _L$2;
         }
         case 57: {
-          if (matched >= 68) {
-            matched = 68;
-            _end_pos = lexbuf$2.pos;
-            _capture_0_start.val = _start_pos;
-            _capture_0_end.val = _end_pos + -1 | 0;
+          if (match_pattern >= 68) {
+            match_pattern = 68;
+            _match_end = lexbuf$2.pos;
+            _capture_0_start.val = _match_start;
+            _capture_0_end.val = _match_end + -1 | 0;
           }
           break _L$2;
         }
@@ -28822,11 +28822,11 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           continue _L$2;
         }
         case 80: {
-          if (matched >= 64) {
-            matched = 64;
-            _end_pos = lexbuf$2.pos;
-            _capture_0_start.val = _start_pos;
-            _capture_0_end.val = _end_pos;
+          if (match_pattern >= 64) {
+            match_pattern = 64;
+            _match_end = lexbuf$2.pos;
+            _capture_0_start.val = _match_start;
+            _capture_0_end.val = _match_end;
           }
           const _bind$66 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf$2);
           let _tmp$70;
@@ -28866,11 +28866,11 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           continue _L$2;
         }
         case 82: {
-          if (matched >= 65) {
-            matched = 65;
-            _end_pos = lexbuf$2.pos;
-            _capture_0_start.val = _start_pos;
-            _capture_0_end.val = _end_pos;
+          if (match_pattern >= 65) {
+            match_pattern = 65;
+            _match_end = lexbuf$2.pos;
+            _capture_0_start.val = _match_start;
+            _capture_0_end.val = _match_end;
           }
           const _bind$68 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf$2);
           let _tmp$72;
@@ -28894,11 +28894,11 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           continue _L$2;
         }
         case 84: {
-          if (matched >= 65) {
-            matched = 65;
-            _end_pos = lexbuf$2.pos;
-            _capture_0_start.val = _start_pos;
-            _capture_0_end.val = _end_pos;
+          if (match_pattern >= 65) {
+            match_pattern = 65;
+            _match_end = lexbuf$2.pos;
+            _capture_0_start.val = _match_start;
+            _capture_0_end.val = _match_end;
           }
           const _bind$70 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf$2);
           let _tmp$74;
@@ -28938,72 +28938,72 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           continue _L$2;
         }
         case 86: {
-          if (matched >= 61) {
-            matched = 61;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 61) {
+            match_pattern = 61;
+            _match_end = lexbuf$2.pos;
           }
           break _L$2;
         }
         case 87: {
-          if (matched >= 55) {
-            matched = 55;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 55) {
+            match_pattern = 55;
+            _match_end = lexbuf$2.pos;
           }
           break _L$2;
         }
         case 88: {
-          if (matched >= 56) {
-            matched = 56;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 56) {
+            match_pattern = 56;
+            _match_end = lexbuf$2.pos;
           }
           break _L$2;
         }
         case 89: {
-          if (matched >= 46) {
-            matched = 46;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 46) {
+            match_pattern = 46;
+            _match_end = lexbuf$2.pos;
           }
           break _L$2;
         }
         case 90: {
-          if (matched >= 47) {
-            matched = 47;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 47) {
+            match_pattern = 47;
+            _match_end = lexbuf$2.pos;
           }
           break _L$2;
         }
         case 91: {
-          if (matched >= 49) {
-            matched = 49;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 49) {
+            match_pattern = 49;
+            _match_end = lexbuf$2.pos;
           }
           break _L$2;
         }
         case 92: {
-          if (matched >= 45) {
-            matched = 45;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 45) {
+            match_pattern = 45;
+            _match_end = lexbuf$2.pos;
           }
           break _L$2;
         }
         case 93: {
-          if (matched >= 40) {
-            matched = 40;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 40) {
+            match_pattern = 40;
+            _match_end = lexbuf$2.pos;
           }
           break _L$2;
         }
         case 94: {
-          if (matched >= 32) {
-            matched = 32;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 32) {
+            match_pattern = 32;
+            _match_end = lexbuf$2.pos;
           }
           break _L$2;
         }
         case 95: {
-          if (matched >= 37) {
-            matched = 37;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 37) {
+            match_pattern = 37;
+            _match_end = lexbuf$2.pos;
           }
           const _bind$72 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf$2);
           let _tmp$76;
@@ -29028,13 +29028,13 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           continue _L$2;
         }
         case 96: {
-          if (matched >= 33) {
-            matched = 33;
-            _end_pos = lexbuf$2.pos;
-            _capture_0_start.val = _start_pos;
-            _capture_0_end.val = _end_pos;
-            _capture_1_start = _start_pos + 1 | 0;
-            _capture_1_end = _end_pos;
+          if (match_pattern >= 33) {
+            match_pattern = 33;
+            _match_end = lexbuf$2.pos;
+            _capture_0_start.val = _match_start;
+            _capture_0_end.val = _match_end;
+            _capture_1_start = _match_start + 1 | 0;
+            _capture_1_end = _match_end;
           }
           const _bind$73 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf$2);
           let _tmp$77;
@@ -29047,11 +29047,11 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           continue _L$2;
         }
         case 97: {
-          if (matched >= 38) {
-            matched = 38;
-            _end_pos = lexbuf$2.pos;
-            _capture_0_start.val = _start_pos + 1 | 0;
-            _capture_0_end.val = _end_pos;
+          if (match_pattern >= 38) {
+            match_pattern = 38;
+            _match_end = lexbuf$2.pos;
+            _capture_0_start.val = _match_start + 1 | 0;
+            _capture_0_end.val = _match_end;
           }
           const _bind$74 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf$2);
           let _tmp$78;
@@ -29128,11 +29128,11 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           continue _L$2;
         }
         case 98: {
-          if (matched >= 39) {
-            matched = 39;
-            _end_pos = lexbuf$2.pos;
-            _capture_0_start.val = _start_pos + 1 | 0;
-            _capture_0_end.val = _end_pos;
+          if (match_pattern >= 39) {
+            match_pattern = 39;
+            _match_end = lexbuf$2.pos;
+            _capture_0_start.val = _match_start + 1 | 0;
+            _capture_0_end.val = _match_end;
           }
           const _bind$75 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf$2);
           let _tmp$79;
@@ -29381,29 +29381,29 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           continue _L$2;
         }
         case 111: {
-          if (matched >= 27) {
-            matched = 27;
-            _end_pos = lexbuf$2.pos;
-            _capture_0_start.val = _start_pos;
-            _capture_0_end.val = _start_pos + 1 | 0;
-            _capture_1_start = _start_pos;
-            _capture_1_end = _start_pos + 2 | 0;
+          if (match_pattern >= 27) {
+            match_pattern = 27;
+            _match_end = lexbuf$2.pos;
+            _capture_0_start.val = _match_start;
+            _capture_0_end.val = _match_start + 1 | 0;
+            _capture_1_start = _match_start;
+            _capture_1_end = _match_start + 2 | 0;
           }
           break _L$2;
         }
         case 112: {
-          if (matched >= 22) {
-            matched = 22;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 22) {
+            match_pattern = 22;
+            _match_end = lexbuf$2.pos;
           }
           break _L$2;
         }
         case 113: {
-          if (matched >= 16) {
-            matched = 16;
-            _end_pos = lexbuf$2.pos;
-            _capture_0_start.val = _start_pos + 1 | 0;
-            _capture_0_end.val = _end_pos;
+          if (match_pattern >= 16) {
+            match_pattern = 16;
+            _match_end = lexbuf$2.pos;
+            _capture_0_start.val = _match_start + 1 | 0;
+            _capture_0_end.val = _match_end;
           }
           const _bind$88 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf$2);
           let _tmp$92;
@@ -29432,11 +29432,11 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           continue _L$2;
         }
         case 114: {
-          if (matched >= 15) {
-            matched = 15;
-            _end_pos = lexbuf$2.pos;
-            _capture_0_start.val = _start_pos + 1 | 0;
-            _capture_0_end.val = _end_pos;
+          if (match_pattern >= 15) {
+            match_pattern = 15;
+            _match_end = lexbuf$2.pos;
+            _capture_0_start.val = _match_start + 1 | 0;
+            _capture_0_end.val = _match_end;
           }
           const _bind$89 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf$2);
           let _tmp$93;
@@ -29473,11 +29473,11 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           continue _L$2;
         }
         case 115: {
-          if (matched >= 14) {
-            matched = 14;
-            _end_pos = lexbuf$2.pos;
-            _capture_0_start.val = _start_pos + 2 | 0;
-            _capture_0_end.val = _end_pos;
+          if (match_pattern >= 14) {
+            match_pattern = 14;
+            _match_end = lexbuf$2.pos;
+            _capture_0_start.val = _match_start + 2 | 0;
+            _capture_0_end.val = _match_end;
           }
           const _bind$90 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf$2);
           let _tmp$94;
@@ -29514,25 +29514,25 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           continue _L$2;
         }
         case 116: {
-          if (matched >= 13) {
-            matched = 13;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 13) {
+            match_pattern = 13;
+            _match_end = lexbuf$2.pos;
           }
           break _L$2;
         }
         case 117: {
-          if (matched >= 12) {
-            matched = 12;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 12) {
+            match_pattern = 12;
+            _match_end = lexbuf$2.pos;
           }
           break _L$2;
         }
         case 118: {
-          if (matched >= 21) {
-            matched = 21;
-            _end_pos = lexbuf$2.pos;
-            _capture_0_start.val = _start_pos;
-            _capture_0_end.val = _start_pos + 2 | 0;
+          if (match_pattern >= 21) {
+            match_pattern = 21;
+            _match_end = lexbuf$2.pos;
+            _capture_0_start.val = _match_start;
+            _capture_0_end.val = _match_start + 2 | 0;
           }
           const _bind$91 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf$2);
           let _tmp$95;
@@ -29663,11 +29663,11 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           continue _L$2;
         }
         case 125: {
-          if (matched >= 4) {
-            matched = 4;
-            _end_pos = lexbuf$2.pos;
-            _capture_0_start.val = _start_pos;
-            _capture_0_end.val = _end_pos;
+          if (match_pattern >= 4) {
+            match_pattern = 4;
+            _match_end = lexbuf$2.pos;
+            _capture_0_start.val = _match_start;
+            _capture_0_end.val = _match_end;
           }
           const _bind$98 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf$2);
           let _tmp$102;
@@ -29704,23 +29704,23 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           continue _L$2;
         }
         case 126: {
-          if (matched >= 3) {
-            matched = 3;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 3) {
+            match_pattern = 3;
+            _match_end = lexbuf$2.pos;
           }
           break _L$2;
         }
         case 127: {
-          if (matched >= 43) {
-            matched = 43;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 43) {
+            match_pattern = 43;
+            _match_end = lexbuf$2.pos;
           }
           break _L$2;
         }
         case 128: {
-          if (matched >= 2) {
-            matched = 2;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 2) {
+            match_pattern = 2;
+            _match_end = lexbuf$2.pos;
           }
           break _L$2;
         }
@@ -29986,20 +29986,20 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           continue _L$2;
         }
         case 148: {
-          if (matched >= 63) {
-            matched = 63;
-            _end_pos = lexbuf$2.pos;
-            _capture_0_start.val = _start_pos;
-            _capture_0_end.val = _end_pos + -2 | 0;
+          if (match_pattern >= 63) {
+            match_pattern = 63;
+            _match_end = lexbuf$2.pos;
+            _capture_0_start.val = _match_start;
+            _capture_0_end.val = _match_end + -2 | 0;
           }
           break _L$2;
         }
         case 149: {
-          if (matched >= 64) {
-            matched = 64;
-            _end_pos = lexbuf$2.pos;
-            _capture_0_start.val = _start_pos;
-            _capture_0_end.val = _end_pos;
+          if (match_pattern >= 64) {
+            match_pattern = 64;
+            _match_end = lexbuf$2.pos;
+            _capture_0_start.val = _match_start;
+            _capture_0_end.val = _match_end;
           }
           const _bind$118 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf$2);
           let _tmp$122;
@@ -30054,11 +30054,11 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           continue _L$2;
         }
         case 152: {
-          if (matched >= 65) {
-            matched = 65;
-            _end_pos = lexbuf$2.pos;
-            _capture_0_start.val = _start_pos;
-            _capture_0_end.val = _end_pos;
+          if (match_pattern >= 65) {
+            match_pattern = 65;
+            _match_end = lexbuf$2.pos;
+            _capture_0_start.val = _match_start;
+            _capture_0_end.val = _match_end;
           }
           const _bind$121 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf$2);
           let _tmp$125;
@@ -30091,11 +30091,11 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           continue _L$2;
         }
         case 153: {
-          if (matched >= 65) {
-            matched = 65;
-            _end_pos = lexbuf$2.pos;
-            _capture_0_start.val = _start_pos;
-            _capture_0_end.val = _end_pos;
+          if (match_pattern >= 65) {
+            match_pattern = 65;
+            _match_end = lexbuf$2.pos;
+            _capture_0_start.val = _match_start;
+            _capture_0_end.val = _match_end;
           }
           const _bind$122 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf$2);
           let _tmp$126;
@@ -30128,11 +30128,11 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           continue _L$2;
         }
         case 154: {
-          if (matched >= 65) {
-            matched = 65;
-            _end_pos = lexbuf$2.pos;
-            _capture_0_start.val = _start_pos;
-            _capture_0_end.val = _end_pos;
+          if (match_pattern >= 65) {
+            match_pattern = 65;
+            _match_end = lexbuf$2.pos;
+            _capture_0_start.val = _match_start;
+            _capture_0_end.val = _match_end;
           }
           const _bind$123 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf$2);
           let _tmp$127;
@@ -30389,23 +30389,23 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           continue _L$2;
         }
         case 171: {
-          if (matched >= 34) {
-            matched = 34;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 34) {
+            match_pattern = 34;
+            _match_end = lexbuf$2.pos;
           }
           break _L$2;
         }
         case 172: {
-          if (matched >= 36) {
-            matched = 36;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 36) {
+            match_pattern = 36;
+            _match_end = lexbuf$2.pos;
           }
           break _L$2;
         }
         case 173: {
-          if (matched >= 35) {
-            matched = 35;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 35) {
+            match_pattern = 35;
+            _match_end = lexbuf$2.pos;
           }
           break _L$2;
         }
@@ -30643,11 +30643,11 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           continue _L$2;
         }
         case 189: {
-          if (matched >= 5) {
-            matched = 5;
-            _end_pos = lexbuf$2.pos;
-            _capture_0_start.val = _start_pos;
-            _capture_0_end.val = _end_pos;
+          if (match_pattern >= 5) {
+            match_pattern = 5;
+            _match_end = lexbuf$2.pos;
+            _capture_0_start.val = _match_start;
+            _capture_0_end.val = _match_end;
           }
           break _L$2;
         }
@@ -30696,9 +30696,9 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           continue _L$2;
         }
         case 194: {
-          if (matched >= 1) {
-            matched = 1;
-            _end_pos = lexbuf$2.pos;
+          if (match_pattern >= 1) {
+            match_pattern = 1;
+            _match_end = lexbuf$2.pos;
           }
           const _bind$159 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf$2);
           let _tmp$163;
@@ -30850,11 +30850,11 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           continue _L$2;
         }
         case 200: {
-          if (matched >= 64) {
-            matched = 64;
-            _end_pos = lexbuf$2.pos;
-            _capture_0_start.val = _start_pos;
-            _capture_0_end.val = _end_pos;
+          if (match_pattern >= 64) {
+            match_pattern = 64;
+            _match_end = lexbuf$2.pos;
+            _capture_0_start.val = _match_start;
+            _capture_0_end.val = _match_end;
           }
           const _bind$165 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf$2);
           let _tmp$169;
@@ -30871,11 +30871,11 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           continue _L$2;
         }
         case 201: {
-          if (matched >= 64) {
-            matched = 64;
-            _end_pos = lexbuf$2.pos;
-            _capture_0_start.val = _start_pos;
-            _capture_0_end.val = _end_pos;
+          if (match_pattern >= 64) {
+            match_pattern = 64;
+            _match_end = lexbuf$2.pos;
+            _capture_0_start.val = _match_start;
+            _capture_0_end.val = _match_end;
           }
           const _bind$166 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf$2);
           let _tmp$170;
@@ -30956,11 +30956,11 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           continue _L$2;
         }
         case 206: {
-          if (matched >= 19) {
-            matched = 19;
-            _end_pos = lexbuf$2.pos;
-            _capture_0_start.val = _start_pos + 2 | 0;
-            _capture_0_end.val = _start_pos + 3 | 0;
+          if (match_pattern >= 19) {
+            match_pattern = 19;
+            _match_end = lexbuf$2.pos;
+            _capture_0_start.val = _match_start + 2 | 0;
+            _capture_0_end.val = _match_start + 3 | 0;
           }
           break _L$2;
         }
@@ -30976,11 +30976,11 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           continue _L$2;
         }
         case 208: {
-          if (matched >= 19) {
-            matched = 19;
-            _end_pos = lexbuf$2.pos;
-            _capture_0_start.val = _start_pos + 2 | 0;
-            _capture_0_end.val = _start_pos + 3 | 0;
+          if (match_pattern >= 19) {
+            match_pattern = 19;
+            _match_end = lexbuf$2.pos;
+            _capture_0_start.val = _match_start + 2 | 0;
+            _capture_0_end.val = _match_start + 3 | 0;
           }
           const _bind$172 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf$2);
           let _tmp$176;
@@ -31095,11 +31095,11 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           continue _L$2;
         }
         case 215: {
-          if (matched >= 6) {
-            matched = 6;
-            _end_pos = lexbuf$2.pos;
-            _capture_0_start.val = _start_pos;
-            _capture_0_end.val = _start_pos + 4 | 0;
+          if (match_pattern >= 6) {
+            match_pattern = 6;
+            _match_end = lexbuf$2.pos;
+            _capture_0_start.val = _match_start;
+            _capture_0_end.val = _match_start + 4 | 0;
           }
           break _L$2;
         }
@@ -31211,11 +31211,11 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           continue _L$2;
         }
         case 221: {
-          if (matched >= 64) {
-            matched = 64;
-            _end_pos = lexbuf$2.pos;
-            _capture_0_start.val = _start_pos;
-            _capture_0_end.val = _end_pos;
+          if (match_pattern >= 64) {
+            match_pattern = 64;
+            _match_end = lexbuf$2.pos;
+            _capture_0_start.val = _match_start;
+            _capture_0_end.val = _match_end;
           }
           const _bind$184 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf$2);
           let _tmp$188;
@@ -31248,11 +31248,11 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           continue _L$2;
         }
         case 222: {
-          if (matched >= 20) {
-            matched = 20;
-            _end_pos = lexbuf$2.pos;
-            _capture_0_start.val = _start_pos + 3 | 0;
-            _capture_0_end.val = _start_pos + 4 | 0;
+          if (match_pattern >= 20) {
+            match_pattern = 20;
+            _match_end = lexbuf$2.pos;
+            _capture_0_start.val = _match_start + 3 | 0;
+            _capture_0_end.val = _match_start + 4 | 0;
           }
           break _L$2;
         }
@@ -31361,13 +31361,13 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           continue _L$2;
         }
         case 231: {
-          if (matched >= 10) {
-            matched = 10;
-            _end_pos = lexbuf$2.pos;
-            _capture_0_start.val = _start_pos + 4 | 0;
-            _capture_0_end.val = _end_pos + -2 | 0;
-            _capture_1_start = _start_pos;
-            _capture_1_end = _end_pos;
+          if (match_pattern >= 10) {
+            match_pattern = 10;
+            _match_end = lexbuf$2.pos;
+            _capture_0_start.val = _match_start + 4 | 0;
+            _capture_0_end.val = _match_end + -2 | 0;
+            _capture_1_start = _match_start;
+            _capture_1_end = _match_end;
           }
           break _L$2;
         }
@@ -31402,11 +31402,11 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           continue _L$2;
         }
         case 234: {
-          if (matched >= 7) {
-            matched = 7;
-            _end_pos = lexbuf$2.pos;
-            _capture_0_start.val = _start_pos;
-            _capture_0_end.val = _start_pos + 6 | 0;
+          if (match_pattern >= 7) {
+            match_pattern = 7;
+            _match_end = lexbuf$2.pos;
+            _capture_0_start.val = _match_start;
+            _capture_0_end.val = _match_start + 6 | 0;
           }
           break _L$2;
         }
@@ -31422,11 +31422,11 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           continue _L$2;
         }
         case 236: {
-          if (matched >= 17) {
-            matched = 17;
-            _end_pos = lexbuf$2.pos;
-            _capture_0_start.val = _start_pos + 4 | 0;
-            _capture_0_end.val = _start_pos + 6 | 0;
+          if (match_pattern >= 17) {
+            match_pattern = 17;
+            _match_end = lexbuf$2.pos;
+            _capture_0_start.val = _match_start + 4 | 0;
+            _capture_0_end.val = _match_start + 6 | 0;
           }
           break _L$2;
         }
@@ -31442,29 +31442,29 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           continue _L$2;
         }
         case 238: {
-          if (matched >= 8) {
-            matched = 8;
-            _end_pos = lexbuf$2.pos;
-            _capture_0_start.val = _start_pos;
-            _capture_0_end.val = _start_pos + 7 | 0;
+          if (match_pattern >= 8) {
+            match_pattern = 8;
+            _match_end = lexbuf$2.pos;
+            _capture_0_start.val = _match_start;
+            _capture_0_end.val = _match_start + 7 | 0;
           }
           break _L$2;
         }
         case 239: {
-          if (matched >= 18) {
-            matched = 18;
-            _end_pos = lexbuf$2.pos;
-            _capture_0_start.val = _start_pos + 4 | 0;
-            _capture_0_end.val = _start_pos + 7 | 0;
+          if (match_pattern >= 18) {
+            match_pattern = 18;
+            _match_end = lexbuf$2.pos;
+            _capture_0_start.val = _match_start + 4 | 0;
+            _capture_0_end.val = _match_start + 7 | 0;
           }
           break _L$2;
         }
         case 240: {
-          if (matched >= 9) {
-            matched = 9;
-            _end_pos = lexbuf$2.pos;
-            _capture_0_start.val = _start_pos;
-            _capture_0_end.val = _start_pos + 8 | 0;
+          if (match_pattern >= 9) {
+            match_pattern = 9;
+            _match_end = lexbuf$2.pos;
+            _capture_0_start.val = _match_start;
+            _capture_0_end.val = _match_start + 8 | 0;
           }
           break _L$2;
         }
@@ -31474,13 +31474,13 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
         }
       }
     }
-    if (matched <= 70) {
-      moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$reset(lexbuf$2, _end_pos);
-      const _bind = matched;
+    if (match_pattern <= 70) {
+      moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$reset(lexbuf$2, _match_end);
+      const _bind = match_pattern;
       switch (_bind) {
         case 0: {
-          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$NEWLINE, _start_pos, _end_pos, 0);
-          env$2.current_bol = _end_pos;
+          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$NEWLINE, _match_start, _match_end, 0);
+          env$2.current_bol = _match_end;
           env$2.current_line = env$2.current_line + 1 | 0;
           continue _L;
         }
@@ -31488,48 +31488,48 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           continue _L;
         }
         case 2: {
-          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$FAT_ARROW, _start_pos, _end_pos, 0);
+          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$FAT_ARROW, _match_start, _match_end, 0);
           continue _L;
         }
         case 3: {
-          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$THIN_ARROW, _start_pos, _end_pos, 0);
+          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$THIN_ARROW, _match_start, _match_end, 0);
           continue _L;
         }
         case 4: {
           const repr = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$get_string(lexbuf$2, _capture_0_start.val, _capture_0_end.val);
           if (env$2.is_interpolation) {
-            moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_lexing_error(env$2, _start_pos, _end_pos, $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$lexer$46$LexicalError$InterpInvalidComment);
+            moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_lexing_error(env$2, _match_start, _match_end, $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$lexer$46$LexicalError$InterpInvalidComment);
           }
           if (env$2.comment) {
             const comment = { content: repr, kind: $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$ast_types$46$CommentKind$InlineTrailing, consumed_by_docstring: moonbitlang$core$ref$$new$38$(false) };
-            preserve_comment$2(comment, _start_pos, _end_pos);
-            moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$COMMENT(comment), _start_pos, _end_pos, 0);
+            preserve_comment$2(comment, _match_start, _match_end);
+            moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$COMMENT(comment), _match_start, _match_end, 0);
           }
           continue _L;
         }
         case 5: {
           const repr$2 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$get_string(lexbuf$2, _capture_0_start.val, _capture_0_end.val);
-          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$CHAR(repr$2), _start_pos, _end_pos, 0);
+          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$CHAR(repr$2), _match_start, _match_end, 0);
           continue _L;
         }
         case 6: {
           const repr$3 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$get_string(lexbuf$2, _capture_0_start.val, _capture_0_end.val);
-          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$CHAR(repr$3), _start_pos, _end_pos, 0);
+          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$CHAR(repr$3), _match_start, _match_end, 0);
           continue _L;
         }
         case 7: {
           const repr$4 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$get_string(lexbuf$2, _capture_0_start.val, _capture_0_end.val);
-          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$CHAR(repr$4), _start_pos, _end_pos, 0);
+          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$CHAR(repr$4), _match_start, _match_end, 0);
           continue _L;
         }
         case 8: {
           const repr$5 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$get_string(lexbuf$2, _capture_0_start.val, _capture_0_end.val);
-          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$CHAR(repr$5), _start_pos, _end_pos, 0);
+          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$CHAR(repr$5), _match_start, _match_end, 0);
           continue _L;
         }
         case 9: {
           const repr$6 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$get_string(lexbuf$2, _capture_0_start.val, _capture_0_end.val);
-          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$CHAR(repr$6), _start_pos, _end_pos, 0);
+          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$CHAR(repr$6), _match_start, _match_end, 0);
           continue _L;
         }
         case 10: {
@@ -31539,11 +31539,11 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           if (_bind$2 === undefined) {
             moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_lexing_error(env$2, _capture_1_start, _capture_1_end, new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$lexer$46$LexicalError$InvalidEscapeSequence(repr$7));
           }
-          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$CHAR(repr$7), _start_pos, _end_pos, 0);
+          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$CHAR(repr$7), _match_start, _match_end, 0);
           continue _L;
         }
         case 11: {
-          const startpos = _start_pos;
+          const startpos = _match_start;
           let tok;
           let interps;
           _L$3: {
@@ -31572,7 +31572,7 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           continue _L;
         }
         case 12: {
-          const startpos$2 = _start_pos;
+          const startpos$2 = _match_start;
           let tok$2;
           let _interps;
           _L$4: {
@@ -31602,9 +31602,9 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
         }
         case 13: {
           if (env$2.is_interpolation) {
-            moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_lexing_error(env$2, _start_pos, _end_pos, $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$lexer$46$LexicalError$InterpInvalidMultilineString);
+            moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_lexing_error(env$2, _match_start, _match_end, $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$lexer$46$LexicalError$InterpInvalidMultilineString);
           }
-          const startpos$3 = _start_pos;
+          const startpos$3 = _match_start;
           const tok$3 = new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$MULTILINE_INTERP(moonbitlang$ulex$lib$new_frontend$lexer$$string(lexbuf$2, env$2, true, true, startpos$3));
           const endpos$3 = lexbuf$2.pos;
           moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token(env$2, tok$3, moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$make_pos(env$2, startpos$3), moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$make_pos(env$2, endpos$3));
@@ -31613,34 +31613,34 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
         case 14: {
           const s = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$get_string(lexbuf$2, _capture_0_start.val, _capture_0_end.val);
           if (env$2.is_interpolation) {
-            moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_lexing_error(env$2, _start_pos, _end_pos, $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$lexer$46$LexicalError$InterpInvalidMultilineString);
+            moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_lexing_error(env$2, _match_start, _match_end, $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$lexer$46$LexicalError$InterpInvalidMultilineString);
           }
-          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$MULTILINE_STRING(s), _start_pos, _end_pos, 0);
+          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$MULTILINE_STRING(s), _match_start, _match_end, 0);
           continue _L;
         }
         case 15: {
           const attr = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$get_string(lexbuf$2, _capture_0_start.val, _capture_0_end.val);
           if (env$2.is_interpolation) {
-            moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_lexing_error(env$2, _start_pos, _end_pos, $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$lexer$46$LexicalError$InterpInvalidAttribute);
+            moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_lexing_error(env$2, _match_start, _match_end, $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$lexer$46$LexicalError$InterpInvalidAttribute);
           }
-          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$ATTRIBUTE(attr), _start_pos, _end_pos, 0);
+          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$ATTRIBUTE(attr), _match_start, _match_end, 0);
           continue _L;
         }
         case 16: {
           const pkgname = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$get_string(lexbuf$2, _capture_0_start.val, _capture_0_end.val);
-          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$PACKAGE_NAME(pkgname), _start_pos, _end_pos, 0);
+          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$PACKAGE_NAME(pkgname), _match_start, _match_end, 0);
           continue _L;
         }
         case 17: {
           const hex$2 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$get_string(lexbuf$2, _capture_0_start.val, _capture_0_end.val);
           const literal = `\\x${hex$2}`;
-          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$BYTE(literal), _start_pos, _end_pos, 0);
+          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$BYTE(literal), _match_start, _match_end, 0);
           continue _L;
         }
         case 18: {
           const oct = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$get_string(lexbuf$2, _capture_0_start.val, _capture_0_end.val);
           const literal$2 = `\\o${oct}`;
-          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$BYTE(literal$2), _start_pos, _end_pos, 0);
+          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$BYTE(literal$2), _match_start, _match_end, 0);
           continue _L;
         }
         case 19: {
@@ -31648,7 +31648,7 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           const _self = moonbitlang$core$builtin$$StringBuilder$new(0);
           moonbitlang$core$builtin$$Logger$write_char$122$(_self, ascii);
           const _p = _self;
-          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$BYTE(_p.val), _start_pos, _end_pos, 0);
+          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$BYTE(_p.val), _match_start, _match_end, 0);
           continue _L;
         }
         case 20: {
@@ -31657,7 +31657,7 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           moonbitlang$core$builtin$$Logger$write_char$122$(_self$2, e);
           const _p$2 = _self$2;
           const literal$3 = `\\${_p$2.val}`;
-          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$BYTE(literal$3), _start_pos, _end_pos, 0);
+          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$BYTE(literal$3), _match_start, _match_end, 0);
           continue _L;
         }
         case 21: {
@@ -31666,23 +31666,23 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           continue _L;
         }
         case 22: {
-          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$AMPERAMPER, _start_pos, _end_pos, 0);
+          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$AMPERAMPER, _match_start, _match_end, 0);
           continue _L;
         }
         case 23: {
-          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$AMPER, _start_pos, _end_pos, 0);
+          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$AMPER, _match_start, _match_end, 0);
           continue _L;
         }
         case 24: {
-          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$CARET, _start_pos, _end_pos, 0);
+          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$CARET, _match_start, _match_end, 0);
           continue _L;
         }
         case 25: {
-          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$LPAREN, _start_pos, _end_pos, 0);
+          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$LPAREN, _match_start, _match_end, 0);
           continue _L;
         }
         case 26: {
-          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$RPAREN, _start_pos, _end_pos, 0);
+          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$RPAREN, _match_start, _match_end, 0);
           continue _L;
         }
         case 27: {
@@ -31695,23 +31695,23 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           continue _L;
         }
         case 28: {
-          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$INFIX3("*"), _start_pos, _end_pos, 0);
+          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$INFIX3("*"), _match_start, _match_end, 0);
           continue _L;
         }
         case 29: {
-          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$INFIX3("/"), _start_pos, _end_pos, 0);
+          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$INFIX3("/"), _match_start, _match_end, 0);
           continue _L;
         }
         case 30: {
-          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$INFIX3("%"), _start_pos, _end_pos, 0);
+          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$INFIX3("%"), _match_start, _match_end, 0);
           continue _L;
         }
         case 31: {
-          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$COMMA, _start_pos, _end_pos, 0);
+          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$COMMA, _match_start, _match_end, 0);
           continue _L;
         }
         case 32: {
-          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$DOT_LPAREN, _start_pos, _end_pos, 0);
+          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$DOT_LPAREN, _match_start, _match_end, 0);
           continue _L;
         }
         case 33: {
@@ -31740,19 +31740,19 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           continue _L;
         }
         case 34: {
-          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$ELLIPSIS, _start_pos, _end_pos, 0);
+          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$ELLIPSIS, _match_start, _match_end, 0);
           continue _L;
         }
         case 35: {
-          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$RANGE_INCLUSIVE, _start_pos, _end_pos, 0);
+          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$RANGE_INCLUSIVE, _match_start, _match_end, 0);
           continue _L;
         }
         case 36: {
-          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$RANGE_EXCLUSIVE, _start_pos, _end_pos, 0);
+          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$RANGE_EXCLUSIVE, _match_start, _match_end, 0);
           continue _L;
         }
         case 37: {
-          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$DOTDOT, _start_pos, _end_pos, 0);
+          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$DOTDOT, _match_start, _match_end, 0);
           continue _L;
         }
         case 38: {
@@ -31766,95 +31766,95 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           continue _L;
         }
         case 40: {
-          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$COLONCOLON, _start_pos, _end_pos, 0);
+          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$COLONCOLON, _match_start, _match_end, 0);
           continue _L;
         }
         case 41: {
-          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$COLON, _start_pos, _end_pos, 0);
+          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$COLON, _match_start, _match_end, 0);
           continue _L;
         }
         case 42: {
-          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$SEMI(true), _start_pos, _end_pos, 0);
+          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$SEMI(true), _match_start, _match_end, 0);
           continue _L;
         }
         case 43: {
-          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$INFIX1("=="), _start_pos, _end_pos, 0);
+          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$INFIX1("=="), _match_start, _match_end, 0);
           continue _L;
         }
         case 44: {
-          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$EQUAL, _start_pos, _end_pos, 0);
+          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$EQUAL, _match_start, _match_end, 0);
           continue _L;
         }
         case 45: {
-          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$INFIX1("<="), _start_pos, _end_pos, 0);
+          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$INFIX1("<="), _match_start, _match_end, 0);
           continue _L;
         }
         case 46: {
-          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$INFIX1(">="), _start_pos, _end_pos, 0);
+          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$INFIX1(">="), _match_start, _match_end, 0);
           continue _L;
         }
         case 47: {
-          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$INFIX2(">>"), _start_pos, _end_pos, 0);
+          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$INFIX2(">>"), _match_start, _match_end, 0);
           continue _L;
         }
         case 48: {
-          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$INFIX1(">"), _start_pos, _end_pos, 0);
+          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$INFIX1(">"), _match_start, _match_end, 0);
           continue _L;
         }
         case 49: {
-          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$INFIX2("<<"), _start_pos, _end_pos, 0);
+          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$INFIX2("<<"), _match_start, _match_end, 0);
           continue _L;
         }
         case 50: {
-          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$INFIX1("<"), _start_pos, _end_pos, 0);
+          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$INFIX1("<"), _match_start, _match_end, 0);
           continue _L;
         }
         case 51: {
-          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$LBRACKET, _start_pos, _end_pos, 0);
+          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$LBRACKET, _match_start, _match_end, 0);
           continue _L;
         }
         case 52: {
-          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$RBRACKET, _start_pos, _end_pos, 0);
+          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$RBRACKET, _match_start, _match_end, 0);
           continue _L;
         }
         case 53: {
-          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$LBRACE, _start_pos, _end_pos, 0);
+          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$LBRACE, _match_start, _match_end, 0);
           continue _L;
         }
         case 54: {
-          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$RBRACE, _start_pos, _end_pos, 0);
+          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$RBRACE, _match_start, _match_end, 0);
           continue _L;
         }
         case 55: {
-          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$PIPE, _start_pos, _end_pos, 0);
+          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$PIPE, _match_start, _match_end, 0);
           continue _L;
         }
         case 56: {
-          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$BARBAR, _start_pos, _end_pos, 0);
+          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$BARBAR, _match_start, _match_end, 0);
           continue _L;
         }
         case 57: {
-          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$BAR, _start_pos, _end_pos, 0);
+          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$BAR, _match_start, _match_end, 0);
           continue _L;
         }
         case 58: {
-          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$PLUS, _start_pos, _end_pos, 0);
+          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$PLUS, _match_start, _match_end, 0);
           continue _L;
         }
         case 59: {
-          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$MINUS, _start_pos, _end_pos, 0);
+          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$MINUS, _match_start, _match_end, 0);
           continue _L;
         }
         case 60: {
-          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$QUESTION, _start_pos, _end_pos, 0);
+          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$QUESTION, _match_start, _match_end, 0);
           continue _L;
         }
         case 61: {
-          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$INFIX1("!="), _start_pos, _end_pos, 0);
+          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$INFIX1("!="), _match_start, _match_end, 0);
           continue _L;
         }
         case 62: {
-          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$EXCLAMATION, _start_pos, _end_pos, 0);
+          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$EXCLAMATION, _match_start, _match_end, 0);
           continue _L;
         }
         case 63: {
@@ -31865,12 +31865,12 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
         }
         case 64: {
           const float = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$get_string(lexbuf$2, _capture_0_start.val, _capture_0_end.val);
-          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$FLOAT(float), _start_pos, _end_pos, 0);
+          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$FLOAT(float), _match_start, _match_end, 0);
           continue _L;
         }
         case 65: {
           const integer$2 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$get_string(lexbuf$2, _capture_0_start.val, _capture_0_end.val);
-          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$INT(integer$2), _start_pos, _end_pos, 0);
+          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$INT(integer$2), _match_start, _match_end, 0);
           continue _L;
         }
         case 66: {
@@ -31886,18 +31886,18 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           } else {
             token = new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$UIDENT(raw);
           }
-          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, token, _start_pos, _end_pos, 0);
+          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, token, _match_start, _match_end, 0);
           continue _L;
         }
         case 68: {
           const raw$2 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$get_string(lexbuf$2, _capture_0_start.val, _capture_0_end.val);
-          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$POST_LABEL(raw$2), _start_pos, _end_pos, 0);
+          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$tokens$46$Token$POST_LABEL(raw$2), _match_start, _match_end, 0);
           continue _L;
         }
         case 69: {
           const raw$3 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$get_string(lexbuf$2, _capture_0_start.val, _capture_0_end.val);
           if (moonbitlang$core$hashset$$T$contains$0$(moonbitlang$ulex$lib$new_frontend$lexer$$reserved_keyword_table, raw$3)) {
-            moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_lexing_error(env$2, _start_pos, _end_pos, new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$lexer$46$LexicalError$Reserved_keyword(raw$3));
+            moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_lexing_error(env$2, _match_start, _match_end, new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$lexer$46$LexicalError$Reserved_keyword(raw$3));
           }
           const _bind$3 = moonbitlang$core$hashmap$$T$get$1$(moonbitlang$ulex$lib$new_frontend$lexer$$keyword_table, raw$3);
           let _tmp$5;
@@ -31908,12 +31908,12 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
             const _tok = _Some;
             _tmp$5 = _tok;
           }
-          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, _tmp$5, _start_pos, _end_pos, 0);
+          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_token_with_loc(env$2, _tmp$5, _match_start, _match_end, 0);
           continue _L;
         }
         case 70: {
           const c = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$get_char(lexbuf$2, _capture_0_start.val, _capture_0_end.val);
-          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_lexing_error(env$2, _start_pos, _end_pos, new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$lexer$46$LexicalError$IllegalCharacter(c));
+          moonbitlang$ulex$lib$new_frontend$lexer$$LexEnv$add_lexing_error(env$2, _match_start, _match_end, new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$lexer$46$LexicalError$IllegalCharacter(c));
           continue _L;
         }
         default: {
@@ -37130,9 +37130,9 @@ function moonbitlang$ulex$lib$new_frontend$regex_parser$$parse_integer(input) {
   }
 }
 function moonbitlang$ulex$lib$new_frontend$regex_parser$$token(lexbuf) {
-  let matched = moonbitlang$core$int$$max_value;
-  let _end_pos = -1;
-  let _start_pos = lexbuf.pos;
+  let match_pattern = moonbitlang$core$int$$max_value;
+  let _match_start = lexbuf.pos;
+  let _match_end = -1;
   let _capture_0_start = -1;
   let _capture_0_end = -1;
   let _capture_1_start = -1;
@@ -37239,90 +37239,90 @@ function moonbitlang$ulex$lib$new_frontend$regex_parser$$token(lexbuf) {
         continue _L;
       }
       case 1: {
-        if (matched >= 0) {
-          matched = 0;
-          _end_pos = lexbuf.pos;
+        if (match_pattern >= 0) {
+          match_pattern = 0;
+          _match_end = lexbuf.pos;
         }
         break _L;
       }
       case 2: {
-        if (matched >= 31) {
-          matched = 31;
-          _end_pos = lexbuf.pos;
-          _capture_0_start = _start_pos;
-          _capture_0_end = _start_pos + 1 | 0;
+        if (match_pattern >= 31) {
+          match_pattern = 31;
+          _match_end = lexbuf.pos;
+          _capture_0_start = _match_start;
+          _capture_0_end = _match_start + 1 | 0;
         }
         break _L;
       }
       case 3: {
-        if (matched >= 3) {
-          matched = 3;
-          _end_pos = lexbuf.pos;
+        if (match_pattern >= 3) {
+          match_pattern = 3;
+          _match_end = lexbuf.pos;
         }
         break _L;
       }
       case 4: {
-        if (matched >= 14) {
-          matched = 14;
-          _end_pos = lexbuf.pos;
+        if (match_pattern >= 14) {
+          match_pattern = 14;
+          _match_end = lexbuf.pos;
         }
         break _L;
       }
       case 5: {
-        if (matched >= 15) {
-          matched = 15;
-          _end_pos = lexbuf.pos;
+        if (match_pattern >= 15) {
+          match_pattern = 15;
+          _match_end = lexbuf.pos;
         }
         break _L;
       }
       case 6: {
-        if (matched >= 8) {
-          matched = 8;
-          _end_pos = lexbuf.pos;
+        if (match_pattern >= 8) {
+          match_pattern = 8;
+          _match_end = lexbuf.pos;
         }
         break _L;
       }
       case 7: {
-        if (matched >= 9) {
-          matched = 9;
-          _end_pos = lexbuf.pos;
+        if (match_pattern >= 9) {
+          match_pattern = 9;
+          _match_end = lexbuf.pos;
         }
         break _L;
       }
       case 8: {
-        if (matched >= 7) {
-          matched = 7;
-          _end_pos = lexbuf.pos;
+        if (match_pattern >= 7) {
+          match_pattern = 7;
+          _match_end = lexbuf.pos;
         }
         break _L;
       }
       case 9: {
-        if (matched >= 2) {
-          matched = 2;
-          _end_pos = lexbuf.pos;
+        if (match_pattern >= 2) {
+          match_pattern = 2;
+          _match_end = lexbuf.pos;
         }
         break _L;
       }
       case 10: {
-        if (matched >= 10) {
-          matched = 10;
-          _end_pos = lexbuf.pos;
+        if (match_pattern >= 10) {
+          match_pattern = 10;
+          _match_end = lexbuf.pos;
         }
         break _L;
       }
       case 11: {
-        if (matched >= 4) {
-          matched = 4;
-          _end_pos = lexbuf.pos;
+        if (match_pattern >= 4) {
+          match_pattern = 4;
+          _match_end = lexbuf.pos;
         }
         break _L;
       }
       case 12: {
-        if (matched >= 31) {
-          matched = 31;
-          _end_pos = lexbuf.pos;
-          _capture_0_start = _start_pos;
-          _capture_0_end = _start_pos + 1 | 0;
+        if (match_pattern >= 31) {
+          match_pattern = 31;
+          _match_end = lexbuf.pos;
+          _capture_0_start = _match_start;
+          _capture_0_end = _match_start + 1 | 0;
         }
         const _bind$2 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$next_as_int$194$(lexbuf);
         let _tmp$3;
@@ -37387,25 +37387,25 @@ function moonbitlang$ulex$lib$new_frontend$regex_parser$$token(lexbuf) {
         continue _L;
       }
       case 13: {
-        if (matched >= 5) {
-          matched = 5;
-          _end_pos = lexbuf.pos;
+        if (match_pattern >= 5) {
+          match_pattern = 5;
+          _match_end = lexbuf.pos;
         }
         break _L;
       }
       case 14: {
-        if (matched >= 6) {
-          matched = 6;
-          _end_pos = lexbuf.pos;
+        if (match_pattern >= 6) {
+          match_pattern = 6;
+          _match_end = lexbuf.pos;
         }
         break _L;
       }
       case 15: {
-        if (matched >= 31) {
-          matched = 31;
-          _end_pos = lexbuf.pos;
-          _capture_0_start = _start_pos;
-          _capture_0_end = _start_pos + 1 | 0;
+        if (match_pattern >= 31) {
+          match_pattern = 31;
+          _match_end = lexbuf.pos;
+          _capture_0_start = _match_start;
+          _capture_0_end = _match_start + 1 | 0;
         }
         const _bind$3 = moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$next_as_int$194$(lexbuf);
         let _tmp$4;
@@ -37426,108 +37426,108 @@ function moonbitlang$ulex$lib$new_frontend$regex_parser$$token(lexbuf) {
         continue _L;
       }
       case 16: {
-        if (matched >= 16) {
-          matched = 16;
-          _end_pos = lexbuf.pos;
+        if (match_pattern >= 16) {
+          match_pattern = 16;
+          _match_end = lexbuf.pos;
         }
         break _L;
       }
       case 17: {
-        if (matched >= 23) {
-          matched = 23;
-          _end_pos = lexbuf.pos;
-          _capture_0_start = _start_pos;
-          _capture_0_end = _start_pos + 2 | 0;
+        if (match_pattern >= 23) {
+          match_pattern = 23;
+          _match_end = lexbuf.pos;
+          _capture_0_start = _match_start;
+          _capture_0_end = _match_start + 2 | 0;
         }
         break _L;
       }
       case 18: {
-        if (matched >= 18) {
-          matched = 18;
-          _end_pos = lexbuf.pos;
-          _capture_0_start = _start_pos;
-          _capture_0_end = _start_pos + 2 | 0;
+        if (match_pattern >= 18) {
+          match_pattern = 18;
+          _match_end = lexbuf.pos;
+          _capture_0_start = _match_start;
+          _capture_0_end = _match_start + 2 | 0;
         }
         break _L;
       }
       case 19: {
-        if (matched >= 19) {
-          matched = 19;
-          _end_pos = lexbuf.pos;
-          _capture_0_start = _start_pos;
-          _capture_0_end = _start_pos + 2 | 0;
+        if (match_pattern >= 19) {
+          match_pattern = 19;
+          _match_end = lexbuf.pos;
+          _capture_0_start = _match_start;
+          _capture_0_end = _match_start + 2 | 0;
         }
         break _L;
       }
       case 20: {
-        if (matched >= 26) {
-          matched = 26;
-          _end_pos = lexbuf.pos;
-          _capture_0_start = _start_pos;
-          _capture_0_end = _start_pos + 2 | 0;
+        if (match_pattern >= 26) {
+          match_pattern = 26;
+          _match_end = lexbuf.pos;
+          _capture_0_start = _match_start;
+          _capture_0_end = _match_start + 2 | 0;
         }
         break _L;
       }
       case 21: {
-        if (matched >= 25) {
-          matched = 25;
-          _end_pos = lexbuf.pos;
-          _capture_0_start = _start_pos;
-          _capture_0_end = _start_pos + 2 | 0;
+        if (match_pattern >= 25) {
+          match_pattern = 25;
+          _match_end = lexbuf.pos;
+          _capture_0_start = _match_start;
+          _capture_0_end = _match_start + 2 | 0;
         }
         break _L;
       }
       case 22: {
-        if (matched >= 22) {
-          matched = 22;
-          _end_pos = lexbuf.pos;
-          _capture_0_start = _start_pos;
-          _capture_0_end = _start_pos + 2 | 0;
+        if (match_pattern >= 22) {
+          match_pattern = 22;
+          _match_end = lexbuf.pos;
+          _capture_0_start = _match_start;
+          _capture_0_end = _match_start + 2 | 0;
         }
         break _L;
       }
       case 23: {
-        if (matched >= 27) {
-          matched = 27;
-          _end_pos = lexbuf.pos;
-          _capture_0_start = _start_pos;
-          _capture_0_end = _start_pos + 2 | 0;
+        if (match_pattern >= 27) {
+          match_pattern = 27;
+          _match_end = lexbuf.pos;
+          _capture_0_start = _match_start;
+          _capture_0_end = _match_start + 2 | 0;
         }
         break _L;
       }
       case 24: {
-        if (matched >= 20) {
-          matched = 20;
-          _end_pos = lexbuf.pos;
-          _capture_0_start = _start_pos;
-          _capture_0_end = _start_pos + 2 | 0;
+        if (match_pattern >= 20) {
+          match_pattern = 20;
+          _match_end = lexbuf.pos;
+          _capture_0_start = _match_start;
+          _capture_0_end = _match_start + 2 | 0;
         }
         break _L;
       }
       case 25: {
-        if (matched >= 17) {
-          matched = 17;
-          _end_pos = lexbuf.pos;
-          _capture_0_start = _start_pos;
-          _capture_0_end = _start_pos + 2 | 0;
+        if (match_pattern >= 17) {
+          match_pattern = 17;
+          _match_end = lexbuf.pos;
+          _capture_0_start = _match_start;
+          _capture_0_end = _match_start + 2 | 0;
         }
         break _L;
       }
       case 26: {
-        if (matched >= 21) {
-          matched = 21;
-          _end_pos = lexbuf.pos;
-          _capture_0_start = _start_pos;
-          _capture_0_end = _start_pos + 2 | 0;
+        if (match_pattern >= 21) {
+          match_pattern = 21;
+          _match_end = lexbuf.pos;
+          _capture_0_start = _match_start;
+          _capture_0_end = _match_start + 2 | 0;
         }
         break _L;
       }
       case 27: {
-        if (matched >= 24) {
-          matched = 24;
-          _end_pos = lexbuf.pos;
-          _capture_0_start = _start_pos;
-          _capture_0_end = _start_pos + 2 | 0;
+        if (match_pattern >= 24) {
+          match_pattern = 24;
+          _match_end = lexbuf.pos;
+          _capture_0_start = _match_start;
+          _capture_0_end = _match_start + 2 | 0;
         }
         break _L;
       }
@@ -37555,11 +37555,11 @@ function moonbitlang$ulex$lib$new_frontend$regex_parser$$token(lexbuf) {
         continue _L;
       }
       case 29: {
-        if (matched >= 28) {
-          matched = 28;
-          _end_pos = lexbuf.pos;
-          _capture_0_start = _start_pos;
-          _capture_0_end = _start_pos + 2 | 0;
+        if (match_pattern >= 28) {
+          match_pattern = 28;
+          _match_end = lexbuf.pos;
+          _capture_0_start = _match_start;
+          _capture_0_end = _match_start + 2 | 0;
         }
         break _L;
       }
@@ -37673,11 +37673,11 @@ function moonbitlang$ulex$lib$new_frontend$regex_parser$$token(lexbuf) {
         continue _L;
       }
       case 36: {
-        if (matched >= 13) {
-          matched = 13;
-          _end_pos = lexbuf.pos;
-          _capture_0_start = _start_pos + 1 | 0;
-          _capture_0_end = _end_pos + -1 | 0;
+        if (match_pattern >= 13) {
+          match_pattern = 13;
+          _match_end = lexbuf.pos;
+          _capture_0_start = _match_start + 1 | 0;
+          _capture_0_end = _match_end + -1 | 0;
         }
         break _L;
       }
@@ -37761,11 +37761,11 @@ function moonbitlang$ulex$lib$new_frontend$regex_parser$$token(lexbuf) {
         continue _L;
       }
       case 42: {
-        if (matched >= 12) {
-          matched = 12;
-          _end_pos = lexbuf.pos;
-          _capture_0_start = _start_pos + 1 | 0;
-          _capture_0_end = _end_pos + -2 | 0;
+        if (match_pattern >= 12) {
+          match_pattern = 12;
+          _match_end = lexbuf.pos;
+          _capture_0_start = _match_start + 1 | 0;
+          _capture_0_end = _match_end + -2 | 0;
         }
         break _L;
       }
@@ -37800,24 +37800,24 @@ function moonbitlang$ulex$lib$new_frontend$regex_parser$$token(lexbuf) {
         continue _L;
       }
       case 45: {
-        if (matched >= 29) {
-          matched = 29;
-          _end_pos = lexbuf.pos;
-          _capture_0_start = _start_pos;
-          _capture_0_end = _end_pos;
-          _capture_1_start = _start_pos + 3 | 0;
-          _capture_1_end = _end_pos + -1 | 0;
+        if (match_pattern >= 29) {
+          match_pattern = 29;
+          _match_end = lexbuf.pos;
+          _capture_0_start = _match_start;
+          _capture_0_end = _match_end;
+          _capture_1_start = _match_start + 3 | 0;
+          _capture_1_end = _match_end + -1 | 0;
         }
         break _L;
       }
       case 46: {
-        if (matched >= 11) {
-          matched = 11;
-          _end_pos = lexbuf.pos;
-          _capture_0_start = _start_pos + 1 | 0;
+        if (match_pattern >= 11) {
+          match_pattern = 11;
+          _match_end = lexbuf.pos;
+          _capture_0_start = _match_start + 1 | 0;
           _capture_0_end = _tag_0;
           _capture_1_start = _tag_1;
-          _capture_1_end = _end_pos + -1 | 0;
+          _capture_1_end = _match_end + -1 | 0;
         }
         break _L;
       }
@@ -37833,13 +37833,13 @@ function moonbitlang$ulex$lib$new_frontend$regex_parser$$token(lexbuf) {
         continue _L;
       }
       case 48: {
-        if (matched >= 30) {
-          matched = 30;
-          _end_pos = lexbuf.pos;
-          _capture_0_start = _start_pos;
-          _capture_0_end = _start_pos + 6 | 0;
-          _capture_1_start = _start_pos + 2 | 0;
-          _capture_1_end = _start_pos + 6 | 0;
+        if (match_pattern >= 30) {
+          match_pattern = 30;
+          _match_end = lexbuf.pos;
+          _capture_0_start = _match_start;
+          _capture_0_end = _match_start + 6 | 0;
+          _capture_1_start = _match_start + 2 | 0;
+          _capture_1_end = _match_start + 6 | 0;
         }
         break _L;
       }
@@ -37937,11 +37937,11 @@ function moonbitlang$ulex$lib$new_frontend$regex_parser$$token(lexbuf) {
         continue _L;
       }
       case 56: {
-        if (matched >= 1) {
-          matched = 1;
-          _end_pos = lexbuf.pos;
-          _capture_0_start = _start_pos + 10 | 0;
-          _capture_0_end = _end_pos + -2 | 0;
+        if (match_pattern >= 1) {
+          match_pattern = 1;
+          _match_end = lexbuf.pos;
+          _capture_0_start = _match_start + 10 | 0;
+          _capture_0_end = _match_end + -2 | 0;
         }
         break _L;
       }
@@ -37951,9 +37951,9 @@ function moonbitlang$ulex$lib$new_frontend$regex_parser$$token(lexbuf) {
       }
     }
   }
-  if (matched <= 31) {
-    moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$reset$194$(lexbuf, _end_pos);
-    const _bind = matched;
+  if (match_pattern <= 31) {
+    moonbitlang$ulex$45$runtime$lexbuf$$IStringLexbuf$reset$194$(lexbuf, _match_end);
+    const _bind = match_pattern;
     switch (_bind) {
       case 0: {
         return $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$regex_parser$46$Token$EOF;
@@ -39455,7 +39455,7 @@ function moonbitlang$ulex$lib$new_frontend$driver$$expand_term(term, named_regex
             break;
           }
         }
-        const rule = { name: "", signature: "", lexbuf_var: _tmp, patterns: _p };
+        const rule = { name: "", signature: "", lexee_var: _tmp, patterns: _p };
         const code = moonbitlang$ulex$lib$codegen$$codegen_rule_inner(rule, 0, 2);
         const code$2 = `{\n  ()\n${code}\n}`;
         return new $64$moonbitlang$47$ulex$47$lib$47$new_frontend$47$ast$46$Term$GeneratedCode(code$2, _loc$2);

@@ -2,9 +2,9 @@
 
 fn test_func[T : @lexbuf.IStringLexbuf](lexbuf : T) -> String  {
   // The matched pattern id
-  let mut matched = @int.max_value
-  let mut _end_pos = -1
-  let mut _start_pos = lexbuf.curr_pos()
+  let mut _match_pattern = @int.max_value
+  let mut _match_start = lexbuf.curr_pos()
+  let mut _match_end = -1
   let mut _capture_0_start = -1
   let mut _capture_0_end = -1
   let mut _capture_1_start = -1
@@ -17,11 +17,11 @@ fn test_func[T : @lexbuf.IStringLexbuf](lexbuf : T) -> String  {
       }
     }
     1 => {
-      if matched >= 0 {
-        matched = 0
-        _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _start_pos
-        _capture_0_end = _end_pos
+      if _match_pattern >= 0 {
+        _match_pattern = 0
+        _match_end = lexbuf.curr_pos()
+        _capture_0_start = _match_start
+        _capture_0_end = _match_end
       }
       continue match lexbuf.next_as_int() {
         97..=98 => 2
@@ -36,11 +36,11 @@ fn test_func[T : @lexbuf.IStringLexbuf](lexbuf : T) -> String  {
       }
     }
     3 => {
-      if matched >= 0 {
-        matched = 0
-        _end_pos = lexbuf.curr_pos()
-        _capture_0_start = _start_pos
-        _capture_0_end = _end_pos
+      if _match_pattern >= 0 {
+        _match_pattern = 0
+        _match_end = lexbuf.curr_pos()
+        _capture_0_start = _match_start
+        _capture_0_end = _match_end
       }
       continue match lexbuf.next_as_int() {
         97 => 3
@@ -51,13 +51,13 @@ fn test_func[T : @lexbuf.IStringLexbuf](lexbuf : T) -> String  {
     _ => panic()
   }
 
-  guard matched <= 0 else {
+  guard _match_pattern <= 0 else {
     // No pattern matched
     panic()
   }
 
-  lexbuf.reset(pos=_end_pos)
-  match matched {
+  lexbuf.reset(pos=_match_end)
+  match _match_pattern {
     0 => {
       ()
       let t2 = lexbuf.get_string(_capture_0_start, _capture_0_end)

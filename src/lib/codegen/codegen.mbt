@@ -26,14 +26,14 @@ fn rewrite_codeblock(
   let buf = StringBuilder::new()
   let mut last_index = 0
   for item in subst {
-    // replace `$startpos(t)`/`$endpos(t)` with `_start_pos_of_t`/`_end_pos_of_t`
+    // replace `$startpos(t)`/`$endpos(t)` with `_match_start_of_t`/`_match_end_of_t`
     buf.write_substring(codeblock, last_index, item.start - last_index)
     match item.desc {
       StartPosOf(name) =>
         buf.write_string("_capture_\{index_of_name(name)}_start")
       EndPosOf(name) => buf.write_string("_capture_\{index_of_name(name)}_end")
-      StartPos => buf.write_string("_start_pos")
-      EndPos => buf.write_string("_end_pos")
+      StartPos => buf.write_string("_match_start")
+      EndPos => buf.write_string("_match_end")
     }
     last_index = item.end
   }
@@ -104,9 +104,9 @@ pub fn codegen_rule_inner(
   let max_pattern_id = dfa.code_blocks.length() - 1
   out.write_string(
     $|  // The matched pattern id
-    $|  let mut matched = @int.max_value
-    $|  let mut _end_pos = -1
-    $|  let mut _start_pos = \{rule.lexee_var}.curr_pos()
+    $|  let mut _match_pattern = @int.max_value
+    $|  let mut _match_start = \{rule.lexee_var}.curr_pos()
+    $|  let mut _match_end = -1
     $|
     ,
   )
@@ -190,9 +190,9 @@ pub fn codegen_rule_inner(
     }
     if dfa.end_nodes.get(state_num) is Some((pattern_id, captures)) {
       out.write_string(
-        $|      if matched >= \{pattern_id} {
-        $|        matched = \{pattern_id}
-        $|        _end_pos = \{rule.lexee_var}.curr_pos()
+        $|      if _match_pattern >= \{pattern_id} {
+        $|        _match_pattern = \{pattern_id}
+        $|        _match_end = \{rule.lexee_var}.curr_pos()
         $|
         ,
       )
@@ -205,18 +205,18 @@ pub fn codegen_rule_inner(
             )
           Static_dfa(RelativeToStart(offset)) =>
             if offset == 0 {
-              out.write_string("        _capture_\{index}_start = _start_pos\n")
+              out.write_string("        _capture_\{index}_start = _match_start\n")
             } else {
               out.write_string(
-                "        _capture_\{index}_start = _start_pos + \{offset}\n",
+                "        _capture_\{index}_start = _match_start + \{offset}\n",
               )
             }
           Static_dfa(RelativeToEnd(offset)) =>
             if offset == 0 {
-              out.write_string("        _capture_\{index}_start = _end_pos\n")
+              out.write_string("        _capture_\{index}_start = _match_end\n")
             } else {
               out.write_string(
-                "        _capture_\{index}_start = _end_pos + \{offset}\n",
+                "        _capture_\{index}_start = _match_end + \{offset}\n",
               )
             }
         }
@@ -227,18 +227,18 @@ pub fn codegen_rule_inner(
             )
           Static_dfa(RelativeToStart(offset)) =>
             if offset == 0 {
-              out.write_string("        _capture_\{index}_end = _start_pos\n")
+              out.write_string("        _capture_\{index}_end = _match_start\n")
             } else {
               out.write_string(
-                "        _capture_\{index}_end = _start_pos + \{offset}\n",
+                "        _capture_\{index}_end = _match_start + \{offset}\n",
               )
             }
           Static_dfa(RelativeToEnd(offset)) =>
             if offset == 0 {
-              out.write_string("        _capture_\{index}_end = _end_pos\n")
+              out.write_string("        _capture_\{index}_end = _match_end\n")
             } else {
               out.write_string(
-                "        _capture_\{index}_end = _end_pos + \{offset}\n",
+                "        _capture_\{index}_end = _match_end + \{offset}\n",
               )
             }
         }
@@ -296,13 +296,13 @@ pub fn codegen_rule_inner(
   )
   out.write_string(
     $|
-    $|  guard matched <= \{max_pattern_id} else {
+    $|  guard _match_pattern <= \{max_pattern_id} else {
     $|    // No pattern matched
     $|    panic()
     $|  }
     $|
-    $|  \{rule.lexee_var}.reset(pos=_end_pos)
-    $|  match matched {
+    $|  \{rule.lexee_var}.reset(pos=_match_end)
+    $|  match _match_pattern {
     $|
     ,
   )
