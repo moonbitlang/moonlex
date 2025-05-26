@@ -1,0 +1,74 @@
+%start regex_eof
+
+%token EOF
+%token<Char> CHAR
+%token<(Char, String)> CHAR_ESCAPE
+%token DOT "."
+%token DOLLAR "$"
+%token LBRACKET "["
+%token RBRACKET "]"
+%token CARET "^"
+%token MINUS "-"
+%token STAR "*"
+%token PLUS "+"
+%token QUESTION "?"
+%token<(Int, Int?)> REPEAT
+%token LPAREN "("
+%token RPAREN ")"
+%token BAR "|"
+// {{named_regex}}
+%token<String> TOKEN 
+
+%%
+
+regex_eof -> (Context) -> Regex
+  : alternation EOF { $1 }
+  ;
+
+alternation -> (Context) -> Regex
+  : concatenation { $1 }
+  | concatenation "|" alternation { fn { ctx => @regex.alt($1(ctx), $3(ctx)) } }
+  ;
+
+concatenation -> (Context) -> Regex
+  : repetition { $1 }
+  | repetition concatenation { fn { ctx => @regex.seq($1(ctx), $2(ctx)) } }
+  ;
+
+repetition -> (Context) -> Regex
+  : primary { $1 }
+  | primary "*" { fn { ctx => @regex.star($1(ctx)) } }
+  | primary "+" { fn { ctx => @regex.plus($1(ctx)) } }
+  | primary "?" { fn { ctx => @regex.opt($1(ctx)) } }
+  | primary REPEAT { fn { ctx => @regex.repeat($1(ctx), min_times=$2.0, max_times?=$2.1) } }
+  ;
+
+primary -> (Context) -> Regex
+  : "(" alternation ")" { fn { ctx => $2(ctx) } }
+  | TOKEN { fn { ctx => ctx.named_regexes.get($1).unwrap() } }
+  | character_class { fn { _ctx => @regex.char_class($1) } }
+  | character { fn { _ctx => @regex.char_class(@char_set.singleton($1)) } }
+  | "-" { fn { _ctx => @regex.char_class(@char_set.singleton('-')) } }
+  | "." { fn { _ctx => @regex.char_class(@char_set.any) }  }
+  | "$" { fn { _ctx => @regex.eof } }
+  ;
+
+character_class -> @char_set.T
+  : "[" character_class_inner "]" { $2 }
+  | "[" "^" character_class_inner "]" { @char_set.complement($3) }
+  ;
+
+character_class_inner -> @char_set.T
+  : { @char_set.empty }
+  | character_class_item character_class_inner { @char_set.union($1, $2) }
+  ;
+
+character_class_item -> @char_set.T
+  : character { @char_set.singleton($1) }
+  | character "-" character { @char_set.range($1, $3) }
+  ;
+
+character -> Char
+  : CHAR { $1 }
+  | CHAR_ESCAPE { $1.0 }
+  ;

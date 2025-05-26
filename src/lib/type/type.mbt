@@ -15,6 +15,7 @@ pub typealias CodeBlock = String
 pub(all) struct Rule {
   name : String
   signature : String
+  lexbuf_var : String
   patterns : Array[(Regex, CodeBlock)]
 } derive(Show, ToJson)
 

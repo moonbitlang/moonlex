@@ -85,7 +85,7 @@ fn group_trans(
 }
 
 ///|
-fn codegen_rule(
+pub fn codegen_rule_inner(
   rule : Rule,
   code_unit~ : @type.CodeUnit,
   default_encoding~ : @type.Encoding?
@@ -103,11 +103,10 @@ fn codegen_rule(
     .or(0)
   let max_pattern_id = dfa.code_blocks.length() - 1
   out.write_string(
-    $|fn \{rule.signature} {
     $|  // The matched pattern id
     $|  let mut matched = @int.max_value
     $|  let mut _end_pos = -1
-    $|  let mut _start_pos = lexbuf.curr_pos()
+    $|  let mut _start_pos = \{rule.lexbuf_var}.curr_pos()
     $|
     ,
   )
@@ -153,7 +152,7 @@ fn codegen_rule(
   let start_tags = @sorted_set.new()
   for tag in start_tags {
     out.write_string(
-      $|  \{gen_tag_var((tag, 0))} = lexbuf.curr_pos()
+      $|  \{gen_tag_var((tag, 0))} = \{rule.lexbuf_var}.curr_pos()
       $|
       ,
     )
@@ -173,7 +172,7 @@ fn codegen_rule(
       let buf = []
       for op in tag_action._ {
         match op {
-          Set(dest~) => buf.push("\{gen_tag_var(dest)} = lexbuf.curr_pos()")
+          Set(dest~) => buf.push("\{gen_tag_var(dest)} = \{rule.lexbuf_var}.curr_pos()")
           Copy(dest~, src~) =>
             buf.push("\{gen_tag_var(dest)} = \{gen_tag_var(src)}")
         }
@@ -193,7 +192,7 @@ fn codegen_rule(
       out.write_string(
         $|      if matched >= \{pattern_id} {
         $|        matched = \{pattern_id}
-        $|        _end_pos = lexbuf.curr_pos()
+        $|        _end_pos = \{rule.lexbuf_var}.curr_pos()
         $|
         ,
       )
@@ -259,7 +258,7 @@ fn codegen_rule(
       )
     } else {
       out.write_string(
-        $|      continue match lexbuf.next_as_int() {
+        $|      continue match \{rule.lexbuf_var}.next_as_int() {
         $|
         ,
       )
@@ -302,7 +301,7 @@ fn codegen_rule(
     $|    panic()
     $|  }
     $|
-    $|  lexbuf.reset(pos=_end_pos)
+    $|  \{rule.lexbuf_var}.reset(pos=_end_pos)
     $|  match matched {
     $|
     ,
@@ -332,13 +331,13 @@ fn codegen_rule(
       match var_type {
         Char =>
           out.write_string(
-            $|      let \{name} = lexbuf.get_char(_capture_\{capture_id}_start, _capture_\{capture_id}_end)
+            $|      let \{name} = \{rule.lexbuf_var}.get_char(_capture_\{capture_id}_start, _capture_\{capture_id}_end)
             $|
             ,
           )
         String =>
           out.write_string(
-            $|      let \{name} = lexbuf.get_string(_capture_\{capture_id}_start, _capture_\{capture_id}_end)
+            $|      let \{name} = \{rule.lexbuf_var}.get_string(_capture_\{capture_id}_start, _capture_\{capture_id}_end)
             $|
             ,
           )
@@ -365,10 +364,21 @@ fn codegen_rule(
   out.write_string(
     $|    _ => panic()
     $|  }
-    $|}
-    $|
-    $|
     ,
   )
   out.to_string()
+}
+
+///|
+fn codegen_rule(
+  rule : Rule,
+  code_unit~ : @type.CodeUnit,
+  default_encoding~ : @type.Encoding?
+) -> String {
+  let inner = codegen_rule_inner(rule, code_unit~, default_encoding~)
+  $|fn \{rule.signature} {
+  $|\{inner}
+  $|}
+  $|
+  $|
 }

@@ -71,6 +71,22 @@ pub fn opt(re : Regex) -> Regex {
 }
 
 ///|
+pub fn repeat(re : Regex, min_times~ : Int, max_times? : Int) -> Regex {
+  let mut re2 = re
+  for _ in 0..<min_times {
+    re2 = seq(re2, re)
+  }
+  if max_times is Some(max_times) {
+    for _ in 0..<(max_times - min_times) {
+      re2 = seq(re2, opt(re))
+    }
+    re2
+  } else {
+    star(re2)
+  }
+}
+
+///|
 pub fn seq(re1 : Regex, re2 : Regex) -> Regex {
   match (re1, re2) {
     ({ desc: Concat(re1, re2), .. }, re3) => seq(re1, seq(re2, re3))
