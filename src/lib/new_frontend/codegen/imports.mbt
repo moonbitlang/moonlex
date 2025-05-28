@@ -1,0 +1,2 @@
+///|
+typealias @type.Rule
