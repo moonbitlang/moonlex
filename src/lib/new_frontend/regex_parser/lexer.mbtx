@@ -5,7 +5,6 @@ regex integer = '0' | ['1'-'9'] ['0'-'9']*;
 rule token(lexbuf : StringLexbuf) -> Token {
   parse {
     eof => { EOF }
-    "{{cgLv3pS_" (uident as t) "}}" => { TOKEN(t) }
     "." => { DOT }
     "$" => { DOLLAR }
     "[" => { LBRACKET }
@@ -24,20 +23,20 @@ rule token(lexbuf : StringLexbuf) -> Token {
     "(" => { LPAREN }
     ")" => { RPAREN }
     "|" => { BAR }
-    "\\\\" as t => { CHAR_ESCAPE(('\\', t)) }
-    "\\(" as t => { CHAR_ESCAPE(('(', t)) }
-    "\\)" as t => { CHAR_ESCAPE((')', t)) }
-    "\\[" as t => { CHAR_ESCAPE(('[', t)) }
-    "\\]" as t => { CHAR_ESCAPE((']', t)) }
-    "\\." as t => { CHAR_ESCAPE(('.', t)) }
-    "\\$" as t => { CHAR_ESCAPE(('$', t)) }
-    "\\^" as t => { CHAR_ESCAPE(('^', t)) }
-    "\\+" as t => { CHAR_ESCAPE(('+', t)) }
-    "\\*" as t => { CHAR_ESCAPE(('*', t)) }
-    "\\?" as t => { CHAR_ESCAPE(('?', t)) }
-    "\\|" as t => { CHAR_ESCAPE(('|', t)) }
-    "\\u{" (hex_digit+ as t1) "}" as t => { CHAR_ESCAPE((parse_hex_integer(t1).unsafe_to_char(), t)) }
-    "\\u" (hex_digit hex_digit hex_digit hex_digit as t1) as t => { CHAR_ESCAPE((parse_hex_integer(t1).unsafe_to_char(), t)) }
+    "\\\\\\\\" as t => { CHAR_ESCAPE(('\\', t)) }
+    "\\\\(" as t => { CHAR_ESCAPE(('(', t)) }
+    "\\\\)" as t => { CHAR_ESCAPE((')', t)) }
+    "\\\\[" as t => { CHAR_ESCAPE(('[', t)) }
+    "\\\\]" as t => { CHAR_ESCAPE((']', t)) }
+    "\\\\." as t => { CHAR_ESCAPE(('.', t)) }
+    "\\\\$" as t => { CHAR_ESCAPE(('$', t)) }
+    "\\\\^" as t => { CHAR_ESCAPE(('^', t)) }
+    "\\\\+" as t => { CHAR_ESCAPE(('+', t)) }
+    "\\\\*" as t => { CHAR_ESCAPE(('*', t)) }
+    "\\\\?" as t => { CHAR_ESCAPE(('?', t)) }
+    "\\\\|" as t => { CHAR_ESCAPE(('|', t)) }
+    "\\\\u{" (hex_digit+ as t1) "}" as t => { CHAR_ESCAPE((parse_hex_integer(t1).unsafe_to_char(), t)) }
+    "\\\\u" (hex_digit hex_digit hex_digit hex_digit as t1) as t => { CHAR_ESCAPE((parse_hex_integer(t1).unsafe_to_char(), t)) }
     _ as t => { CHAR(t) }
   }
 }

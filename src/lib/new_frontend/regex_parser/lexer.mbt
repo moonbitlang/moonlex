@@ -49,8 +49,8 @@ fn token(lexbuf : StringLexbuf) -> Token  {
       break
     }
     2 => {
-      if _match_pattern >= 31 {
-        _match_pattern = 31
+      if _match_pattern >= 30 {
+        _match_pattern = 30
         _match_end = lexbuf.curr_pos()
         _capture_0_start = _match_start
         _capture_0_end = _match_start + 1
@@ -58,308 +58,329 @@ fn token(lexbuf : StringLexbuf) -> Token  {
       break
     }
     3 => {
-      if _match_pattern >= 3 {
-        _match_pattern = 3
-        _match_end = lexbuf.curr_pos()
-      }
-      break
-    }
-    4 => {
-      if _match_pattern >= 14 {
-        _match_pattern = 14
-        _match_end = lexbuf.curr_pos()
-      }
-      break
-    }
-    5 => {
-      if _match_pattern >= 15 {
-        _match_pattern = 15
-        _match_end = lexbuf.curr_pos()
-      }
-      break
-    }
-    6 => {
-      if _match_pattern >= 8 {
-        _match_pattern = 8
-        _match_end = lexbuf.curr_pos()
-      }
-      break
-    }
-    7 => {
-      if _match_pattern >= 9 {
-        _match_pattern = 9
-        _match_end = lexbuf.curr_pos()
-      }
-      break
-    }
-    8 => {
-      if _match_pattern >= 7 {
-        _match_pattern = 7
-        _match_end = lexbuf.curr_pos()
-      }
-      break
-    }
-    9 => {
       if _match_pattern >= 2 {
         _match_pattern = 2
         _match_end = lexbuf.curr_pos()
       }
       break
     }
-    10 => {
-      if _match_pattern >= 10 {
-        _match_pattern = 10
+    4 => {
+      if _match_pattern >= 13 {
+        _match_pattern = 13
         _match_end = lexbuf.curr_pos()
       }
       break
     }
-    11 => {
-      if _match_pattern >= 4 {
-        _match_pattern = 4
+    5 => {
+      if _match_pattern >= 14 {
+        _match_pattern = 14
         _match_end = lexbuf.curr_pos()
       }
       break
     }
-    12 => {
-      if _match_pattern >= 31 {
-        _match_pattern = 31
-        _match_end = lexbuf.curr_pos()
-        _capture_0_start = _match_start
-        _capture_0_end = _match_start + 1
-      }
-      continue match lexbuf.next_as_int() {
-        36 => 17
-        40 => 18
-        41 => 19
-        42 => 20
-        43 => 21
-        46 => 22
-        63 => 23
-        91 => 24
-        92 => 25
-        93 => 26
-        94 => 27
-        117 => 28
-        124 => 29
-        _ => break
-      }
-    }
-    13 => {
-      if _match_pattern >= 5 {
-        _match_pattern = 5
+    6 => {
+      if _match_pattern >= 7 {
+        _match_pattern = 7
         _match_end = lexbuf.curr_pos()
       }
       break
     }
-    14 => {
+    7 => {
+      if _match_pattern >= 8 {
+        _match_pattern = 8
+        _match_end = lexbuf.curr_pos()
+      }
+      break
+    }
+    8 => {
       if _match_pattern >= 6 {
         _match_pattern = 6
         _match_end = lexbuf.curr_pos()
       }
       break
     }
-    15 => {
-      if _match_pattern >= 31 {
-        _match_pattern = 31
+    9 => {
+      if _match_pattern >= 1 {
+        _match_pattern = 1
+        _match_end = lexbuf.curr_pos()
+      }
+      break
+    }
+    10 => {
+      if _match_pattern >= 9 {
+        _match_pattern = 9
+        _match_end = lexbuf.curr_pos()
+      }
+      break
+    }
+    11 => {
+      if _match_pattern >= 3 {
+        _match_pattern = 3
+        _match_end = lexbuf.curr_pos()
+      }
+      break
+    }
+    12 => {
+      if _match_pattern >= 30 {
+        _match_pattern = 30
         _match_end = lexbuf.curr_pos()
         _capture_0_start = _match_start
         _capture_0_end = _match_start + 1
       }
       continue match lexbuf.next_as_int() {
-        48 => 30
-        49..=57 => 31
-        123 => 32
+        92 => 17
+        _ => break
+      }
+    }
+    13 => {
+      if _match_pattern >= 4 {
+        _match_pattern = 4
+        _match_end = lexbuf.curr_pos()
+      }
+      break
+    }
+    14 => {
+      if _match_pattern >= 5 {
+        _match_pattern = 5
+        _match_end = lexbuf.curr_pos()
+      }
+      break
+    }
+    15 => {
+      if _match_pattern >= 30 {
+        _match_pattern = 30
+        _match_end = lexbuf.curr_pos()
+        _capture_0_start = _match_start
+        _capture_0_end = _match_start + 1
+      }
+      continue match lexbuf.next_as_int() {
+        48 => 18
+        49..=57 => 19
         _ => break
       }
     }
     16 => {
-      if _match_pattern >= 16 {
-        _match_pattern = 16
+      if _match_pattern >= 15 {
+        _match_pattern = 15
         _match_end = lexbuf.curr_pos()
       }
       break
     }
     17 => {
-      if _match_pattern >= 23 {
-        _match_pattern = 23
-        _match_end = lexbuf.curr_pos()
-        _capture_0_start = _match_start
-        _capture_0_end = _match_start + 2
+      continue match lexbuf.next_as_int() {
+        36 => 20
+        40 => 21
+        41 => 22
+        42 => 23
+        43 => 24
+        46 => 25
+        63 => 26
+        91 => 27
+        92 => 28
+        93 => 29
+        94 => 30
+        117 => 31
+        124 => 32
+        _ => break
       }
-      break
     }
     18 => {
-      if _match_pattern >= 18 {
-        _match_pattern = 18
-        _match_end = lexbuf.curr_pos()
-        _capture_0_start = _match_start
-        _capture_0_end = _match_start + 2
+      _tag_0 = lexbuf.curr_pos()
+      continue match lexbuf.next_as_int() {
+        44 => 33
+        125 => 34
+        _ => break
       }
-      break
     }
     19 => {
-      if _match_pattern >= 19 {
-        _match_pattern = 19
-        _match_end = lexbuf.curr_pos()
-        _capture_0_start = _match_start
-        _capture_0_end = _match_start + 2
+      _tag_0 = lexbuf.curr_pos()
+      continue match lexbuf.next_as_int() {
+        44 => 33
+        48..=57 => 19
+        125 => 34
+        _ => break
       }
-      break
     }
     20 => {
-      if _match_pattern >= 26 {
-        _match_pattern = 26
-        _match_end = lexbuf.curr_pos()
-        _capture_0_start = _match_start
-        _capture_0_end = _match_start + 2
-      }
-      break
-    }
-    21 => {
-      if _match_pattern >= 25 {
-        _match_pattern = 25
-        _match_end = lexbuf.curr_pos()
-        _capture_0_start = _match_start
-        _capture_0_end = _match_start + 2
-      }
-      break
-    }
-    22 => {
       if _match_pattern >= 22 {
         _match_pattern = 22
         _match_end = lexbuf.curr_pos()
         _capture_0_start = _match_start
-        _capture_0_end = _match_start + 2
+        _capture_0_end = _match_start + 3
       }
       break
     }
-    23 => {
-      if _match_pattern >= 27 {
-        _match_pattern = 27
-        _match_end = lexbuf.curr_pos()
-        _capture_0_start = _match_start
-        _capture_0_end = _match_start + 2
-      }
-      break
-    }
-    24 => {
-      if _match_pattern >= 20 {
-        _match_pattern = 20
-        _match_end = lexbuf.curr_pos()
-        _capture_0_start = _match_start
-        _capture_0_end = _match_start + 2
-      }
-      break
-    }
-    25 => {
+    21 => {
       if _match_pattern >= 17 {
         _match_pattern = 17
         _match_end = lexbuf.curr_pos()
         _capture_0_start = _match_start
-        _capture_0_end = _match_start + 2
+        _capture_0_end = _match_start + 3
       }
       break
     }
-    26 => {
-      if _match_pattern >= 21 {
-        _match_pattern = 21
+    22 => {
+      if _match_pattern >= 18 {
+        _match_pattern = 18
         _match_end = lexbuf.curr_pos()
         _capture_0_start = _match_start
-        _capture_0_end = _match_start + 2
+        _capture_0_end = _match_start + 3
       }
       break
     }
-    27 => {
+    23 => {
+      if _match_pattern >= 25 {
+        _match_pattern = 25
+        _match_end = lexbuf.curr_pos()
+        _capture_0_start = _match_start
+        _capture_0_end = _match_start + 3
+      }
+      break
+    }
+    24 => {
       if _match_pattern >= 24 {
         _match_pattern = 24
         _match_end = lexbuf.curr_pos()
         _capture_0_start = _match_start
-        _capture_0_end = _match_start + 2
+        _capture_0_end = _match_start + 3
+      }
+      break
+    }
+    25 => {
+      if _match_pattern >= 21 {
+        _match_pattern = 21
+        _match_end = lexbuf.curr_pos()
+        _capture_0_start = _match_start
+        _capture_0_end = _match_start + 3
+      }
+      break
+    }
+    26 => {
+      if _match_pattern >= 26 {
+        _match_pattern = 26
+        _match_end = lexbuf.curr_pos()
+        _capture_0_start = _match_start
+        _capture_0_end = _match_start + 3
+      }
+      break
+    }
+    27 => {
+      if _match_pattern >= 19 {
+        _match_pattern = 19
+        _match_end = lexbuf.curr_pos()
+        _capture_0_start = _match_start
+        _capture_0_end = _match_start + 3
       }
       break
     }
     28 => {
       continue match lexbuf.next_as_int() {
-        48..=57 => 33
-        65..=70 => 33
-        97..=102 => 33
-        123 => 34
+        92 => 37
         _ => break
       }
     }
     29 => {
-      if _match_pattern >= 28 {
-        _match_pattern = 28
+      if _match_pattern >= 20 {
+        _match_pattern = 20
         _match_end = lexbuf.curr_pos()
         _capture_0_start = _match_start
-        _capture_0_end = _match_start + 2
+        _capture_0_end = _match_start + 3
       }
       break
     }
     30 => {
-      _tag_0 = lexbuf.curr_pos()
-      continue match lexbuf.next_as_int() {
-        44 => 35
-        125 => 36
-        _ => break
+      if _match_pattern >= 23 {
+        _match_pattern = 23
+        _match_end = lexbuf.curr_pos()
+        _capture_0_start = _match_start
+        _capture_0_end = _match_start + 3
       }
+      break
     }
     31 => {
-      _tag_0 = lexbuf.curr_pos()
       continue match lexbuf.next_as_int() {
-        44 => 35
-        48..=57 => 31
-        125 => 36
+        48..=57 => 35
+        65..=70 => 35
+        97..=102 => 35
+        123 => 36
         _ => break
       }
     }
     32 => {
-      continue match lexbuf.next_as_int() {
-        99 => 37
-        _ => break
+      if _match_pattern >= 27 {
+        _match_pattern = 27
+        _match_end = lexbuf.curr_pos()
+        _capture_0_start = _match_start
+        _capture_0_end = _match_start + 3
       }
+      break
     }
     33 => {
+      _tag_1 = lexbuf.curr_pos()
       continue match lexbuf.next_as_int() {
-        48..=57 => 38
-        65..=70 => 38
-        97..=102 => 38
+        48 => 38
+        49..=57 => 39
+        125 => 40
         _ => break
       }
     }
     34 => {
-      continue match lexbuf.next_as_int() {
-        48..=57 => 39
-        65..=70 => 39
-        97..=102 => 39
-        _ => break
-      }
-    }
-    35 => {
-      _tag_1 = lexbuf.curr_pos()
-      continue match lexbuf.next_as_int() {
-        48 => 40
-        49..=57 => 41
-        125 => 42
-        _ => break
-      }
-    }
-    36 => {
-      if _match_pattern >= 13 {
-        _match_pattern = 13
+      if _match_pattern >= 12 {
+        _match_pattern = 12
         _match_end = lexbuf.curr_pos()
         _capture_0_start = _match_start + 1
         _capture_0_end = _match_end + -1
       }
       break
     }
-    37 => {
+    35 => {
       continue match lexbuf.next_as_int() {
-        103 => 43
+        48..=57 => 41
+        65..=70 => 41
+        97..=102 => 41
         _ => break
       }
     }
+    36 => {
+      continue match lexbuf.next_as_int() {
+        48..=57 => 42
+        65..=70 => 42
+        97..=102 => 42
+        _ => break
+      }
+    }
+    37 => {
+      if _match_pattern >= 16 {
+        _match_pattern = 16
+        _match_end = lexbuf.curr_pos()
+        _capture_0_start = _match_start
+        _capture_0_end = _match_start + 4
+      }
+      break
+    }
     38 => {
+      continue match lexbuf.next_as_int() {
+        125 => 43
+        _ => break
+      }
+    }
+    39 => {
+      continue match lexbuf.next_as_int() {
+        48..=57 => 39
+        125 => 43
+        _ => break
+      }
+    }
+    40 => {
+      if _match_pattern >= 11 {
+        _match_pattern = 11
+        _match_end = lexbuf.curr_pos()
+        _capture_0_start = _match_start + 1
+        _capture_0_end = _match_end + -2
+      }
+      break
+    }
+    41 => {
       continue match lexbuf.next_as_int() {
         48..=57 => 44
         65..=70 => 44
@@ -367,65 +388,18 @@ fn token(lexbuf : StringLexbuf) -> Token  {
         _ => break
       }
     }
-    39 => {
+    42 => {
       continue match lexbuf.next_as_int() {
-        48..=57 => 39
-        65..=70 => 39
-        97..=102 => 39
+        48..=57 => 42
+        65..=70 => 42
+        97..=102 => 42
         125 => 45
         _ => break
       }
     }
-    40 => {
-      continue match lexbuf.next_as_int() {
-        125 => 46
-        _ => break
-      }
-    }
-    41 => {
-      continue match lexbuf.next_as_int() {
-        48..=57 => 41
-        125 => 46
-        _ => break
-      }
-    }
-    42 => {
-      if _match_pattern >= 12 {
-        _match_pattern = 12
-        _match_end = lexbuf.curr_pos()
-        _capture_0_start = _match_start + 1
-        _capture_0_end = _match_end + -2
-      }
-      break
-    }
     43 => {
-      continue match lexbuf.next_as_int() {
-        76 => 47
-        _ => break
-      }
-    }
-    44 => {
-      continue match lexbuf.next_as_int() {
-        48..=57 => 48
-        65..=70 => 48
-        97..=102 => 48
-        _ => break
-      }
-    }
-    45 => {
-      if _match_pattern >= 29 {
-        _match_pattern = 29
-        _match_end = lexbuf.curr_pos()
-        _capture_0_start = _match_start
-        _capture_0_end = _match_end
-        _capture_1_start = _match_start + 3
-        _capture_1_end = _match_end + -1
-      }
-      break
-    }
-    46 => {
-      if _match_pattern >= 11 {
-        _match_pattern = 11
+      if _match_pattern >= 10 {
+        _match_pattern = 10
         _match_end = lexbuf.curr_pos()
         _capture_0_start = _match_start + 1
         _capture_0_end = _tag_0
@@ -434,82 +408,40 @@ fn token(lexbuf : StringLexbuf) -> Token  {
       }
       break
     }
-    47 => {
+    44 => {
       continue match lexbuf.next_as_int() {
-        118 => 49
+        48..=57 => 46
+        65..=70 => 46
+        97..=102 => 46
         _ => break
       }
     }
-    48 => {
-      if _match_pattern >= 30 {
-        _match_pattern = 30
+    45 => {
+      if _match_pattern >= 28 {
+        _match_pattern = 28
         _match_end = lexbuf.curr_pos()
         _capture_0_start = _match_start
-        _capture_0_end = _match_start + 6
-        _capture_1_start = _match_start + 2
-        _capture_1_end = _match_start + 6
+        _capture_0_end = _match_end
+        _capture_1_start = _match_start + 4
+        _capture_1_end = _match_end + -1
       }
       break
     }
-    49 => {
-      continue match lexbuf.next_as_int() {
-        51 => 50
-        _ => break
-      }
-    }
-    50 => {
-      continue match lexbuf.next_as_int() {
-        112 => 51
-        _ => break
-      }
-    }
-    51 => {
-      continue match lexbuf.next_as_int() {
-        83 => 52
-        _ => break
-      }
-    }
-    52 => {
-      continue match lexbuf.next_as_int() {
-        95 => 53
-        _ => break
-      }
-    }
-    53 => {
-      continue match lexbuf.next_as_int() {
-        65..=90 => 54
-        _ => break
-      }
-    }
-    54 => {
-      continue match lexbuf.next_as_int() {
-        48..=57 => 54
-        65..=90 => 54
-        95 => 54
-        97..=122 => 54
-        125 => 55
-        _ => break
-      }
-    }
-    55 => {
-      continue match lexbuf.next_as_int() {
-        125 => 56
-        _ => break
-      }
-    }
-    56 => {
-      if _match_pattern >= 1 {
-        _match_pattern = 1
+    46 => {
+      if _match_pattern >= 29 {
+        _match_pattern = 29
         _match_end = lexbuf.curr_pos()
-        _capture_0_start = _match_start + 10
-        _capture_0_end = _match_end + -2
+        _capture_0_start = _match_start
+        _capture_0_end = _match_start + 7
+        _capture_1_start = _match_start + 3
+        _capture_1_end = _match_start + 7
       }
       break
     }
     _ => panic()
   }
 
-  guard _match_pattern <= 31 else {
+  guard _match_pattern <= 30 else {
     // No pattern matched
     panic()
   }
@@ -522,57 +454,52 @@ fn token(lexbuf : StringLexbuf) -> Token  {
     }
     1 => {
       ()
-      let t = lexbuf.get_string(_capture_0_start, _capture_0_end)
- TOKEN(t) 
+ DOT 
     }
     2 => {
       ()
- DOT 
+ DOLLAR 
     }
     3 => {
       ()
- DOLLAR 
+ LBRACKET 
     }
     4 => {
       ()
- LBRACKET 
+ RBRACKET 
     }
     5 => {
       ()
- RBRACKET 
+ CARET 
     }
     6 => {
       ()
- CARET 
+ MINUS 
     }
     7 => {
       ()
- MINUS 
+ STAR 
     }
     8 => {
       ()
- STAR 
+ PLUS 
     }
     9 => {
       ()
- PLUS 
-    }
-    10 => {
-      ()
  QUESTION 
     }
-    11 => {
+    10 => {
       ()
       let t1 = lexbuf.get_string(_capture_0_start, _capture_0_end)
       let t2 = lexbuf.get_string(_capture_1_start, _capture_1_end)
  REPEAT((parse_integer(t1), Some(parse_integer(t2)))) 
     }
-    12 => {
+    11 => {
       ()
       let t = lexbuf.get_string(_capture_0_start, _capture_0_end)
  REPEAT((parse_integer(t), None)) 
     }
-    13 => {
+    12 => {
       ()
       let t = lexbuf.get_string(_capture_0_start, _capture_0_end)
 
@@ -580,77 +507,83 @@ fn token(lexbuf : StringLexbuf) -> Token  {
       REPEAT((n, Some(n)))
     
     }
-    14 => {
+    13 => {
       ()
  LPAREN 
     }
-    15 => {
+    14 => {
       ()
  RPAREN 
     }
-    16 => {
+    15 => {
       ()
  BAR 
     }
-    17 => {
+    16 => {
       ()
       let t = lexbuf.get_string(_capture_0_start, _capture_0_end)
  CHAR_ESCAPE(('\\', t)) 
     }
-    18 => {
+    17 => {
       ()
       let t = lexbuf.get_string(_capture_0_start, _capture_0_end)
  CHAR_ESCAPE(('(', t)) 
     }
-    19 => {
+    18 => {
       ()
       let t = lexbuf.get_string(_capture_0_start, _capture_0_end)
  CHAR_ESCAPE((')', t)) 
     }
-    20 => {
+    19 => {
       ()
       let t = lexbuf.get_string(_capture_0_start, _capture_0_end)
  CHAR_ESCAPE(('[', t)) 
     }
-    21 => {
+    20 => {
       ()
       let t = lexbuf.get_string(_capture_0_start, _capture_0_end)
  CHAR_ESCAPE((']', t)) 
     }
-    22 => {
+    21 => {
       ()
       let t = lexbuf.get_string(_capture_0_start, _capture_0_end)
  CHAR_ESCAPE(('.', t)) 
     }
-    23 => {
+    22 => {
       ()
       let t = lexbuf.get_string(_capture_0_start, _capture_0_end)
  CHAR_ESCAPE(('$', t)) 
     }
-    24 => {
+    23 => {
       ()
       let t = lexbuf.get_string(_capture_0_start, _capture_0_end)
  CHAR_ESCAPE(('^', t)) 
     }
-    25 => {
+    24 => {
       ()
       let t = lexbuf.get_string(_capture_0_start, _capture_0_end)
  CHAR_ESCAPE(('+', t)) 
     }
-    26 => {
+    25 => {
       ()
       let t = lexbuf.get_string(_capture_0_start, _capture_0_end)
  CHAR_ESCAPE(('*', t)) 
     }
-    27 => {
+    26 => {
       ()
       let t = lexbuf.get_string(_capture_0_start, _capture_0_end)
  CHAR_ESCAPE(('?', t)) 
     }
-    28 => {
+    27 => {
       ()
       let t = lexbuf.get_string(_capture_0_start, _capture_0_end)
  CHAR_ESCAPE(('|', t)) 
+    }
+    28 => {
+      ()
+      let t = lexbuf.get_string(_capture_0_start, _capture_0_end)
+      let t1 = lexbuf.get_string(_capture_1_start, _capture_1_end)
+ CHAR_ESCAPE((parse_hex_integer(t1).unsafe_to_char(), t)) 
     }
     29 => {
       ()
@@ -659,12 +592,6 @@ fn token(lexbuf : StringLexbuf) -> Token  {
  CHAR_ESCAPE((parse_hex_integer(t1).unsafe_to_char(), t)) 
     }
     30 => {
-      ()
-      let t = lexbuf.get_string(_capture_0_start, _capture_0_end)
-      let t1 = lexbuf.get_string(_capture_1_start, _capture_1_end)
- CHAR_ESCAPE((parse_hex_integer(t1).unsafe_to_char(), t)) 
-    }
-    31 => {
       ()
       let t = lexbuf.get_char(_capture_0_start, _capture_0_end)
  CHAR(t) 
