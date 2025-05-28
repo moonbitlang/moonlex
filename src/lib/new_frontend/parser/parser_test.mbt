@@ -22,7 +22,7 @@ test {
     lex_result.tokens.filter(fn(triple) {
       not(triple.0 is (NEWLINE | COMMENT(_)))
     }),
-    initial_pos=Position::{ fname: filename, lnum: 1, bol: 0, cnum: 0 },
+    initial_pos={ fname: filename, lnum: 1, bol: 0, cnum: 0 },
   )
   @json.inspect!(ast, content={
     "body": {

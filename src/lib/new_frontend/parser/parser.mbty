@@ -2,7 +2,7 @@
 
 %derive<Show> Token
 %derive<Show> ParseError
-%position<@ast_types.Position>
+%position<Position>
 
 %start<@ast.Program> start
 

@@ -40,7 +40,6 @@ fn normalize(terms : Array[@ast.Term]) -> Array[@ast.Term] {
     }
   }
 }
-pub(all) typealias Position = @ast_types.Position
 
 pub type! ParseError {
   UnexpectedToken(Token, (Position, Position), Array[TokenKind])
