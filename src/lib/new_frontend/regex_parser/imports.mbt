@@ -1,2 +1,2 @@
-typealias @lexbuf.StringLexbuf
 typealias @regex.Regex
+typealias @ast_types.Position

@@ -1,4 +1,5 @@
 %start parse_regex
+%position<Position>
 
 %token EOF
 %token<Char> CHAR

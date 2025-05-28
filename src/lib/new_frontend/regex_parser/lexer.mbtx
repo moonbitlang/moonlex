@@ -2,41 +2,41 @@ regex uident = ['A'-'Z'] ['A'-'Z' 'a'-'z' '_' '0'-'9']*;
 regex hex_digit = ['0'-'9' 'A'-'F' 'a'-'f'];
 regex integer = '0' | ['1'-'9'] ['0'-'9']*;
 
-rule token(lexbuf : StringLexbuf) -> Token {
+rule token(lexbuf : Lexbuf) -> (Token, Int, Int) {
   parse {
-    eof => { EOF }
-    "." => { DOT }
-    "$" => { DOLLAR }
-    "[" => { LBRACKET }
-    "]" => { RBRACKET }
-    "^" => { CARET }
-    "-" => { MINUS }
-    "*" => { STAR }
-    "+" => { PLUS }
-    "?" => { QUESTION }
-    "{" (integer as t1) "," (integer as t2) "}" => { REPEAT((parse_integer(t1), Some(parse_integer(t2)))) }
-    "{" (integer as t) "," "}" => { REPEAT((parse_integer(t), None)) }
+    eof => { (EOF, $startpos, $endpos) }
+    "." => { (DOT, $startpos, $endpos) }
+    "$" => { (DOLLAR, $startpos, $endpos) }
+    "[" => { (LBRACKET, $startpos, $endpos) }
+    "]" => { (RBRACKET, $startpos, $endpos) }
+    "^" => { (CARET, $startpos, $endpos) }
+    "-" => { (MINUS, $startpos, $endpos) }
+    "*" => { (STAR, $startpos, $endpos) }
+    "+" => { (PLUS, $startpos, $endpos) }
+    "?" => { (QUESTION, $startpos, $endpos) }
+    "{" (integer as t1) "," (integer as t2) "}" => { (REPEAT((parse_integer(t1), Some(parse_integer(t2)))), $startpos, $endpos) }
+    "{" (integer as t) "," "}" => { (REPEAT((parse_integer(t), None)), $startpos, $endpos) }
     "{" (integer as t) "}" => {
       let n = parse_integer(t)
-      REPEAT((n, Some(n)))
+      (REPEAT((n, Some(n))), $startpos, $endpos)
     }
-    "(" => { LPAREN }
-    ")" => { RPAREN }
-    "|" => { BAR }
-    "\\\\\\\\" as t => { CHAR_ESCAPE(('\\', t)) }
-    "\\\\(" as t => { CHAR_ESCAPE(('(', t)) }
-    "\\\\)" as t => { CHAR_ESCAPE((')', t)) }
-    "\\\\[" as t => { CHAR_ESCAPE(('[', t)) }
-    "\\\\]" as t => { CHAR_ESCAPE((']', t)) }
-    "\\\\." as t => { CHAR_ESCAPE(('.', t)) }
-    "\\\\$" as t => { CHAR_ESCAPE(('$', t)) }
-    "\\\\^" as t => { CHAR_ESCAPE(('^', t)) }
-    "\\\\+" as t => { CHAR_ESCAPE(('+', t)) }
-    "\\\\*" as t => { CHAR_ESCAPE(('*', t)) }
-    "\\\\?" as t => { CHAR_ESCAPE(('?', t)) }
-    "\\\\|" as t => { CHAR_ESCAPE(('|', t)) }
-    "\\\\u{" (hex_digit+ as t1) "}" as t => { CHAR_ESCAPE((parse_hex_integer(t1).unsafe_to_char(), t)) }
-    "\\\\u" (hex_digit hex_digit hex_digit hex_digit as t1) as t => { CHAR_ESCAPE((parse_hex_integer(t1).unsafe_to_char(), t)) }
-    _ as t => { CHAR(t) }
+    "(" => { (LPAREN, $startpos, $endpos) }
+    ")" => { (RPAREN, $startpos, $endpos) }
+    "|" => { (BAR, $startpos, $endpos) }
+    "\\\\\\\\" as t => { (CHAR_ESCAPE(('\\', t)), $startpos, $endpos) }
+    "\\\\(" as t => { (CHAR_ESCAPE(('(', t)), $startpos, $endpos) }
+    "\\\\)" as t => { (CHAR_ESCAPE((')', t)), $startpos, $endpos) }
+    "\\\\[" as t => { (CHAR_ESCAPE(('[', t)), $startpos, $endpos) }
+    "\\\\]" as t => { (CHAR_ESCAPE((']', t)), $startpos, $endpos) }
+    "\\\\." as t => { (CHAR_ESCAPE(('.', t)), $startpos, $endpos) }
+    "\\\\$" as t => { (CHAR_ESCAPE(('$', t)), $startpos, $endpos) }
+    "\\\\^" as t => { (CHAR_ESCAPE(('^', t)), $startpos, $endpos) }
+    "\\\\+" as t => { (CHAR_ESCAPE(('+', t)), $startpos, $endpos) }
+    "\\\\*" as t => { (CHAR_ESCAPE(('*', t)), $startpos, $endpos) }
+    "\\\\?" as t => { (CHAR_ESCAPE(('?', t)), $startpos, $endpos) }
+    "\\\\|" as t => { (CHAR_ESCAPE(('|', t)), $startpos, $endpos) }
+    "\\\\u{" (hex_digit+ as t1) "}" as t => { (CHAR_ESCAPE((parse_hex_integer(t1).unsafe_to_char(), t)), $startpos, $endpos) }
+    "\\\\u" (hex_digit hex_digit hex_digit hex_digit as t1) as t => { (CHAR_ESCAPE((parse_hex_integer(t1).unsafe_to_char(), t)), $startpos, $endpos) }
+    _ as t => { (CHAR(t), $startpos, $endpos) }
   }
 }

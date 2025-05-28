@@ -1,6 +1,6 @@
 
 
-fn token(lexbuf : StringLexbuf) -> Token  {
+fn token(lexbuf : Lexbuf) -> (Token, Int, Int)  {
   // The matched pattern id
   let mut _match_pattern = @int.max_value
   let mut _match_start = lexbuf.curr_pos()
@@ -450,151 +450,151 @@ fn token(lexbuf : StringLexbuf) -> Token  {
   match _match_pattern {
     0 => {
       ()
- EOF 
+ (EOF, _match_start, _match_end) 
     }
     1 => {
       ()
- DOT 
+ (DOT, _match_start, _match_end) 
     }
     2 => {
       ()
- DOLLAR 
+ (DOLLAR, _match_start, _match_end) 
     }
     3 => {
       ()
- LBRACKET 
+ (LBRACKET, _match_start, _match_end) 
     }
     4 => {
       ()
- RBRACKET 
+ (RBRACKET, _match_start, _match_end) 
     }
     5 => {
       ()
- CARET 
+ (CARET, _match_start, _match_end) 
     }
     6 => {
       ()
- MINUS 
+ (MINUS, _match_start, _match_end) 
     }
     7 => {
       ()
- STAR 
+ (STAR, _match_start, _match_end) 
     }
     8 => {
       ()
- PLUS 
+ (PLUS, _match_start, _match_end) 
     }
     9 => {
       ()
- QUESTION 
+ (QUESTION, _match_start, _match_end) 
     }
     10 => {
       ()
       let t1 = lexbuf.get_string(_capture_0_start, _capture_0_end)
       let t2 = lexbuf.get_string(_capture_1_start, _capture_1_end)
- REPEAT((parse_integer(t1), Some(parse_integer(t2)))) 
+ (REPEAT((parse_integer(t1), Some(parse_integer(t2)))), _match_start, _match_end) 
     }
     11 => {
       ()
       let t = lexbuf.get_string(_capture_0_start, _capture_0_end)
- REPEAT((parse_integer(t), None)) 
+ (REPEAT((parse_integer(t), None)), _match_start, _match_end) 
     }
     12 => {
       ()
       let t = lexbuf.get_string(_capture_0_start, _capture_0_end)
 
       let n = parse_integer(t)
-      REPEAT((n, Some(n)))
+      (REPEAT((n, Some(n))), _match_start, _match_end)
     
     }
     13 => {
       ()
- LPAREN 
+ (LPAREN, _match_start, _match_end) 
     }
     14 => {
       ()
- RPAREN 
+ (RPAREN, _match_start, _match_end) 
     }
     15 => {
       ()
- BAR 
+ (BAR, _match_start, _match_end) 
     }
     16 => {
       ()
       let t = lexbuf.get_string(_capture_0_start, _capture_0_end)
- CHAR_ESCAPE(('\\', t)) 
+ (CHAR_ESCAPE(('\\', t)), _match_start, _match_end) 
     }
     17 => {
       ()
       let t = lexbuf.get_string(_capture_0_start, _capture_0_end)
- CHAR_ESCAPE(('(', t)) 
+ (CHAR_ESCAPE(('(', t)), _match_start, _match_end) 
     }
     18 => {
       ()
       let t = lexbuf.get_string(_capture_0_start, _capture_0_end)
- CHAR_ESCAPE((')', t)) 
+ (CHAR_ESCAPE((')', t)), _match_start, _match_end) 
     }
     19 => {
       ()
       let t = lexbuf.get_string(_capture_0_start, _capture_0_end)
- CHAR_ESCAPE(('[', t)) 
+ (CHAR_ESCAPE(('[', t)), _match_start, _match_end) 
     }
     20 => {
       ()
       let t = lexbuf.get_string(_capture_0_start, _capture_0_end)
- CHAR_ESCAPE((']', t)) 
+ (CHAR_ESCAPE((']', t)), _match_start, _match_end) 
     }
     21 => {
       ()
       let t = lexbuf.get_string(_capture_0_start, _capture_0_end)
- CHAR_ESCAPE(('.', t)) 
+ (CHAR_ESCAPE(('.', t)), _match_start, _match_end) 
     }
     22 => {
       ()
       let t = lexbuf.get_string(_capture_0_start, _capture_0_end)
- CHAR_ESCAPE(('$', t)) 
+ (CHAR_ESCAPE(('$', t)), _match_start, _match_end) 
     }
     23 => {
       ()
       let t = lexbuf.get_string(_capture_0_start, _capture_0_end)
- CHAR_ESCAPE(('^', t)) 
+ (CHAR_ESCAPE(('^', t)), _match_start, _match_end) 
     }
     24 => {
       ()
       let t = lexbuf.get_string(_capture_0_start, _capture_0_end)
- CHAR_ESCAPE(('+', t)) 
+ (CHAR_ESCAPE(('+', t)), _match_start, _match_end) 
     }
     25 => {
       ()
       let t = lexbuf.get_string(_capture_0_start, _capture_0_end)
- CHAR_ESCAPE(('*', t)) 
+ (CHAR_ESCAPE(('*', t)), _match_start, _match_end) 
     }
     26 => {
       ()
       let t = lexbuf.get_string(_capture_0_start, _capture_0_end)
- CHAR_ESCAPE(('?', t)) 
+ (CHAR_ESCAPE(('?', t)), _match_start, _match_end) 
     }
     27 => {
       ()
       let t = lexbuf.get_string(_capture_0_start, _capture_0_end)
- CHAR_ESCAPE(('|', t)) 
+ (CHAR_ESCAPE(('|', t)), _match_start, _match_end) 
     }
     28 => {
       ()
       let t = lexbuf.get_string(_capture_0_start, _capture_0_end)
       let t1 = lexbuf.get_string(_capture_1_start, _capture_1_end)
- CHAR_ESCAPE((parse_hex_integer(t1).unsafe_to_char(), t)) 
+ (CHAR_ESCAPE((parse_hex_integer(t1).unsafe_to_char(), t)), _match_start, _match_end) 
     }
     29 => {
       ()
       let t = lexbuf.get_string(_capture_0_start, _capture_0_end)
       let t1 = lexbuf.get_string(_capture_1_start, _capture_1_end)
- CHAR_ESCAPE((parse_hex_integer(t1).unsafe_to_char(), t)) 
+ (CHAR_ESCAPE((parse_hex_integer(t1).unsafe_to_char(), t)), _match_start, _match_end) 
     }
     30 => {
       ()
       let t = lexbuf.get_char(_capture_0_start, _capture_0_end)
- CHAR(t) 
+ (CHAR(t), _match_start, _match_end) 
     }
     _ => panic()
   }
