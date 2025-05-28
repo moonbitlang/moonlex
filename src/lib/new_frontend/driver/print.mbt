@@ -50,9 +50,7 @@ fn decode_utf8(bytes : @bytes.View) -> String {
         ((bytes[i + 1].to_int() & 0x3F) << 12) |
         ((bytes[i + 2].to_int() & 0x3F) << 6) |
         (bytes[i + 3].to_int() & 0x3F)
-      c -= 0x10000
-      res.write_char(((c >> 10) + 0xD800).unsafe_to_char())
-      res.write_char(((c & 0x3FF) + 0xDC00).unsafe_to_char())
+      res.write_char(c.unsafe_to_char())
       i += 4
     }
   }
