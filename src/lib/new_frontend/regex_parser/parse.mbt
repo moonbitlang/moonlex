@@ -20,7 +20,11 @@ pub fn parse(
   }
   // TODO: map positions
   let lexbuf = StringLexbuf::from_string(source)
-  let k_regex = regex_eof?(fn() { (token(lexbuf), (), ()) }, ()).unwrap()
+  let tokens = []
+  while token(lexbuf) is tok && not(tok is EOF) {
+    tokens.push((tok, (), ()))
+  }
+  let k_regex = parse_regex?(tokens, initial_pos=()).unwrap()
   let regex = k_regex({ named_regexes, })
   regex
 }

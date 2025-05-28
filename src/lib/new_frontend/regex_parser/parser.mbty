@@ -1,4 +1,4 @@
-%start regex_eof
+%start parse_regex
 
 %token EOF
 %token<Char> CHAR
@@ -21,8 +21,8 @@
 
 %%
 
-regex_eof -> (Context) -> Regex
-  : alternation EOF { $1 }
+parse_regex -> (Context) -> Regex
+  : alternation { $1 }
   ;
 
 alternation -> (Context) -> Regex
