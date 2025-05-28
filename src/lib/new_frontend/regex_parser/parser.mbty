@@ -1,4 +1,6 @@
 %start parse_regex
+%derive<Show> Token
+%derive<Show> ParseError
 %position<Position>
 
 %token EOF

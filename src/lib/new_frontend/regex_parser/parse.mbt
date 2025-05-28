@@ -48,7 +48,12 @@ pub fn parse(
         }
     }
   }).to_array()
-  let k_regex = parse_regex?(tokens).unwrap()
+  let k_regex = try parse_regex(tokens) catch {
+    err => {
+      println(err)
+      panic()
+    }
+  }
   let regex = k_regex({ named_regexes, })
   regex
 }

@@ -16,7 +16,7 @@ pub(all) enum Token {
   RPAREN
   BAR
   TOKEN(String)
-}
+} derive(Show)
 
 pub fn Token::kind(self : Token) -> TokenKind {
   match self {
