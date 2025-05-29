@@ -1,5 +1,5 @@
 ///|
-pub fn is_empty[N](self : Tree[N]) -> Bool {
+pub fn[N] is_empty(self : Tree[N]) -> Bool {
   match self {
     Empty => true
     Node(..) => false
@@ -7,14 +7,14 @@ pub fn is_empty[N](self : Tree[N]) -> Bool {
 }
 
 ///|
-pub fn contains[N : @bounded_enum.T](self : Tree[N], x : N) -> Bool {
+pub fn[N : @bounded_enum.T] contains(self : Tree[N], x : N) -> Bool {
   match self {
     Empty => false
     Node(..) as t =>
       if x < t.min {
-        contains(t.left, x)
+        t.left.contains(x)
       } else if x > t.max {
-        contains(t.right, x)
+        t.right.contains(x)
       } else {
         true
       }
@@ -22,7 +22,7 @@ pub fn contains[N : @bounded_enum.T](self : Tree[N], x : N) -> Bool {
 }
 
 ///|
-pub fn union[N : @bounded_enum.T](t1 : Tree[N], t2 : Tree[N]) -> Tree[N] {
+pub fn[N : @bounded_enum.T] union(t1 : Tree[N], t2 : Tree[N]) -> Tree[N] {
   match (t1, t2) {
     (Empty, Empty) => Empty
     (Empty, Node(..) as t) | (Node(..) as t, Empty) => t
@@ -34,7 +34,7 @@ pub fn union[N : @bounded_enum.T](t1 : Tree[N], t2 : Tree[N]) -> Tree[N] {
 }
 
 ///|
-fn union_aux[N : @bounded_enum.T](t1 : Tree[N], t2 : Tree[N]) -> Tree[N] {
+fn[N : @bounded_enum.T] union_aux(t1 : Tree[N], t2 : Tree[N]) -> Tree[N] {
   guard t1 is (Node(..) as t1)
   guard t2 is (Node(..) as t2)
   let l1 = t1.left
@@ -77,7 +77,7 @@ fn union_aux[N : @bounded_enum.T](t1 : Tree[N], t2 : Tree[N]) -> Tree[N] {
 }
 
 ///|
-pub fn intersection[N : @bounded_enum.T](t1 : Tree[N], t2 : Tree[N]) -> Tree[N] {
+pub fn[N : @bounded_enum.T] intersection(t1 : Tree[N], t2 : Tree[N]) -> Tree[N] {
   match (t1, t2) {
     (Empty, _) | (_, Empty) => Empty
     (Node(..) as t1, Node(..) as t2) => {
@@ -88,7 +88,7 @@ pub fn intersection[N : @bounded_enum.T](t1 : Tree[N], t2 : Tree[N]) -> Tree[N] 
 }
 
 ///|
-fn intersection_aux[N : @bounded_enum.T](t1 : Tree[N], t2 : Tree[N]) -> Tree[N] {
+fn[N : @bounded_enum.T] intersection_aux(t1 : Tree[N], t2 : Tree[N]) -> Tree[N] {
   guard t1 is (Node(..) as t1)
   guard t2 is (Node(..) as t2)
   let l1 = t1.left
@@ -102,12 +102,12 @@ fn intersection_aux[N : @bounded_enum.T](t1 : Tree[N], t2 : Tree[N]) -> Tree[N] 
 }
 
 ///|
-pub fn complement[N : @bounded_enum.T](self : Tree[N]) -> Tree[N] {
+pub fn[N : @bounded_enum.T] complement(self : Tree[N]) -> Tree[N] {
   complement_aux(N::lower_bound(), N::upper_bound(), self)
 }
 
 ///|
-fn complement_aux[N : @bounded_enum.T](
+fn[N : @bounded_enum.T] complement_aux(
   min : N,
   max : N,
   t : Tree[N]
@@ -131,6 +131,6 @@ fn complement_aux[N : @bounded_enum.T](
 }
 
 ///|
-pub fn difference[N : @bounded_enum.T](t1 : Tree[N], t2 : Tree[N]) -> Tree[N] {
+pub fn[N : @bounded_enum.T] difference(t1 : Tree[N], t2 : Tree[N]) -> Tree[N] {
   intersection(t1, t2.complement())
 }

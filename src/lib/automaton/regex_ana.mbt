@@ -96,7 +96,7 @@ pub fn get_regex_captures(
      Array[
        (String, (VarType, (StaticKnownTagPosition?, StaticKnownTagPosition?))),
      ] {
-  let vars = re.get_capture_vars()
+  let vars = @regex.get_capture_vars(re)
   let static_tag_positions = get_regex_static_known_tag_positions(lowered_re)
   let result = vars
     .iter()

@@ -58,12 +58,12 @@ primary -> (Context) -> Regex
 
 character_class -> @char_set.T
   : "[" character_class_inner "]" { $2 }
-  | "[" "^" character_class_inner "]" { @char_set.complement($3) }
+  | "[" "^" character_class_inner "]" { $3.complement() }
   ;
 
 character_class_inner -> @char_set.T
   : { @char_set.empty }
-  | character_class_item character_class_inner { @char_set.union($1, $2) }
+  | character_class_item character_class_inner { $1.union($2) }
   ;
 
 character_class_item -> @char_set.T

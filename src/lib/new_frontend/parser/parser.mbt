@@ -486,11 +486,11 @@ fn yy_action_45(_last_pos : Position, _args : ArrayView[(YYObj, Position, Positi
 }
 
 // file:///./parser.mbty
-// 230|    regex_pattern_item "," regex_pattern { @list.prepend($3, $1) }
+// 230|    regex_pattern_item "," regex_pattern { $3.prepend($1) }
 fn yy_action_46(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   guard _args[2].0 is YYObj__list_T__ast_LexPatternItem_(_dollar3)
   guard _args[0].0 is YYObj__ast_LexPatternItem(_dollar1)
-  YYObj__list_T__ast_LexPatternItem_({();  @list.prepend(_dollar3, _dollar1) })
+  YYObj__list_T__ast_LexPatternItem_({();  _dollar3.prepend(_dollar1) })
 }
 
 // file:///./parser.mbty
@@ -1053,11 +1053,11 @@ fn yy_action_125(_last_pos : Position, _args : ArrayView[(YYObj, Position, Posit
 }
 
 // file:///./parser.mbty
-// 165|    term term_list { @list.prepend($2, $1) }
+// 165|    term term_list { $2.prepend($1) }
 fn yy_action_126(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   guard _args[1].0 is YYObj__list_T__ast_Term_(_dollar2)
   guard _args[0].0 is YYObj__ast_Term(_dollar1)
-  YYObj__list_T__ast_Term_({();  @list.prepend(_dollar2, _dollar1) })
+  YYObj__list_T__ast_Term_({();  _dollar2.prepend(_dollar1) })
 }
 
 // file:///./parser.mbty
@@ -1135,14 +1135,14 @@ fn yy_action_138(_last_pos : Position, _args : ArrayView[(YYObj, Position, Posit
 // file:///./parser.mbty
 // 216|    regex_pattern_item "," regex_pattern_with_opt_rest {
 // 217|    let (items, rest) = $3
-// 218|    (@list.prepend(items, $1), rest)
+// 218|    (items.prepend($1), rest)
 // 219|  }
 fn yy_action_139(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   guard _args[2].0 is YYObj___list_T__ast_LexPatternItem____ast_Ident___(_dollar3)
   guard _args[0].0 is YYObj__ast_LexPatternItem(_dollar1)
   YYObj___list_T__ast_LexPatternItem____ast_Ident___({(); 
     let (items, rest) = _dollar3
-    (@list.prepend(items, _dollar1), rest)
+    (items.prepend(_dollar1), rest)
   })
 }
 
@@ -1396,11 +1396,11 @@ fn yy_action_180(_last_pos : Position, _args : ArrayView[(YYObj, Position, Posit
 }
 
 // file:///./parser.mbty
-// 193|    lex_case ";" lex_cases { @list.prepend($3, $1) }
+// 193|    lex_case ";" lex_cases { $3.prepend($1) }
 fn yy_action_181(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   guard _args[2].0 is YYObj__list_T__ast_LexCase_(_dollar3)
   guard _args[0].0 is YYObj__ast_LexCase(_dollar1)
-  YYObj__list_T__ast_LexCase_({();  @list.prepend(_dollar3, _dollar1) })
+  YYObj__list_T__ast_LexCase_({();  _dollar3.prepend(_dollar1) })
 }
 
 // file:///./parser.mbty

@@ -106,10 +106,10 @@ fn yy_action_4(_last_pos : Position, _args : ArrayView[(YYObj, Position, Positio
 }
 
 // file:///./parser.mbty
-// 61|    "[" "^" character_class_inner "]" { @char_set.complement($3) }
+// 61|    "[" "^" character_class_inner "]" { $3.complement() }
 fn yy_action_5(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   guard _args[2].0 is YYObj__char_set_T(_dollar3)
-  YYObj__char_set_T({();  @char_set.complement(_dollar3) })
+  YYObj__char_set_T({();  _dollar3.complement() })
 }
 
 // file:///./parser.mbty
@@ -175,11 +175,11 @@ fn yy_action_14(_last_pos : Position, _args : ArrayView[(YYObj, Position, Positi
 }
 
 // file:///./parser.mbty
-// 66|    character_class_item character_class_inner { @char_set.union($1, $2) }
+// 66|    character_class_item character_class_inner { $1.union($2) }
 fn yy_action_15(_last_pos : Position, _args : ArrayView[(YYObj, Position, Position)]) -> YYObj {
   guard _args[0].0 is YYObj__char_set_T(_dollar1)
   guard _args[1].0 is YYObj__char_set_T(_dollar2)
-  YYObj__char_set_T({();  @char_set.union(_dollar1, _dollar2) })
+  YYObj__char_set_T({();  _dollar1.union(_dollar2) })
 }
 
 // file:///./parser.mbty

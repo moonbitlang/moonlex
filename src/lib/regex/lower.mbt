@@ -1,9 +1,9 @@
 ///|
-pub fn lower(self : Regex, encoding~ : Encoding?) -> Regex {
+pub fn lower(re : Regex, encoding~ : Encoding?) -> Regex {
   if encoding is None {
-    self
+    re
   } else {
-    match self.desc {
+    match re.desc {
       Epsilon => epsilon
       EOF => eof
       Character(cset) =>

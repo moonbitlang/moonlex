@@ -49,20 +49,20 @@ fn update_by_tags(self : TagState, tags : @immut/sorted_set.T[Tag]) -> TagState 
 }
 
 ///|
-fn tagState_min(self : TagState, other : TagState) -> TagState {
-  let tags = @immut/sorted_set.from_array(self._.keys()) +
+fn tagState_min(self_ : TagState, other : TagState) -> TagState {
+  let tags = @immut/sorted_set.from_array(self_._.keys()) +
     @immut/sorted_set.from_array(other._.keys())
   for tag in tags {
-    match (self._.get(tag), other._.get(tag)) {
+    match (self_._.get(tag), other._.get(tag)) {
       (None, _) => break other
-      (_, None) => break self
+      (_, None) => break self_
       (Some(r1), Some(r2)) =>
         if r1 != r2 {
-          break if r1 < r2 { self } else { other }
+          break if r1 < r2 { self_ } else { other }
         }
     }
   } else {
-    self
+    self_
   }
 }
 

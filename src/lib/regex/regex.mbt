@@ -166,10 +166,8 @@ fn check_legal_rec(
 }
 
 ///|
-pub fn get_capture_vars(
-  self : Regex
-) -> @immut/sorted_map.T[String, RegexClass] {
-  match self.desc {
+pub fn get_capture_vars(re : Regex) -> @immut/sorted_map.T[String, RegexClass] {
+  match re.desc {
     Capture(re, name) => get_capture_vars(re).add(name, re.class)
     Repetition(re) => get_capture_vars(re)
     Alter(re1, re2) | Concat(re1, re2) =>

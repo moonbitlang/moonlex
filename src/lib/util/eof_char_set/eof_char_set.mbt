@@ -45,12 +45,12 @@ pub fn negated(self : EofCharSet) -> EofCharSet {
 
 ///|
 pub fn is_empty(self : EofCharSet) -> Bool {
-  @diet.is_empty(self._)
+  self._.is_empty()
 }
 
 ///|
 pub fn contains(self : EofCharSet, x : Char) -> Bool {
-  @diet.contains(self._, EofChar::char(x))
+  self._.contains(EofChar::char(x))
 }
 
 ///|
@@ -79,7 +79,7 @@ pub fn intersection(self : EofCharSet, other : EofCharSet) -> EofCharSet {
 
 ///|
 pub fn complement(self : EofCharSet) -> EofCharSet {
-  @diet.complement(self._)
+  self._.complement()
 }
 
 ///|
@@ -99,22 +99,22 @@ pub fn disjoint(self : EofCharSet, other : EofCharSet) -> Bool {
 
 ///|
 pub impl Neg for EofCharSet with op_neg(self) {
-  complement(self)
+  self.complement()
 }
 
 ///|
 pub impl Add for EofCharSet with op_add(self, other) {
-  union(self, other)
+  self.union(other)
 }
 
 ///|
 pub impl Sub for EofCharSet with op_sub(self, other) {
-  difference(self, other)
+  self.difference(other)
 }
 
 ///|
 pub impl BitAnd for EofCharSet with land(self : EofCharSet, other : EofCharSet) -> EofCharSet {
-  intersection(self, other)
+  self.intersection(other)
 }
 
 ///|

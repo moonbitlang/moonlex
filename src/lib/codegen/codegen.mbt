@@ -7,10 +7,10 @@ pub fn codegen_lex(
   [
     lex.header,
     lex.rules.map(fn(rule) { codegen_rule(rule, code_unit~, default_encoding~) })
-    |> @string.concat(separator="\n"),
+    |> _.join("\n"),
     lex.trailer,
   ]
-  |> @string.concat(separator="\n\n")
+  |> _.join("\n\n")
 }
 
 ///|

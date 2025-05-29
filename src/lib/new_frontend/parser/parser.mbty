@@ -162,7 +162,7 @@ terms -> Array[@ast.Term]
 
 term_list -> @list.T[@ast.Term]
   : { @list.empty() }
-  | term term_list { @list.prepend($2, $1) }
+  | term term_list { $2.prepend($1) }
   ;
 
 term -> @ast.Term
@@ -190,7 +190,7 @@ lexee_code_def -> Unit
 lex_cases -> @list.T[@ast.LexCase]
   : lex_case { @list.singleton($1) }
   | lex_case ";" { @list.singleton($1) }
-  | lex_case ";" lex_cases { @list.prepend($3, $1) }
+  | lex_case ";" lex_cases { $3.prepend($1) }
   ;
 
 lex_case -> @ast.LexCase
@@ -215,7 +215,7 @@ regex_pattern_with_opt_rest -> (@list.T[@ast.LexPatternItem], @ast.Ident??)
   | rest { (@list.empty(), Some($1)) }
   | regex_pattern_item "," regex_pattern_with_opt_rest {
     let (items, rest) = $3
-    (@list.prepend(items, $1), rest)
+    (items.prepend($1), rest)
   }
   ;
 
@@ -227,7 +227,7 @@ regex_pattern_with_opt_rest -> (@list.T[@ast.LexPatternItem], @ast.Ident??)
 
 regex_pattern -> @list.T[@ast.LexPatternItem]
   : regex_pattern_item { @list.singleton($1) }
-  | regex_pattern_item "," regex_pattern { @list.prepend($3, $1) }
+  | regex_pattern_item "," regex_pattern { $3.prepend($1) }
   ;
 
 regex_pattern_item -> @ast.LexPatternItem

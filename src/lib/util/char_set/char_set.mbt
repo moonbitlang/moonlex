@@ -32,7 +32,7 @@ pub fn negated(self : CharSet) -> CharSet {
 
 ///|
 pub fn is_empty(self : CharSet) -> Bool {
-  @diet.is_empty(self._)
+  self._.is_empty()
 }
 
 ///|
@@ -57,7 +57,7 @@ pub fn intersection(self : CharSet, other : CharSet) -> CharSet {
 
 ///|
 pub fn complement(self : CharSet) -> CharSet {
-  @diet.complement(self._)
+  self._.complement()
 }
 
 ///|
@@ -77,22 +77,22 @@ pub fn disjoint(self : CharSet, other : CharSet) -> Bool {
 
 ///|
 pub impl Neg for CharSet with op_neg(self) {
-  complement(self)
+  self.complement()
 }
 
 ///|
 pub impl Add for CharSet with op_add(self, other) {
-  union(self, other)
+  self.union(other)
 }
 
 ///|
 pub impl Sub for CharSet with op_sub(self, other) {
-  difference(self, other)
+  self.difference(other)
 }
 
 ///|
 pub impl BitAnd for CharSet with land(self : CharSet, other : CharSet) -> CharSet {
-  intersection(self, other)
+  self.intersection(other)
 }
 
 ///|

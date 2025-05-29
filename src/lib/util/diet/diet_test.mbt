@@ -22,7 +22,7 @@ test "interval" {
 ///|
 test "slice with min" {
   let a : @diet.T[Char] = @diet.interval('0', '9')
-  let slice : @diet.T[Char] = @diet.slice(a, min='3')
+  let slice : @diet.T[Char] = a.slice(min='3')
   inspect!(
     slice.iter().to_array(),
     content="['3', '4', '5', '6', '7', '8', '9']",
@@ -32,14 +32,14 @@ test "slice with min" {
 ///|
 test "slice with max" {
   let a : @diet.T[Char] = @diet.interval('0', '9')
-  let slice : @diet.T[Char] = @diet.slice(a, max='3')
+  let slice : @diet.T[Char] = a.slice(max='3')
   inspect!(slice.iter().to_array(), content="['0', '1', '2', '3']")
 }
 
 ///|
 test "slice with min and max" {
   let a : @diet.T[Char] = @diet.interval('0', '9')
-  let slice : @diet.T[Char] = @diet.slice(a, min='3', max='6')
+  let slice : @diet.T[Char] = a.slice(min='3', max='6')
   inspect!(slice.iter().to_array(), content="['3', '4', '5', '6']")
 }
 
@@ -122,21 +122,18 @@ test "intersection containing" {
 ///|
 test "complement empty" {
   let empty : @diet.T[Char] = @diet.empty()
-  let complement : @diet.T[Char] = @diet.complement(empty)
-  assert_eq!(
-    complement.iter_intervals().to_array(),
-    [('\u{0}', '\u{10ffff}')],
-  )
+  let complement : @diet.T[Char] = empty.complement()
+  assert_eq!(complement.iter_intervals().to_array(), [('\u{0}', '\u{10ffff}')])
 }
 
 ///|
 test "complement single interval" {
   let a : @diet.T[Char] = @diet.interval('0', '9')
-  let complement : @diet.T[Char] = @diet.complement(a)
-  assert_eq!(
-    complement.iter_intervals().to_array(),
-    [('\u{0}', '/'), (':', '\u{10ffff}')],
-  )
+  let complement : @diet.T[Char] = a.complement()
+  assert_eq!(complement.iter_intervals().to_array(), [
+    ('\u{0}', '/'),
+    (':', '\u{10ffff}'),
+  ])
 }
 
 ///|
@@ -145,11 +142,12 @@ test "complement multiple intervals" {
     @diet.interval('0', '4'),
     @diet.interval('6', '9'),
   )
-  let complement : @diet.T[Char] = @diet.complement(a)
-  assert_eq!(
-    complement.iter_intervals().to_array(),
-    [('\u{0}', '/'), ('5', '5'), (':', '\u{10ffff}')],
-  )
+  let complement : @diet.T[Char] = a.complement()
+  assert_eq!(complement.iter_intervals().to_array(), [
+    ('\u{0}', '/'),
+    ('5', '5'),
+    (':', '\u{10ffff}'),
+  ])
 }
 
 ///|
@@ -157,8 +155,5 @@ test "difference" {
   let a : @diet.T[Char] = @diet.interval('0', '9')
   let b : @diet.T[Char] = @diet.interval('3', '6')
   let difference : @diet.T[Char] = @diet.difference(a, b)
-  assert_eq!(
-    difference.iter().to_array(),
-    ['0', '1', '2', '7', '8', '9'],
-  )
+  assert_eq!(difference.iter().to_array(), ['0', '1', '2', '7', '8', '9'])
 }
