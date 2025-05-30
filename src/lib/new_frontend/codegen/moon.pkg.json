@@ -3,6 +3,7 @@
     "moonbitlang/ulex/lib/type",
     "moonbitlang/ulex/lib/automaton",
     "moonbitlang/ulex/lib/codegen/codeblock_parser",
-    "moonbitlang/ulex/lib/util/eof_char_set"
+    "moonbitlang/ulex/lib/util/eof_char_set",
+    "moonbitlang/ulex/lib/regex"
   ]
 }

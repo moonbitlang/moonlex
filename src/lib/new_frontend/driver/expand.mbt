@@ -62,9 +62,7 @@ fn expand_term(
           ((re, rest_binder), generate(case.action, source~))
         })
         |> @ext.unzip_array
-      let rule : @type.Rule = {
-        name: "",
-        signature: "",
+      let rule : @codegen.Rule = {
         lexee: decode_utf8(source[lexee.loc.start.cnum:lexee.loc.end.cnum]),
         patterns,
         actions,
