@@ -18,7 +18,6 @@ pub(all) enum NFACapturePosition {
 pub(all) struct NFA {
   graph : Array[NFANode]
   end_nodes : Map[Int, Int] // from node_id to pattern_id
-  code_blocks : Array[CodeBlock] // indexed by pattern_id
   // String? is rest_binder
   pattern_captures : Array[
     (
@@ -57,7 +56,6 @@ pub impl Hash for NFANode with hash_combine(self, hasher) {
 fn NFA::new_nfa() -> NFA {
   {
     graph: [],
-    code_blocks: [],
     end_nodes: Map::new(),
     pattern_captures: [],
     start_node: -1,
@@ -67,7 +65,10 @@ fn NFA::new_nfa() -> NFA {
 }
 
 ///|
-pub fn NFA::from_rule(rule : Rule, encoding? : @type.Encoding) -> NFA {
+pub fn NFA::from_patterns(
+  patterns : Array[(Regex, String?)],
+  encoding? : @type.Encoding
+) -> NFA {
   let nfa = NFA::new_nfa()
   let node = nfa.new_node() // match starting from 1
   nfa.start_node = node.num
@@ -77,8 +78,8 @@ pub fn NFA::from_rule(rule : Rule, encoding? : @type.Encoding) -> NFA {
     tag
   }
 
-  for pattern in rule.patterns {
-    let (re, rest_binder, code_block) = pattern
+  for pattern in patterns {
+    let (re, rest_binder) = pattern
     let lowered_re = @regex.lower(re, encoding~)
     let capture_names = get_regex_captures(re, lowered_re).map(fn(it) {
       let (name, (var_type, (begin, end))) = it
@@ -100,9 +101,7 @@ pub fn NFA::from_rule(rule : Rule, encoding? : @type.Encoding) -> NFA {
           (name, (begin_tag, end_tag))
       }),
     )
-    nfa.register_regex(node, lowered_re, code_block, fn(x) {
-      map.get(x).unwrap()
-    })
+    nfa.register_regex(node, lowered_re, fn(x) { map.get(x).unwrap() })
     nfa.pattern_captures.push((capture_names, rest_binder))
   }
   nfa
@@ -133,12 +132,10 @@ fn register_regex(
   self : NFA,
   node : NFANode,
   re : Regex,
-  code_block : CodeBlock,
   name2pos : (String) -> (NFACapturePosition, NFACapturePosition)
 ) -> Unit {
   let final_ = self.register_regex_rec(node, re, name2pos)
-  let id = self.code_blocks.length()
-  self.code_blocks.push(code_block)
+  let id = self.pattern_captures.length()
   self.end_nodes.set(final_.num, id)
 }
 

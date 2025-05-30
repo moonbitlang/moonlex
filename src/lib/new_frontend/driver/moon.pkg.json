@@ -8,6 +8,7 @@
     "moonbitlang/ulex/lib/regex",
     "moonbitlang/ulex/lib/new_frontend/regex_parser",
     "moonbitlang/ulex/lib/type",
-    "moonbitlang/ulex/lib/new_frontend/codegen"
+    "moonbitlang/ulex/lib/new_frontend/codegen",
+    "moonbitlang/ulex/lib/util/ext"
   ]
 }

@@ -95,7 +95,7 @@ pub fn codegen_rule_inner(
     CodeUnit1 => default_encoding
     CodeUnit2 | CodeUnit4 => None
   }
-  let dfa = @automaton.DFA::from_rule(rule, encoding?)
+  let dfa = @automaton.DFA::from_patterns(rule.patterns, encoding?)
   let max_num_capture_vars = dfa.pattern_captures
     .iter()
     .map(fn(captures) { captures.0.length() })
@@ -309,8 +309,7 @@ pub fn codegen_rule_inner(
     $|
     ,
   )
-  for pattern_id, pattern_desc in rule.patterns {
-    let (_, _, codeblock) = pattern_desc
+  for pattern_id, action in rule.actions {
     // The `()` is to avoid `{ xxx }` to be interpreted as a record
     out.write_string(
       $|    \{pattern_id} => {
@@ -318,7 +317,7 @@ pub fn codegen_rule_inner(
       $|
       ,
     )
-    let subst = @codeblock_parser.parse_codeblock(codeblock)
+    let subst = @codeblock_parser.parse_codeblock(action)
     let captures = dfa.pattern_captures[pattern_id]
     for capture_id, capture in captures.0 {
       let (name, var_type) = capture
@@ -355,7 +354,7 @@ pub fn codegen_rule_inner(
       }
     }
     out.write_string(
-      $|\{rewrite_codeblock(codeblock, subst, captures.0)}
+      $|\{rewrite_codeblock(action, subst, captures.0)}
       $|
       ,
     )

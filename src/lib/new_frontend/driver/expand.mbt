@@ -33,11 +33,7 @@ fn expand_term(
     Nested(terms, loc~) =>
       Nested(expand_terms(terms, named_regexes~, source~), loc~)
     LexDef(lexee, cases, loc~) => {
-      let rule : @type.Rule = {
-        name: "",
-        signature: "",
-        lexee: decode_utf8(source[lexee.loc.start.cnum:lexee.loc.end.cnum]),
-        patterns: cases.map(fn(case) {
+      let (patterns, actions) = cases.map(fn(case) {
           let (items, open, rest) = match case.pattern {
             OpenPattern(items, rest~, ..) => (items, true, rest)
             ClosedPattern(items, ..) => (items, false, None)
@@ -63,8 +59,15 @@ fn expand_term(
             Some(id) => Some(id.name)
             None => None
           }
-          (re, rest_binder, generate(case.action, source~))
-        }),
+          ((re, rest_binder), generate(case.action, source~))
+        })
+        |> @ext.unzip_array
+      let rule : @type.Rule = {
+        name: "",
+        signature: "",
+        lexee: decode_utf8(source[lexee.loc.start.cnum:lexee.loc.end.cnum]),
+        patterns,
+        actions,
       }
       let code = @codegen.codegen_rule_new_syntax(
         rule,
