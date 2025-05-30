@@ -28,7 +28,7 @@ fn DFA::minimize(dfa : DFA) -> DFA {
   )
   let final_states = @immut/sorted_set.from_iter(dfa.end_nodes.keys())
   let mut partitions = @immut/sorted_set.new()
-  for pattern_id in 0..<dfa.code_blocks.length() {
+  for pattern_id in 0..<dfa.pattern_captures.length() {
     let mut groups = @immut/sorted_map.new()
     for end_node, end_node_info in dfa.end_nodes {
       let tag_action = dfa.tag_actions.get(end_node).unwrap()
@@ -123,7 +123,7 @@ fn DFA::minimize(dfa : DFA) -> DFA {
 
   // Build the new DFA
   // The new DFA will have one state for each partition
-  let new_dfa = DFA::new(dfa.code_blocks, dfa.captures)
+  let new_dfa = DFA::new(dfa.pattern_captures)
   let state_to_partition = {}
   for partition in partitions {
     for state in partition {

@@ -103,8 +103,7 @@ fn DFA::minimize_tags(self : DFA) -> DFA {
         )
       }),
     ),
-    code_blocks: self.code_blocks,
-    captures: self.captures,
+    pattern_captures: self.pattern_captures,
     node_count: self.node_count,
   }
 }

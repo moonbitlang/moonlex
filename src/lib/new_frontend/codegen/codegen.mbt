@@ -10,12 +10,12 @@ pub fn codegen_rule_new_syntax(
     CodeUnit2 | CodeUnit4 => None
   }
   let dfa = @automaton.DFA::from_rule(rule, encoding?)
-  let max_num_capture_vars = dfa.captures
+  let max_num_capture_vars = dfa.pattern_captures
     .iter()
     .map(fn(captures) { captures.0.length() })
     .maximum()
     .or(0)
-  let max_pattern_id = dfa.code_blocks.length() - 1
+  let max_pattern_id = dfa.pattern_captures.length() - 1
   out.write_string(
     $|loop \{rule.lexee} { _lexee => {
     $|  let _data = _lexee.data()
@@ -232,7 +232,8 @@ pub fn codegen_rule_new_syntax(
     $|
     ,
   )
-  for pattern_id, codeblock in dfa.code_blocks {
+  for pattern_id, pattern_desc in rule.patterns {
+    let (_, _, codeblock) = pattern_desc
     // The `()` is to avoid `{ xxx }` to be interpreted as a record
     out.write_string(
       $|    \{pattern_id} => {
@@ -241,7 +242,7 @@ pub fn codegen_rule_new_syntax(
       ,
     )
     let subst = @codeblock_parser.parse_codeblock(codeblock)
-    let captures = dfa.captures[pattern_id]
+    let captures = dfa.pattern_captures[pattern_id]
     for capture_id, capture in captures.0 {
       let (name, var_type) = capture
       fn name_used_in_subst(name : String) -> Bool {

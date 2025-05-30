@@ -77,11 +77,10 @@ pub(all) struct DFA {
   graph : Array[Array[(@eof_char_set.T, Int)]] // indexed by node_id
   mut start_node : Int
   tag_actions : Map[Int, TagAction] // indexed by node_id
+  // // indexed by pattern_id
   end_nodes : Map[Int, (Int, Array[(DFACapturePosition, DFACapturePosition)])]
-  // (pattern_id, [(begin_tag, rank), (end_tag, rank))])
-  code_blocks : Array[CodeBlock] // indexed by pattern_id
   // String? is rest_binder
-  captures : Array[(Array[(String, VarType)], String?)] // indexed by pattern_id
+  pattern_captures : Array[(Array[(String, VarType)], String?)] // indexed by pattern_id
   mut node_count : Int
 } derive(Show)
 
@@ -89,16 +88,12 @@ pub(all) struct DFA {
 pub typealias DFANode = Int
 
 ///|
-fn DFA::new(
-  code_blocks : Array[CodeBlock],
-  captures : Array[(Array[(String, VarType)], String?)]
-) -> DFA {
+fn DFA::new(captures : Array[(Array[(String, VarType)], String?)]) -> DFA {
   {
     graph: [],
     start_node: -1,
     tag_actions: {},
-    code_blocks,
-    captures,
+    pattern_captures: captures,
     end_nodes: Map::new(),
     node_count: 0,
   }
@@ -186,7 +181,7 @@ fn register_node(self : DFA, nfa : NFA, node : Int, os : State) -> Unit {
     abort("error")
   }
   let tagState = end_nodes[0].1
-  let min_tags = nfa.captures[min_code_block].0.map(fn {
+  let min_tags = nfa.pattern_captures[min_code_block].0.map(fn {
     (_name, (begin, end)) =>
       (
         match begin {
@@ -214,8 +209,10 @@ fn DFA::from_nfa(nfa : NFA) -> DFA {
     initial_state,
     nfa.tag_count,
   )
-  let captures = nfa.captures.map(fn(x) { (x.0.map(fn(y) { y.0 }), x.1) })
-  let dfa = DFA::new(nfa.code_blocks, captures)
+  let captures = nfa.pattern_captures.map(fn(x) {
+    (x.0.map(fn(y) { y.0 }), x.1)
+  })
+  let dfa = DFA::new(captures)
   let node_map : Map[State, Int] = Map::new()
   let queue = @queue.new()
   fn get_id(state : State) -> Int {
