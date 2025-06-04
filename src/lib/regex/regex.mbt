@@ -90,7 +90,8 @@ pub fn repeat(re : Regex, min_times~ : Int, max_times? : Int) -> Regex {
 pub fn seq(re1 : Regex, re2 : Regex) -> Regex {
   match (re1, re2) {
     ({ desc: Concat(re1, re2), .. }, re3) => seq(re1, seq(re2, re3))
-    ({ desc: Epsilon, .. }, re) | (re, { desc: Epsilon, .. }) => re
+    ({ desc: Epsilon, .. }, re) | (re, { desc: Epsilon, .. }) =>
+      { ..re, class: String }
     _ =>
       {
         desc: Concat(re1, re2),
