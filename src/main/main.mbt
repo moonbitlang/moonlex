@@ -9,7 +9,7 @@ fn main {
   let input_file = @ref.new("")
   let mut code_unit = @type.CodeUnit4
   let mut default_encoding : @type.Encoding? = None
-  let mut new_syntax = true
+  let mut new_syntax = false
   @ArgParser.parse(
     [
       ("--new-syntax", "", Unit(fn() { new_syntax = true }), "Use new syntax"),
