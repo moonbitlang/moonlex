@@ -210,12 +210,12 @@ fn DFA::from_nfa(nfa : NFA) -> DFA {
   })
   let dfa = DFA::new(captures)
   let node_map : Map[State, Int] = Map::new()
-  let queue = @queue.new()
+  let state_by_node : Map[Int, State] = Map::new()
   fn get_id(state : State) -> Int {
     node_map.get_or_init(state, fn() {
       let node = dfa.new_node()
       dfa.register_node(nfa, node, state)
-      queue.push(state)
+      state_by_node[node] = state
       node
     })
   }
@@ -292,13 +292,23 @@ fn DFA::from_nfa(nfa : NFA) -> DFA {
   let start_node = get_id(initial_state)
   dfa.start_node = start_node
   dfa.tag_actions[start_node] = start_action
-  while queue.pop() is Some(cur_state) {
-    let from_n = node_map.get(cur_state).unwrap()
+  let queue = @queue.new()
+  queue.push((start_node, initial_state))
+  let mut visited = @immut/sorted_set.new()
+  while queue.pop() is Some((from_n, cur_state)) {
+    if visited.contains(from_n) {
+      continue
+    }
+    visited = visited.add(from_n)
     let trans = transitions(cur_state)
     for tran in trans {
       let (cset, state) = tran
-      let (state, action) = state_canonicalize(state, nfa.tag_count)
       let to_n = get_id(state)
+      let (canonicalize_state, action) = state_canonicalize(
+        state,
+        nfa.tag_count,
+      )
+      queue.push((to_n, canonicalize_state))
       dfa.tag_actions[to_n] = action
       dfa.add_edge(from_n, cset, to_n)
     }

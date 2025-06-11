@@ -706,7 +706,7 @@ fn token[T : @lexbuf.IStringLexbuf](lexbuf : T) -> (Token, Int, Int)  {
         95 => 70
         96 => 69
         97..=122 => 70
-        123 => 73
+        123 => 74
         124..=1114111 => 69
         _ => break
       }
@@ -742,6 +742,18 @@ fn token[T : @lexbuf.IStringLexbuf](lexbuf : T) -> (Token, Int, Int)  {
         _match_end = lexbuf.curr_pos()
         _capture_0_start = _tag_0
         _capture_0_end = _tag_1
+        _capture_1_start = _tag_0
+        _capture_1_end = _tag_2
+      }
+      break
+    }
+    74 => {
+      _tag_1 = _tag_1_1
+      if _match_pattern >= 3 {
+        _match_pattern = 3
+        _match_end = lexbuf.curr_pos()
+        _capture_0_start = _tag_0
+        _capture_0_end = _tag_1_1
         _capture_1_start = _tag_0
         _capture_1_end = _tag_2
       }
