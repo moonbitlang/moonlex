@@ -5,7 +5,7 @@
 pub(all) type TagAction Array[TagOp] derive(Show, Eq, Compare) // sorted
 
 ///|
-pub typealias TagRank = Int
+pub typealias Int as TagRank
 
 ///|
 pub typealias TagVar = (Tag, TagRank)
@@ -85,7 +85,7 @@ pub(all) struct DFA {
 } derive(Show)
 
 ///|
-pub typealias DFANode = Int
+pub typealias Int as DFANode
 
 ///|
 fn DFA::new(captures : Array[(Array[(String, VarType)], String?)]) -> DFA {
@@ -125,31 +125,27 @@ typealias State = @immut/sorted_map.T[NFANode, TagState]
 
 ///|
 fn state_canonicalize(state : State, tag_count : Int) -> (State, TagAction) {
-  let mat = Array::makei(tag_count, fn(_i) { [] })
+  let ranks_by_tag = Array::makei(tag_count, fn(_i) { [] })
   for pair in state.iter() {
     let tags = pair.1
     for tag, rank in tags._ {
-      mat[tag].push(rank)
+      ranks_by_tag[tag].push(rank)
     }
   }
-  mat.map_inplace(fn(x) { @sorted_set.from_iter(x.iter()).to_array() })
+  ranks_by_tag.map_inplace(fn(x) { @sorted_set.from_iter(x.iter()).to_array() })
   let new_state = state
     .iter()
     .map(fn(pair) {
-      let tags = pair.1._.map_with_key(fn(tag, x) {
-        for index, y in mat[tag] {
-          if x == y {
-            break index
-          }
-        } else {
-          abort("unreachable")
-        }
+      let tag_state = pair.1._.map_with_key(fn(tag, prev_rank) {
+        let ranks = ranks_by_tag[tag]
+        guard ranks.search(prev_rank) is Some(rank)
+        rank
       })
-      (pair.0, TagState(tags))
+      (pair.0, TagState(tag_state))
     })
     |> @immut/sorted_map.from_iter
   let tag_action = []
-  for tag_index, ops in mat {
+  for tag_index, ops in ranks_by_tag {
     for dest_rank, src_rank in ops {
       if src_rank == -1 {
         tag_action.push(Set(dest=(tag_index, dest_rank)))
