@@ -45,15 +45,15 @@ let lexer_src : String =
   #|    '\'' "\\\\" '\'' => { (CHAR('\\'), $startpos, $endpos) }
   #|    '\'' "\\'" '\'' => { (CHAR('\''), $startpos, $endpos) }
   #|    '\'' "\\x" ((hex_digit hex_digit) as t) '\'' => {
-  #|      let code = @strconv.parse_int?(t, base=16).unwrap()
+  #|      let code = (try? @strconv.parse_int(t, base=16)).unwrap()
   #|      (CHAR(code.unsafe_to_char()), $startpos, $endpos)
   #|    }
   #|    '\'' "\\u" ((hex_digit hex_digit hex_digit hex_digit) as t) '\'' => {
-  #|      let code = @strconv.parse_int?(t, base=16).unwrap()
+  #|      let code = (try? @strconv.parse_int(t, base=16)).unwrap()
   #|      (CHAR(code.unsafe_to_char()), $startpos, $endpos)
   #|    }
   #|    '\'' "\\u{" (hex_digit+ as t) '}' '\'' => {
-  #|      let code = @strconv.parse_int?(t, base=16).unwrap()
+  #|      let code = (try? @strconv.parse_int(t, base=16)).unwrap()
   #|      (CHAR(code.unsafe_to_char()), $startpos, $endpos)
   #|    }
   #|    '"' => {
@@ -104,17 +104,17 @@ let lexer_src : String =
   #|      string_inner_rquote(buffer, lexbuf)
   #|    }
   #|    "\\x" ((hex_digit hex_digit) as t) '\'' => {
-  #|      let code = @strconv.parse_int?(t, base=16).unwrap()
+  #|      let code = (try? @strconv.parse_int(t, base=16)).unwrap()
   #|      buffer.write_char(code.unsafe_to_char())
   #|      string_inner_rquote(buffer, lexbuf)
   #|    }
   #|    "\\u" ((hex_digit hex_digit hex_digit hex_digit) as t) '\'' => {
-  #|      let code = @strconv.parse_int?(t, base=16).unwrap()
+  #|      let code = (try? @strconv.parse_int(t, base=16)).unwrap()
   #|      buffer.write_char(code.unsafe_to_char())
   #|      string_inner_rquote(buffer, lexbuf)
   #|    }
   #|    "\\u{" (hex_digit+ as t) '}' '\'' => {
-  #|      let code = @strconv.parse_int?(t, base=16).unwrap()
+  #|      let code = (try? @strconv.parse_int(t, base=16)).unwrap()
   #|      buffer.write_char(code.unsafe_to_char())
   #|      string_inner_rquote(buffer, lexbuf)
   #|    }

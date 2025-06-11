@@ -1,5 +1,5 @@
 ///|
-typealias Rule = @type.Rule
+typealias @type.Rule
 
 ///|
-typealias Lex = @type.Lex
+typealias @type.Lex

@@ -1,10 +1,10 @@
 ///|
-pub typealias T = Regex
+pub typealias Regex as T
 
 ///|
 pub struct Regex {
   desc : RegexDesc
-  class : RegexClass
+  class_ : RegexClass
   len : Int?
 } derive(Show, Eq, ToJson)
 
@@ -34,15 +34,15 @@ pub(all) enum Encoding {
 } derive(Show, Eq, ToJson)
 
 ///|
-pub let eof : Regex = { desc: EOF, class: String, len: None }
+pub let eof : Regex = { desc: EOF, class_: String, len: None }
 
 ///|
-pub let epsilon : Regex = { desc: Epsilon, class: String, len: Some(0) }
+pub let epsilon : Regex = { desc: Epsilon, class_: String, len: Some(0) }
 
 ///|
 pub fn char_class(cset : @char_set.T, as_bytes? : Encoding) -> Regex {
   match as_bytes {
-    None => { desc: Character(cset), class: Char, len: Some(1) }
+    None => { desc: Character(cset), class_: Char, len: Some(1) }
     Some(encoding) => lower_unicode_charclass(cset, encoding~)
   }
 }
@@ -56,7 +56,7 @@ pub fn star(re : Regex) -> Regex {
 pub fn plus(re : Regex) -> Regex {
   {
     desc: Repetition(re),
-    class: String,
+    class_: String,
     len: if re.len is Some(0) {
       Some(0)
     } else {
@@ -91,11 +91,11 @@ pub fn seq(re1 : Regex, re2 : Regex) -> Regex {
   match (re1, re2) {
     ({ desc: Concat(re1, re2), .. }, re3) => seq(re1, seq(re2, re3))
     ({ desc: Epsilon, .. }, re) | (re, { desc: Epsilon, .. }) =>
-      { ..re, class: String }
+      { ..re, class_: String }
     _ =>
       {
         desc: Concat(re1, re2),
-        class: String,
+        class_: String,
         len: if re1.len is Some(len1) && re2.len is Some(len2) {
           Some(len1 + len2)
         } else {
@@ -107,15 +107,19 @@ pub fn seq(re1 : Regex, re2 : Regex) -> Regex {
 
 ///|
 pub fn alt(re1 : Regex, re2 : Regex) -> Regex {
-  let class = if re1.class is Char && re2.class is Char { Char } else { String }
+  let class_ = if re1.class_ is Char && re2.class_ is Char {
+    Char
+  } else {
+    String
+  }
   match (re1, re2) {
     ({ desc: Alter(re1, re2), .. }, re3) => alt(re1, alt(re2, re3))
     ({ desc: Character(cset1), .. }, { desc: Character(cset2), .. }) =>
-      { desc: Character(cset1 + cset2), class, len: Some(1) }
+      { desc: Character(cset1 + cset2), class_, len: Some(1) }
     _ =>
       {
         desc: Alter(re1, re2),
-        class,
+        class_,
         len: if re1.len is Some(len1) && re2.len is Some(len2) && len1 == len2 {
           Some(len1)
         } else {
@@ -127,7 +131,7 @@ pub fn alt(re1 : Regex, re2 : Regex) -> Regex {
 
 ///|
 pub fn bind(re : Regex, name : String) -> Regex {
-  { desc: Capture(re, name), class: re.class, len: re.len }
+  { desc: Capture(re, name), class_: re.class_, len: re.len }
 }
 
 ///|
@@ -169,7 +173,7 @@ fn check_legal_rec(
 ///|
 pub fn get_capture_vars(re : Regex) -> @immut/sorted_map.T[String, RegexClass] {
   match re.desc {
-    Capture(re, name) => get_capture_vars(re).add(name, re.class)
+    Capture(re, name) => get_capture_vars(re).add(name, re.class_)
     Repetition(re) => get_capture_vars(re)
     Alter(re1, re2) | Concat(re1, re2) =>
       @immut/sorted_map.from_iter(

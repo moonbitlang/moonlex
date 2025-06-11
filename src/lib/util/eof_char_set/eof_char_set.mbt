@@ -1,5 +1,5 @@
 ///|
-pub typealias T = EofCharSet
+pub typealias EofCharSet as T
 
 ///|
 type EofCharSet @diet.T[EofChar] derive(Default, Eq, Compare, Hash)

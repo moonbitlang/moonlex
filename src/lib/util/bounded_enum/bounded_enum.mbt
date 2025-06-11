@@ -7,4 +7,4 @@ pub(open) trait BoundedEnum: Compare {
 }
 
 ///|
-pub traitalias T = BoundedEnum
+pub traitalias BoundedEnum as T

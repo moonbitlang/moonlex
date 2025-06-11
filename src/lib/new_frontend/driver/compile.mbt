@@ -5,7 +5,7 @@ pub fn compile(content : Bytes, filename~ : String) -> String {
     content,
     comment=false,
   )
-  let ast = try @parser.start(
+  let ast = @parser.start(
     lex_result.tokens.filter(fn(triple) {
       not(triple.0 is (NEWLINE | COMMENT(_)))
     }),

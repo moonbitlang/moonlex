@@ -1,5 +1,5 @@
 ///|
-fn split_leftmost[N](t : Tree[N]) -> ((N, N), Tree[N]) {
+fn[N] split_leftmost(t : Tree[N]) -> ((N, N), Tree[N]) {
   match t {
     Empty => panic()
     Node(left=Empty, right~, min~, max~, ..) => ((min, max), right)
@@ -11,7 +11,7 @@ fn split_leftmost[N](t : Tree[N]) -> ((N, N), Tree[N]) {
 }
 
 ///|
-fn split_rightmost[N](t : Tree[N]) -> ((N, N), Tree[N]) {
+fn[N] split_rightmost(t : Tree[N]) -> ((N, N), Tree[N]) {
   match t {
     Empty => panic()
     Node(left~, right=Empty, min~, max~, ..) => ((min, max), left)

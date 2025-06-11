@@ -3860,7 +3860,7 @@ fn tokens(lexbuf : Lexbuf, env~ : LexEnv, preserve_comment~ : (Comment, Int, Int
 
       let idx =
         try {
-          @strconv.parse_int!(digits)
+          @strconv.parse_int(digits)
         } catch {
           StrConvError(_) => {
             env.add_lexing_error(InvalidDotInt(repr), start=_capture_0_start, end=_capture_0_end)

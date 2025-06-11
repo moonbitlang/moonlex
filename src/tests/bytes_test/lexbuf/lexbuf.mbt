@@ -6,14 +6,11 @@ struct BytesLexbuf {
 }
 
 ///|
-pub typealias T = BytesLexbuf
+pub typealias BytesLexbuf as T
 
 ///|
-pub fn from_bytes(
-  bytes : Bytes,
-  start~ : Int = 0,
-  end~ : Int = bytes.length()
-) -> BytesLexbuf {
+pub fn from_bytes(bytes : Bytes, start~ : Int = 0, end? : Int) -> BytesLexbuf {
+  let end = end.or(bytes.length())
   return { content: bytes, pos: start, end }
 }
 
@@ -52,7 +49,11 @@ pub fn BytesLexbuf::reset(self : BytesLexbuf, pos~ : Int) -> Unit {
 }
 
 ///|
-pub fn BytesLexbuf::get_char(self : BytesLexbuf, start : Int, _end : Int) -> Byte {
+pub fn BytesLexbuf::get_char(
+  self : BytesLexbuf,
+  start : Int,
+  _end : Int
+) -> Byte {
   return self.content.unsafe_get(start)
 }
 

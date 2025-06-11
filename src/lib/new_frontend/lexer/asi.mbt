@@ -262,7 +262,7 @@ fn ASIContext::new() -> ASIContext {
 //  - the token after the newline is not a valid token for the beginning of a statement
 //  There are a few exception and ambiguity cases though. See [can_occur_after_semi] for more detail.
 ///|
-fn ASIContext::add_token[C](
+fn[C] ASIContext::add_token(
   self : ASIContext,
   tokens~ : Array[(Token, Position, Position)],
   last_unhandled_comment~ : Ref[(C, Int)?],

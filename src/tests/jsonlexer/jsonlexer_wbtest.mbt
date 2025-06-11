@@ -5,15 +5,14 @@ test {
   let lexbuf = @lexbuf.StringLexbuf::from_string(json_str)
   let tokens = []
   while true {
-    try {
-      token!(lexbuf)
-    } catch! {
+    try token(lexbuf) catch {
       EndOfFile => break
+      err => raise err
     } else {
       tok => tokens.push(tok)
     }
   }
-  @json.inspect!(tokens, content=[
+  @json.inspect(tokens, content=[
     { "$tag": "LBRACE" },
     { "$tag": "STRING", "0": "\"cities\"" },
     { "$tag": "COLON" },

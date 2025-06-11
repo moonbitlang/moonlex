@@ -14,21 +14,21 @@ priv enum Token {
   NULL
 } derive(ToJson)
 
-pub type! LexError {
+pub suberror LexError {
   EndOfFile
   UnexpectedEndOfFile
   Unrecognized(String)
 }
 }
 
-rule token[T : @lexbuf.IStringLexbuf](lexbuf : T) -> Token!LexError {
+rule token[T : @lexbuf.IStringLexbuf](lexbuf : T) -> Token raise LexError {
   parse {
     [' ' '\t' '\r' '\n'] => { WHITESPACE }
     ('-'? ('0' | ['1'-'9'] ['0'-'9']* ('.' ['0'-'9']+)?) (['E' 'e'] ['+' '-']? ['0'-'9']+)?) as t => { NUMBER(t) }
     '"' as t => {
       let buf = StringBuilder::new()
       buf.write_char(t)
-      lex_string!(buf, lexbuf)
+      lex_string(buf, lexbuf)
       STRING(buf.to_string())
     }
     '{' => { LBRACE }
@@ -45,7 +45,7 @@ rule token[T : @lexbuf.IStringLexbuf](lexbuf : T) -> Token!LexError {
   }
 }
 
-rule lex_string[T : @lexbuf.IStringLexbuf](buf : StringBuilder, lexbuf : T) -> Unit!LexError {
+rule lex_string[T : @lexbuf.IStringLexbuf](buf : StringBuilder, lexbuf : T) -> Unit raise LexError {
   parse {
     '"' as t => { buf.write_char(t) }
     ( '\\' '"'
@@ -58,12 +58,12 @@ rule lex_string[T : @lexbuf.IStringLexbuf](buf : StringBuilder, lexbuf : T) -> U
     | '\\' 't'
     | '\\' 'u' ['0'-'9' 'A'-'F' 'a'-'f'] ['0'-'9' 'A'-'F' 'a'-'f'] ['0'-'9' 'A'-'F' 'a'-'f'] ['0'-'9' 'A'-'F' 'a'-'f']) as t => { 
       buf.write_string(t)
-      lex_string!(buf, lexbuf)
+      lex_string(buf, lexbuf)
     }
     // [^ '"' '\\' '\x00'-'\x1F' '\x7f'] as t => { 
     _ \ ['"' '\\' '\x00'-'\x1F' '\x7f'] as t => { 
       buf.write_char(t)
-      lex_string!(buf, lexbuf)
+      lex_string(buf, lexbuf)
     }
     _ as t => { raise(Unrecognized(String::make(1, t))) }
     "" => { raise(UnexpectedEndOfFile) }

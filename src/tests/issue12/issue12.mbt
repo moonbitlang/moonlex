@@ -1,6 +1,6 @@
 
 
-fn test_func[T : @lexbuf.IStringLexbuf](lexbuf : T) -> String  {
+fn[T : @lexbuf.IStringLexbuf] test_func(lexbuf : T) -> String  {
   // The matched pattern id
   let mut _match_pattern = @int.max_value
   let mut _match_start = lexbuf.curr_pos()

@@ -1,6 +1,6 @@
 
 
-fn lex_unicode[T : @lexbuf.IStringLexbuf](lexbuf : T) -> Int  {
+fn[T : @lexbuf.IStringLexbuf] lex_unicode(lexbuf : T) -> Int  {
   // The matched pattern id
   let mut _match_pattern = @int.max_value
   let mut _match_start = lexbuf.curr_pos()

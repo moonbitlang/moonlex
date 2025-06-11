@@ -121,39 +121,39 @@ pub impl Show for TokenKind with output(self, logger) {
   )
 }
 
-pub type! ParseError {
+pub suberror ParseError {
   UnexpectedToken(Token, (Int, Int), Array[TokenKind])
 } derive(Show)
 
-typealias YYObj = Error
+typealias Error as YYObj
 
-priv type! YYObj_Void
+priv suberror YYObj_Void
 
-priv type! YYObj_Char Char
+priv suberror YYObj_Char Char
 
-priv type! YYObj_String String
+priv suberror YYObj_String String
 
-priv type! YYObj__char_set_T @char_set.T
+priv suberror YYObj__char_set_T @char_set.T
 
-priv type! YYObj__String__String_ (String, String)
+priv suberror YYObj__String__String_ (String, String)
 
-priv type! YYObj__Context_____Context (Context) -> Context
+priv suberror YYObj__Context_____Context (Context) -> Context
 
-priv type! YYObj__Context______type_Lex (Context) -> @type.Lex
+priv suberror YYObj__Context______type_Lex (Context) -> @type.Lex
 
-priv type! YYObj__Context______type_Rule (Context) -> @type.Rule
+priv suberror YYObj__Context______type_Rule (Context) -> @type.Rule
 
-priv type! YYObj__Context______type_Regex (Context) -> @type.Regex
+priv suberror YYObj__Context______type_Regex (Context) -> @type.Regex
 
-priv type! YYObj__Context______immut_list_T__type_Rule_ (Context) -> @immut/list.T[@type.Rule]
+priv suberror YYObj__Context______immut_list_T__type_Rule_ (Context) -> @immut/list.T[@type.Rule]
 
-priv type! YYObj__Context______immut_list_T___type_Regex__String____type_CodeBlock__ (Context) -> @immut/list.T[(@type.Regex, String?, @type.CodeBlock)]
+priv suberror YYObj__Context______immut_list_T___type_Regex__String____type_CodeBlock__ (Context) -> @immut/list.T[(@type.Regex, String?, @type.CodeBlock)]
 
-priv type! YYObj__Context_______type_Regex__String____type_CodeBlock_ (Context) -> (@type.Regex, String?, @type.CodeBlock)
+priv suberror YYObj__Context_______type_Regex__String____type_CodeBlock_ (Context) -> (@type.Regex, String?, @type.CodeBlock)
 
-typealias YYState = (YYSymbol) -> YYDecision
+typealias (YYSymbol) -> YYDecision as YYState
 
-typealias YYAction = (Int, ArrayView[(YYObj, Int, Int)]) -> YYObj
+typealias (Int, ArrayView[(YYObj, Int, Int)]) -> YYObj as YYAction
 
 priv enum YYDecision {
   Accept
@@ -1452,12 +1452,12 @@ fn yy_state_70(_lookahead : YYSymbol) -> YYDecision {
   ReduceNoLookahead(2, NT_lex_eoi, yy_action_37)
 }
 
-fn yy_parse[T](
+fn[T] yy_parse(
   read_token : () -> (Token, Int, Int),
   start_pos : Int,
   start : YYState,
   return_ : (YYObj) -> T
-) -> T!ParseError {
+) -> T raise ParseError {
   let mut state_stack : @immut/list.T[YYState] = Cons(start, Nil)
   let data_stack : Array[(YYObj, Int, Int)] = []
   let mut last_pos = start_pos
@@ -1522,14 +1522,14 @@ fn yy_parse[T](
       }
       Error => {
         let (_, (_, start_pos, end_pos), token) = lookahead.unwrap()
-        error!(last_shifted_state_stack, token, (start_pos, end_pos))
+        error(last_shifted_state_stack, token, (start_pos, end_pos))
       }
     }
   }
   panic()
 }
 
-fn error(stack : @immut/list.T[YYState], token : Token, loc : (Int, Int)) -> Unit!ParseError {
+fn error(stack : @immut/list.T[YYState], token : Token, loc : (Int, Int)) -> Unit raise ParseError {
   let expected = []
   fn try_add(symbol : YYSymbol, kind : TokenKind) {
     fn go(stack : @immut/list.T[YYState]) {
@@ -1563,8 +1563,8 @@ fn error(stack : @immut/list.T[YYState], token : Token, loc : (Int, Int)) -> Uni
   raise UnexpectedToken(token, loc, expected)
 }
 
-pub fn lex_eoi(read_token : () -> (Token, Int, Int), start_pos : Int) -> ((Context) -> @type.Lex)!ParseError {
-  yy_parse!(
+pub fn lex_eoi(read_token : () -> (Token, Int, Int), start_pos : Int) -> ((Context) -> @type.Lex) raise ParseError {
+  yy_parse(
     read_token,
     start_pos,
     yy_state_42,
@@ -1574,8 +1574,8 @@ pub fn lex_eoi(read_token : () -> (Token, Int, Int), start_pos : Int) -> ((Conte
     },
   )
 }
-pub fn regex_eoi(read_token : () -> (Token, Int, Int), start_pos : Int) -> ((Context) -> @type.Regex)!ParseError {
-  yy_parse!(
+pub fn regex_eoi(read_token : () -> (Token, Int, Int), start_pos : Int) -> ((Context) -> @type.Regex) raise ParseError {
+  yy_parse(
     read_token,
     start_pos,
     yy_state_0,

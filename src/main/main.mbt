@@ -86,11 +86,11 @@ fn main {
   )
   guard input_file.val != "" else { abort("Input file is required") }
   let output = if new_syntax {
-    let lexer_spec_src = @fs.read_file_to_bytes?(input_file.val).unwrap()
+    let lexer_spec_src = (try? @fs.read_file_to_bytes(input_file.val)).unwrap()
     @driver.compile(lexer_spec_src, filename=input_file.val)
   } else {
-    let lexer_spec_src = @fs.read_file_to_string?(input_file.val).unwrap()
-    let lex = try @parser.parse_lex_from_string!(lexer_spec_src) catch {
+    let lexer_spec_src = (try? @fs.read_file_to_string(input_file.val)).unwrap()
+    let lex = @parser.parse_lex_from_string(lexer_spec_src) catch {
       @parser.UnexpectedToken(token, loc, expected) => {
         let loc_str = loc_to_string(input_file.val, lexer_spec_src, loc)
         let expected_str = array_to_or_list(expected.map(Show::to_string)[:])
@@ -105,6 +105,6 @@ fn main {
   if output_file.val == "" {
     println(output)
   } else {
-    @fs.write_string_to_file?(output_file.val, output).unwrap()
+    (try? @fs.write_string_to_file(output_file.val, output)).unwrap()
   }
 }

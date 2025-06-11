@@ -1,8 +1,8 @@
 
-pub type! MalformedUtf8Error
+pub suberror MalformedUtf8Error
 
 
-fn lex_utf8(lexbuf : @lexbuf.T, buf : StringBuilder) -> Unit!MalformedUtf8Error  {
+fn lex_utf8(lexbuf : @lexbuf.T, buf : StringBuilder) -> Unit raise MalformedUtf8Error  {
   // The matched pattern id
   let mut _match_pattern = @int.max_value
   let mut _match_start = lexbuf.curr_pos()
@@ -160,7 +160,7 @@ fn lex_utf8(lexbuf : @lexbuf.T, buf : StringBuilder) -> Unit!MalformedUtf8Error 
  
       let c = t.to_int().unsafe_to_char()
       buf.write_char(c)
-      lex_utf8!(lexbuf, buf)
+      lex_utf8(lexbuf, buf)
     
     }
     2 => {
@@ -170,7 +170,7 @@ fn lex_utf8(lexbuf : @lexbuf.T, buf : StringBuilder) -> Unit!MalformedUtf8Error 
 
       let c = ((t1.to_int() & 0x1f) << 6 | (t2.to_int() & 0x3f)).unsafe_to_char()
       buf.write_char(c)
-      lex_utf8!(lexbuf, buf)
+      lex_utf8(lexbuf, buf)
     
     }
     3 => {
@@ -181,7 +181,7 @@ fn lex_utf8(lexbuf : @lexbuf.T, buf : StringBuilder) -> Unit!MalformedUtf8Error 
 
       let c = ((t1.to_int() & 0x0f) << 12 | (t2.to_int() & 0x3f) << 6 | (t3.to_int() & 0x3f)).unsafe_to_char()
       buf.write_char(c)
-      lex_utf8!(lexbuf, buf)
+      lex_utf8(lexbuf, buf)
     
     }
     4 => {
@@ -193,7 +193,7 @@ fn lex_utf8(lexbuf : @lexbuf.T, buf : StringBuilder) -> Unit!MalformedUtf8Error 
 
       let c = ((t1.to_int() & 0x07) << 18 | (t2.to_int() & 0x3f) << 12 | (t3.to_int() & 0x3f) << 6 | (t4.to_int() & 0x3f)).unsafe_to_char()
       buf.write_char(c)
-      lex_utf8!(lexbuf, buf)
+      lex_utf8(lexbuf, buf)
     
     }
     5 => {
@@ -207,9 +207,9 @@ fn lex_utf8(lexbuf : @lexbuf.T, buf : StringBuilder) -> Unit!MalformedUtf8Error 
 
 
 
-fn utf8_decode(bytes : Bytes) -> String!MalformedUtf8Error {
+fn utf8_decode(bytes : Bytes) -> String raise MalformedUtf8Error {
   let buf = StringBuilder::new()
   let lexbuf = @lexbuf.from_bytes(bytes)
-  lex_utf8!(lexbuf, buf)
+  lex_utf8(lexbuf, buf)
   buf.to_string()
 }

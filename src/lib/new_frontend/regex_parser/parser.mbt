@@ -1,28 +1,28 @@
 
-pub type! ParseError {
+pub suberror ParseError {
   UnexpectedToken(Token, (Position, Position), Array[TokenKind])
   UnexpectedEndOfInput(Position, Array[TokenKind])
 } derive(Show)
 
-typealias YYObj = Error
+typealias Error as YYObj
 
-priv type! YYObj_Void
+priv suberror YYObj_Void
 
-priv type! YYObj_Char Char
+priv suberror YYObj_Char Char
 
-priv type! YYObj_String String
+priv suberror YYObj_String String
 
-priv type! YYObj__char_set_T @char_set.T
+priv suberror YYObj__char_set_T @char_set.T
 
-priv type! YYObj__Int__Int__ (Int, Int?)
+priv suberror YYObj__Int__Int__ (Int, Int?)
 
-priv type! YYObj__Char__String_ (Char, String)
+priv suberror YYObj__Char__String_ (Char, String)
 
-priv type! YYObj__Context_____Regex (Context) -> Regex
+priv suberror YYObj__Context_____Regex (Context) -> Regex
 
-typealias YYState = (YYSymbol) -> YYDecision
+typealias (YYSymbol) -> YYDecision as YYState
 
-typealias YYAction = (Position, ArrayView[(YYObj, Position, Position)]) -> YYObj
+typealias (Position, ArrayView[(YYObj, Position, Position)]) -> YYObj as YYAction
 
 priv enum YYDecision {
   Accept
@@ -669,12 +669,12 @@ fn yy_state_34(_lookahead : YYSymbol) -> YYDecision {
   ReduceNoLookahead(1, NT_parse_regex, yy_action_22)
 }
 
-fn yy_parse[T](
+fn[T] yy_parse(
   tokens : Array[(Token, Position, Position)],
   start : YYState,
   return_ : (YYObj) -> T,
   initial_pos? : Position,
-) -> T!ParseError {
+) -> T raise ParseError {
   let mut cursor = 0
   let mut state_stack : @immut/list.T[YYState] = Cons(start, Nil)
   let data_stack : Array[(YYObj, Position, Position)] = []
@@ -746,14 +746,14 @@ fn yy_parse[T](
       }
       Error => {
         let (_, (_, start_pos, end_pos), token) = lookahead.unwrap()
-        error!(last_shifted_state_stack, token, (start_pos, end_pos))
+        error(last_shifted_state_stack, token, (start_pos, end_pos))
       }
     }
   }
   panic()
 }
 
-fn error(stack : @immut/list.T[YYState], token : Token?, loc : (Position, Position)) -> Unit!ParseError {
+fn error(stack : @immut/list.T[YYState], token : Token?, loc : (Position, Position)) -> Unit raise ParseError {
   let expected = []
   fn try_add(symbol : YYSymbol, kind : TokenKind) {
     fn go(stack : @immut/list.T[YYState]) {
@@ -790,8 +790,8 @@ fn error(stack : @immut/list.T[YYState], token : Token?, loc : (Position, Positi
   }
 }
 
-pub fn parse_regex(tokens : Array[(Token, Position, Position)], initial_pos? : Position) -> ((Context) -> Regex)!ParseError {
-  yy_parse!(
+pub fn parse_regex(tokens : Array[(Token, Position, Position)], initial_pos? : Position) -> ((Context) -> Regex) raise ParseError {
+  yy_parse(
     tokens,
     yy_state_0,
     fn {

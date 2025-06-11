@@ -1,6 +1,6 @@
 ///|
 fn simple_rule(re_str : String) -> @type.Rule {
-  let re = @parser.parse_regex_from_string?(re_str).unwrap()
+  let re = (try? @parser.parse_regex_from_string(re_str)).unwrap()
   {
     name: "",
     signature: "",
@@ -52,7 +52,7 @@ test "nfa simple_regex graphviz" (it : @test.T) {
   let nfa = @automaton.NFA::from_patterns(rule.patterns)
   let dots = nfa2dots(nfa, name="simple_regex")
   it.writeln(dots.to_graphviz())
-  it.snapshot!(filename="nfa_simple_regex.dot")
+  it.snapshot(filename="nfa_simple_regex.dot")
 }
 
 ///|
@@ -61,7 +61,7 @@ test "nfa simple_regex mermaid" (it : @test.T) {
   let nfa = @automaton.NFA::from_patterns(rule.patterns)
   let dots = nfa2dots(nfa, name="simple_regex")
   it.writeln(dots.to_mermaid())
-  it.snapshot!(filename="nfa_simple_regex.md")
+  it.snapshot(filename="nfa_simple_regex.md")
 }
 
 ///|
@@ -70,7 +70,7 @@ test "nfa a_star_capture graphviz" (it : @test.T) {
   let nfa = @automaton.NFA::from_patterns(rule.patterns)
   let dots = nfa2dots(nfa, name="a_star_capture")
   it.writeln(dots.to_graphviz())
-  it.snapshot!(filename="nfa_a_star_capture.dot")
+  it.snapshot(filename="nfa_a_star_capture.dot")
 }
 
 ///|
@@ -79,7 +79,7 @@ test "nfa a_star_capture mermaid" (it : @test.T) {
   let nfa = @automaton.NFA::from_patterns(rule.patterns)
   let dots = nfa2dots(nfa, name="a_star_capture")
   it.writeln(dots.to_mermaid())
-  it.snapshot!(filename="nfa_a_star_capture.md")
+  it.snapshot(filename="nfa_a_star_capture.md")
 }
 
 ///|
@@ -117,7 +117,7 @@ test "dfa simple_regex graphviz" (it : @test.T) {
   let dfa = @automaton.DFA::from_patterns(rule.patterns)
   let dots = dfa2dots(dfa, name="simple_regex")
   it.writeln(dots.to_graphviz())
-  it.snapshot!(filename="dfa_simple_regex.dot")
+  it.snapshot(filename="dfa_simple_regex.dot")
 }
 
 ///|
@@ -126,7 +126,7 @@ test "dfa simple_regex mermaid" (it : @test.T) {
   let dfa = @automaton.DFA::from_patterns(rule.patterns)
   let dots = dfa2dots(dfa, name="simple_regex")
   it.writeln(dots.to_mermaid())
-  it.snapshot!(filename="dfa_simple_regex.md")
+  it.snapshot(filename="dfa_simple_regex.md")
 }
 
 ///|
@@ -135,7 +135,7 @@ test "dfa a_star_capture graphviz" (it : @test.T) {
   let dfa = @automaton.DFA::from_patterns(rule.patterns)
   let dots = dfa2dots(dfa, name="a_star_capture")
   it.writeln(dots.to_graphviz())
-  it.snapshot!(filename="dfa_a_star_capture.dot")
+  it.snapshot(filename="dfa_a_star_capture.dot")
 }
 
 ///|
@@ -144,5 +144,5 @@ test "dfa a_star_capture mermaid" (it : @test.T) {
   let dfa = @automaton.DFA::from_patterns(rule.patterns)
   let dots = dfa2dots(dfa, name="a_star_capture")
   it.writeln(dots.to_mermaid())
-  it.snapshot!(filename="dfa_a_star_capture.md")
+  it.snapshot(filename="dfa_a_star_capture.md")
 }

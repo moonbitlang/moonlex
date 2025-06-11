@@ -41,64 +41,64 @@ fn normalize(terms : Array[@ast.Term]) -> Array[@ast.Term] {
   }
 }
 
-pub type! ParseError {
+pub suberror ParseError {
   UnexpectedToken(Token, (Position, Position), Array[TokenKind])
   UnexpectedEndOfInput(Position, Array[TokenKind])
 } derive(Show)
 
-typealias YYObj = Error
+typealias Error as YYObj
 
-priv type! YYObj_Void
+priv suberror YYObj_Void
 
-priv type! YYObj_Int Int
+priv suberror YYObj_Int Int
 
-priv type! YYObj_Bool Bool
+priv suberror YYObj_Bool Bool
 
-priv type! YYObj_Unit Unit
+priv suberror YYObj_Unit Unit
 
-priv type! YYObj_Array__ast_Term_ Array[@ast.Term]
+priv suberror YYObj_Array__ast_Term_ Array[@ast.Term]
 
-priv type! YYObj_String String
+priv suberror YYObj_String String
 
-priv type! YYObj_Comment Comment
+priv suberror YYObj_Comment Comment
 
-priv type! YYObj_CharLiteral CharLiteral
+priv suberror YYObj_CharLiteral CharLiteral
 
-priv type! YYObj_InterpLiteral InterpLiteral
+priv suberror YYObj_InterpLiteral InterpLiteral
 
-priv type! YYObj_StringLiteral StringLiteral
+priv suberror YYObj_StringLiteral StringLiteral
 
-priv type! YYObj__ast_Code @ast.Code
+priv suberror YYObj__ast_Code @ast.Code
 
-priv type! YYObj__ast_Term @ast.Term
+priv suberror YYObj__ast_Term @ast.Term
 
-priv type! YYObj__ast_Ident @ast.Ident
+priv suberror YYObj__ast_Ident @ast.Ident
 
-priv type! YYObj__ast_Regex @ast.Regex
+priv suberror YYObj__ast_Regex @ast.Regex
 
-priv type! YYObj__ast_LexCase @ast.LexCase
+priv suberror YYObj__ast_LexCase @ast.LexCase
 
-priv type! YYObj__ast_Program @ast.Program
+priv suberror YYObj__ast_Program @ast.Program
 
-priv type! YYObj__ast_LexPattern @ast.LexPattern
+priv suberror YYObj__ast_LexPattern @ast.LexPattern
 
-priv type! YYObj__ast_LexPatternItem @ast.LexPatternItem
+priv suberror YYObj__ast_LexPatternItem @ast.LexPatternItem
 
-priv type! YYObj__list_T__ast_Term_ @list.T[@ast.Term]
+priv suberror YYObj__list_T__ast_Term_ @list.T[@ast.Term]
 
-priv type! YYObj__list_T__ast_LexCase_ @list.T[@ast.LexCase]
+priv suberror YYObj__list_T__ast_LexCase_ @list.T[@ast.LexCase]
 
-priv type! YYObj__list_T__ast_LexPatternItem_ @list.T[@ast.LexPatternItem]
+priv suberror YYObj__list_T__ast_LexPatternItem_ @list.T[@ast.LexPatternItem]
 
-priv type! YYObj__ast_Ident_ @ast.Ident?
+priv suberror YYObj__ast_Ident_ @ast.Ident?
 
-priv type! YYObj___list_T__ast_LexPatternItem____ast_Ident___ (@list.T[@ast.LexPatternItem], @ast.Ident??)
+priv suberror YYObj___list_T__ast_LexPatternItem____ast_Ident___ (@list.T[@ast.LexPatternItem], @ast.Ident??)
 
-priv type! YYObj__Location__Array__ast_Term___Location_ (Location, Array[@ast.Term], Location)
+priv suberror YYObj__Location__Array__ast_Term___Location_ (Location, Array[@ast.Term], Location)
 
-typealias YYState = (YYSymbol) -> YYDecision
+typealias (YYSymbol) -> YYDecision as YYState
 
-typealias YYAction = (Position, ArrayView[(YYObj, Position, Position)]) -> YYObj
+typealias (Position, ArrayView[(YYObj, Position, Position)]) -> YYObj as YYAction
 
 priv enum YYDecision {
   Accept
@@ -5737,12 +5737,12 @@ fn yy_state_251(_lookahead : YYSymbol) -> YYDecision {
   ReduceNoLookahead(1, NT_start, yy_action_132)
 }
 
-fn yy_parse[T](
+fn[T] yy_parse(
   tokens : Array[(Token, Position, Position)],
   start : YYState,
   return_ : (YYObj) -> T,
   initial_pos? : Position,
-) -> T!ParseError {
+) -> T raise ParseError {
   let mut cursor = 0
   let mut state_stack : @immut/list.T[YYState] = Cons(start, Nil)
   let data_stack : Array[(YYObj, Position, Position)] = []
@@ -5814,14 +5814,14 @@ fn yy_parse[T](
       }
       Error => {
         let (_, (_, start_pos, end_pos), token) = lookahead.unwrap()
-        error!(last_shifted_state_stack, token, (start_pos, end_pos))
+        error(last_shifted_state_stack, token, (start_pos, end_pos))
       }
     }
   }
   panic()
 }
 
-fn error(stack : @immut/list.T[YYState], token : Token?, loc : (Position, Position)) -> Unit!ParseError {
+fn error(stack : @immut/list.T[YYState], token : Token?, loc : (Position, Position)) -> Unit raise ParseError {
   let expected = []
   fn try_add(symbol : YYSymbol, kind : TokenKind) {
     fn go(stack : @immut/list.T[YYState]) {
@@ -5858,8 +5858,8 @@ fn error(stack : @immut/list.T[YYState], token : Token?, loc : (Position, Positi
   }
 }
 
-pub fn start(tokens : Array[(Token, Position, Position)], initial_pos? : Position) -> @ast.Program!ParseError {
-  yy_parse!(
+pub fn start(tokens : Array[(Token, Position, Position)], initial_pos? : Position) -> @ast.Program raise ParseError {
+  yy_parse(
     tokens,
     yy_state_0,
     fn {

@@ -7,7 +7,7 @@ priv enum Token {
 } derive(ToJson)
 
 
-fn token[T : @lexbuf.IStringLexbuf](lexbuf : T) -> Token  {
+fn[T : @lexbuf.IStringLexbuf] token(lexbuf : T) -> Token  {
   // The matched pattern id
   let mut _match_pattern = @int.max_value
   let mut _match_start = lexbuf.curr_pos()

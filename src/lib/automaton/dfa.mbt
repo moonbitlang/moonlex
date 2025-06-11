@@ -8,7 +8,7 @@ pub(all) type TagAction Array[TagOp] derive(Show, Eq, Compare) // sorted
 pub typealias Int as TagRank
 
 ///|
-pub typealias TagVar = (Tag, TagRank)
+pub typealias (Tag, TagRank) as TagVar
 
 ///|
 pub(all) enum TagOp {
@@ -121,7 +121,7 @@ fn DFA::add_edge(self : DFA, from : Int, e : @eof_char_set.T, to : Int) -> Unit 
 }
 
 ///|
-typealias State = @immut/sorted_map.T[NFANode, TagState]
+typealias @immut/sorted_map.T[NFANode, TagState] as State
 
 ///|
 fn state_canonicalize(state : State, tag_count : Int) -> (State, TagAction) {

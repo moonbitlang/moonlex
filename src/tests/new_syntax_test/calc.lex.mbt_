@@ -1,9 +1,9 @@
 fn parse_integer(input : @bytes.View) -> Int {
-  loop 0, input {
-    acc, [] => acc
-    acc, ['0'..='9' as c, .. rest] =>
-      continue acc * 10 + (c.to_int() - '0'), rest
-    _, _ => panic()
+  loop (0, input) {
+    (acc, []) => acc
+    (acc, ['0'..='9' as c, .. rest]) =>
+      continue (acc * 10 + (c.to_int() - '0'), rest)
+    (_, _) => panic()
   }
 }
 

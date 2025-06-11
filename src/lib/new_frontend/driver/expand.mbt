@@ -38,17 +38,24 @@ fn expand_term(
             OpenPattern(items, rest~, ..) => (items, true, rest)
             ClosedPattern(items, ..) => (items, false, None)
           }
-          let re = loop @regex.epsilon, items[:] {
-            acc, [] => acc
-            acc, [Regex(re), .. rest] =>
-              continue @regex.seq(acc, @regex_parser.parse(re, named_regexes~)),
-                rest
-            acc, [RegexAs(re, id, ..), .. rest] =>
-              continue @regex.seq(
-                  acc,
-                  @regex.bind(@regex_parser.parse(re, named_regexes~), id.name),
-                ),
-                rest
+          let re = loop (@regex.epsilon, items[:]) {
+            (acc, []) => acc
+            (acc, [Regex(re), .. rest]) =>
+              continue (
+                  @regex.seq(acc, @regex_parser.parse(re, named_regexes~)),
+                  rest,
+                )
+            (acc, [RegexAs(re, id, ..), .. rest]) =>
+              continue (
+                  @regex.seq(
+                    acc,
+                    @regex.bind(
+                      @regex_parser.parse(re, named_regexes~),
+                      id.name,
+                    ),
+                  ),
+                  rest,
+                )
           }
           let (re, rest_binder) = match (open, rest) {
             (true, rest) => (re, rest)

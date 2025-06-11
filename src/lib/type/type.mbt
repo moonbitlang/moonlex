@@ -9,7 +9,7 @@ pub(all) enum CodeUnit {
 pub typealias @regex.(Regex, Encoding)
 
 ///|
-pub typealias CodeBlock = String
+pub typealias String as CodeBlock
 
 ///|
 pub(all) struct Rule {

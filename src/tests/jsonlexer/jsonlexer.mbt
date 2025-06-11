@@ -14,14 +14,14 @@ priv enum Token {
   NULL
 } derive(ToJson)
 
-pub type! LexError {
+pub suberror LexError {
   EndOfFile
   UnexpectedEndOfFile
   Unrecognized(String)
 }
 
 
-fn token[T : @lexbuf.IStringLexbuf](lexbuf : T) -> Token!LexError  {
+fn[T : @lexbuf.IStringLexbuf] token(lexbuf : T) -> Token raise LexError  {
   // The matched pattern id
   let mut _match_pattern = @int.max_value
   let mut _match_start = lexbuf.curr_pos()
@@ -348,7 +348,7 @@ fn token[T : @lexbuf.IStringLexbuf](lexbuf : T) -> Token!LexError  {
 
       let buf = StringBuilder::new()
       buf.write_char(t)
-      lex_string!(buf, lexbuf)
+      lex_string(buf, lexbuf)
       STRING(buf.to_string())
     
     }
@@ -402,7 +402,7 @@ fn token[T : @lexbuf.IStringLexbuf](lexbuf : T) -> Token!LexError  {
 }
 
 
-fn lex_string[T : @lexbuf.IStringLexbuf](buf : StringBuilder, lexbuf : T) -> Unit!LexError  {
+fn[T : @lexbuf.IStringLexbuf] lex_string(buf : StringBuilder, lexbuf : T) -> Unit raise LexError  {
   // The matched pattern id
   let mut _match_pattern = @int.max_value
   let mut _match_start = lexbuf.curr_pos()
@@ -537,7 +537,7 @@ fn lex_string[T : @lexbuf.IStringLexbuf](buf : StringBuilder, lexbuf : T) -> Uni
       let t = lexbuf.get_string(_capture_0_start, _capture_0_end)
  
       buf.write_string(t)
-      lex_string!(buf, lexbuf)
+      lex_string(buf, lexbuf)
     
     }
     2 => {
@@ -545,7 +545,7 @@ fn lex_string[T : @lexbuf.IStringLexbuf](buf : StringBuilder, lexbuf : T) -> Uni
       let t = lexbuf.get_char(_capture_0_start, _capture_0_end)
  
       buf.write_char(t)
-      lex_string!(buf, lexbuf)
+      lex_string(buf, lexbuf)
     
     }
     3 => {

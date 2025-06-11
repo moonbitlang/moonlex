@@ -74,8 +74,8 @@ fn lower_unicode_charclass_to_utf8(
                 })
                 .to_array(),
                 @char_set.range(
-                  (min_bytes[pin_index].to_int().unsafe_to_char()),
-                  (max_bytes[pin_index].to_int().unsafe_to_char()),
+                  min_bytes[pin_index].to_int().unsafe_to_char(),
+                  max_bytes[pin_index].to_int().unsafe_to_char(),
                 ),
                 ..[@char_set.range('\u{80}', '\u{bf}')].repeat(
                   num_bytes - pin_index - 1,
@@ -127,11 +127,11 @@ fn lower_unicode_charclass_to_utf8(
 
 ///|
 test "['\\u3000'], ['\\u30ff']" {
-  @json.inspect!(
+  @json.inspect(
     lower_unicode_charclass_to_utf8(@char_set.singleton('\u3000')),
     content=[[[[227, 227]], [[128, 128]], [[128, 128]]]],
   )
-  @json.inspect!(
+  @json.inspect(
     lower_unicode_charclass_to_utf8(@char_set.singleton('\u30ff')),
     content=[[[[227, 227]], [[131, 131]], [[191, 191]]]],
   )
@@ -139,7 +139,7 @@ test "['\\u3000'], ['\\u30ff']" {
 
 ///|
 test "['\\u3000'-'\\u30ff']" {
-  @json.inspect!(
+  @json.inspect(
     lower_unicode_charclass_to_utf8(@char_set.range('\u3000', '\u30ff')),
     content=[
       [[[227, 227]], [[128, 128]], [[128, 128]]],
@@ -154,7 +154,7 @@ test "['\\u3000'-'\\u30ff']" {
 
 ///|
 test "['\\x00'-'\\u{10ffff}']" {
-  @json.inspect!(
+  @json.inspect(
     lower_unicode_charclass_to_utf8(@char_set.range('\u{00}', '\u{10ffff}')),
     content=[
       [[[0, 127]]],
@@ -184,7 +184,7 @@ test "['\\x00'-'\\u{10ffff}']" {
 
 ///|
 test "['\\xff' '\\uffff']" {
-  assert_eq!(
+  assert_eq(
     lower_unicode_charclass_to_utf8(
       @char_set.singleton('\u{ff}') + @char_set.singleton('\uffff'),
     ),

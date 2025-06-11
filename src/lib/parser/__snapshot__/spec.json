@@ -28,13 +28,13 @@
                     ]
                   ]
                 },
-                "class": {
+                "class_": {
                   "$tag": "Char"
                 },
                 "len": 1
               }
             },
-            "class": {
+            "class_": {
               "$tag": "String"
             }
           },
@@ -54,7 +54,7 @@
                     ]
                   ]
                 },
-                "class": {
+                "class_": {
                   "$tag": "String"
                 },
                 "len": 1
@@ -72,7 +72,7 @@
                         ]
                       ]
                     },
-                    "class": {
+                    "class_": {
                       "$tag": "Char"
                     },
                     "len": 1
@@ -100,13 +100,13 @@
                                     ]
                                   ]
                                 },
-                                "class": {
+                                "class_": {
                                   "$tag": "Char"
                                 },
                                 "len": 1
                               }
                             },
-                            "class": {
+                            "class_": {
                               "$tag": "String"
                             }
                           },
@@ -114,13 +114,13 @@
                             "desc": {
                               "$tag": "Epsilon"
                             },
-                            "class": {
+                            "class_": {
                               "$tag": "String"
                             },
                             "len": 0
                           }
                         },
-                        "class": {
+                        "class_": {
                           "$tag": "String"
                         }
                       },
@@ -137,7 +137,7 @@
                                 ]
                               ]
                             },
-                            "class": {
+                            "class_": {
                               "$tag": "Char"
                             },
                             "len": 1
@@ -146,28 +146,28 @@
                             "desc": {
                               "$tag": "Epsilon"
                             },
-                            "class": {
+                            "class_": {
                               "$tag": "String"
                             },
                             "len": 0
                           }
                         },
-                        "class": {
+                        "class_": {
                           "$tag": "String"
                         }
                       }
                     },
-                    "class": {
+                    "class_": {
                       "$tag": "String"
                     }
                   }
                 },
-                "class": {
+                "class_": {
                   "$tag": "String"
                 }
               }
             },
-            "class": {
+            "class_": {
               "$tag": "String"
             }
           },
@@ -178,7 +178,7 @@
             "desc": {
               "$tag": "EOF"
             },
-            "class": {
+            "class_": {
               "$tag": "String"
             }
           },
@@ -198,7 +198,7 @@
                     ]
                   ]
                 },
-                "class": {
+                "class_": {
                   "$tag": "String"
                 },
                 "len": 1
@@ -216,7 +216,7 @@
                         ]
                       ]
                     },
-                    "class": {
+                    "class_": {
                       "$tag": "Char"
                     },
                     "len": 1
@@ -234,7 +234,7 @@
                             ]
                           ]
                         },
-                        "class": {
+                        "class_": {
                           "$tag": "Char"
                         },
                         "len": 1
@@ -252,7 +252,7 @@
                                 ]
                               ]
                             },
-                            "class": {
+                            "class_": {
                               "$tag": "Char"
                             },
                             "len": 1
@@ -281,13 +281,13 @@
                                         ]
                                       ]
                                     },
-                                    "class": {
+                                    "class_": {
                                       "$tag": "Char"
                                     },
                                     "len": 1
                                   }
                                 },
-                                "class": {
+                                "class_": {
                                   "$tag": "String"
                                 }
                               },
@@ -320,7 +320,7 @@
                                                         ]
                                                       ]
                                                     },
-                                                    "class": {
+                                                    "class_": {
                                                       "$tag": "Char"
                                                     },
                                                     "len": 1
@@ -353,13 +353,13 @@
                                                                 ]
                                                               ]
                                                             },
-                                                            "class": {
+                                                            "class_": {
                                                               "$tag": "Char"
                                                             },
                                                             "len": 1
                                                           }
                                                         },
-                                                        "class": {
+                                                        "class_": {
                                                           "$tag": "String"
                                                         }
                                                       },
@@ -367,24 +367,24 @@
                                                         "desc": {
                                                           "$tag": "Epsilon"
                                                         },
-                                                        "class": {
+                                                        "class_": {
                                                           "$tag": "String"
                                                         },
                                                         "len": 0
                                                       }
                                                     },
-                                                    "class": {
+                                                    "class_": {
                                                       "$tag": "String"
                                                     }
                                                   }
                                                 },
-                                                "class": {
+                                                "class_": {
                                                   "$tag": "String"
                                                 }
                                               },
                                               "1": "t1"
                                             },
-                                            "class": {
+                                            "class_": {
                                               "$tag": "String"
                                             }
                                           },
@@ -405,24 +405,24 @@
                                                     ]
                                                   ]
                                                 },
-                                                "class": {
+                                                "class_": {
                                                   "$tag": "Char"
                                                 },
                                                 "len": 1
                                               }
                                             },
-                                            "class": {
+                                            "class_": {
                                               "$tag": "String"
                                             }
                                           }
                                         },
-                                        "class": {
+                                        "class_": {
                                           "$tag": "String"
                                         }
                                       },
                                       "1": "t2"
                                     },
-                                    "class": {
+                                    "class_": {
                                       "$tag": "String"
                                     }
                                   },
@@ -453,13 +453,13 @@
                                                     ]
                                                   ]
                                                 },
-                                                "class": {
+                                                "class_": {
                                                   "$tag": "Char"
                                                 },
                                                 "len": 1
                                               }
                                             },
-                                            "class": {
+                                            "class_": {
                                               "$tag": "String"
                                             }
                                           },
@@ -467,13 +467,13 @@
                                             "desc": {
                                               "$tag": "Epsilon"
                                             },
-                                            "class": {
+                                            "class_": {
                                               "$tag": "String"
                                             },
                                             "len": 0
                                           }
                                         },
-                                        "class": {
+                                        "class_": {
                                           "$tag": "String"
                                         }
                                       },
@@ -487,43 +487,43 @@
                                             ]
                                           ]
                                         },
-                                        "class": {
+                                        "class_": {
                                           "$tag": "Char"
                                         },
                                         "len": 1
                                       }
                                     },
-                                    "class": {
+                                    "class_": {
                                       "$tag": "String"
                                     }
                                   }
                                 },
-                                "class": {
+                                "class_": {
                                   "$tag": "String"
                                 }
                               }
                             },
-                            "class": {
+                            "class_": {
                               "$tag": "String"
                             }
                           }
                         },
-                        "class": {
+                        "class_": {
                           "$tag": "String"
                         }
                       }
                     },
-                    "class": {
+                    "class_": {
                       "$tag": "String"
                     }
                   }
                 },
-                "class": {
+                "class_": {
                   "$tag": "String"
                 }
               }
             },
-            "class": {
+            "class_": {
               "$tag": "String"
             }
           },
@@ -543,7 +543,7 @@
                     ]
                   ]
                 },
-                "class": {
+                "class_": {
                   "$tag": "String"
                 },
                 "len": 1
@@ -561,7 +561,7 @@
                         ]
                       ]
                     },
-                    "class": {
+                    "class_": {
                       "$tag": "Char"
                     },
                     "len": 1
@@ -579,7 +579,7 @@
                             ]
                           ]
                         },
-                        "class": {
+                        "class_": {
                           "$tag": "Char"
                         },
                         "len": 1
@@ -597,7 +597,7 @@
                                 ]
                               ]
                             },
-                            "class": {
+                            "class_": {
                               "$tag": "Char"
                             },
                             "len": 1
@@ -615,7 +615,7 @@
                                     ]
                                   ]
                                 },
-                                "class": {
+                                "class_": {
                                   "$tag": "Char"
                                 },
                                 "len": 1
@@ -647,13 +647,13 @@
                                                 ]
                                               ]
                                             },
-                                            "class": {
+                                            "class_": {
                                               "$tag": "Char"
                                             },
                                             "len": 1
                                           }
                                         },
-                                        "class": {
+                                        "class_": {
                                           "$tag": "String"
                                         }
                                       },
@@ -661,13 +661,13 @@
                                         "desc": {
                                           "$tag": "Epsilon"
                                         },
-                                        "class": {
+                                        "class_": {
                                           "$tag": "String"
                                         },
                                         "len": 0
                                       }
                                     },
-                                    "class": {
+                                    "class_": {
                                       "$tag": "String"
                                     }
                                   },
@@ -681,38 +681,38 @@
                                         ]
                                       ]
                                     },
-                                    "class": {
+                                    "class_": {
                                       "$tag": "String"
                                     },
                                     "len": 1
                                   }
                                 },
-                                "class": {
+                                "class_": {
                                   "$tag": "String"
                                 }
                               }
                             },
-                            "class": {
+                            "class_": {
                               "$tag": "String"
                             }
                           }
                         },
-                        "class": {
+                        "class_": {
                           "$tag": "String"
                         }
                       }
                     },
-                    "class": {
+                    "class_": {
                       "$tag": "String"
                     }
                   }
                 },
-                "class": {
+                "class_": {
                   "$tag": "String"
                 }
               }
             },
-            "class": {
+            "class_": {
               "$tag": "String"
             }
           },
@@ -732,7 +732,7 @@
                     ]
                   ]
                 },
-                "class": {
+                "class_": {
                   "$tag": "String"
                 },
                 "len": 1
@@ -747,13 +747,13 @@
                     ]
                   ]
                 },
-                "class": {
+                "class_": {
                   "$tag": "Char"
                 },
                 "len": 1
               }
             },
-            "class": {
+            "class_": {
               "$tag": "String"
             },
             "len": 2
@@ -771,7 +771,7 @@
                 ]
               ]
             },
-            "class": {
+            "class_": {
               "$tag": "String"
             },
             "len": 1
@@ -789,7 +789,7 @@
                 ]
               ]
             },
-            "class": {
+            "class_": {
               "$tag": "String"
             },
             "len": 1
@@ -807,7 +807,7 @@
                 ]
               ]
             },
-            "class": {
+            "class_": {
               "$tag": "String"
             },
             "len": 1
@@ -825,7 +825,7 @@
                 ]
               ]
             },
-            "class": {
+            "class_": {
               "$tag": "String"
             },
             "len": 1
@@ -843,7 +843,7 @@
                 ]
               ]
             },
-            "class": {
+            "class_": {
               "$tag": "String"
             },
             "len": 1
@@ -861,7 +861,7 @@
                 ]
               ]
             },
-            "class": {
+            "class_": {
               "$tag": "String"
             },
             "len": 1
@@ -879,7 +879,7 @@
                 ]
               ]
             },
-            "class": {
+            "class_": {
               "$tag": "String"
             },
             "len": 1
@@ -897,7 +897,7 @@
                 ]
               ]
             },
-            "class": {
+            "class_": {
               "$tag": "String"
             },
             "len": 1
@@ -915,7 +915,7 @@
                 ]
               ]
             },
-            "class": {
+            "class_": {
               "$tag": "String"
             },
             "len": 1
@@ -933,7 +933,7 @@
                 ]
               ]
             },
-            "class": {
+            "class_": {
               "$tag": "String"
             },
             "len": 1
@@ -951,7 +951,7 @@
                 ]
               ]
             },
-            "class": {
+            "class_": {
               "$tag": "String"
             },
             "len": 1
@@ -969,7 +969,7 @@
                 ]
               ]
             },
-            "class": {
+            "class_": {
               "$tag": "String"
             },
             "len": 1
@@ -987,7 +987,7 @@
                 ]
               ]
             },
-            "class": {
+            "class_": {
               "$tag": "String"
             },
             "len": 1
@@ -1005,7 +1005,7 @@
                 ]
               ]
             },
-            "class": {
+            "class_": {
               "$tag": "String"
             },
             "len": 1
@@ -1023,7 +1023,7 @@
                 ]
               ]
             },
-            "class": {
+            "class_": {
               "$tag": "String"
             },
             "len": 1
@@ -1041,7 +1041,7 @@
                 ]
               ]
             },
-            "class": {
+            "class_": {
               "$tag": "String"
             },
             "len": 1
@@ -1062,7 +1062,7 @@
                     ]
                   ]
                 },
-                "class": {
+                "class_": {
                   "$tag": "Char"
                 },
                 "len": 1
@@ -1091,14 +1091,14 @@
                             ]
                           ]
                         },
-                        "class": {
+                        "class_": {
                           "$tag": "Char"
                         },
                         "len": 1
                       },
                       "1": "t"
                     },
-                    "class": {
+                    "class_": {
                       "$tag": "Char"
                     },
                     "len": 1
@@ -1113,19 +1113,19 @@
                         ]
                       ]
                     },
-                    "class": {
+                    "class_": {
                       "$tag": "Char"
                     },
                     "len": 1
                   }
                 },
-                "class": {
+                "class_": {
                   "$tag": "String"
                 },
                 "len": 2
               }
             },
-            "class": {
+            "class_": {
               "$tag": "String"
             },
             "len": 3
@@ -1146,7 +1146,7 @@
                     ]
                   ]
                 },
-                "class": {
+                "class_": {
                   "$tag": "Char"
                 },
                 "len": 1
@@ -1164,7 +1164,7 @@
                         ]
                       ]
                     },
-                    "class": {
+                    "class_": {
                       "$tag": "String"
                     },
                     "len": 1
@@ -1182,7 +1182,7 @@
                             ]
                           ]
                         },
-                        "class": {
+                        "class_": {
                           "$tag": "Char"
                         },
                         "len": 1
@@ -1197,25 +1197,25 @@
                             ]
                           ]
                         },
-                        "class": {
+                        "class_": {
                           "$tag": "Char"
                         },
                         "len": 1
                       }
                     },
-                    "class": {
+                    "class_": {
                       "$tag": "String"
                     },
                     "len": 2
                   }
                 },
-                "class": {
+                "class_": {
                   "$tag": "String"
                 },
                 "len": 3
               }
             },
-            "class": {
+            "class_": {
               "$tag": "String"
             },
             "len": 4
@@ -1236,7 +1236,7 @@
                     ]
                   ]
                 },
-                "class": {
+                "class_": {
                   "$tag": "Char"
                 },
                 "len": 1
@@ -1254,7 +1254,7 @@
                         ]
                       ]
                     },
-                    "class": {
+                    "class_": {
                       "$tag": "String"
                     },
                     "len": 1
@@ -1272,7 +1272,7 @@
                             ]
                           ]
                         },
-                        "class": {
+                        "class_": {
                           "$tag": "Char"
                         },
                         "len": 1
@@ -1287,25 +1287,25 @@
                             ]
                           ]
                         },
-                        "class": {
+                        "class_": {
                           "$tag": "Char"
                         },
                         "len": 1
                       }
                     },
-                    "class": {
+                    "class_": {
                       "$tag": "String"
                     },
                     "len": 2
                   }
                 },
-                "class": {
+                "class_": {
                   "$tag": "String"
                 },
                 "len": 3
               }
             },
-            "class": {
+            "class_": {
               "$tag": "String"
             },
             "len": 4
@@ -1326,7 +1326,7 @@
                     ]
                   ]
                 },
-                "class": {
+                "class_": {
                   "$tag": "Char"
                 },
                 "len": 1
@@ -1344,7 +1344,7 @@
                         ]
                       ]
                     },
-                    "class": {
+                    "class_": {
                       "$tag": "String"
                     },
                     "len": 1
@@ -1362,7 +1362,7 @@
                             ]
                           ]
                         },
-                        "class": {
+                        "class_": {
                           "$tag": "Char"
                         },
                         "len": 1
@@ -1377,25 +1377,25 @@
                             ]
                           ]
                         },
-                        "class": {
+                        "class_": {
                           "$tag": "Char"
                         },
                         "len": 1
                       }
                     },
-                    "class": {
+                    "class_": {
                       "$tag": "String"
                     },
                     "len": 2
                   }
                 },
-                "class": {
+                "class_": {
                   "$tag": "String"
                 },
                 "len": 3
               }
             },
-            "class": {
+            "class_": {
               "$tag": "String"
             },
             "len": 4
@@ -1416,7 +1416,7 @@
                     ]
                   ]
                 },
-                "class": {
+                "class_": {
                   "$tag": "Char"
                 },
                 "len": 1
@@ -1434,7 +1434,7 @@
                         ]
                       ]
                     },
-                    "class": {
+                    "class_": {
                       "$tag": "String"
                     },
                     "len": 1
@@ -1452,7 +1452,7 @@
                             ]
                           ]
                         },
-                        "class": {
+                        "class_": {
                           "$tag": "Char"
                         },
                         "len": 1
@@ -1467,25 +1467,25 @@
                             ]
                           ]
                         },
-                        "class": {
+                        "class_": {
                           "$tag": "Char"
                         },
                         "len": 1
                       }
                     },
-                    "class": {
+                    "class_": {
                       "$tag": "String"
                     },
                     "len": 2
                   }
                 },
-                "class": {
+                "class_": {
                   "$tag": "String"
                 },
                 "len": 3
               }
             },
-            "class": {
+            "class_": {
               "$tag": "String"
             },
             "len": 4
@@ -1506,7 +1506,7 @@
                     ]
                   ]
                 },
-                "class": {
+                "class_": {
                   "$tag": "Char"
                 },
                 "len": 1
@@ -1524,7 +1524,7 @@
                         ]
                       ]
                     },
-                    "class": {
+                    "class_": {
                       "$tag": "String"
                     },
                     "len": 1
@@ -1542,7 +1542,7 @@
                             ]
                           ]
                         },
-                        "class": {
+                        "class_": {
                           "$tag": "Char"
                         },
                         "len": 1
@@ -1557,25 +1557,25 @@
                             ]
                           ]
                         },
-                        "class": {
+                        "class_": {
                           "$tag": "Char"
                         },
                         "len": 1
                       }
                     },
-                    "class": {
+                    "class_": {
                       "$tag": "String"
                     },
                     "len": 2
                   }
                 },
-                "class": {
+                "class_": {
                   "$tag": "String"
                 },
                 "len": 3
               }
             },
-            "class": {
+            "class_": {
               "$tag": "String"
             },
             "len": 4
@@ -1596,7 +1596,7 @@
                     ]
                   ]
                 },
-                "class": {
+                "class_": {
                   "$tag": "Char"
                 },
                 "len": 1
@@ -1614,7 +1614,7 @@
                         ]
                       ]
                     },
-                    "class": {
+                    "class_": {
                       "$tag": "String"
                     },
                     "len": 1
@@ -1632,7 +1632,7 @@
                             ]
                           ]
                         },
-                        "class": {
+                        "class_": {
                           "$tag": "Char"
                         },
                         "len": 1
@@ -1647,25 +1647,25 @@
                             ]
                           ]
                         },
-                        "class": {
+                        "class_": {
                           "$tag": "Char"
                         },
                         "len": 1
                       }
                     },
-                    "class": {
+                    "class_": {
                       "$tag": "String"
                     },
                     "len": 2
                   }
                 },
-                "class": {
+                "class_": {
                   "$tag": "String"
                 },
                 "len": 3
               }
             },
-            "class": {
+            "class_": {
               "$tag": "String"
             },
             "len": 4
@@ -1686,7 +1686,7 @@
                     ]
                   ]
                 },
-                "class": {
+                "class_": {
                   "$tag": "Char"
                 },
                 "len": 1
@@ -1704,7 +1704,7 @@
                         ]
                       ]
                     },
-                    "class": {
+                    "class_": {
                       "$tag": "String"
                     },
                     "len": 1
@@ -1722,7 +1722,7 @@
                             ]
                           ]
                         },
-                        "class": {
+                        "class_": {
                           "$tag": "Char"
                         },
                         "len": 1
@@ -1737,25 +1737,25 @@
                             ]
                           ]
                         },
-                        "class": {
+                        "class_": {
                           "$tag": "Char"
                         },
                         "len": 1
                       }
                     },
-                    "class": {
+                    "class_": {
                       "$tag": "String"
                     },
                     "len": 2
                   }
                 },
-                "class": {
+                "class_": {
                   "$tag": "String"
                 },
                 "len": 3
               }
             },
-            "class": {
+            "class_": {
               "$tag": "String"
             },
             "len": 4
@@ -1776,7 +1776,7 @@
                     ]
                   ]
                 },
-                "class": {
+                "class_": {
                   "$tag": "Char"
                 },
                 "len": 1
@@ -1794,7 +1794,7 @@
                         ]
                       ]
                     },
-                    "class": {
+                    "class_": {
                       "$tag": "String"
                     },
                     "len": 1
@@ -1812,7 +1812,7 @@
                             ]
                           ]
                         },
-                        "class": {
+                        "class_": {
                           "$tag": "Char"
                         },
                         "len": 1
@@ -1844,7 +1844,7 @@
                                         ]
                                       ]
                                     },
-                                    "class": {
+                                    "class_": {
                                       "$tag": "Char"
                                     },
                                     "len": 1
@@ -1867,20 +1867,20 @@
                                         ]
                                       ]
                                     },
-                                    "class": {
+                                    "class_": {
                                       "$tag": "Char"
                                     },
                                     "len": 1
                                   }
                                 },
-                                "class": {
+                                "class_": {
                                   "$tag": "String"
                                 },
                                 "len": 2
                               },
                               "1": "t"
                             },
-                            "class": {
+                            "class_": {
                               "$tag": "String"
                             },
                             "len": 2
@@ -1895,31 +1895,31 @@
                                 ]
                               ]
                             },
-                            "class": {
+                            "class_": {
                               "$tag": "Char"
                             },
                             "len": 1
                           }
                         },
-                        "class": {
+                        "class_": {
                           "$tag": "String"
                         },
                         "len": 3
                       }
                     },
-                    "class": {
+                    "class_": {
                       "$tag": "String"
                     },
                     "len": 4
                   }
                 },
-                "class": {
+                "class_": {
                   "$tag": "String"
                 },
                 "len": 5
               }
             },
-            "class": {
+            "class_": {
               "$tag": "String"
             },
             "len": 6
@@ -1940,7 +1940,7 @@
                     ]
                   ]
                 },
-                "class": {
+                "class_": {
                   "$tag": "Char"
                 },
                 "len": 1
@@ -1958,7 +1958,7 @@
                         ]
                       ]
                     },
-                    "class": {
+                    "class_": {
                       "$tag": "String"
                     },
                     "len": 1
@@ -1976,7 +1976,7 @@
                             ]
                           ]
                         },
-                        "class": {
+                        "class_": {
                           "$tag": "Char"
                         },
                         "len": 1
@@ -2008,7 +2008,7 @@
                                         ]
                                       ]
                                     },
-                                    "class": {
+                                    "class_": {
                                       "$tag": "Char"
                                     },
                                     "len": 1
@@ -2034,7 +2034,7 @@
                                             ]
                                           ]
                                         },
-                                        "class": {
+                                        "class_": {
                                           "$tag": "Char"
                                         },
                                         "len": 1
@@ -2060,7 +2060,7 @@
                                                 ]
                                               ]
                                             },
-                                            "class": {
+                                            "class_": {
                                               "$tag": "Char"
                                             },
                                             "len": 1
@@ -2083,32 +2083,32 @@
                                                 ]
                                               ]
                                             },
-                                            "class": {
+                                            "class_": {
                                               "$tag": "Char"
                                             },
                                             "len": 1
                                           }
                                         },
-                                        "class": {
+                                        "class_": {
                                           "$tag": "String"
                                         },
                                         "len": 2
                                       }
                                     },
-                                    "class": {
+                                    "class_": {
                                       "$tag": "String"
                                     },
                                     "len": 3
                                   }
                                 },
-                                "class": {
+                                "class_": {
                                   "$tag": "String"
                                 },
                                 "len": 4
                               },
                               "1": "t"
                             },
-                            "class": {
+                            "class_": {
                               "$tag": "String"
                             },
                             "len": 4
@@ -2123,31 +2123,31 @@
                                 ]
                               ]
                             },
-                            "class": {
+                            "class_": {
                               "$tag": "Char"
                             },
                             "len": 1
                           }
                         },
-                        "class": {
+                        "class_": {
                           "$tag": "String"
                         },
                         "len": 5
                       }
                     },
-                    "class": {
+                    "class_": {
                       "$tag": "String"
                     },
                     "len": 6
                   }
                 },
-                "class": {
+                "class_": {
                   "$tag": "String"
                 },
                 "len": 7
               }
             },
-            "class": {
+            "class_": {
               "$tag": "String"
             },
             "len": 8
@@ -2168,7 +2168,7 @@
                     ]
                   ]
                 },
-                "class": {
+                "class_": {
                   "$tag": "Char"
                 },
                 "len": 1
@@ -2186,7 +2186,7 @@
                         ]
                       ]
                     },
-                    "class": {
+                    "class_": {
                       "$tag": "String"
                     },
                     "len": 1
@@ -2204,7 +2204,7 @@
                             ]
                           ]
                         },
-                        "class": {
+                        "class_": {
                           "$tag": "Char"
                         },
                         "len": 1
@@ -2222,7 +2222,7 @@
                                 ]
                               ]
                             },
-                            "class": {
+                            "class_": {
                               "$tag": "Char"
                             },
                             "len": 1
@@ -2254,19 +2254,19 @@
                                             ]
                                           ]
                                         },
-                                        "class": {
+                                        "class_": {
                                           "$tag": "Char"
                                         },
                                         "len": 1
                                       }
                                     },
-                                    "class": {
+                                    "class_": {
                                       "$tag": "String"
                                     }
                                   },
                                   "1": "t"
                                 },
-                                "class": {
+                                "class_": {
                                   "$tag": "String"
                                 }
                               },
@@ -2283,7 +2283,7 @@
                                         ]
                                       ]
                                     },
-                                    "class": {
+                                    "class_": {
                                       "$tag": "Char"
                                     },
                                     "len": 1
@@ -2298,39 +2298,39 @@
                                         ]
                                       ]
                                     },
-                                    "class": {
+                                    "class_": {
                                       "$tag": "Char"
                                     },
                                     "len": 1
                                   }
                                 },
-                                "class": {
+                                "class_": {
                                   "$tag": "String"
                                 },
                                 "len": 2
                               }
                             },
-                            "class": {
+                            "class_": {
                               "$tag": "String"
                             }
                           }
                         },
-                        "class": {
+                        "class_": {
                           "$tag": "String"
                         }
                       }
                     },
-                    "class": {
+                    "class_": {
                       "$tag": "String"
                     }
                   }
                 },
-                "class": {
+                "class_": {
                   "$tag": "String"
                 }
               }
             },
-            "class": {
+            "class_": {
               "$tag": "String"
             }
           },
@@ -2347,7 +2347,7 @@
                 ]
               ]
             },
-            "class": {
+            "class_": {
               "$tag": "Char"
             },
             "len": 1
@@ -2375,7 +2375,7 @@
                         ]
                       ]
                     },
-                    "class": {
+                    "class_": {
                       "$tag": "Char"
                     },
                     "len": 1
@@ -2408,13 +2408,13 @@
                                 ]
                               ]
                             },
-                            "class": {
+                            "class_": {
                               "$tag": "Char"
                             },
                             "len": 1
                           }
                         },
-                        "class": {
+                        "class_": {
                           "$tag": "String"
                         }
                       },
@@ -2422,24 +2422,24 @@
                         "desc": {
                           "$tag": "Epsilon"
                         },
-                        "class": {
+                        "class_": {
                           "$tag": "String"
                         },
                         "len": 0
                       }
                     },
-                    "class": {
+                    "class_": {
                       "$tag": "String"
                     }
                   }
                 },
-                "class": {
+                "class_": {
                   "$tag": "String"
                 }
               },
               "1": "t"
             },
-            "class": {
+            "class_": {
               "$tag": "String"
             }
           },
@@ -2477,9 +2477,9 @@
         " (CHAR('\\n'), $startpos, $endpos) ",
         " (CHAR('\\\\'), $startpos, $endpos) ",
         " (CHAR('\\''), $startpos, $endpos) ",
-        "\n      let code = @strconv.parse_int?(t, base=16).unwrap()\n      (CHAR(code.unsafe_to_char()), $startpos, $endpos)\n    ",
-        "\n      let code = @strconv.parse_int?(t, base=16).unwrap()\n      (CHAR(code.unsafe_to_char()), $startpos, $endpos)\n    ",
-        "\n      let code = @strconv.parse_int?(t, base=16).unwrap()\n      (CHAR(code.unsafe_to_char()), $startpos, $endpos)\n    ",
+        "\n      let code = (try? @strconv.parse_int(t, base=16)).unwrap()\n      (CHAR(code.unsafe_to_char()), $startpos, $endpos)\n    ",
+        "\n      let code = (try? @strconv.parse_int(t, base=16)).unwrap()\n      (CHAR(code.unsafe_to_char()), $startpos, $endpos)\n    ",
+        "\n      let code = (try? @strconv.parse_int(t, base=16)).unwrap()\n      (CHAR(code.unsafe_to_char()), $startpos, $endpos)\n    ",
         "\n      let buffer = StringBuilder::new()\n      let end_pos = string_inner_rquote(buffer, lexbuf)\n      (STRING(buffer.to_string()), $startpos, end_pos)\n    ",
         "\n      (match t {\n        \"eof\" => EOF\n        \"regex\" => REGEX\n        \"as\" => AS\n        _ => LC_IDENT(t)\n      }, $startpos, $endpos)\n    "
       ]
@@ -2500,7 +2500,7 @@
                 ]
               ]
             },
-            "class": {
+            "class_": {
               "$tag": "Char"
             },
             "len": 1
@@ -2521,7 +2521,7 @@
                     ]
                   ]
                 },
-                "class": {
+                "class_": {
                   "$tag": "String"
                 },
                 "len": 1
@@ -2536,13 +2536,13 @@
                     ]
                   ]
                 },
-                "class": {
+                "class_": {
                   "$tag": "Char"
                 },
                 "len": 1
               }
             },
-            "class": {
+            "class_": {
               "$tag": "String"
             },
             "len": 2
@@ -2563,7 +2563,7 @@
                     ]
                   ]
                 },
-                "class": {
+                "class_": {
                   "$tag": "String"
                 },
                 "len": 1
@@ -2578,13 +2578,13 @@
                     ]
                   ]
                 },
-                "class": {
+                "class_": {
                   "$tag": "Char"
                 },
                 "len": 1
               }
             },
-            "class": {
+            "class_": {
               "$tag": "String"
             },
             "len": 2
@@ -2605,7 +2605,7 @@
                     ]
                   ]
                 },
-                "class": {
+                "class_": {
                   "$tag": "String"
                 },
                 "len": 1
@@ -2620,13 +2620,13 @@
                     ]
                   ]
                 },
-                "class": {
+                "class_": {
                   "$tag": "Char"
                 },
                 "len": 1
               }
             },
-            "class": {
+            "class_": {
               "$tag": "String"
             },
             "len": 2
@@ -2647,7 +2647,7 @@
                     ]
                   ]
                 },
-                "class": {
+                "class_": {
                   "$tag": "String"
                 },
                 "len": 1
@@ -2662,13 +2662,13 @@
                     ]
                   ]
                 },
-                "class": {
+                "class_": {
                   "$tag": "Char"
                 },
                 "len": 1
               }
             },
-            "class": {
+            "class_": {
               "$tag": "String"
             },
             "len": 2
@@ -2689,7 +2689,7 @@
                     ]
                   ]
                 },
-                "class": {
+                "class_": {
                   "$tag": "String"
                 },
                 "len": 1
@@ -2704,13 +2704,13 @@
                     ]
                   ]
                 },
-                "class": {
+                "class_": {
                   "$tag": "Char"
                 },
                 "len": 1
               }
             },
-            "class": {
+            "class_": {
               "$tag": "String"
             },
             "len": 2
@@ -2731,7 +2731,7 @@
                     ]
                   ]
                 },
-                "class": {
+                "class_": {
                   "$tag": "String"
                 },
                 "len": 1
@@ -2746,13 +2746,13 @@
                     ]
                   ]
                 },
-                "class": {
+                "class_": {
                   "$tag": "Char"
                 },
                 "len": 1
               }
             },
-            "class": {
+            "class_": {
               "$tag": "String"
             },
             "len": 2
@@ -2773,7 +2773,7 @@
                     ]
                   ]
                 },
-                "class": {
+                "class_": {
                   "$tag": "String"
                 },
                 "len": 1
@@ -2788,13 +2788,13 @@
                     ]
                   ]
                 },
-                "class": {
+                "class_": {
                   "$tag": "Char"
                 },
                 "len": 1
               }
             },
-            "class": {
+            "class_": {
               "$tag": "String"
             },
             "len": 2
@@ -2815,7 +2815,7 @@
                     ]
                   ]
                 },
-                "class": {
+                "class_": {
                   "$tag": "String"
                 },
                 "len": 1
@@ -2833,7 +2833,7 @@
                         ]
                       ]
                     },
-                    "class": {
+                    "class_": {
                       "$tag": "Char"
                     },
                     "len": 1
@@ -2865,7 +2865,7 @@
                                     ]
                                   ]
                                 },
-                                "class": {
+                                "class_": {
                                   "$tag": "Char"
                                 },
                                 "len": 1
@@ -2888,20 +2888,20 @@
                                     ]
                                   ]
                                 },
-                                "class": {
+                                "class_": {
                                   "$tag": "Char"
                                 },
                                 "len": 1
                               }
                             },
-                            "class": {
+                            "class_": {
                               "$tag": "String"
                             },
                             "len": 2
                           },
                           "1": "t"
                         },
-                        "class": {
+                        "class_": {
                           "$tag": "String"
                         },
                         "len": 2
@@ -2916,25 +2916,25 @@
                             ]
                           ]
                         },
-                        "class": {
+                        "class_": {
                           "$tag": "Char"
                         },
                         "len": 1
                       }
                     },
-                    "class": {
+                    "class_": {
                       "$tag": "String"
                     },
                     "len": 3
                   }
                 },
-                "class": {
+                "class_": {
                   "$tag": "String"
                 },
                 "len": 4
               }
             },
-            "class": {
+            "class_": {
               "$tag": "String"
             },
             "len": 5
@@ -2955,7 +2955,7 @@
                     ]
                   ]
                 },
-                "class": {
+                "class_": {
                   "$tag": "String"
                 },
                 "len": 1
@@ -2973,7 +2973,7 @@
                         ]
                       ]
                     },
-                    "class": {
+                    "class_": {
                       "$tag": "Char"
                     },
                     "len": 1
@@ -3005,7 +3005,7 @@
                                     ]
                                   ]
                                 },
-                                "class": {
+                                "class_": {
                                   "$tag": "Char"
                                 },
                                 "len": 1
@@ -3031,7 +3031,7 @@
                                         ]
                                       ]
                                     },
-                                    "class": {
+                                    "class_": {
                                       "$tag": "Char"
                                     },
                                     "len": 1
@@ -3057,7 +3057,7 @@
                                             ]
                                           ]
                                         },
-                                        "class": {
+                                        "class_": {
                                           "$tag": "Char"
                                         },
                                         "len": 1
@@ -3080,32 +3080,32 @@
                                             ]
                                           ]
                                         },
-                                        "class": {
+                                        "class_": {
                                           "$tag": "Char"
                                         },
                                         "len": 1
                                       }
                                     },
-                                    "class": {
+                                    "class_": {
                                       "$tag": "String"
                                     },
                                     "len": 2
                                   }
                                 },
-                                "class": {
+                                "class_": {
                                   "$tag": "String"
                                 },
                                 "len": 3
                               }
                             },
-                            "class": {
+                            "class_": {
                               "$tag": "String"
                             },
                             "len": 4
                           },
                           "1": "t"
                         },
-                        "class": {
+                        "class_": {
                           "$tag": "String"
                         },
                         "len": 4
@@ -3120,25 +3120,25 @@
                             ]
                           ]
                         },
-                        "class": {
+                        "class_": {
                           "$tag": "Char"
                         },
                         "len": 1
                       }
                     },
-                    "class": {
+                    "class_": {
                       "$tag": "String"
                     },
                     "len": 5
                   }
                 },
-                "class": {
+                "class_": {
                   "$tag": "String"
                 },
                 "len": 6
               }
             },
-            "class": {
+            "class_": {
               "$tag": "String"
             },
             "len": 7
@@ -3159,7 +3159,7 @@
                     ]
                   ]
                 },
-                "class": {
+                "class_": {
                   "$tag": "String"
                 },
                 "len": 1
@@ -3177,7 +3177,7 @@
                         ]
                       ]
                     },
-                    "class": {
+                    "class_": {
                       "$tag": "Char"
                     },
                     "len": 1
@@ -3195,7 +3195,7 @@
                             ]
                           ]
                         },
-                        "class": {
+                        "class_": {
                           "$tag": "Char"
                         },
                         "len": 1
@@ -3227,19 +3227,19 @@
                                         ]
                                       ]
                                     },
-                                    "class": {
+                                    "class_": {
                                       "$tag": "Char"
                                     },
                                     "len": 1
                                   }
                                 },
-                                "class": {
+                                "class_": {
                                   "$tag": "String"
                                 }
                               },
                               "1": "t"
                             },
-                            "class": {
+                            "class_": {
                               "$tag": "String"
                             }
                           },
@@ -3256,7 +3256,7 @@
                                     ]
                                   ]
                                 },
-                                "class": {
+                                "class_": {
                                   "$tag": "Char"
                                 },
                                 "len": 1
@@ -3271,34 +3271,34 @@
                                     ]
                                   ]
                                 },
-                                "class": {
+                                "class_": {
                                   "$tag": "Char"
                                 },
                                 "len": 1
                               }
                             },
-                            "class": {
+                            "class_": {
                               "$tag": "String"
                             },
                             "len": 2
                           }
                         },
-                        "class": {
+                        "class_": {
                           "$tag": "String"
                         }
                       }
                     },
-                    "class": {
+                    "class_": {
                       "$tag": "String"
                     }
                   }
                 },
-                "class": {
+                "class_": {
                   "$tag": "String"
                 }
               }
             },
-            "class": {
+            "class_": {
               "$tag": "String"
             }
           },
@@ -3318,14 +3318,14 @@
                     ]
                   ]
                 },
-                "class": {
+                "class_": {
                   "$tag": "Char"
                 },
                 "len": 1
               },
               "1": "t"
             },
-            "class": {
+            "class_": {
               "$tag": "Char"
             },
             "len": 1
@@ -3337,7 +3337,7 @@
             "desc": {
               "$tag": "EOF"
             },
-            "class": {
+            "class_": {
               "$tag": "String"
             }
           },
@@ -3353,9 +3353,9 @@
         "\n      buffer.write_char('\\n')\n      string_inner_rquote(buffer, lexbuf)\n    ",
         "\n      buffer.write_char('\\\\')\n      string_inner_rquote(buffer, lexbuf)\n    ",
         "\n      buffer.write_char('\"')\n      string_inner_rquote(buffer, lexbuf)\n    ",
-        "\n      let code = @strconv.parse_int?(t, base=16).unwrap()\n      buffer.write_char(code.unsafe_to_char())\n      string_inner_rquote(buffer, lexbuf)\n    ",
-        "\n      let code = @strconv.parse_int?(t, base=16).unwrap()\n      buffer.write_char(code.unsafe_to_char())\n      string_inner_rquote(buffer, lexbuf)\n    ",
-        "\n      let code = @strconv.parse_int?(t, base=16).unwrap()\n      buffer.write_char(code.unsafe_to_char())\n      string_inner_rquote(buffer, lexbuf)\n    ",
+        "\n      let code = (try? @strconv.parse_int(t, base=16)).unwrap()\n      buffer.write_char(code.unsafe_to_char())\n      string_inner_rquote(buffer, lexbuf)\n    ",
+        "\n      let code = (try? @strconv.parse_int(t, base=16)).unwrap()\n      buffer.write_char(code.unsafe_to_char())\n      string_inner_rquote(buffer, lexbuf)\n    ",
+        "\n      let code = (try? @strconv.parse_int(t, base=16)).unwrap()\n      buffer.write_char(code.unsafe_to_char())\n      string_inner_rquote(buffer, lexbuf)\n    ",
         "\n      buffer.write_char(t)\n      string_inner_rquote(buffer, lexbuf)\n    ",
         " abort(\"Unexpected end of input\") "
       ]
@@ -3382,7 +3382,7 @@
                         ]
                       ]
                     },
-                    "class": {
+                    "class_": {
                       "$tag": "String"
                     },
                     "len": 1
@@ -3400,7 +3400,7 @@
                             ]
                           ]
                         },
-                        "class": {
+                        "class_": {
                           "$tag": "Char"
                         },
                         "len": 1
@@ -3425,13 +3425,13 @@
                                     ]
                                   ]
                                 },
-                                "class": {
+                                "class_": {
                                   "$tag": "Char"
                                 },
                                 "len": 1
                               }
                             },
-                            "class": {
+                            "class_": {
                               "$tag": "String"
                             }
                           },
@@ -3445,29 +3445,29 @@
                                 ]
                               ]
                             },
-                            "class": {
+                            "class_": {
                               "$tag": "Char"
                             },
                             "len": 1
                           }
                         },
-                        "class": {
+                        "class_": {
                           "$tag": "String"
                         }
                       }
                     },
-                    "class": {
+                    "class_": {
                       "$tag": "String"
                     }
                   }
                 },
-                "class": {
+                "class_": {
                   "$tag": "String"
                 }
               },
               "1": "t"
             },
-            "class": {
+            "class_": {
               "$tag": "String"
             }
           },
@@ -3490,7 +3490,7 @@
                         ]
                       ]
                     },
-                    "class": {
+                    "class_": {
                       "$tag": "Char"
                     },
                     "len": 1
@@ -3525,7 +3525,7 @@
                                         ]
                                       ]
                                     },
-                                    "class": {
+                                    "class_": {
                                       "$tag": "Char"
                                     },
                                     "len": 1
@@ -3543,7 +3543,7 @@
                                             ]
                                           ]
                                         },
-                                        "class": {
+                                        "class_": {
                                           "$tag": "Char"
                                         },
                                         "len": 1
@@ -3558,24 +3558,24 @@
                                             ]
                                           ]
                                         },
-                                        "class": {
+                                        "class_": {
                                           "$tag": "Char"
                                         },
                                         "len": 1
                                       }
                                     },
-                                    "class": {
+                                    "class_": {
                                       "$tag": "String"
                                     },
                                     "len": 2
                                   }
                                 },
-                                "class": {
+                                "class_": {
                                   "$tag": "String"
                                 }
                               }
                             },
-                            "class": {
+                            "class_": {
                               "$tag": "String"
                             }
                           },
@@ -3583,13 +3583,13 @@
                             "desc": {
                               "$tag": "Epsilon"
                             },
-                            "class": {
+                            "class_": {
                               "$tag": "String"
                             },
                             "len": 0
                           }
                         },
-                        "class": {
+                        "class_": {
                           "$tag": "String"
                         }
                       },
@@ -3603,24 +3603,24 @@
                             ]
                           ]
                         },
-                        "class": {
+                        "class_": {
                           "$tag": "Char"
                         },
                         "len": 1
                       }
                     },
-                    "class": {
+                    "class_": {
                       "$tag": "String"
                     }
                   }
                 },
-                "class": {
+                "class_": {
                   "$tag": "String"
                 }
               },
               "1": "t"
             },
-            "class": {
+            "class_": {
               "$tag": "String"
             }
           },
@@ -3643,7 +3643,7 @@
                         ]
                       ]
                     },
-                    "class": {
+                    "class_": {
                       "$tag": "Char"
                     },
                     "len": 1
@@ -3669,7 +3669,7 @@
                             ]
                           ]
                         },
-                        "class": {
+                        "class_": {
                           "$tag": "Char"
                         },
                         "len": 1
@@ -3684,26 +3684,26 @@
                             ]
                           ]
                         },
-                        "class": {
+                        "class_": {
                           "$tag": "Char"
                         },
                         "len": 1
                       }
                     },
-                    "class": {
+                    "class_": {
                       "$tag": "String"
                     },
                     "len": 2
                   }
                 },
-                "class": {
+                "class_": {
                   "$tag": "String"
                 },
                 "len": 3
               },
               "1": "t"
             },
-            "class": {
+            "class_": {
               "$tag": "String"
             },
             "len": 3
@@ -3721,7 +3721,7 @@
                 ]
               ]
             },
-            "class": {
+            "class_": {
               "$tag": "String"
             },
             "len": 1
@@ -3739,7 +3739,7 @@
                 ]
               ]
             },
-            "class": {
+            "class_": {
               "$tag": "String"
             },
             "len": 1
@@ -3760,14 +3760,14 @@
                     ]
                   ]
                 },
-                "class": {
+                "class_": {
                   "$tag": "Char"
                 },
                 "len": 1
               },
               "1": "t"
             },
-            "class": {
+            "class_": {
               "$tag": "Char"
             },
             "len": 1
@@ -3779,7 +3779,7 @@
             "desc": {
               "$tag": "EOF"
             },
-            "class": {
+            "class_": {
               "$tag": "String"
             }
           },

@@ -6,7 +6,7 @@ pub(all) enum Input {
 } derive(Eq, Hash, Show)
 
 ///|
-typealias Tag = Int
+typealias Int as Tag
 
 ///|
 pub(all) enum NFACapturePosition {

@@ -1,6 +1,6 @@
 
 
-fn lex_is_number[T : @lexbuf.IStringLexbuf](lexbuf : T) -> Bool  {
+fn[T : @lexbuf.IStringLexbuf] lex_is_number(lexbuf : T) -> Bool  {
   // The matched pattern id
   let mut _match_pattern = @int.max_value
   let mut _match_start = lexbuf.curr_pos()

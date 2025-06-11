@@ -379,7 +379,27 @@ fn codegen_rule(
   default_encoding~ : @type.Encoding?
 ) -> String {
   let inner = codegen_rule_inner(rule, code_unit~, default_encoding~)
-  $|fn \{rule.signature} {
+  let (generic_part, other_part) = {
+    let signature = rule.signature
+    let lparen_index = signature.find("(").unwrap()
+    let left_part = signature.substring(start=0, end=lparen_index)
+    let lbracket_index = left_part.find("[")
+    if lbracket_index is Some(lbracket_index) && lbracket_index < lparen_index {
+      let rbracket_index = left_part.rev_find("]").unwrap()
+      let generic_part = signature.substring(
+        start=lbracket_index,
+        end=rbracket_index + 1,
+      )
+      (
+        generic_part,
+        signature.substring(end=lbracket_index) +
+        signature.substring(start=rbracket_index + 1),
+      )
+    } else {
+      ("", signature)
+    }
+  }
+  $|fn\{generic_part} \{other_part} {
   $|\{inner}
   $|}
   $|

@@ -2,7 +2,7 @@
 // translate from https://ohama.github.io/ocaml/ocamllex-tutorial/examples/wordcount/
 
 
-fn count[T : @lexbuf.IStringLexbuf](lines : Int, words : Int, chars : Int, lexbuf : T) -> (Int, Int, Int)  {
+fn[T : @lexbuf.IStringLexbuf] count(lines : Int, words : Int, chars : Int, lexbuf : T) -> (Int, Int, Int)  {
   // The matched pattern id
   let mut _match_pattern = @int.max_value
   let mut _match_start = lexbuf.curr_pos()

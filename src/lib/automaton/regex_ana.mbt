@@ -92,10 +92,9 @@ fn get_regex_static_known_tag_positions(
 pub fn get_regex_captures(
   re : Regex,
   lowered_re : Regex
-) ->
-     Array[
-       (String, (VarType, (StaticKnownTagPosition?, StaticKnownTagPosition?))),
-     ] {
+) -> Array[
+  (String, (VarType, (StaticKnownTagPosition?, StaticKnownTagPosition?))),
+] {
   let vars = @regex.get_capture_vars(re)
   let static_tag_positions = get_regex_static_known_tag_positions(lowered_re)
   let result = vars

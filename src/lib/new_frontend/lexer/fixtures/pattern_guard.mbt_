@@ -24,7 +24,7 @@ fn main {
 }
 
 ///|
-type! E Int
+suberror E Int
 
 ///|
 fn f1(x : Int) -> Int!E {

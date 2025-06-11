@@ -1,2 +1,2 @@
 ///|
-typealias Regex = @type.Regex
+typealias @type.Regex

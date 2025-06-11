@@ -1,6 +1,6 @@
 
 
-fn token[T : @lexbuf.IStringLexbuf](lexbuf : T) -> (Token, Int, Int)  {
+fn[T : @lexbuf.IStringLexbuf] token(lexbuf : T) -> (Token, Int, Int)  {
   // The matched pattern id
   let mut _match_pattern = @int.max_value
   let mut _match_start = lexbuf.curr_pos()
@@ -902,7 +902,7 @@ fn token[T : @lexbuf.IStringLexbuf](lexbuf : T) -> (Token, Int, Int)  {
       ()
       let t = lexbuf.get_string(_capture_0_start, _capture_0_end)
 
-      let code = @strconv.parse_int?(t, base=16).unwrap()
+      let code = (try? @strconv.parse_int(t, base=16)).unwrap()
       (CHAR(code.unsafe_to_char()), _match_start, _match_end)
     
     }
@@ -910,7 +910,7 @@ fn token[T : @lexbuf.IStringLexbuf](lexbuf : T) -> (Token, Int, Int)  {
       ()
       let t = lexbuf.get_string(_capture_0_start, _capture_0_end)
 
-      let code = @strconv.parse_int?(t, base=16).unwrap()
+      let code = (try? @strconv.parse_int(t, base=16)).unwrap()
       (CHAR(code.unsafe_to_char()), _match_start, _match_end)
     
     }
@@ -918,7 +918,7 @@ fn token[T : @lexbuf.IStringLexbuf](lexbuf : T) -> (Token, Int, Int)  {
       ()
       let t = lexbuf.get_string(_capture_0_start, _capture_0_end)
 
-      let code = @strconv.parse_int?(t, base=16).unwrap()
+      let code = (try? @strconv.parse_int(t, base=16)).unwrap()
       (CHAR(code.unsafe_to_char()), _match_start, _match_end)
     
     }
@@ -947,7 +947,7 @@ fn token[T : @lexbuf.IStringLexbuf](lexbuf : T) -> (Token, Int, Int)  {
 }
 
 
-fn string_inner_rquote[T : @lexbuf.IStringLexbuf](buffer : StringBuilder, lexbuf : T) -> Int  {
+fn[T : @lexbuf.IStringLexbuf] string_inner_rquote(buffer : StringBuilder, lexbuf : T) -> Int  {
   // The matched pattern id
   let mut _match_pattern = @int.max_value
   let mut _match_start = lexbuf.curr_pos()
@@ -1238,7 +1238,7 @@ fn string_inner_rquote[T : @lexbuf.IStringLexbuf](buffer : StringBuilder, lexbuf
       ()
       let t = lexbuf.get_string(_capture_0_start, _capture_0_end)
 
-      let code = @strconv.parse_int?(t, base=16).unwrap()
+      let code = (try? @strconv.parse_int(t, base=16)).unwrap()
       buffer.write_char(code.unsafe_to_char())
       string_inner_rquote(buffer, lexbuf)
     
@@ -1247,7 +1247,7 @@ fn string_inner_rquote[T : @lexbuf.IStringLexbuf](buffer : StringBuilder, lexbuf
       ()
       let t = lexbuf.get_string(_capture_0_start, _capture_0_end)
 
-      let code = @strconv.parse_int?(t, base=16).unwrap()
+      let code = (try? @strconv.parse_int(t, base=16)).unwrap()
       buffer.write_char(code.unsafe_to_char())
       string_inner_rquote(buffer, lexbuf)
     
@@ -1256,7 +1256,7 @@ fn string_inner_rquote[T : @lexbuf.IStringLexbuf](buffer : StringBuilder, lexbuf
       ()
       let t = lexbuf.get_string(_capture_0_start, _capture_0_end)
 
-      let code = @strconv.parse_int?(t, base=16).unwrap()
+      let code = (try? @strconv.parse_int(t, base=16)).unwrap()
       buffer.write_char(code.unsafe_to_char())
       string_inner_rquote(buffer, lexbuf)
     
@@ -1278,7 +1278,7 @@ fn string_inner_rquote[T : @lexbuf.IStringLexbuf](buffer : StringBuilder, lexbuf
 }
 
 
-fn code_rbrace[T : @lexbuf.IStringLexbuf](buffer : StringBuilder, lexbuf : T) -> Int  {
+fn[T : @lexbuf.IStringLexbuf] code_rbrace(buffer : StringBuilder, lexbuf : T) -> Int  {
   // The matched pattern id
   let mut _match_pattern = @int.max_value
   let mut _match_start = lexbuf.curr_pos()

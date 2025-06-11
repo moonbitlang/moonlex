@@ -2,14 +2,14 @@
 priv type InorderIterator[N] Array[Tree[N]]
 
 ///|
-fn InorderIterator::new[N](root : T[N]) -> InorderIterator[N] {
+fn[N] InorderIterator::new(root : T[N]) -> InorderIterator[N] {
   let it = InorderIterator([])
   it.move_left(root)
   it
 }
 
 ///|
-fn InorderIterator::move_left[N](
+fn[N] InorderIterator::move_left(
   self : InorderIterator[N],
   node : T[N]
 ) -> Unit {
@@ -23,7 +23,7 @@ fn InorderIterator::move_left[N](
 }
 
 ///|
-fn InorderIterator::next[N](self : InorderIterator[N]) -> (N, N)? {
+fn[N] InorderIterator::next(self : InorderIterator[N]) -> (N, N)? {
   guard self._.pop() is Some(curr) else { return None }
   guard curr is Node(min~, max~, right~, ..)
   self.move_left(right)

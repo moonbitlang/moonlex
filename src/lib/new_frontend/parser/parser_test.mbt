@@ -18,13 +18,13 @@ test {
     content,
     comment=false,
   )
-  let ast = @parser.start!(
+  let ast = @parser.start(
     lex_result.tokens.filter(fn(triple) {
       not(triple.0 is (NEWLINE | COMMENT(_)))
     }),
     initial_pos={ fname: filename, lnum: 1, bol: 0, cnum: 0 },
   )
-  @json.inspect!(ast, content={
+  @json.inspect(ast, content={
     "body": {
       "$tag": "Nested",
       "0": [

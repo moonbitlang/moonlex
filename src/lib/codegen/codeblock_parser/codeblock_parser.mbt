@@ -13,7 +13,7 @@ pub(all) struct SubstItem {
 }
 
 
-fn scan_codeblock_rbrace[T : @lexbuf.IStringLexbuf](subst : Array[SubstItem], lexbuf : T) -> Unit  {
+fn[T : @lexbuf.IStringLexbuf] scan_codeblock_rbrace(subst : Array[SubstItem], lexbuf : T) -> Unit  {
   // The matched pattern id
   let mut _match_pattern = @int.max_value
   let mut _match_start = lexbuf.curr_pos()
