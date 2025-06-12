@@ -49,21 +49,22 @@ fn update_by_tags(self : TagState, tags : @immut/sorted_set.T[Tag]) -> TagState 
 }
 
 ///|
-fn tagState_min(self_ : TagState, other : TagState) -> TagState {
+fn tagState_merge(self_ : TagState, other : TagState) -> TagState {
   let tags = @immut/sorted_set.from_array(self_._.keys()) +
     @immut/sorted_set.from_array(other._.keys())
+  let mut result = @immut/sorted_map.new()
   for tag in tags {
-    match (self_._.get(tag), other._.get(tag)) {
-      (None, _) => break other
-      (_, None) => break self_
-      (Some(r1), Some(r2)) =>
-        if r1 != r2 {
-          break if r1 < r2 { self_ } else { other }
-        }
-    }
-  } else {
-    self_
+    result = result.add(
+      tag,
+      match (self_._.get(tag), other._.get(tag)) {
+        (None, None) => panic()
+        (Some(rank), None) => rank
+        (None, Some(rank)) => rank
+        (Some(rank1), Some(rank2)) => @math.minimum(rank1, rank2)
+      },
+    )
   }
+  TagState(result)
 }
 
 ///|
@@ -275,7 +276,7 @@ fn DFA::from_nfa(nfa : NFA) -> DFA {
           let upd_tagState = step_tagState.update_by_tags(tags)
           let old_tagState = state_map[eps_node]
           let new_tagState = if old_tagState is Some(old_tagState) {
-            tagState_min(upd_tagState, old_tagState)
+            tagState_merge(upd_tagState, old_tagState)
           } else {
             upd_tagState
           }
