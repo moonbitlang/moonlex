@@ -19,10 +19,8 @@ fn[T : @lexbuf.IStringLexbuf] token(lexbuf : T) -> String  {
       }
     }
     1 => {
-      if _match_pattern >= 1 {
-        _match_pattern = 1
-        _match_end = lexbuf.curr_pos()
-      }
+      _match_pattern = 1
+      _match_end = lexbuf.curr_pos()
       continue match lexbuf.next_as_int() {
         48..=57 => 1
         65..=90 => 1
@@ -32,10 +30,8 @@ fn[T : @lexbuf.IStringLexbuf] token(lexbuf : T) -> String  {
       }
     }
     2 => {
-      if _match_pattern >= 1 {
-        _match_pattern = 1
-        _match_end = lexbuf.curr_pos()
-      }
+      _match_pattern = 1
+      _match_end = lexbuf.curr_pos()
       continue match lexbuf.next_as_int() {
         48..=57 => 1
         65..=90 => 1
@@ -47,10 +43,8 @@ fn[T : @lexbuf.IStringLexbuf] token(lexbuf : T) -> String  {
       }
     }
     3 => {
-      if _match_pattern >= 1 {
-        _match_pattern = 1
-        _match_end = lexbuf.curr_pos()
-      }
+      _match_pattern = 1
+      _match_end = lexbuf.curr_pos()
       continue match lexbuf.next_as_int() {
         48..=57 => 1
         65..=90 => 1
@@ -62,10 +56,8 @@ fn[T : @lexbuf.IStringLexbuf] token(lexbuf : T) -> String  {
       }
     }
     4 => {
-      if _match_pattern >= 0 {
-        _match_pattern = 0
-        _match_end = lexbuf.curr_pos()
-      }
+      _match_pattern = 0
+      _match_end = lexbuf.curr_pos()
       continue match lexbuf.next_as_int() {
         48..=57 => 1
         65..=90 => 1
