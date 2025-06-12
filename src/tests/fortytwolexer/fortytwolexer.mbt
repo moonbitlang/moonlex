@@ -10,10 +10,8 @@ fn[T : @lexbuf.IStringLexbuf] scan_newline(lexbuf : T) -> Int  {
   let mut _capture_0_end = -1
   loop 0 {
     0 => {
-      if _match_pattern >= 2 {
-        _match_pattern = 2
-        _match_end = lexbuf.curr_pos()
-      }
+      _match_pattern = 2
+      _match_end = lexbuf.curr_pos()
       continue match lexbuf.next_as_int() {
         0..=9 => 1
         10 => 2
@@ -24,24 +22,18 @@ fn[T : @lexbuf.IStringLexbuf] scan_newline(lexbuf : T) -> Int  {
       }
     }
     1 => {
-      if _match_pattern >= 1 {
-        _match_pattern = 1
-        _match_end = lexbuf.curr_pos()
-      }
+      _match_pattern = 1
+      _match_end = lexbuf.curr_pos()
       break
     }
     2 => {
-      if _match_pattern >= 0 {
-        _match_pattern = 0
-        _match_end = lexbuf.curr_pos()
-      }
+      _match_pattern = 0
+      _match_end = lexbuf.curr_pos()
       break
     }
     3 => {
-      if _match_pattern >= 0 {
-        _match_pattern = 0
-        _match_end = lexbuf.curr_pos()
-      }
+      _match_pattern = 0
+      _match_end = lexbuf.curr_pos()
       continue match lexbuf.next_as_int() {
         10 => 2
         _ => break

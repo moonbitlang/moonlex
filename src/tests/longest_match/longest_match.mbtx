@@ -1,0 +1,12 @@
+{}
+
+regex ident = ['a'-'z' 'A'-'Z' '_'] ['a'-'z' 'A'-'Z' '_' '0'-'9']*;
+
+rule token[T : @lexbuf.IStringLexbuf](lexbuf : T) -> String {
+    parse {
+        "let" => { "keyword" }
+        ident => { "ident" }
+    }
+}
+
+{}

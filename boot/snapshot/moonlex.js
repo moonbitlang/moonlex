@@ -23374,13 +23374,12 @@ function moonbitlang$ulex$lib$codegen$$codegen_rule_inner(rule, code_unit, defau
         const _pattern_id = _x._0;
         const _captures = _x._1;
         const _tmp$4 = moonbitlang$core$builtin$$Show$to_string$6$(_pattern_id);
-        const _tmp$5 = moonbitlang$core$builtin$$Show$to_string$6$(_pattern_id);
         const _p$2 = rule.lexee;
-        moonbitlang$core$builtin$$Logger$write_string$36$(out, `      if _match_pattern >= ${_tmp$4} {\n        _match_pattern = ${_tmp$5}\n        _match_end = ${_p$2}.curr_pos()\n`);
+        moonbitlang$core$builtin$$Logger$write_string$36$(out, `      _match_pattern = ${_tmp$4}\n      _match_end = ${_p$2}.curr_pos()\n`);
         const _len$3 = _captures.length;
-        let _tmp$6 = 0;
+        let _tmp$5 = 0;
         while (true) {
-          const _i$2 = _tmp$6;
+          const _i$2 = _tmp$5;
           if (_i$2 < _len$3) {
             const capture = _captures[_i$2];
             const _begin = capture._0;
@@ -23388,9 +23387,9 @@ function moonbitlang$ulex$lib$codegen$$codegen_rule_inner(rule, code_unit, defau
             if (_begin.$tag === 0) {
               const _Dynamic_dfa = _begin;
               const _begin_tag_var = _Dynamic_dfa._0;
-              const _tmp$7 = moonbitlang$core$builtin$$Show$to_string$6$(_i$2);
+              const _tmp$6 = moonbitlang$core$builtin$$Show$to_string$6$(_i$2);
               const _p$3 = moonbitlang$ulex$lib$codegen$$codegen_rule_inner$46$gen_tag_var$124$39(_begin_tag_var);
-              moonbitlang$core$builtin$$Logger$write_string$36$(out, `        _capture_${_tmp$7}_start = ${_p$3}\n`);
+              moonbitlang$core$builtin$$Logger$write_string$36$(out, `      _capture_${_tmp$6}_start = ${_p$3}\n`);
             } else {
               const _Static_dfa = _begin;
               const _x$2 = _Static_dfa._0;
@@ -23398,26 +23397,26 @@ function moonbitlang$ulex$lib$codegen$$codegen_rule_inner(rule, code_unit, defau
                 const _RelativeToStart = _x$2;
                 const _offset = _RelativeToStart._0;
                 if (_offset === 0) {
-                  moonbitlang$core$builtin$$Logger$write_string$36$(out, `        _capture_${moonbitlang$core$builtin$$Show$to_string$6$(_i$2)}_start = _match_start\n`);
+                  moonbitlang$core$builtin$$Logger$write_string$36$(out, `      _capture_${moonbitlang$core$builtin$$Show$to_string$6$(_i$2)}_start = _match_start\n`);
                 } else {
-                  moonbitlang$core$builtin$$Logger$write_string$36$(out, `        _capture_${moonbitlang$core$builtin$$Show$to_string$6$(_i$2)}_start = _match_start + ${moonbitlang$core$builtin$$Show$to_string$6$(_offset)}\n`);
+                  moonbitlang$core$builtin$$Logger$write_string$36$(out, `      _capture_${moonbitlang$core$builtin$$Show$to_string$6$(_i$2)}_start = _match_start + ${moonbitlang$core$builtin$$Show$to_string$6$(_offset)}\n`);
                 }
               } else {
                 const _RelativeToEnd = _x$2;
                 const _offset = _RelativeToEnd._0;
                 if (_offset === 0) {
-                  moonbitlang$core$builtin$$Logger$write_string$36$(out, `        _capture_${moonbitlang$core$builtin$$Show$to_string$6$(_i$2)}_start = _match_end\n`);
+                  moonbitlang$core$builtin$$Logger$write_string$36$(out, `      _capture_${moonbitlang$core$builtin$$Show$to_string$6$(_i$2)}_start = _match_end\n`);
                 } else {
-                  moonbitlang$core$builtin$$Logger$write_string$36$(out, `        _capture_${moonbitlang$core$builtin$$Show$to_string$6$(_i$2)}_start = _match_end + ${moonbitlang$core$builtin$$Show$to_string$6$(_offset)}\n`);
+                  moonbitlang$core$builtin$$Logger$write_string$36$(out, `      _capture_${moonbitlang$core$builtin$$Show$to_string$6$(_i$2)}_start = _match_end + ${moonbitlang$core$builtin$$Show$to_string$6$(_offset)}\n`);
                 }
               }
             }
             if (_end.$tag === 0) {
               const _Dynamic_dfa = _end;
               const _end_tag_var = _Dynamic_dfa._0;
-              const _tmp$7 = moonbitlang$core$builtin$$Show$to_string$6$(_i$2);
+              const _tmp$6 = moonbitlang$core$builtin$$Show$to_string$6$(_i$2);
               const _p$3 = moonbitlang$ulex$lib$codegen$$codegen_rule_inner$46$gen_tag_var$124$39(_end_tag_var);
-              moonbitlang$core$builtin$$Logger$write_string$36$(out, `        _capture_${_tmp$7}_end = ${_p$3}\n`);
+              moonbitlang$core$builtin$$Logger$write_string$36$(out, `      _capture_${_tmp$6}_end = ${_p$3}\n`);
             } else {
               const _Static_dfa = _end;
               const _x$2 = _Static_dfa._0;
@@ -23425,27 +23424,27 @@ function moonbitlang$ulex$lib$codegen$$codegen_rule_inner(rule, code_unit, defau
                 const _RelativeToStart = _x$2;
                 const _offset = _RelativeToStart._0;
                 if (_offset === 0) {
-                  moonbitlang$core$builtin$$Logger$write_string$36$(out, `        _capture_${moonbitlang$core$builtin$$Show$to_string$6$(_i$2)}_end = _match_start\n`);
+                  moonbitlang$core$builtin$$Logger$write_string$36$(out, `      _capture_${moonbitlang$core$builtin$$Show$to_string$6$(_i$2)}_end = _match_start\n`);
                 } else {
-                  moonbitlang$core$builtin$$Logger$write_string$36$(out, `        _capture_${moonbitlang$core$builtin$$Show$to_string$6$(_i$2)}_end = _match_start + ${moonbitlang$core$builtin$$Show$to_string$6$(_offset)}\n`);
+                  moonbitlang$core$builtin$$Logger$write_string$36$(out, `      _capture_${moonbitlang$core$builtin$$Show$to_string$6$(_i$2)}_end = _match_start + ${moonbitlang$core$builtin$$Show$to_string$6$(_offset)}\n`);
                 }
               } else {
                 const _RelativeToEnd = _x$2;
                 const _offset = _RelativeToEnd._0;
                 if (_offset === 0) {
-                  moonbitlang$core$builtin$$Logger$write_string$36$(out, `        _capture_${moonbitlang$core$builtin$$Show$to_string$6$(_i$2)}_end = _match_end\n`);
+                  moonbitlang$core$builtin$$Logger$write_string$36$(out, `      _capture_${moonbitlang$core$builtin$$Show$to_string$6$(_i$2)}_end = _match_end\n`);
                 } else {
-                  moonbitlang$core$builtin$$Logger$write_string$36$(out, `        _capture_${moonbitlang$core$builtin$$Show$to_string$6$(_i$2)}_end = _match_end + ${moonbitlang$core$builtin$$Show$to_string$6$(_offset)}\n`);
+                  moonbitlang$core$builtin$$Logger$write_string$36$(out, `      _capture_${moonbitlang$core$builtin$$Show$to_string$6$(_i$2)}_end = _match_end + ${moonbitlang$core$builtin$$Show$to_string$6$(_offset)}\n`);
                 }
               }
             }
-            _tmp$6 = _i$2 + 1 | 0;
+            _tmp$5 = _i$2 + 1 | 0;
             continue;
           } else {
             break;
           }
         }
-        moonbitlang$core$builtin$$Logger$write_string$36$(out, "      }\n");
+        moonbitlang$core$builtin$$Logger$write_string$36$(out, "");
       }
       const grouped_trans = moonbitlang$ulex$lib$codegen$$group_trans(trans);
       if (grouped_trans.length === 0) {

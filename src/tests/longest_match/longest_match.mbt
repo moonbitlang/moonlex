@@ -1,6 +1,6 @@
 
 
-fn[T : @lexbuf.IStringLexbuf] lex_unicode(lexbuf : T) -> Int  {
+fn[T : @lexbuf.IStringLexbuf] token(lexbuf : T) -> String  {
   // The matched pattern id
   let mut _match_pattern = @int.max_value
   let mut _match_start = lexbuf.curr_pos()
@@ -10,62 +10,66 @@ fn[T : @lexbuf.IStringLexbuf] lex_unicode(lexbuf : T) -> Int  {
   loop 0 {
     0 => {
       continue match lexbuf.next_as_int() {
-        0..=12352 => 1
-        12353..=12438 => 2
-        12439..=12440 => 1
-        12441..=12447 => 2
-        12448..=25104 => 1
-        25105 => 3
-        25106..=134070 => 1
-        134071 => 4
-        134072..=1114111 => 1
+        65..=90 => 1
+        95 => 1
+        97..=107 => 1
+        108 => 2
+        109..=122 => 1
         _ => break
       }
     }
     1 => {
-      _match_pattern = 3
-      _match_end = lexbuf.curr_pos()
-      break
-    }
-    2 => {
-      _match_pattern = 2
-      _match_end = lexbuf.curr_pos()
-      break
-    }
-    3 => {
-      _match_pattern = 3
+      _match_pattern = 1
       _match_end = lexbuf.curr_pos()
       continue match lexbuf.next_as_int() {
-        29233 => 5
+        48..=57 => 1
+        65..=90 => 1
+        95 => 1
+        97..=122 => 1
+        _ => break
+      }
+    }
+    2 => {
+      _match_pattern = 1
+      _match_end = lexbuf.curr_pos()
+      continue match lexbuf.next_as_int() {
+        48..=57 => 1
+        65..=90 => 1
+        95 => 1
+        97..=100 => 1
+        101 => 3
+        102..=122 => 1
+        _ => break
+      }
+    }
+    3 => {
+      _match_pattern = 1
+      _match_end = lexbuf.curr_pos()
+      continue match lexbuf.next_as_int() {
+        48..=57 => 1
+        65..=90 => 1
+        95 => 1
+        97..=115 => 1
+        116 => 4
+        117..=122 => 1
         _ => break
       }
     }
     4 => {
-      _match_pattern = 1
-      _match_end = lexbuf.curr_pos()
-      break
-    }
-    5 => {
-      continue match lexbuf.next_as_int() {
-        20013 => 6
-        _ => break
-      }
-    }
-    6 => {
-      continue match lexbuf.next_as_int() {
-        22269 => 7
-        _ => break
-      }
-    }
-    7 => {
       _match_pattern = 0
       _match_end = lexbuf.curr_pos()
-      break
+      continue match lexbuf.next_as_int() {
+        48..=57 => 1
+        65..=90 => 1
+        95 => 1
+        97..=122 => 1
+        _ => break
+      }
     }
     _ => panic()
   }
 
-  guard _match_pattern <= 3 else {
+  guard _match_pattern <= 1 else {
     // No pattern matched
     panic()
   }
@@ -74,19 +78,11 @@ fn[T : @lexbuf.IStringLexbuf] lex_unicode(lexbuf : T) -> Int  {
   match _match_pattern {
     0 => {
       ()
- 1 
+ "keyword" 
     }
     1 => {
       ()
- 2 
-    }
-    2 => {
-      ()
- 3 
-    }
-    3 => {
-      ()
- 4 
+ "ident" 
     }
     _ => panic()
   }
@@ -94,8 +90,3 @@ fn[T : @lexbuf.IStringLexbuf] lex_unicode(lexbuf : T) -> Int  {
 
 
 
-
-fn classify(str : String) -> Int {
-  let lexbuf = @lexbuf.StringLexbuf::from_string(str)
-  lex_unicode(lexbuf)
-}

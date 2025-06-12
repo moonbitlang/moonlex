@@ -17,12 +17,10 @@ fn[T : @lexbuf.IStringLexbuf] test_func(lexbuf : T) -> String  {
       }
     }
     1 => {
-      if _match_pattern >= 0 {
-        _match_pattern = 0
-        _match_end = lexbuf.curr_pos()
-        _capture_0_start = _match_start
-        _capture_0_end = _match_end
-      }
+      _match_pattern = 0
+      _match_end = lexbuf.curr_pos()
+      _capture_0_start = _match_start
+      _capture_0_end = _match_end
       continue match lexbuf.next_as_int() {
         97..=98 => 2
         _ => break
@@ -36,12 +34,10 @@ fn[T : @lexbuf.IStringLexbuf] test_func(lexbuf : T) -> String  {
       }
     }
     3 => {
-      if _match_pattern >= 0 {
-        _match_pattern = 0
-        _match_end = lexbuf.curr_pos()
-        _capture_0_start = _match_start
-        _capture_0_end = _match_end
-      }
+      _match_pattern = 0
+      _match_end = lexbuf.curr_pos()
+      _capture_0_start = _match_start
+      _capture_0_end = _match_end
       continue match lexbuf.next_as_int() {
         97 => 3
         98 => 2

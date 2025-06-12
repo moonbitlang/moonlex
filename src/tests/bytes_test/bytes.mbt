@@ -31,53 +31,41 @@ fn lex_utf8(lexbuf : @lexbuf.T, buf : StringBuilder) -> Unit raise MalformedUtf8
       }
     }
     1 => {
-      if _match_pattern >= 0 {
-        _match_pattern = 0
-        _match_end = lexbuf.curr_pos()
-      }
+      _match_pattern = 0
+      _match_end = lexbuf.curr_pos()
       break
     }
     2 => {
-      if _match_pattern >= 1 {
-        _match_pattern = 1
-        _match_end = lexbuf.curr_pos()
-        _capture_0_start = _match_start
-        _capture_0_end = _match_start + 1
-      }
+      _match_pattern = 1
+      _match_end = lexbuf.curr_pos()
+      _capture_0_start = _match_start
+      _capture_0_end = _match_start + 1
       break
     }
     3 => {
-      if _match_pattern >= 5 {
-        _match_pattern = 5
-        _match_end = lexbuf.curr_pos()
-      }
+      _match_pattern = 5
+      _match_end = lexbuf.curr_pos()
       break
     }
     4 => {
-      if _match_pattern >= 5 {
-        _match_pattern = 5
-        _match_end = lexbuf.curr_pos()
-      }
+      _match_pattern = 5
+      _match_end = lexbuf.curr_pos()
       continue match lexbuf.next_as_int() {
         128..=191 => 9
         _ => break
       }
     }
     5 => {
-      if _match_pattern >= 5 {
-        _match_pattern = 5
-        _match_end = lexbuf.curr_pos()
-      }
+      _match_pattern = 5
+      _match_end = lexbuf.curr_pos()
       continue match lexbuf.next_as_int() {
         128..=191 => 8
         _ => break
       }
     }
     6 => {
-      if _match_pattern >= 5 {
-        _match_pattern = 5
-        _match_end = lexbuf.curr_pos()
-      }
+      _match_pattern = 5
+      _match_end = lexbuf.curr_pos()
       continue match lexbuf.next_as_int() {
         128..=191 => 7
         _ => break
@@ -96,14 +84,12 @@ fn lex_utf8(lexbuf : @lexbuf.T, buf : StringBuilder) -> Unit raise MalformedUtf8
       }
     }
     9 => {
-      if _match_pattern >= 2 {
-        _match_pattern = 2
-        _match_end = lexbuf.curr_pos()
-        _capture_0_start = _match_start
-        _capture_0_end = _match_start + 1
-        _capture_1_start = _match_start + 1
-        _capture_1_end = _match_start + 2
-      }
+      _match_pattern = 2
+      _match_end = lexbuf.curr_pos()
+      _capture_0_start = _match_start
+      _capture_0_end = _match_start + 1
+      _capture_1_start = _match_start + 1
+      _capture_1_end = _match_start + 2
       break
     }
     10 => {
@@ -113,31 +99,27 @@ fn lex_utf8(lexbuf : @lexbuf.T, buf : StringBuilder) -> Unit raise MalformedUtf8
       }
     }
     11 => {
-      if _match_pattern >= 3 {
-        _match_pattern = 3
-        _match_end = lexbuf.curr_pos()
-        _capture_0_start = _match_start
-        _capture_0_end = _match_start + 1
-        _capture_1_start = _match_start + 1
-        _capture_1_end = _match_start + 2
-        _capture_2_start = _match_start + 2
-        _capture_2_end = _match_start + 3
-      }
+      _match_pattern = 3
+      _match_end = lexbuf.curr_pos()
+      _capture_0_start = _match_start
+      _capture_0_end = _match_start + 1
+      _capture_1_start = _match_start + 1
+      _capture_1_end = _match_start + 2
+      _capture_2_start = _match_start + 2
+      _capture_2_end = _match_start + 3
       break
     }
     12 => {
-      if _match_pattern >= 4 {
-        _match_pattern = 4
-        _match_end = lexbuf.curr_pos()
-        _capture_0_start = _match_start
-        _capture_0_end = _match_start + 1
-        _capture_1_start = _match_start + 1
-        _capture_1_end = _match_start + 2
-        _capture_2_start = _match_start + 2
-        _capture_2_end = _match_start + 3
-        _capture_3_start = _match_start + 3
-        _capture_3_end = _match_start + 4
-      }
+      _match_pattern = 4
+      _match_end = lexbuf.curr_pos()
+      _capture_0_start = _match_start
+      _capture_0_end = _match_start + 1
+      _capture_1_start = _match_start + 1
+      _capture_1_end = _match_start + 2
+      _capture_2_start = _match_start + 2
+      _capture_2_end = _match_start + 3
+      _capture_3_start = _match_start + 3
+      _capture_3_end = _match_start + 4
       break
     }
     _ => panic()
