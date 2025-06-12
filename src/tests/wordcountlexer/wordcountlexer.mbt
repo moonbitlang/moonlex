@@ -13,10 +13,8 @@ fn[T : @lexbuf.IStringLexbuf] count(lines : Int, words : Int, chars : Int, lexbu
   let mut _capture_1_end = -1
   loop 0 {
     0 => {
-      if _match_pattern >= 3 {
-        _match_pattern = 3
-        _match_end = lexbuf.curr_pos()
-      }
+      _match_pattern = 3
+      _match_end = lexbuf.curr_pos()
       continue match lexbuf.next_as_int() {
         0..=8 => 1
         9 => 2
@@ -28,12 +26,10 @@ fn[T : @lexbuf.IStringLexbuf] count(lines : Int, words : Int, chars : Int, lexbu
       }
     }
     1 => {
-      if _match_pattern >= 1 {
-        _match_pattern = 1
-        _match_end = lexbuf.curr_pos()
-        _capture_0_start = _match_start
-        _capture_0_end = _match_end
-      }
+      _match_pattern = 1
+      _match_end = lexbuf.curr_pos()
+      _capture_0_start = _match_start
+      _capture_0_end = _match_end
       continue match lexbuf.next_as_int() {
         0..=8 => 1
         11..=31 => 1
@@ -42,17 +38,13 @@ fn[T : @lexbuf.IStringLexbuf] count(lines : Int, words : Int, chars : Int, lexbu
       }
     }
     2 => {
-      if _match_pattern >= 2 {
-        _match_pattern = 2
-        _match_end = lexbuf.curr_pos()
-      }
+      _match_pattern = 2
+      _match_end = lexbuf.curr_pos()
       break
     }
     3 => {
-      if _match_pattern >= 0 {
-        _match_pattern = 0
-        _match_end = lexbuf.curr_pos()
-      }
+      _match_pattern = 0
+      _match_end = lexbuf.curr_pos()
       break
     }
     _ => panic()

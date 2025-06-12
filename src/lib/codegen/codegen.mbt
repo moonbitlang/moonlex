@@ -191,9 +191,8 @@ pub fn codegen_rule_inner(
     }
     if dfa.end_nodes.get(state_num) is Some((pattern_id, captures)) {
       out.write_string(
-        $|      if _match_pattern >= \{pattern_id} {
-        $|        _match_pattern = \{pattern_id}
-        $|        _match_end = \{rule.lexee}.curr_pos()
+        $|      _match_pattern = \{pattern_id}
+        $|      _match_end = \{rule.lexee}.curr_pos()
         $|
         ,
       )
@@ -202,52 +201,51 @@ pub fn codegen_rule_inner(
         match begin {
           Dynamic_dfa(begin_tag_var) =>
             out.write_string(
-              "        _capture_\{index}_start = \{gen_tag_var(begin_tag_var)}\n",
+              "      _capture_\{index}_start = \{gen_tag_var(begin_tag_var)}\n",
             )
           Static_dfa(RelativeToStart(offset)) =>
             if offset == 0 {
               out.write_string(
-                "        _capture_\{index}_start = _match_start\n",
+                "      _capture_\{index}_start = _match_start\n",
               )
             } else {
               out.write_string(
-                "        _capture_\{index}_start = _match_start + \{offset}\n",
+                "      _capture_\{index}_start = _match_start + \{offset}\n",
               )
             }
           Static_dfa(RelativeToEnd(offset)) =>
             if offset == 0 {
-              out.write_string("        _capture_\{index}_start = _match_end\n")
+              out.write_string("      _capture_\{index}_start = _match_end\n")
             } else {
               out.write_string(
-                "        _capture_\{index}_start = _match_end + \{offset}\n",
+                "      _capture_\{index}_start = _match_end + \{offset}\n",
               )
             }
         }
         match end {
           Dynamic_dfa(end_tag_var) =>
             out.write_string(
-              "        _capture_\{index}_end = \{gen_tag_var(end_tag_var)}\n",
+              "      _capture_\{index}_end = \{gen_tag_var(end_tag_var)}\n",
             )
           Static_dfa(RelativeToStart(offset)) =>
             if offset == 0 {
-              out.write_string("        _capture_\{index}_end = _match_start\n")
+              out.write_string("      _capture_\{index}_end = _match_start\n")
             } else {
               out.write_string(
-                "        _capture_\{index}_end = _match_start + \{offset}\n",
+                "      _capture_\{index}_end = _match_start + \{offset}\n",
               )
             }
           Static_dfa(RelativeToEnd(offset)) =>
             if offset == 0 {
-              out.write_string("        _capture_\{index}_end = _match_end\n")
+              out.write_string("      _capture_\{index}_end = _match_end\n")
             } else {
               out.write_string(
-                "        _capture_\{index}_end = _match_end + \{offset}\n",
+                "      _capture_\{index}_end = _match_end + \{offset}\n",
               )
             }
         }
       }
       out.write_string(
-        $|      }
         $|
         ,
       )

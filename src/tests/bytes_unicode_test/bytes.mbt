@@ -25,10 +25,8 @@ fn lex_unicode(lexbuf : @lexbuf.T) -> Int  {
       }
     }
     1 => {
-      if _match_pattern >= 3 {
-        _match_pattern = 3
-        _match_end = lexbuf.curr_pos()
-      }
+      _match_pattern = 3
+      _match_end = lexbuf.curr_pos()
       break
     }
     2 => {
@@ -96,12 +94,10 @@ fn lex_unicode(lexbuf : @lexbuf.T) -> Int  {
       }
     }
     11 => {
-      if _match_pattern >= 2 {
-        _match_pattern = 2
-        _match_end = lexbuf.curr_pos()
-        _capture_0_start = _match_start
-        _capture_0_end = _match_start + 3
-      }
+      _match_pattern = 2
+      _match_end = lexbuf.curr_pos()
+      _capture_0_start = _match_start
+      _capture_0_end = _match_start + 3
       break
     }
     12 => {
@@ -113,20 +109,16 @@ fn lex_unicode(lexbuf : @lexbuf.T) -> Int  {
       }
     }
     13 => {
-      if _match_pattern >= 3 {
-        _match_pattern = 3
-        _match_end = lexbuf.curr_pos()
-      }
+      _match_pattern = 3
+      _match_end = lexbuf.curr_pos()
       continue match lexbuf.next_as_int() {
         231 => 15
         _ => break
       }
     }
     14 => {
-      if _match_pattern >= 1 {
-        _match_pattern = 1
-        _match_end = lexbuf.curr_pos()
-      }
+      _match_pattern = 1
+      _match_end = lexbuf.curr_pos()
       break
     }
     15 => {
@@ -178,10 +170,8 @@ fn lex_unicode(lexbuf : @lexbuf.T) -> Int  {
       }
     }
     23 => {
-      if _match_pattern >= 0 {
-        _match_pattern = 0
-        _match_end = lexbuf.curr_pos()
-      }
+      _match_pattern = 0
+      _match_end = lexbuf.curr_pos()
       break
     }
     _ => panic()

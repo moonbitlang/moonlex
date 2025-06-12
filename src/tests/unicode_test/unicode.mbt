@@ -23,34 +23,26 @@ fn[T : @lexbuf.IStringLexbuf] lex_unicode(lexbuf : T) -> Int  {
       }
     }
     1 => {
-      if _match_pattern >= 3 {
-        _match_pattern = 3
-        _match_end = lexbuf.curr_pos()
-      }
+      _match_pattern = 3
+      _match_end = lexbuf.curr_pos()
       break
     }
     2 => {
-      if _match_pattern >= 2 {
-        _match_pattern = 2
-        _match_end = lexbuf.curr_pos()
-      }
+      _match_pattern = 2
+      _match_end = lexbuf.curr_pos()
       break
     }
     3 => {
-      if _match_pattern >= 3 {
-        _match_pattern = 3
-        _match_end = lexbuf.curr_pos()
-      }
+      _match_pattern = 3
+      _match_end = lexbuf.curr_pos()
       continue match lexbuf.next_as_int() {
         29233 => 5
         _ => break
       }
     }
     4 => {
-      if _match_pattern >= 1 {
-        _match_pattern = 1
-        _match_end = lexbuf.curr_pos()
-      }
+      _match_pattern = 1
+      _match_end = lexbuf.curr_pos()
       break
     }
     5 => {
@@ -66,10 +58,8 @@ fn[T : @lexbuf.IStringLexbuf] lex_unicode(lexbuf : T) -> Int  {
       }
     }
     7 => {
-      if _match_pattern >= 0 {
-        _match_pattern = 0
-        _match_end = lexbuf.curr_pos()
-      }
+      _match_pattern = 0
+      _match_end = lexbuf.curr_pos()
       break
     }
     _ => panic()
