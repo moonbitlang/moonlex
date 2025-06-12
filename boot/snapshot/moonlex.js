@@ -21620,11 +21620,11 @@ function moonbitlang$ulex$lib$automaton$$DFA$from_nfa(nfa) {
           const tran = _arr[_i];
           const _cset = tran._0;
           const _targets = tran._1;
+          const state_map = { val: moonbitlang$core$option$$Option$or_else$77$(moonbitlang$core$builtin$$Map$get$152$(next_states, _cset), () => $64$moonbitlang$47$core$47$immut$47$sorted_map$46$T$Empty$17$) };
           const _bind$6 = moonbitlang$core$immut$sorted_set$$T$iter$55$(_targets);
           _bind$6((target) => {
             const _step_node = target._0;
             const _from_tagState = target._1;
-            const state_map = { val: moonbitlang$core$option$$Option$or_else$77$(moonbitlang$core$builtin$$Map$get$152$(next_states, _cset), () => $64$moonbitlang$47$core$47$immut$47$sorted_map$46$T$Empty$17$) };
             const _bind$7 = moonbitlang$core$immut$sorted_map$$T$iter$84$(moonbitlang$core$array$$Array$op_get$140$(eps_closure, _step_node.num));
             _bind$7((pair) => {
               const _eps_node = pair._0;
@@ -21642,9 +21642,9 @@ function moonbitlang$ulex$lib$automaton$$DFA$from_nfa(nfa) {
               state_map.val = moonbitlang$core$immut$sorted_map$$T$add$76$(state_map.val, _eps_node, new_tagState);
               return 1;
             });
-            moonbitlang$core$builtin$$Map$op_set$152$(next_states, _cset, state_map.val);
             return 1;
           });
+          moonbitlang$core$builtin$$Map$op_set$152$(next_states, _cset, state_map.val);
           _tmp$2 = _i + 1 | 0;
           continue;
         } else {

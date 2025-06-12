@@ -264,11 +264,11 @@ fn DFA::from_nfa(nfa : NFA) -> DFA {
     let next_states : Map[@eof_char_set.T, State] = Map::new()
     for tran in nfa_trans {
       let (cset, targets) = tran
+      let mut state_map = next_states
+        .get(cset)
+        .or_else(fn() { @immut/sorted_map.new() })
       for target in targets {
         let (step_node, from_tagState) = target
-        let mut state_map = next_states
-          .get(cset)
-          .or_else(fn() { @immut/sorted_map.new() })
         let step_tagState = from_tagState
         for pair in eps_closure[step_node.num] {
           let (eps_node, tags) = pair
@@ -281,8 +281,8 @@ fn DFA::from_nfa(nfa : NFA) -> DFA {
           }
           state_map = state_map.add(eps_node, new_tagState)
         }
-        next_states[cset] = state_map
       }
+      next_states[cset] = state_map
     }
     next_states.iter().to_array()
   }
