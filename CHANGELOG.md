@@ -1,3 +1,7 @@
+## ulex 0.3.2
+
+- Default to longest match
+
 ## ulex 0.2.2
 
 - Support `a \ b` for character difference in regex.

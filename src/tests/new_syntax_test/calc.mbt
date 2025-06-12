@@ -43,40 +43,30 @@ fn eval(input : Bytes) -> Int {
       }
     }
     1 => {
-      if _match_pattern >= 0 {
-        _match_pattern = 0
-        _match_end = _cursor
-      }
+      _match_pattern = 0
+      _match_end = _cursor
       break
     }
     2 => {
-      if _match_pattern >= 1 {
-        _match_pattern = 1
-        _match_end = _cursor
-      }
+      _match_pattern = 1
+      _match_end = _cursor
       break
     }
     3 => {
-      if _match_pattern >= 3 {
-        _match_pattern = 3
-        _match_end = _cursor
-      }
+      _match_pattern = 3
+      _match_end = _cursor
       break
     }
     4 => {
-      if _match_pattern >= 4 {
-        _match_pattern = 4
-        _match_end = _cursor
-      }
+      _match_pattern = 4
+      _match_end = _cursor
       break
     }
     5 => {
-      if _match_pattern >= 2 {
-        _match_pattern = 2
-        _match_end = _cursor
-        _capture_0_start = _match_start
-        _capture_0_end = _match_end
-      }
+      _match_pattern = 2
+      _match_end = _cursor
+      _capture_0_start = _match_start
+      _capture_0_end = _match_end
       continue match (
         if _cursor < _end {
           let c = _data[_cursor]
