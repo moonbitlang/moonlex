@@ -99,8 +99,8 @@ pub fn get_regex_captures(
   let static_tag_positions = get_regex_static_known_tag_positions(lowered_re)
   let result = vars
     .iter()
-    .map(fn(var) {
-      let (name, re_class) = var
+    .map(fn(var_) {
+      let (name, re_class) = var_
       let var_type = match re_class {
         Char => Char
         String => String

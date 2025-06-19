@@ -32,37 +32,37 @@ pub fn negated(self : CharSet) -> CharSet {
 
 ///|
 pub fn is_empty(self : CharSet) -> Bool {
-  self._.is_empty()
+  self.inner().is_empty()
 }
 
 ///|
 pub fn contains(self : CharSet, x : Char) -> Bool {
-  self._.contains(x)
+  self.inner().contains(x)
 }
 
 ///|
 pub fn slice(self : CharSet, min? : Char, max? : Char) -> CharSet {
-  self._.slice(min?, max?)
+  self.inner().slice(min?, max?)
 }
 
 ///|
 pub fn union(self : CharSet, other : CharSet) -> CharSet {
-  @diet.union(self._, other._)
+  @diet.union(self.inner(), other.inner())
 }
 
 ///|
 pub fn intersection(self : CharSet, other : CharSet) -> CharSet {
-  @diet.intersection(self._, other._)
+  @diet.intersection(self.inner(), other.inner())
 }
 
 ///|
 pub fn complement(self : CharSet) -> CharSet {
-  self._.complement()
+  self.inner().complement()
 }
 
 ///|
 pub fn difference(self : CharSet, other : CharSet) -> CharSet {
-  @diet.difference(self._, other._)
+  @diet.difference(self.inner(), other.inner())
 }
 
 ///|
@@ -97,12 +97,12 @@ pub impl BitAnd for CharSet with land(self : CharSet, other : CharSet) -> CharSe
 
 ///|
 pub fn iter_ranges(self : CharSet) -> Iter[(Char, Char)] {
-  self._.iter_intervals()
+  self.inner().iter_intervals()
 }
 
 ///|
 pub fn iter(self : CharSet) -> Iter[Char] {
-  self._.iter()
+  self.inner().iter()
 }
 
 ///|
@@ -110,7 +110,10 @@ pub impl Show for CharSet with output(self, logger) {
   logger.write_iter(
     self
     .iter_ranges()
-    .map(fn { (min, max) => "@char_set.range(\{repr(min)}, \{repr(max)})" }),
+    .map(it => {
+      let (min, max) = it
+      "@char_set.range(\{repr(min)}, \{repr(max)})"
+    }),
     prefix="@char_set.union(",
     suffix=")",
     sep=", ",
@@ -121,7 +124,10 @@ pub impl Show for CharSet with output(self, logger) {
 pub impl ToJson for CharSet with to_json(self) {
   self
   .iter_ranges()
-  .map(fn { (min, max) => (min.to_int(), max.to_int()) })
+  .map(it => {
+    let (min, max) = it
+    (min.to_int(), max.to_int())
+  })
   .to_array()
   .to_json()
 }

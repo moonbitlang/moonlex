@@ -81,13 +81,7 @@ pub fn parse_string_literal(lit : StringLiteral) -> String {
       continue rest
     }
     [.. "\\u{", .. rest] => {
-      let rbrace_index = rest
-        .find_by(fn {
-          c => {
-            c is '}'
-          }
-        })
-        .unwrap()
+      let rbrace_index = rest.find_by(c => c is '}').unwrap()
       let code_str = rest.charcodes(start=0, end=rbrace_index)
       let code = (try? @strconv.parse_int(code_str.to_string(), base=16)).unwrap()
       buffer.write_char(code.unsafe_to_char())

@@ -45,17 +45,19 @@ pub fn negated(self : EofCharSet) -> EofCharSet {
 
 ///|
 pub fn is_empty(self : EofCharSet) -> Bool {
-  self._.is_empty()
+  self.inner().is_empty()
 }
 
 ///|
 pub fn contains(self : EofCharSet, x : Char) -> Bool {
-  self._.contains(EofChar::char(x))
+  self.inner().contains(EofChar::char(x))
 }
 
 ///|
 pub fn slice(self : EofCharSet, min? : Char, max? : Char) -> EofCharSet {
-  self._.slice(
+  self
+  .inner()
+  .slice(
     min?=match min {
       None => None
       Some(c) => Some(EofChar::char(c))
@@ -69,22 +71,22 @@ pub fn slice(self : EofCharSet, min? : Char, max? : Char) -> EofCharSet {
 
 ///|
 pub fn union(self : EofCharSet, other : EofCharSet) -> EofCharSet {
-  @diet.union(self._, other._)
+  @diet.union(self.inner(), other.inner())
 }
 
 ///|
 pub fn intersection(self : EofCharSet, other : EofCharSet) -> EofCharSet {
-  @diet.intersection(self._, other._)
+  @diet.intersection(self.inner(), other.inner())
 }
 
 ///|
 pub fn complement(self : EofCharSet) -> EofCharSet {
-  self._.complement()
+  self.inner().complement()
 }
 
 ///|
 pub fn difference(self : EofCharSet, other : EofCharSet) -> EofCharSet {
-  @diet.difference(self._, other._)
+  @diet.difference(self.inner(), other.inner())
 }
 
 ///|
@@ -119,12 +121,12 @@ pub impl BitAnd for EofCharSet with land(self : EofCharSet, other : EofCharSet) 
 
 ///|
 pub fn iter_ranges(self : EofCharSet) -> Iter[(EofChar, EofChar)] {
-  self._.iter_intervals()
+  self.inner().iter_intervals()
 }
 
 ///|
 pub fn iter(self : EofCharSet) -> Iter[EofChar] {
-  self._.iter()
+  self.inner().iter()
 }
 
 ///|
@@ -132,7 +134,10 @@ pub impl Show for EofCharSet with output(self, logger) {
   logger.write_iter(
     self
     .iter_ranges()
-    .map(fn { (min, max) => "@eof_char_set.range(\{repr(min)}, \{repr(max)})" }),
+    .map(it => {
+      let (min, max) = it
+      "@eof_char_set.range(\{repr(min)}, \{repr(max)})"
+    }),
     prefix="@eof_char_set.union(",
     suffix=")",
     sep=", ",

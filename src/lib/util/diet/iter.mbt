@@ -21,20 +21,20 @@ pub fn[N] iter_intervals(self : Tree[N]) -> Iter[(N, N)] {
 pub fn[N : @bounded_enum.T] iter(self : Tree[N]) -> Iter[N] {
   self
   .iter_intervals()
-  .flat_map(fn {
-    (min, max) =>
-      Iter::new(fn(yield_) {
-        let mut x = min
-        if x <= max {
-          while true {
-            guard yield_(x) is IterContinue else { return IterEnd }
-            if x == max {
-              break
-            }
-            x = N::succ(x)
+  .flat_map(it => {
+    let (min, max) = it
+    Iter::new(fn(yield_) {
+      let mut x = min
+      if x <= max {
+        while true {
+          guard yield_(x) is IterContinue else { return IterEnd }
+          if x == max {
+            break
           }
+          x = N::succ(x)
         }
-        IterContinue
-      })
+      }
+      IterContinue
+    })
   })
 }

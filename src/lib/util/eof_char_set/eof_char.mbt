@@ -19,14 +19,14 @@ pub impl @bounded_enum.T for EofChar with upper_bound() {
 
 ///|
 pub impl @bounded_enum.T for EofChar with pred(self) {
-  guard self._ > -1
-  EofChar(self._ - 1)
+  guard self.inner() > -1
+  EofChar(self.inner() - 1)
 }
 
 ///|
 pub impl @bounded_enum.T for EofChar with succ(self) {
-  guard self._ < 0x10ffff
-  EofChar(self._ + 1)
+  guard self.inner() < 0x10ffff
+  EofChar(self.inner() + 1)
 }
 
 ///|
@@ -41,9 +41,9 @@ pub fn EofChar::char(x : Char) -> EofChar {
 
 ///|
 pub fn EofChar::repr(self : EofChar) -> EofCharRepr {
-  if self._ == -1 {
+  if self.inner() == -1 {
     Eof
   } else {
-    Char(self._.unsafe_to_char())
+    Char(self.inner().unsafe_to_char())
   }
 }

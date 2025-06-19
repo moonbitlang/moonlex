@@ -30,30 +30,30 @@ parse_regex -> (Context) -> Regex
 
 alternation -> (Context) -> Regex
   : concatenation { $1 }
-  | concatenation "|" alternation { fn { ctx => @regex.alt($1(ctx), $3(ctx)) } }
+  | concatenation "|" alternation { ctx => @regex.alt($1(ctx), $3(ctx)) }
   ;
 
 concatenation -> (Context) -> Regex
   : repetition { $1 }
-  | repetition concatenation { fn { ctx => @regex.seq($1(ctx), $2(ctx)) } }
+  | repetition concatenation { ctx => @regex.seq($1(ctx), $2(ctx)) }
   ;
 
 repetition -> (Context) -> Regex
   : primary { $1 }
-  | primary "*" { fn { ctx => @regex.star($1(ctx)) } }
-  | primary "+" { fn { ctx => @regex.plus($1(ctx)) } }
-  | primary "?" { fn { ctx => @regex.opt($1(ctx)) } }
-  | primary REPEAT { fn { ctx => @regex.repeat($1(ctx), min_times=$2.0, max_times?=$2.1) } }
+  | primary "*" { ctx => @regex.star($1(ctx)) }
+  | primary "+" { ctx => @regex.plus($1(ctx)) }
+  | primary "?" { ctx => @regex.opt($1(ctx)) }
+  | primary REPEAT { ctx => @regex.repeat($1(ctx), min_times=$2.0, max_times?=$2.1) }
   ;
 
 primary -> (Context) -> Regex
-  : "(" alternation ")" { fn { ctx => $2(ctx) } }
-  | TOKEN { fn { ctx => ctx.named_regexes.get($1).unwrap() } }
-  | character_class { fn { _ctx => @regex.char_class($1) } }
-  | character { fn { _ctx => @regex.char_class(@char_set.singleton($1)) } }
-  | "-" { fn { _ctx => @regex.char_class(@char_set.singleton('-')) } }
-  | "." { fn { _ctx => @regex.char_class(@char_set.any) }  }
-  | "$" { fn { _ctx => @regex.eof } }
+  : "(" alternation ")" { ctx => $2(ctx) }
+  | TOKEN { ctx => ctx.named_regexes.get($1).unwrap() }
+  | character_class { _ctx => @regex.char_class($1) }
+  | character { _ctx => @regex.char_class(@char_set.singleton($1)) }
+  | "-" { _ctx => @regex.char_class(@char_set.singleton('-')) }
+  | "." { _ctx => @regex.char_class(@char_set.any) }
+  | "$" { _ctx => @regex.eof }
   ;
 
 character_class -> @char_set.T

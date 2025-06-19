@@ -44,28 +44,28 @@ fn to_graphviz(self : DotGraph) -> String {
   [
     "digraph \{self.name} {",
     self.edges.map(fn(e) {
-      let (from, to, info) = e._
+      let (from, to, info) = e.inner()
       "\t\{from} -> \{to}" + info.map_or("", fn(t) { "[label=\{t}]" })
     })
     |> _.join("\n"),
     self.nodes
     .iter()
-    .map(fn {
-      (node, (nodeType, label)) =>
-        [
-          node.to_string(),
-          "[",
-          "shape=",
-          match nodeType {
-            Normal => "circle"
-            Accepted => "box"
-          },
-          ",",
-          "label=",
-          label.or(node.to_string()),
-          "]",
-        ]
-        |> _.join("")
+    .map(it => {
+      let (node, (nodeType, label)) = it
+      [
+        node.to_string(),
+        "[",
+        "shape=",
+        match nodeType {
+          Normal => "circle"
+          Accepted => "box"
+        },
+        ",",
+        "label=",
+        label.or(node.to_string()),
+        "]",
+      ]
+      |> _.join("")
     })
     .collect()
     |> _.join("\n"),
@@ -86,7 +86,7 @@ fn to_mermaid(self : DotGraph) -> String {
     styles,
     "graph TD",
     self.edges.map(fn(e) {
-      let (from, to, edge_info) = e._
+      let (from, to, edge_info) = e.inner()
       from.to_string() +
       "-->" +
       edge_info.map_or("", fn(s) { "|" + s + "|" }) +

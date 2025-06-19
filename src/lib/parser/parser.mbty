@@ -43,7 +43,7 @@ regex_eoi                               -> (Context) -> @type.Regex
   ;
 
 lex                                     -> (Context) -> @type.Lex
-  :                                     { fn { _ctx => { header: "", rules: [],  trailer: "" } } }
+  :                                     { _ctx => { header: "", rules: [],  trailer: "" } }
   | header named_regex_list nonempty_rule_list trailer 
                                         {
                                           fn (ctx) {
@@ -64,36 +64,36 @@ trailer                                 -> String
   ;
 
 named_regex_list                        -> (Context) -> Context
-  : named_regex named_regex_list        { fn { ctx => $2($1(ctx)) } }
-  |                                     { fn { ctx => ctx } }
+  : named_regex named_regex_list        { ctx => $2($1(ctx)) }
+  |                                     { ctx => ctx }
   ;
 
 named_regex                             -> (Context) -> Context
-  : "regex" LC_IDENT "=" regex ";"      { fn { ctx => ctx.define_regex($2, $4(ctx)) } }
+  : "regex" LC_IDENT "=" regex ";"      { ctx => ctx.define_regex($2, $4(ctx)) }
   ;
 
 nonempty_rule_list                      -> (Context) -> @immut/list.T[@type.Rule]
-  : rule                                { fn { ctx => Cons($1(ctx), Nil) } }
-  | rule nonempty_rule_list             { fn { ctx => Cons($1(ctx), $2(ctx)) } }
+  : rule                                { ctx => Cons($1(ctx), Nil) }
+  | rule nonempty_rule_list             { ctx => Cons($1(ctx), $2(ctx)) }
   ;
 
 rule                                    -> (Context) -> @type.Rule
   : RULE_LC_IDENT_LPAREN_CODE_RPAREN_ARROW_CODE_LBRACE "parse {" rule_item_list "}" "}" 
                                         { fn (ctx) { 
                                           let pattern_and_actions = $3(ctx).to_array()
-                                          let patterns = pattern_and_actions.map(fn { (re, rest_binder, _code_block) => (re, rest_binder) })
-                                          let actions = pattern_and_actions.map(fn { (_, _, action) => action })
+                                          let patterns = pattern_and_actions.map((it) => { let (re, rest_binder, _code_block) = it; (re, rest_binder) })
+                                          let actions = pattern_and_actions.map((it) => { let (_, _, action) = it; action })
                                           { name: $1.0, signature: $1.1, lexee: "lexbuf", patterns, actions } 
                                         } }
   ;
 
 rule_item_list                          -> (Context) -> @immut/list.T[(@type.Regex, String?, @type.CodeBlock)]
-  : rule_item rule_item_list            { fn { ctx => Cons($1(ctx), $2(ctx)) } }
-  |                                     { fn { _ctx => Nil } }
+  : rule_item rule_item_list            { ctx => Cons($1(ctx), $2(ctx)) }
+  |                                     { _ctx => Nil }
   ;
 
 rule_item                               -> (Context) -> (@type.Regex, String?, @type.CodeBlock)
-  : regex "=>" LBRACE_CODE_RBRACE       { fn { ctx => ($1(ctx), None, $3) } }
+  : regex "=>" LBRACE_CODE_RBRACE       { ctx => ($1(ctx), None, $3) }
   ;
 
 regex                                   -> (Context) -> @type.Regex
@@ -102,17 +102,17 @@ regex                                   -> (Context) -> @type.Regex
 
 alias                                   -> (Context) -> @type.Regex
   : alternation                         { $1 }
-  | alternation "as" LC_IDENT           { fn { ctx => @regex.bind($1(ctx), $3) } }
+  | alternation "as" LC_IDENT           { ctx => @regex.bind($1(ctx), $3) }
   ;
 
 alternation                             -> (Context) -> @type.Regex
   : concatenation                       { $1 }
-  | concatenation "|" alternation       { fn { ctx => @regex.alt($1(ctx), $3(ctx)) } }
+  | concatenation "|" alternation       { ctx => @regex.alt($1(ctx), $3(ctx)) }
   ;
 
 concatenation                           -> (Context) -> @type.Regex
   : repetition                          { $1 }
-  | repetition concatenation            { fn { ctx => @regex.seq($1(ctx), $2(ctx)) } }
+  | repetition concatenation            { ctx => @regex.seq($1(ctx), $2(ctx)) }
   | differentiation                     { $1 }
   ;
 
@@ -133,19 +133,19 @@ differentiation                         -> (Context) -> @type.Regex
 
 repetition                              -> (Context) -> @type.Regex
   : atom                                { $1 }
-  | atom "*"                            { fn { ctx => @regex.star($1(ctx)) } }
-  | atom "+"                            { fn { ctx => @regex.plus($1(ctx)) } }
-  | atom "?"                            { fn { ctx => @regex.opt($1(ctx)) } }
+  | atom "*"                            { ctx => @regex.star($1(ctx)) }
+  | atom "+"                            { ctx => @regex.plus($1(ctx)) }
+  | atom "?"                            { ctx => @regex.opt($1(ctx)) }
   ;
 
 atom                                    -> (Context) -> @type.Regex
   : "(" alias ")"                       { $2 }
-  | character_class                     { fn { _ctx => @regex.char_class($1) } }
-  | LC_IDENT                            { fn { ctx => ctx.named_regexes.get($1).unwrap() } }
-  | CHAR                                { fn { _ctx => @regex.char_class(@char_set.singleton($1)) } }
-  | STRING                              { fn { _ctx => $1.iter().fold(init=@regex.epsilon, fn(acc, c) { @regex.seq(acc, @regex.char_class(@char_set.singleton(c))) }) } }
-  | UNDERSCORE                          { fn { _ctx => @regex.char_class(@char_set.any) } }
-  | EOF                                 { fn { _ctx => @regex.eof } }
+  | character_class                     { _ctx => @regex.char_class($1) }
+  | LC_IDENT                            { ctx => ctx.named_regexes.get($1).unwrap() }
+  | CHAR                                { _ctx => @regex.char_class(@char_set.singleton($1)) }
+  | STRING                              { _ctx => $1.iter().fold(init=@regex.epsilon, fn(acc, c) { @regex.seq(acc, @regex.char_class(@char_set.singleton(c))) }) }
+  | UNDERSCORE                          { _ctx => @regex.char_class(@char_set.any) }
+  | EOF                                 { _ctx => @regex.eof }
   ;
 
 character_class                         -> @char_set.T

@@ -5862,9 +5862,9 @@ pub fn start(tokens : Array[(Token, Position, Position)], initial_pos? : Positio
   yy_parse(
     tokens,
     yy_state_0,
-    fn {
-      YYObj__ast_Program(result) => result
-      _ => panic()
+    (it) => {
+      guard it is YYObj__ast_Program(result)
+      result
     },
     initial_pos?,
   )

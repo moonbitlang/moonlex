@@ -12,7 +12,7 @@ fn DFA::minimize_tags(self : DFA) -> DFA {
   }
 
   for node, action in self.tag_actions {
-    for op in action._ {
+    for op in action.inner() {
       match op {
         Set(dest~) | Copy(dest~, ..) => {
           // If Copy, dest.0 == src.0
@@ -71,17 +71,19 @@ fn DFA::minimize_tags(self : DFA) -> DFA {
       .iter()
       .map(fn(item) {
         let (node_id, action) = item
-        let ops = action._.map(fn(op) {
-          match op {
-            Set(dest~) =>
-              Set(dest=(tag_to_new_tag.get(dest.0).unwrap(), dest.1))
-            Copy(dest~, src~) =>
-              Copy(
-                dest=(tag_to_new_tag.get(dest.0).unwrap(), dest.1),
-                src=(tag_to_new_tag.get(src.0).unwrap(), src.1),
-              )
-          }
-        })
+        let ops = action
+          .inner()
+          .map(fn(op) {
+            match op {
+              Set(dest~) =>
+                Set(dest=(tag_to_new_tag.get(dest.0).unwrap(), dest.1))
+              Copy(dest~, src~) =>
+                Copy(
+                  dest=(tag_to_new_tag.get(dest.0).unwrap(), dest.1),
+                  src=(tag_to_new_tag.get(src.0).unwrap(), src.1),
+                )
+            }
+          })
         ops.dedup()
         (node_id, TagAction(ops))
       }),

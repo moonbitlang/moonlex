@@ -96,9 +96,9 @@ pub fn NFA::from_patterns(
     let map = Map::from_iter(
       capture_names
       .iter()
-      .map(fn {
-        ((name, _var_type), (begin_tag, end_tag)) =>
-          (name, (begin_tag, end_tag))
+      .map(it => {
+        let ((name, _var_type), (begin_tag, end_tag)) = it
+        (name, (begin_tag, end_tag))
       }),
     )
     nfa.register_regex(node, lowered_re, fn(x) { map.get(x).unwrap() })

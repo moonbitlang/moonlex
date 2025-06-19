@@ -150,7 +150,7 @@ fn lex_utf8(lexbuf : @lexbuf.T, buf : StringBuilder) -> Unit raise MalformedUtf8
       let t1 = lexbuf.get_char(_capture_0_start, _capture_0_end)
       let t2 = lexbuf.get_char(_capture_1_start, _capture_1_end)
 
-      let c = ((t1.to_int() & 0x1f) << 6 | (t2.to_int() & 0x3f)).unsafe_to_char()
+      let c = (((t1.to_int() & 0x1f) << 6) | ((t2.to_int() & 0x3f))).unsafe_to_char()
       buf.write_char(c)
       lex_utf8(lexbuf, buf)
     
@@ -161,7 +161,7 @@ fn lex_utf8(lexbuf : @lexbuf.T, buf : StringBuilder) -> Unit raise MalformedUtf8
       let t2 = lexbuf.get_char(_capture_1_start, _capture_1_end)
       let t3 = lexbuf.get_char(_capture_2_start, _capture_2_end)
 
-      let c = ((t1.to_int() & 0x0f) << 12 | (t2.to_int() & 0x3f) << 6 | (t3.to_int() & 0x3f)).unsafe_to_char()
+      let c = (((t1.to_int() & 0x0f) << 12) | ((t2.to_int() & 0x3f) << 6) | (t3.to_int() & 0x3f)).unsafe_to_char()
       buf.write_char(c)
       lex_utf8(lexbuf, buf)
     
@@ -173,7 +173,7 @@ fn lex_utf8(lexbuf : @lexbuf.T, buf : StringBuilder) -> Unit raise MalformedUtf8
       let t3 = lexbuf.get_char(_capture_2_start, _capture_2_end)
       let t4 = lexbuf.get_char(_capture_3_start, _capture_3_end)
 
-      let c = ((t1.to_int() & 0x07) << 18 | (t2.to_int() & 0x3f) << 12 | (t3.to_int() & 0x3f) << 6 | (t4.to_int() & 0x3f)).unsafe_to_char()
+      let c = (((t1.to_int() & 0x07) << 18) | ((t2.to_int() & 0x3f) << 12) | ((t3.to_int() & 0x3f) << 6) | (t4.to_int() & 0x3f)).unsafe_to_char()
       buf.write_char(c)
       lex_utf8(lexbuf, buf)
     

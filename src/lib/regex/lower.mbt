@@ -14,7 +14,7 @@ pub fn lower(re : Regex, encoding~ : Encoding?) -> Regex {
       Repetition(re) => plus(lower(re, encoding~))
       Concat(re1, re2) => seq(lower(re1, encoding~), lower(re2, encoding~))
       Alter(re1, re2) => alt(lower(re1, encoding~), lower(re2, encoding~))
-      Capture(re, var) => bind(lower(re, encoding~), var)
+      Capture(re, var_) => bind(lower(re, encoding~), var_)
     }
   }
 }

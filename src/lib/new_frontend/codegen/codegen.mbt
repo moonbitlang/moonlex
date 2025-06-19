@@ -41,7 +41,7 @@ pub fn codegen_rule_new_syntax(
   }
   let all_tag_vars = @sorted_set.new()
   for tag_action in all_tag_actions {
-    for op in tag_action._ {
+    for op in tag_action.inner() {
       match op {
         Set(dest~) => all_tag_vars.add(dest)
         Copy(dest~, src~) => {
@@ -87,7 +87,7 @@ pub fn codegen_rule_new_syntax(
     )
     fn gen_inline_tag_action(tag_action : @automaton.TagAction) -> String? {
       let buf = []
-      for op in tag_action._ {
+      for op in tag_action.inner() {
         match op {
           Set(dest~) => buf.push("\{gen_tag_var(dest)} = _cursor")
           Copy(dest~, src~) =>
@@ -97,7 +97,7 @@ pub fn codegen_rule_new_syntax(
       if buf.is_empty() {
         None
       } else {
-        Some(buf.iter().map(fn { x => "      \{x}" }).join("\n"))
+        Some(buf.iter().map(x => "      \{x}").join("\n"))
       }
     }
 
@@ -121,9 +121,7 @@ pub fn codegen_rule_new_syntax(
             )
           Static_dfa(RelativeToStart(offset)) =>
             if offset == 0 {
-              out.write_string(
-                "      _capture_\{index}_start = _match_start\n",
-              )
+              out.write_string("      _capture_\{index}_start = _match_start\n")
             } else {
               out.write_string(
                 "      _capture_\{index}_start = _match_start + \{offset}\n",
@@ -310,7 +308,12 @@ fn rewrite_codeblock(
   captures : Array[(String, @automaton.VarType)]
 ) -> @type.CodeBlock {
   fn index_of_name(name : String) -> Int {
-    captures.search_by(fn { (n, _) => n == name }).unwrap()
+    captures
+    .search_by(it => {
+      let (n, _) = it
+      n == name
+    })
+    .unwrap()
   }
 
   let buf = StringBuilder::new()
@@ -348,26 +351,26 @@ fn group_trans(
   }
   let result = char_set_by_state
     .iter()
-    .flat_map(fn {
-      (state, char_set) =>
-        char_set
-        .iter_ranges()
-        .map(fn {
-          (min, max) =>
-            (
-              (
-                match min.repr() {
-                  Eof => -1
-                  Char(c) => c.to_int()
-                },
-                match max.repr() {
-                  Eof => -1
-                  Char(c) => c.to_int()
-                },
-              ),
-              state,
-            )
-        })
+    .flat_map(it => {
+      let (state, char_set) = it
+      char_set
+      .iter_ranges()
+      .map(it => {
+        let (min, max) = it
+        (
+          (
+            match min.repr() {
+              Eof => -1
+              Char(c) => c.to_int()
+            },
+            match max.repr() {
+              Eof => -1
+              Char(c) => c.to_int()
+            },
+          ),
+          state,
+        )
+      })
     })
     .to_array()
   result.sort()
