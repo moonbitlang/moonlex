@@ -154,7 +154,8 @@ fn state_canonicalize(state : State, tag_count : Int) -> (State, TagAction) {
     |> @immut/sorted_map.from_iter
   let tag_action = []
   for tag_index, ops in ranks_by_tag {
-    for dest_rank, src_rank in ops {
+    for dest_rank = ops.length() - 1; dest_rank >= 0; dest_rank = dest_rank - 1 {
+      let src_rank = ops[dest_rank]
       if src_rank == -1 {
         tag_action.push(Set(dest=(tag_index, dest_rank)))
       } else if dest_rank != src_rank {
@@ -164,7 +165,7 @@ fn state_canonicalize(state : State, tag_count : Int) -> (State, TagAction) {
       }
     }
   }
-  tag_action.sort()
+  // tag_action.sort()
   (new_state, tag_action)
 }
 
@@ -289,7 +290,7 @@ fn DFA::from_nfa(nfa : NFA) -> DFA {
         for pair in eps_closure[step_node.num] {
           let (eps_node, tags) = pair
           let upd_tagState = step_tagState.update_by_tags(tags)
-          let old_tagState = state_map[eps_node]
+          let old_tagState = state_map.get(eps_node)
           let new_tagState = if old_tagState is Some(old_tagState) {
             tagState_merge(upd_tagState, old_tagState)
           } else {

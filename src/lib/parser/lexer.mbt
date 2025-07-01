@@ -602,9 +602,9 @@ fn[T : @lexbuf.IStringLexbuf] token(lexbuf : T) -> (Token, Int, Int)  {
       }
     }
     70 => {
+      _tag_1_1 = _tag_1
       _tag_1 = lexbuf.curr_pos()
       _tag_2 = lexbuf.curr_pos()
-      _tag_1_1 = _tag_1
       continue match lexbuf.next_as_int() {
         0..=8 => 69
         9..=10 => 72
@@ -633,8 +633,8 @@ fn[T : @lexbuf.IStringLexbuf] token(lexbuf : T) -> (Token, Int, Int)  {
       break
     }
     72 => {
-      _tag_2 = lexbuf.curr_pos()
       _tag_2_1 = _tag_2
+      _tag_2 = lexbuf.curr_pos()
       continue match lexbuf.next_as_int() {
         0..=8 => 69
         9..=10 => 72

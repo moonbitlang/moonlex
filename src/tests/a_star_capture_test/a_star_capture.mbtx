@@ -1,0 +1,12 @@
+{}
+
+rule test_func[T : @lexbuf.IStringLexbuf](lexbuf : T) -> String {
+  parse {
+    'a'* ('a'+ as cap) 'a' => {
+      cap
+    }
+  }
+}
+
+{
+}

@@ -1,0 +1,13 @@
+{
+    "pre-build": [
+        {
+            "command": "node $mod_dir/boot/snapshot/moonlex.js $input -o $output",
+            "input": "a_star_capture.mbtx",
+            "output": "a_star_capture.mbt"
+        }
+    ],
+    "warn-list": "-1",
+    "import": [
+      "moonbitlang/ulex-runtime/lexbuf"
+    ]
+}
