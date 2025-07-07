@@ -224,7 +224,7 @@ fn get_eps_closure(
   Array::map(self.graph, fn(x) {
     let mut result = @immut/sorted_map.new().add(x, @immut/sorted_set.new())
     fn get_tags(n : NFANode) -> @immut/sorted_set.T[Tag] {
-      result.get(n).or(@immut/sorted_set.new())
+      result.get(n).unwrap_or(@immut/sorted_set.new())
     }
 
     let queue = @queue.from_array([x])

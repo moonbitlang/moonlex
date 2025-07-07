@@ -2,15 +2,16 @@
 test {
   let content = @encoding.encode(
     UTF8,
-    #|let x : Int = 1
-    #|const DIGIT : Regex = "[0-9]"
-    #|const NUM : Regex = "\{DIGIT}+"
-    #|fn foo(lexbuf : Lexbuf) -> Unit {
-    #|  lex lexbuf {
-    #|    NUM => {}
-    #|  }
-    #|}
-    ,
+    (
+      #|let x : Int = 1
+      #|const DIGIT : Regex = "[0-9]"
+      #|const NUM : Regex = "\{DIGIT}+"
+      #|fn foo(lexbuf : Lexbuf) -> Unit {
+      #|  lex lexbuf {
+      #|    NUM => {}
+      #|  }
+      #|}
+    ),
   )
   let filename = "test.mbt"
   let lex_result = @lexer.tokens_from_bytes(
@@ -69,7 +70,7 @@ test {
                     },
                   },
                 ],
-                "rest": Null,
+                "rest": Json::null(),
                 "loc": "test.mbt:6:4-6:7",
               },
               "action": { "$tag": "Code", "loc": "test.mbt:6:11-6:13" },

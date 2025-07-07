@@ -62,7 +62,7 @@ fn to_graphviz(self : DotGraph) -> String {
         },
         ",",
         "label=",
-        label.or(node.to_string()),
+        label.unwrap_or(node.to_string()),
         "]",
       ]
       |> _.join("")
@@ -98,8 +98,8 @@ fn to_mermaid(self : DotGraph) -> String {
     .map(fn(n) {
       let (node, (nodeType, label)) = n
       match nodeType {
-        Normal => "\{node}((\{label.or(node.to_string())}))"
-        Accepted => "\{node}[\{label.or(node.to_string())}]"
+        Normal => "\{node}((\{label.unwrap_or(node.to_string())}))"
+        Accepted => "\{node}[\{label.unwrap_or(node.to_string())}]"
       }
     })
     .collect()

@@ -105,22 +105,24 @@ pub fn codegen_rule_inner(
     .iter()
     .map(fn(captures) { captures.0.length() })
     .maximum()
-    .or(0)
+    .unwrap_or(0)
   let max_pattern_id = dfa.pattern_captures.length() - 1
   out.write_string(
-    $|  // The matched pattern id
-    $|  let mut _match_pattern = @int.max_value
-    $|  let mut _match_start = \{rule.lexee}.curr_pos()
-    $|  let mut _match_end = -1
-    $|
-    ,
+    (
+      $|  // The matched pattern id
+      $|  let mut _match_pattern = @int.max_value
+      $|  let mut _match_start = \{rule.lexee}.curr_pos()
+      $|  let mut _match_end = -1
+      $|
+    ),
   )
   for i in 0..=max_num_capture_vars {
     out.write_string(
-      $|  let mut _capture_\{i}_start = -1
-      $|  let mut _capture_\{i}_end = -1
-      $|
-      ,
+      (
+        $|  let mut _capture_\{i}_start = -1
+        $|  let mut _capture_\{i}_end = -1
+        $|
+      ),
     )
   }
   let all_tag_actions = @sorted_set.new()
@@ -149,29 +151,33 @@ pub fn codegen_rule_inner(
 
   for tag_var in all_tag_vars {
     out.write_string(
-      $|  let mut \{gen_tag_var(tag_var)} = -1
-      $|
-      ,
+      (
+        $|  let mut \{gen_tag_var(tag_var)} = -1
+        $|
+      ),
     )
   }
   let start_tags = @sorted_set.new()
   for tag in start_tags {
     out.write_string(
-      $|  \{gen_tag_var((tag, 0))} = \{rule.lexee}.curr_pos()
-      $|
-      ,
+      (
+        $|  \{gen_tag_var((tag, 0))} = \{rule.lexee}.curr_pos()
+        $|
+      ),
     )
   }
   out.write_string(
-    $|  loop \{dfa.start_node} {
-    $|
-    ,
+    (
+      $|  loop \{dfa.start_node} {
+      $|
+    ),
   )
   for state_num, trans in dfa.graph {
     out.write_string(
-      $|    \{state_num} => {
-      $|
-      ,
+      (
+        $|    \{state_num} => {
+        $|
+      ),
     )
     fn gen_inline_tag_action(tag_action : @automaton.TagAction) -> String? {
       let buf = []
@@ -196,10 +202,11 @@ pub fn codegen_rule_inner(
     }
     if dfa.end_nodes.get(state_num) is Some((pattern_id, captures)) {
       out.write_string(
-        $|      _match_pattern = \{pattern_id}
-        $|      _match_end = \{rule.lexee}.curr_pos()
-        $|
-        ,
+        (
+          $|      _match_pattern = \{pattern_id}
+          $|      _match_end = \{rule.lexee}.curr_pos()
+          $|
+        ),
       )
       for index, capture in captures {
         let (begin, end) = capture
@@ -249,22 +256,25 @@ pub fn codegen_rule_inner(
         }
       }
       out.write_string(
-        $|
-        ,
+        (
+          $|
+        ),
       )
     }
     let grouped_trans = group_trans(trans)
     if grouped_trans.is_empty() {
       out.write_string(
-        $|      break
-        $|
-        ,
+        (
+          $|      break
+          $|
+        ),
       )
     } else {
       out.write_string(
-        $|      continue match \{rule.lexee}.next_as_int() {
-        $|
-        ,
+        (
+          $|      continue match \{rule.lexee}.next_as_int() {
+          $|
+        ),
       )
       for tran in grouped_trans {
         let ((first_char, last_char), next_state) = tran
@@ -274,49 +284,55 @@ pub fn codegen_rule_inner(
           "\{first_char}..=\{last_char}"
         }
         out.write_string(
-          $|        \{pattern} => \{next_state}
-          $|
-          ,
+          (
+            $|        \{pattern} => \{next_state}
+            $|
+          ),
         )
       }
       out.write_string(
-        $|        _ => break
-        $|      }
-        $|
-        ,
+        (
+          $|        _ => break
+          $|      }
+          $|
+        ),
       )
     }
     out.write_string(
-      $|    }
-      $|
-      ,
+      (
+        $|    }
+        $|
+      ),
     )
   }
   out.write_string(
-    $|    _ => panic()
-    $|  }
-    $|
-    ,
+    (
+      $|    _ => panic()
+      $|  }
+      $|
+    ),
   )
   out.write_string(
-    $|
-    $|  guard _match_pattern <= \{max_pattern_id} else {
-    $|    // No pattern matched
-    $|    panic()
-    $|  }
-    $|
-    $|  \{rule.lexee}.reset(pos=_match_end)
-    $|  match _match_pattern {
-    $|
-    ,
+    (
+      $|
+      $|  guard _match_pattern <= \{max_pattern_id} else {
+      $|    // No pattern matched
+      $|    panic()
+      $|  }
+      $|
+      $|  \{rule.lexee}.reset(pos=_match_end)
+      $|  match _match_pattern {
+      $|
+    ),
   )
   for pattern_id, action in rule.actions {
     // The `()` is to avoid `{ xxx }` to be interpreted as a record
     out.write_string(
-      $|    \{pattern_id} => {
-      $|      ()
-      $|
-      ,
+      (
+        $|    \{pattern_id} => {
+        $|      ()
+        $|
+      ),
     )
     let subst = @codeblock_parser.parse_codeblock(action)
     let captures = dfa.pattern_captures[pattern_id]
@@ -335,40 +351,46 @@ pub fn codegen_rule_inner(
       match var_type {
         Char =>
           out.write_string(
-            $|      let \{name} = \{rule.lexee}.get_char(_capture_\{capture_id}_start, _capture_\{capture_id}_end)
-            $|
-            ,
+            (
+              $|      let \{name} = \{rule.lexee}.get_char(_capture_\{capture_id}_start, _capture_\{capture_id}_end)
+              $|
+            ),
           )
         String =>
           out.write_string(
-            $|      let \{name} = \{rule.lexee}.get_string(_capture_\{capture_id}_start, _capture_\{capture_id}_end)
-            $|
-            ,
+            (
+              $|      let \{name} = \{rule.lexee}.get_string(_capture_\{capture_id}_start, _capture_\{capture_id}_end)
+              $|
+            ),
           )
       }
       if name_used_in_subst(name) {
         out.write_string(
-          $|      let _ = \{name}
-          $|
-          ,
+          (
+            $|      let _ = \{name}
+            $|
+          ),
         )
       }
     }
     out.write_string(
-      $|\{rewrite_codeblock(action, subst, captures.0)}
-      $|
-      ,
+      (
+        $|\{rewrite_codeblock(action, subst, captures.0)}
+        $|
+      ),
     )
     out.write_string(
-      $|    }
-      $|
-      ,
+      (
+        $|    }
+        $|
+      ),
     )
   }
   out.write_string(
-    $|    _ => panic()
-    $|  }
-    ,
+    (
+      $|    _ => panic()
+      $|  }
+    ),
   )
   out.to_string()
 }
@@ -400,9 +422,11 @@ fn codegen_rule(
       ("", signature)
     }
   }
-  $|fn\{generic_part} \{other_part} {
-  $|\{inner}
-  $|}
-  $|
-  $|
+  (
+    $|fn\{generic_part} \{other_part} {
+    $|\{inner}
+    $|}
+    $|
+    $|
+  )
 }

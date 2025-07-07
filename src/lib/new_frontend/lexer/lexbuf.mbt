@@ -11,7 +11,7 @@ pub fn Lexbuf::from_bytes(
   start~ : Int = 0,
   end? : Int
 ) -> Lexbuf {
-  let end = end.or(bytes.length())
+  let end = end.unwrap_or(bytes.length())
   return { content: bytes, pos: start, end }
 }
 

@@ -42,7 +42,7 @@ fn DFA::minimize_tags(self : DFA) -> DFA {
   for tag, state_actions_map in tag_to_state_actions_map {
     groups[state_actions_map] = groups
       .get(state_actions_map)
-      .or(@immut/sorted_set.new())
+      .unwrap_or(@immut/sorted_set.new())
       .add(tag)
   }
   let tag_to_new_tag = {}

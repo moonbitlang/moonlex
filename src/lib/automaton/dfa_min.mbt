@@ -35,7 +35,10 @@ fn DFA::minimize(dfa : DFA) -> DFA {
       if end_node_info.0 == pattern_id {
         groups = groups.add(
           tag_action,
-          groups.get(tag_action).or(@immut/sorted_set.new()).add(end_node),
+          groups
+          .get(tag_action)
+          .unwrap_or(@immut/sorted_set.new())
+          .add(end_node),
         )
       }
     }
@@ -48,7 +51,7 @@ fn DFA::minimize(dfa : DFA) -> DFA {
     let tag_action = dfa.tag_actions.get(state).unwrap()
     groups = groups.add(
       tag_action,
-      groups.get(tag_action).or(@immut/sorted_set.new()).add(state),
+      groups.get(tag_action).unwrap_or(@immut/sorted_set.new()).add(state),
     )
   }
   for _, partition in groups {
@@ -63,10 +66,10 @@ fn DFA::minimize(dfa : DFA) -> DFA {
         let (input, target) = tran
         for symbol in symbols {
           if symbol.char_set.subset(input) {
-            let map = result.get(target).or(@immut/sorted_map.new())
+            let map = result.get(target).unwrap_or(@immut/sorted_map.new())
             let map = map.add(
               symbol,
-              map.get(symbol).or(@immut/sorted_set.new()).add(source),
+              map.get(symbol).unwrap_or(@immut/sorted_set.new()).add(source),
             )
             result[target] = map
           }
@@ -95,7 +98,7 @@ fn DFA::minimize(dfa : DFA) -> DFA {
       for target in a {
         let sources = match symbolized_invert_map.get(target) {
           None => @immut/sorted_set.new()
-          Some(map) => map.get(symbol).or(@immut/sorted_set.new())
+          Some(map) => map.get(symbol).unwrap_or(@immut/sorted_set.new())
         }
         x = x + sources
       }
@@ -194,11 +197,6 @@ impl Compare for Symbol with compare(self, other) {
 ///|
 impl Eq for Symbol with op_equal(self, other) {
   self.id == other.id
-}
-
-///|
-impl Hash for Symbol with hash_combine(self, hasher) {
-  self.id.hash_combine(hasher)
 }
 
 ///|

@@ -21,7 +21,6 @@ pub(all) enum TagOp {
 ///|
 priv type TagState @immut/sorted_map.T[Tag, TagRank] derive (
   Eq,
-  Show,
   Hash,
   Compare,
 )
@@ -65,7 +64,7 @@ fn tagState_merge(self_ : TagState, other : TagState) -> TagState {
         (None, None) => panic()
         (Some(rank), None) => rank
         (None, Some(rank)) => rank
-        (Some(rank1), Some(rank2)) => @math.minimum(rank1, rank2)
+        (Some(rank1), Some(rank2)) => @cmp.minimum(rank1, rank2)
       },
     )
   }
@@ -176,7 +175,7 @@ fn register_node(self : DFA, nfa : NFA, node : Int, os : State) -> Unit {
     .filter_map(fn(x) { nfa.end_nodes.get(x.0.num) })
     .collect()
   guard not(code_blocks.is_empty()) else { return () }
-  let min_code_block = code_blocks.fold(init=code_blocks[0], @math.minimum)
+  let min_code_block = code_blocks.fold(init=code_blocks[0], @cmp.minimum)
   let end_nodes = os
     .iter()
     .filter(fn(x) { nfa.end_nodes.get(x.0.num) == Some(min_code_block) })
@@ -283,7 +282,7 @@ fn DFA::from_nfa(nfa : NFA) -> DFA {
       let (cset, targets) = tran
       let mut state_map = next_states
         .get(cset)
-        .or_else(fn() { @immut/sorted_map.new() })
+        .unwrap_or_else(fn() { @immut/sorted_map.new() })
       for target in targets {
         let (step_node, from_tagState) = target
         let step_tagState = from_tagState
