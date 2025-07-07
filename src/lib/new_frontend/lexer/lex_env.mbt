@@ -1,7 +1,7 @@
 ///|
 priv struct LexEnv {
   errors : Array[(Position, Position, LexicalError)]
-  docstrings : Array[@immut/list.T[(Location, Comment)]]
+  docstrings : Array[@list.T[(Location, Comment)]]
   comment : Bool
   file : String
   tokens : Array[(Token, Position, Position)]
@@ -137,15 +137,18 @@ fn preserve_comment(self : LexEnv) -> (Comment, Int, Int) -> Unit {
           end: self.make_pos(end),
         }
         if docstrings.is_empty() {
-          docstrings.push(@immut/list.singleton((loc, comment)))
+          docstrings.push(@list.singleton((loc, comment)))
         } else {
-          guard docstrings.last() is Some(Cons(head, _) as last)
+          guard docstrings.last() is Some(More(head, ..) as last)
           let last_idx = docstrings.length() - 1
           if loc.start.lnum - head.0.start.lnum > 1 {
             docstrings[last_idx] = last.rev()
-            docstrings.push(@immut/list.singleton((loc, comment)))
+            docstrings.push(@list.singleton((loc, comment)))
           } else {
-            docstrings[last_idx] = Cons((loc, comment), docstrings[last_idx])
+            docstrings[last_idx] = @list.construct(
+              (loc, comment),
+              docstrings[last_idx],
+            )
           }
         }
       }
