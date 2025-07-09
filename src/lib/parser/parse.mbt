@@ -1,5 +1,36 @@
 ///|
-pub fn parse_lex_from_string(input : String) -> @type.Lex raise ParseError {
+pub fn parse_lex_from_string(
+  input : String,
+  unicode~ : Bool = true
+) -> @type.Lex raise ParseError {
+  if unicode {
+    parse_lex_from_string_unicode(input)
+  } else {
+    parse_lex_from_string_non_unicode(input)
+  }
+}
+
+///|
+pub fn parse_lex_from_string_non_unicode(
+  input : String
+) -> @type.Lex raise ParseError {
+  let bytes = @encoding.encode(UTF8, input)
+  let base = bytes[:]
+  let mut curr = base
+  lex_eoi(
+    fn() {
+      let (next, tok, spos, epos) = token_new(curr, base~)
+      curr = next
+      (tok, spos, epos)
+    },
+    0,
+  )(Context::{ named_regexes: @immut/sorted_map.new() })
+}
+
+///|
+pub fn parse_lex_from_string_unicode(
+  input : String
+) -> @type.Lex raise ParseError {
   let lexbuf = @lexbuf.StringLexbuf::from_string(input)
   lex_eoi(fn() { token(lexbuf) }, 0)(Context::{
     named_regexes: @immut/sorted_map.new(),
