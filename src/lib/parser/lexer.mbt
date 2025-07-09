@@ -662,7 +662,7 @@ fn[T : @lexbuf.IStringLexbuf] token(lexbuf : T) -> (Token, Int, Int)  {
       _match_pattern = 3
       _match_end = lexbuf.curr_pos()
       _capture_0_start = _tag_0
-      _capture_0_end = _tag_1_1
+      _capture_0_end = _tag_1
       _capture_1_start = _tag_0
       _capture_1_end = _tag_2
       break

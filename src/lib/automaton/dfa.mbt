@@ -19,11 +19,7 @@ pub(all) enum TagOp {
 } derive(Show, Eq, Compare)
 
 ///|
-priv type TagState @immut/sorted_map.T[Tag, TagRank] derive (
-  Eq,
-  Hash,
-  Compare,
-)
+priv type TagState @immut/sorted_map.T[Tag, TagRank] derive(Eq, Hash, Compare)
 
 ///|
 fn TagState::new() -> TagState {
@@ -214,7 +210,7 @@ fn DFA::from_nfa(nfa : NFA) -> DFA {
       (x, TagState::new().update_by_tags(y))
     })
     |> @immut/sorted_map.from_iter
-  let (initial_state, start_action) = state_canonicalize(
+  let (canonicalized_initial_state, start_action) = state_canonicalize(
     initial_state,
     nfa.tag_count,
   )
@@ -223,10 +219,10 @@ fn DFA::from_nfa(nfa : NFA) -> DFA {
   })
   let dfa = DFA::new(captures)
   let node_map : Map[State, Int] = Map::new()
-  fn get_id(state : State) -> Int {
+  fn get_id(state : State, canonicalized_state : State) -> Int {
     node_map.get_or_init(state, fn() {
       let node = dfa.new_node()
-      dfa.register_node(nfa, node, state)
+      dfa.register_node(nfa, node, canonicalized_state)
       node
     })
   }
@@ -303,11 +299,11 @@ fn DFA::from_nfa(nfa : NFA) -> DFA {
     next_states.iter().to_array()
   }
 
-  let start_node = get_id(initial_state)
+  let start_node = get_id(initial_state, canonicalized_initial_state)
   dfa.start_node = start_node
   dfa.tag_actions[start_node] = start_action
   let queue = @queue.new()
-  queue.push((start_node, initial_state))
+  queue.push((start_node, canonicalized_initial_state))
   let mut visited = @immut/sorted_set.new()
   while queue.pop() is Some((from_n, cur_state)) {
     if visited.contains(from_n) {
@@ -317,11 +313,11 @@ fn DFA::from_nfa(nfa : NFA) -> DFA {
     let trans = transitions(cur_state)
     for tran in trans {
       let (cset, state) = tran
-      let to_n = get_id(state)
       let (canonicalized_state, action) = state_canonicalize(
         state,
         nfa.tag_count,
       )
+      let to_n = get_id(state, canonicalized_state)
       queue.push((to_n, canonicalized_state))
       dfa.tag_actions[to_n] = action
       dfa.add_edge(from_n, cset, to_n)

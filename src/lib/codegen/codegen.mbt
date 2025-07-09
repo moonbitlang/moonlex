@@ -142,6 +142,9 @@ pub fn codegen_rule_inner(
     }
   }
   fn gen_tag_var(tag_var : @automaton.TagVar) -> String {
+    if tag_var.1 < 0 {
+      println(tag_var)
+    }
     if tag_var.1 == 0 {
       "_tag_\{tag_var.0}"
     } else {

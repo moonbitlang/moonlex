@@ -34,7 +34,7 @@ fn[T : @lexbuf.IStringLexbuf] test_func(lexbuf : T) -> String  {
       _tag_0 = lexbuf.curr_pos()
       _match_pattern = 0
       _match_end = lexbuf.curr_pos()
-      _capture_0_start = _tag_0_1
+      _capture_0_start = _tag_0_2
       _capture_0_end = _match_end + -1
       continue match lexbuf.next_as_int() {
         97 => 2
