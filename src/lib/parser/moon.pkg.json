@@ -3,7 +3,9 @@
     "moonbitlang/ulex/lib/type",
     "moonbitlang/ulex/lib/util/char_set",
     "moonbitlang/ulex-runtime/lexbuf",
-    "moonbitlang/ulex/lib/regex"
+    "moonbitlang/ulex/lib/regex",
+    "moonbitlang/ulex/lib/util/utf8",
+    "moonbitlang/x/encoding"
   ],
   "pre-build": [
     {
