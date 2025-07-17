@@ -54,7 +54,7 @@ pub fn BytesLexbuf::get_char(
   start : Int,
   end : Int
 ) -> Char {
-  decode_utf8(self.content[start:end]).unsafe_char_at(0)
+  decode_utf8(self.content[start:end]).get_char(0).unwrap()
 }
 
 ///|

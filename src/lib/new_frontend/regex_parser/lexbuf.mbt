@@ -59,7 +59,7 @@ pub fn Lexbuf::reset(self : Lexbuf, pos~ : Int) -> Unit {
 
 ///|
 pub fn Lexbuf::get_char(self : Lexbuf, start : Int, end : Int) -> Char {
-  decode_utf8(self.data[start:end]).unsafe_char_at(0)
+  decode_utf8(self.data[start:end]).get_char(0).unwrap()
 }
 
 ///|

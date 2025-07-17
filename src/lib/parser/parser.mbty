@@ -1,7 +1,7 @@
 %start lex_eoi
 %start regex_eoi
 %position<Int>
-%derive<Show> Token
+%derive<Show, Eq, ToJson> Token
 %derive<Show> ParseError
 
 %token EOI
@@ -72,9 +72,9 @@ named_regex                             -> (Context) -> Context
   : "regex" LC_IDENT "=" regex ";"      { ctx => ctx.define_regex($2, $4(ctx)) }
   ;
 
-nonempty_rule_list                      -> (Context) -> @immut/list.T[@type.Rule]
-  : rule                                { ctx => Cons($1(ctx), Nil) }
-  | rule nonempty_rule_list             { ctx => Cons($1(ctx), $2(ctx)) }
+nonempty_rule_list                      -> (Context) -> @list.T[@type.Rule]
+  : rule                                { ctx => @list.construct($1(ctx), @list.empty()) }
+  | rule nonempty_rule_list             { ctx => @list.construct($1(ctx), $2(ctx)) }
   ;
 
 rule                                    -> (Context) -> @type.Rule
@@ -87,9 +87,9 @@ rule                                    -> (Context) -> @type.Rule
                                         } }
   ;
 
-rule_item_list                          -> (Context) -> @immut/list.T[(@type.Regex, String?, @type.CodeBlock)]
-  : rule_item rule_item_list            { ctx => Cons($1(ctx), $2(ctx)) }
-  |                                     { _ctx => Nil }
+rule_item_list                          -> (Context) -> @list.T[(@type.Regex, String?, @type.CodeBlock)]
+  : rule_item rule_item_list            { ctx => @list.construct($1(ctx), $2(ctx)) }
+  |                                     { _ctx => @list.empty() }
   ;
 
 rule_item                               -> (Context) -> (@type.Regex, String?, @type.CodeBlock)
