@@ -51,7 +51,7 @@ fn lex_utf8(lexbuf : @lexbuf.T, buf : StringBuilder) -> Unit raise MalformedUtf8
       _match_pattern = 5
       _match_end = lexbuf.curr_pos()
       continue match lexbuf.next_as_int() {
-        128..=191 => 9
+        128..=191 => 7
         _ => break
       }
     }
@@ -67,23 +67,11 @@ fn lex_utf8(lexbuf : @lexbuf.T, buf : StringBuilder) -> Unit raise MalformedUtf8
       _match_pattern = 5
       _match_end = lexbuf.curr_pos()
       continue match lexbuf.next_as_int() {
-        128..=191 => 7
+        128..=191 => 9
         _ => break
       }
     }
     7 => {
-      continue match lexbuf.next_as_int() {
-        128..=191 => 10
-        _ => break
-      }
-    }
-    8 => {
-      continue match lexbuf.next_as_int() {
-        128..=191 => 11
-        _ => break
-      }
-    }
-    9 => {
       _match_pattern = 2
       _match_end = lexbuf.curr_pos()
       _capture_0_start = _match_start
@@ -92,13 +80,19 @@ fn lex_utf8(lexbuf : @lexbuf.T, buf : StringBuilder) -> Unit raise MalformedUtf8
       _capture_1_end = _match_start + 2
       break
     }
-    10 => {
+    8 => {
       continue match lexbuf.next_as_int() {
-        128..=191 => 12
+        128..=191 => 10
         _ => break
       }
     }
-    11 => {
+    9 => {
+      continue match lexbuf.next_as_int() {
+        128..=191 => 11
+        _ => break
+      }
+    }
+    10 => {
       _match_pattern = 3
       _match_end = lexbuf.curr_pos()
       _capture_0_start = _match_start
@@ -108,6 +102,12 @@ fn lex_utf8(lexbuf : @lexbuf.T, buf : StringBuilder) -> Unit raise MalformedUtf8
       _capture_2_start = _match_start + 2
       _capture_2_end = _match_start + 3
       break
+    }
+    11 => {
+      continue match lexbuf.next_as_int() {
+        128..=191 => 12
+        _ => break
+      }
     }
     12 => {
       _match_pattern = 4
