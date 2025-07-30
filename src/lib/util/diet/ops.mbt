@@ -110,7 +110,7 @@ pub fn[N : @bounded_enum.T] complement(self : Tree[N]) -> Tree[N] {
 fn[N : @bounded_enum.T] complement_aux(
   min : N,
   max : N,
-  t : Tree[N]
+  t : Tree[N],
 ) -> Tree[N] {
   match t {
     Empty => interval(min, max)
@@ -133,4 +133,12 @@ fn[N : @bounded_enum.T] complement_aux(
 ///|
 pub fn[N : @bounded_enum.T] difference(t1 : Tree[N], t2 : Tree[N]) -> Tree[N] {
   intersection(t1, t2.complement())
+}
+
+///|
+pub fn[N] unsafe_choose(self : Tree[N]) -> N {
+  match self {
+    Empty => panic()
+    Node(min~, ..) => min
+  }
 }

@@ -33,7 +33,8 @@ pub(all) struct NFA {
 ///|
 pub(all) struct NFANode {
   num : Int
-  mut eps : @immut/sorted_set.T[(NFANode, Tag?)]
+  mut eps : Array[NFANode]
+  mut tagged_eps : Array[(NFANode, Tag)]
   mut trans : Array[(@eof_char_set.T, NFANode)]
 } derive(Show)
 
@@ -67,7 +68,7 @@ fn NFA::new_nfa() -> NFA {
 ///|
 pub fn NFA::from_patterns(
   patterns : Array[(Regex, String?)],
-  encoding? : @type.Encoding
+  encoding? : @type.Encoding,
 ) -> NFA {
   let nfa = NFA::new_nfa()
   let node = nfa.new_node() // match starting from 1
@@ -111,7 +112,12 @@ pub fn NFA::from_patterns(
 fn new_node(self : NFA) -> NFANode {
   let new_id = self.node_count
   self.node_count += 1
-  let node = NFANode::{ num: new_id, eps: @immut/sorted_set.new(), trans: [] }
+  let node = NFANode::{
+    num: new_id,
+    eps: [],
+    tagged_eps: [],
+    trans: [],
+  }
   self.graph.push(node)
   guard new_id + 1 == self.graph.length()
   node
@@ -121,8 +127,8 @@ fn new_node(self : NFA) -> NFANode {
 fn add_edge(self : NFA, from : NFANode, s : Input, to : NFANode) -> Unit {
   ignore(self)
   match s {
-    Eps => from.eps = from.eps.add((to, None))
-    EpsWithTag(tag) => from.eps = from.eps.add((to, Some(tag)))
+    Eps => from.eps.push(to)
+    EpsWithTag(tag) => from.tagged_eps.push((to, tag))
     EChar(c) => from.trans.push((c, to))
   }
 }
@@ -132,7 +138,7 @@ fn register_regex(
   self : NFA,
   node : NFANode,
   re : Regex,
-  name2pos : (String) -> (NFACapturePosition, NFACapturePosition)
+  name2pos : (String) -> (NFACapturePosition, NFACapturePosition),
 ) -> Unit {
   let final_ = self.register_regex_rec(node, re, name2pos)
   let id = self.pattern_captures.length()
@@ -144,7 +150,7 @@ fn register_regex_rec(
   self : NFA,
   node : NFANode,
   re : Regex,
-  name2pos : (String) -> (NFACapturePosition, NFACapturePosition)
+  name2pos : (String) -> (NFACapturePosition, NFACapturePosition),
 ) -> NFANode {
   let new_node = self.new_node()
   self.add_edge(node, Eps, new_node)
@@ -215,33 +221,4 @@ fn register_regex_rec(
   let new_final = self.new_node()
   self.add_edge(final_, Eps, new_final)
   new_final
-}
-
-///|
-fn get_eps_closure(
-  self : NFA
-) -> Array[@immut/sorted_map.T[NFANode, @immut/sorted_set.T[Tag]]] {
-  Array::map(self.graph, fn(x) {
-    let mut result = @immut/sorted_map.new().add(x, @immut/sorted_set.new())
-    fn get_tags(n : NFANode) -> @immut/sorted_set.T[Tag] {
-      result.get(n).unwrap_or(@immut/sorted_set.new())
-    }
-
-    let queue = @queue.from_array([x])
-    while queue.pop() is Some(o) {
-      let o_tags = get_tags(o)
-      for e in o.eps {
-        let (u, tag) = e
-        let mut new_u_tags = get_tags(u).union(o_tags)
-        if tag is Some(tag) {
-          new_u_tags = new_u_tags.add(tag)
-        }
-        if Some(new_u_tags) != result.get(u) {
-          result = result.add(u, new_u_tags)
-          queue.push(u)
-        }
-      }
-    }
-    result
-  })
 }

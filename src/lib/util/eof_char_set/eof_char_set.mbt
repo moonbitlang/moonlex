@@ -54,6 +54,11 @@ pub fn contains(self : EofCharSet, x : Char) -> Bool {
 }
 
 ///|
+pub fn contains2(self : EofCharSet, x : EofChar) -> Bool {
+  self.inner().contains(x)
+}
+
+///|
 pub fn slice(self : EofCharSet, min? : Char, max? : Char) -> EofCharSet {
   self
   .inner()
@@ -97,6 +102,11 @@ pub fn subset(self : EofCharSet, other : EofCharSet) -> Bool {
 ///|
 pub fn disjoint(self : EofCharSet, other : EofCharSet) -> Bool {
   self.intersection(other).is_empty()
+}
+
+///|
+pub fn unsafe_choose(self : EofCharSet) -> EofChar {
+  self.inner().unsafe_choose()
 }
 
 ///|

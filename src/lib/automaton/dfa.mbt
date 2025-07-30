@@ -329,7 +329,7 @@ fn DFA::from_nfa(nfa : NFA) -> DFA {
 ///|
 pub fn DFA::from_patterns(
   patterns : Array[(Regex, String?)],
-  encoding? : @type.Encoding
+  encoding? : @type.Encoding,
 ) -> DFA {
   DFA::from_nfa(NFA::from_patterns(patterns, encoding?))
   |> DFA::minimize

@@ -157,7 +157,7 @@ fn DFA::minimize(dfa : DFA) -> DFA {
       for state in partition {
         for tran in dfa.graph[state] {
           let (input, target) = tran
-          if symbol.char_set.subset(input) {
+          if input.contains2(symbol.char_set.unsafe_choose()) {
             let new_target = get_new_state(target)
             new_dfa.add_edge(new_state, symbol.char_set, new_target)
           }

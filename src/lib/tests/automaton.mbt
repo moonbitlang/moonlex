@@ -15,10 +15,12 @@ fn nfa2dots(nfa : @automaton.NFA, name~ : String = "nfa") -> DotGraph {
   let dots = DotGraph::new(name~)
   for node in nfa.graph {
     for target in node.eps {
+      let edge_info = "ε"
+      dots.add_edge(from=node.num, to=target.num, edge_info=repr(edge_info))
+    }
+    for target in node.tagged_eps {
       let mut edge_info = "ε"
-      if not(target.1.is_empty()) {
-        edge_info = edge_info + "/\{target.1.unwrap()}"
-      }
+      edge_info = edge_info + "/\{target.1}"
       dots.add_edge(from=node.num, to=target.0.num, edge_info=repr(edge_info))
     }
     for edge in node.trans {
