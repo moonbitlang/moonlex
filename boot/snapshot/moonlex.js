@@ -23651,135 +23651,135 @@ function moonbitlang$core$builtin$$Hash$hash_combine$124$(self, hasher) {
     return 1;
   });
 }
-function moonbitlang$core$builtin$$Compare$compare$149$(_x_674, _x_675) {
-  if (_x_674 === 0) {
-    if (_x_675 === 0) {
+function moonbitlang$core$builtin$$Compare$compare$149$(_x_671, _x_672) {
+  if (_x_671 === 0) {
+    if (_x_672 === 0) {
       return 0;
     } else {
       return -1;
     }
   } else {
-    if (_x_675 === 0) {
+    if (_x_672 === 0) {
       return 1;
     } else {
       return 0;
     }
   }
 }
-function moonbitlang$core$builtin$$Eq$op_equal$141$(_x_662, _x_663) {
-  return moonbitlang$core$builtin$$Eq$op_equal$85$(_x_662, _x_663);
+function moonbitlang$core$builtin$$Eq$op_equal$141$(_x_659, _x_660) {
+  return moonbitlang$core$builtin$$Eq$op_equal$85$(_x_659, _x_660);
 }
-function moonbitlang$core$builtin$$Hash$hash_combine$141$(_x_658, _x_659) {
-  moonbitlang$core$builtin$$Hash$hash_combine$85$(_x_658, _x_659);
+function moonbitlang$core$builtin$$Hash$hash_combine$141$(_x_655, _x_656) {
+  moonbitlang$core$builtin$$Hash$hash_combine$85$(_x_655, _x_656);
 }
-function moonbitlang$core$builtin$$Compare$compare$141$(_x_654, _x_655) {
-  return moonbitlang$core$builtin$$Compare$compare$85$(_x_654, _x_655);
+function moonbitlang$core$builtin$$Compare$compare$141$(_x_651, _x_652) {
+  return moonbitlang$core$builtin$$Compare$compare$85$(_x_651, _x_652);
 }
-function moonbitlang$core$builtin$$Eq$op_equal$147$(_x_634, _x_635) {
-  if (_x_634.$tag === 0) {
-    const _Dynamic_dfa = _x_634;
-    const _$42$x0_636 = _Dynamic_dfa._0;
-    if (_x_635.$tag === 0) {
-      const _Dynamic_dfa$2 = _x_635;
-      const _$42$y0_637 = _Dynamic_dfa$2._0;
-      return _$42$x0_636._0 === _$42$y0_637._0 && _$42$x0_636._1 === _$42$y0_637._1;
+function moonbitlang$core$builtin$$Eq$op_equal$147$(_x_631, _x_632) {
+  if (_x_631.$tag === 0) {
+    const _Dynamic_dfa = _x_631;
+    const _$42$x0_633 = _Dynamic_dfa._0;
+    if (_x_632.$tag === 0) {
+      const _Dynamic_dfa$2 = _x_632;
+      const _$42$y0_634 = _Dynamic_dfa$2._0;
+      return _$42$x0_633._0 === _$42$y0_634._0 && _$42$x0_633._1 === _$42$y0_634._1;
     } else {
       return false;
     }
   } else {
-    const _Static_dfa = _x_634;
-    const _$42$x0_638 = _Static_dfa._0;
-    if (_x_635.$tag === 1) {
-      const _Static_dfa$2 = _x_635;
-      const _$42$y0_639 = _Static_dfa$2._0;
-      return moonbitlang$core$builtin$$Eq$op_equal$188$(_$42$x0_638, _$42$y0_639);
+    const _Static_dfa = _x_631;
+    const _$42$x0_635 = _Static_dfa._0;
+    if (_x_632.$tag === 1) {
+      const _Static_dfa$2 = _x_632;
+      const _$42$y0_636 = _Static_dfa$2._0;
+      return moonbitlang$core$builtin$$Eq$op_equal$188$(_$42$x0_635, _$42$y0_636);
     } else {
       return false;
     }
   }
 }
-function moonbitlang$core$builtin$$Eq$op_equal$44$(_x_618, _x_619) {
-  return moonbitlang$core$builtin$$Eq$op_equal$148$(_x_618, _x_619);
+function moonbitlang$core$builtin$$Eq$op_equal$44$(_x_615, _x_616) {
+  return moonbitlang$core$builtin$$Eq$op_equal$148$(_x_615, _x_616);
 }
-function moonbitlang$core$builtin$$Compare$compare$44$(_x_614, _x_615) {
-  return moonbitlang$core$builtin$$Compare$compare$148$(_x_614, _x_615);
+function moonbitlang$core$builtin$$Compare$compare$44$(_x_611, _x_612) {
+  return moonbitlang$core$builtin$$Compare$compare$148$(_x_611, _x_612);
 }
-function moonbitlang$core$builtin$$Eq$op_equal$27$(_x_588, _x_589) {
-  if (_x_588.$tag === 0) {
-    const _Set = _x_588;
-    const _$42$x0_590 = _Set._0;
-    if (_x_589.$tag === 0) {
-      const _Set$2 = _x_589;
-      const _$42$y0_591 = _Set$2._0;
-      return _$42$x0_590._0 === _$42$y0_591._0 && _$42$x0_590._1 === _$42$y0_591._1;
+function moonbitlang$core$builtin$$Eq$op_equal$27$(_x_585, _x_586) {
+  if (_x_585.$tag === 0) {
+    const _Set = _x_585;
+    const _$42$x0_587 = _Set._0;
+    if (_x_586.$tag === 0) {
+      const _Set$2 = _x_586;
+      const _$42$y0_588 = _Set$2._0;
+      return _$42$x0_587._0 === _$42$y0_588._0 && _$42$x0_587._1 === _$42$y0_588._1;
     } else {
       return false;
     }
   } else {
-    const _Copy = _x_588;
-    const _$42$x0_592 = _Copy._0;
-    const _$42$x1_593 = _Copy._1;
-    if (_x_589.$tag === 1) {
-      const _Copy$2 = _x_589;
-      const _$42$y0_594 = _Copy$2._0;
-      const _$42$y1_595 = _Copy$2._1;
-      return _$42$x0_592._0 === _$42$y0_594._0 && _$42$x0_592._1 === _$42$y0_594._1 && (_$42$x1_593._0 === _$42$y1_595._0 && _$42$x1_593._1 === _$42$y1_595._1);
+    const _Copy = _x_585;
+    const _$42$x0_589 = _Copy._0;
+    const _$42$x1_590 = _Copy._1;
+    if (_x_586.$tag === 1) {
+      const _Copy$2 = _x_586;
+      const _$42$y0_591 = _Copy$2._0;
+      const _$42$y1_592 = _Copy$2._1;
+      return _$42$x0_589._0 === _$42$y0_591._0 && _$42$x0_589._1 === _$42$y0_591._1 && (_$42$x1_590._0 === _$42$y1_592._0 && _$42$x1_590._1 === _$42$y1_592._1);
     } else {
       return false;
     }
   }
 }
-function moonbitlang$core$builtin$$Compare$compare$27$(_x_570, _x_571) {
-  if (_x_570.$tag === 0) {
-    const _Set = _x_570;
-    const _$42$x0_572 = _Set._0;
-    if (_x_571.$tag === 0) {
-      const _Set$2 = _x_571;
-      const _$42$y0_573 = _Set$2._0;
-      const _p = $compare_int(_$42$x0_572._0, _$42$y0_573._0);
-      return _p === 0 ? $compare_int(_$42$x0_572._1, _$42$y0_573._1) : _p;
+function moonbitlang$core$builtin$$Compare$compare$27$(_x_567, _x_568) {
+  if (_x_567.$tag === 0) {
+    const _Set = _x_567;
+    const _$42$x0_569 = _Set._0;
+    if (_x_568.$tag === 0) {
+      const _Set$2 = _x_568;
+      const _$42$y0_570 = _Set$2._0;
+      const _p = $compare_int(_$42$x0_569._0, _$42$y0_570._0);
+      return _p === 0 ? $compare_int(_$42$x0_569._1, _$42$y0_570._1) : _p;
     } else {
       return -1;
     }
   } else {
-    const _Copy = _x_570;
-    const _$42$x0_574 = _Copy._0;
-    const _$42$x1_575 = _Copy._1;
-    if (_x_571.$tag === 0) {
+    const _Copy = _x_567;
+    const _$42$x0_571 = _Copy._0;
+    const _$42$x1_572 = _Copy._1;
+    if (_x_568.$tag === 0) {
       return 1;
     } else {
-      const _Copy$2 = _x_571;
-      const _$42$y0_576 = _Copy$2._0;
-      const _$42$y1_577 = _Copy$2._1;
-      const _p = $compare_int(_$42$x0_574._0, _$42$y0_576._0);
-      const _bind = _p === 0 ? $compare_int(_$42$x0_574._1, _$42$y0_576._1) : _p;
+      const _Copy$2 = _x_568;
+      const _$42$y0_573 = _Copy$2._0;
+      const _$42$y1_574 = _Copy$2._1;
+      const _p = $compare_int(_$42$x0_571._0, _$42$y0_573._0);
+      const _bind = _p === 0 ? $compare_int(_$42$x0_571._1, _$42$y0_573._1) : _p;
       if (_bind === 0) {
-        const _p$2 = $compare_int(_$42$x1_575._0, _$42$y1_577._0);
-        return _p$2 === 0 ? $compare_int(_$42$x1_575._1, _$42$y1_577._1) : _p$2;
+        const _p$2 = $compare_int(_$42$x1_572._0, _$42$y1_574._0);
+        return _p$2 === 0 ? $compare_int(_$42$x1_572._1, _$42$y1_574._1) : _p$2;
       } else {
         return _bind;
       }
     }
   }
 }
-function moonbitlang$core$builtin$$Eq$op_equal$188$(_x_514, _x_515) {
-  if (_x_514.$tag === 0) {
-    const _RelativeToStart = _x_514;
-    const _$42$x0_516 = _RelativeToStart._0;
-    if (_x_515.$tag === 0) {
-      const _RelativeToStart$2 = _x_515;
-      const _$42$y0_517 = _RelativeToStart$2._0;
-      return _$42$x0_516 === _$42$y0_517;
+function moonbitlang$core$builtin$$Eq$op_equal$188$(_x_511, _x_512) {
+  if (_x_511.$tag === 0) {
+    const _RelativeToStart = _x_511;
+    const _$42$x0_513 = _RelativeToStart._0;
+    if (_x_512.$tag === 0) {
+      const _RelativeToStart$2 = _x_512;
+      const _$42$y0_514 = _RelativeToStart$2._0;
+      return _$42$x0_513 === _$42$y0_514;
     } else {
       return false;
     }
   } else {
-    const _RelativeToEnd = _x_514;
-    const _$42$x0_518 = _RelativeToEnd._0;
-    if (_x_515.$tag === 1) {
-      const _RelativeToEnd$2 = _x_515;
-      const _$42$y0_519 = _RelativeToEnd$2._0;
-      return _$42$x0_518 === _$42$y0_519;
+    const _RelativeToEnd = _x_511;
+    const _$42$x0_515 = _RelativeToEnd._0;
+    if (_x_512.$tag === 1) {
+      const _RelativeToEnd$2 = _x_512;
+      const _$42$y0_516 = _RelativeToEnd$2._0;
+      return _$42$x0_515 === _$42$y0_516;
     } else {
       return false;
     }
@@ -24021,7 +24021,7 @@ function moonbitlang$ulex$lib$automaton$$NFAEpsClosure$iter(self) {
     });
   }
 }
-function moonbitlang$ulex$lib$automaton$$get_eps_closure$46$get_tags$124$388(result, n) {
+function moonbitlang$ulex$lib$automaton$$get_eps_closure$46$get_tags$124$385(result, n) {
   const _p = moonbitlang$ulex$lib$automaton$$NFAEpsClosure$get(result, n);
   const _p$2 = $64$moonbitlang$47$core$47$immut$47$sorted_set$46$T$Empty$2$;
   if (_p === undefined) {
@@ -24051,7 +24051,7 @@ function moonbitlang$ulex$lib$automaton$$NFA$get_eps_closure(self) {
         } else {
           const _Some = _bind;
           const _o = _Some;
-          const o_tags = moonbitlang$ulex$lib$automaton$$get_eps_closure$46$get_tags$124$388(result, _o);
+          const o_tags = moonbitlang$ulex$lib$automaton$$get_eps_closure$46$get_tags$124$385(result, _o);
           const _arr = _o.eps;
           const _len = _arr.length;
           let _tmp$2 = 0;
@@ -24059,7 +24059,7 @@ function moonbitlang$ulex$lib$automaton$$NFA$get_eps_closure(self) {
             const _i = _tmp$2;
             if (_i < _len) {
               const e = _arr[_i];
-              const new_u_tags = moonbitlang$core$immut$sorted_set$$T$union$8$(moonbitlang$ulex$lib$automaton$$get_eps_closure$46$get_tags$124$388(result, e), o_tags);
+              const new_u_tags = moonbitlang$core$immut$sorted_set$$T$union$8$(moonbitlang$ulex$lib$automaton$$get_eps_closure$46$get_tags$124$385(result, e), o_tags);
               const changed = moonbitlang$ulex$lib$automaton$$NFAEpsClosure$add(result, e, new_u_tags);
               if (changed) {
                 moonbitlang$core$queue$$T$push$109$(queue, e);
@@ -24079,7 +24079,7 @@ function moonbitlang$ulex$lib$automaton$$NFA$get_eps_closure(self) {
               const e = _arr$2[_i];
               const _u = e._0;
               const _tag = e._1;
-              const new_u_tags = moonbitlang$core$immut$sorted_set$$T$add$8$(moonbitlang$core$immut$sorted_set$$T$union$8$(moonbitlang$ulex$lib$automaton$$get_eps_closure$46$get_tags$124$388(result, _u), o_tags), _tag);
+              const new_u_tags = moonbitlang$core$immut$sorted_set$$T$add$8$(moonbitlang$core$immut$sorted_set$$T$union$8$(moonbitlang$ulex$lib$automaton$$get_eps_closure$46$get_tags$124$385(result, _u), o_tags), _tag);
               const changed = moonbitlang$ulex$lib$automaton$$NFAEpsClosure$add(result, _u, new_u_tags);
               if (changed) {
                 moonbitlang$core$queue$$T$push$109$(queue, _u);
@@ -24135,101 +24135,102 @@ function moonbitlang$ulex$lib$automaton$$NFA$add_edge(self, from, s, to) {
     }
   }
 }
-function moonbitlang$ulex$lib$automaton$$NFA$register_regex_rec(self, node, re, name2pos) {
-  const new_node = moonbitlang$ulex$lib$automaton$$NFA$new_node(self);
-  moonbitlang$ulex$lib$automaton$$NFA$add_edge(self, node, $64$moonbitlang$47$ulex$47$lib$47$automaton$46$Input$Eps, new_node);
-  const _bind = re.desc;
-  let final_;
-  switch (_bind.$tag) {
-    case 0: {
-      const next_node = moonbitlang$ulex$lib$automaton$$NFA$new_node(self);
-      moonbitlang$ulex$lib$automaton$$NFA$add_edge(self, new_node, new $64$moonbitlang$47$ulex$47$lib$47$automaton$46$Input$EChar(moonbitlang$ulex$lib$util$eof_char_set$$eof), next_node);
-      final_ = next_node;
-      break;
-    }
-    case 1: {
-      const _Character = _bind;
-      const _cset = _Character._0;
-      const next_node$2 = moonbitlang$ulex$lib$automaton$$NFA$new_node(self);
-      moonbitlang$ulex$lib$automaton$$NFA$add_edge(self, new_node, new $64$moonbitlang$47$ulex$47$lib$47$automaton$46$Input$EChar(moonbitlang$ulex$lib$util$eof_char_set$$from_char_set(_cset)), next_node$2);
-      final_ = next_node$2;
-      break;
-    }
-    case 3: {
-      const next_node$3 = moonbitlang$ulex$lib$automaton$$NFA$new_node(self);
-      moonbitlang$ulex$lib$automaton$$NFA$add_edge(self, new_node, $64$moonbitlang$47$ulex$47$lib$47$automaton$46$Input$Eps, next_node$3);
-      final_ = next_node$3;
-      break;
-    }
-    case 2: {
-      const _Repetition = _bind;
-      const _re = _Repetition._0;
-      const final_$2 = moonbitlang$ulex$lib$automaton$$NFA$register_regex_rec(self, new_node, _re, name2pos);
-      moonbitlang$ulex$lib$automaton$$NFA$add_edge(self, final_$2, $64$moonbitlang$47$ulex$47$lib$47$automaton$46$Input$Eps, new_node);
-      final_ = final_$2;
-      break;
-    }
-    case 5: {
-      const _Concat = _bind;
-      const _re1 = _Concat._0;
-      const _re2 = _Concat._1;
-      const mid = moonbitlang$ulex$lib$automaton$$NFA$register_regex_rec(self, new_node, _re1, name2pos);
-      final_ = moonbitlang$ulex$lib$automaton$$NFA$register_regex_rec(self, mid, _re2, name2pos);
-      break;
-    }
-    case 4: {
-      const _Alter = _bind;
-      const _re1$2 = _Alter._0;
-      const _re2$2 = _Alter._1;
-      const final_1 = moonbitlang$ulex$lib$automaton$$NFA$register_regex_rec(self, new_node, _re1$2, name2pos);
-      const final_2 = moonbitlang$ulex$lib$automaton$$NFA$register_regex_rec(self, new_node, _re2$2, name2pos);
-      const final_$3 = moonbitlang$ulex$lib$automaton$$NFA$new_node(self);
-      moonbitlang$ulex$lib$automaton$$NFA$add_edge(self, final_1, $64$moonbitlang$47$ulex$47$lib$47$automaton$46$Input$Eps, final_$3);
-      moonbitlang$ulex$lib$automaton$$NFA$add_edge(self, final_2, $64$moonbitlang$47$ulex$47$lib$47$automaton$46$Input$Eps, final_$3);
-      final_ = final_$3;
-      break;
-    }
-    default: {
-      const _Capture = _bind;
-      const _re$2 = _Capture._0;
-      const _name = _Capture._1;
-      const start = moonbitlang$ulex$lib$automaton$$NFA$new_node(self);
-      const final_$4 = moonbitlang$ulex$lib$automaton$$NFA$new_node(self);
-      const tail = moonbitlang$ulex$lib$automaton$$NFA$register_regex_rec(self, start, _re$2, name2pos);
-      const _bind$2 = name2pos(_name);
-      const _begin_tag = _bind$2._0;
-      const _end_tag = _bind$2._1;
-      let _tmp;
-      if (_begin_tag.$tag === 0) {
-        const _Dynamic_nfa = _begin_tag;
-        const _begin_tag$2 = _Dynamic_nfa._0;
-        _tmp = new $64$moonbitlang$47$ulex$47$lib$47$automaton$46$Input$EpsWithTag(_begin_tag$2);
-      } else {
-        _tmp = $64$moonbitlang$47$ulex$47$lib$47$automaton$46$Input$Eps;
+function moonbitlang$ulex$lib$automaton$$register_regex$46$aux$124$308(_env, re, start) {
+  const name2pos = _env._1;
+  const self = _env._0;
+  let _tmp = re;
+  let _tmp$2 = start;
+  _L: while (true) {
+    const re$2 = _tmp;
+    const start$2 = _tmp$2;
+    const _bind = re$2.desc;
+    switch (_bind.$tag) {
+      case 0: {
+        const end = moonbitlang$ulex$lib$automaton$$NFA$new_node(self);
+        moonbitlang$ulex$lib$automaton$$NFA$add_edge(self, start$2, new $64$moonbitlang$47$ulex$47$lib$47$automaton$46$Input$EChar(moonbitlang$ulex$lib$util$eof_char_set$$eof), end);
+        return end;
       }
-      moonbitlang$ulex$lib$automaton$$NFA$add_edge(self, new_node, _tmp, start);
-      let _tmp$2;
-      if (_end_tag.$tag === 0) {
-        const _Dynamic_nfa = _end_tag;
-        const _end_tag$2 = _Dynamic_nfa._0;
-        _tmp$2 = new $64$moonbitlang$47$ulex$47$lib$47$automaton$46$Input$EpsWithTag(_end_tag$2);
-      } else {
-        _tmp$2 = $64$moonbitlang$47$ulex$47$lib$47$automaton$46$Input$Eps;
+      case 1: {
+        const _Character = _bind;
+        const _c = _Character._0;
+        const end$2 = moonbitlang$ulex$lib$automaton$$NFA$new_node(self);
+        moonbitlang$ulex$lib$automaton$$NFA$add_edge(self, start$2, new $64$moonbitlang$47$ulex$47$lib$47$automaton$46$Input$EChar(moonbitlang$ulex$lib$util$eof_char_set$$from_char_set(_c)), end$2);
+        return end$2;
       }
-      moonbitlang$ulex$lib$automaton$$NFA$add_edge(self, tail, _tmp$2, final_$4);
-      final_ = final_$4;
+      case 3: {
+        return start$2;
+      }
+      case 2: {
+        const _Repetition = _bind;
+        const _re = _Repetition._0;
+        const loop_start = moonbitlang$ulex$lib$automaton$$NFA$new_node(self);
+        moonbitlang$ulex$lib$automaton$$NFA$add_edge(self, start$2, $64$moonbitlang$47$ulex$47$lib$47$automaton$46$Input$Eps, loop_start);
+        const loop_end = moonbitlang$ulex$lib$automaton$$register_regex$46$aux$124$308(_env, _re, loop_start);
+        moonbitlang$ulex$lib$automaton$$NFA$add_edge(self, loop_end, $64$moonbitlang$47$ulex$47$lib$47$automaton$46$Input$Eps, loop_start);
+        const end$3 = moonbitlang$ulex$lib$automaton$$NFA$new_node(self);
+        moonbitlang$ulex$lib$automaton$$NFA$add_edge(self, loop_end, $64$moonbitlang$47$ulex$47$lib$47$automaton$46$Input$Eps, end$3);
+        return end$3;
+      }
+      case 4: {
+        const _Alter = _bind;
+        const _re1 = _Alter._0;
+        const _re2 = _Alter._1;
+        const end1 = moonbitlang$ulex$lib$automaton$$register_regex$46$aux$124$308(_env, _re1, start$2);
+        const end2 = moonbitlang$ulex$lib$automaton$$register_regex$46$aux$124$308(_env, _re2, start$2);
+        const end$4 = moonbitlang$ulex$lib$automaton$$NFA$new_node(self);
+        moonbitlang$ulex$lib$automaton$$NFA$add_edge(self, end1, $64$moonbitlang$47$ulex$47$lib$47$automaton$46$Input$Eps, end$4);
+        moonbitlang$ulex$lib$automaton$$NFA$add_edge(self, end2, $64$moonbitlang$47$ulex$47$lib$47$automaton$46$Input$Eps, end$4);
+        return end$4;
+      }
+      case 5: {
+        const _Concat = _bind;
+        const _re1$2 = _Concat._0;
+        const _re2$2 = _Concat._1;
+        const end1$2 = moonbitlang$ulex$lib$automaton$$register_regex$46$aux$124$308(_env, _re1$2, start$2);
+        _tmp = _re2$2;
+        _tmp$2 = end1$2;
+        continue _L;
+      }
+      default: {
+        const _Capture = _bind;
+        const _re$2 = _Capture._0;
+        const _name = _Capture._1;
+        const _bind$2 = name2pos(_name);
+        const _begin_tag = _bind$2._0;
+        const _end_tag = _bind$2._1;
+        const before = moonbitlang$ulex$lib$automaton$$NFA$new_node(self);
+        let _tmp$3;
+        if (_begin_tag.$tag === 0) {
+          const _Dynamic_nfa = _begin_tag;
+          const _begin_tag$2 = _Dynamic_nfa._0;
+          _tmp$3 = new $64$moonbitlang$47$ulex$47$lib$47$automaton$46$Input$EpsWithTag(_begin_tag$2);
+        } else {
+          _tmp$3 = $64$moonbitlang$47$ulex$47$lib$47$automaton$46$Input$Eps;
+        }
+        moonbitlang$ulex$lib$automaton$$NFA$add_edge(self, start$2, _tmp$3, before);
+        const after = moonbitlang$ulex$lib$automaton$$register_regex$46$aux$124$308(_env, _re$2, before);
+        const end$5 = moonbitlang$ulex$lib$automaton$$NFA$new_node(self);
+        let _tmp$4;
+        if (_end_tag.$tag === 0) {
+          const _Dynamic_nfa = _end_tag;
+          const _end_tag$2 = _Dynamic_nfa._0;
+          _tmp$4 = new $64$moonbitlang$47$ulex$47$lib$47$automaton$46$Input$EpsWithTag(_end_tag$2);
+        } else {
+          _tmp$4 = $64$moonbitlang$47$ulex$47$lib$47$automaton$46$Input$Eps;
+        }
+        moonbitlang$ulex$lib$automaton$$NFA$add_edge(self, after, _tmp$4, end$5);
+        return end$5;
+      }
     }
   }
-  const new_final = moonbitlang$ulex$lib$automaton$$NFA$new_node(self);
-  moonbitlang$ulex$lib$automaton$$NFA$add_edge(self, final_, $64$moonbitlang$47$ulex$47$lib$47$automaton$46$Input$Eps, new_final);
-  return new_final;
 }
 function moonbitlang$ulex$lib$automaton$$NFA$register_regex(self, node, re, name2pos) {
-  const final_ = moonbitlang$ulex$lib$automaton$$NFA$register_regex_rec(self, node, re, name2pos);
+  const _env = { _0: self, _1: name2pos };
+  const accept = moonbitlang$ulex$lib$automaton$$register_regex$46$aux$124$308(_env, re, node);
   const id = self.pattern_captures.length;
-  moonbitlang$core$builtin$$Map$set$75$(self.end_nodes, final_.num, id);
+  moonbitlang$core$builtin$$Map$set$75$(self.end_nodes, accept.num, id);
 }
-function moonbitlang$ulex$lib$automaton$$from_patterns$46$alloc_tag$124$353(nfa) {
+function moonbitlang$ulex$lib$automaton$$from_patterns$46$alloc_tag$124$350(nfa) {
   const tag = nfa.tag_count;
   nfa.tag_count = nfa.tag_count + 1 | 0;
   return tag;
@@ -24264,7 +24265,7 @@ function moonbitlang$ulex$lib$automaton$$NFA$from_patterns(patterns, encoding) {
           const _end = _x$2._1;
           let begin;
           if (_begin === undefined) {
-            begin = new $64$moonbitlang$47$ulex$47$lib$47$automaton$46$NFACapturePosition$Dynamic_nfa(moonbitlang$ulex$lib$automaton$$from_patterns$46$alloc_tag$124$353(nfa));
+            begin = new $64$moonbitlang$47$ulex$47$lib$47$automaton$46$NFACapturePosition$Dynamic_nfa(moonbitlang$ulex$lib$automaton$$from_patterns$46$alloc_tag$124$350(nfa));
           } else {
             const _Some = _begin;
             const _info = _Some;
@@ -24272,7 +24273,7 @@ function moonbitlang$ulex$lib$automaton$$NFA$from_patterns(patterns, encoding) {
           }
           let end;
           if (_end === undefined) {
-            end = new $64$moonbitlang$47$ulex$47$lib$47$automaton$46$NFACapturePosition$Dynamic_nfa(moonbitlang$ulex$lib$automaton$$from_patterns$46$alloc_tag$124$353(nfa));
+            end = new $64$moonbitlang$47$ulex$47$lib$47$automaton$46$NFACapturePosition$Dynamic_nfa(moonbitlang$ulex$lib$automaton$$from_patterns$46$alloc_tag$124$350(nfa));
           } else {
             const _Some = _end;
             const _info = _Some;
@@ -25167,9 +25168,9 @@ function moonbitlang$ulex$lib$automaton$$from_nfa$46$get_id$124$17(_env, state, 
     return node;
   });
 }
-function moonbitlang$ulex$lib$automaton$$from_nfa$46$42$func$124$1784(_env, _p) {
-  const _bind = _env._1;
-  const _tag_state = _env._0;
+function moonbitlang$ulex$lib$automaton$$from_nfa$46$42$func$124$1781(_env, _p) {
+  const _tag_state = _env._1;
+  const _bind = _env._0;
   return _bind((_p$2) => {
     const _cset = _p$2._0;
     const _target = _p$2._1;
@@ -25270,8 +25271,8 @@ function moonbitlang$ulex$lib$automaton$$DFA$from_nfa(nfa) {
         const _nfa_node = _p$5._0;
         const _tag_state = _p$5._1;
         const _bind$5 = moonbitlang$core$array$$Array$iter$157$(_nfa_node.trans);
-        const _env$2 = { _0: _tag_state, _1: _bind$5 };
-        return moonbitlang$ulex$lib$automaton$$from_nfa$46$42$func$124$1784(_env$2, _p$4);
+        const _env$2 = { _0: _bind$5, _1: _tag_state };
+        return moonbitlang$ulex$lib$automaton$$from_nfa$46$42$func$124$1781(_env$2, _p$4);
       });
       const nfa_trans = { val: [] };
       const all_char_set = { val: moonbitlang$ulex$lib$util$eof_char_set$$empty };
@@ -26589,7 +26590,7 @@ function Yoorkin$trie$$T$lookup$189$(self, path) {
     }
   }
 }
-function Yoorkin$trie$$add$46$aux$47$7783(value, _param18, _param19) {
+function Yoorkin$trie$$add$46$aux$47$7786(value, _param18, _param19) {
   if (_param18.len === 0) {
     return { value: value, forks: _param19.forks };
   } else {
@@ -26607,12 +26608,12 @@ function Yoorkin$trie$$add$46$aux$47$7783(value, _param18, _param19) {
       const _p$3 = _p;
       subtree = _p$3;
     }
-    return { value: _param19.value, forks: moonbitlang$core$immut$sorted_map$$T$add$70$(_param19.forks, _x, Yoorkin$trie$$add$46$aux$47$7783(value, _x$2, subtree)) };
+    return { value: _param19.value, forks: moonbitlang$core$immut$sorted_map$$T$add$70$(_param19.forks, _x, Yoorkin$trie$$add$46$aux$47$7786(value, _x$2, subtree)) };
   }
 }
 function Yoorkin$trie$$T$add$189$(self, path, value) {
   const _bind = moonbitlang$core$string$$String$to_array(path);
-  return Yoorkin$trie$$add$46$aux$47$7783(value, { buf: _bind, start: 0, len: _bind.length }, self);
+  return Yoorkin$trie$$add$46$aux$47$7786(value, { buf: _bind, start: 0, len: _bind.length }, self);
 }
 function Yoorkin$trie$$empty$189$() {
   return { value: undefined, forks: $64$moonbitlang$47$core$47$immut$47$sorted_map$46$T$Empty$12$ };
@@ -28836,7 +28837,7 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$normal(lexbuf, env, end_with_n
           _capture_0_end = _match_end;
           const _bind$2 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
           if (_bind$2 === 10) {
-            _tmp = 10;
+            _tmp = 20;
           } else {
             break _L$2;
           }
@@ -28854,85 +28855,85 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$normal(lexbuf, env, end_with_n
           _capture_0_end = _match_end;
           const _bind$3 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
           if (_bind$3 >= 0 && _bind$3 <= 31) {
-            _tmp = 11;
+            _tmp = 10;
           } else {
             if (_bind$3 === 32) {
-              _tmp = 12;
+              _tmp = 11;
             } else {
               if (_bind$3 === 33) {
-                _tmp = 11;
+                _tmp = 10;
               } else {
                 if (_bind$3 === 34) {
-                  _tmp = 12;
+                  _tmp = 11;
                 } else {
                   if (_bind$3 >= 35 && _bind$3 <= 38) {
-                    _tmp = 11;
+                    _tmp = 10;
                   } else {
                     if (_bind$3 === 39) {
-                      _tmp = 12;
+                      _tmp = 11;
                     } else {
                       if (_bind$3 >= 40 && _bind$3 <= 91) {
-                        _tmp = 11;
+                        _tmp = 10;
                       } else {
                         if (_bind$3 === 92) {
-                          _tmp = 12;
+                          _tmp = 11;
                         } else {
                           if (_bind$3 >= 93 && _bind$3 <= 97) {
-                            _tmp = 11;
+                            _tmp = 10;
                           } else {
                             if (_bind$3 === 98) {
-                              _tmp = 12;
+                              _tmp = 11;
                             } else {
                               if (_bind$3 >= 99 && _bind$3 <= 109) {
-                                _tmp = 11;
+                                _tmp = 10;
                               } else {
                                 if (_bind$3 === 110) {
-                                  _tmp = 12;
+                                  _tmp = 11;
                                 } else {
                                   if (_bind$3 === 111) {
-                                    _tmp = 13;
+                                    _tmp = 12;
                                   } else {
                                     if (_bind$3 >= 112 && _bind$3 <= 113) {
-                                      _tmp = 11;
+                                      _tmp = 10;
                                     } else {
                                       if (_bind$3 === 114) {
-                                        _tmp = 12;
+                                        _tmp = 11;
                                       } else {
                                         if (_bind$3 === 115) {
-                                          _tmp = 11;
+                                          _tmp = 10;
                                         } else {
                                           if (_bind$3 === 116) {
-                                            _tmp = 12;
+                                            _tmp = 11;
                                           } else {
                                             if (_bind$3 === 117) {
-                                              _tmp = 14;
+                                              _tmp = 13;
                                             } else {
                                               if (_bind$3 >= 118 && _bind$3 <= 119) {
-                                                _tmp = 11;
+                                                _tmp = 10;
                                               } else {
                                                 if (_bind$3 === 120) {
-                                                  _tmp = 15;
+                                                  _tmp = 14;
                                                 } else {
                                                   if (_bind$3 >= 121 && _bind$3 <= 122) {
-                                                    _tmp = 11;
+                                                    _tmp = 10;
                                                   } else {
                                                     if (_bind$3 === 123) {
-                                                      _tmp = 16;
+                                                      _tmp = 15;
                                                     } else {
                                                       if (_bind$3 >= 124 && _bind$3 <= 127) {
-                                                        _tmp = 11;
+                                                        _tmp = 10;
                                                       } else {
                                                         if (_bind$3 >= 194 && _bind$3 <= 223) {
-                                                          _tmp = 17;
+                                                          _tmp = 16;
                                                         } else {
                                                           if (_bind$3 >= 224 && _bind$3 <= 239) {
-                                                            _tmp = 18;
+                                                            _tmp = 17;
                                                           } else {
                                                             if (_bind$3 === 240) {
-                                                              _tmp = 19;
+                                                              _tmp = 18;
                                                             } else {
                                                               if (_bind$3 >= 241 && _bind$3 <= 244) {
-                                                                _tmp = 20;
+                                                                _tmp = 19;
                                                               } else {
                                                                 break _L$2;
                                                               }
@@ -29001,25 +29002,20 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$normal(lexbuf, env, end_with_n
           continue _L$2;
         }
         case 10: {
-          _match_pattern = 12;
-          _match_end = lexbuf.pos;
-          break _L$2;
-        }
-        case 11: {
           _match_pattern = 10;
           _match_end = lexbuf.pos;
           _capture_0_start = _match_start;
           _capture_0_end = _match_end;
           break _L$2;
         }
-        case 12: {
+        case 11: {
           _match_pattern = 1;
           _match_end = lexbuf.pos;
           _capture_0_start = _match_start;
           _capture_0_end = _match_start + 2 | 0;
           break _L$2;
         }
-        case 13: {
+        case 12: {
           _match_pattern = 10;
           _match_end = lexbuf.pos;
           _capture_0_start = _match_start;
@@ -29056,7 +29052,7 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$normal(lexbuf, env, end_with_n
           }
           continue _L$2;
         }
-        case 14: {
+        case 13: {
           _match_pattern = 10;
           _match_end = lexbuf.pos;
           _capture_0_start = _match_start;
@@ -29081,7 +29077,7 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$normal(lexbuf, env, end_with_n
           }
           continue _L$2;
         }
-        case 15: {
+        case 14: {
           _match_pattern = 10;
           _match_end = lexbuf.pos;
           _capture_0_start = _match_start;
@@ -29134,20 +29130,20 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$normal(lexbuf, env, end_with_n
           }
           continue _L$2;
         }
-        case 16: {
+        case 15: {
           _match_pattern = 9;
           _match_end = lexbuf.pos;
           _capture_0_start = _match_start;
           _capture_0_end = _match_end;
           const _bind$11 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
           if (_bind$11 === 9) {
-            _tmp = 16;
+            _tmp = 15;
           } else {
             if (_bind$11 >= 11 && _bind$11 <= 12) {
-              _tmp = 16;
+              _tmp = 15;
             } else {
               if (_bind$11 === 32) {
-                _tmp = 16;
+                _tmp = 15;
               } else {
                 if (_bind$11 === 194) {
                   _tmp = 21;
@@ -29175,18 +29171,27 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$normal(lexbuf, env, end_with_n
           }
           continue _L$2;
         }
-        case 17: {
+        case 16: {
           const _bind$12 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
           if (_bind$12 >= 128 && _bind$12 <= 191) {
-            _tmp = 11;
+            _tmp = 10;
+          } else {
+            break _L$2;
+          }
+          continue _L$2;
+        }
+        case 17: {
+          const _bind$13 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          if (_bind$13 >= 128 && _bind$13 <= 191) {
+            _tmp = 16;
           } else {
             break _L$2;
           }
           continue _L$2;
         }
         case 18: {
-          const _bind$13 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$13 >= 128 && _bind$13 <= 191) {
+          const _bind$14 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          if (_bind$14 >= 144 && _bind$14 <= 191) {
             _tmp = 17;
           } else {
             break _L$2;
@@ -29194,27 +29199,23 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$normal(lexbuf, env, end_with_n
           continue _L$2;
         }
         case 19: {
-          const _bind$14 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$14 >= 144 && _bind$14 <= 191) {
-            _tmp = 18;
+          const _bind$15 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          if (_bind$15 >= 128 && _bind$15 <= 191) {
+            _tmp = 17;
           } else {
             break _L$2;
           }
           continue _L$2;
         }
         case 20: {
-          const _bind$15 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$15 >= 128 && _bind$15 <= 191) {
-            _tmp = 18;
-          } else {
-            break _L$2;
-          }
-          continue _L$2;
+          _match_pattern = 12;
+          _match_end = lexbuf.pos;
+          break _L$2;
         }
         case 21: {
           const _bind$16 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
           if (_bind$16 === 160) {
-            _tmp = 16;
+            _tmp = 15;
           } else {
             break _L$2;
           }
@@ -29553,7 +29554,7 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$normal(lexbuf, env, end_with_n
         case 40: {
           const _bind$35 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
           if (_bind$35 === 191) {
-            _tmp = 16;
+            _tmp = 15;
           } else {
             break _L$2;
           }
@@ -29562,7 +29563,7 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$normal(lexbuf, env, end_with_n
         case 41: {
           const _bind$36 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
           if (_bind$36 === 128) {
-            _tmp = 16;
+            _tmp = 15;
           } else {
             break _L$2;
           }
@@ -29571,10 +29572,10 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$normal(lexbuf, env, end_with_n
         case 42: {
           const _bind$37 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
           if (_bind$37 >= 128 && _bind$37 <= 138) {
-            _tmp = 16;
+            _tmp = 15;
           } else {
             if (_bind$37 === 175) {
-              _tmp = 16;
+              _tmp = 15;
             } else {
               break _L$2;
             }
@@ -29584,7 +29585,7 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$normal(lexbuf, env, end_with_n
         case 43: {
           const _bind$38 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
           if (_bind$38 === 159) {
-            _tmp = 16;
+            _tmp = 15;
           } else {
             break _L$2;
           }
@@ -31390,19 +31391,19 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
                 _tmp = 3;
               } else {
                 if (_bind$2 === 194) {
-                  _tmp = 132;
+                  _tmp = 95;
                 } else {
                   if (_bind$2 === 225) {
-                    _tmp = 133;
+                    _tmp = 96;
                   } else {
                     if (_bind$2 === 226) {
-                      _tmp = 134;
+                      _tmp = 97;
                     } else {
                       if (_bind$2 === 227) {
-                        _tmp = 135;
+                        _tmp = 98;
                       } else {
                         if (_bind$2 === 239) {
-                          _tmp = 136;
+                          _tmp = 99;
                         } else {
                           break _L$2;
                         }
@@ -31436,7 +31437,7 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           _match_end = lexbuf.pos;
           const _bind$4 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
           if (_bind$4 === 61) {
-            _tmp = 86;
+            _tmp = 100;
           } else {
             break _L$2;
           }
@@ -31454,13 +31455,13 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           _capture_0_end.val = _match_end;
           const _bind$5 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
           if (_bind$5 >= 65 && _bind$5 <= 90) {
-            _tmp = 114;
+            _tmp = 129;
           } else {
             if (_bind$5 >= 97 && _bind$5 <= 122) {
-              _tmp = 114;
+              _tmp = 129;
             } else {
               if (_bind$5 === 124) {
-                _tmp = 115;
+                _tmp = 130;
               } else {
                 break _L$2;
               }
@@ -31475,7 +31476,7 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           _capture_0_end.val = _match_end;
           const _bind$6 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
           if (_bind$6 === 124) {
-            _tmp = 116;
+            _tmp = 131;
           } else {
             break _L$2;
           }
@@ -31486,7 +31487,7 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           _match_end = lexbuf.pos;
           const _bind$7 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
           if (_bind$7 === 61) {
-            _tmp = 111;
+            _tmp = 101;
           } else {
             break _L$2;
           }
@@ -31497,7 +31498,7 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           _match_end = lexbuf.pos;
           const _bind$8 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
           if (_bind$8 === 38) {
-            _tmp = 112;
+            _tmp = 127;
           } else {
             break _L$2;
           }
@@ -31510,34 +31511,34 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           _capture_0_end.val = _match_end;
           const _bind$9 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
           if (_bind$9 >= 0 && _bind$9 <= 9) {
-            _tmp = 119;
+            _tmp = 86;
           } else {
             if (_bind$9 >= 11 && _bind$9 <= 12) {
-              _tmp = 119;
+              _tmp = 86;
             } else {
               if (_bind$9 >= 14 && _bind$9 <= 38) {
-                _tmp = 119;
+                _tmp = 86;
               } else {
                 if (_bind$9 >= 40 && _bind$9 <= 91) {
-                  _tmp = 119;
+                  _tmp = 86;
                 } else {
                   if (_bind$9 === 92) {
-                    _tmp = 120;
+                    _tmp = 87;
                   } else {
                     if (_bind$9 >= 93 && _bind$9 <= 127) {
-                      _tmp = 119;
+                      _tmp = 86;
                     } else {
                       if (_bind$9 >= 194 && _bind$9 <= 223) {
-                        _tmp = 121;
+                        _tmp = 88;
                       } else {
                         if (_bind$9 >= 224 && _bind$9 <= 239) {
-                          _tmp = 122;
+                          _tmp = 89;
                         } else {
                           if (_bind$9 === 240) {
-                            _tmp = 123;
+                            _tmp = 90;
                           } else {
                             if (_bind$9 >= 241 && _bind$9 <= 244) {
-                              _tmp = 124;
+                              _tmp = 91;
                             } else {
                               break _L$2;
                             }
@@ -31567,7 +31568,7 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           _match_end = lexbuf.pos;
           const _bind$10 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
           if (_bind$10 === 61) {
-            _tmp = 111;
+            _tmp = 101;
           } else {
             break _L$2;
           }
@@ -31578,7 +31579,7 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           _match_end = lexbuf.pos;
           const _bind$11 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
           if (_bind$11 === 61) {
-            _tmp = 111;
+            _tmp = 101;
           } else {
             break _L$2;
           }
@@ -31595,11 +31596,11 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           const _bind$12 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
           switch (_bind$12) {
             case 61: {
-              _tmp = 111;
+              _tmp = 101;
               break;
             }
             case 62: {
-              _tmp = 126;
+              _tmp = 134;
               break;
             }
             default: {
@@ -31615,61 +31616,61 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           _capture_0_end.val = _match_end;
           const _bind$13 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
           if (_bind$13 === 40) {
-            _tmp = 94;
+            _tmp = 109;
           } else {
             if (_bind$13 === 46) {
-              _tmp = 95;
+              _tmp = 110;
             } else {
               if (_bind$13 >= 48 && _bind$13 <= 57) {
-                _tmp = 96;
+                _tmp = 111;
               } else {
                 if (_bind$13 >= 65 && _bind$13 <= 90) {
-                  _tmp = 97;
+                  _tmp = 112;
                 } else {
                   if (_bind$13 === 95) {
-                    _tmp = 98;
+                    _tmp = 113;
                   } else {
                     if (_bind$13 >= 97 && _bind$13 <= 122) {
-                      _tmp = 98;
+                      _tmp = 113;
                     } else {
                       if (_bind$13 === 194) {
-                        _tmp = 99;
+                        _tmp = 114;
                       } else {
                         if (_bind$13 >= 195 && _bind$13 <= 201) {
-                          _tmp = 100;
+                          _tmp = 115;
                         } else {
                           if (_bind$13 === 202) {
-                            _tmp = 101;
+                            _tmp = 116;
                           } else {
                             if (_bind$13 === 225) {
-                              _tmp = 102;
+                              _tmp = 117;
                             } else {
                               if (_bind$13 === 226) {
-                                _tmp = 103;
+                                _tmp = 118;
                               } else {
                                 if (_bind$13 === 227) {
-                                  _tmp = 104;
+                                  _tmp = 119;
                                 } else {
                                   if (_bind$13 >= 228 && _bind$13 <= 233) {
-                                    _tmp = 105;
+                                    _tmp = 120;
                                   } else {
                                     if (_bind$13 === 234) {
-                                      _tmp = 106;
+                                      _tmp = 121;
                                     } else {
                                       if (_bind$13 >= 235 && _bind$13 <= 236) {
-                                        _tmp = 105;
+                                        _tmp = 120;
                                       } else {
                                         if (_bind$13 === 237) {
-                                          _tmp = 107;
+                                          _tmp = 122;
                                         } else {
                                           if (_bind$13 === 239) {
-                                            _tmp = 108;
+                                            _tmp = 123;
                                           } else {
                                             if (_bind$13 === 240) {
-                                              _tmp = 109;
+                                              _tmp = 124;
                                             } else {
                                               if (_bind$13 === 243) {
-                                                _tmp = 110;
+                                                _tmp = 125;
                                               } else {
                                                 break _L$2;
                                               }
@@ -31699,11 +31700,11 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           const _bind$14 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
           switch (_bind$14) {
             case 47: {
-              _tmp = 125;
+              _tmp = 126;
               break;
             }
             case 61: {
-              _tmp = 111;
+              _tmp = 101;
               break;
             }
             default: {
@@ -31807,7 +31808,7 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           _match_end = lexbuf.pos;
           const _bind$17 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
           if (_bind$17 === 58) {
-            _tmp = 93;
+            _tmp = 108;
           } else {
             break _L$2;
           }
@@ -31824,11 +31825,11 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           const _bind$18 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
           switch (_bind$18) {
             case 60: {
-              _tmp = 91;
+              _tmp = 106;
               break;
             }
             case 61: {
-              _tmp = 92;
+              _tmp = 107;
               break;
             }
             default: {
@@ -31843,11 +31844,11 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           const _bind$19 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
           switch (_bind$19) {
             case 61: {
-              _tmp = 127;
+              _tmp = 135;
               break;
             }
             case 62: {
-              _tmp = 128;
+              _tmp = 136;
               break;
             }
             default: {
@@ -31862,11 +31863,11 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           const _bind$20 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
           switch (_bind$20) {
             case 61: {
-              _tmp = 89;
+              _tmp = 104;
               break;
             }
             case 62: {
-              _tmp = 90;
+              _tmp = 105;
               break;
             }
             default: {
@@ -31887,13 +31888,13 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           _capture_0_end.val = _match_end;
           const _bind$21 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
           if (_bind$21 >= 65 && _bind$21 <= 90) {
-            _tmp = 113;
+            _tmp = 128;
           } else {
             if (_bind$21 === 95) {
-              _tmp = 113;
+              _tmp = 128;
             } else {
               if (_bind$21 >= 97 && _bind$21 <= 122) {
-                _tmp = 113;
+                _tmp = 128;
               } else {
                 break _L$2;
               }
@@ -32081,10 +32082,10 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           _capture_0_end.val = _match_end;
           const _bind$24 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
           if (_bind$24 === 34) {
-            _tmp = 117;
+            _tmp = 132;
           } else {
             if (_bind$24 === 39) {
-              _tmp = 118;
+              _tmp = 133;
             } else {
               if (_bind$24 >= 48 && _bind$24 <= 57) {
                 _tmp = 34;
@@ -32174,11 +32175,11 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           const _bind$25 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
           switch (_bind$25) {
             case 62: {
-              _tmp = 87;
+              _tmp = 102;
               break;
             }
             case 124: {
-              _tmp = 88;
+              _tmp = 103;
               break;
             }
             default: {
@@ -32269,7 +32270,7 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
                 _tmp = 42;
               } else {
                 if (_bind$31 === 154) {
-                  _tmp = 131;
+                  _tmp = 94;
                 } else {
                   if (_bind$31 >= 155 && _bind$31 <= 183) {
                     _tmp = 42;
@@ -32334,7 +32335,7 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
         case 46: {
           const _bind$33 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
           if (_bind$33 === 128) {
-            _tmp = 130;
+            _tmp = 93;
           } else {
             if (_bind$33 >= 129 && _bind$33 <= 131) {
               _tmp = 40;
@@ -32405,7 +32406,7 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
                     _tmp = 42;
                   } else {
                     if (_bind$37 === 187) {
-                      _tmp = 129;
+                      _tmp = 92;
                     } else {
                       if (_bind$37 >= 188 && _bind$37 <= 191) {
                         _tmp = 42;
@@ -32906,65 +32907,59 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           continue _L$2;
         }
         case 86: {
-          _match_pattern = 61;
-          _match_end = lexbuf.pos;
-          break _L$2;
+          const _bind$72 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          if (_bind$72 === 39) {
+            _tmp = 159;
+          } else {
+            break _L$2;
+          }
+          continue _L$2;
         }
         case 87: {
-          _match_pattern = 55;
-          _match_end = lexbuf.pos;
-          break _L$2;
-        }
-        case 88: {
-          _match_pattern = 56;
-          _match_end = lexbuf.pos;
-          break _L$2;
-        }
-        case 89: {
-          _match_pattern = 46;
-          _match_end = lexbuf.pos;
-          break _L$2;
-        }
-        case 90: {
-          _match_pattern = 47;
-          _match_end = lexbuf.pos;
-          break _L$2;
-        }
-        case 91: {
-          _match_pattern = 49;
-          _match_end = lexbuf.pos;
-          break _L$2;
-        }
-        case 92: {
-          _match_pattern = 45;
-          _match_end = lexbuf.pos;
-          break _L$2;
-        }
-        case 93: {
-          _match_pattern = 40;
-          _match_end = lexbuf.pos;
-          break _L$2;
-        }
-        case 94: {
-          _match_pattern = 32;
-          _match_end = lexbuf.pos;
-          break _L$2;
-        }
-        case 95: {
-          _match_pattern = 37;
-          _match_end = lexbuf.pos;
-          const _bind$72 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          switch (_bind$72) {
-            case 46: {
-              _tmp = 171;
+          const _bind$73 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          switch (_bind$73) {
+            case 32: {
+              _tmp = 155;
               break;
             }
-            case 60: {
-              _tmp = 172;
+            case 34: {
+              _tmp = 155;
               break;
             }
-            case 61: {
-              _tmp = 173;
+            case 39: {
+              _tmp = 155;
+              break;
+            }
+            case 92: {
+              _tmp = 155;
+              break;
+            }
+            case 98: {
+              _tmp = 155;
+              break;
+            }
+            case 110: {
+              _tmp = 155;
+              break;
+            }
+            case 111: {
+              _tmp = 156;
+              break;
+            }
+            case 114: {
+              _tmp = 155;
+              break;
+            }
+            case 116: {
+              _tmp = 155;
+              break;
+            }
+            case 117: {
+              _tmp = 157;
+              break;
+            }
+            case 120: {
+              _tmp = 158;
               break;
             }
             default: {
@@ -32973,324 +32968,140 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           }
           continue _L$2;
         }
+        case 88: {
+          const _bind$74 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          if (_bind$74 >= 128 && _bind$74 <= 191) {
+            _tmp = 86;
+          } else {
+            break _L$2;
+          }
+          continue _L$2;
+        }
+        case 89: {
+          const _bind$75 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          if (_bind$75 >= 128 && _bind$75 <= 191) {
+            _tmp = 88;
+          } else {
+            break _L$2;
+          }
+          continue _L$2;
+        }
+        case 90: {
+          const _bind$76 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          if (_bind$76 >= 144 && _bind$76 <= 191) {
+            _tmp = 89;
+          } else {
+            break _L$2;
+          }
+          continue _L$2;
+        }
+        case 91: {
+          const _bind$77 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          if (_bind$77 >= 128 && _bind$77 <= 191) {
+            _tmp = 89;
+          } else {
+            break _L$2;
+          }
+          continue _L$2;
+        }
+        case 92: {
+          const _bind$78 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          if (_bind$78 >= 128 && _bind$78 <= 190) {
+            _tmp = 2;
+          } else {
+            if (_bind$78 === 191) {
+              _tmp = 3;
+            } else {
+              break _L$2;
+            }
+          }
+          continue _L$2;
+        }
+        case 93: {
+          const _bind$79 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          if (_bind$79 === 128) {
+            _tmp = 160;
+          } else {
+            if (_bind$79 >= 129 && _bind$79 <= 191) {
+              _tmp = 34;
+            } else {
+              break _L$2;
+            }
+          }
+          continue _L$2;
+        }
+        case 94: {
+          const _bind$80 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          if (_bind$80 === 128) {
+            _tmp = 3;
+          } else {
+            if (_bind$80 >= 129 && _bind$80 <= 191) {
+              _tmp = 2;
+            } else {
+              break _L$2;
+            }
+          }
+          continue _L$2;
+        }
+        case 95: {
+          const _bind$81 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          if (_bind$81 === 160) {
+            _tmp = 3;
+          } else {
+            break _L$2;
+          }
+          continue _L$2;
+        }
         case 96: {
-          _match_pattern = 33;
-          _match_end = lexbuf.pos;
-          _capture_0_start.val = _match_start;
-          _capture_0_end.val = _match_end;
-          _capture_1_start = _match_start + 1 | 0;
-          _capture_1_end = _match_end;
-          const _bind$73 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$73 >= 48 && _bind$73 <= 57) {
-            _tmp = 96;
+          const _bind$82 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          if (_bind$82 === 154) {
+            _tmp = 162;
           } else {
             break _L$2;
           }
           continue _L$2;
         }
         case 97: {
-          _match_pattern = 38;
-          _match_end = lexbuf.pos;
-          _capture_0_start.val = _match_start + 1 | 0;
-          _capture_0_end.val = _match_end;
-          const _bind$74 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$74 >= 48 && _bind$74 <= 57) {
-            _tmp = 97;
-          } else {
-            if (_bind$74 >= 65 && _bind$74 <= 90) {
-              _tmp = 97;
-            } else {
-              if (_bind$74 === 95) {
-                _tmp = 97;
-              } else {
-                if (_bind$74 >= 97 && _bind$74 <= 122) {
-                  _tmp = 97;
-                } else {
-                  if (_bind$74 === 194) {
-                    _tmp = 159;
-                  } else {
-                    if (_bind$74 >= 195 && _bind$74 <= 201) {
-                      _tmp = 160;
-                    } else {
-                      if (_bind$74 === 202) {
-                        _tmp = 161;
-                      } else {
-                        if (_bind$74 === 225) {
-                          _tmp = 162;
-                        } else {
-                          if (_bind$74 === 226) {
-                            _tmp = 163;
-                          } else {
-                            if (_bind$74 === 227) {
-                              _tmp = 164;
-                            } else {
-                              if (_bind$74 >= 228 && _bind$74 <= 233) {
-                                _tmp = 165;
-                              } else {
-                                if (_bind$74 === 234) {
-                                  _tmp = 166;
-                                } else {
-                                  if (_bind$74 >= 235 && _bind$74 <= 236) {
-                                    _tmp = 165;
-                                  } else {
-                                    if (_bind$74 === 237) {
-                                      _tmp = 167;
-                                    } else {
-                                      if (_bind$74 === 239) {
-                                        _tmp = 168;
-                                      } else {
-                                        if (_bind$74 === 240) {
-                                          _tmp = 169;
-                                        } else {
-                                          if (_bind$74 === 243) {
-                                            _tmp = 170;
-                                          } else {
-                                            break _L$2;
-                                          }
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
+          const _bind$83 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          switch (_bind$83) {
+            case 128: {
+              _tmp = 163;
+              break;
+            }
+            case 129: {
+              _tmp = 164;
+              break;
+            }
+            default: {
+              break _L$2;
             }
           }
           continue _L$2;
         }
         case 98: {
-          _match_pattern = 39;
-          _match_end = lexbuf.pos;
-          _capture_0_start.val = _match_start + 1 | 0;
-          _capture_0_end.val = _match_end;
-          const _bind$75 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$75 >= 48 && _bind$75 <= 57) {
-            _tmp = 98;
+          const _bind$84 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          if (_bind$84 === 128) {
+            _tmp = 162;
           } else {
-            if (_bind$75 >= 65 && _bind$75 <= 90) {
-              _tmp = 98;
-            } else {
-              if (_bind$75 === 95) {
-                _tmp = 98;
-              } else {
-                if (_bind$75 >= 97 && _bind$75 <= 122) {
-                  _tmp = 98;
-                } else {
-                  if (_bind$75 === 194) {
-                    _tmp = 99;
-                  } else {
-                    if (_bind$75 >= 195 && _bind$75 <= 201) {
-                      _tmp = 100;
-                    } else {
-                      if (_bind$75 === 202) {
-                        _tmp = 101;
-                      } else {
-                        if (_bind$75 === 225) {
-                          _tmp = 102;
-                        } else {
-                          if (_bind$75 === 226) {
-                            _tmp = 103;
-                          } else {
-                            if (_bind$75 === 227) {
-                              _tmp = 104;
-                            } else {
-                              if (_bind$75 >= 228 && _bind$75 <= 233) {
-                                _tmp = 105;
-                              } else {
-                                if (_bind$75 === 234) {
-                                  _tmp = 106;
-                                } else {
-                                  if (_bind$75 >= 235 && _bind$75 <= 236) {
-                                    _tmp = 105;
-                                  } else {
-                                    if (_bind$75 === 237) {
-                                      _tmp = 107;
-                                    } else {
-                                      if (_bind$75 === 239) {
-                                        _tmp = 108;
-                                      } else {
-                                        if (_bind$75 === 240) {
-                                          _tmp = 109;
-                                        } else {
-                                          if (_bind$75 === 243) {
-                                            _tmp = 110;
-                                          } else {
-                                            break _L$2;
-                                          }
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
+            break _L$2;
           }
           continue _L$2;
         }
         case 99: {
-          const _bind$76 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$76 >= 161 && _bind$76 <= 172) {
-            _tmp = 98;
+          const _bind$85 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          if (_bind$85 === 187) {
+            _tmp = 161;
           } else {
-            if (_bind$76 >= 174 && _bind$76 <= 191) {
-              _tmp = 98;
-            } else {
-              break _L$2;
-            }
+            break _L$2;
           }
           continue _L$2;
         }
         case 100: {
-          const _bind$77 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$77 >= 128 && _bind$77 <= 191) {
-            _tmp = 98;
-          } else {
-            break _L$2;
-          }
-          continue _L$2;
+          _match_pattern = 61;
+          _match_end = lexbuf.pos;
+          break _L$2;
         }
         case 101: {
-          const _bind$78 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$78 >= 128 && _bind$78 <= 175) {
-            _tmp = 98;
-          } else {
-            break _L$2;
-          }
-          continue _L$2;
-        }
-        case 102: {
-          const _bind$79 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$79 >= 132 && _bind$79 <= 135) {
-            _tmp = 100;
-          } else {
-            if (_bind$79 >= 184 && _bind$79 <= 187) {
-              _tmp = 100;
-            } else {
-              break _L$2;
-            }
-          }
-          continue _L$2;
-        }
-        case 103: {
-          const _bind$80 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$80 >= 129 && _bind$80 <= 130) {
-            _tmp = 100;
-          } else {
-            if (_bind$80 >= 133 && _bind$80 <= 134) {
-              _tmp = 100;
-            } else {
-              if (_bind$80 >= 186 && _bind$80 <= 187) {
-                _tmp = 100;
-              } else {
-                if (_bind$80 === 191) {
-                  _tmp = 158;
-                } else {
-                  break _L$2;
-                }
-              }
-            }
-          }
-          continue _L$2;
-        }
-        case 104: {
-          const _bind$81 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$81 >= 128 && _bind$81 <= 131) {
-            _tmp = 100;
-          } else {
-            if (_bind$81 >= 135 && _bind$81 <= 191) {
-              _tmp = 100;
-            } else {
-              break _L$2;
-            }
-          }
-          continue _L$2;
-        }
-        case 105: {
-          const _bind$82 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$82 >= 128 && _bind$82 <= 191) {
-            _tmp = 100;
-          } else {
-            break _L$2;
-          }
-          continue _L$2;
-        }
-        case 106: {
-          const _bind$83 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$83 >= 176 && _bind$83 <= 191) {
-            _tmp = 100;
-          } else {
-            break _L$2;
-          }
-          continue _L$2;
-        }
-        case 107: {
-          const _bind$84 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$84 >= 128 && _bind$84 <= 159) {
-            _tmp = 100;
-          } else {
-            break _L$2;
-          }
-          continue _L$2;
-        }
-        case 108: {
-          const _bind$85 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$85 >= 164 && _bind$85 <= 171) {
-            _tmp = 100;
-          } else {
-            if (_bind$85 >= 184 && _bind$85 <= 185) {
-              _tmp = 100;
-            } else {
-              break _L$2;
-            }
-          }
-          continue _L$2;
-        }
-        case 109: {
-          const _bind$86 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$86 === 159) {
-            _tmp = 156;
-          } else {
-            if (_bind$86 >= 160 && _bind$86 <= 174) {
-              _tmp = 105;
-            } else {
-              if (_bind$86 === 175) {
-                _tmp = 157;
-              } else {
-                if (_bind$86 >= 176 && _bind$86 <= 178) {
-                  _tmp = 105;
-                } else {
-                  break _L$2;
-                }
-              }
-            }
-          }
-          continue _L$2;
-        }
-        case 110: {
-          const _bind$87 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$87 === 160) {
-            _tmp = 155;
-          } else {
-            break _L$2;
-          }
-          continue _L$2;
-        }
-        case 111: {
           _match_pattern = 27;
           _match_end = lexbuf.pos;
           _capture_0_start.val = _match_start;
@@ -33299,31 +33110,448 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           _capture_1_end = _match_start + 2 | 0;
           break _L$2;
         }
-        case 112: {
-          _match_pattern = 22;
+        case 102: {
+          _match_pattern = 55;
           _match_end = lexbuf.pos;
           break _L$2;
         }
-        case 113: {
-          _match_pattern = 16;
+        case 103: {
+          _match_pattern = 56;
+          _match_end = lexbuf.pos;
+          break _L$2;
+        }
+        case 104: {
+          _match_pattern = 46;
+          _match_end = lexbuf.pos;
+          break _L$2;
+        }
+        case 105: {
+          _match_pattern = 47;
+          _match_end = lexbuf.pos;
+          break _L$2;
+        }
+        case 106: {
+          _match_pattern = 49;
+          _match_end = lexbuf.pos;
+          break _L$2;
+        }
+        case 107: {
+          _match_pattern = 45;
+          _match_end = lexbuf.pos;
+          break _L$2;
+        }
+        case 108: {
+          _match_pattern = 40;
+          _match_end = lexbuf.pos;
+          break _L$2;
+        }
+        case 109: {
+          _match_pattern = 32;
+          _match_end = lexbuf.pos;
+          break _L$2;
+        }
+        case 110: {
+          _match_pattern = 37;
+          _match_end = lexbuf.pos;
+          const _bind$86 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          switch (_bind$86) {
+            case 46: {
+              _tmp = 181;
+              break;
+            }
+            case 60: {
+              _tmp = 182;
+              break;
+            }
+            case 61: {
+              _tmp = 183;
+              break;
+            }
+            default: {
+              break _L$2;
+            }
+          }
+          continue _L$2;
+        }
+        case 111: {
+          _match_pattern = 33;
+          _match_end = lexbuf.pos;
+          _capture_0_start.val = _match_start;
+          _capture_0_end.val = _match_end;
+          _capture_1_start = _match_start + 1 | 0;
+          _capture_1_end = _match_end;
+          const _bind$87 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          if (_bind$87 >= 48 && _bind$87 <= 57) {
+            _tmp = 111;
+          } else {
+            break _L$2;
+          }
+          continue _L$2;
+        }
+        case 112: {
+          _match_pattern = 38;
           _match_end = lexbuf.pos;
           _capture_0_start.val = _match_start + 1 | 0;
           _capture_0_end.val = _match_end;
           const _bind$88 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$88 === 47) {
-            _tmp = 174;
+          if (_bind$88 >= 48 && _bind$88 <= 57) {
+            _tmp = 112;
           } else {
-            if (_bind$88 >= 48 && _bind$88 <= 57) {
+            if (_bind$88 >= 65 && _bind$88 <= 90) {
+              _tmp = 112;
+            } else {
+              if (_bind$88 === 95) {
+                _tmp = 112;
+              } else {
+                if (_bind$88 >= 97 && _bind$88 <= 122) {
+                  _tmp = 112;
+                } else {
+                  if (_bind$88 === 194) {
+                    _tmp = 169;
+                  } else {
+                    if (_bind$88 >= 195 && _bind$88 <= 201) {
+                      _tmp = 170;
+                    } else {
+                      if (_bind$88 === 202) {
+                        _tmp = 171;
+                      } else {
+                        if (_bind$88 === 225) {
+                          _tmp = 172;
+                        } else {
+                          if (_bind$88 === 226) {
+                            _tmp = 173;
+                          } else {
+                            if (_bind$88 === 227) {
+                              _tmp = 174;
+                            } else {
+                              if (_bind$88 >= 228 && _bind$88 <= 233) {
+                                _tmp = 175;
+                              } else {
+                                if (_bind$88 === 234) {
+                                  _tmp = 176;
+                                } else {
+                                  if (_bind$88 >= 235 && _bind$88 <= 236) {
+                                    _tmp = 175;
+                                  } else {
+                                    if (_bind$88 === 237) {
+                                      _tmp = 177;
+                                    } else {
+                                      if (_bind$88 === 239) {
+                                        _tmp = 178;
+                                      } else {
+                                        if (_bind$88 === 240) {
+                                          _tmp = 179;
+                                        } else {
+                                          if (_bind$88 === 243) {
+                                            _tmp = 180;
+                                          } else {
+                                            break _L$2;
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+          continue _L$2;
+        }
+        case 113: {
+          _match_pattern = 39;
+          _match_end = lexbuf.pos;
+          _capture_0_start.val = _match_start + 1 | 0;
+          _capture_0_end.val = _match_end;
+          const _bind$89 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          if (_bind$89 >= 48 && _bind$89 <= 57) {
+            _tmp = 113;
+          } else {
+            if (_bind$89 >= 65 && _bind$89 <= 90) {
               _tmp = 113;
             } else {
-              if (_bind$88 >= 65 && _bind$88 <= 90) {
+              if (_bind$89 === 95) {
                 _tmp = 113;
               } else {
-                if (_bind$88 === 95) {
+                if (_bind$89 >= 97 && _bind$89 <= 122) {
                   _tmp = 113;
                 } else {
-                  if (_bind$88 >= 97 && _bind$88 <= 122) {
-                    _tmp = 113;
+                  if (_bind$89 === 194) {
+                    _tmp = 114;
+                  } else {
+                    if (_bind$89 >= 195 && _bind$89 <= 201) {
+                      _tmp = 115;
+                    } else {
+                      if (_bind$89 === 202) {
+                        _tmp = 116;
+                      } else {
+                        if (_bind$89 === 225) {
+                          _tmp = 117;
+                        } else {
+                          if (_bind$89 === 226) {
+                            _tmp = 118;
+                          } else {
+                            if (_bind$89 === 227) {
+                              _tmp = 119;
+                            } else {
+                              if (_bind$89 >= 228 && _bind$89 <= 233) {
+                                _tmp = 120;
+                              } else {
+                                if (_bind$89 === 234) {
+                                  _tmp = 121;
+                                } else {
+                                  if (_bind$89 >= 235 && _bind$89 <= 236) {
+                                    _tmp = 120;
+                                  } else {
+                                    if (_bind$89 === 237) {
+                                      _tmp = 122;
+                                    } else {
+                                      if (_bind$89 === 239) {
+                                        _tmp = 123;
+                                      } else {
+                                        if (_bind$89 === 240) {
+                                          _tmp = 124;
+                                        } else {
+                                          if (_bind$89 === 243) {
+                                            _tmp = 125;
+                                          } else {
+                                            break _L$2;
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+          continue _L$2;
+        }
+        case 114: {
+          const _bind$90 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          if (_bind$90 >= 161 && _bind$90 <= 172) {
+            _tmp = 113;
+          } else {
+            if (_bind$90 >= 174 && _bind$90 <= 191) {
+              _tmp = 113;
+            } else {
+              break _L$2;
+            }
+          }
+          continue _L$2;
+        }
+        case 115: {
+          const _bind$91 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          if (_bind$91 >= 128 && _bind$91 <= 191) {
+            _tmp = 113;
+          } else {
+            break _L$2;
+          }
+          continue _L$2;
+        }
+        case 116: {
+          const _bind$92 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          if (_bind$92 >= 128 && _bind$92 <= 175) {
+            _tmp = 113;
+          } else {
+            break _L$2;
+          }
+          continue _L$2;
+        }
+        case 117: {
+          const _bind$93 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          if (_bind$93 >= 132 && _bind$93 <= 135) {
+            _tmp = 115;
+          } else {
+            if (_bind$93 >= 184 && _bind$93 <= 187) {
+              _tmp = 115;
+            } else {
+              break _L$2;
+            }
+          }
+          continue _L$2;
+        }
+        case 118: {
+          const _bind$94 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          if (_bind$94 >= 129 && _bind$94 <= 130) {
+            _tmp = 115;
+          } else {
+            if (_bind$94 >= 133 && _bind$94 <= 134) {
+              _tmp = 115;
+            } else {
+              if (_bind$94 >= 186 && _bind$94 <= 187) {
+                _tmp = 115;
+              } else {
+                if (_bind$94 === 191) {
+                  _tmp = 168;
+                } else {
+                  break _L$2;
+                }
+              }
+            }
+          }
+          continue _L$2;
+        }
+        case 119: {
+          const _bind$95 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          if (_bind$95 >= 128 && _bind$95 <= 131) {
+            _tmp = 115;
+          } else {
+            if (_bind$95 >= 135 && _bind$95 <= 191) {
+              _tmp = 115;
+            } else {
+              break _L$2;
+            }
+          }
+          continue _L$2;
+        }
+        case 120: {
+          const _bind$96 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          if (_bind$96 >= 128 && _bind$96 <= 191) {
+            _tmp = 115;
+          } else {
+            break _L$2;
+          }
+          continue _L$2;
+        }
+        case 121: {
+          const _bind$97 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          if (_bind$97 >= 176 && _bind$97 <= 191) {
+            _tmp = 115;
+          } else {
+            break _L$2;
+          }
+          continue _L$2;
+        }
+        case 122: {
+          const _bind$98 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          if (_bind$98 >= 128 && _bind$98 <= 159) {
+            _tmp = 115;
+          } else {
+            break _L$2;
+          }
+          continue _L$2;
+        }
+        case 123: {
+          const _bind$99 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          if (_bind$99 >= 164 && _bind$99 <= 171) {
+            _tmp = 115;
+          } else {
+            if (_bind$99 >= 184 && _bind$99 <= 185) {
+              _tmp = 115;
+            } else {
+              break _L$2;
+            }
+          }
+          continue _L$2;
+        }
+        case 124: {
+          const _bind$100 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          if (_bind$100 === 159) {
+            _tmp = 166;
+          } else {
+            if (_bind$100 >= 160 && _bind$100 <= 174) {
+              _tmp = 120;
+            } else {
+              if (_bind$100 === 175) {
+                _tmp = 167;
+              } else {
+                if (_bind$100 >= 176 && _bind$100 <= 178) {
+                  _tmp = 120;
+                } else {
+                  break _L$2;
+                }
+              }
+            }
+          }
+          continue _L$2;
+        }
+        case 125: {
+          const _bind$101 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          if (_bind$101 === 160) {
+            _tmp = 165;
+          } else {
+            break _L$2;
+          }
+          continue _L$2;
+        }
+        case 126: {
+          _match_pattern = 4;
+          _match_end = lexbuf.pos;
+          _capture_0_start.val = _match_start;
+          _capture_0_end.val = _match_end;
+          const _bind$102 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          if (_bind$102 >= 0 && _bind$102 <= 9) {
+            _tmp = 126;
+          } else {
+            if (_bind$102 >= 11 && _bind$102 <= 12) {
+              _tmp = 126;
+            } else {
+              if (_bind$102 >= 14 && _bind$102 <= 127) {
+                _tmp = 126;
+              } else {
+                if (_bind$102 >= 194 && _bind$102 <= 223) {
+                  _tmp = 184;
+                } else {
+                  if (_bind$102 >= 224 && _bind$102 <= 239) {
+                    _tmp = 185;
+                  } else {
+                    if (_bind$102 === 240) {
+                      _tmp = 186;
+                    } else {
+                      if (_bind$102 >= 241 && _bind$102 <= 244) {
+                        _tmp = 187;
+                      } else {
+                        break _L$2;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+          continue _L$2;
+        }
+        case 127: {
+          _match_pattern = 22;
+          _match_end = lexbuf.pos;
+          break _L$2;
+        }
+        case 128: {
+          _match_pattern = 16;
+          _match_end = lexbuf.pos;
+          _capture_0_start.val = _match_start + 1 | 0;
+          _capture_0_end.val = _match_end;
+          const _bind$103 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          if (_bind$103 === 47) {
+            _tmp = 188;
+          } else {
+            if (_bind$103 >= 48 && _bind$103 <= 57) {
+              _tmp = 128;
+            } else {
+              if (_bind$103 >= 65 && _bind$103 <= 90) {
+                _tmp = 128;
+              } else {
+                if (_bind$103 === 95) {
+                  _tmp = 128;
+                } else {
+                  if (_bind$103 >= 97 && _bind$103 <= 122) {
+                    _tmp = 128;
                   } else {
                     break _L$2;
                   }
@@ -33333,32 +33561,32 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           }
           continue _L$2;
         }
-        case 114: {
+        case 129: {
           _match_pattern = 15;
           _match_end = lexbuf.pos;
           _capture_0_start.val = _match_start + 1 | 0;
           _capture_0_end.val = _match_end;
-          const _bind$89 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$89 >= 0 && _bind$89 <= 9) {
-            _tmp = 114;
+          const _bind$104 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          if (_bind$104 >= 0 && _bind$104 <= 9) {
+            _tmp = 129;
           } else {
-            if (_bind$89 >= 11 && _bind$89 <= 12) {
-              _tmp = 114;
+            if (_bind$104 >= 11 && _bind$104 <= 12) {
+              _tmp = 129;
             } else {
-              if (_bind$89 >= 14 && _bind$89 <= 127) {
-                _tmp = 114;
+              if (_bind$104 >= 14 && _bind$104 <= 127) {
+                _tmp = 129;
               } else {
-                if (_bind$89 >= 194 && _bind$89 <= 223) {
-                  _tmp = 175;
+                if (_bind$104 >= 194 && _bind$104 <= 223) {
+                  _tmp = 189;
                 } else {
-                  if (_bind$89 >= 224 && _bind$89 <= 239) {
-                    _tmp = 176;
+                  if (_bind$104 >= 224 && _bind$104 <= 239) {
+                    _tmp = 190;
                   } else {
-                    if (_bind$89 === 240) {
-                      _tmp = 177;
+                    if (_bind$104 === 240) {
+                      _tmp = 191;
                     } else {
-                      if (_bind$89 >= 241 && _bind$89 <= 244) {
-                        _tmp = 178;
+                      if (_bind$104 >= 241 && _bind$104 <= 244) {
+                        _tmp = 192;
                       } else {
                         break _L$2;
                       }
@@ -33370,32 +33598,32 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           }
           continue _L$2;
         }
-        case 115: {
+        case 130: {
           _match_pattern = 14;
           _match_end = lexbuf.pos;
           _capture_0_start.val = _match_start + 2 | 0;
           _capture_0_end.val = _match_end;
-          const _bind$90 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$90 >= 0 && _bind$90 <= 9) {
-            _tmp = 115;
+          const _bind$105 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          if (_bind$105 >= 0 && _bind$105 <= 9) {
+            _tmp = 130;
           } else {
-            if (_bind$90 >= 11 && _bind$90 <= 12) {
-              _tmp = 115;
+            if (_bind$105 >= 11 && _bind$105 <= 12) {
+              _tmp = 130;
             } else {
-              if (_bind$90 >= 14 && _bind$90 <= 127) {
-                _tmp = 115;
+              if (_bind$105 >= 14 && _bind$105 <= 127) {
+                _tmp = 130;
               } else {
-                if (_bind$90 >= 194 && _bind$90 <= 223) {
-                  _tmp = 179;
+                if (_bind$105 >= 194 && _bind$105 <= 223) {
+                  _tmp = 193;
                 } else {
-                  if (_bind$90 >= 224 && _bind$90 <= 239) {
-                    _tmp = 180;
+                  if (_bind$105 >= 224 && _bind$105 <= 239) {
+                    _tmp = 194;
                   } else {
-                    if (_bind$90 === 240) {
-                      _tmp = 181;
+                    if (_bind$105 === 240) {
+                      _tmp = 195;
                     } else {
-                      if (_bind$90 >= 241 && _bind$90 <= 244) {
-                        _tmp = 182;
+                      if (_bind$105 >= 241 && _bind$105 <= 244) {
+                        _tmp = 196;
                       } else {
                         break _L$2;
                       }
@@ -33407,30 +33635,30 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           }
           continue _L$2;
         }
-        case 116: {
+        case 131: {
           _match_pattern = 13;
           _match_end = lexbuf.pos;
           break _L$2;
         }
-        case 117: {
+        case 132: {
           _match_pattern = 12;
           _match_end = lexbuf.pos;
           break _L$2;
         }
-        case 118: {
+        case 133: {
           _match_pattern = 21;
           _match_end = lexbuf.pos;
           _capture_0_start.val = _match_start;
           _capture_0_end.val = _match_start + 2 | 0;
-          const _bind$91 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$91 >= 0 && _bind$91 <= 91) {
-            _tmp = 183;
+          const _bind$106 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          if (_bind$106 >= 0 && _bind$106 <= 91) {
+            _tmp = 197;
           } else {
-            if (_bind$91 === 92) {
-              _tmp = 184;
+            if (_bind$106 === 92) {
+              _tmp = 198;
             } else {
-              if (_bind$91 >= 93 && _bind$91 <= 127) {
-                _tmp = 183;
+              if (_bind$106 >= 93 && _bind$106 <= 127) {
+                _tmp = 197;
               } else {
                 break _L$2;
               }
@@ -33438,247 +33666,20 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           }
           continue _L$2;
         }
-        case 119: {
-          const _bind$92 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$92 === 39) {
-            _tmp = 189;
-          } else {
-            break _L$2;
-          }
-          continue _L$2;
-        }
-        case 120: {
-          const _bind$93 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          switch (_bind$93) {
-            case 32: {
-              _tmp = 185;
-              break;
-            }
-            case 34: {
-              _tmp = 185;
-              break;
-            }
-            case 39: {
-              _tmp = 185;
-              break;
-            }
-            case 92: {
-              _tmp = 185;
-              break;
-            }
-            case 98: {
-              _tmp = 185;
-              break;
-            }
-            case 110: {
-              _tmp = 185;
-              break;
-            }
-            case 111: {
-              _tmp = 186;
-              break;
-            }
-            case 114: {
-              _tmp = 185;
-              break;
-            }
-            case 116: {
-              _tmp = 185;
-              break;
-            }
-            case 117: {
-              _tmp = 187;
-              break;
-            }
-            case 120: {
-              _tmp = 188;
-              break;
-            }
-            default: {
-              break _L$2;
-            }
-          }
-          continue _L$2;
-        }
-        case 121: {
-          const _bind$94 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$94 >= 128 && _bind$94 <= 191) {
-            _tmp = 119;
-          } else {
-            break _L$2;
-          }
-          continue _L$2;
-        }
-        case 122: {
-          const _bind$95 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$95 >= 128 && _bind$95 <= 191) {
-            _tmp = 121;
-          } else {
-            break _L$2;
-          }
-          continue _L$2;
-        }
-        case 123: {
-          const _bind$96 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$96 >= 144 && _bind$96 <= 191) {
-            _tmp = 122;
-          } else {
-            break _L$2;
-          }
-          continue _L$2;
-        }
-        case 124: {
-          const _bind$97 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$97 >= 128 && _bind$97 <= 191) {
-            _tmp = 122;
-          } else {
-            break _L$2;
-          }
-          continue _L$2;
-        }
-        case 125: {
-          _match_pattern = 4;
-          _match_end = lexbuf.pos;
-          _capture_0_start.val = _match_start;
-          _capture_0_end.val = _match_end;
-          const _bind$98 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$98 >= 0 && _bind$98 <= 9) {
-            _tmp = 125;
-          } else {
-            if (_bind$98 >= 11 && _bind$98 <= 12) {
-              _tmp = 125;
-            } else {
-              if (_bind$98 >= 14 && _bind$98 <= 127) {
-                _tmp = 125;
-              } else {
-                if (_bind$98 >= 194 && _bind$98 <= 223) {
-                  _tmp = 190;
-                } else {
-                  if (_bind$98 >= 224 && _bind$98 <= 239) {
-                    _tmp = 191;
-                  } else {
-                    if (_bind$98 === 240) {
-                      _tmp = 192;
-                    } else {
-                      if (_bind$98 >= 241 && _bind$98 <= 244) {
-                        _tmp = 193;
-                      } else {
-                        break _L$2;
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-          continue _L$2;
-        }
-        case 126: {
+        case 134: {
           _match_pattern = 3;
           _match_end = lexbuf.pos;
           break _L$2;
         }
-        case 127: {
+        case 135: {
           _match_pattern = 43;
           _match_end = lexbuf.pos;
           break _L$2;
         }
-        case 128: {
+        case 136: {
           _match_pattern = 2;
           _match_end = lexbuf.pos;
           break _L$2;
-        }
-        case 129: {
-          const _bind$99 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$99 >= 128 && _bind$99 <= 190) {
-            _tmp = 2;
-          } else {
-            if (_bind$99 === 191) {
-              _tmp = 3;
-            } else {
-              break _L$2;
-            }
-          }
-          continue _L$2;
-        }
-        case 130: {
-          const _bind$100 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$100 === 128) {
-            _tmp = 194;
-          } else {
-            if (_bind$100 >= 129 && _bind$100 <= 191) {
-              _tmp = 34;
-            } else {
-              break _L$2;
-            }
-          }
-          continue _L$2;
-        }
-        case 131: {
-          const _bind$101 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$101 === 128) {
-            _tmp = 3;
-          } else {
-            if (_bind$101 >= 129 && _bind$101 <= 191) {
-              _tmp = 2;
-            } else {
-              break _L$2;
-            }
-          }
-          continue _L$2;
-        }
-        case 132: {
-          const _bind$102 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$102 === 160) {
-            _tmp = 3;
-          } else {
-            break _L$2;
-          }
-          continue _L$2;
-        }
-        case 133: {
-          const _bind$103 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$103 === 154) {
-            _tmp = 196;
-          } else {
-            break _L$2;
-          }
-          continue _L$2;
-        }
-        case 134: {
-          const _bind$104 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          switch (_bind$104) {
-            case 128: {
-              _tmp = 197;
-              break;
-            }
-            case 129: {
-              _tmp = 198;
-              break;
-            }
-            default: {
-              break _L$2;
-            }
-          }
-          continue _L$2;
-        }
-        case 135: {
-          const _bind$105 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$105 === 128) {
-            _tmp = 196;
-          } else {
-            break _L$2;
-          }
-          continue _L$2;
-        }
-        case 136: {
-          const _bind$106 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$106 === 187) {
-            _tmp = 195;
-          } else {
-            break _L$2;
-          }
-          continue _L$2;
         }
         case 137: {
           const _bind$107 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
@@ -33715,7 +33716,7 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
             _tmp = 34;
           } else {
             if (_bind$108 === 159) {
-              _tmp = 194;
+              _tmp = 160;
             } else {
               if (_bind$108 >= 160 && _bind$108 <= 191) {
                 _tmp = 34;
@@ -33978,8 +33979,8 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
         }
         case 155: {
           const _bind$124 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$124 >= 132 && _bind$124 <= 135) {
-            _tmp = 100;
+          if (_bind$124 === 39) {
+            _tmp = 206;
           } else {
             break _L$2;
           }
@@ -33987,8 +33988,8 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
         }
         case 156: {
           const _bind$125 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$125 >= 128 && _bind$125 <= 175) {
-            _tmp = 100;
+          if (_bind$125 >= 48 && _bind$125 <= 51) {
+            _tmp = 204;
           } else {
             break _L$2;
           }
@@ -33996,496 +33997,114 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
         }
         case 157: {
           const _bind$126 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$126 >= 160 && _bind$126 <= 168) {
-            _tmp = 100;
+          if (_bind$126 >= 48 && _bind$126 <= 57) {
+            _tmp = 202;
           } else {
-            break _L$2;
+            if (_bind$126 >= 65 && _bind$126 <= 70) {
+              _tmp = 202;
+            } else {
+              if (_bind$126 >= 97 && _bind$126 <= 102) {
+                _tmp = 202;
+              } else {
+                if (_bind$126 === 123) {
+                  _tmp = 203;
+                } else {
+                  break _L$2;
+                }
+              }
+            }
           }
           continue _L$2;
         }
         case 158: {
           const _bind$127 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$127 >= 176 && _bind$127 <= 191) {
-            _tmp = 98;
+          if (_bind$127 >= 48 && _bind$127 <= 57) {
+            _tmp = 205;
           } else {
-            break _L$2;
+            if (_bind$127 >= 65 && _bind$127 <= 70) {
+              _tmp = 205;
+            } else {
+              if (_bind$127 >= 97 && _bind$127 <= 102) {
+                _tmp = 205;
+              } else {
+                break _L$2;
+              }
+            }
           }
           continue _L$2;
         }
         case 159: {
-          const _bind$128 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$128 >= 161 && _bind$128 <= 172) {
-            _tmp = 97;
-          } else {
-            if (_bind$128 >= 174 && _bind$128 <= 191) {
-              _tmp = 97;
-            } else {
-              break _L$2;
-            }
-          }
-          continue _L$2;
-        }
-        case 160: {
-          const _bind$129 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$129 >= 128 && _bind$129 <= 191) {
-            _tmp = 97;
-          } else {
-            break _L$2;
-          }
-          continue _L$2;
-        }
-        case 161: {
-          const _bind$130 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$130 >= 128 && _bind$130 <= 175) {
-            _tmp = 97;
-          } else {
-            break _L$2;
-          }
-          continue _L$2;
-        }
-        case 162: {
-          const _bind$131 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$131 >= 132 && _bind$131 <= 135) {
-            _tmp = 160;
-          } else {
-            if (_bind$131 >= 184 && _bind$131 <= 187) {
-              _tmp = 160;
-            } else {
-              break _L$2;
-            }
-          }
-          continue _L$2;
-        }
-        case 163: {
-          const _bind$132 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$132 >= 129 && _bind$132 <= 130) {
-            _tmp = 160;
-          } else {
-            if (_bind$132 >= 133 && _bind$132 <= 134) {
-              _tmp = 160;
-            } else {
-              if (_bind$132 >= 186 && _bind$132 <= 187) {
-                _tmp = 160;
-              } else {
-                if (_bind$132 === 191) {
-                  _tmp = 205;
-                } else {
-                  break _L$2;
-                }
-              }
-            }
-          }
-          continue _L$2;
-        }
-        case 164: {
-          const _bind$133 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$133 >= 128 && _bind$133 <= 131) {
-            _tmp = 160;
-          } else {
-            if (_bind$133 >= 135 && _bind$133 <= 191) {
-              _tmp = 160;
-            } else {
-              break _L$2;
-            }
-          }
-          continue _L$2;
-        }
-        case 165: {
-          const _bind$134 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$134 >= 128 && _bind$134 <= 191) {
-            _tmp = 160;
-          } else {
-            break _L$2;
-          }
-          continue _L$2;
-        }
-        case 166: {
-          const _bind$135 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$135 >= 176 && _bind$135 <= 191) {
-            _tmp = 160;
-          } else {
-            break _L$2;
-          }
-          continue _L$2;
-        }
-        case 167: {
-          const _bind$136 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$136 >= 128 && _bind$136 <= 159) {
-            _tmp = 160;
-          } else {
-            break _L$2;
-          }
-          continue _L$2;
-        }
-        case 168: {
-          const _bind$137 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$137 >= 164 && _bind$137 <= 171) {
-            _tmp = 160;
-          } else {
-            if (_bind$137 >= 184 && _bind$137 <= 185) {
-              _tmp = 160;
-            } else {
-              break _L$2;
-            }
-          }
-          continue _L$2;
-        }
-        case 169: {
-          const _bind$138 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$138 === 159) {
-            _tmp = 203;
-          } else {
-            if (_bind$138 >= 160 && _bind$138 <= 174) {
-              _tmp = 165;
-            } else {
-              if (_bind$138 === 175) {
-                _tmp = 204;
-              } else {
-                if (_bind$138 >= 176 && _bind$138 <= 178) {
-                  _tmp = 165;
-                } else {
-                  break _L$2;
-                }
-              }
-            }
-          }
-          continue _L$2;
-        }
-        case 170: {
-          const _bind$139 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$139 === 160) {
-            _tmp = 202;
-          } else {
-            break _L$2;
-          }
-          continue _L$2;
-        }
-        case 171: {
-          _match_pattern = 34;
-          _match_end = lexbuf.pos;
-          break _L$2;
-        }
-        case 172: {
-          _match_pattern = 36;
-          _match_end = lexbuf.pos;
-          break _L$2;
-        }
-        case 173: {
-          _match_pattern = 35;
-          _match_end = lexbuf.pos;
-          break _L$2;
-        }
-        case 174: {
-          const _bind$140 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$140 >= 65 && _bind$140 <= 90) {
-            _tmp = 113;
-          } else {
-            if (_bind$140 === 95) {
-              _tmp = 113;
-            } else {
-              if (_bind$140 >= 97 && _bind$140 <= 122) {
-                _tmp = 113;
-              } else {
-                break _L$2;
-              }
-            }
-          }
-          continue _L$2;
-        }
-        case 175: {
-          const _bind$141 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$141 >= 128 && _bind$141 <= 191) {
-            _tmp = 114;
-          } else {
-            break _L$2;
-          }
-          continue _L$2;
-        }
-        case 176: {
-          const _bind$142 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$142 >= 128 && _bind$142 <= 191) {
-            _tmp = 175;
-          } else {
-            break _L$2;
-          }
-          continue _L$2;
-        }
-        case 177: {
-          const _bind$143 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$143 >= 144 && _bind$143 <= 191) {
-            _tmp = 176;
-          } else {
-            break _L$2;
-          }
-          continue _L$2;
-        }
-        case 178: {
-          const _bind$144 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$144 >= 128 && _bind$144 <= 191) {
-            _tmp = 176;
-          } else {
-            break _L$2;
-          }
-          continue _L$2;
-        }
-        case 179: {
-          const _bind$145 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$145 >= 128 && _bind$145 <= 191) {
-            _tmp = 115;
-          } else {
-            break _L$2;
-          }
-          continue _L$2;
-        }
-        case 180: {
-          const _bind$146 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$146 >= 128 && _bind$146 <= 191) {
-            _tmp = 179;
-          } else {
-            break _L$2;
-          }
-          continue _L$2;
-        }
-        case 181: {
-          const _bind$147 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$147 >= 144 && _bind$147 <= 191) {
-            _tmp = 180;
-          } else {
-            break _L$2;
-          }
-          continue _L$2;
-        }
-        case 182: {
-          const _bind$148 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$148 >= 128 && _bind$148 <= 191) {
-            _tmp = 180;
-          } else {
-            break _L$2;
-          }
-          continue _L$2;
-        }
-        case 183: {
-          const _bind$149 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$149 === 39) {
-            _tmp = 206;
-          } else {
-            break _L$2;
-          }
-          continue _L$2;
-        }
-        case 184: {
-          const _bind$150 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          switch (_bind$150) {
-            case 32: {
-              _tmp = 207;
-              break;
-            }
-            case 34: {
-              _tmp = 207;
-              break;
-            }
-            case 39: {
-              _tmp = 208;
-              break;
-            }
-            case 92: {
-              _tmp = 207;
-              break;
-            }
-            case 98: {
-              _tmp = 207;
-              break;
-            }
-            case 110: {
-              _tmp = 207;
-              break;
-            }
-            case 111: {
-              _tmp = 209;
-              break;
-            }
-            case 114: {
-              _tmp = 207;
-              break;
-            }
-            case 116: {
-              _tmp = 207;
-              break;
-            }
-            case 120: {
-              _tmp = 210;
-              break;
-            }
-            default: {
-              break _L$2;
-            }
-          }
-          continue _L$2;
-        }
-        case 185: {
-          const _bind$151 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$151 === 39) {
-            _tmp = 215;
-          } else {
-            break _L$2;
-          }
-          continue _L$2;
-        }
-        case 186: {
-          const _bind$152 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$152 >= 48 && _bind$152 <= 51) {
-            _tmp = 213;
-          } else {
-            break _L$2;
-          }
-          continue _L$2;
-        }
-        case 187: {
-          const _bind$153 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$153 >= 48 && _bind$153 <= 57) {
-            _tmp = 211;
-          } else {
-            if (_bind$153 >= 65 && _bind$153 <= 70) {
-              _tmp = 211;
-            } else {
-              if (_bind$153 >= 97 && _bind$153 <= 102) {
-                _tmp = 211;
-              } else {
-                if (_bind$153 === 123) {
-                  _tmp = 212;
-                } else {
-                  break _L$2;
-                }
-              }
-            }
-          }
-          continue _L$2;
-        }
-        case 188: {
-          const _bind$154 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$154 >= 48 && _bind$154 <= 57) {
-            _tmp = 214;
-          } else {
-            if (_bind$154 >= 65 && _bind$154 <= 70) {
-              _tmp = 214;
-            } else {
-              if (_bind$154 >= 97 && _bind$154 <= 102) {
-                _tmp = 214;
-              } else {
-                break _L$2;
-              }
-            }
-          }
-          continue _L$2;
-        }
-        case 189: {
           _match_pattern = 5;
           _match_end = lexbuf.pos;
           _capture_0_start.val = _match_start;
           _capture_0_end.val = _match_end;
           break _L$2;
         }
-        case 190: {
-          const _bind$155 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$155 >= 128 && _bind$155 <= 191) {
-            _tmp = 125;
-          } else {
-            break _L$2;
-          }
-          continue _L$2;
-        }
-        case 191: {
-          const _bind$156 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$156 >= 128 && _bind$156 <= 191) {
-            _tmp = 190;
-          } else {
-            break _L$2;
-          }
-          continue _L$2;
-        }
-        case 192: {
-          const _bind$157 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$157 >= 144 && _bind$157 <= 191) {
-            _tmp = 191;
-          } else {
-            break _L$2;
-          }
-          continue _L$2;
-        }
-        case 193: {
-          const _bind$158 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$158 >= 128 && _bind$158 <= 191) {
-            _tmp = 191;
-          } else {
-            break _L$2;
-          }
-          continue _L$2;
-        }
-        case 194: {
+        case 160: {
           _match_pattern = 1;
           _match_end = lexbuf.pos;
-          const _bind$159 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$159 === 9) {
+          const _bind$128 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          if (_bind$128 === 9) {
             _tmp = 3;
           } else {
-            if (_bind$159 >= 11 && _bind$159 <= 12) {
+            if (_bind$128 >= 11 && _bind$128 <= 12) {
               _tmp = 3;
             } else {
-              if (_bind$159 === 32) {
+              if (_bind$128 === 32) {
                 _tmp = 3;
               } else {
-                if (_bind$159 >= 48 && _bind$159 <= 57) {
+                if (_bind$128 >= 48 && _bind$128 <= 57) {
                   _tmp = 34;
                 } else {
-                  if (_bind$159 >= 65 && _bind$159 <= 90) {
+                  if (_bind$128 >= 65 && _bind$128 <= 90) {
                     _tmp = 34;
                   } else {
-                    if (_bind$159 === 95) {
+                    if (_bind$128 === 95) {
                       _tmp = 34;
                     } else {
-                      if (_bind$159 >= 97 && _bind$159 <= 122) {
+                      if (_bind$128 >= 97 && _bind$128 <= 122) {
                         _tmp = 34;
                       } else {
-                        if (_bind$159 === 126) {
+                        if (_bind$128 === 126) {
                           _tmp = 57;
                         } else {
-                          if (_bind$159 === 194) {
-                            _tmp = 216;
+                          if (_bind$128 === 194) {
+                            _tmp = 207;
                           } else {
-                            if (_bind$159 >= 195 && _bind$159 <= 201) {
+                            if (_bind$128 >= 195 && _bind$128 <= 201) {
                               _tmp = 40;
                             } else {
-                              if (_bind$159 === 202) {
+                              if (_bind$128 === 202) {
                                 _tmp = 59;
                               } else {
-                                if (_bind$159 === 225) {
-                                  _tmp = 217;
+                                if (_bind$128 === 225) {
+                                  _tmp = 208;
                                 } else {
-                                  if (_bind$159 === 226) {
-                                    _tmp = 218;
+                                  if (_bind$128 === 226) {
+                                    _tmp = 209;
                                   } else {
-                                    if (_bind$159 === 227) {
-                                      _tmp = 219;
+                                    if (_bind$128 === 227) {
+                                      _tmp = 210;
                                     } else {
-                                      if (_bind$159 >= 228 && _bind$159 <= 233) {
+                                      if (_bind$128 >= 228 && _bind$128 <= 233) {
                                         _tmp = 47;
                                       } else {
-                                        if (_bind$159 === 234) {
+                                        if (_bind$128 === 234) {
                                           _tmp = 63;
                                         } else {
-                                          if (_bind$159 >= 235 && _bind$159 <= 236) {
+                                          if (_bind$128 >= 235 && _bind$128 <= 236) {
                                             _tmp = 47;
                                           } else {
-                                            if (_bind$159 === 237) {
+                                            if (_bind$128 === 237) {
                                               _tmp = 64;
                                             } else {
-                                              if (_bind$159 === 239) {
-                                                _tmp = 220;
+                                              if (_bind$128 === 239) {
+                                                _tmp = 211;
                                               } else {
-                                                if (_bind$159 === 240) {
+                                                if (_bind$128 === 240) {
                                                   _tmp = 66;
                                                 } else {
-                                                  if (_bind$159 === 243) {
+                                                  if (_bind$128 === 243) {
                                                     _tmp = 67;
                                                   } else {
                                                     break _L$2;
@@ -34512,30 +34131,30 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           }
           continue _L$2;
         }
-        case 195: {
-          const _bind$160 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$160 === 191) {
+        case 161: {
+          const _bind$129 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          if (_bind$129 === 191) {
             _tmp = 3;
           } else {
             break _L$2;
           }
           continue _L$2;
         }
-        case 196: {
-          const _bind$161 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$161 === 128) {
+        case 162: {
+          const _bind$130 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          if (_bind$130 === 128) {
             _tmp = 3;
           } else {
             break _L$2;
           }
           continue _L$2;
         }
-        case 197: {
-          const _bind$162 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$162 >= 128 && _bind$162 <= 138) {
+        case 163: {
+          const _bind$131 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          if (_bind$131 >= 128 && _bind$131 <= 138) {
             _tmp = 3;
           } else {
-            if (_bind$162 === 175) {
+            if (_bind$131 === 175) {
               _tmp = 3;
             } else {
               break _L$2;
@@ -34543,12 +34162,394 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           }
           continue _L$2;
         }
-        case 198: {
-          const _bind$163 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$163 === 159) {
+        case 164: {
+          const _bind$132 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          if (_bind$132 === 159) {
             _tmp = 3;
           } else {
             break _L$2;
+          }
+          continue _L$2;
+        }
+        case 165: {
+          const _bind$133 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          if (_bind$133 >= 132 && _bind$133 <= 135) {
+            _tmp = 115;
+          } else {
+            break _L$2;
+          }
+          continue _L$2;
+        }
+        case 166: {
+          const _bind$134 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          if (_bind$134 >= 128 && _bind$134 <= 175) {
+            _tmp = 115;
+          } else {
+            break _L$2;
+          }
+          continue _L$2;
+        }
+        case 167: {
+          const _bind$135 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          if (_bind$135 >= 160 && _bind$135 <= 168) {
+            _tmp = 115;
+          } else {
+            break _L$2;
+          }
+          continue _L$2;
+        }
+        case 168: {
+          const _bind$136 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          if (_bind$136 >= 176 && _bind$136 <= 191) {
+            _tmp = 113;
+          } else {
+            break _L$2;
+          }
+          continue _L$2;
+        }
+        case 169: {
+          const _bind$137 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          if (_bind$137 >= 161 && _bind$137 <= 172) {
+            _tmp = 112;
+          } else {
+            if (_bind$137 >= 174 && _bind$137 <= 191) {
+              _tmp = 112;
+            } else {
+              break _L$2;
+            }
+          }
+          continue _L$2;
+        }
+        case 170: {
+          const _bind$138 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          if (_bind$138 >= 128 && _bind$138 <= 191) {
+            _tmp = 112;
+          } else {
+            break _L$2;
+          }
+          continue _L$2;
+        }
+        case 171: {
+          const _bind$139 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          if (_bind$139 >= 128 && _bind$139 <= 175) {
+            _tmp = 112;
+          } else {
+            break _L$2;
+          }
+          continue _L$2;
+        }
+        case 172: {
+          const _bind$140 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          if (_bind$140 >= 132 && _bind$140 <= 135) {
+            _tmp = 170;
+          } else {
+            if (_bind$140 >= 184 && _bind$140 <= 187) {
+              _tmp = 170;
+            } else {
+              break _L$2;
+            }
+          }
+          continue _L$2;
+        }
+        case 173: {
+          const _bind$141 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          if (_bind$141 >= 129 && _bind$141 <= 130) {
+            _tmp = 170;
+          } else {
+            if (_bind$141 >= 133 && _bind$141 <= 134) {
+              _tmp = 170;
+            } else {
+              if (_bind$141 >= 186 && _bind$141 <= 187) {
+                _tmp = 170;
+              } else {
+                if (_bind$141 === 191) {
+                  _tmp = 215;
+                } else {
+                  break _L$2;
+                }
+              }
+            }
+          }
+          continue _L$2;
+        }
+        case 174: {
+          const _bind$142 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          if (_bind$142 >= 128 && _bind$142 <= 131) {
+            _tmp = 170;
+          } else {
+            if (_bind$142 >= 135 && _bind$142 <= 191) {
+              _tmp = 170;
+            } else {
+              break _L$2;
+            }
+          }
+          continue _L$2;
+        }
+        case 175: {
+          const _bind$143 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          if (_bind$143 >= 128 && _bind$143 <= 191) {
+            _tmp = 170;
+          } else {
+            break _L$2;
+          }
+          continue _L$2;
+        }
+        case 176: {
+          const _bind$144 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          if (_bind$144 >= 176 && _bind$144 <= 191) {
+            _tmp = 170;
+          } else {
+            break _L$2;
+          }
+          continue _L$2;
+        }
+        case 177: {
+          const _bind$145 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          if (_bind$145 >= 128 && _bind$145 <= 159) {
+            _tmp = 170;
+          } else {
+            break _L$2;
+          }
+          continue _L$2;
+        }
+        case 178: {
+          const _bind$146 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          if (_bind$146 >= 164 && _bind$146 <= 171) {
+            _tmp = 170;
+          } else {
+            if (_bind$146 >= 184 && _bind$146 <= 185) {
+              _tmp = 170;
+            } else {
+              break _L$2;
+            }
+          }
+          continue _L$2;
+        }
+        case 179: {
+          const _bind$147 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          if (_bind$147 === 159) {
+            _tmp = 213;
+          } else {
+            if (_bind$147 >= 160 && _bind$147 <= 174) {
+              _tmp = 175;
+            } else {
+              if (_bind$147 === 175) {
+                _tmp = 214;
+              } else {
+                if (_bind$147 >= 176 && _bind$147 <= 178) {
+                  _tmp = 175;
+                } else {
+                  break _L$2;
+                }
+              }
+            }
+          }
+          continue _L$2;
+        }
+        case 180: {
+          const _bind$148 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          if (_bind$148 === 160) {
+            _tmp = 212;
+          } else {
+            break _L$2;
+          }
+          continue _L$2;
+        }
+        case 181: {
+          _match_pattern = 34;
+          _match_end = lexbuf.pos;
+          break _L$2;
+        }
+        case 182: {
+          _match_pattern = 36;
+          _match_end = lexbuf.pos;
+          break _L$2;
+        }
+        case 183: {
+          _match_pattern = 35;
+          _match_end = lexbuf.pos;
+          break _L$2;
+        }
+        case 184: {
+          const _bind$149 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          if (_bind$149 >= 128 && _bind$149 <= 191) {
+            _tmp = 126;
+          } else {
+            break _L$2;
+          }
+          continue _L$2;
+        }
+        case 185: {
+          const _bind$150 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          if (_bind$150 >= 128 && _bind$150 <= 191) {
+            _tmp = 184;
+          } else {
+            break _L$2;
+          }
+          continue _L$2;
+        }
+        case 186: {
+          const _bind$151 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          if (_bind$151 >= 144 && _bind$151 <= 191) {
+            _tmp = 185;
+          } else {
+            break _L$2;
+          }
+          continue _L$2;
+        }
+        case 187: {
+          const _bind$152 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          if (_bind$152 >= 128 && _bind$152 <= 191) {
+            _tmp = 185;
+          } else {
+            break _L$2;
+          }
+          continue _L$2;
+        }
+        case 188: {
+          const _bind$153 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          if (_bind$153 >= 65 && _bind$153 <= 90) {
+            _tmp = 128;
+          } else {
+            if (_bind$153 === 95) {
+              _tmp = 128;
+            } else {
+              if (_bind$153 >= 97 && _bind$153 <= 122) {
+                _tmp = 128;
+              } else {
+                break _L$2;
+              }
+            }
+          }
+          continue _L$2;
+        }
+        case 189: {
+          const _bind$154 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          if (_bind$154 >= 128 && _bind$154 <= 191) {
+            _tmp = 129;
+          } else {
+            break _L$2;
+          }
+          continue _L$2;
+        }
+        case 190: {
+          const _bind$155 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          if (_bind$155 >= 128 && _bind$155 <= 191) {
+            _tmp = 189;
+          } else {
+            break _L$2;
+          }
+          continue _L$2;
+        }
+        case 191: {
+          const _bind$156 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          if (_bind$156 >= 144 && _bind$156 <= 191) {
+            _tmp = 190;
+          } else {
+            break _L$2;
+          }
+          continue _L$2;
+        }
+        case 192: {
+          const _bind$157 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          if (_bind$157 >= 128 && _bind$157 <= 191) {
+            _tmp = 190;
+          } else {
+            break _L$2;
+          }
+          continue _L$2;
+        }
+        case 193: {
+          const _bind$158 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          if (_bind$158 >= 128 && _bind$158 <= 191) {
+            _tmp = 130;
+          } else {
+            break _L$2;
+          }
+          continue _L$2;
+        }
+        case 194: {
+          const _bind$159 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          if (_bind$159 >= 128 && _bind$159 <= 191) {
+            _tmp = 193;
+          } else {
+            break _L$2;
+          }
+          continue _L$2;
+        }
+        case 195: {
+          const _bind$160 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          if (_bind$160 >= 144 && _bind$160 <= 191) {
+            _tmp = 194;
+          } else {
+            break _L$2;
+          }
+          continue _L$2;
+        }
+        case 196: {
+          const _bind$161 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          if (_bind$161 >= 128 && _bind$161 <= 191) {
+            _tmp = 194;
+          } else {
+            break _L$2;
+          }
+          continue _L$2;
+        }
+        case 197: {
+          const _bind$162 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          if (_bind$162 === 39) {
+            _tmp = 216;
+          } else {
+            break _L$2;
+          }
+          continue _L$2;
+        }
+        case 198: {
+          const _bind$163 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          switch (_bind$163) {
+            case 32: {
+              _tmp = 217;
+              break;
+            }
+            case 34: {
+              _tmp = 217;
+              break;
+            }
+            case 39: {
+              _tmp = 218;
+              break;
+            }
+            case 92: {
+              _tmp = 217;
+              break;
+            }
+            case 98: {
+              _tmp = 217;
+              break;
+            }
+            case 110: {
+              _tmp = 217;
+              break;
+            }
+            case 111: {
+              _tmp = 219;
+              break;
+            }
+            case 114: {
+              _tmp = 217;
+              break;
+            }
+            case 116: {
+              _tmp = 217;
+              break;
+            }
+            case 120: {
+              _tmp = 220;
+              break;
+            }
+            default: {
+              break _L$2;
+            }
           }
           continue _L$2;
         }
@@ -34617,125 +34618,34 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
         }
         case 202: {
           const _bind$167 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$167 >= 132 && _bind$167 <= 135) {
-            _tmp = 160;
+          if (_bind$167 >= 48 && _bind$167 <= 57) {
+            _tmp = 223;
           } else {
-            break _L$2;
+            if (_bind$167 >= 65 && _bind$167 <= 70) {
+              _tmp = 223;
+            } else {
+              if (_bind$167 >= 97 && _bind$167 <= 102) {
+                _tmp = 223;
+              } else {
+                break _L$2;
+              }
+            }
           }
           continue _L$2;
         }
         case 203: {
           const _bind$168 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$168 >= 128 && _bind$168 <= 175) {
-            _tmp = 160;
+          if (_bind$168 >= 48 && _bind$168 <= 57) {
+            _tmp = 203;
           } else {
-            break _L$2;
-          }
-          continue _L$2;
-        }
-        case 204: {
-          const _bind$169 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$169 >= 160 && _bind$169 <= 168) {
-            _tmp = 160;
-          } else {
-            break _L$2;
-          }
-          continue _L$2;
-        }
-        case 205: {
-          const _bind$170 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$170 >= 176 && _bind$170 <= 191) {
-            _tmp = 97;
-          } else {
-            break _L$2;
-          }
-          continue _L$2;
-        }
-        case 206: {
-          _match_pattern = 19;
-          _match_end = lexbuf.pos;
-          _capture_0_start.val = _match_start + 2 | 0;
-          _capture_0_end.val = _match_start + 3 | 0;
-          break _L$2;
-        }
-        case 207: {
-          const _bind$171 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$171 === 39) {
-            _tmp = 222;
-          } else {
-            break _L$2;
-          }
-          continue _L$2;
-        }
-        case 208: {
-          _match_pattern = 19;
-          _match_end = lexbuf.pos;
-          _capture_0_start.val = _match_start + 2 | 0;
-          _capture_0_end.val = _match_start + 3 | 0;
-          const _bind$172 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$172 === 39) {
-            _tmp = 222;
-          } else {
-            break _L$2;
-          }
-          continue _L$2;
-        }
-        case 209: {
-          const _bind$173 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$173 >= 48 && _bind$173 <= 51) {
-            _tmp = 223;
-          } else {
-            break _L$2;
-          }
-          continue _L$2;
-        }
-        case 210: {
-          const _bind$174 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$174 >= 48 && _bind$174 <= 57) {
-            _tmp = 224;
-          } else {
-            if (_bind$174 >= 65 && _bind$174 <= 70) {
-              _tmp = 224;
+            if (_bind$168 >= 65 && _bind$168 <= 70) {
+              _tmp = 203;
             } else {
-              if (_bind$174 >= 97 && _bind$174 <= 102) {
-                _tmp = 224;
+              if (_bind$168 >= 97 && _bind$168 <= 102) {
+                _tmp = 203;
               } else {
-                break _L$2;
-              }
-            }
-          }
-          continue _L$2;
-        }
-        case 211: {
-          const _bind$175 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$175 >= 48 && _bind$175 <= 57) {
-            _tmp = 226;
-          } else {
-            if (_bind$175 >= 65 && _bind$175 <= 70) {
-              _tmp = 226;
-            } else {
-              if (_bind$175 >= 97 && _bind$175 <= 102) {
-                _tmp = 226;
-              } else {
-                break _L$2;
-              }
-            }
-          }
-          continue _L$2;
-        }
-        case 212: {
-          const _bind$176 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$176 >= 48 && _bind$176 <= 57) {
-            _tmp = 212;
-          } else {
-            if (_bind$176 >= 65 && _bind$176 <= 70) {
-              _tmp = 212;
-            } else {
-              if (_bind$176 >= 97 && _bind$176 <= 102) {
-                _tmp = 212;
-              } else {
-                if (_bind$176 === 125) {
-                  _tmp = 225;
+                if (_bind$168 === 125) {
+                  _tmp = 222;
                 } else {
                   break _L$2;
                 }
@@ -34744,25 +34654,25 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           }
           continue _L$2;
         }
-        case 213: {
-          const _bind$177 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$177 >= 48 && _bind$177 <= 55) {
-            _tmp = 227;
+        case 204: {
+          const _bind$169 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          if (_bind$169 >= 48 && _bind$169 <= 55) {
+            _tmp = 224;
           } else {
             break _L$2;
           }
           continue _L$2;
         }
-        case 214: {
-          const _bind$178 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$178 >= 48 && _bind$178 <= 57) {
-            _tmp = 228;
+        case 205: {
+          const _bind$170 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          if (_bind$170 >= 48 && _bind$170 <= 57) {
+            _tmp = 225;
           } else {
-            if (_bind$178 >= 65 && _bind$178 <= 70) {
-              _tmp = 228;
+            if (_bind$170 >= 65 && _bind$170 <= 70) {
+              _tmp = 225;
             } else {
-              if (_bind$178 >= 97 && _bind$178 <= 102) {
-                _tmp = 228;
+              if (_bind$170 >= 97 && _bind$170 <= 102) {
+                _tmp = 225;
               } else {
                 break _L$2;
               }
@@ -34770,22 +34680,22 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           }
           continue _L$2;
         }
-        case 215: {
+        case 206: {
           _match_pattern = 6;
           _match_end = lexbuf.pos;
           _capture_0_start.val = _match_start;
           _capture_0_end.val = _match_start + 4 | 0;
           break _L$2;
         }
-        case 216: {
-          const _bind$179 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$179 === 160) {
+        case 207: {
+          const _bind$171 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          if (_bind$171 === 160) {
             _tmp = 3;
           } else {
-            if (_bind$179 >= 161 && _bind$179 <= 172) {
+            if (_bind$171 >= 161 && _bind$171 <= 172) {
               _tmp = 34;
             } else {
-              if (_bind$179 >= 174 && _bind$179 <= 191) {
+              if (_bind$171 >= 174 && _bind$171 <= 191) {
                 _tmp = 34;
               } else {
                 break _L$2;
@@ -34794,15 +34704,15 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           }
           continue _L$2;
         }
-        case 217: {
-          const _bind$180 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$180 >= 132 && _bind$180 <= 135) {
+        case 208: {
+          const _bind$172 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          if (_bind$172 >= 132 && _bind$172 <= 135) {
             _tmp = 40;
           } else {
-            if (_bind$180 === 154) {
-              _tmp = 196;
+            if (_bind$172 === 154) {
+              _tmp = 162;
             } else {
-              if (_bind$180 >= 184 && _bind$180 <= 187) {
+              if (_bind$172 >= 184 && _bind$172 <= 187) {
                 _tmp = 40;
               } else {
                 break _L$2;
@@ -34811,24 +34721,24 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           }
           continue _L$2;
         }
-        case 218: {
-          const _bind$181 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$181 === 128) {
-            _tmp = 197;
+        case 209: {
+          const _bind$173 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          if (_bind$173 === 128) {
+            _tmp = 163;
           } else {
-            if (_bind$181 === 129) {
+            if (_bind$173 === 129) {
               _tmp = 138;
             } else {
-              if (_bind$181 === 130) {
+              if (_bind$173 === 130) {
                 _tmp = 40;
               } else {
-                if (_bind$181 >= 133 && _bind$181 <= 134) {
+                if (_bind$173 >= 133 && _bind$173 <= 134) {
                   _tmp = 40;
                 } else {
-                  if (_bind$181 >= 186 && _bind$181 <= 187) {
+                  if (_bind$173 >= 186 && _bind$173 <= 187) {
                     _tmp = 40;
                   } else {
-                    if (_bind$181 === 191) {
+                    if (_bind$173 === 191) {
                       _tmp = 143;
                     } else {
                       break _L$2;
@@ -34840,15 +34750,15 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           }
           continue _L$2;
         }
-        case 219: {
-          const _bind$182 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$182 === 128) {
-            _tmp = 130;
+        case 210: {
+          const _bind$174 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          if (_bind$174 === 128) {
+            _tmp = 93;
           } else {
-            if (_bind$182 >= 129 && _bind$182 <= 131) {
+            if (_bind$174 >= 129 && _bind$174 <= 131) {
               _tmp = 40;
             } else {
-              if (_bind$182 >= 135 && _bind$182 <= 191) {
+              if (_bind$174 >= 135 && _bind$174 <= 191) {
                 _tmp = 40;
               } else {
                 break _L$2;
@@ -34857,16 +34767,107 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           }
           continue _L$2;
         }
-        case 220: {
-          const _bind$183 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$183 >= 164 && _bind$183 <= 171) {
+        case 211: {
+          const _bind$175 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          if (_bind$175 >= 164 && _bind$175 <= 171) {
             _tmp = 40;
           } else {
-            if (_bind$183 >= 184 && _bind$183 <= 185) {
+            if (_bind$175 >= 184 && _bind$175 <= 185) {
               _tmp = 40;
             } else {
-              if (_bind$183 === 187) {
-                _tmp = 195;
+              if (_bind$175 === 187) {
+                _tmp = 161;
+              } else {
+                break _L$2;
+              }
+            }
+          }
+          continue _L$2;
+        }
+        case 212: {
+          const _bind$176 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          if (_bind$176 >= 132 && _bind$176 <= 135) {
+            _tmp = 170;
+          } else {
+            break _L$2;
+          }
+          continue _L$2;
+        }
+        case 213: {
+          const _bind$177 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          if (_bind$177 >= 128 && _bind$177 <= 175) {
+            _tmp = 170;
+          } else {
+            break _L$2;
+          }
+          continue _L$2;
+        }
+        case 214: {
+          const _bind$178 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          if (_bind$178 >= 160 && _bind$178 <= 168) {
+            _tmp = 170;
+          } else {
+            break _L$2;
+          }
+          continue _L$2;
+        }
+        case 215: {
+          const _bind$179 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          if (_bind$179 >= 176 && _bind$179 <= 191) {
+            _tmp = 112;
+          } else {
+            break _L$2;
+          }
+          continue _L$2;
+        }
+        case 216: {
+          _match_pattern = 19;
+          _match_end = lexbuf.pos;
+          _capture_0_start.val = _match_start + 2 | 0;
+          _capture_0_end.val = _match_start + 3 | 0;
+          break _L$2;
+        }
+        case 217: {
+          const _bind$180 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          if (_bind$180 === 39) {
+            _tmp = 226;
+          } else {
+            break _L$2;
+          }
+          continue _L$2;
+        }
+        case 218: {
+          _match_pattern = 19;
+          _match_end = lexbuf.pos;
+          _capture_0_start.val = _match_start + 2 | 0;
+          _capture_0_end.val = _match_start + 3 | 0;
+          const _bind$181 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          if (_bind$181 === 39) {
+            _tmp = 226;
+          } else {
+            break _L$2;
+          }
+          continue _L$2;
+        }
+        case 219: {
+          const _bind$182 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          if (_bind$182 >= 48 && _bind$182 <= 51) {
+            _tmp = 227;
+          } else {
+            break _L$2;
+          }
+          continue _L$2;
+        }
+        case 220: {
+          const _bind$183 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          if (_bind$183 >= 48 && _bind$183 <= 57) {
+            _tmp = 228;
+          } else {
+            if (_bind$183 >= 65 && _bind$183 <= 70) {
+              _tmp = 228;
+            } else {
+              if (_bind$183 >= 97 && _bind$183 <= 102) {
+                _tmp = 228;
               } else {
                 break _L$2;
               }
@@ -34908,22 +34909,15 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           continue _L$2;
         }
         case 222: {
-          _match_pattern = 20;
-          _match_end = lexbuf.pos;
-          _capture_0_start.val = _match_start + 3 | 0;
-          _capture_0_end.val = _match_start + 4 | 0;
-          break _L$2;
-        }
-        case 223: {
           const _bind$185 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$185 >= 48 && _bind$185 <= 55) {
+          if (_bind$185 === 39) {
             _tmp = 229;
           } else {
             break _L$2;
           }
           continue _L$2;
         }
-        case 224: {
+        case 223: {
           const _bind$186 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
           if (_bind$186 >= 48 && _bind$186 <= 57) {
             _tmp = 230;
@@ -34940,31 +34934,30 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           }
           continue _L$2;
         }
-        case 225: {
+        case 224: {
           const _bind$187 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$187 === 39) {
+          if (_bind$187 >= 48 && _bind$187 <= 55) {
             _tmp = 231;
           } else {
             break _L$2;
           }
           continue _L$2;
         }
-        case 226: {
+        case 225: {
           const _bind$188 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$188 >= 48 && _bind$188 <= 57) {
+          if (_bind$188 === 39) {
             _tmp = 232;
           } else {
-            if (_bind$188 >= 65 && _bind$188 <= 70) {
-              _tmp = 232;
-            } else {
-              if (_bind$188 >= 97 && _bind$188 <= 102) {
-                _tmp = 232;
-              } else {
-                break _L$2;
-              }
-            }
+            break _L$2;
           }
           continue _L$2;
+        }
+        case 226: {
+          _match_pattern = 20;
+          _match_end = lexbuf.pos;
+          _capture_0_start.val = _match_start + 3 | 0;
+          _capture_0_end.val = _match_start + 4 | 0;
+          break _L$2;
         }
         case 227: {
           const _bind$189 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
@@ -34977,32 +34970,22 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
         }
         case 228: {
           const _bind$190 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$190 === 39) {
+          if (_bind$190 >= 48 && _bind$190 <= 57) {
             _tmp = 234;
           } else {
-            break _L$2;
+            if (_bind$190 >= 65 && _bind$190 <= 70) {
+              _tmp = 234;
+            } else {
+              if (_bind$190 >= 97 && _bind$190 <= 102) {
+                _tmp = 234;
+              } else {
+                break _L$2;
+              }
+            }
           }
           continue _L$2;
         }
         case 229: {
-          const _bind$191 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$191 >= 48 && _bind$191 <= 55) {
-            _tmp = 235;
-          } else {
-            break _L$2;
-          }
-          continue _L$2;
-        }
-        case 230: {
-          const _bind$192 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$192 === 39) {
-            _tmp = 236;
-          } else {
-            break _L$2;
-          }
-          continue _L$2;
-        }
-        case 231: {
           _match_pattern = 10;
           _match_end = lexbuf.pos;
           _capture_0_start.val = _match_start + 4 | 0;
@@ -35011,16 +34994,16 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           _capture_1_end = _match_end;
           break _L$2;
         }
-        case 232: {
-          const _bind$193 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
-          if (_bind$193 >= 48 && _bind$193 <= 57) {
-            _tmp = 237;
+        case 230: {
+          const _bind$191 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          if (_bind$191 >= 48 && _bind$191 <= 57) {
+            _tmp = 235;
           } else {
-            if (_bind$193 >= 65 && _bind$193 <= 70) {
-              _tmp = 237;
+            if (_bind$191 >= 65 && _bind$191 <= 70) {
+              _tmp = 235;
             } else {
-              if (_bind$193 >= 97 && _bind$193 <= 102) {
-                _tmp = 237;
+              if (_bind$191 >= 97 && _bind$191 <= 102) {
+                _tmp = 235;
               } else {
                 break _L$2;
               }
@@ -35028,7 +35011,32 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           }
           continue _L$2;
         }
+        case 231: {
+          const _bind$192 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          if (_bind$192 === 39) {
+            _tmp = 236;
+          } else {
+            break _L$2;
+          }
+          continue _L$2;
+        }
+        case 232: {
+          _match_pattern = 7;
+          _match_end = lexbuf.pos;
+          _capture_0_start.val = _match_start;
+          _capture_0_end.val = _match_start + 6 | 0;
+          break _L$2;
+        }
         case 233: {
+          const _bind$193 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
+          if (_bind$193 >= 48 && _bind$193 <= 55) {
+            _tmp = 237;
+          } else {
+            break _L$2;
+          }
+          continue _L$2;
+        }
+        case 234: {
           const _bind$194 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
           if (_bind$194 === 39) {
             _tmp = 238;
@@ -35036,13 +35044,6 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
             break _L$2;
           }
           continue _L$2;
-        }
-        case 234: {
-          _match_pattern = 7;
-          _match_end = lexbuf.pos;
-          _capture_0_start.val = _match_start;
-          _capture_0_end.val = _match_start + 6 | 0;
-          break _L$2;
         }
         case 235: {
           const _bind$195 = moonbitlang$ulex$lib$new_frontend$lexer$$Lexbuf$next_as_int(lexbuf);
@@ -35054,10 +35055,10 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           continue _L$2;
         }
         case 236: {
-          _match_pattern = 17;
+          _match_pattern = 8;
           _match_end = lexbuf.pos;
-          _capture_0_start.val = _match_start + 4 | 0;
-          _capture_0_end.val = _match_start + 6 | 0;
+          _capture_0_start.val = _match_start;
+          _capture_0_end.val = _match_start + 7 | 0;
           break _L$2;
         }
         case 237: {
@@ -35070,24 +35071,24 @@ function moonbitlang$ulex$lib$new_frontend$lexer$$tokens(lexbuf, env, preserve_c
           continue _L$2;
         }
         case 238: {
-          _match_pattern = 8;
+          _match_pattern = 17;
           _match_end = lexbuf.pos;
-          _capture_0_start.val = _match_start;
-          _capture_0_end.val = _match_start + 7 | 0;
+          _capture_0_start.val = _match_start + 4 | 0;
+          _capture_0_end.val = _match_start + 6 | 0;
           break _L$2;
         }
         case 239: {
-          _match_pattern = 18;
-          _match_end = lexbuf.pos;
-          _capture_0_start.val = _match_start + 4 | 0;
-          _capture_0_end.val = _match_start + 7 | 0;
-          break _L$2;
-        }
-        case 240: {
           _match_pattern = 9;
           _match_end = lexbuf.pos;
           _capture_0_start.val = _match_start;
           _capture_0_end.val = _match_start + 8 | 0;
+          break _L$2;
+        }
+        case 240: {
+          _match_pattern = 18;
+          _match_end = lexbuf.pos;
+          _capture_0_start.val = _match_start + 4 | 0;
+          _capture_0_end.val = _match_start + 7 | 0;
           break _L$2;
         }
         default: {

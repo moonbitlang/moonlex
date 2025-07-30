@@ -109,8 +109,8 @@ fn[T : @lexbuf.IStringLexbuf] token(lexbuf : T) -> Token raise LexError  {
       _capture_0_start = _match_start
       _capture_0_end = _match_end
       continue match lexbuf.next_as_int() {
-        69 => 20
-        101 => 20
+        69 => 17
+        101 => 17
         _ => break
       }
     }
@@ -120,10 +120,10 @@ fn[T : @lexbuf.IStringLexbuf] token(lexbuf : T) -> Token raise LexError  {
       _capture_0_start = _match_start
       _capture_0_end = _match_end
       continue match lexbuf.next_as_int() {
-        46 => 19
+        46 => 16
         48..=57 => 7
-        69 => 20
-        101 => 20
+        69 => 17
+        101 => 17
         _ => break
       }
     }
@@ -148,7 +148,7 @@ fn[T : @lexbuf.IStringLexbuf] token(lexbuf : T) -> Token raise LexError  {
       _capture_0_start = _match_start
       _capture_0_end = _match_start + 1
       continue match lexbuf.next_as_int() {
-        97 => 17
+        97 => 19
         _ => break
       }
     }
@@ -158,7 +158,7 @@ fn[T : @lexbuf.IStringLexbuf] token(lexbuf : T) -> Token raise LexError  {
       _capture_0_start = _match_start
       _capture_0_end = _match_start + 1
       continue match lexbuf.next_as_int() {
-        117 => 16
+        117 => 18
         _ => break
       }
     }
@@ -168,7 +168,7 @@ fn[T : @lexbuf.IStringLexbuf] token(lexbuf : T) -> Token raise LexError  {
       _capture_0_start = _match_start
       _capture_0_end = _match_start + 1
       continue match lexbuf.next_as_int() {
-        114 => 18
+        114 => 20
         _ => break
       }
     }
@@ -184,79 +184,79 @@ fn[T : @lexbuf.IStringLexbuf] token(lexbuf : T) -> Token raise LexError  {
     }
     16 => {
       continue match lexbuf.next_as_int() {
-        108 => 21
+        48..=57 => 23
         _ => break
       }
     }
     17 => {
       continue match lexbuf.next_as_int() {
-        108 => 22
+        43 => 21
+        45 => 21
+        48..=57 => 22
         _ => break
       }
     }
     18 => {
       continue match lexbuf.next_as_int() {
-        117 => 23
+        108 => 24
         _ => break
       }
     }
     19 => {
       continue match lexbuf.next_as_int() {
-        48..=57 => 26
+        108 => 25
         _ => break
       }
     }
     20 => {
       continue match lexbuf.next_as_int() {
-        43 => 24
-        45 => 24
-        48..=57 => 25
+        117 => 26
         _ => break
       }
     }
     21 => {
       continue match lexbuf.next_as_int() {
-        108 => 27
+        48..=57 => 22
         _ => break
       }
     }
     22 => {
+      _match_pattern = 1
+      _match_end = lexbuf.curr_pos()
+      _capture_0_start = _match_start
+      _capture_0_end = _match_end
       continue match lexbuf.next_as_int() {
-        115 => 28
+        48..=57 => 22
         _ => break
       }
     }
     23 => {
+      _match_pattern = 1
+      _match_end = lexbuf.curr_pos()
+      _capture_0_start = _match_start
+      _capture_0_end = _match_end
       continue match lexbuf.next_as_int() {
-        101 => 29
+        48..=57 => 23
+        69 => 17
+        101 => 17
         _ => break
       }
     }
     24 => {
       continue match lexbuf.next_as_int() {
-        48..=57 => 25
+        108 => 27
         _ => break
       }
     }
     25 => {
-      _match_pattern = 1
-      _match_end = lexbuf.curr_pos()
-      _capture_0_start = _match_start
-      _capture_0_end = _match_end
       continue match lexbuf.next_as_int() {
-        48..=57 => 25
+        115 => 28
         _ => break
       }
     }
     26 => {
-      _match_pattern = 1
-      _match_end = lexbuf.curr_pos()
-      _capture_0_start = _match_start
-      _capture_0_end = _match_end
       continue match lexbuf.next_as_int() {
-        48..=57 => 26
-        69 => 20
-        101 => 20
+        101 => 29
         _ => break
       }
     }

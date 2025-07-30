@@ -112,12 +112,7 @@ pub fn NFA::from_patterns(
 fn new_node(self : NFA) -> NFANode {
   let new_id = self.node_count
   self.node_count += 1
-  let node = NFANode::{
-    num: new_id,
-    eps: [],
-    tagged_eps: [],
-    trans: [],
-  }
+  let node = NFANode::{ num: new_id, eps: [], tagged_eps: [], trans: [] }
   self.graph.push(node)
   guard new_id + 1 == self.graph.length()
   node
@@ -140,85 +135,69 @@ fn register_regex(
   re : Regex,
   name2pos : (String) -> (NFACapturePosition, NFACapturePosition),
 ) -> Unit {
-  let final_ = self.register_regex_rec(node, re, name2pos)
-  let id = self.pattern_captures.length()
-  self.end_nodes.set(final_.num, id)
-}
-
-///|
-fn register_regex_rec(
-  self : NFA,
-  node : NFANode,
-  re : Regex,
-  name2pos : (String) -> (NFACapturePosition, NFACapturePosition),
-) -> NFANode {
-  let new_node = self.new_node()
-  self.add_edge(node, Eps, new_node)
-  // return the final_ point of re for convience in building
-  let final_ = match re.desc {
-    EOF => {
-      let next_node = self.new_node()
-      self.add_edge(new_node, EChar(@eof_char_set.eof), next_node)
-      next_node
-    }
-    Character(cset) => {
-      let next_node = self.new_node()
-      self.add_edge(
-        new_node,
-        EChar(@eof_char_set.from_char_set(cset)),
-        next_node,
-      )
-      next_node
-    }
-    Epsilon => {
-      let next_node = self.new_node()
-      self.add_edge(new_node, Eps, next_node)
-      next_node
-    }
-    Repetition(re) => {
-      let final_ = self.register_regex_rec(new_node, re, name2pos)
-      self.add_edge(final_, Eps, new_node)
-      final_
-    }
-    Concat(re1, re2) => {
-      let mid = self.register_regex_rec(new_node, re1, name2pos)
-      self.register_regex_rec(mid, re2, name2pos)
-    }
-    Alter(re1, re2) => {
-      let final_1 = self.register_regex_rec(new_node, re1, name2pos)
-      let final_2 = self.register_regex_rec(new_node, re2, name2pos)
-      let final_ = self.new_node()
-      self.add_edge(final_1, Eps, final_)
-      self.add_edge(final_2, Eps, final_)
-      final_
-    }
-    Capture(re, name) => {
-      let start = self.new_node()
-      let final_ = self.new_node()
-      let tail = self.register_regex_rec(start, re, name2pos)
-      let (begin_tag, end_tag) = name2pos(name)
-      self.add_edge(
-        new_node,
-        if begin_tag is Dynamic_nfa(begin_tag) {
-          EpsWithTag(begin_tag)
-        } else {
-          Eps
-        },
-        start,
-      )
-      self.add_edge(
-        tail,
-        if end_tag is Dynamic_nfa(end_tag) {
-          EpsWithTag(end_tag)
-        } else {
-          Eps
-        },
-        final_,
-      )
-      final_
+  letrec aux = fn(re : @regex.Regex, start : NFANode) -> NFANode {
+    match re.desc {
+      EOF => {
+        let end = self.new_node()
+        self.add_edge(start, EChar(@eof_char_set.eof), end)
+        end
+      }
+      Character(c) => {
+        let end = self.new_node()
+        self.add_edge(start, EChar(@eof_char_set.from_char_set(c)), end)
+        end
+      }
+      Epsilon => start
+      Repetition(re) => {
+        let loop_start = self.new_node()
+        self.add_edge(start, Eps, loop_start)
+        let loop_end = aux(re, loop_start)
+        self.add_edge(loop_end, Eps, loop_start)
+        let end = self.new_node()
+        self.add_edge(loop_end, Eps, end)
+        end
+      }
+      Alter(re1, re2) => {
+        let end1 = aux(re1, start)
+        let end2 = aux(re2, start)
+        let end = self.new_node()
+        self.add_edge(end1, Eps, end)
+        self.add_edge(end2, Eps, end)
+        end
+      }
+      Concat(re1, re2) => {
+        let end1 = aux(re1, start)
+        aux(re2, end1)
+      }
+      Capture(re, name) => {
+        let (begin_tag, end_tag) = name2pos(name)
+        let before = self.new_node()
+        self.add_edge(
+          start,
+          if begin_tag is Dynamic_nfa(begin_tag) {
+            EpsWithTag(begin_tag)
+          } else {
+            Eps
+          },
+          before,
+        )
+        let after = aux(re, before)
+        let end = self.new_node()
+        self.add_edge(
+          after,
+          if end_tag is Dynamic_nfa(end_tag) {
+            EpsWithTag(end_tag)
+          } else {
+            Eps
+          },
+          end,
+        )
+        end
+      }
     }
   }
-  let new_final = self.new_node()
-  self.add_edge(final_, Eps, new_final)
-  new_final
+
+  let accept = aux(re, node)
+  let id = self.pattern_captures.length()
+  self.end_nodes.set(accept.num, id)
 }
