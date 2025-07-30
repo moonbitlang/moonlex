@@ -5,6 +5,7 @@
     "moonbitlang/x/encoding",
     "moonbitlang/ulex/lib/util/char_set",
     "moonbitlang/ulex/lib/regex",
-    "moonbitlang/ulex/lib/util/bit_array"
+    "moonbitlang/ulex/lib/util/bit_array",
+    "moonbitlang/ulex/lib/util/immut_map"
   ]
 }

@@ -122,7 +122,7 @@ fn DFA::add_edge(self : DFA, from : Int, e : @eof_char_set.T, to : Int) -> Unit 
 }
 
 ///|
-typealias @immut/sorted_map.T[NFANode, TagState] as State
+typealias @immut_map.T[NFANode, TagState] as State
 
 ///|
 fn state_canonicalize(state : State, tag_count : Int) -> (State, TagAction) {
@@ -146,7 +146,7 @@ fn state_canonicalize(state : State, tag_count : Int) -> (State, TagAction) {
         })
       (pair.0, TagState(tag_state))
     })
-    |> @immut/sorted_map.from_iter
+    |> @immut_map.from_iter
   let tag_action = []
   for tag_index, ops in ranks_by_tag {
     for dest_rank = ops.length() - 1; dest_rank >= 0; dest_rank = dest_rank - 1 {
@@ -209,7 +209,7 @@ fn DFA::from_nfa(nfa : NFA) -> DFA {
       let (x, y) = it
       (x, TagState::new().update_by_tags(y))
     })
-    |> @immut/sorted_map.from_iter
+    |> @immut_map.from_iter
   let (canonicalized_initial_state, start_action) = state_canonicalize(
     initial_state,
     nfa.tag_count,
@@ -276,9 +276,7 @@ fn DFA::from_nfa(nfa : NFA) -> DFA {
     let next_states : Map[@eof_char_set.T, State] = Map::new()
     for tran in nfa_trans {
       let (cset, targets) = tran
-      let mut state_map = next_states
-        .get(cset)
-        .unwrap_or_else(fn() { @immut/sorted_map.new() })
+      let mut state_map = next_states.get(cset).unwrap_or(@immut_map.empty())
       for target in targets {
         let (step_node, from_tagState) = target
         let step_tagState = from_tagState
