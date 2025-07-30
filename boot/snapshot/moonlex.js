@@ -823,6 +823,12 @@ function $64$moonbitlang$47$ulex$47$lib$47$util$47$eof_char_set$46$EofCharRepr$C
   this._0 = param0;
 }
 $64$moonbitlang$47$ulex$47$lib$47$util$47$eof_char_set$46$EofCharRepr$Char.prototype.$tag = 1;
+function $i32_ctz(a) {
+  a >>>= 0;
+  if (a === 0) return 32;
+  a &= -a;
+  return 31 - Math.clz32(a);
+}
 const $64$moonbitlang$47$ulex$47$lib$47$util$47$immut_map$46$T$Empty$35$ = { $tag: 0 };
 function $64$moonbitlang$47$ulex$47$lib$47$util$47$immut_map$46$T$Node$35$(param0, param1, param2, param3, param4) {
   this._0 = param0;
@@ -10108,6 +10114,15 @@ function moonbitlang$core$array$$Array$op_get$27$(self, index) {
     return $panic();
   }
 }
+function moonbitlang$core$array$$Array$op_get$109$(self, index) {
+  const len = self.length;
+  if (index >= 0 && index < len) {
+    $bound_check(self, index);
+    return self[index];
+  } else {
+    return $panic();
+  }
+}
 function moonbitlang$core$array$$Array$op_get$37$(self, index) {
   const len = self.length;
   if (index >= 0 && index < len) {
@@ -10118,15 +10133,6 @@ function moonbitlang$core$array$$Array$op_get$37$(self, index) {
   }
 }
 function moonbitlang$core$array$$Array$op_get$6$(self, index) {
-  const len = self.length;
-  if (index >= 0 && index < len) {
-    $bound_check(self, index);
-    return self[index];
-  } else {
-    return $panic();
-  }
-}
-function moonbitlang$core$array$$Array$op_get$109$(self, index) {
   const len = self.length;
   if (index >= 0 && index < len) {
     $bound_check(self, index);
@@ -20452,6 +20458,45 @@ function moonbitlang$ulex$lib$util$bit_array$$BitArray$unsafe_set(self, index, v
   $bound_check(self, word_index);
   self[word_index] = new_word;
 }
+function moonbitlang$ulex$lib$util$bit_array$$BitArray$iter(self) {
+  const _p = (yield_) => {
+    const _end4 = self.length;
+    let _tmp = 0;
+    while (true) {
+      const i = _tmp;
+      if (i < _end4) {
+        _L: {
+          $bound_check(self, i);
+          let word = self[i];
+          if (word === 0) {
+            break _L;
+          }
+          const base = Math.imul(i, 32) | 0;
+          while (true) {
+            if (word !== 0) {
+              const bit_pos = $i32_ctz(word);
+              const _bind = yield_(base + bit_pos | 0);
+              if (_bind === 0) {
+                return 0;
+              }
+              word = word & (word - 1 | 0);
+              continue;
+            } else {
+              break;
+            }
+          }
+          break _L;
+        }
+        _tmp = i + 1 | 0;
+        continue;
+      } else {
+        break;
+      }
+    }
+    return 1;
+  };
+  return _p;
+}
 function moonbitlang$ulex$lib$util$immut_map$$InorderIterator$move_left$187$(self, node) {
   let _tmp = node;
   while (true) {
@@ -20543,7 +20588,7 @@ function moonbitlang$ulex$lib$util$immut_map$$T$get$187$(self, key) {
     }
   }
 }
-function moonbitlang$ulex$lib$util$immut_map$$iter$46$go$47$6598(yield_, t) {
+function moonbitlang$ulex$lib$util$immut_map$$iter$46$go$47$6609(yield_, t) {
   let _tmp = t;
   while (true) {
     const t$2 = _tmp;
@@ -20551,7 +20596,7 @@ function moonbitlang$ulex$lib$util$immut_map$$iter$46$go$47$6598(yield_, t) {
       return 1;
     } else {
       const _Node = t$2;
-      const _bind = moonbitlang$ulex$lib$util$immut_map$$iter$46$go$47$6598(yield_, _Node._2);
+      const _bind = moonbitlang$ulex$lib$util$immut_map$$iter$46$go$47$6609(yield_, _Node._2);
       if (_bind === 0) {
         return 0;
       } else {
@@ -20567,7 +20612,7 @@ function moonbitlang$ulex$lib$util$immut_map$$iter$46$go$47$6598(yield_, t) {
   }
 }
 function moonbitlang$ulex$lib$util$immut_map$$T$iter$187$(self) {
-  const _p = (yield_) => moonbitlang$ulex$lib$util$immut_map$$iter$46$go$47$6598(yield_, self);
+  const _p = (yield_) => moonbitlang$ulex$lib$util$immut_map$$iter$46$go$47$6609(yield_, self);
   return _p;
 }
 function moonbitlang$ulex$lib$util$immut_map$$from_iter$187$(iter) {
@@ -20617,135 +20662,135 @@ function moonbitlang$core$builtin$$Hash$hash_combine$124$(self, hasher) {
     return 1;
   });
 }
-function moonbitlang$core$builtin$$Compare$compare$149$(_x_673, _x_674) {
-  if (_x_673 === 0) {
-    if (_x_674 === 0) {
+function moonbitlang$core$builtin$$Compare$compare$149$(_x_674, _x_675) {
+  if (_x_674 === 0) {
+    if (_x_675 === 0) {
       return 0;
     } else {
       return -1;
     }
   } else {
-    if (_x_674 === 0) {
+    if (_x_675 === 0) {
       return 1;
     } else {
       return 0;
     }
   }
 }
-function moonbitlang$core$builtin$$Eq$op_equal$141$(_x_661, _x_662) {
-  return moonbitlang$core$builtin$$Eq$op_equal$85$(_x_661, _x_662);
+function moonbitlang$core$builtin$$Eq$op_equal$141$(_x_662, _x_663) {
+  return moonbitlang$core$builtin$$Eq$op_equal$85$(_x_662, _x_663);
 }
-function moonbitlang$core$builtin$$Hash$hash_combine$141$(_x_657, _x_658) {
-  moonbitlang$core$builtin$$Hash$hash_combine$85$(_x_657, _x_658);
+function moonbitlang$core$builtin$$Hash$hash_combine$141$(_x_658, _x_659) {
+  moonbitlang$core$builtin$$Hash$hash_combine$85$(_x_658, _x_659);
 }
-function moonbitlang$core$builtin$$Compare$compare$141$(_x_653, _x_654) {
-  return moonbitlang$core$builtin$$Compare$compare$85$(_x_653, _x_654);
+function moonbitlang$core$builtin$$Compare$compare$141$(_x_654, _x_655) {
+  return moonbitlang$core$builtin$$Compare$compare$85$(_x_654, _x_655);
 }
-function moonbitlang$core$builtin$$Eq$op_equal$147$(_x_633, _x_634) {
-  if (_x_633.$tag === 0) {
-    const _Dynamic_dfa = _x_633;
-    const _$42$x0_635 = _Dynamic_dfa._0;
-    if (_x_634.$tag === 0) {
-      const _Dynamic_dfa$2 = _x_634;
-      const _$42$y0_636 = _Dynamic_dfa$2._0;
-      return _$42$x0_635._0 === _$42$y0_636._0 && _$42$x0_635._1 === _$42$y0_636._1;
+function moonbitlang$core$builtin$$Eq$op_equal$147$(_x_634, _x_635) {
+  if (_x_634.$tag === 0) {
+    const _Dynamic_dfa = _x_634;
+    const _$42$x0_636 = _Dynamic_dfa._0;
+    if (_x_635.$tag === 0) {
+      const _Dynamic_dfa$2 = _x_635;
+      const _$42$y0_637 = _Dynamic_dfa$2._0;
+      return _$42$x0_636._0 === _$42$y0_637._0 && _$42$x0_636._1 === _$42$y0_637._1;
     } else {
       return false;
     }
   } else {
-    const _Static_dfa = _x_633;
-    const _$42$x0_637 = _Static_dfa._0;
-    if (_x_634.$tag === 1) {
-      const _Static_dfa$2 = _x_634;
-      const _$42$y0_638 = _Static_dfa$2._0;
-      return moonbitlang$core$builtin$$Eq$op_equal$188$(_$42$x0_637, _$42$y0_638);
+    const _Static_dfa = _x_634;
+    const _$42$x0_638 = _Static_dfa._0;
+    if (_x_635.$tag === 1) {
+      const _Static_dfa$2 = _x_635;
+      const _$42$y0_639 = _Static_dfa$2._0;
+      return moonbitlang$core$builtin$$Eq$op_equal$188$(_$42$x0_638, _$42$y0_639);
     } else {
       return false;
     }
   }
 }
-function moonbitlang$core$builtin$$Eq$op_equal$44$(_x_617, _x_618) {
-  return moonbitlang$core$builtin$$Eq$op_equal$148$(_x_617, _x_618);
+function moonbitlang$core$builtin$$Eq$op_equal$44$(_x_618, _x_619) {
+  return moonbitlang$core$builtin$$Eq$op_equal$148$(_x_618, _x_619);
 }
-function moonbitlang$core$builtin$$Compare$compare$44$(_x_613, _x_614) {
-  return moonbitlang$core$builtin$$Compare$compare$148$(_x_613, _x_614);
+function moonbitlang$core$builtin$$Compare$compare$44$(_x_614, _x_615) {
+  return moonbitlang$core$builtin$$Compare$compare$148$(_x_614, _x_615);
 }
-function moonbitlang$core$builtin$$Eq$op_equal$27$(_x_587, _x_588) {
-  if (_x_587.$tag === 0) {
-    const _Set = _x_587;
-    const _$42$x0_589 = _Set._0;
-    if (_x_588.$tag === 0) {
-      const _Set$2 = _x_588;
-      const _$42$y0_590 = _Set$2._0;
-      return _$42$x0_589._0 === _$42$y0_590._0 && _$42$x0_589._1 === _$42$y0_590._1;
+function moonbitlang$core$builtin$$Eq$op_equal$27$(_x_588, _x_589) {
+  if (_x_588.$tag === 0) {
+    const _Set = _x_588;
+    const _$42$x0_590 = _Set._0;
+    if (_x_589.$tag === 0) {
+      const _Set$2 = _x_589;
+      const _$42$y0_591 = _Set$2._0;
+      return _$42$x0_590._0 === _$42$y0_591._0 && _$42$x0_590._1 === _$42$y0_591._1;
     } else {
       return false;
     }
   } else {
-    const _Copy = _x_587;
-    const _$42$x0_591 = _Copy._0;
-    const _$42$x1_592 = _Copy._1;
-    if (_x_588.$tag === 1) {
-      const _Copy$2 = _x_588;
-      const _$42$y0_593 = _Copy$2._0;
-      const _$42$y1_594 = _Copy$2._1;
-      return _$42$x0_591._0 === _$42$y0_593._0 && _$42$x0_591._1 === _$42$y0_593._1 && (_$42$x1_592._0 === _$42$y1_594._0 && _$42$x1_592._1 === _$42$y1_594._1);
+    const _Copy = _x_588;
+    const _$42$x0_592 = _Copy._0;
+    const _$42$x1_593 = _Copy._1;
+    if (_x_589.$tag === 1) {
+      const _Copy$2 = _x_589;
+      const _$42$y0_594 = _Copy$2._0;
+      const _$42$y1_595 = _Copy$2._1;
+      return _$42$x0_592._0 === _$42$y0_594._0 && _$42$x0_592._1 === _$42$y0_594._1 && (_$42$x1_593._0 === _$42$y1_595._0 && _$42$x1_593._1 === _$42$y1_595._1);
     } else {
       return false;
     }
   }
 }
-function moonbitlang$core$builtin$$Compare$compare$27$(_x_569, _x_570) {
-  if (_x_569.$tag === 0) {
-    const _Set = _x_569;
-    const _$42$x0_571 = _Set._0;
-    if (_x_570.$tag === 0) {
-      const _Set$2 = _x_570;
-      const _$42$y0_572 = _Set$2._0;
-      const _p = $compare_int(_$42$x0_571._0, _$42$y0_572._0);
-      return _p === 0 ? $compare_int(_$42$x0_571._1, _$42$y0_572._1) : _p;
+function moonbitlang$core$builtin$$Compare$compare$27$(_x_570, _x_571) {
+  if (_x_570.$tag === 0) {
+    const _Set = _x_570;
+    const _$42$x0_572 = _Set._0;
+    if (_x_571.$tag === 0) {
+      const _Set$2 = _x_571;
+      const _$42$y0_573 = _Set$2._0;
+      const _p = $compare_int(_$42$x0_572._0, _$42$y0_573._0);
+      return _p === 0 ? $compare_int(_$42$x0_572._1, _$42$y0_573._1) : _p;
     } else {
       return -1;
     }
   } else {
-    const _Copy = _x_569;
-    const _$42$x0_573 = _Copy._0;
-    const _$42$x1_574 = _Copy._1;
-    if (_x_570.$tag === 0) {
+    const _Copy = _x_570;
+    const _$42$x0_574 = _Copy._0;
+    const _$42$x1_575 = _Copy._1;
+    if (_x_571.$tag === 0) {
       return 1;
     } else {
-      const _Copy$2 = _x_570;
-      const _$42$y0_575 = _Copy$2._0;
-      const _$42$y1_576 = _Copy$2._1;
-      const _p = $compare_int(_$42$x0_573._0, _$42$y0_575._0);
-      const _bind = _p === 0 ? $compare_int(_$42$x0_573._1, _$42$y0_575._1) : _p;
+      const _Copy$2 = _x_571;
+      const _$42$y0_576 = _Copy$2._0;
+      const _$42$y1_577 = _Copy$2._1;
+      const _p = $compare_int(_$42$x0_574._0, _$42$y0_576._0);
+      const _bind = _p === 0 ? $compare_int(_$42$x0_574._1, _$42$y0_576._1) : _p;
       if (_bind === 0) {
-        const _p$2 = $compare_int(_$42$x1_574._0, _$42$y1_576._0);
-        return _p$2 === 0 ? $compare_int(_$42$x1_574._1, _$42$y1_576._1) : _p$2;
+        const _p$2 = $compare_int(_$42$x1_575._0, _$42$y1_577._0);
+        return _p$2 === 0 ? $compare_int(_$42$x1_575._1, _$42$y1_577._1) : _p$2;
       } else {
         return _bind;
       }
     }
   }
 }
-function moonbitlang$core$builtin$$Eq$op_equal$188$(_x_513, _x_514) {
-  if (_x_513.$tag === 0) {
-    const _RelativeToStart = _x_513;
-    const _$42$x0_515 = _RelativeToStart._0;
-    if (_x_514.$tag === 0) {
-      const _RelativeToStart$2 = _x_514;
-      const _$42$y0_516 = _RelativeToStart$2._0;
-      return _$42$x0_515 === _$42$y0_516;
+function moonbitlang$core$builtin$$Eq$op_equal$188$(_x_514, _x_515) {
+  if (_x_514.$tag === 0) {
+    const _RelativeToStart = _x_514;
+    const _$42$x0_516 = _RelativeToStart._0;
+    if (_x_515.$tag === 0) {
+      const _RelativeToStart$2 = _x_515;
+      const _$42$y0_517 = _RelativeToStart$2._0;
+      return _$42$x0_516 === _$42$y0_517;
     } else {
       return false;
     }
   } else {
-    const _RelativeToEnd = _x_513;
-    const _$42$x0_517 = _RelativeToEnd._0;
-    if (_x_514.$tag === 1) {
-      const _RelativeToEnd$2 = _x_514;
-      const _$42$y0_518 = _RelativeToEnd$2._0;
-      return _$42$x0_517 === _$42$y0_518;
+    const _RelativeToEnd = _x_514;
+    const _$42$x0_518 = _RelativeToEnd._0;
+    if (_x_515.$tag === 1) {
+      const _RelativeToEnd$2 = _x_515;
+      const _$42$y0_519 = _RelativeToEnd$2._0;
+      return _$42$x0_518 === _$42$y0_519;
     } else {
       return false;
     }
@@ -20901,7 +20946,7 @@ function moonbitlang$ulex$lib$automaton$$NFAEpsClosure$new(nfa) {
   const _p = nfa.node_count;
   const _p$2 = (_p + 31 | 0) / 32 | 0;
   const _tmp = $make_array_len_and_init(_p$2, 0);
-  return { eps: _tmp, tags: $64$moonbitlang$47$core$47$immut$47$sorted_map$46$T$Empty$17$, nodes: [] };
+  return { nfa: nfa, eps: _tmp, tags: $64$moonbitlang$47$core$47$immut$47$sorted_map$46$T$Empty$17$, nodes: [] };
 }
 function moonbitlang$ulex$lib$automaton$$NFAEpsClosure$add(self, node, tags) {
   const _p = self.eps;
@@ -20928,7 +20973,9 @@ function moonbitlang$ulex$lib$automaton$$NFAEpsClosure$add(self, node, tags) {
       self.tags = moonbitlang$core$immut$sorted_map$$T$add$76$(self.tags, node, tags);
     }
     moonbitlang$ulex$lib$util$bit_array$$BitArray$unsafe_set(self.eps, node.num, 1);
-    moonbitlang$core$array$$Array$push$109$(self.nodes, node);
+    if (self.nodes.length < 5) {
+      moonbitlang$core$array$$Array$push$109$(self.nodes, node);
+    }
     return true;
   }
 }
@@ -20954,19 +21001,36 @@ function moonbitlang$ulex$lib$automaton$$NFAEpsClosure$get(self, node) {
   }
 }
 function moonbitlang$ulex$lib$automaton$$NFAEpsClosure$iter(self) {
-  const _bind = moonbitlang$core$array$$Array$iter$109$(self.nodes);
-  return (_p) => _bind((_p$2) => {
-    const _p$3 = moonbitlang$core$immut$sorted_map$$T$get$76$(self.tags, _p$2);
-    const _p$4 = $64$moonbitlang$47$core$47$immut$47$sorted_set$46$T$Empty$2$;
-    let _tmp;
-    if (_p$3 === undefined) {
-      _tmp = _p$4;
-    } else {
-      const _p$5 = _p$3;
-      _tmp = _p$5;
-    }
-    return _p({ _0: _p$2, _1: _tmp });
-  });
+  if (self.nodes.length < 5) {
+    const _bind = moonbitlang$core$array$$Array$iter$109$(self.nodes);
+    return (_p) => _bind((_p$2) => {
+      const _p$3 = moonbitlang$core$immut$sorted_map$$T$get$76$(self.tags, _p$2);
+      const _p$4 = $64$moonbitlang$47$core$47$immut$47$sorted_set$46$T$Empty$2$;
+      let _tmp;
+      if (_p$3 === undefined) {
+        _tmp = _p$4;
+      } else {
+        const _p$5 = _p$3;
+        _tmp = _p$5;
+      }
+      return _p({ _0: _p$2, _1: _tmp });
+    });
+  } else {
+    const _bind = moonbitlang$ulex$lib$util$bit_array$$BitArray$iter(self.eps);
+    return (_p) => _bind((_p$2) => {
+      const _tmp = moonbitlang$core$array$$Array$op_get$109$(self.nfa.graph, _p$2);
+      const _p$3 = moonbitlang$core$immut$sorted_map$$T$get$76$(self.tags, moonbitlang$core$array$$Array$op_get$109$(self.nfa.graph, _p$2));
+      const _p$4 = $64$moonbitlang$47$core$47$immut$47$sorted_set$46$T$Empty$2$;
+      let _tmp$2;
+      if (_p$3 === undefined) {
+        _tmp$2 = _p$4;
+      } else {
+        const _p$5 = _p$3;
+        _tmp$2 = _p$5;
+      }
+      return _p({ _0: _tmp, _1: _tmp$2 });
+    });
+  }
 }
 function moonbitlang$ulex$lib$automaton$$get_eps_closure$46$get_tags$124$388(result, n) {
   const _p = moonbitlang$ulex$lib$automaton$$NFAEpsClosure$get(result, n);
@@ -22114,7 +22178,7 @@ function moonbitlang$ulex$lib$automaton$$from_nfa$46$get_id$124$17(_env, state, 
     return node;
   });
 }
-function moonbitlang$ulex$lib$automaton$$from_nfa$46$42$func$124$1778(_env, _p) {
+function moonbitlang$ulex$lib$automaton$$from_nfa$46$42$func$124$1784(_env, _p) {
   const _bind = _env._1;
   const _tag_state = _env._0;
   return _bind((_p$2) => {
@@ -22218,7 +22282,7 @@ function moonbitlang$ulex$lib$automaton$$DFA$from_nfa(nfa) {
         const _tag_state = _p$5._1;
         const _bind$5 = moonbitlang$core$array$$Array$iter$157$(_nfa_node.trans);
         const _env$2 = { _0: _tag_state, _1: _bind$5 };
-        return moonbitlang$ulex$lib$automaton$$from_nfa$46$42$func$124$1778(_env$2, _p$4);
+        return moonbitlang$ulex$lib$automaton$$from_nfa$46$42$func$124$1784(_env$2, _p$4);
       });
       const nfa_trans = { val: [] };
       const all_char_set = { val: moonbitlang$ulex$lib$util$eof_char_set$$empty };
@@ -23536,7 +23600,7 @@ function Yoorkin$trie$$T$lookup$189$(self, path) {
     }
   }
 }
-function Yoorkin$trie$$add$46$aux$47$7547(value, _param18, _param19) {
+function Yoorkin$trie$$add$46$aux$47$7561(value, _param18, _param19) {
   if (_param18.len === 0) {
     return { value: value, forks: _param19.forks };
   } else {
@@ -23554,12 +23618,12 @@ function Yoorkin$trie$$add$46$aux$47$7547(value, _param18, _param19) {
       const _p$3 = _p;
       subtree = _p$3;
     }
-    return { value: _param19.value, forks: moonbitlang$core$immut$sorted_map$$T$add$70$(_param19.forks, _x, Yoorkin$trie$$add$46$aux$47$7547(value, _x$2, subtree)) };
+    return { value: _param19.value, forks: moonbitlang$core$immut$sorted_map$$T$add$70$(_param19.forks, _x, Yoorkin$trie$$add$46$aux$47$7561(value, _x$2, subtree)) };
   }
 }
 function Yoorkin$trie$$T$add$189$(self, path, value) {
   const _bind = moonbitlang$core$string$$String$to_array(path);
-  return Yoorkin$trie$$add$46$aux$47$7547(value, { buf: _bind, start: 0, len: _bind.length }, self);
+  return Yoorkin$trie$$add$46$aux$47$7561(value, { buf: _bind, start: 0, len: _bind.length }, self);
 }
 function Yoorkin$trie$$empty$189$() {
   return { value: undefined, forks: $64$moonbitlang$47$core$47$immut$47$sorted_map$46$T$Empty$12$ };

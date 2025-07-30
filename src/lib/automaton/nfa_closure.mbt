@@ -1,5 +1,6 @@
 ///|
 priv struct NFAEpsClosure {
+  nfa : NFA
   eps : @bit_array.BitArray
   mut tags : @immut/sorted_map.T[NFANode, @immut/sorted_set.T[Tag]]
   nodes : Array[NFANode]
@@ -8,6 +9,7 @@ priv struct NFAEpsClosure {
 ///|
 fn NFAEpsClosure::new(nfa : NFA) -> NFAEpsClosure {
   {
+    nfa,
     eps: @bit_array.BitArray::new(nfa.node_count),
     tags: @immut/sorted_map.new(),
     nodes: [],
@@ -32,7 +34,9 @@ fn NFAEpsClosure::add(
       self.tags = self.tags.add(node, tags)
     }
     self.eps.unsafe_set(node.num, 1)
-    self.nodes.push(node)
+    if self.nodes.length() < 5 {
+      self.nodes.push(node)
+    }
     true
   }
 }
@@ -50,11 +54,20 @@ fn NFAEpsClosure::get(self : Self, node : NFANode) -> @immut/sorted_set.T[Tag]? 
 fn NFAEpsClosure::iter(
   self : Self,
 ) -> Iter[(NFANode, @immut/sorted_set.T[Tag])] {
-  self.nodes
-  .iter()
-  .map(fn(node) {
-    (node, self.tags.get(node).unwrap_or(@immut/sorted_set.new()))
-  })
+  if self.nodes.length() < 5 {
+    self.nodes
+    .iter()
+    .map(fn(node) {
+      (node, self.tags.get(node).unwrap_or(@immut/sorted_set.new()))
+    })
+  } else {
+    self.eps
+    .iter()
+    .map(i => (
+      self.nfa.graph[i],
+      self.tags.get(self.nfa.graph[i]).unwrap_or(@immut/sorted_set.new()),
+    ))
+  }
 }
 
 ///|
