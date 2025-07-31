@@ -64,51 +64,58 @@ fn Lexbuf::get_char(self : Lexbuf, start : Int, end : Int) -> Char {
 ///|
 fn Lexbuf::get_string(self : Lexbuf, start : Int, end : Int) -> String {
   let buf = StringBuilder::new()
-  loop self.content[start:end] {
-    // 1-byte sequence (ASCII): 0xxxxxxx
-    [0x00..=0x7F as b, .. next] => {
-      buf.write_char(b.to_int().unsafe_to_char())
-      continue next
+  
+  // Fast path for consecutive ASCII characters
+  fn consume_ascii(bytes : &Bytes, mut pos : Int, end_pos : Int, buf : &StringBuilder) -> Int {
+    while pos < end_pos && bytes.unsafe_get(pos) <= 0x7F {
+      buf.write_char(bytes.unsafe_get(pos).to_int().unsafe_to_char())
+      pos += 1
     }
-
-    // 2-byte sequence: 110xxxxx 10xxxxxx
-    [0xC0..=0xDF as b1, 0x80..=0xBF as b2, .. next] => {
-      buf.write_char(
-        (((b1.to_int() & 0x1F) << 6) | (b2.to_int() & 0x3F)).unsafe_to_char(),
-      )
-      continue next
+    pos
+  }
+  
+  let mut pos = start
+  while pos < end {
+    // Try fast ASCII path first
+    pos = consume_ascii(&self.content, pos, end, &buf)
+    if pos >= end { break }
+    
+    // Handle multi-byte UTF-8 sequences
+    let remaining = self.content[pos:end]
+    match remaining {
+      // 2-byte sequence: 110xxxxx 10xxxxxx
+      [0xC0..=0xDF as b1, 0x80..=0xBF as b2, ..] => {
+        buf.write_char(
+          (((b1.to_int() & 0x1F) << 6) | (b2.to_int() & 0x3F)).unsafe_to_char(),
+        )
+        pos += 2
+      }
+      
+      // 3-byte sequence: 1110xxxx 10xxxxxx 10xxxxxx
+      [0xE0..=0xEF as b1, 0x80..=0xBF as b2, 0x80..=0xBF as b3, ..] => {
+        buf.write_char(
+          (((b1.to_int() & 0x0F) << 12) |
+          ((b2.to_int() & 0x3F) << 6) |
+          (b3.to_int() & 0x3F)).unsafe_to_char(),
+        )
+        pos += 3
+      }
+      
+      // 4-byte sequence: 11110xxx 10xxxxxx 10xxxxxx 10xxxxxx
+      [0xF0..=0xF7 as b1, 0x80..=0xBF as b2, 0x80..=0xBF as b3, 0x80..=0xBF as b4, ..] => {
+        buf.write_char(
+          (((b1.to_int() & 0x07) << 18) |
+          ((b2.to_int() & 0x3F) << 12) |
+          ((b3.to_int() & 0x3F) << 6) |
+          (b4.to_int() & 0x3F)).unsafe_to_char(),
+        )
+        pos += 4
+      }
+      
+      // Invalid sequence - skip one byte and continue
+      [_, ..] => pos += 1
+      [] => break
     }
-
-    // 3-byte sequence: 1110xxxx 10xxxxxx 10xxxxxx
-    [0xE0..=0xEF as b1, 0x80..=0xBF as b2, 0x80..=0xBF as b3, .. next] => {
-      buf.write_char(
-        (((b1.to_int() & 0x0F) << 12) |
-        ((b2.to_int() & 0x3F) << 6) |
-        (b3.to_int() & 0x3F)).unsafe_to_char(),
-      )
-      continue next
-    }
-
-    // 4-byte sequence: 11110xxx 10xxxxxx 10xxxxxx 10xxxxxx
-    [
-      0xF0..=0xF7 as b1,
-      0x80..=0xBF as b2,
-      0x80..=0xBF as b3,
-      0x80..=0xBF as b4,
-      .. next,
-    ] => {
-      buf.write_char(
-        (((b1.to_int() & 0x07) << 18) |
-        ((b2.to_int() & 0x3F) << 12) |
-        ((b3.to_int() & 0x3F) << 6) |
-        (b4.to_int() & 0x3F)).unsafe_to_char(),
-      )
-      continue next
-    }
-
-    // Invalid sequence - skip one byte and continue
-    [_, .. next] => continue next
-    [] => ()
   }
   buf.to_string()
 }
