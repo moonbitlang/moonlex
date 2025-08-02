@@ -29,8 +29,8 @@ pub fn[K : Compare, V] T::add(self : Self[K, V], key : K, value : V) -> T[K, V] 
         guard left is (Node(..) as left) else { panic() }
         if left.priority < node.priority {
           Node(
-            key~,
-            value~,
+            key=left.key,
+            value=left.value,
             left=left.left,
             right=Node(
               key=node.key,
@@ -55,8 +55,8 @@ pub fn[K : Compare, V] T::add(self : Self[K, V], key : K, value : V) -> T[K, V] 
         guard right is (Node(..) as right) else { panic() }
         if right.priority < node.priority {
           Node(
-            key~,
-            value~,
+            key=right.key,
+            value=right.value,
             left=Node(
               key=node.key,
               value=node.value,
