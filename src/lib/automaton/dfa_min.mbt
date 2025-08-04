@@ -66,12 +66,13 @@ fn DFA::minimize(dfa : DFA) -> DFA {
         let (input, target) = tran
         for symbol in symbols {
           if symbol.char_set.subset(input) {
-            let map = result.get(target).unwrap_or(@immut/sorted_map.new())
-            let map = map.add(
-              symbol,
-              map.get(symbol).unwrap_or(@immut/sorted_set.new()).add(source),
-            )
-            result[target] = map
+            let existing_map = result.get(target)
+            let target_map = if existing_map is Some(map) { map } else { @immut/sorted_map.new() }
+            let existing_sources = target_map.get(symbol)
+            let sources_set = if existing_sources is Some(sources) { sources } else { @immut/sorted_set.new() }
+            let new_sources_set = sources_set.add(source)
+            let new_target_map = target_map.add(symbol, new_sources_set)
+            result[target] = new_target_map
           }
         }
       }
