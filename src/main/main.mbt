@@ -9,10 +9,8 @@ fn main {
   let input_file = @ref.new("")
   let mut code_unit = @type.CodeUnit4
   let mut default_encoding : @type.Encoding? = None
-  let mut new_syntax = false
   @ArgParser.parse(
     [
-      ("--new-syntax", "", Unit(fn() { new_syntax = true }), "Use new syntax"),
       (
         "--input-file",
         "-i",
@@ -85,10 +83,7 @@ fn main {
     @sys.get_cli_args(),
   )
   guard input_file.val != "" else { abort("Input file is required") }
-  let output = if new_syntax {
-    let lexer_spec_src = (try? @fs.read_file_to_bytes(input_file.val)).unwrap()
-    @driver.compile(lexer_spec_src, filename=input_file.val)
-  } else {
+  let output = {
     let lexer_spec_src = (try? @fs.read_file_to_string(input_file.val)).unwrap()
     let lex = @parser.parse_lex_from_string(lexer_spec_src) catch {
       @parser.UnexpectedToken(token, loc, expected) => {

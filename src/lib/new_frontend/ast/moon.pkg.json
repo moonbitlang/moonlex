@@ -1,5 +1,0 @@
-{
-  "import": [
-    "moonbitlang/ulex/lib/new_frontend/ast_types"
-  ]
-}
