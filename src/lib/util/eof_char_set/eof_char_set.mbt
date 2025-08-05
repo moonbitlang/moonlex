@@ -2,7 +2,7 @@
 pub typealias EofCharSet as T
 
 ///|
-type EofCharSet @diet.T[EofChar] derive(Default, Eq, Compare, Hash)
+struct EofCharSet(@diet.T[EofChar]) derive(Default, Eq, Compare, Hash)
 
 ///|
 pub fn from_char_set(cset : @char_set.T) -> EofCharSet {

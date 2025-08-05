@@ -1,5 +1,5 @@
 ///|
-priv type InorderIterator[N] Array[Tree[N]]
+priv struct InorderIterator[N] (Array[Tree[N]])
 
 ///|
 fn[N] InorderIterator::new(root : T[N]) -> InorderIterator[N] {

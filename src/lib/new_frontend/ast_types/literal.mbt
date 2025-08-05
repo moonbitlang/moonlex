@@ -20,7 +20,7 @@ pub(all) struct InterpSource {
 pub(all) enum InterpElem {
   InterpLit(repr~ : String, loc~ : Location)
   InterpSource(InterpSource)
-} derive(Show, ToJson)
+} derive(Show, ToJson(style="legacy"))
 
 ///|
 pub typealias Array[InterpElem] as InterpLiteral
@@ -82,10 +82,10 @@ pub fn parse_string_literal(lit : StringLiteral) -> String {
     }
     [.. "\\u{", .. rest] => {
       let rbrace_index = rest.find_by(c => c is '}').unwrap()
-      let code_str = rest.charcodes(start=0, end=rbrace_index)
+      let code_str = try! rest[0:rbrace_index]
       let code = (try? @strconv.parse_int(code_str.to_string(), base=16)).unwrap()
       buffer.write_char(code.unsafe_to_char())
-      continue rest.charcodes(start=rbrace_index + 1)
+      continue try! rest[rbrace_index + 1:]
     }
     ['\\', ..] => panic()
     [c, .. rest] => {

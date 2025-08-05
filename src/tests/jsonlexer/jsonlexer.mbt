@@ -12,7 +12,7 @@ priv enum Token {
   TRUE
   FALSE
   NULL
-} derive(ToJson)
+} derive(ToJson(style="legacy"))
 
 pub suberror LexError {
   EndOfFile

@@ -17,13 +17,13 @@ pub enum RegexDesc {
   Alter(Regex, Regex)
   Concat(Regex, Regex)
   Capture(Regex, String)
-} derive(Show, Eq, ToJson)
+} derive(Show, Eq, ToJson(style="legacy"))
 
 ///|
 pub enum RegexClass {
   Char
   String
-} derive(Show, Eq, ToJson)
+} derive(Show, Eq, ToJson(style="legacy"))
 
 ///|
 pub(all) enum Encoding {
@@ -31,7 +31,7 @@ pub(all) enum Encoding {
   Latin1
   Utf8
   Utf16
-} derive(Show, Eq, ToJson)
+} derive(Show, Eq, ToJson(style="legacy"))
 
 ///|
 pub let eof : Regex = { desc: EOF, class_: String, len: None }

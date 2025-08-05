@@ -1,5 +1,5 @@
 ///|
-type Edge (Int, Int, String?) // from, to, edge_info
+struct Edge ((Int, Int, String?)) // from, to, edge_info
 
 ///|
 enum NodeType {

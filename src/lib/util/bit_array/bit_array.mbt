@@ -1,5 +1,5 @@
 ///|
-type BitArray FixedArray[Int]
+struct BitArray (FixedArray[Int])
 
 ///|
 pub fn BitArray::new(length : Int) -> BitArray {

@@ -1,7 +1,7 @@
 %start lex_eoi
 %start regex_eoi
 %position<Int>
-%derive<Show, Eq, ToJson> Token
+%derive<Show, Eq, ToJson(style="legacy")> Token
 %derive<Show> ParseError
 
 %token EOI

@@ -26,7 +26,7 @@ pub(all) enum Token {
   LC_IDENT(String)
   CHAR(Char)
   STRING(String)
-} derive(Show, Eq, ToJson)
+} derive(Show, Eq, ToJson(style="legacy"))
 
 pub fn Token::kind(self : Token) -> TokenKind {
   match self {

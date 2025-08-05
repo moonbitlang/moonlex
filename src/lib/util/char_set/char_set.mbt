@@ -2,7 +2,7 @@
 pub typealias CharSet as T
 
 ///|
-pub type CharSet @diet.T[Char] derive(Compare, Eq, Hash)
+pub struct CharSet(@diet.T[Char]) derive(Compare, Eq, Hash)
 
 ///|
 pub let empty : CharSet = @diet.empty()

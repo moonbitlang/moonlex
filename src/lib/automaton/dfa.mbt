@@ -2,7 +2,7 @@
 //        Automata and Application to Regular Expressions
 
 ///|
-pub(all) type TagAction Array[TagOp] derive(Show, Eq, Compare) // sorted
+pub(all) struct TagAction(Array[TagOp]) derive(Show, Eq, Compare) // sorted
 
 ///|
 pub typealias Int as TagRank
@@ -19,7 +19,7 @@ pub(all) enum TagOp {
 } derive(Show, Eq, Compare)
 
 ///|
-priv type TagState @immut/sorted_map.T[Tag, TagRank] derive(Eq, Hash, Compare)
+priv struct TagState(@immut/sorted_map.T[Tag, TagRank]) derive(Eq, Hash, Compare)
 
 ///|
 fn TagState::new() -> TagState {
