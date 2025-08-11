@@ -1,7 +1,7 @@
 {
     "pre-build": [
         {
-            "command": "node $mod_dir/boot/snapshot/moonlex.js $input -o $output",
+            "command": "node $mod_dir/boot/snapshot/moonlex.cjs $input -o $output",
             "input": "issue12.mbtx",
             "output": "issue12.mbt"
         }

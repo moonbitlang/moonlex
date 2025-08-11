@@ -1,5 +1,5 @@
 ///|
-struct Edge ((Int, Int, String?)) // from, to, edge_info
+struct Edge((Int, Int, String?)) // from, to, edge_info
 
 ///|
 enum NodeType {
@@ -24,7 +24,7 @@ pub fn add_edge(
   self : DotGraph,
   from~ : Int,
   to~ : Int,
-  edge_info? : String
+  edge_info? : String,
 ) -> Unit {
   self.edges.push((from, to, edge_info))
 }
@@ -34,7 +34,7 @@ fn set_node(
   self : DotGraph,
   node~ : Int,
   nodeType~ : NodeType,
-  label? : String
+  label? : String,
 ) -> Unit {
   self.nodes.set(node, (nodeType, label))
 }

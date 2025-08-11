@@ -52,7 +52,7 @@ pub fn BytesLexbuf::reset(self : BytesLexbuf, pos~ : Int) -> Unit {
 pub fn BytesLexbuf::get_char(
   self : BytesLexbuf,
   start : Int,
-  end : Int
+  end : Int,
 ) -> Char {
   decode_utf8(self.content[start:end]).get_char(0).unwrap()
 }
@@ -61,7 +61,7 @@ pub fn BytesLexbuf::get_char(
 pub fn BytesLexbuf::get_string(
   self : BytesLexbuf,
   start : Int,
-  end : Int
+  end : Int,
 ) -> String {
   decode_utf8(self.content[start:end])
 }

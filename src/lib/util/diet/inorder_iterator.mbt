@@ -1,5 +1,5 @@
 ///|
-priv struct InorderIterator[N] (Array[Tree[N]])
+priv struct InorderIterator[N](Array[Tree[N]])
 
 ///|
 fn[N] InorderIterator::new(root : T[N]) -> InorderIterator[N] {
@@ -11,7 +11,7 @@ fn[N] InorderIterator::new(root : T[N]) -> InorderIterator[N] {
 ///|
 fn[N] InorderIterator::move_left(
   self : InorderIterator[N],
-  node : T[N]
+  node : T[N],
 ) -> Unit {
   loop node {
     Empty => ()

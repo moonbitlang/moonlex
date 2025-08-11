@@ -7,7 +7,7 @@ struct Context {
 fn Context::define_regex(
   self : Context,
   name : String,
-  regex : @regex.T
+  regex : @regex.T,
 ) -> Context {
   { ..self, named_regexes: self.named_regexes.add(name, regex) }
 }

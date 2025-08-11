@@ -18,7 +18,7 @@ priv enum CaptureVarEndpoint {
 
 ///|
 fn get_regex_static_known_tag_positions(
-  re : Regex
+  re : Regex,
 ) -> @immut/sorted_map.T[(String, CaptureVarEndpoint), StaticKnownTagPosition] {
   let mut map = @immut/sorted_map.new()
   fn left_aux(re : Regex) {
@@ -91,7 +91,7 @@ fn get_regex_static_known_tag_positions(
 ///|
 pub fn get_regex_captures(
   re : Regex,
-  lowered_re : Regex
+  lowered_re : Regex,
 ) -> Array[
   (String, (VarType, (StaticKnownTagPosition?, StaticKnownTagPosition?))),
 ] {

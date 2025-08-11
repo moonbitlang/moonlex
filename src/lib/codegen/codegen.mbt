@@ -2,7 +2,7 @@
 pub fn codegen_lex(
   lex : Lex,
   code_unit~ : @type.CodeUnit,
-  default_encoding~ : @type.Encoding?
+  default_encoding~ : @type.Encoding?,
 ) -> String {
   [
     lex.header,
@@ -17,7 +17,7 @@ pub fn codegen_lex(
 fn rewrite_codeblock(
   codeblock : @type.CodeBlock,
   subst : Array[@codeblock_parser.SubstItem],
-  captures : Array[(String, @automaton.VarType)]
+  captures : Array[(String, @automaton.VarType)],
 ) -> @type.CodeBlock {
   fn index_of_name(name : String) -> Int {
     captures
@@ -50,7 +50,7 @@ fn rewrite_codeblock(
 
 ///|
 fn group_trans(
-  trans : Array[(@eof_char_set.T, Int)]
+  trans : Array[(@eof_char_set.T, Int)],
 ) -> Array[((Int, Int), Int)] {
   let char_set_by_state = {}
   for tran in trans {
@@ -93,7 +93,7 @@ fn group_trans(
 pub fn codegen_rule_inner(
   rule : Rule,
   code_unit~ : @type.CodeUnit,
-  default_encoding~ : @type.Encoding?
+  default_encoding~ : @type.Encoding?,
 ) -> String {
   let out = StringBuilder::new()
   let encoding = match code_unit {
@@ -402,7 +402,7 @@ pub fn codegen_rule_inner(
 fn codegen_rule(
   rule : Rule,
   code_unit~ : @type.CodeUnit,
-  default_encoding~ : @type.Encoding?
+  default_encoding~ : @type.Encoding?,
 ) -> String {
   let inner = codegen_rule_inner(rule, code_unit~, default_encoding~)
   let (generic_part, other_part) = {

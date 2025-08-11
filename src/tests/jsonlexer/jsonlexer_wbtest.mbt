@@ -8,7 +8,7 @@ test {
     try token(lexbuf) catch {
       EndOfFile => break
       err => raise err
-    } else {
+    } noraise {
       tok => tokens.push(tok)
     }
   }

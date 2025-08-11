@@ -20,7 +20,7 @@ pub impl[N : Eq] Eq for Tree[N] with op_equal(self : Tree[N], other : Tree[N]) {
 ///|
 pub impl[N : Compare] Compare for Tree[N] with compare(
   self : Tree[N],
-  other : Tree[N]
+  other : Tree[N],
 ) {
   let iter = InorderIterator::new(self)
   let iter1 = InorderIterator::new(other)
