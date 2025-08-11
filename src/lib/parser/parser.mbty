@@ -72,7 +72,7 @@ named_regex                             -> (Context) -> Context
   : "regex" LC_IDENT "=" regex ";"      { ctx => ctx.define_regex($2, $4(ctx)) }
   ;
 
-nonempty_rule_list                      -> (Context) -> @list.T[@type.Rule]
+nonempty_rule_list                      -> (Context) -> @list.List[@type.Rule]
   : rule                                { ctx => @list.construct($1(ctx), @list.empty()) }
   | rule nonempty_rule_list             { ctx => @list.construct($1(ctx), $2(ctx)) }
   ;
@@ -87,7 +87,7 @@ rule                                    -> (Context) -> @type.Rule
                                         } }
   ;
 
-rule_item_list                          -> (Context) -> @list.T[(@type.Regex, String?, @type.CodeBlock)]
+rule_item_list                          -> (Context) -> @list.List[(@type.Regex, String?, @type.CodeBlock)]
   : rule_item rule_item_list            { ctx => @list.construct($1(ctx), $2(ctx)) }
   |                                     { _ctx => @list.empty() }
   ;

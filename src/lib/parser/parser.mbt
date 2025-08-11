@@ -139,9 +139,9 @@ priv suberror YYObj__String__String_ (String, String)
 
 priv suberror YYObj__Context_____Context (Context) -> Context
 
-priv suberror YYObj__Context______list_T__type_Rule_ (Context) -> @list.T[@type.Rule]
+priv suberror YYObj__Context______list_List__type_Rule_ (Context) -> @list.List[@type.Rule]
 
-priv suberror YYObj__Context______list_T___type_Regex__String____type_CodeBlock__ (Context) -> @list.T[(@type.Regex, String?, @type.CodeBlock)]
+priv suberror YYObj__Context______list_List___type_Regex__String____type_CodeBlock__ (Context) -> @list.List[(@type.Regex, String?, @type.CodeBlock)]
 
 priv suberror YYObj__Context______type_Lex (Context) -> @type.Lex
 
@@ -351,8 +351,8 @@ fn yy_action_15(_last_pos : Int, _args : ArrayView[(YYObj, Int, Int)]) -> YYObj 
 // 91|    rule_item rule_item_list            { ctx => @list.construct($1(ctx), $2(ctx)) }
 fn yy_action_16(_last_pos : Int, _args : ArrayView[(YYObj, Int, Int)]) -> YYObj {
   guard _args[0].0 is YYObj__Context_______type_Regex__String____type_CodeBlock_(_dollar1)
-  guard _args[1].0 is YYObj__Context______list_T___type_Regex__String____type_CodeBlock__(_dollar2)
-  YYObj__Context______list_T___type_Regex__String____type_CodeBlock__({();  ctx => @list.construct(_dollar1(ctx), _dollar2(ctx)) })
+  guard _args[1].0 is YYObj__Context______list_List___type_Regex__String____type_CodeBlock__(_dollar2)
+  YYObj__Context______list_List___type_Regex__String____type_CodeBlock__({();  ctx => @list.construct(_dollar1(ctx), _dollar2(ctx)) })
 }
 
 // file:///./parser.mbty
@@ -365,14 +365,14 @@ fn yy_action_17(_last_pos : Int, _args : ArrayView[(YYObj, Int, Int)]) -> YYObj 
 // file:///./parser.mbty
 // 92|                                        { _ctx => @list.empty() }
 fn yy_action_18(_last_pos : Int, _args : ArrayView[(YYObj, Int, Int)]) -> YYObj {
-  YYObj__Context______list_T___type_Regex__String____type_CodeBlock__({();  _ctx => @list.empty() })
+  YYObj__Context______list_List___type_Regex__String____type_CodeBlock__({();  _ctx => @list.empty() })
 }
 
 // file:///./parser.mbty
 // 76|    rule                                { ctx => @list.construct($1(ctx), @list.empty()) }
 fn yy_action_19(_last_pos : Int, _args : ArrayView[(YYObj, Int, Int)]) -> YYObj {
   guard _args[0].0 is YYObj__Context______type_Rule(_dollar1)
-  YYObj__Context______list_T__type_Rule_({();  ctx => @list.construct(_dollar1(ctx), @list.empty()) })
+  YYObj__Context______list_List__type_Rule_({();  ctx => @list.construct(_dollar1(ctx), @list.empty()) })
 }
 
 // file:///./parser.mbty
@@ -386,7 +386,7 @@ fn yy_action_19(_last_pos : Int, _args : ArrayView[(YYObj, Int, Int)]) -> YYObj 
 fn yy_action_20(_last_pos : Int, _args : ArrayView[(YYObj, Int, Int)]) -> YYObj {
   guard _args[1].0 is YYObj__Context_____Context(_dollar2)
   guard _args[0].0 is YYObj_String(_dollar1)
-  guard _args[2].0 is YYObj__Context______list_T__type_Rule_(_dollar3)
+  guard _args[2].0 is YYObj__Context______list_List__type_Rule_(_dollar3)
   guard _args[3].0 is YYObj_String(_dollar4)
   YYObj__Context______type_Lex({(); 
                                           fn (ctx) {
@@ -456,7 +456,7 @@ fn yy_action_27(_last_pos : Int, _args : ArrayView[(YYObj, Int, Int)]) -> YYObj 
 // 86|                                          { name: $1.0, signature: $1.1, lexee: "lexbuf", patterns, actions } 
 // 87|                                        } }
 fn yy_action_28(_last_pos : Int, _args : ArrayView[(YYObj, Int, Int)]) -> YYObj {
-  guard _args[2].0 is YYObj__Context______list_T___type_Regex__String____type_CodeBlock__(_dollar3)
+  guard _args[2].0 is YYObj__Context______list_List___type_Regex__String____type_CodeBlock__(_dollar3)
   guard _args[0].0 is YYObj__String__String_(_dollar1)
   YYObj__Context______type_Rule({();  fn (ctx) { 
                                           let pattern_and_actions = _dollar3(ctx).to_array()
@@ -477,8 +477,8 @@ fn yy_action_29(_last_pos : Int, _args : ArrayView[(YYObj, Int, Int)]) -> YYObj 
 // 77|    rule nonempty_rule_list             { ctx => @list.construct($1(ctx), $2(ctx)) }
 fn yy_action_30(_last_pos : Int, _args : ArrayView[(YYObj, Int, Int)]) -> YYObj {
   guard _args[0].0 is YYObj__Context______type_Rule(_dollar1)
-  guard _args[1].0 is YYObj__Context______list_T__type_Rule_(_dollar2)
-  YYObj__Context______list_T__type_Rule_({();  ctx => @list.construct(_dollar1(ctx), _dollar2(ctx)) })
+  guard _args[1].0 is YYObj__Context______list_List__type_Rule_(_dollar2)
+  YYObj__Context______list_List__type_Rule_({();  ctx => @list.construct(_dollar1(ctx), _dollar2(ctx)) })
 }
 
 // file:///./parser.mbty
@@ -1458,7 +1458,7 @@ fn[T] yy_parse(
   start : YYState,
   return_ : (YYObj) -> T
 ) -> T raise ParseError {
-  let mut state_stack : @list.T[YYState] = @list.construct(start, @list.empty())
+  let mut state_stack : @list.List[YYState] = @list.construct(start, @list.empty())
   let data_stack : Array[(YYObj, Int, Int)] = []
   let mut last_pos = start_pos
   let mut state = start
@@ -1529,17 +1529,17 @@ fn[T] yy_parse(
   panic()
 }
 
-fn error(stack : @list.T[YYState], token : Token, loc : (Int, Int)) -> Unit raise ParseError {
+fn error(stack : @list.List[YYState], token : Token, loc : (Int, Int)) -> Unit raise ParseError {
   let expected = []
   fn try_add(symbol : YYSymbol, kind : TokenKind) {
-    fn go(stack : @list.T[YYState]) {
+    fn go(stack : @list.List[YYState]) {
       match stack {
         Empty => ()
         More(state, ..) => {
           match state(symbol) {
             Accept | Shift(_) => expected.push(kind)
             Reduce(count, symbol, _) | ReduceNoLookahead(count, symbol, _) => {
-              fn inner_go(stack : @list.T[YYState], count, symbol) {
+              fn inner_go(stack : @list.List[YYState], count, symbol) {
                 let stack = stack.drop(count)
                 guard stack is More(state, ..)
                 match state(symbol) {
