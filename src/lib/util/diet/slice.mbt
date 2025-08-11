@@ -50,7 +50,7 @@ fn[N : @bounded_enum.T] slice_after(self : Tree[N], x : N) -> Tree[N] {
 pub fn[N : @bounded_enum.T] slice(
   self : Tree[N],
   min? : N,
-  max? : N
+  max? : N,
 ) -> Tree[N] {
   match (min, max) {
     (None, None) => panic()

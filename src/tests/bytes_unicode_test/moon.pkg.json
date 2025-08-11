@@ -1,7 +1,7 @@
 {
     "pre-build": [
         {
-            "command": "node $mod_dir/boot/snapshot/moonlex.js --code-unit 1 --default-encoding utf8 $input -o $output",
+            "command": "node $mod_dir/boot/snapshot/moonlex.cjs --code-unit 1 --default-encoding utf8 $input -o $output",
             "input": "bytes.mbtx",
             "output": "bytes.mbt"
         }

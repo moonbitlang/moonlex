@@ -52,7 +52,7 @@ pub fn BytesLexbuf::reset(self : BytesLexbuf, pos~ : Int) -> Unit {
 pub fn BytesLexbuf::get_char(
   self : BytesLexbuf,
   start : Int,
-  _end : Int
+  _end : Int,
 ) -> Byte {
   return self.content.unsafe_get(start)
 }
@@ -61,7 +61,7 @@ pub fn BytesLexbuf::get_char(
 pub fn BytesLexbuf::get_string(
   self : BytesLexbuf,
   start : Int,
-  end : Int
+  end : Int,
 ) -> @bytes.View {
   return self.content[start:end]
 }

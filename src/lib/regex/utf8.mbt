@@ -8,12 +8,12 @@ fn utf8_bytes_to_char(bytes : Bytes) -> Char {
 
 ///| 
 fn lower_unicode_charclass_to_utf8(
-  cset : @char_set.T
+  cset : @char_set.T,
 ) -> Array[Array[@char_set.T]] {
   fn get_masked_range_cset(
     bytes : Bytes,
     num_bytes : Int,
-    mask_index : Int
+    mask_index : Int,
   ) -> @char_set.T {
     guard mask_index >= 1 && mask_index <= bytes.length()
     let prefix = bytes[0:mask_index]

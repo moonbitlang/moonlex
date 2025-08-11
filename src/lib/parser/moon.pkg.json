@@ -7,12 +7,12 @@
   ],
   "pre-build": [
     {
-      "command": "node $mod_dir/boot/moonyacc.js --input-mode pull $input -o $output",
+      "command": "node $mod_dir/boot/moonyacc.cjs --input-mode pull $input -o $output",
       "input": "parser.mbty",
       "output": "parser.mbt"
     },
     {
-      "command": "node $mod_dir/boot/snapshot/moonlex.js $input -o $output",
+      "command": "node $mod_dir/boot/snapshot/moonlex.cjs $input -o $output",
       "input": "lexer.mbtx",
       "output": "lexer.mbt"
     },

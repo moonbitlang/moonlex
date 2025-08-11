@@ -1,0 +1,18 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "moonbitlang/ulex/main/util"
+
+// Values
+fn[T] exit(Int) -> T
+
+fn path_basename(String) -> String
+
+fn println_to_stderr(String) -> Unit
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits
+
