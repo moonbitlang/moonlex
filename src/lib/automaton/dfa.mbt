@@ -225,9 +225,9 @@ fn DFA::from_nfa(nfa : NFA) -> DFA {
     (x.0.map(fn(y) { y.0 }), x.1)
   })
   let dfa = DFA::new(captures)
-  let node_map : Map[State, Int] = Map::new()
+  let node_map : @hashmap2.T[State, Int] = @hashmap2.new(capacity=64)
   fn get_id(state : State, canonicalized_state : State) -> Int {
-    node_map.get_or_init(state, fn() {
+    node_map.get_or_init(state, fn(_key) {
       let node = dfa.new_node()
       dfa.register_node(nfa, node, canonicalized_state)
       node
