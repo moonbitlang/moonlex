@@ -9,7 +9,7 @@ struct BytesLexbuf {
 pub typealias BytesLexbuf as T
 
 ///|
-pub fn from_bytes(bytes : Bytes, start~ : Int = 0, end? : Int) -> BytesLexbuf {
+pub fn from_bytes(bytes : Bytes, start? : Int = 0, end? : Int) -> BytesLexbuf {
   let end = end.unwrap_or(bytes.length())
   return { content: bytes, pos: start, end }
 }

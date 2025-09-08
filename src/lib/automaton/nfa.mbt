@@ -39,7 +39,7 @@ pub(all) struct NFANode {
 } derive(Show)
 
 ///|
-pub impl Eq for NFANode with op_equal(self, other) {
+pub impl Eq for NFANode with equal(self, other) {
   self.num == other.num
 }
 

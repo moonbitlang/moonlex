@@ -6,7 +6,7 @@ fn utf8_bytes_to_char(bytes : Bytes) -> Char {
   c
 }
 
-///| 
+///|
 fn lower_unicode_charclass_to_utf8(
   cset : @char_set.T,
 ) -> Array[Array[@char_set.T]] {

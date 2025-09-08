@@ -11,7 +11,7 @@ fn simple_rule(re_str : String) -> @type.Rule {
 }
 
 ///|
-fn nfa2dots(nfa : @automaton.NFA, name~ : String = "nfa") -> DotGraph {
+fn nfa2dots(nfa : @automaton.NFA, name? : String = "nfa") -> DotGraph {
   let dots = DotGraph::new(name~)
   for node in nfa.graph {
     for target in node.eps {
@@ -85,7 +85,7 @@ test "nfa a_star_capture mermaid" (it : @test.T) {
 }
 
 ///|
-fn dfa2dots(dfa : @automaton.DFA, name~ : String = "dfa") -> DotGraph {
+fn dfa2dots(dfa : @automaton.DFA, name? : String = "dfa") -> DotGraph {
   let dots = DotGraph::new(name~)
   for node, edges in dfa.graph {
     for edge in edges {

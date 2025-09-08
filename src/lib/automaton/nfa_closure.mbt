@@ -2,7 +2,10 @@
 priv struct NFAEpsClosure {
   nfa : NFA
   eps : @bit_array.BitArray
-  mut tags : @immut/sorted_map.T[NFANode, @immut/sorted_set.T[Tag]]
+  mut tags : @immut/sorted_map.SortedMap[
+    NFANode,
+    @immut/sorted_set.SortedSet[Tag],
+  ]
   nodes : Array[NFANode]
 }
 
@@ -20,7 +23,7 @@ fn NFAEpsClosure::new(nfa : NFA) -> NFAEpsClosure {
 fn NFAEpsClosure::add(
   self : Self,
   node : NFANode,
-  tags~ : @immut/sorted_set.T[Tag] = @immut/sorted_set.new(),
+  tags? : @immut/sorted_set.SortedSet[Tag] = @immut/sorted_set.new(),
 ) -> Bool {
   if self.eps.unsafe_get(node.num) != 0 {
     let prev_tags = self.tags.get(node).unwrap_or(@immut/sorted_set.new())
@@ -42,7 +45,10 @@ fn NFAEpsClosure::add(
 }
 
 ///|
-fn NFAEpsClosure::get(self : Self, node : NFANode) -> @immut/sorted_set.T[Tag]? {
+fn NFAEpsClosure::get(
+  self : Self,
+  node : NFANode,
+) -> @immut/sorted_set.SortedSet[Tag]? {
   if self.eps.unsafe_get(node.num) == 0 {
     None
   } else {
@@ -53,7 +59,7 @@ fn NFAEpsClosure::get(self : Self, node : NFANode) -> @immut/sorted_set.T[Tag]? 
 ///|
 fn NFAEpsClosure::iter(
   self : Self,
-) -> Iter[(NFANode, @immut/sorted_set.T[Tag])] {
+) -> Iter[(NFANode, @immut/sorted_set.SortedSet[Tag])] {
   if self.nodes.length() < 5 {
     self.nodes
     .iter()
@@ -80,7 +86,7 @@ fn get_eps_closure(self : NFA) -> Array[NFAEpsClosure] {
   Array::map(self.graph, fn(x) {
     let result = NFAEpsClosure::new(self)
     let _ = result.add(x)
-    fn get_tags(n : NFANode) -> @immut/sorted_set.T[Tag] {
+    fn get_tags(n : NFANode) -> @immut/sorted_set.SortedSet[Tag] {
       result.get(n).unwrap_or(@immut/sorted_set.new())
     }
 

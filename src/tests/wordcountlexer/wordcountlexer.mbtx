@@ -2,14 +2,14 @@
 // translate from https://ohama.github.io/ocaml/ocamllex-tutorial/examples/wordcount/
 }
 
-rule count[T : @lexbuf.IStringLexbuf](lines : Int, words : Int, chars : Int, lexbuf : T) -> (Int, Int, Int) {
+rule _count[T : @lexbuf.IStringLexbuf](lines : Int, words : Int, chars : Int, lexbuf : T) -> (Int, Int, Int) {
   parse {
-    '\n' => { count(lines + 1, words, chars + 1, lexbuf) }
+    '\n' => { _count(lines + 1, words, chars + 1, lexbuf) }
     [^ ' ' '\t' '\n' ]+ as word => {
       let new_chars = chars + word.length()
-      count(lines, words + 1, new_chars, lexbuf)
+      _count(lines, words + 1, new_chars, lexbuf)
     }
-    _ => { count(lines, words, chars + 1, lexbuf) }
+    _ => { _count(lines, words, chars + 1, lexbuf) }
     "" => { (lines, words, chars) }
   }
 }

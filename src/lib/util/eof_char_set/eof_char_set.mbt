@@ -21,7 +21,8 @@ pub fn singleton(x : Char) -> EofCharSet {
   @diet.singleton(EofChar::char(x))
 }
 
-///| The pseudo-character indicating the end of the input.
+///|
+/// The pseudo-character indicating the end of the input.
 pub let eof : EofCharSet = @diet.singleton(EofChar::eof())
 
 ///|
@@ -29,7 +30,8 @@ pub fn range(min : Char, max : Char) -> EofCharSet {
   @diet.interval(EofChar::char(min), EofChar::char(max))
 }
 
-///| The set of all characters.
+///|
+/// The set of all characters.
 /// Does not include the EOF character.
 pub let any : EofCharSet = range('\u{0}', '\u{10ffff}')
 
@@ -110,17 +112,17 @@ pub fn unsafe_choose(self : EofCharSet) -> EofChar {
 }
 
 ///|
-pub impl Neg for EofCharSet with op_neg(self) {
+pub impl Neg for EofCharSet with neg(self) {
   self.complement()
 }
 
 ///|
-pub impl Add for EofCharSet with op_add(self, other) {
+pub impl Add for EofCharSet with add(self, other) {
   self.union(other)
 }
 
 ///|
-pub impl Sub for EofCharSet with op_sub(self, other) {
+pub impl Sub for EofCharSet with sub(self, other) {
   self.difference(other)
 }
 

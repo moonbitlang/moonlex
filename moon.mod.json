@@ -1,8 +1,8 @@
 {
   "name": "moonbitlang/ulex",
-  "version": "0.3.16",
+  "version": "0.3.17",
   "deps": {
-    "Yoorkin/ArgParser": "0.1.9",
+    "Yoorkin/ArgParser": "0.1.11",
     "moonbitlang/x": "0.4.30",
     "moonbitlang/ulex-runtime": "0.4.1"
   },

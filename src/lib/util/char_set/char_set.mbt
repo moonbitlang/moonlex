@@ -76,17 +76,17 @@ pub fn disjoint(self : CharSet, other : CharSet) -> Bool {
 }
 
 ///|
-pub impl Neg for CharSet with op_neg(self) {
+pub impl Neg for CharSet with neg(self) {
   self.complement()
 }
 
 ///|
-pub impl Add for CharSet with op_add(self, other) {
+pub impl Add for CharSet with add(self, other) {
   self.union(other)
 }
 
 ///|
-pub impl Sub for CharSet with op_sub(self, other) {
+pub impl Sub for CharSet with sub(self, other) {
   self.difference(other)
 }
 

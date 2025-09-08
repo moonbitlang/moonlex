@@ -1,6 +1,6 @@
 ///|
 struct Context {
-  named_regexes : @immut/sorted_map.T[String, @regex.T]
+  named_regexes : @immut/sorted_map.SortedMap[String, @regex.T]
 }
 
 ///|

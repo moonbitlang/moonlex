@@ -85,7 +85,7 @@ fn main {
   guard input_file.val != "" else { abort("Input file is required") }
   let output = {
     let lexer_spec_src = (try? @fs.read_file_to_string(input_file.val)).unwrap()
-    let lex = @parser.parse_lex_from_string(lexer_spec_src) catch {
+    let lex_ = @parser.parse_lex_from_string(lexer_spec_src) catch {
       @parser.UnexpectedToken(token, loc, expected) => {
         let loc_str = loc_to_string(input_file.val, lexer_spec_src, loc)
         let expected_str = array_to_or_list(expected.map(Show::to_string)[:])
@@ -95,7 +95,7 @@ fn main {
         exit(1)
       }
     }
-    @codegen.codegen_lex(lex, code_unit~, default_encoding~)
+    @codegen.codegen_lex(lex_, code_unit~, default_encoding~)
   }
   if output_file.val == "" {
     println(output)

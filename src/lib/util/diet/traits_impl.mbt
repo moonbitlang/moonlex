@@ -4,7 +4,7 @@ pub impl[N] Default for Tree[N] with default() {
 }
 
 ///|
-pub impl[N : Eq] Eq for Tree[N] with op_equal(self : Tree[N], other : Tree[N]) {
+pub impl[N : Eq] Eq for Tree[N] with equal(self : Tree[N], other : Tree[N]) {
   let iter = InorderIterator::new(self)
   let iter1 = InorderIterator::new(other)
   loop (iter.next(), iter1.next()) {

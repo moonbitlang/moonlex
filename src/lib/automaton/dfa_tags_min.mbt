@@ -2,7 +2,7 @@
 fn DFA::minimize_tags(self : DFA) -> DFA {
   let tag_to_state_actions_map : Map[
     Tag,
-    @immut/sorted_map.T[DFANode, Array[TagOp]],
+    @immut/sorted_map.SortedMap[DFANode, Array[TagOp]],
   ] = {}
   fn map_op(op : TagOp) -> TagOp {
     match op {

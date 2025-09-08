@@ -171,7 +171,9 @@ fn check_legal_rec(
 }
 
 ///|
-pub fn get_capture_vars(re : Regex) -> @immut/sorted_map.T[String, RegexClass] {
+pub fn get_capture_vars(
+  re : Regex,
+) -> @immut/sorted_map.SortedMap[String, RegexClass] {
   match re.desc {
     Capture(re, name) => get_capture_vars(re).add(name, re.class_)
     Repetition(re) => get_capture_vars(re)

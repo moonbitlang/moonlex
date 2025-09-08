@@ -1,12 +1,12 @@
 {
 }
 
-rule scan_newline[T : @lexbuf.IStringLexbuf](lexbuf : T) -> Int {
+rule _scan_newline[T : @lexbuf.IStringLexbuf](lexbuf : T) -> Int {
   parse {
     '\r'? '\n' | '\r' => {
       $startpos
     }
-    _ => { scan_newline(lexbuf) }
+    _ => { _scan_newline(lexbuf) }
     "" => { -1 }
   }
 }

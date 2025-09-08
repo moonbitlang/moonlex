@@ -19,7 +19,11 @@ pub(all) enum TagOp {
 } derive(Show, Eq, Compare)
 
 ///|
-priv struct TagState(@immut/sorted_map.T[Tag, TagRank]) derive(Eq, Hash, Compare)
+priv struct TagState(@immut/sorted_map.SortedMap[Tag, TagRank]) derive (
+  Eq,
+  Hash,
+  Compare,
+)
 
 ///|
 fn TagState::new() -> TagState {
@@ -40,7 +44,10 @@ fn update_by_tag(self : TagState, tag : Tag, rank : Int) -> TagState {
 }
 
 ///|
-fn update_by_tags(self : TagState, tags : @immut/sorted_set.T[Tag]) -> TagState {
+fn update_by_tags(
+  self : TagState,
+  tags : @immut/sorted_set.SortedSet[Tag],
+) -> TagState {
   let mut state = self
   for tag in tags {
     state = state.update_by_tag(tag, -1)
@@ -50,8 +57,8 @@ fn update_by_tags(self : TagState, tags : @immut/sorted_set.T[Tag]) -> TagState 
 
 ///|
 fn tagState_merge(self_ : TagState, other : TagState) -> TagState {
-  let tags = @immut/sorted_set.from_array(self_.inner().keys()) +
-    @immut/sorted_set.from_array(other.inner().keys())
+  let tags = @immut/sorted_set.from_iter(self_.inner().keys_as_iter()) +
+    @immut/sorted_set.from_iter(other.inner().keys_as_iter())
   let mut result = @immut/sorted_map.new()
   for tag in tags {
     result = result.add(

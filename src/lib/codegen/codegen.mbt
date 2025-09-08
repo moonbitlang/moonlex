@@ -1,14 +1,16 @@
 ///|
 pub fn codegen_lex(
-  lex : Lex,
+  lex_ : Lex,
   code_unit~ : @type.CodeUnit,
   default_encoding~ : @type.Encoding?,
 ) -> String {
   [
-    lex.header,
-    lex.rules.map(fn(rule) { codegen_rule(rule, code_unit~, default_encoding~) })
+    lex_.header,
+    lex_.rules.map(fn(rule) {
+      codegen_rule(rule, code_unit~, default_encoding~)
+    })
     |> _.join("\n"),
-    lex.trailer,
+    lex_.trailer,
   ]
   |> _.join("\n\n")
 }

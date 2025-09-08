@@ -195,12 +195,12 @@ impl Compare for Symbol with compare(self, other) {
 }
 
 ///|
-impl Eq for Symbol with op_equal(self, other) {
+impl Eq for Symbol with equal(self, other) {
   self.id == other.id
 }
 
 ///|
-fn collect_symbols(dfa : DFA) -> @immut/sorted_set.T[Symbol] {
+fn collect_symbols(dfa : DFA) -> @immut/sorted_set.SortedSet[Symbol] {
   let mut char_sets = @immut/sorted_set.new()
   for trans in dfa.graph {
     for tran in trans {
