@@ -109,7 +109,7 @@ pub fn NFA::from_patterns(
 }
 
 ///|
-fn new_node(self : NFA) -> NFANode {
+fn NFA::new_node(self : NFA) -> NFANode {
   let new_id = self.node_count
   self.node_count += 1
   let node = NFANode::{ num: new_id, eps: [], tagged_eps: [], trans: [] }
@@ -119,7 +119,7 @@ fn new_node(self : NFA) -> NFANode {
 }
 
 ///|
-fn add_edge(self : NFA, from : NFANode, s : Input, to : NFANode) -> Unit {
+fn NFA::add_edge(self : NFA, from : NFANode, s : Input, to : NFANode) -> Unit {
   ignore(self)
   match s {
     Eps => from.eps.push(to)
@@ -129,7 +129,7 @@ fn add_edge(self : NFA, from : NFANode, s : Input, to : NFANode) -> Unit {
 }
 
 ///|
-fn register_regex(
+fn NFA::register_regex(
   self : NFA,
   node : NFANode,
   re : Regex,
@@ -141,7 +141,7 @@ fn register_regex(
 }
 
 ///|
-fn register_regex_rec(
+fn NFA::register_regex_rec(
   self : NFA,
   node : NFANode,
   re : Regex,

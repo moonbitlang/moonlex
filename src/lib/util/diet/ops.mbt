@@ -1,5 +1,5 @@
 ///|
-pub fn[N] is_empty(self : Tree[N]) -> Bool {
+pub fn[N] Tree::is_empty(self : Tree[N]) -> Bool {
   match self {
     Empty => true
     Node(..) => false
@@ -7,7 +7,7 @@ pub fn[N] is_empty(self : Tree[N]) -> Bool {
 }
 
 ///|
-pub fn[N : @bounded_enum.T] contains(self : Tree[N], x : N) -> Bool {
+pub fn[N : @bounded_enum.T] Tree::contains(self : Tree[N], x : N) -> Bool {
   match self {
     Empty => false
     Node(..) as t =>
@@ -102,7 +102,7 @@ fn[N : @bounded_enum.T] intersection_aux(t1 : Tree[N], t2 : Tree[N]) -> Tree[N] 
 }
 
 ///|
-pub fn[N : @bounded_enum.T] complement(self : Tree[N]) -> Tree[N] {
+pub fn[N : @bounded_enum.T] Tree::complement(self : Tree[N]) -> Tree[N] {
   complement_aux(N::lower_bound(), N::upper_bound(), self)
 }
 
@@ -136,7 +136,7 @@ pub fn[N : @bounded_enum.T] difference(t1 : Tree[N], t2 : Tree[N]) -> Tree[N] {
 }
 
 ///|
-pub fn[N] unsafe_choose(self : Tree[N]) -> N {
+pub fn[N] Tree::unsafe_choose(self : Tree[N]) -> N {
   match self {
     Empty => panic()
     Node(min~, ..) => min

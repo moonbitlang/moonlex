@@ -20,7 +20,7 @@ pub fn DotGraph::new(name? : String = "graph") -> DotGraph {
 }
 
 ///|
-pub fn add_edge(
+pub fn DotGraph::add_edge(
   self : DotGraph,
   from~ : Int,
   to~ : Int,
@@ -30,7 +30,7 @@ pub fn add_edge(
 }
 
 ///|
-fn set_node(
+fn DotGraph::set_node(
   self : DotGraph,
   node~ : Int,
   nodeType~ : NodeType,
@@ -40,11 +40,11 @@ fn set_node(
 }
 
 ///|
-fn to_graphviz(self : DotGraph) -> String {
+fn DotGraph::to_graphviz(self : DotGraph) -> String {
   [
     "digraph \{self.name} {",
     self.edges.map(fn(e) {
-      let (from, to, info) = e.inner()
+      let (from, to, info) = e.0
       "\t\{from} -> \{to}" + info.map_or("", fn(t) { "[label=\{t}]" })
     })
     |> _.join("\n"),
@@ -75,7 +75,7 @@ fn to_graphviz(self : DotGraph) -> String {
 }
 
 ///|
-fn to_mermaid(self : DotGraph) -> String {
+fn DotGraph::to_mermaid(self : DotGraph) -> String {
   let styles =
     #|---
     #|  config:
@@ -86,7 +86,7 @@ fn to_mermaid(self : DotGraph) -> String {
     styles,
     "graph TD",
     self.edges.map(fn(e) {
-      let (from, to, edge_info) = e.inner()
+      let (from, to, edge_info) = e.0
       from.to_string() +
       "-->" +
       edge_info.map_or("", fn(s) { "|" + s + "|" }) +

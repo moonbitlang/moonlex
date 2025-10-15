@@ -6,7 +6,7 @@ pub(all) enum CodeUnit {
 }
 
 ///|
-pub typealias @regex.(Regex, Encoding)
+pub using @regex {type Regex, type Encoding}
 
 ///|
 pub typealias String as CodeBlock

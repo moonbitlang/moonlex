@@ -8,7 +8,7 @@ pub(all) struct TagAction(Array[TagOp]) derive(Show, Eq, Compare) // sorted
 pub typealias Int as TagRank
 
 ///|
-pub typealias (Tag, TagRank) as TagVar
+pub type TagVar = (Tag, TagRank)
 
 ///|
 pub(all) enum TagOp {
@@ -31,20 +31,15 @@ fn TagState::new() -> TagState {
 }
 
 ///|
-fn update_by_tag(self : TagState, tag : Tag, rank : Int) -> TagState {
-  match self.inner().get(tag) {
-    None => self.inner().add(tag, rank)
-    Some(old_rank) =>
-      if old_rank > rank {
-        self.inner().add(tag, rank)
-      } else {
-        self
-      }
+fn TagState::update_by_tag(self : TagState, tag : Tag, rank : Int) -> TagState {
+  match self.0.get(tag) {
+    None => self.0.add(tag, rank)
+    Some(old_rank) => if old_rank > rank { self.0.add(tag, rank) } else { self }
   }
 }
 
 ///|
-fn update_by_tags(
+fn TagState::update_by_tags(
   self : TagState,
   tags : @immut/sorted_set.SortedSet[Tag],
 ) -> TagState {
@@ -57,13 +52,13 @@ fn update_by_tags(
 
 ///|
 fn tagState_merge(self_ : TagState, other : TagState) -> TagState {
-  let tags = @immut/sorted_set.from_iter(self_.inner().keys_as_iter()) +
-    @immut/sorted_set.from_iter(other.inner().keys_as_iter())
+  let tags = @immut/sorted_set.from_iter(self_.0.keys_as_iter()) +
+    @immut/sorted_set.from_iter(other.0.keys_as_iter())
   let mut result = @immut/sorted_map.new()
   for tag in tags {
     result = result.add(
       tag,
-      match (self_.inner().get(tag), other.inner().get(tag)) {
+      match (self_.0.get(tag), other.0.get(tag)) {
         (None, None) => panic()
         (Some(rank), None) => rank
         (None, Some(rank)) => rank
@@ -129,14 +124,14 @@ fn DFA::add_edge(self : DFA, from : Int, e : @eof_char_set.T, to : Int) -> Unit 
 }
 
 ///|
-typealias @immut_map.T[NFANode, TagState] as State
+type State = @immut_map.T[NFANode, TagState]
 
 ///|
 fn state_canonicalize(state : State, tag_count : Int) -> (State, TagAction) {
   let ranks_by_tag = Array::makei(tag_count, fn(_i) { [] })
   for pair in state.iter() {
     let tags = pair.1
-    for tag, rank in tags.inner() {
+    for tag, rank in tags.0 {
       ranks_by_tag[tag].push(rank)
     }
   }
@@ -144,13 +139,11 @@ fn state_canonicalize(state : State, tag_count : Int) -> (State, TagAction) {
   let new_state = state
     .iter()
     .map(fn(pair) {
-      let tag_state = pair.1
-        .inner()
-        .map_with_key(fn(tag, prev_rank) {
-          let ranks = ranks_by_tag[tag]
-          guard ranks.search(prev_rank) is Some(rank)
-          rank
-        })
+      let tag_state = pair.1.0.map_with_key(fn(tag, prev_rank) {
+        let ranks = ranks_by_tag[tag]
+        guard ranks.search(prev_rank) is Some(rank)
+        rank
+      })
       (pair.0, TagState(tag_state))
     })
     |> @immut_map.from_iter
@@ -172,7 +165,7 @@ fn state_canonicalize(state : State, tag_count : Int) -> (State, TagAction) {
 }
 
 ///|
-fn register_node(self : DFA, nfa : NFA, node : Int, os : State) -> Unit {
+fn DFA::register_node(self : DFA, nfa : NFA, node : Int, os : State) -> Unit {
   let code_blocks = os
     .iter()
     .filter_map(fn(x) { nfa.end_nodes.get(x.0.num) })
@@ -192,13 +185,11 @@ fn register_node(self : DFA, nfa : NFA, node : Int, os : State) -> Unit {
     let (_name, (begin, end)) = it
     (
       match begin {
-        Dynamic_nfa(tag) =>
-          Dynamic_dfa((tag, tagState.inner().get(tag).unwrap()))
+        Dynamic_nfa(tag) => Dynamic_dfa((tag, tagState.0.get(tag).unwrap()))
         Static_nfa(info) => Static_dfa(info)
       },
       match end {
-        Dynamic_nfa(tag) =>
-          Dynamic_dfa((tag, tagState.inner().get(tag).unwrap()))
+        Dynamic_nfa(tag) => Dynamic_dfa((tag, tagState.0.get(tag).unwrap()))
         Static_nfa(info) => Static_dfa(info)
       },
     )

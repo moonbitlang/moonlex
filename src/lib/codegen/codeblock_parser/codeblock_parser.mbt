@@ -153,7 +153,7 @@ fn[T : @lexbuf.IStringLexbuf] scan_codeblock_rbrace(subst : Array[SubstItem], le
         65..=90 => 5
         95 => 5
         97..=111 => 5
-        112 => 12
+        112 => 15
         113..=122 => 5
         _ => break
       }
@@ -168,27 +168,12 @@ fn[T : @lexbuf.IStringLexbuf] scan_codeblock_rbrace(subst : Array[SubstItem], le
         65..=90 => 5
         95 => 5
         97..=113 => 5
-        114 => 13
+        114 => 12
         115..=122 => 5
         _ => break
       }
     }
     12 => {
-      _match_pattern = 3
-      _match_end = lexbuf.curr_pos()
-      _capture_0_start = _match_start + 1
-      _capture_0_end = _match_end
-      continue match lexbuf.next_as_int() {
-        48..=57 => 5
-        65..=90 => 5
-        95 => 5
-        97..=110 => 5
-        111 => 14
-        112..=122 => 5
-        _ => break
-      }
-    }
-    13 => {
       _match_pattern = 3
       _match_end = lexbuf.curr_pos()
       _capture_0_start = _match_start + 1
@@ -203,7 +188,39 @@ fn[T : @lexbuf.IStringLexbuf] scan_codeblock_rbrace(subst : Array[SubstItem], le
         _ => break
       }
     }
+    13 => {
+      _match_pattern = 2
+      _match_end = lexbuf.curr_pos()
+      _capture_0_start = _match_start + 1
+      _capture_0_end = _tag_0
+      _capture_1_start = _tag_1
+      _capture_1_end = _tag_2
+      break
+    }
     14 => {
+      continue match lexbuf.next_as_int() {
+        9 => 14
+        32 => 14
+        41 => 13
+        _ => break
+      }
+    }
+    15 => {
+      _match_pattern = 3
+      _match_end = lexbuf.curr_pos()
+      _capture_0_start = _match_start + 1
+      _capture_0_end = _match_end
+      continue match lexbuf.next_as_int() {
+        48..=57 => 5
+        65..=90 => 5
+        95 => 5
+        97..=110 => 5
+        111 => 16
+        112..=122 => 5
+        _ => break
+      }
+    }
+    16 => {
       _match_pattern = 3
       _match_end = lexbuf.curr_pos()
       _capture_0_start = _match_start + 1
@@ -213,19 +230,19 @@ fn[T : @lexbuf.IStringLexbuf] scan_codeblock_rbrace(subst : Array[SubstItem], le
         65..=90 => 5
         95 => 5
         97..=114 => 5
-        115 => 15
+        115 => 17
         116..=122 => 5
         _ => break
       }
     }
-    15 => {
+    17 => {
       _tag_0 = lexbuf.curr_pos()
       _match_pattern = 3
       _match_end = lexbuf.curr_pos()
       _capture_0_start = _match_start + 1
       _capture_0_end = _match_end
       continue match lexbuf.next_as_int() {
-        40 => 16
+        40 => 18
         48..=57 => 5
         65..=90 => 5
         95 => 5
@@ -233,46 +250,29 @@ fn[T : @lexbuf.IStringLexbuf] scan_codeblock_rbrace(subst : Array[SubstItem], le
         _ => break
       }
     }
-    16 => {
+    18 => {
       _tag_1 = lexbuf.curr_pos()
       continue match lexbuf.next_as_int() {
-        9 => 16
-        32 => 16
-        65..=90 => 17
-        95 => 17
-        97..=122 => 17
-        _ => break
-      }
-    }
-    17 => {
-      _tag_2 = lexbuf.curr_pos()
-      continue match lexbuf.next_as_int() {
         9 => 18
         32 => 18
-        41 => 19
-        48..=57 => 17
-        65..=90 => 17
-        95 => 17
-        97..=122 => 17
-        _ => break
-      }
-    }
-    18 => {
-      continue match lexbuf.next_as_int() {
-        9 => 18
-        32 => 18
-        41 => 19
+        65..=90 => 19
+        95 => 19
+        97..=122 => 19
         _ => break
       }
     }
     19 => {
-      _match_pattern = 2
-      _match_end = lexbuf.curr_pos()
-      _capture_0_start = _match_start + 1
-      _capture_0_end = _tag_0
-      _capture_1_start = _tag_1
-      _capture_1_end = _tag_2
-      break
+      _tag_2 = lexbuf.curr_pos()
+      continue match lexbuf.next_as_int() {
+        9 => 14
+        32 => 14
+        41 => 13
+        48..=57 => 19
+        65..=90 => 19
+        95 => 19
+        97..=122 => 19
+        _ => break
+      }
     }
     _ => panic()
   }

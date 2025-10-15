@@ -133,7 +133,7 @@ pub fn codegen_rule_inner(
   }
   let all_tag_vars = @sorted_set.new()
   for tag_action in all_tag_actions {
-    for op in tag_action.inner() {
+    for op in tag_action.0 {
       match op {
         Set(dest~) => all_tag_vars.add(dest)
         Copy(dest~, src~) => {
@@ -186,7 +186,7 @@ pub fn codegen_rule_inner(
     )
     fn gen_inline_tag_action(tag_action : @automaton.TagAction) -> String? {
       let buf = []
-      for op in tag_action.inner() {
+      for op in tag_action.0 {
         match op {
           Set(dest~) =>
             buf.push("\{gen_tag_var(dest)} = \{rule.lexee}.curr_pos()")
@@ -410,18 +410,15 @@ fn codegen_rule(
   let (generic_part, other_part) = {
     let signature = rule.signature
     let lparen_index = signature.find("(").unwrap()
-    let left_part = signature.substring(start=0, end=lparen_index)
+    let left_part = try! signature[0:lparen_index].to_string()
     let lbracket_index = left_part.find("[")
     if lbracket_index is Some(lbracket_index) && lbracket_index < lparen_index {
       let rbracket_index = left_part.rev_find("]").unwrap()
-      let generic_part = signature.substring(
-        start=lbracket_index,
-        end=rbracket_index + 1,
-      )
+      let generic_part = try! signature[lbracket_index:rbracket_index + 1].to_string()
       (
         generic_part,
-        signature.substring(end=lbracket_index) +
-        signature.substring(start=rbracket_index + 1),
+        try! (signature[0:lbracket_index].to_string() +
+        (try! signature[rbracket_index + 1:].to_string())),
       )
     } else {
       ("", signature)

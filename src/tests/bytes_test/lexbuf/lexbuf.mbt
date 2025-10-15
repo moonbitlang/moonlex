@@ -62,6 +62,6 @@ pub fn BytesLexbuf::get_string(
   self : BytesLexbuf,
   start : Int,
   end : Int,
-) -> @bytes.View {
+) -> BytesView {
   return self.content[start:end]
 }

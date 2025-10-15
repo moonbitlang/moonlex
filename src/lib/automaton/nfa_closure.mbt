@@ -82,7 +82,7 @@ fn NFAEpsClosure::iter(
 // }
 
 ///|
-fn get_eps_closure(self : NFA) -> Array[NFAEpsClosure] {
+fn NFA::get_eps_closure(self : NFA) -> Array[NFAEpsClosure] {
   Array::map(self.graph, fn(x) {
     let result = NFAEpsClosure::new(self)
     let _ = result.add(x)
