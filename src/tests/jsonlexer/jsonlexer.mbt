@@ -109,8 +109,8 @@ fn[T : @lexbuf.IStringLexbuf] token(lexbuf : T) -> Token raise LexError  {
       _capture_0_start = _match_start
       _capture_0_end = _match_end
       continue match lexbuf.next_as_int() {
-        69 => 20
-        101 => 20
+        69 => 22
+        101 => 22
         _ => break
       }
     }
@@ -120,10 +120,10 @@ fn[T : @lexbuf.IStringLexbuf] token(lexbuf : T) -> Token raise LexError  {
       _capture_0_start = _match_start
       _capture_0_end = _match_end
       continue match lexbuf.next_as_int() {
-        46 => 19
+        46 => 25
         48..=57 => 7
-        69 => 20
-        101 => 20
+        69 => 22
+        101 => 22
         _ => break
       }
     }
@@ -184,67 +184,67 @@ fn[T : @lexbuf.IStringLexbuf] token(lexbuf : T) -> Token raise LexError  {
     }
     16 => {
       continue match lexbuf.next_as_int() {
-        108 => 21
+        108 => 19
         _ => break
       }
     }
     17 => {
       continue match lexbuf.next_as_int() {
-        108 => 22
+        108 => 20
         _ => break
       }
     }
     18 => {
       continue match lexbuf.next_as_int() {
-        117 => 23
+        117 => 21
         _ => break
       }
     }
     19 => {
       continue match lexbuf.next_as_int() {
-        48..=57 => 26
+        108 => 27
         _ => break
       }
     }
     20 => {
       continue match lexbuf.next_as_int() {
-        43 => 24
-        45 => 24
-        48..=57 => 25
+        115 => 28
         _ => break
       }
     }
     21 => {
       continue match lexbuf.next_as_int() {
-        108 => 27
+        101 => 29
         _ => break
       }
     }
     22 => {
       continue match lexbuf.next_as_int() {
-        115 => 28
+        43 => 23
+        45 => 23
+        48..=57 => 24
         _ => break
       }
     }
     23 => {
       continue match lexbuf.next_as_int() {
-        101 => 29
+        48..=57 => 24
         _ => break
       }
     }
     24 => {
-      continue match lexbuf.next_as_int() {
-        48..=57 => 25
-        _ => break
-      }
-    }
-    25 => {
       _match_pattern = 1
       _match_end = lexbuf.curr_pos()
       _capture_0_start = _match_start
       _capture_0_end = _match_end
       continue match lexbuf.next_as_int() {
-        48..=57 => 25
+        48..=57 => 24
+        _ => break
+      }
+    }
+    25 => {
+      continue match lexbuf.next_as_int() {
+        48..=57 => 26
         _ => break
       }
     }
@@ -255,8 +255,8 @@ fn[T : @lexbuf.IStringLexbuf] token(lexbuf : T) -> Token raise LexError  {
       _capture_0_end = _match_end
       continue match lexbuf.next_as_int() {
         48..=57 => 26
-        69 => 20
-        101 => 20
+        69 => 22
+        101 => 22
         _ => break
       }
     }
