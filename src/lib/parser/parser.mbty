@@ -73,8 +73,8 @@ named_regex                             -> (Context) -> Context
   ;
 
 nonempty_rule_list                      -> (Context) -> @list.List[@type.Rule]
-  : rule                                { ctx => @list.construct($1(ctx), @list.empty()) }
-  | rule nonempty_rule_list             { ctx => @list.construct($1(ctx), $2(ctx)) }
+  : rule                                { ctx => @list.cons($1(ctx), @list.empty()) }
+  | rule nonempty_rule_list             { ctx => @list.cons($1(ctx), $2(ctx)) }
   ;
 
 rule                                    -> (Context) -> @type.Rule
@@ -88,7 +88,7 @@ rule                                    -> (Context) -> @type.Rule
   ;
 
 rule_item_list                          -> (Context) -> @list.List[(@type.Regex, String?, @type.CodeBlock)]
-  : rule_item rule_item_list            { ctx => @list.construct($1(ctx), $2(ctx)) }
+  : rule_item rule_item_list            { ctx => @list.cons($1(ctx), $2(ctx)) }
   |                                     { _ctx => @list.empty() }
   ;
 

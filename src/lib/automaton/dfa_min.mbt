@@ -114,7 +114,7 @@ fn DFA::minimize(dfa : DFA) -> DFA {
             worklist = worklist.remove(y)
             worklist = worklist.add(intersection)
             worklist = worklist.add(difference)
-          } else if intersection.size() <= difference.size() {
+          } else if intersection.length() <= difference.length() {
             worklist = worklist.add(intersection)
           } else {
             worklist = worklist.add(difference)
