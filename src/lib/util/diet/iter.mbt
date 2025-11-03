@@ -1,5 +1,5 @@
 ///|
-pub fn[N] iter_intervals(self : Tree[N]) -> Iter[(N, N)] {
+pub fn[N] Tree::iter_intervals(self : Tree[N]) -> Iter[(N, N)] {
   Iter::new(fn(yield_) {
     match self {
       Empty => IterContinue
@@ -18,7 +18,7 @@ pub fn[N] iter_intervals(self : Tree[N]) -> Iter[(N, N)] {
 }
 
 ///|
-pub fn[N : @bounded_enum.T] iter(self : Tree[N]) -> Iter[N] {
+pub fn[N : @bounded_enum.T] Tree::iter(self : Tree[N]) -> Iter[N] {
   self
   .iter_intervals()
   .flat_map(it => {

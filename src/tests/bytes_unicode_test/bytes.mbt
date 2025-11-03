@@ -73,14 +73,14 @@ fn lex_unicode(lexbuf : @lexbuf.T) -> Int  {
     }
     8 => {
       continue match lexbuf.next_as_int() {
-        128..=191 => 11
+        128..=191 => 23
         _ => break
       }
     }
     9 => {
       continue match lexbuf.next_as_int() {
         128..=173 => 2
-        174 => 12
+        174 => 11
         175..=191 => 2
         _ => break
       }
@@ -88,90 +88,90 @@ fn lex_unicode(lexbuf : @lexbuf.T) -> Int  {
     10 => {
       continue match lexbuf.next_as_int() {
         128..=144 => 1
-        145 => 13
+        145 => 12
         146..=191 => 1
         _ => break
       }
     }
     11 => {
-      _match_pattern = 2
-      _match_end = lexbuf.curr_pos()
-      _capture_0_start = _match_start
-      _capture_0_end = _match_start + 3
-      break
-    }
-    12 => {
       continue match lexbuf.next_as_int() {
         128..=182 => 1
-        183 => 14
+        183 => 13
         184..=191 => 1
         _ => break
       }
     }
-    13 => {
+    12 => {
       _match_pattern = 3
       _match_end = lexbuf.curr_pos()
       continue match lexbuf.next_as_int() {
-        231 => 15
+        231 => 14
         _ => break
       }
     }
-    14 => {
+    13 => {
       _match_pattern = 1
       _match_end = lexbuf.curr_pos()
       break
     }
+    14 => {
+      continue match lexbuf.next_as_int() {
+        136 => 15
+        _ => break
+      }
+    }
     15 => {
       continue match lexbuf.next_as_int() {
-        136 => 16
+        177 => 16
         _ => break
       }
     }
     16 => {
       continue match lexbuf.next_as_int() {
-        177 => 17
+        228 => 17
         _ => break
       }
     }
     17 => {
       continue match lexbuf.next_as_int() {
-        228 => 18
+        184 => 18
         _ => break
       }
     }
     18 => {
       continue match lexbuf.next_as_int() {
-        184 => 19
+        173 => 19
         _ => break
       }
     }
     19 => {
       continue match lexbuf.next_as_int() {
-        173 => 20
+        229 => 20
         _ => break
       }
     }
     20 => {
       continue match lexbuf.next_as_int() {
-        229 => 21
+        155 => 21
         _ => break
       }
     }
     21 => {
       continue match lexbuf.next_as_int() {
-        155 => 22
+        189 => 22
         _ => break
       }
     }
     22 => {
-      continue match lexbuf.next_as_int() {
-        189 => 23
-        _ => break
-      }
-    }
-    23 => {
       _match_pattern = 0
       _match_end = lexbuf.curr_pos()
+      break
+    }
+    23 => {
+      _match_pattern = 2
+      _match_end = lexbuf.curr_pos()
+      _capture_0_start = _match_start
+      _capture_0_end = _match_start + 3
       break
     }
     _ => panic()

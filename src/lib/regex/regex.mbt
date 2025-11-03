@@ -135,7 +135,7 @@ pub fn bind(re : Regex, name : String) -> Regex {
 }
 
 ///|
-pub fn check_legal(self : Regex) -> Bool {
+pub fn Regex::check_legal(self : Regex) -> Bool {
   // there're two special rules for our regex
   // 1. Capture can't be inside of Option/Repetition/Alter
   // 2. Capture names can't duplicate
@@ -144,7 +144,7 @@ pub fn check_legal(self : Regex) -> Bool {
 }
 
 ///|
-fn check_legal_rec(
+fn Regex::check_legal_rec(
   self : Regex,
   names : Set[String],
   ban_capture : Bool,

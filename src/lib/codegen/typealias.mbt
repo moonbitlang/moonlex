@@ -1,5 +1,5 @@
 ///|
-typealias @type.Rule
+using @type {type Rule}
 
 ///|
-typealias @type.Lex
+using @type {type Lex}

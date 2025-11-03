@@ -9,27 +9,27 @@ pub fn BitArray::new(length : Int) -> BitArray {
 
 ///|
 pub fn BitArray::unsafe_get(self : Self, index : Int) -> Int {
-  (self.inner()[index / 32] >> (index % 32)) & 1
+  (self.0[index / 32] >> (index % 32)) & 1
 }
 
 ///|
 pub fn BitArray::unsafe_set(self : Self, index : Int, value : Int) -> Unit {
   let word_index = index / 32
   let bit_index = index % 32
-  let word = self.inner()[word_index]
+  let word = self.0[word_index]
   let new_word = if value != 0 {
     word | (1 << bit_index)
   } else {
     word & (1 << bit_index).lnot()
   }
-  self.inner()[word_index] = new_word
+  self.0[word_index] = new_word
 }
 
 ///|
 pub fn BitArray::iter(self : Self) -> Iter[Int] {
   Iter::new(yield_ => {
-    for i in 0..<self.inner().length() {
-      let mut word = self.inner()[i]
+    for i in 0..<self.0.length() {
+      let mut word = self.0[i]
       if word == 0 {
         continue
       }

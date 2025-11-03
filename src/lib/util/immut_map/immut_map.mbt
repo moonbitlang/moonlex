@@ -104,7 +104,7 @@ pub fn[K : Compare, V] T::get(self : Self[K, V], key : K) -> V? {
 }
 
 ///|
-pub fn[K, V] iter(self : T[K, V]) -> Iter[(K, V)] {
+pub fn[K, V] T::iter(self : T[K, V]) -> Iter[(K, V)] {
   Iter::new(yield_ => {
     fn go(t) {
       match t {

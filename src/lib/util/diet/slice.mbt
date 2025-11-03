@@ -1,5 +1,5 @@
 ///|
-fn[N : @bounded_enum.T] slice_from(self : Tree[N], x : N) -> Tree[N] {
+fn[N : @bounded_enum.T] Tree::slice_from(self : Tree[N], x : N) -> Tree[N] {
   match self {
     Empty => Empty
     Node(..) as t =>
@@ -14,7 +14,7 @@ fn[N : @bounded_enum.T] slice_from(self : Tree[N], x : N) -> Tree[N] {
 }
 
 ///|
-fn[N : @bounded_enum.T] slice_until(self : Tree[N], x : N) -> Tree[N] {
+fn[N : @bounded_enum.T] Tree::slice_until(self : Tree[N], x : N) -> Tree[N] {
   match self {
     Empty => Empty
     Node(..) as t =>
@@ -29,7 +29,7 @@ fn[N : @bounded_enum.T] slice_until(self : Tree[N], x : N) -> Tree[N] {
 }
 
 ///|
-fn[N : @bounded_enum.T] slice_before(self : Tree[N], x : N) -> Tree[N] {
+fn[N : @bounded_enum.T] Tree::slice_before(self : Tree[N], x : N) -> Tree[N] {
   if x == N::lower_bound() {
     Empty
   } else {
@@ -38,7 +38,7 @@ fn[N : @bounded_enum.T] slice_before(self : Tree[N], x : N) -> Tree[N] {
 }
 
 ///|
-fn[N : @bounded_enum.T] slice_after(self : Tree[N], x : N) -> Tree[N] {
+fn[N : @bounded_enum.T] Tree::slice_after(self : Tree[N], x : N) -> Tree[N] {
   if x == N::upper_bound() {
     Empty
   } else {
@@ -47,7 +47,7 @@ fn[N : @bounded_enum.T] slice_after(self : Tree[N], x : N) -> Tree[N] {
 }
 
 ///|
-pub fn[N : @bounded_enum.T] slice(
+pub fn[N : @bounded_enum.T] Tree::slice(
   self : Tree[N],
   min? : N,
   max? : N,

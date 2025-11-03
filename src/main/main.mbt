@@ -1,5 +1,5 @@
 ///|
-fnalias @util.(println_to_stderr, exit)
+using @util {println_to_stderr, exit}
 
 ///|
 fn main {
