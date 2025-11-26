@@ -125,7 +125,7 @@ pub suberror ParseError {
   UnexpectedToken(Token, (Int, Int), Array[TokenKind])
 } derive(Show)
 
-typealias Error as YYObj
+type YYObj = Error
 
 priv suberror YYObj_Void
 
@@ -151,9 +151,9 @@ priv suberror YYObj__Context______type_Regex (Context) -> @type.Regex
 
 priv suberror YYObj__Context_______type_Regex__String____type_CodeBlock_ (Context) -> (@type.Regex, String?, @type.CodeBlock)
 
-typealias (YYSymbol) -> YYDecision as YYState
+type YYState = (YYSymbol) -> YYDecision
 
-typealias (Int, ArrayView[(YYObj, Int, Int)]) -> YYObj as YYAction
+type YYAction = (Int, ArrayView[(YYObj, Int, Int)]) -> YYObj
 
 priv enum YYDecision {
   Accept

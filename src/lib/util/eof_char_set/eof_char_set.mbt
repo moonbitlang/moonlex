@@ -1,5 +1,5 @@
 ///|
-pub typealias EofCharSet as T
+pub type T = EofCharSet
 
 ///|
 struct EofCharSet(@diet.T[EofChar]) derive(Default, Eq, Compare, Hash)

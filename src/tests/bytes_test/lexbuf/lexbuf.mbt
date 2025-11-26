@@ -6,7 +6,7 @@ struct BytesLexbuf {
 }
 
 ///|
-pub typealias BytesLexbuf as T
+pub type T = BytesLexbuf
 
 ///|
 pub fn from_bytes(bytes : Bytes, start? : Int = 0, end? : Int) -> BytesLexbuf {

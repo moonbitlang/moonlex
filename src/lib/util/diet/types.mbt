@@ -1,5 +1,5 @@
 ///|
-pub typealias Tree as T
+pub type T[K] = Tree[K]
 
 ///|
 enum Tree[T] {

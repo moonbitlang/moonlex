@@ -5,7 +5,7 @@
 pub(all) struct TagAction(Array[TagOp]) derive(Show, Eq, Compare) // sorted
 
 ///|
-pub typealias Int as TagRank
+pub type TagRank = Int
 
 ///|
 pub type TagVar = (Tag, TagRank)
@@ -88,7 +88,7 @@ pub(all) struct DFA {
 } derive(Show)
 
 ///|
-pub typealias Int as DFANode
+pub type DFANode = Int
 
 ///|
 fn DFA::new(captures : Array[(Array[(String, VarType)], String?)]) -> DFA {
@@ -135,7 +135,7 @@ fn state_canonicalize(state : State, tag_count : Int) -> (State, TagAction) {
       ranks_by_tag[tag].push(rank)
     }
   }
-  ranks_by_tag.map_inplace(fn(x) { @sorted_set.from_iter(x.iter()).to_array() })
+  ranks_by_tag.map_in_place(fn(x) { @sorted_set.from_iter(x.iter()).to_array() })
   let new_state = state
     .iter()
     .map(fn(pair) {

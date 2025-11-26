@@ -1,5 +1,5 @@
 ///|
-pub typealias Regex as T
+pub type T = Regex
 
 ///|
 pub struct Regex {
