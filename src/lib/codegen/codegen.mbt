@@ -34,7 +34,7 @@ fn rewrite_codeblock(
   let mut last_index = 0
   for item in subst {
     // replace `$startpos(t)`/`$endpos(t)` with `_match_start_of_t`/`_match_end_of_t`
-    buf.write_substring(codeblock, last_index, item.start - last_index)
+    buf.write_view(try! codeblock[last_index:item.start])
     match item.desc {
       StartPosOf(name) =>
         buf.write_string("_capture_\{index_of_name(name)}_start")
@@ -45,7 +45,7 @@ fn rewrite_codeblock(
     last_index = item.end
   }
   if last_index < codeblock.length() {
-    buf.write_substring(codeblock, last_index, codeblock.length() - last_index)
+    buf.write_view(try! codeblock[last_index:codeblock.length()])
   }
   buf.to_string()
 }
