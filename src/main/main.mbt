@@ -11,27 +11,6 @@ fn main {
   let mut default_encoding : @type.Encoding? = None
   @ArgParser.parse(
     [
-      (
-        "--input-file",
-        "-i",
-        Set_string(input_file),
-        "Input file (lexer specification)",
-      ),
-      (
-        "--output-format",
-        "-f",
-        String(fn(format) {
-          output_file.val = match format {
-            "rust" => "out.rs"
-            "c" => "out.c"
-            _ => {
-              abort("Invalid output format: \{format}")
-              return
-            }
-          }
-        }),
-        "Output format (rust or c)",
-      ),
       ("--output-file", "-o", Set_string(output_file), "Output file"),
       (
         "--version",
