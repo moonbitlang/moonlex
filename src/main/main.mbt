@@ -60,8 +60,20 @@ fn main {
     fn(rest) { input_file.val = rest },
     usage,
     @sys.get_cli_args(),
-  )
-  guard input_file.val != "" else { abort("Input file is required") }
+  ) catch {
+    @ArgParser.ErrorMsg(msg) => {
+      println_to_stderr("Error: \{msg}")
+      exit(1)
+    }
+    _ => {
+      println_to_stderr("An unexpected error occurred while parsing arguments")
+      exit(1)
+    }
+  }
+  guard input_file.val != "" else {
+    println_to_stderr("Input file is required")
+    exit(1)
+  }
   let output = {
     let lexer_spec_src = (try? @fs.read_file_to_string(input_file.val)).unwrap()
     let lex_ = @parser.parse_lex_from_string(lexer_spec_src) catch {
