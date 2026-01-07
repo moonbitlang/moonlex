@@ -43,30 +43,30 @@ pub fn[K, V] T::size(self : T[K, V]) -> Int {
 
 ///|
 pub fn[K, V] T::iter(self : T[K, V]) -> Iter[(K, V)] {
-  Iter::new(fn(yield_) {
-    loop self.entry {
-      None => IterContinue
-      Some(entry) =>
-        match yield_((entry.key, entry.value)) {
-          IterEnd => return IterEnd
-          IterContinue => continue entry.prev
-        }
+  let mut current = self.entry
+  Iterator::new(fn() {
+    match current {
+      None => None
+      Some(entry) => {
+        current = entry.prev
+        Some((entry.key, entry.value))
+      }
     }
-  })
+  }).iter()
 }
 
 ///|
 pub fn[K, V] T::iter2(self : T[K, V]) -> Iter2[K, V] {
-  Iter2::new(fn(yield_) {
-    loop self.entry {
-      None => IterContinue
-      Some(entry) =>
-        match yield_(entry.key, entry.value) {
-          IterEnd => return IterEnd
-          IterContinue => continue entry.prev
-        }
+  let mut current = self.entry
+  Iterator2::new(fn() {
+    match current {
+      None => None
+      Some(entry) => {
+        current = entry.prev
+        Some((entry.key, entry.value))
+      }
     }
-  })
+  }).iter2()
 }
 
 ///|

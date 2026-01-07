@@ -1,0 +1,43 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "moonbitlang/ulex/lib/util/diet"
+
+import(
+  "moonbitlang/ulex/lib/util/bounded_enum"
+)
+
+// Values
+pub fn[N : @bounded_enum.BoundedEnum] difference(Tree[N], Tree[N]) -> Tree[N]
+
+pub fn[N] empty() -> Tree[N]
+
+pub fn[N : @bounded_enum.BoundedEnum] intersection(Tree[N], Tree[N]) -> Tree[N]
+
+pub fn[N] interval(N, N) -> Tree[N]
+
+pub fn[N : @bounded_enum.BoundedEnum] of(Array[N]) -> Tree[N]
+
+pub fn[N] singleton(N) -> Tree[N]
+
+pub fn[N : @bounded_enum.BoundedEnum] union(Tree[N], Tree[N]) -> Tree[N]
+
+// Errors
+
+// Types and methods
+#alias(T)
+type Tree[T]
+pub fn[N : @bounded_enum.BoundedEnum] Tree::complement(Self[N]) -> Self[N]
+pub fn[N : @bounded_enum.BoundedEnum] Tree::contains(Self[N], N) -> Bool
+pub fn[N] Tree::is_empty(Self[N]) -> Bool
+pub fn[N : @bounded_enum.BoundedEnum] Tree::iter(Self[N]) -> Iter[N]
+pub fn[N] Tree::iter_intervals(Self[N]) -> Iter[(N, N)]
+pub fn[N : @bounded_enum.BoundedEnum] Tree::slice(Self[N], min? : N, max? : N) -> Self[N]
+pub fn[N] Tree::unsafe_choose(Self[N]) -> N
+pub impl[N : Compare] Compare for Tree[N]
+pub impl[N] Default for Tree[N]
+pub impl[N : Eq] Eq for Tree[N]
+pub impl[N : Hash] Hash for Tree[N]
+
+// Type aliases
+
+// Traits
+

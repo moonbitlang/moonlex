@@ -27,27 +27,24 @@ pub fn BitArray::unsafe_set(self : Self, index : Int, value : Int) -> Unit {
 
 ///|
 pub fn BitArray::iter(self : Self) -> Iter[Int] {
-  Iter::new(yield_ => {
-    for i in 0..<self.0.length() {
-      let mut word = self.0[i]
-      if word == 0 {
-        continue
-      }
-      // Use bit manipulation to efficiently find set bits
-      // This uses the "clear lowest set bit" trick: word & (word - 1)
-      // removes the lowest set bit, so we can iterate only through set bits
-      let base = i * 32
-      while word != 0 {
-        // Find the position of the lowest set bit using count trailing zeros
+  let arr = self.0
+  let mut word_index = 0
+  let mut word = 0
+  let mut base = 0
+  Iterator::new(fn() {
+    while true {
+      if word != 0 {
         let bit_pos = word.ctz()
-        if yield_(base + bit_pos) is IterEnd {
-          return IterEnd
-        }
-
-        // Clear the lowest set bit
         word = word & (word - 1)
+        return Some(base + bit_pos)
       }
+      if word_index >= arr.length() {
+        return None
+      }
+      word = arr[word_index]
+      base = word_index * 32
+      word_index += 1
     }
-    IterContinue
-  })
+    None
+  }).iter()
 }

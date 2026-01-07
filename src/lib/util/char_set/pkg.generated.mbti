@@ -1,0 +1,51 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "moonbitlang/ulex/lib/util/char_set"
+
+import(
+  "moonbitlang/ulex/lib/util/diet"
+)
+
+// Values
+pub let any : CharSet
+
+pub let empty : CharSet
+
+pub fn of_array(Array[Char]) -> CharSet
+
+pub fn range(Char, Char) -> CharSet
+
+pub fn singleton(Char) -> CharSet
+
+// Errors
+
+// Types and methods
+#alias(T)
+pub struct CharSet(@diet.Tree[Char])
+pub fn CharSet::complement(Self) -> Self
+pub fn CharSet::contains(Self, Char) -> Bool
+pub fn CharSet::difference(Self, Self) -> Self
+pub fn CharSet::disjoint(Self, Self) -> Bool
+#deprecated
+pub fn CharSet::inner(Self) -> @diet.Tree[Char]
+pub fn CharSet::intersection(Self, Self) -> Self
+pub fn CharSet::is_empty(Self) -> Bool
+pub fn CharSet::iter(Self) -> Iter[Char]
+pub fn CharSet::iter_ranges(Self) -> Iter[(Char, Char)]
+pub fn CharSet::negated(Self) -> Self
+pub fn CharSet::slice(Self, min? : Char, max? : Char) -> Self
+pub fn CharSet::subset(Self, Self) -> Bool
+pub fn CharSet::union(Self, Self) -> Self
+pub impl Add for CharSet
+pub impl BitAnd for CharSet
+pub impl Compare for CharSet
+pub impl Eq for CharSet
+pub impl Hash for CharSet
+pub impl Neg for CharSet
+pub impl Show for CharSet
+pub impl Sub for CharSet
+pub impl ToJson for CharSet
+
+// Type aliases
+
+// Traits
+

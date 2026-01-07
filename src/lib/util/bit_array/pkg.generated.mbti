@@ -1,0 +1,18 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "moonbitlang/ulex/lib/util/bit_array"
+
+// Values
+
+// Errors
+
+// Types and methods
+type BitArray
+pub fn BitArray::iter(Self) -> Iter[Int]
+pub fn BitArray::new(Int) -> Self
+pub fn BitArray::unsafe_get(Self, Int) -> Int
+pub fn BitArray::unsafe_set(Self, Int, Int) -> Unit
+
+// Type aliases
+
+// Traits
+
