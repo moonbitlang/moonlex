@@ -1,0 +1,21 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "moonbitlang/ulex/lib/util/bounded_enum"
+
+// Values
+
+// Errors
+
+// Types and methods
+
+// Type aliases
+
+// Traits
+#alias(T)
+pub(open) trait BoundedEnum : Compare {
+  pred(Self) -> Self
+  succ(Self) -> Self
+  lower_bound() -> Self
+  upper_bound() -> Self
+}
+pub impl BoundedEnum for Char
+

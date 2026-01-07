@@ -105,23 +105,31 @@ pub fn[K : Compare, V] T::get(self : Self[K, V], key : K) -> V? {
 
 ///|
 pub fn[K, V] T::iter(self : T[K, V]) -> Iter[(K, V)] {
-  Iter::new(yield_ => {
-    fn go(t) {
-      match t {
-        Empty => IterContinue
-        Node(..) as node =>
-          if go(node.left) is IterEnd {
-            IterEnd
-          } else if yield_((node.key, node.value)) is IterEnd {
-            IterEnd
-          } else {
-            go(node.right)
-          }
+  let stack : Array[T[K, V]] = []
+  let mut current = self
+  Iterator::new(fn() {
+    let mut node = current
+    while true {
+      match node {
+        Empty => break
+        Node(left~, ..) => {
+          stack.push(node)
+          node = left
+        }
       }
     }
-
-    go(self)
-  })
+    match stack.pop() {
+      None => {
+        current = Empty
+        None
+      }
+      Some(node) => {
+        guard node is Node(key~, value~, right~, ..)
+        current = right
+        Some((key, value))
+      }
+    }
+  }).iter()
 }
 
 ///|

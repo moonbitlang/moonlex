@@ -1,0 +1,73 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "moonbitlang/ulex/lib/util/eof_char_set"
+
+import(
+  "moonbitlang/ulex/lib/util/bounded_enum"
+  "moonbitlang/ulex/lib/util/char_set"
+)
+
+// Values
+pub let any : EofCharSet
+
+pub let empty : EofCharSet
+
+pub let eof : EofCharSet
+
+pub fn from_char_set(@char_set.CharSet) -> EofCharSet
+
+pub fn of_array(Array[Char]) -> EofCharSet
+
+pub fn range(Char, Char) -> EofCharSet
+
+pub fn singleton(Char) -> EofCharSet
+
+// Errors
+
+// Types and methods
+type EofChar
+pub fn EofChar::char(Char) -> Self
+pub fn EofChar::eof() -> Self
+pub fn EofChar::repr(Self) -> EofCharRepr
+pub impl Compare for EofChar
+pub impl Eq for EofChar
+pub impl Hash for EofChar
+pub impl Show for EofChar
+pub impl ToJson for EofChar
+pub impl @bounded_enum.BoundedEnum for EofChar
+
+pub enum EofCharRepr {
+  Eof
+  Char(Char)
+}
+
+#alias(T)
+type EofCharSet
+pub fn EofCharSet::complement(Self) -> Self
+pub fn EofCharSet::contains(Self, Char) -> Bool
+pub fn EofCharSet::contains2(Self, EofChar) -> Bool
+pub fn EofCharSet::difference(Self, Self) -> Self
+pub fn EofCharSet::disjoint(Self, Self) -> Bool
+pub fn EofCharSet::intersection(Self, Self) -> Self
+pub fn EofCharSet::is_empty(Self) -> Bool
+pub fn EofCharSet::iter(Self) -> Iter[EofChar]
+pub fn EofCharSet::iter_ranges(Self) -> Iter[(EofChar, EofChar)]
+pub fn EofCharSet::negated(Self) -> Self
+pub fn EofCharSet::slice(Self, min? : Char, max? : Char) -> Self
+pub fn EofCharSet::subset(Self, Self) -> Bool
+pub fn EofCharSet::union(Self, Self) -> Self
+pub fn EofCharSet::unsafe_choose(Self) -> EofChar
+pub impl Add for EofCharSet
+pub impl BitAnd for EofCharSet
+pub impl Compare for EofCharSet
+pub impl Default for EofCharSet
+pub impl Eq for EofCharSet
+pub impl Hash for EofCharSet
+pub impl Neg for EofCharSet
+pub impl Show for EofCharSet
+pub impl Sub for EofCharSet
+pub impl ToJson for EofCharSet
+
+// Type aliases
+
+// Traits
+

@@ -1,0 +1,82 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "moonbitlang/ulex/lib/regex"
+
+import(
+  "moonbitlang/core/immut/sorted_map"
+  "moonbitlang/ulex/lib/util/char_set"
+)
+
+// Values
+pub fn alt(Regex, Regex) -> Regex
+
+pub fn bind(Regex, String) -> Regex
+
+pub fn char_class(@char_set.CharSet, as_bytes? : Encoding) -> Regex
+
+pub let eof : Regex
+
+pub let epsilon : Regex
+
+pub fn get_capture_vars(Regex) -> @sorted_map.SortedMap[String, RegexClass]
+
+pub fn lower(Regex, encoding~ : Encoding?) -> Regex
+
+pub fn opt(Regex) -> Regex
+
+pub fn plus(Regex) -> Regex
+
+pub fn repeat(Regex, min_times~ : Int, max_times? : Int) -> Regex
+
+pub fn seq(Regex, Regex) -> Regex
+
+pub fn star(Regex) -> Regex
+
+// Errors
+
+// Types and methods
+pub(all) enum Encoding {
+  Ascii
+  Latin1
+  Utf8
+  Utf16
+}
+pub impl Eq for Encoding
+pub impl Show for Encoding
+pub impl ToJson for Encoding
+
+#alias(T)
+pub struct Regex {
+  desc : RegexDesc
+  class_ : RegexClass
+  len : Int?
+}
+pub fn Regex::check_legal(Self) -> Bool
+pub impl Eq for Regex
+pub impl Show for Regex
+pub impl ToJson for Regex
+
+pub enum RegexClass {
+  Char
+  String
+}
+pub impl Eq for RegexClass
+pub impl Show for RegexClass
+pub impl ToJson for RegexClass
+
+pub enum RegexDesc {
+  EOF
+  Character(@char_set.CharSet)
+  Repetition(Regex)
+  Epsilon
+  Alter(Regex, Regex)
+  Concat(Regex, Regex)
+  Capture(Regex, String)
+}
+pub impl Eq for RegexDesc
+pub impl Show for RegexDesc
+pub impl ToJson for RegexDesc
+
+// Type aliases
+
+// Traits
+

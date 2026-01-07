@@ -1,0 +1,45 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "moonbitlang/ulex/lib/type"
+
+import(
+  "moonbitlang/ulex/lib/regex"
+)
+
+// Values
+
+// Errors
+
+// Types and methods
+pub(all) enum CodeUnit {
+  CodeUnit1
+  CodeUnit2
+  CodeUnit4
+}
+
+pub(all) struct Lex {
+  header : String
+  rules : Array[Rule]
+  trailer : String
+}
+pub impl Show for Lex
+pub impl ToJson for Lex
+
+pub(all) struct Rule {
+  name : String
+  signature : String
+  lexee : String
+  patterns : Array[(@regex.Regex, String?)]
+  actions : Array[String]
+}
+pub impl Show for Rule
+pub impl ToJson for Rule
+
+// Type aliases
+pub type CodeBlock = String
+
+pub using @regex {type Encoding}
+
+pub using @regex {type Regex}
+
+// Traits
+
