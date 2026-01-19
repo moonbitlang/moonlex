@@ -1,2 +1,3 @@
-target/
+target
+_build/
 .mooncakes/
