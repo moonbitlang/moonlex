@@ -31,7 +31,7 @@ pub fn BitArray::iter(self : Self) -> Iter[Int] {
   let mut word_index = 0
   let mut word = 0
   let mut base = 0
-  Iterator::new(fn() {
+  Iter::new(fn() {
     while true {
       if word != 0 {
         let bit_pos = word.ctz()

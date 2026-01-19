@@ -75,7 +75,7 @@ fn main {
     exit(1)
   }
   let output = {
-    let lexer_spec_src = (try? @fs.read_file_to_string(input_file.val)).unwrap()
+    let lexer_spec_src = try! @fs.read_file_to_string(input_file.val)
     let lex_ = @parser.parse_lex_from_string(lexer_spec_src) catch {
       @parser.UnexpectedToken(token, loc, expected) => {
         let loc_str = loc_to_string(input_file.val, lexer_spec_src, loc)
@@ -91,6 +91,6 @@ fn main {
   if output_file.val == "" {
     println(output)
   } else {
-    (try? @fs.write_string_to_file(output_file.val, output)).unwrap()
+    try! @fs.write_string_to_file(output_file.val, output)
   }
 }

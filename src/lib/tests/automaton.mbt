@@ -1,6 +1,6 @@
 ///|
 fn simple_rule(re_str : String) -> @type.Rule {
-  let re = (try? @parser.parse_regex_from_string(re_str)).unwrap()
+  let re = try! @parser.parse_regex_from_string(re_str)
   {
     name: "",
     signature: "",

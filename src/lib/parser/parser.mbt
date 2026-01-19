@@ -129,27 +129,49 @@ type YYObj = Error
 
 priv suberror YYObj_Void
 
-priv suberror YYObj_Char Char
+priv suberror YYObj_Char {
+  YYObj_Char(Char)
+}
 
-priv suberror YYObj_String String
+priv suberror YYObj_String {
+  YYObj_String(String)
+}
 
-priv suberror YYObj__char_set_T @char_set.T
+priv suberror YYObj__char_set_T {
+  YYObj__char_set_T(@char_set.T)
+}
 
-priv suberror YYObj__String__String_ (String, String)
+priv suberror YYObj__String__String_ {
+  YYObj__String__String_((String, String))
+}
 
-priv suberror YYObj__Context_____Context (Context) -> Context
+priv suberror YYObj__Context_____Context {
+  YYObj__Context_____Context((Context) -> Context)
+}
 
-priv suberror YYObj__Context______list_List__type_Rule_ (Context) -> @list.List[@type.Rule]
+priv suberror YYObj__Context______list_List__type_Rule_ {
+  YYObj__Context______list_List__type_Rule_((Context) -> @list.List[@type.Rule])
+}
 
-priv suberror YYObj__Context______list_List___type_Regex__String____type_CodeBlock__ (Context) -> @list.List[(@type.Regex, String?, @type.CodeBlock)]
+priv suberror YYObj__Context______list_List___type_Regex__String____type_CodeBlock__ {
+  YYObj__Context______list_List___type_Regex__String____type_CodeBlock__((Context) -> @list.List[(@type.Regex, String?, @type.CodeBlock)])
+}
 
-priv suberror YYObj__Context______type_Lex (Context) -> @type.Lex
+priv suberror YYObj__Context______type_Lex {
+  YYObj__Context______type_Lex((Context) -> @type.Lex)
+}
 
-priv suberror YYObj__Context______type_Rule (Context) -> @type.Rule
+priv suberror YYObj__Context______type_Rule {
+  YYObj__Context______type_Rule((Context) -> @type.Rule)
+}
 
-priv suberror YYObj__Context______type_Regex (Context) -> @type.Regex
+priv suberror YYObj__Context______type_Regex {
+  YYObj__Context______type_Regex((Context) -> @type.Regex)
+}
 
-priv suberror YYObj__Context_______type_Regex__String____type_CodeBlock_ (Context) -> (@type.Regex, String?, @type.CodeBlock)
+priv suberror YYObj__Context_______type_Regex__String____type_CodeBlock_ {
+  YYObj__Context_______type_Regex__String____type_CodeBlock_((Context) -> (@type.Regex, String?, @type.CodeBlock))
+}
 
 type YYState = (YYSymbol) -> YYDecision
 
