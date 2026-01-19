@@ -107,7 +107,7 @@ pub fn[K : Compare, V] T::get(self : Self[K, V], key : K) -> V? {
 pub fn[K, V] T::iter(self : T[K, V]) -> Iter[(K, V)] {
   let stack : Array[T[K, V]] = []
   let mut current = self
-  Iterator::new(fn() {
+  Iter::new(fn() {
     let mut node = current
     while true {
       match node {

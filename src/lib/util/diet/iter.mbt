@@ -1,7 +1,7 @@
 ///|
 pub fn[N] Tree::iter_intervals(self : Tree[N]) -> Iter[(N, N)] {
   let iter = InorderIterator::new(self)
-  Iterator::new(fn() { iter.next() }).iter()
+  Iter::new(fn() { iter.next() }).iter()
 }
 
 ///|
@@ -12,7 +12,7 @@ pub fn[N : @bounded_enum.T] Tree::iter(self : Tree[N]) -> Iter[N] {
     let (min, max) = it
     let mut x = min
     let mut done = min > max
-    Iterator::new(fn() {
+    Iter::new(fn() {
       if done {
         return None
       }

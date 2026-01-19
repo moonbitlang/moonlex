@@ -44,7 +44,7 @@ pub fn[K, V] T::size(self : T[K, V]) -> Int {
 ///|
 pub fn[K, V] T::iter(self : T[K, V]) -> Iter[(K, V)] {
   let mut current = self.entry
-  Iterator::new(fn() {
+  Iter::new(fn() {
     match current {
       None => None
       Some(entry) => {
@@ -58,7 +58,7 @@ pub fn[K, V] T::iter(self : T[K, V]) -> Iter[(K, V)] {
 ///|
 pub fn[K, V] T::iter2(self : T[K, V]) -> Iter2[K, V] {
   let mut current = self.entry
-  Iterator2::new(fn() {
+  Iter2::new(fn() {
     match current {
       None => None
       Some(entry) => {

@@ -2477,9 +2477,9 @@
         " (CHAR('\\n'), $startpos, $endpos) ",
         " (CHAR('\\\\'), $startpos, $endpos) ",
         " (CHAR('\\''), $startpos, $endpos) ",
-        "\n      let code = (try? @strconv.parse_int(t, base=16)).unwrap()\n      (CHAR(code.unsafe_to_char()), $startpos, $endpos)\n    ",
-        "\n      let code = (try? @strconv.parse_int(t, base=16)).unwrap()\n      (CHAR(code.unsafe_to_char()), $startpos, $endpos)\n    ",
-        "\n      let code = (try? @strconv.parse_int(t, base=16)).unwrap()\n      (CHAR(code.unsafe_to_char()), $startpos, $endpos)\n    ",
+        "\n      let code = try! @strconv.parse_int(t, base=16)\n      (CHAR(code.unsafe_to_char()), $startpos, $endpos)\n    ",
+        "\n      let code = try! @strconv.parse_int(t, base=16)\n      (CHAR(code.unsafe_to_char()), $startpos, $endpos)\n    ",
+        "\n      let code = try! @strconv.parse_int(t, base=16)\n      (CHAR(code.unsafe_to_char()), $startpos, $endpos)\n    ",
         "\n      let buffer = StringBuilder::new()\n      let end_pos = string_inner_rquote(buffer, lexbuf)\n      (STRING(buffer.to_string()), $startpos, end_pos)\n    ",
         "\n      (match t {\n        \"eof\" => EOF\n        \"regex\" => REGEX\n        \"as\" => AS\n        _ => LC_IDENT(t)\n      }, $startpos, $endpos)\n    "
       ]
@@ -3353,9 +3353,9 @@
         "\n      buffer.write_char('\\n')\n      string_inner_rquote(buffer, lexbuf)\n    ",
         "\n      buffer.write_char('\\\\')\n      string_inner_rquote(buffer, lexbuf)\n    ",
         "\n      buffer.write_char('\"')\n      string_inner_rquote(buffer, lexbuf)\n    ",
-        "\n      let code = (try? @strconv.parse_int(t, base=16)).unwrap()\n      buffer.write_char(code.unsafe_to_char())\n      string_inner_rquote(buffer, lexbuf)\n    ",
-        "\n      let code = (try? @strconv.parse_int(t, base=16)).unwrap()\n      buffer.write_char(code.unsafe_to_char())\n      string_inner_rquote(buffer, lexbuf)\n    ",
-        "\n      let code = (try? @strconv.parse_int(t, base=16)).unwrap()\n      buffer.write_char(code.unsafe_to_char())\n      string_inner_rquote(buffer, lexbuf)\n    ",
+        "\n      let code = try! @strconv.parse_int(t, base=16)\n      buffer.write_char(code.unsafe_to_char())\n      string_inner_rquote(buffer, lexbuf)\n    ",
+        "\n      let code = try! @strconv.parse_int(t, base=16)\n      buffer.write_char(code.unsafe_to_char())\n      string_inner_rquote(buffer, lexbuf)\n    ",
+        "\n      let code = try! @strconv.parse_int(t, base=16)\n      buffer.write_char(code.unsafe_to_char())\n      string_inner_rquote(buffer, lexbuf)\n    ",
         "\n      buffer.write_char(t)\n      string_inner_rquote(buffer, lexbuf)\n    ",
         " abort(\"Unexpected end of input\") "
       ]

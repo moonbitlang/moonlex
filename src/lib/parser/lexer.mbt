@@ -810,7 +810,7 @@ fn[T : @lexbuf.IStringLexbuf] token(lexbuf : T) -> (Token, Int, Int)  {
       ()
       let t = lexbuf.get_string(_capture_0_start, _capture_0_end)
 
-      let code = (try? @strconv.parse_int(t, base=16)).unwrap()
+      let code = try! @strconv.parse_int(t, base=16)
       (CHAR(code.unsafe_to_char()), _match_start, _match_end)
     
     }
@@ -818,7 +818,7 @@ fn[T : @lexbuf.IStringLexbuf] token(lexbuf : T) -> (Token, Int, Int)  {
       ()
       let t = lexbuf.get_string(_capture_0_start, _capture_0_end)
 
-      let code = (try? @strconv.parse_int(t, base=16)).unwrap()
+      let code = try! @strconv.parse_int(t, base=16)
       (CHAR(code.unsafe_to_char()), _match_start, _match_end)
     
     }
@@ -826,7 +826,7 @@ fn[T : @lexbuf.IStringLexbuf] token(lexbuf : T) -> (Token, Int, Int)  {
       ()
       let t = lexbuf.get_string(_capture_0_start, _capture_0_end)
 
-      let code = (try? @strconv.parse_int(t, base=16)).unwrap()
+      let code = try! @strconv.parse_int(t, base=16)
       (CHAR(code.unsafe_to_char()), _match_start, _match_end)
     
     }
@@ -1118,7 +1118,7 @@ fn[T : @lexbuf.IStringLexbuf] string_inner_rquote(buffer : StringBuilder, lexbuf
       ()
       let t = lexbuf.get_string(_capture_0_start, _capture_0_end)
 
-      let code = (try? @strconv.parse_int(t, base=16)).unwrap()
+      let code = try! @strconv.parse_int(t, base=16)
       buffer.write_char(code.unsafe_to_char())
       string_inner_rquote(buffer, lexbuf)
     
@@ -1127,7 +1127,7 @@ fn[T : @lexbuf.IStringLexbuf] string_inner_rquote(buffer : StringBuilder, lexbuf
       ()
       let t = lexbuf.get_string(_capture_0_start, _capture_0_end)
 
-      let code = (try? @strconv.parse_int(t, base=16)).unwrap()
+      let code = try! @strconv.parse_int(t, base=16)
       buffer.write_char(code.unsafe_to_char())
       string_inner_rquote(buffer, lexbuf)
     
@@ -1136,7 +1136,7 @@ fn[T : @lexbuf.IStringLexbuf] string_inner_rquote(buffer : StringBuilder, lexbuf
       ()
       let t = lexbuf.get_string(_capture_0_start, _capture_0_end)
 
-      let code = (try? @strconv.parse_int(t, base=16)).unwrap()
+      let code = try! @strconv.parse_int(t, base=16)
       buffer.write_char(code.unsafe_to_char())
       string_inner_rquote(buffer, lexbuf)
     
