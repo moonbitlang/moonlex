@@ -1,9 +1,9 @@
 // Generated using `moon info`, DON'T EDIT IT
 package "moonbitlang/ulex/lib/util/diet"
 
-import(
-  "moonbitlang/ulex/lib/util/bounded_enum"
-)
+import {
+  "moonbitlang/ulex/lib/util/bounded_enum",
+}
 
 // Values
 pub fn[N : @bounded_enum.BoundedEnum] difference(Tree[N], Tree[N]) -> Tree[N]

@@ -1,13 +1,14 @@
 {
-    "pre-build": [
-        {
-            "command": "node $mod_dir/boot/snapshot/moonlex.cjs $input -o $output",
-            "input": "named_regexes.mbtx",
-            "output": "named_regexes.mbt"
-        }
-    ],
-    "warn-list": "-1-13",
-    "import": [
-      "moonbitlang/ulex-runtime/lexbuf"
-    ]
+  "pre-build": [
+    {
+      "command": "node $mod_dir/boot/snapshot/moonlex.cjs $input -o $output",
+      "input": "named_regexes.mbtx",
+      "output": "named_regexes.mbt"
+    }
+  ],
+  "warn-list": "-1-13",
+  "import": [
+    "moonbitlang/ulex-runtime/lexbuf",
+    "moonbitlang/core/int"
+  ]
 }

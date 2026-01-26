@@ -149,14 +149,12 @@ test "['\\u3000'], ['\\u30ff']" {
   //     ],
   //   ],
   // )
-  @json.inspect(
-    lower_unicode_charclass_to_utf8(@char_set.singleton('\u3000')),
-    content=[[[[227, 227]], [[128, 128]], [[128, 128]]]],
-  )
-  @json.inspect(
-    lower_unicode_charclass_to_utf8(@char_set.singleton('\u30ff')),
-    content=[[[[227, 227]], [[131, 131]], [[191, 191]]]],
-  )
+  json_inspect(lower_unicode_charclass_to_utf8(@char_set.singleton('\u3000')), content=[
+    [[[227, 227]], [[128, 128]], [[128, 128]]],
+  ])
+  json_inspect(lower_unicode_charclass_to_utf8(@char_set.singleton('\u30ff')), content=[
+    [[[227, 227]], [[131, 131]], [[191, 191]]],
+  ])
 }
 
 ///|
@@ -171,7 +169,7 @@ test "['\\u3000'-'\\u30ff']" {
   //     ],
   //   ],
   // )
-  @json.inspect(
+  json_inspect(
     lower_unicode_charclass_to_utf8(@char_set.range('\u3000', '\u30ff')),
     content=[
       [[[227, 227]], [[128, 128]], [[128, 128]]],
@@ -207,7 +205,7 @@ test "['\\x00'-'\\u{10ffff}']" {
   //     ],
   //   ],
   // )
-  @json.inspect(
+  json_inspect(
     lower_unicode_charclass_to_utf8(@char_set.range('\u{00}', '\u{10ffff}')),
     content=[
       [[[0, 127]]],

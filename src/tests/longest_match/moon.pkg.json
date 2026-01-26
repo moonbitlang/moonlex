@@ -1,13 +1,14 @@
 {
-    "pre-build": [
-        {
-            "command": "node $mod_dir/boot/snapshot/moonlex.cjs $input -o $output",
-            "input": "longest_match.mbtx",
-            "output": "longest_match.mbt"
-        }
-    ],
-    "warn-list": "-1-13",
-    "import": [
-        "moonbitlang/ulex-runtime/lexbuf"
-    ]
+  "pre-build": [
+    {
+      "command": "node $mod_dir/boot/snapshot/moonlex.cjs $input -o $output",
+      "input": "longest_match.mbtx",
+      "output": "longest_match.mbt"
+    }
+  ],
+  "warn-list": "-1-13",
+  "import": [
+    "moonbitlang/ulex-runtime/lexbuf",
+    "moonbitlang/core/int"
+  ]
 }

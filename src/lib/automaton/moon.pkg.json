@@ -7,6 +7,18 @@
     "moonbitlang/ulex/lib/regex",
     "moonbitlang/ulex/lib/util/bit_array",
     "moonbitlang/ulex/lib/util/immut_map",
-    "moonbitlang/ulex/lib/util/hashmap2"
+    "moonbitlang/ulex/lib/util/hashmap2",
+    "moonbitlang/core/cmp",
+    {
+      "path": "moonbitlang/core/immut/sorted_map",
+      "alias": "immut/sorted_map"
+    },
+    {
+      "path": "moonbitlang/core/immut/sorted_set",
+      "alias": "immut/sorted_set"
+    },
+    "moonbitlang/core/queue",
+    "moonbitlang/core/sorted_map",
+    "moonbitlang/core/sorted_set"
   ]
 }

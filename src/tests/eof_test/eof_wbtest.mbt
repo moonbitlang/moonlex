@@ -10,7 +10,7 @@ test {
       _ => ()
     }
   }
-  @json.inspect(tokens, content=[
+  json_inspect(tokens, content=[
     { "$tag": "PERCENT" },
     { "$tag": "NON_PERCENT" },
     { "$tag": "NON_PERCENT" },
