@@ -118,7 +118,7 @@ pub fn codegen_rule_inner(
       $|
     ),
   )
-  for i in 0..=max_num_capture_vars {
+  for i in 0..<=max_num_capture_vars {
     out.write_string(
       (
         $|  let mut _capture_\{i}_start = -1

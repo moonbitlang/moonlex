@@ -1,13 +1,14 @@
 {
-    "pre-build": [
-        {
-            "command": "node $mod_dir/boot/snapshot/moonlex.cjs $input -o $output",
-            "input": "bytes.mbtx",
-            "output": "bytes.mbt"
-        }
-    ],
-    "warn-list": "-1",
-    "import": [
-      "moonbitlang/ulex/tests/bytes_test/lexbuf"
-    ]
+  "pre-build": [
+    {
+      "command": "node $mod_dir/boot/snapshot/moonlex.cjs $input -o $output",
+      "input": "bytes.mbtx",
+      "output": "bytes.mbt"
+    }
+  ],
+  "warn-list": "-1",
+  "import": [
+    "moonbitlang/ulex/tests/bytes_test/lexbuf",
+    "moonbitlang/core/int"
+  ]
 }

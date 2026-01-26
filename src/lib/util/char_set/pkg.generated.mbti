@@ -1,9 +1,9 @@
 // Generated using `moon info`, DON'T EDIT IT
 package "moonbitlang/ulex/lib/util/char_set"
 
-import(
-  "moonbitlang/ulex/lib/util/diet"
-)
+import {
+  "moonbitlang/ulex/lib/util/diet",
+}
 
 // Values
 pub let any : CharSet

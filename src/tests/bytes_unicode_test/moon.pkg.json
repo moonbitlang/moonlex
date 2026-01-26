@@ -1,13 +1,14 @@
 {
-    "pre-build": [
-        {
-            "command": "node $mod_dir/boot/snapshot/moonlex.cjs --code-unit 1 --default-encoding utf8 $input -o $output",
-            "input": "bytes.mbtx",
-            "output": "bytes.mbt"
-        }
-    ],
-    "warn-list": "-1-13",
-    "import": [
-      "moonbitlang/ulex/tests/bytes_unicode_test/lexbuf"
-    ]
+  "pre-build": [
+    {
+      "command": "node $mod_dir/boot/snapshot/moonlex.cjs --code-unit 1 --default-encoding utf8 $input -o $output",
+      "input": "bytes.mbtx",
+      "output": "bytes.mbt"
+    }
+  ],
+  "warn-list": "-1-13",
+  "import": [
+    "moonbitlang/ulex/tests/bytes_unicode_test/lexbuf",
+    "moonbitlang/core/int"
+  ]
 }

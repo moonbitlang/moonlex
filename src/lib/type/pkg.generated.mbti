@@ -1,9 +1,9 @@
 // Generated using `moon info`, DON'T EDIT IT
 package "moonbitlang/ulex/lib/type"
 
-import(
-  "moonbitlang/ulex/lib/regex"
-)
+import {
+  "moonbitlang/ulex/lib/regex",
+}
 
 // Values
 

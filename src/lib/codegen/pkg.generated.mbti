@@ -1,10 +1,10 @@
 // Generated using `moon info`, DON'T EDIT IT
 package "moonbitlang/ulex/lib/codegen"
 
-import(
-  "moonbitlang/ulex/lib/regex"
-  "moonbitlang/ulex/lib/type"
-)
+import {
+  "moonbitlang/ulex/lib/regex",
+  "moonbitlang/ulex/lib/type",
+}
 
 // Values
 pub fn codegen_lex(@type.Lex, code_unit~ : @type.CodeUnit, default_encoding~ : @regex.Encoding?) -> String
