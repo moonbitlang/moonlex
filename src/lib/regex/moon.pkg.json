@@ -1,6 +1,10 @@
 {
   "import": [
     "moonbitlang/ulex/lib/util/char_set",
-    "moonbitlang/x/encoding"
+    "moonbitlang/x/encoding",
+    {
+      "path": "moonbitlang/core/immut/sorted_map",
+      "alias": "immut/sorted_map"
+    }
   ]
 }

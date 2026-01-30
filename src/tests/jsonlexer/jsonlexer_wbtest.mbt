@@ -12,7 +12,7 @@ test {
       tok => tokens.push(tok)
     }
   }
-  @json.inspect(tokens, content=[
+  json_inspect(tokens, content=[
     { "$tag": "LBRACE" },
     { "$tag": "STRING", "0": "\"cities\"" },
     { "$tag": "COLON" },
