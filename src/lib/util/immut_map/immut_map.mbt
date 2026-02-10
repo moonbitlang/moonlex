@@ -175,6 +175,6 @@ pub impl[K : Compare, V : Compare] Compare for T[K, V] with compare(self, other)
 ///|
 pub impl[K : Hash, V : Hash] Hash for T[K, V] with hash_combine(self, hasher) {
   for e in self {
-    hasher..combine(e.0)..combine(e.1)
+    hasher..combine(e.0).combine(e.1)
   }
 }

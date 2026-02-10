@@ -9,10 +9,10 @@ pub fn codegen_lex(
     lex_.rules.map(fn(rule) {
       codegen_rule(rule, code_unit~, default_encoding~)
     })
-    |> _.join("\n"),
+    |> rules => { rules.join("\n") },
     lex_.trailer,
   ]
-  |> _.join("\n\n")
+  |> sections => { sections.join("\n\n") }
 }
 
 ///|
