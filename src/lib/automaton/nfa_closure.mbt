@@ -69,10 +69,12 @@ fn NFAEpsClosure::iter(
   } else {
     self.eps
     .iter()
-    .map(i => (
-      self.nfa.graph[i],
-      self.tags.get(self.nfa.graph[i]).unwrap_or(@immut/sorted_set.new()),
-    ))
+    .map(i => {
+      (
+        self.nfa.graph[i],
+        self.tags.get(self.nfa.graph[i]).unwrap_or(@immut/sorted_set.new()),
+      )
+    })
   }
 }
 

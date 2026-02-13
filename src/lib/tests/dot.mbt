@@ -47,7 +47,7 @@ fn DotGraph::to_graphviz(self : DotGraph) -> String {
       let (from, to, info) = e.0
       "\t\{from} -> \{to}" + info.map_or("", fn(t) { "[label=\{t}]" })
     })
-    |> _.join("\n"),
+    |> edges => { edges.join("\n") },
     self.nodes
     .iter()
     .map(it => {
@@ -65,13 +65,13 @@ fn DotGraph::to_graphviz(self : DotGraph) -> String {
         label.unwrap_or(node.to_string()),
         "]",
       ]
-      |> _.join("")
+      |> parts => { parts.join("") }
     })
     .collect()
-    |> _.join("\n"),
+    |> nodes => { nodes.join("\n") },
     "}",
   ]
-  |> _.join("")
+  |> lines => { lines.join("") }
 }
 
 ///|
@@ -92,7 +92,7 @@ fn DotGraph::to_mermaid(self : DotGraph) -> String {
       edge_info.map_or("", fn(s) { "|" + s + "|" }) +
       to.to_string()
     })
-    |> _.join("\n"),
+    |> edges => { edges.join("\n") },
     self.nodes
     .iter()
     .map(fn(n) {
@@ -103,8 +103,8 @@ fn DotGraph::to_mermaid(self : DotGraph) -> String {
       }
     })
     .collect()
-    |> _.join("\n"),
+    |> nodes => { nodes.join("\n") },
     "```",
   ]
-  |> _.join("\n")
+  |> lines => { lines.join("\n") }
 }
