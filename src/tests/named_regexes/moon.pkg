@@ -3,7 +3,7 @@ import {
   "moonbitlang/core/int",
 }
 
-warnings = "-1-13"
+warnings = "-unused_value-unresolved_type_variable"
 
 options(
   "pre-build": [
