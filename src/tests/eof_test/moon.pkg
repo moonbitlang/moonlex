@@ -1,0 +1,16 @@
+import {
+  "moonbitlang/ulex-runtime/lexbuf",
+  "moonbitlang/core/int",
+}
+
+warnings = "-unused_value-unresolved_type_variable"
+
+options(
+  "pre-build": [
+    {
+      "command": "node $mod_dir/boot/snapshot/moonlex.cjs $input -o $output",
+      "input": "eof.mbtx",
+      "output": "eof.mbt",
+    },
+  ],
+)

@@ -1,0 +1,16 @@
+import {
+  "moonbitlang/ulex/tests/bytes_test/lexbuf",
+  "moonbitlang/core/int",
+}
+
+warnings = "-unused_value"
+
+options(
+  "pre-build": [
+    {
+      "command": "node $mod_dir/boot/snapshot/moonlex.cjs $input -o $output",
+      "input": "bytes.mbtx",
+      "output": "bytes.mbt",
+    },
+  ],
+)

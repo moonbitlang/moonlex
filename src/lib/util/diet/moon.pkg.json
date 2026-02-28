@@ -1,5 +1,0 @@
-{
-  "import": [
-    "moonbitlang/ulex/lib/util/bounded_enum"
-  ]
-}

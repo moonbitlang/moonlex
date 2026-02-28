@@ -1,0 +1,16 @@
+import {
+  "moonbitlang/ulex/tests/bytes_unicode_test/lexbuf",
+  "moonbitlang/core/int",
+}
+
+warnings = "-unused_value-unresolved_type_variable"
+
+options(
+  "pre-build": [
+    {
+      "command": "node $mod_dir/boot/snapshot/moonlex.cjs --code-unit 1 --default-encoding utf8 $input -o $output",
+      "input": "bytes.mbtx",
+      "output": "bytes.mbt",
+    },
+  ],
+)
