@@ -3,7 +3,12 @@ pub(all) enum Input {
   Eps
   EpsWithTag(Tag)
   EChar(@eof_char_set.T)
-} derive(Eq, Hash, Show)
+} derive(Eq, Hash, Debug)
+
+///|
+pub impl Show for Input with output(self, logger) {
+  logger.write_object(self.to_repr())
+}
 
 ///|
 type Tag = Int
@@ -12,7 +17,12 @@ type Tag = Int
 pub(all) enum NFACapturePosition {
   Dynamic_nfa(Tag)
   Static_nfa(StaticKnownTagPosition)
-} derive(Show)
+} derive(Debug)
+
+///|
+pub impl Show for NFACapturePosition with output(self, logger) {
+  logger.write_object(self.to_repr())
+}
 
 ///|
 pub(all) struct NFA {
@@ -28,7 +38,12 @@ pub(all) struct NFA {
   mut start_node : Int
   mut node_count : Int
   mut tag_count : Int
-} derive(Show)
+} derive(Debug)
+
+///|
+pub impl Show for NFA with output(self, logger) {
+  logger.write_object(self.to_repr())
+}
 
 ///|
 pub(all) struct NFANode {
@@ -36,7 +51,12 @@ pub(all) struct NFANode {
   mut eps : Array[NFANode]
   mut tagged_eps : Array[(NFANode, Tag)]
   mut trans : Array[(@eof_char_set.T, NFANode)]
-} derive(Show)
+} derive(Debug)
+
+///|
+pub impl Show for NFANode with output(self, logger) {
+  logger.write_object(self.to_repr())
+}
 
 ///|
 pub impl Eq for NFANode with equal(self, other) {

@@ -2,6 +2,7 @@
 package "moonbitlang/ulex/lib/util/eof_char_set"
 
 import {
+  "moonbitlang/core/debug",
   "moonbitlang/ulex/lib/util/bounded_enum",
   "moonbitlang/ulex/lib/util/char_set",
 }
@@ -24,15 +25,10 @@ pub fn singleton(Char) -> EofCharSet
 // Errors
 
 // Types and methods
-type EofChar
+type EofChar derive(Compare, Eq, Hash, ToJson, @debug.Debug)
 pub fn EofChar::char(Char) -> Self
 pub fn EofChar::eof() -> Self
 pub fn EofChar::repr(Self) -> EofCharRepr
-pub impl Compare for EofChar
-pub impl Eq for EofChar
-pub impl Hash for EofChar
-pub impl Show for EofChar
-pub impl ToJson for EofChar
 pub impl @bounded_enum.BoundedEnum for EofChar
 
 pub enum EofCharRepr {
@@ -41,7 +37,7 @@ pub enum EofCharRepr {
 }
 
 #alias(T)
-type EofCharSet
+type EofCharSet derive(Compare, Default, Eq, Hash)
 pub fn EofCharSet::complement(Self) -> Self
 pub fn EofCharSet::contains(Self, Char) -> Bool
 pub fn EofCharSet::contains2(Self, EofChar) -> Bool
@@ -58,14 +54,11 @@ pub fn EofCharSet::union(Self, Self) -> Self
 pub fn EofCharSet::unsafe_choose(Self) -> EofChar
 pub impl Add for EofCharSet
 pub impl BitAnd for EofCharSet
-pub impl Compare for EofCharSet
-pub impl Default for EofCharSet
-pub impl Eq for EofCharSet
-pub impl Hash for EofCharSet
 pub impl Neg for EofCharSet
 pub impl Show for EofCharSet
 pub impl Sub for EofCharSet
 pub impl ToJson for EofCharSet
+pub impl @debug.Debug for EofCharSet
 
 // Type aliases
 

@@ -2,6 +2,7 @@
 package "moonbitlang/ulex/lib/type"
 
 import {
+  "moonbitlang/core/debug",
   "moonbitlang/ulex/lib/regex",
 }
 
@@ -20,9 +21,8 @@ pub(all) struct Lex {
   header : String
   rules : Array[Rule]
   trailer : String
-}
+} derive(ToJson, @debug.Debug)
 pub impl Show for Lex
-pub impl ToJson for Lex
 
 pub(all) struct Rule {
   name : String
@@ -30,9 +30,8 @@ pub(all) struct Rule {
   lexee : String
   patterns : Array[(@regex.Regex, String?)]
   actions : Array[String]
-}
+} derive(ToJson, @debug.Debug)
 pub impl Show for Rule
-pub impl ToJson for Rule
 
 // Type aliases
 pub type CodeBlock = String

@@ -23,15 +23,15 @@ pub suberror LexError {
 
 fn[T : @lexbuf.IStringLexbuf] token(lexbuf : T) -> Token raise LexError  {
   // The matched pattern id
-  let mut _match_pattern = @int.max_value
+  let mut _match_pattern = @int.MAX_VALUE
   let mut _match_start = lexbuf.curr_pos()
   let mut _match_end = -1
   let mut _capture_0_start = -1
   let mut _capture_0_end = -1
   let mut _capture_1_start = -1
   let mut _capture_1_end = -1
-  loop 0 {
-    0 => {
+  for _dfa_start_node = 0 {
+match _dfa_start_node {    0 => {
       _match_pattern = 13
       _match_end = lexbuf.curr_pos()
       continue match lexbuf.next_as_int() {
@@ -283,6 +283,7 @@ fn[T : @lexbuf.IStringLexbuf] token(lexbuf : T) -> Token raise LexError  {
     }
     _ => panic()
   }
+  }
 
   guard _match_pattern <= 13 else {
     // No pattern matched
@@ -362,15 +363,15 @@ fn[T : @lexbuf.IStringLexbuf] token(lexbuf : T) -> Token raise LexError  {
 
 fn[T : @lexbuf.IStringLexbuf] lex_string(buf : StringBuilder, lexbuf : T) -> Unit raise LexError  {
   // The matched pattern id
-  let mut _match_pattern = @int.max_value
+  let mut _match_pattern = @int.MAX_VALUE
   let mut _match_start = lexbuf.curr_pos()
   let mut _match_end = -1
   let mut _capture_0_start = -1
   let mut _capture_0_end = -1
   let mut _capture_1_start = -1
   let mut _capture_1_end = -1
-  loop 0 {
-    0 => {
+  for _dfa_start_node = 0 {
+match _dfa_start_node {    0 => {
       _match_pattern = 4
       _match_end = lexbuf.curr_pos()
       continue match lexbuf.next_as_int() {
@@ -464,6 +465,7 @@ fn[T : @lexbuf.IStringLexbuf] lex_string(buf : StringBuilder, lexbuf : T) -> Uni
       }
     }
     _ => panic()
+  }
   }
 
   guard _match_pattern <= 4 else {

@@ -1,13 +1,14 @@
-{
+import {
+  "moonbitlang/ulex-runtime/lexbuf",
+  "moonbitlang/core/int",
+}
+
+options(
   "pre-build": [
     {
       "command": "node $mod_dir/boot/snapshot/moonlex.cjs $input -o $output",
       "input": "wordcountlexer.mbtx",
-      "output": "wordcountlexer.mbt"
-    }
+      "output": "wordcountlexer.mbt",
+    },
   ],
-  "import": [
-    "moonbitlang/ulex-runtime/lexbuf",
-    "moonbitlang/core/int"
-  ]
-}
+)

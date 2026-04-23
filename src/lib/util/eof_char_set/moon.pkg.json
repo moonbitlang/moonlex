@@ -1,7 +1,0 @@
-{
-  "import": [
-    "moonbitlang/ulex/lib/util/diet",
-    "moonbitlang/ulex/lib/util/bounded_enum",
-    "moonbitlang/ulex/lib/util/char_set"
-  ]
-}

@@ -79,7 +79,7 @@ fn DFA::minimize(dfa : DFA) -> DFA {
     result
   }
   let mut worklist = partitions
-  while not(worklist.is_empty()) {
+  while !worklist.is_empty() {
     let a = worklist.min()
     worklist = worklist.remove_min()
     for symbol in symbols {
@@ -102,11 +102,11 @@ fn DFA::minimize(dfa : DFA) -> DFA {
         }
         x = x + sources
       }
-      guard not(x.is_empty()) else { continue }
+      guard !x.is_empty() else { continue }
       for y in partitions {
         let intersection = x.intersection(y)
         let difference = y.difference(x)
-        if not(intersection.is_empty()) && not(difference.is_empty()) {
+        if !intersection.is_empty() && !difference.is_empty() {
           partitions = partitions.remove(y)
           partitions = partitions.add(intersection)
           partitions = partitions.add(difference)
@@ -215,7 +215,7 @@ fn collect_symbols(dfa : DFA) -> @immut/sorted_set.SortedSet[Symbol] {
   for char_set in char_sets {
     let mut new_temp_char_sets = @immut/sorted_set.new()
     fn check_add(temp_char_set : @eof_char_set.T) {
-      if not(temp_char_set.is_empty()) {
+      if !temp_char_set.is_empty() {
         new_temp_char_sets = new_temp_char_sets.add(temp_char_set)
       }
     }

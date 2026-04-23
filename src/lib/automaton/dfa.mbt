@@ -2,7 +2,12 @@
 //        Automata and Application to Regular Expressions
 
 ///|
-pub(all) struct TagAction(Array[TagOp]) derive(Show, Eq, Compare) // sorted
+pub(all) struct TagAction(Array[TagOp]) derive(Debug, Eq, Compare) // sorted
+
+///|
+pub impl Show for TagAction with output(self, logger) {
+  logger.write_object(self.to_repr())
+}
 
 ///|
 pub type TagRank = Int
@@ -16,7 +21,12 @@ pub(all) enum TagOp {
   // In fact, dest.0 == src.0
   // But, for simplicity
   Copy(dest~ : TagVar, src~ : TagVar) // dest != src
-} derive(Show, Eq, Compare)
+} derive(Debug, Eq, Compare)
+
+///|
+pub impl Show for TagOp with output(self, logger) {
+  logger.write_object(self.to_repr())
+}
 
 ///|
 priv struct TagState(@immut/sorted_map.SortedMap[Tag, TagRank]) derive (
@@ -73,7 +83,12 @@ fn tagState_merge(self_ : TagState, other : TagState) -> TagState {
 pub(all) enum DFACapturePosition {
   Dynamic_dfa(TagVar)
   Static_dfa(StaticKnownTagPosition)
-} derive(Show, Eq)
+} derive(Debug, Eq)
+
+///|
+pub impl Show for DFACapturePosition with output(self, logger) {
+  logger.write_object(self.to_repr())
+}
 
 ///|
 pub(all) struct DFA {
@@ -85,7 +100,12 @@ pub(all) struct DFA {
   // String? is rest_binder
   pattern_captures : Array[(Array[(String, VarType)], String?)] // indexed by pattern_id
   mut node_count : Int
-} derive(Show)
+} derive(Debug)
+
+///|
+pub impl Show for DFA with output(self, logger) {
+  logger.write_object(self.to_repr())
+}
 
 ///|
 pub type DFANode = Int
@@ -170,7 +190,7 @@ fn DFA::register_node(self : DFA, nfa : NFA, node : Int, os : State) -> Unit {
     .iter()
     .filter_map(fn(x) { nfa.end_nodes.get(x.0.num) })
     .collect()
-  guard not(code_blocks.is_empty()) else { return () }
+  guard !code_blocks.is_empty() else { return () }
   let min_code_block = code_blocks.fold(init=code_blocks[0], @cmp.minimum)
   let end_nodes = os
     .iter()
@@ -255,7 +275,7 @@ fn DFA::from_nfa(nfa : NFA) -> DFA {
       let targets = @immut/sorted_set.singleton(target)
       let new_nfa_trans = []
       fn add_tran(cset : @eof_char_set.T, targets) {
-        if not(cset.is_empty()) {
+        if !cset.is_empty() {
           new_nfa_trans.push((cset, targets))
         }
       }

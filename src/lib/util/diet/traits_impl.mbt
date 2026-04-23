@@ -7,13 +7,15 @@ pub impl[N] Default for Tree[N] with default() {
 pub impl[N : Eq] Eq for Tree[N] with equal(self : Tree[N], other : Tree[N]) {
   let iter = InorderIterator::new(self)
   let iter1 = InorderIterator::new(other)
-  loop (iter.next(), iter1.next()) {
-    (None, None) => true
-    (Some(a), Some(b)) => {
-      guard a == b else { break false }
-      continue (iter.next(), iter1.next())
+  for item = iter.next(), item1 = iter1.next() {
+    match (item, item1) {
+      (None, None) => break true
+      (Some(a), Some(b)) => {
+        guard a == b else { break false }
+        continue iter.next(), iter1.next()
+      }
+      (_, _) => break false
     }
-    (_, _) => false
   }
 }
 
@@ -24,15 +26,17 @@ pub impl[N : Compare] Compare for Tree[N] with compare(
 ) {
   let iter = InorderIterator::new(self)
   let iter1 = InorderIterator::new(other)
-  loop (iter.next(), iter1.next()) {
-    (None, None) => 0
-    (Some(a), Some(b)) => {
-      let cmp = a.compare(b)
-      guard cmp == 0 else { break cmp }
-      continue (iter.next(), iter1.next())
+  for item = iter.next(), item1 = iter1.next() {
+    match (item, item1) {
+      (None, None) => break 0
+      (Some(a), Some(b)) => {
+        let cmp = a.compare(b)
+        guard cmp == 0 else { break cmp }
+        continue iter.next(), iter1.next()
+      }
+      (Some(_), None) => break 1
+      (None, Some(_)) => break -1
     }
-    (Some(_), None) => 1
-    (None, Some(_)) => -1
   }
 }
 

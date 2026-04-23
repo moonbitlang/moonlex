@@ -1,8 +1,8 @@
 %start lex_eoi
 %start regex_eoi
 %position<Int>
-%derive<Show, Eq, ToJson(style="legacy")> Token
-%derive<Show> ParseError
+%derive<Debug, Eq, ToJson(style="legacy")> Token
+%derive<Debug> ParseError
 
 %token EOI
 %token EOF          "eof"

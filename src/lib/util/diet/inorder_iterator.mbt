@@ -13,11 +13,13 @@ fn[N] InorderIterator::move_left(
   self : InorderIterator[N],
   node : T[N],
 ) -> Unit {
-  loop node {
-    Empty => ()
-    Node(left~, ..) as curr => {
-      self.0.push(curr)
-      continue left
+  for node = node {
+    match node {
+      Empty => break
+      Node(left~, ..) as curr => {
+        self.0.push(curr)
+        continue left
+      }
     }
   }
 }

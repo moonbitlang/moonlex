@@ -20,11 +20,21 @@ pub(all) struct Rule {
   patterns : Array[(Regex, String?)] // (regex, rest_binder)
   // indexed by pattern id
   actions : Array[CodeBlock]
-} derive(Show, ToJson)
+} derive(Debug, ToJson)
+
+///|
+pub impl Show for Rule with output(self, logger) {
+  logger.write_object(self.to_repr())
+}
 
 ///|
 pub(all) struct Lex {
   header : CodeBlock
   rules : Array[Rule]
   trailer : CodeBlock
-} derive(Show, ToJson)
+} derive(Debug, ToJson)
+
+///|
+pub impl Show for Lex with output(self, logger) {
+  logger.write_object(self.to_repr())
+}

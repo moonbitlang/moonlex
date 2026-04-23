@@ -6,7 +6,12 @@ pub struct Regex {
   desc : RegexDesc
   class_ : RegexClass
   len : Int?
-} derive(Show, Eq, ToJson)
+} derive(Debug, Eq, ToJson)
+
+///|
+pub impl Show for Regex with output(self, logger) {
+  logger.write_object(self.to_repr())
+}
 
 ///|
 pub enum RegexDesc {
@@ -17,13 +22,23 @@ pub enum RegexDesc {
   Alter(Regex, Regex)
   Concat(Regex, Regex)
   Capture(Regex, String)
-} derive(Show, Eq, ToJson(style="legacy"))
+} derive(Debug, Eq, ToJson(style="legacy"))
+
+///|
+pub impl Show for RegexDesc with output(self, logger) {
+  logger.write_object(self.to_repr())
+}
 
 ///|
 pub enum RegexClass {
   Char
   String
-} derive(Show, Eq, ToJson(style="legacy"))
+} derive(Debug, Eq, ToJson(style="legacy"))
+
+///|
+pub impl Show for RegexClass with output(self, logger) {
+  logger.write_object(self.to_repr())
+}
 
 ///|
 pub(all) enum Encoding {
@@ -31,7 +46,12 @@ pub(all) enum Encoding {
   Latin1
   Utf8
   Utf16
-} derive(Show, Eq, ToJson(style="legacy"))
+} derive(Debug, Eq, ToJson(style="legacy"))
+
+///|
+pub impl Show for Encoding with output(self, logger) {
+  logger.write_object(self.to_repr())
+}
 
 ///|
 pub let eof : Regex = { desc: EOF, class_: String, len: None }

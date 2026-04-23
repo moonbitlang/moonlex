@@ -26,7 +26,7 @@ pub(all) enum Token {
   LC_IDENT(String)
   CHAR(Char)
   STRING(String)
-} derive(Show, Eq, ToJson(style="legacy"))
+} derive(Debug, Eq, ToJson(style="legacy"))
 
 pub fn Token::kind(self : Token) -> TokenKind {
   match self {
@@ -121,9 +121,40 @@ pub impl Show for TokenKind with output(self, logger) {
   )
 }
 
+pub impl Debug for TokenKind with to_repr(self) {
+    match self {
+      TK_EOI => to_repr("EOI")
+      TK_EOF => to_repr("eof")
+      TK_PARSE_LBRACE => to_repr("parse {")
+      TK_REGEX => to_repr("regex")
+      TK_AS => to_repr("as")
+      TK_UNDERSCORE => to_repr("_")
+      TK_RBRACE => to_repr("}")
+      TK_LPAREN => to_repr("(")
+      TK_RPAREN => to_repr(")")
+      TK_LBRACKET => to_repr("[")
+      TK_RBRACKET => to_repr("]")
+      TK_EQ => to_repr("=")
+      TK_SEMICOLON => to_repr(";")
+      TK_FAT_ARROW => to_repr("=>")
+      TK_BAR => to_repr("|")
+      TK_STAR => to_repr("*")
+      TK_PLUS => to_repr("+")
+      TK_QUESTION => to_repr("?")
+      TK_MINUS => to_repr("-")
+      TK_CARET => to_repr("^")
+      TK_BACKSLASH => to_repr("BACKSLASH")
+      TK_RULE_LC_IDENT_LPAREN_CODE_RPAREN_ARROW_CODE_LBRACE => to_repr("RULE_LC_IDENT_LPAREN_CODE_RPAREN_ARROW_CODE_LBRACE")
+      TK_LBRACE_CODE_RBRACE => to_repr("LBRACE_CODE_RBRACE")
+      TK_LC_IDENT => to_repr("LC_IDENT")
+      TK_CHAR => to_repr("CHAR")
+      TK_STRING => to_repr("STRING")
+    }
+}
+
 pub suberror ParseError {
   UnexpectedToken(Token, (Int, Int), Array[TokenKind])
-} derive(Show)
+} derive(Debug)
 
 type YYObj = Error
 
@@ -1514,32 +1545,31 @@ fn[T] yy_parse(
       }
       Reduce(count, symbol, action)
       | ReduceNoLookahead(count, symbol, action) => {
-        loop (count, symbol, action) {
-          _ => {
-            let args = data_stack[data_stack.length() - count:]
-            let data = action(last_pos, args)
-            let (start_pos, end_pos) = if args.length() == 0 {
-              (last_pos, last_pos)
-            } else {
-              (args[0].1, args[args.length() - 1].2)
-            }
-            for i in 0..<count {
-              ignore(data_stack.unsafe_pop())
-              state_stack = state_stack.unsafe_tail()
-            }
-            state = state_stack.unsafe_head()
-            data_stack.push((data, start_pos, end_pos))
-            match state(symbol) {
-              Accept => return return_(data_stack.unsafe_pop().0)
-              Shift(next_state) => {
-                state_stack = @list.cons(next_state, state_stack)
-                state = next_state
-              }
-              Reduce(count, symbol, action)
-              | ReduceNoLookahead(count, symbol, action) => continue (count, symbol, action)
-              _ => panic()
-            }
+        for count = count, symbol = symbol, action = action {
+          let args = data_stack[data_stack.length() - count:]
+          let data = action(last_pos, args)
+          let (start_pos, end_pos) = if args.length() == 0 {
+            (last_pos, last_pos)
+          } else {
+            (args[0].1, args[args.length() - 1].2)
           }
+          for _ in 0..<count {
+            ignore(data_stack.unsafe_pop())
+            state_stack = state_stack.unsafe_tail()
+          }
+          state = state_stack.unsafe_head()
+          data_stack.push((data, start_pos, end_pos))
+          match state(symbol) {
+            Accept => return return_(data_stack.unsafe_pop().0)
+            Shift(next_state) => {
+              state_stack = @list.cons(next_state, state_stack)
+              state = next_state
+              break ()
+            }
+            Reduce(count, symbol, action)
+            | ReduceNoLookahead(count, symbol, action) => continue count, symbol, action
+            _ => panic()
+          } 
         }
       }
       Error => {

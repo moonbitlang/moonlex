@@ -1,0 +1,38 @@
+import {
+  "moonbitlang/ulex/lib/type",
+  "moonbitlang/ulex/lib/util/char_set",
+  "moonbitlang/ulex-runtime/lexbuf",
+  "moonbitlang/ulex/lib/regex",
+  "moonbitlang/core/immut/sorted_map" @immut/sorted_map,
+  "moonbitlang/core/int",
+  "moonbitlang/core/list",
+  "moonbitlang/core/string",
+}
+
+import {
+  "moonbitlang/core/test",
+} for "test"
+
+import {
+  "moonbitlang/core/test",
+} for "wbtest"
+
+options(
+  "pre-build": [
+    {
+      "command": "node $mod_dir/boot/moonyacc.cjs --input-mode pull $input -o $output",
+      "input": "parser.mbty",
+      "output": "parser.mbt",
+    },
+    {
+      "command": "node $mod_dir/boot/snapshot/moonlex.cjs $input -o $output",
+      "input": "lexer.mbtx",
+      "output": "lexer.mbt",
+    },
+    {
+      "command": ":embed --name lexer_src -i $input -o $output",
+      "input": [ "lexer.mbtx" ],
+      "output": [ "for_parser_wbtest.mbt" ],
+    },
+  ],
+)

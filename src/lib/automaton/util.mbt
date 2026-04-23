@@ -38,7 +38,7 @@ fn lower_unicode_charclass_to_utf8(
   for group in groups {
     let (num_bytes, cset) = group
     if num_bytes == 1 {
-      if not(cset.is_empty()) {
+      if !cset.is_empty() {
         result.push([cset])
       }
     } else {

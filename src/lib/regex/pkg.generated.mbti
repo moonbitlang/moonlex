@@ -2,6 +2,7 @@
 package "moonbitlang/ulex/lib/regex"
 
 import {
+  "moonbitlang/core/debug",
   "moonbitlang/core/immut/sorted_map",
   "moonbitlang/ulex/lib/util/char_set",
 }
@@ -39,29 +40,23 @@ pub(all) enum Encoding {
   Latin1
   Utf8
   Utf16
-}
-pub impl Eq for Encoding
+} derive(Eq, ToJson, @debug.Debug)
 pub impl Show for Encoding
-pub impl ToJson for Encoding
 
 #alias(T)
 pub struct Regex {
   desc : RegexDesc
   class_ : RegexClass
   len : Int?
-}
+} derive(Eq, ToJson, @debug.Debug)
 pub fn Regex::check_legal(Self) -> Bool
-pub impl Eq for Regex
 pub impl Show for Regex
-pub impl ToJson for Regex
 
 pub enum RegexClass {
   Char
   String
-}
-pub impl Eq for RegexClass
+} derive(Eq, ToJson, @debug.Debug)
 pub impl Show for RegexClass
-pub impl ToJson for RegexClass
 
 pub enum RegexDesc {
   EOF
@@ -71,10 +66,8 @@ pub enum RegexDesc {
   Alter(Regex, Regex)
   Concat(Regex, Regex)
   Capture(Regex, String)
-}
-pub impl Eq for RegexDesc
+} derive(Eq, ToJson, @debug.Debug)
 pub impl Show for RegexDesc
-pub impl ToJson for RegexDesc
 
 // Type aliases
 
