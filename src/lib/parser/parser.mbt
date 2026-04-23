@@ -26,7 +26,7 @@ pub(all) enum Token {
   LC_IDENT(String)
   CHAR(Char)
   STRING(String)
-} derive(Show, Eq, ToJson(style="legacy"))
+} derive(Debug, Eq, ToJson(style="legacy"))
 
 pub fn Token::kind(self : Token) -> TokenKind {
   match self {
@@ -154,7 +154,7 @@ pub impl Debug for TokenKind with to_repr(self) {
 
 pub suberror ParseError {
   UnexpectedToken(Token, (Int, Int), Array[TokenKind])
-} derive(Show)
+} derive(Debug)
 
 type YYObj = Error
 

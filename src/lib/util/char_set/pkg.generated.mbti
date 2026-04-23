@@ -2,6 +2,7 @@
 package "moonbitlang/ulex/lib/util/char_set"
 
 import {
+  "moonbitlang/core/debug",
   "moonbitlang/ulex/lib/util/diet",
 }
 
@@ -39,6 +40,7 @@ pub impl Neg for CharSet
 pub impl Show for CharSet
 pub impl Sub for CharSet
 pub impl ToJson for CharSet
+pub impl @debug.Debug for CharSet
 
 // Type aliases
 

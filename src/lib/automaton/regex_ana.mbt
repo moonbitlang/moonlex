@@ -2,13 +2,23 @@
 pub(all) enum VarType {
   Char
   String
-} derive(Show)
+} derive(Debug)
+
+///|
+pub impl Show for VarType with output(self, logger) {
+  logger.write_object(self.to_repr())
+}
 
 ///|
 pub(all) enum StaticKnownTagPosition {
   RelativeToStart(Int)
   RelativeToEnd(Int)
-} derive(Show, Eq)
+} derive(Debug, Eq)
+
+///|
+pub impl Show for StaticKnownTagPosition with output(self, logger) {
+  logger.write_object(self.to_repr())
+}
 
 ///|
 priv enum CaptureVarEndpoint {

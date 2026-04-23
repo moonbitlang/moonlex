@@ -1,5 +1,5 @@
 ///|
-struct EofChar(Int) derive(Eq, Compare, Hash, Show, ToJson)
+struct EofChar(Int) derive(Eq, Compare, Hash, Debug, ToJson)
 
 ///|
 pub enum EofCharRepr {

@@ -2,6 +2,7 @@
 package "moonbitlang/ulex/lib/parser"
 
 import {
+  "moonbitlang/core/debug",
   "moonbitlang/ulex/lib/regex",
   "moonbitlang/ulex/lib/type",
 }
@@ -18,7 +19,8 @@ pub fn regex_eoi(() -> (Token, Int, Int), Int) -> ((Context) -> @regex.Regex) ra
 // Errors
 pub suberror ParseError {
   UnexpectedToken(Token, (Int, Int), Array[TokenKind])
-} derive(Show)
+} derive(@debug.Debug)
+pub impl Show for ParseError
 
 // Types and methods
 type Context
@@ -50,8 +52,9 @@ pub(all) enum Token {
   LC_IDENT(String)
   CHAR(Char)
   STRING(String)
-} derive(Eq, Show, ToJson)
+} derive(Eq, ToJson, @debug.Debug)
 pub fn Token::kind(Self) -> TokenKind
+pub impl Show for Token
 
 pub(all) enum TokenKind {
   TK_EOI
@@ -82,6 +85,7 @@ pub(all) enum TokenKind {
   TK_STRING
 }
 pub impl Show for TokenKind
+pub impl @debug.Debug for TokenKind
 
 // Type aliases
 

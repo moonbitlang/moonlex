@@ -5,6 +5,11 @@ pub type T = EofCharSet
 struct EofCharSet(@diet.T[EofChar]) derive(Default, Eq, Compare, Hash)
 
 ///|
+pub impl Debug for EofCharSet with to_repr(self) {
+  Repr::literal(self.to_string())
+}
+
+///|
 pub fn from_char_set(cset : @char_set.T) -> EofCharSet {
   let mut result = empty
   for r in cset.iter_ranges() {
@@ -156,7 +161,7 @@ pub impl Show for EofCharSet with output(self, logger) {
     .iter_ranges()
     .map(it => {
       let (min, max) = it
-      "@eof_char_set.range(\{repr(min)}, \{repr(max)})"
+      "@eof_char_set.range(\{to_repr(min)}, \{to_repr(max)})"
     }),
     prefix="@eof_char_set.union(",
     suffix=")",

@@ -5,6 +5,11 @@ pub type T = CharSet
 pub struct CharSet(@diet.T[Char]) derive(Compare, Eq, Hash)
 
 ///|
+pub impl Debug for CharSet with to_repr(self) {
+  Repr::literal(self.to_string())
+}
+
+///|
 pub let empty : CharSet = @diet.empty()
 
 ///|
@@ -112,7 +117,7 @@ pub impl Show for CharSet with output(self, logger) {
     .iter_ranges()
     .map(it => {
       let (min, max) = it
-      "@char_set.range(\{repr(min)}, \{repr(max)})"
+      "@char_set.range(\{to_repr(min)}, \{to_repr(max)})"
     }),
     prefix="@char_set.union(",
     suffix=")",

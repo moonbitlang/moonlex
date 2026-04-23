@@ -34,7 +34,7 @@ fn rewrite_codeblock(
   let mut last_index = 0
   for item in subst {
     // replace `$startpos(t)`/`$endpos(t)` with `_match_start_of_t`/`_match_end_of_t`
-    buf.write_view(try! codeblock[last_index:item.start])
+    buf.write_view(codeblock[last_index:item.start])
     match item.desc {
       StartPosOf(name) =>
         buf.write_string("_capture_\{index_of_name(name)}_start")
@@ -45,7 +45,7 @@ fn rewrite_codeblock(
     last_index = item.end
   }
   if last_index < codeblock.length() {
-    buf.write_view(try! codeblock[last_index:codeblock.length()])
+    buf.write_view(codeblock[last_index:codeblock.length()])
   }
   buf.to_string()
 }
@@ -410,15 +410,15 @@ fn codegen_rule(
   let (generic_part, other_part) = {
     let signature = rule.signature
     let lparen_index = signature.find("(").unwrap()
-    let left_part = try! signature[0:lparen_index].to_string()
+    let left_part = signature[0:lparen_index].to_string()
     let lbracket_index = left_part.find("[")
     if lbracket_index is Some(lbracket_index) && lbracket_index < lparen_index {
       let rbracket_index = left_part.rev_find("]").unwrap()
-      let generic_part = try! signature[lbracket_index:rbracket_index + 1].to_string()
+      let generic_part = signature[lbracket_index:rbracket_index + 1].to_string()
       (
         generic_part,
-        try! (signature[0:lbracket_index].to_string() +
-        (try! signature[rbracket_index + 1:].to_string())),
+        signature[0:lbracket_index].to_string() +
+        signature[rbracket_index + 1:].to_string(),
       )
     } else {
       ("", signature)

@@ -16,12 +16,20 @@ fn nfa2dots(nfa : @automaton.NFA, name? : String = "nfa") -> DotGraph {
   for node in nfa.graph {
     for target in node.eps {
       let edge_info = "ε"
-      dots.add_edge(from=node.num, to=target.num, edge_info=repr(edge_info))
+      dots.add_edge(
+        from=node.num,
+        to=target.num,
+        edge_info=to_repr(edge_info).to_string(),
+      )
     }
     for target in node.tagged_eps {
       let mut edge_info = "ε"
       edge_info = edge_info + "/\{target.1}"
-      dots.add_edge(from=node.num, to=target.0.num, edge_info=repr(edge_info))
+      dots.add_edge(
+        from=node.num,
+        to=target.0.num,
+        edge_info=to_repr(edge_info).to_string(),
+      )
     }
     for edge in node.trans {
       let (cset, target) = edge
@@ -30,7 +38,11 @@ fn nfa2dots(nfa : @automaton.NFA, name? : String = "nfa") -> DotGraph {
           Eof => "$"
           Char(c) => "\{c}"
         }
-        dots.add_edge(from=node.num, to=target.num, edge_info=repr(edge_info))
+        dots.add_edge(
+          from=node.num,
+          to=target.num,
+          edge_info=to_repr(edge_info).to_string(),
+        )
       }
     }
     let end_node = nfa.end_nodes.get(node.num)
@@ -41,7 +53,7 @@ fn nfa2dots(nfa : @automaton.NFA, name? : String = "nfa") -> DotGraph {
       dots.set_node(
         node=node.num,
         nodeType=Accepted,
-        label=repr("\{node.num}(\{pattern})"),
+        label=to_repr("\{node.num}(\{pattern})").to_string(),
       )
     }
   }
@@ -95,7 +107,11 @@ fn dfa2dots(dfa : @automaton.DFA, name? : String = "dfa") -> DotGraph {
           Eof => "$"
           Char(c) => "\{c}"
         }
-        dots.add_edge(from=node, to=target, edge_info=repr(edge_info))
+        dots.add_edge(
+          from=node,
+          to=target,
+          edge_info=to_repr(edge_info).to_string(),
+        )
       }
     }
     let end_node = dfa.end_nodes.get(node)
@@ -104,10 +120,10 @@ fn dfa2dots(dfa : @automaton.DFA, name? : String = "dfa") -> DotGraph {
     } else {
       let (pattern, tags) = end_node.unwrap()
       let mut label = "\{node}(\{pattern})"
-      if not(tags.is_empty()) {
+      if !tags.is_empty() {
         label = label + "/\{tags}"
       }
-      dots.set_node(node~, nodeType=Accepted, label=repr(label))
+      dots.set_node(node~, nodeType=Accepted, label=to_repr(label).to_string())
     }
   }
   dots

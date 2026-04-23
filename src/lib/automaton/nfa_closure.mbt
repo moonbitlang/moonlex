@@ -27,7 +27,7 @@ fn NFAEpsClosure::add(
 ) -> Bool {
   if self.eps.unsafe_get(node.num) != 0 {
     let prev_tags = self.tags.get(node).unwrap_or(@immut/sorted_set.new())
-    let changed = not(tags.subset(prev_tags))
+    let changed = !tags.subset(prev_tags)
     if changed {
       self.tags = self.tags.add(node, prev_tags.union(tags))
     }

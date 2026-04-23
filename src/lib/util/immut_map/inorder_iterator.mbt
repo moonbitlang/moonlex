@@ -13,12 +13,14 @@ fn[K, V] InorderIterator::move_left(
   self : InorderIterator[K, V],
   node : T[K, V],
 ) -> Unit {
-  loop node {
-    Empty => ()
-    Node(..) as curr => {
-      let InorderIterator(self) = self
-      self.push(curr)
-      continue curr.left
+  for node = node {
+    match node {
+      Empty => break
+      Node(..) as curr => {
+        let InorderIterator(self) = self
+        self.push(curr)
+        continue curr.left
+      }
     }
   }
 }
