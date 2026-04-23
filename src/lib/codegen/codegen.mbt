@@ -112,7 +112,7 @@ pub fn codegen_rule_inner(
   out.write_string(
     (
       $|  // The matched pattern id
-      $|  let mut _match_pattern = @int.max_value
+      $|  let mut _match_pattern = @int.MAX_VALUE
       $|  let mut _match_start = \{rule.lexee}.curr_pos()
       $|  let mut _match_end = -1
       $|
@@ -173,10 +173,11 @@ pub fn codegen_rule_inner(
   }
   out.write_string(
     (
-      $|  loop \{dfa.start_node} {
+      $|  for _dfa_start_node = \{dfa.start_node} {
       $|
     ),
   )
+  out.write_string("match _dfa_start_node {")
   for state_num, trans in dfa.graph {
     out.write_string(
       (
@@ -313,6 +314,7 @@ pub fn codegen_rule_inner(
   out.write_string(
     (
       $|    _ => panic()
+      $|  }
       $|  }
       $|
     ),
