@@ -18,8 +18,7 @@ pub fn regex_eoi(() -> (Token, Int, Int), Int) -> ((Context) -> @regex.Regex) ra
 // Errors
 pub suberror ParseError {
   UnexpectedToken(Token, (Int, Int), Array[TokenKind])
-}
-pub impl Show for ParseError
+} derive(Show)
 
 // Types and methods
 type Context
@@ -51,11 +50,8 @@ pub(all) enum Token {
   LC_IDENT(String)
   CHAR(Char)
   STRING(String)
-}
+} derive(Eq, Show, ToJson)
 pub fn Token::kind(Self) -> TokenKind
-pub impl Eq for Token
-pub impl Show for Token
-pub impl ToJson for Token
 
 pub(all) enum TokenKind {
   TK_EOI

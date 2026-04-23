@@ -20,9 +20,7 @@ pub(all) struct Lex {
   header : String
   rules : Array[Rule]
   trailer : String
-}
-pub impl Show for Lex
-pub impl ToJson for Lex
+} derive(Show, ToJson)
 
 pub(all) struct Rule {
   name : String
@@ -30,9 +28,7 @@ pub(all) struct Rule {
   lexee : String
   patterns : Array[(@regex.Regex, String?)]
   actions : Array[String]
-}
-pub impl Show for Rule
-pub impl ToJson for Rule
+} derive(Show, ToJson)
 
 // Type aliases
 pub type CodeBlock = String

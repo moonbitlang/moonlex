@@ -1,0 +1,16 @@
+import {
+  "moonbitlang/ulex-runtime/lexbuf",
+  "moonbitlang/core/int",
+}
+
+warnings = "-1"
+
+options(
+  "pre-build": [
+    {
+      "command": "node $mod_dir/boot/snapshot/moonlex.cjs $input -o $output",
+      "input": "jsonlexer.mbtx",
+      "output": "jsonlexer.mbt",
+    },
+  ],
+)

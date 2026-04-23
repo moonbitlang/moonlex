@@ -39,29 +39,20 @@ pub(all) enum Encoding {
   Latin1
   Utf8
   Utf16
-}
-pub impl Eq for Encoding
-pub impl Show for Encoding
-pub impl ToJson for Encoding
+} derive(Eq, Show, ToJson)
 
 #alias(T)
 pub struct Regex {
   desc : RegexDesc
   class_ : RegexClass
   len : Int?
-}
+} derive(Eq, Show, ToJson)
 pub fn Regex::check_legal(Self) -> Bool
-pub impl Eq for Regex
-pub impl Show for Regex
-pub impl ToJson for Regex
 
 pub enum RegexClass {
   Char
   String
-}
-pub impl Eq for RegexClass
-pub impl Show for RegexClass
-pub impl ToJson for RegexClass
+} derive(Eq, Show, ToJson)
 
 pub enum RegexDesc {
   EOF
@@ -71,10 +62,7 @@ pub enum RegexDesc {
   Alter(Regex, Regex)
   Concat(Regex, Regex)
   Capture(Regex, String)
-}
-pub impl Eq for RegexDesc
-pub impl Show for RegexDesc
-pub impl ToJson for RegexDesc
+} derive(Eq, Show, ToJson)
 
 // Type aliases
 
