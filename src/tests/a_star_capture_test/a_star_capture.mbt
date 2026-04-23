@@ -2,7 +2,7 @@
 
 fn[T : @lexbuf.IStringLexbuf] test_func(lexbuf : T) -> String  {
   // The matched pattern id
-  let mut _match_pattern = @int.max_value
+  let mut _match_pattern = @int.MAX_VALUE
   let mut _match_start = lexbuf.curr_pos()
   let mut _match_end = -1
   let mut _capture_0_start = -1
@@ -12,7 +12,8 @@ fn[T : @lexbuf.IStringLexbuf] test_func(lexbuf : T) -> String  {
   let mut _tag_0 = -1
   let mut _tag_0_1 = -1
   let mut _tag_0_2 = -1
-  loop 0 {
+  for start = 0 {
+    match start {
     0 => {
       _tag_0 = lexbuf.curr_pos()
       continue match lexbuf.next_as_int() {
@@ -42,6 +43,7 @@ fn[T : @lexbuf.IStringLexbuf] test_func(lexbuf : T) -> String  {
       }
     }
     _ => panic()
+  }
   }
 
   guard _match_pattern <= 0 else {

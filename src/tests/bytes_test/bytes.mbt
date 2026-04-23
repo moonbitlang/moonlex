@@ -4,7 +4,7 @@ pub suberror MalformedUtf8Error
 
 fn lex_utf8(lexbuf : @lexbuf.T, buf : StringBuilder) -> Unit raise MalformedUtf8Error  {
   // The matched pattern id
-  let mut _match_pattern = @int.max_value
+  let mut _match_pattern = @int.MAX_VALUE
   let mut _match_start = lexbuf.curr_pos()
   let mut _match_end = -1
   let mut _capture_0_start = -1
@@ -17,7 +17,8 @@ fn lex_utf8(lexbuf : @lexbuf.T, buf : StringBuilder) -> Unit raise MalformedUtf8
   let mut _capture_3_end = -1
   let mut _capture_4_start = -1
   let mut _capture_4_end = -1
-  loop 0 {
+  for start = 0 {
+    match start {
     0 => {
       continue match lexbuf.next_as_int() {
         -1 => 1
@@ -123,6 +124,7 @@ fn lex_utf8(lexbuf : @lexbuf.T, buf : StringBuilder) -> Unit raise MalformedUtf8
       break
     }
     _ => panic()
+  }
   }
 
   guard _match_pattern <= 5 else {

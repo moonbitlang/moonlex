@@ -2,12 +2,13 @@
 
 fn[T : @lexbuf.IStringLexbuf] lex_is_number(lexbuf : T) -> Bool  {
   // The matched pattern id
-  let mut _match_pattern = @int.max_value
+  let mut _match_pattern = @int.MAX_VALUE
   let mut _match_start = lexbuf.curr_pos()
   let mut _match_end = -1
   let mut _capture_0_start = -1
   let mut _capture_0_end = -1
-  loop 0 {
+  for start = 0 {
+    match start {
     0 => {
       continue match lexbuf.next_as_int() {
         0..=47 => 1
@@ -36,6 +37,7 @@ fn[T : @lexbuf.IStringLexbuf] lex_is_number(lexbuf : T) -> Bool  {
       }
     }
     _ => panic()
+  }
   }
 
   guard _match_pattern <= 1 else {

@@ -4,14 +4,15 @@
 
 fn[T : @lexbuf.IStringLexbuf] _count(lines : Int, words : Int, chars : Int, lexbuf : T) -> (Int, Int, Int)  {
   // The matched pattern id
-  let mut _match_pattern = @int.max_value
+  let mut _match_pattern = @int.MAX_VALUE
   let mut _match_start = lexbuf.curr_pos()
   let mut _match_end = -1
   let mut _capture_0_start = -1
   let mut _capture_0_end = -1
   let mut _capture_1_start = -1
   let mut _capture_1_end = -1
-  loop 0 {
+  for start = 0 {
+    match start {
     0 => {
       _match_pattern = 3
       _match_end = lexbuf.curr_pos()
@@ -48,6 +49,7 @@ fn[T : @lexbuf.IStringLexbuf] _count(lines : Int, words : Int, chars : Int, lexb
       break
     }
     _ => panic()
+  }
   }
 
   guard _match_pattern <= 3 else {
