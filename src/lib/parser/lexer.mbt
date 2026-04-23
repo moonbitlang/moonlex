@@ -16,9 +16,8 @@ fn[T : @lexbuf.IStringLexbuf] token(lexbuf : T) -> (Token, Int, Int)  {
   let mut _tag_1_1 = -1
   let mut _tag_2 = -1
   let mut _tag_2_1 = -1
-  for start = 0 {
-    match start {
-    0 => {
+  for _dfa_start_node = 0 {
+match _dfa_start_node {    0 => {
       continue match lexbuf.next_as_int() {
         -1 => 1
         9..=10 => 2
@@ -866,9 +865,8 @@ fn[T : @lexbuf.IStringLexbuf] string_inner_rquote(buffer : StringBuilder, lexbuf
   let mut _capture_0_end = -1
   let mut _capture_1_start = -1
   let mut _capture_1_end = -1
-  for start = 0 {
-    match start {
-    0 => {
+  for _dfa_start_node = 0 {
+match _dfa_start_node {    0 => {
       continue match lexbuf.next_as_int() {
         -1 => 1
         0..=33 => 2
@@ -1171,9 +1169,8 @@ fn[T : @lexbuf.IStringLexbuf] code_rbrace(buffer : StringBuilder, lexbuf : T) ->
   let mut _capture_0_end = -1
   let mut _capture_1_start = -1
   let mut _capture_1_end = -1
-  for start = 0 {
-    match start {
-    0 => {
+  for _dfa_start_node = 0 {
+match _dfa_start_node {    0 => {
       continue match lexbuf.next_as_int() {
         -1 => 1
         0..=33 => 2

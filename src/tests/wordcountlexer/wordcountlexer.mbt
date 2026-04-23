@@ -11,9 +11,8 @@ fn[T : @lexbuf.IStringLexbuf] _count(lines : Int, words : Int, chars : Int, lexb
   let mut _capture_0_end = -1
   let mut _capture_1_start = -1
   let mut _capture_1_end = -1
-  for start = 0 {
-    match start {
-    0 => {
+  for _dfa_start_node = 0 {
+match _dfa_start_node {    0 => {
       _match_pattern = 3
       _match_end = lexbuf.curr_pos()
       continue match lexbuf.next_as_int() {

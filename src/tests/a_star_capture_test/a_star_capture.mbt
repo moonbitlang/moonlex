@@ -12,9 +12,8 @@ fn[T : @lexbuf.IStringLexbuf] test_func(lexbuf : T) -> String  {
   let mut _tag_0 = -1
   let mut _tag_0_1 = -1
   let mut _tag_0_2 = -1
-  for start = 0 {
-    match start {
-    0 => {
+  for _dfa_start_node = 0 {
+match _dfa_start_node {    0 => {
       _tag_0 = lexbuf.curr_pos()
       continue match lexbuf.next_as_int() {
         97 => 1

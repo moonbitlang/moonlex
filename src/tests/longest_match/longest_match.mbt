@@ -7,9 +7,8 @@ fn[T : @lexbuf.IStringLexbuf] token(lexbuf : T) -> String  {
   let mut _match_end = -1
   let mut _capture_0_start = -1
   let mut _capture_0_end = -1
-  for start = 0 {
-    match start {
-    0 => {
+  for _dfa_start_node = 0 {
+match _dfa_start_node {    0 => {
       continue match lexbuf.next_as_int() {
         65..=90 => 1
         95 => 1

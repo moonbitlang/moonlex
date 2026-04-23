@@ -17,9 +17,8 @@ fn lex_utf8(lexbuf : @lexbuf.T, buf : StringBuilder) -> Unit raise MalformedUtf8
   let mut _capture_3_end = -1
   let mut _capture_4_start = -1
   let mut _capture_4_end = -1
-  for start = 0 {
-    match start {
-    0 => {
+  for _dfa_start_node = 0 {
+match _dfa_start_node {    0 => {
       continue match lexbuf.next_as_int() {
         -1 => 1
         0..=127 => 2

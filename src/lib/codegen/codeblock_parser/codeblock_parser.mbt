@@ -27,9 +27,8 @@ fn[T : @lexbuf.IStringLexbuf] scan_codeblock_rbrace(subst : Array[SubstItem], le
   let mut _tag_0 = -1
   let mut _tag_1 = -1
   let mut _tag_2 = -1
-  for start = 0 {
-    match start {
-    0 => {
+  for _dfa_start_node = 0 {
+match _dfa_start_node {    0 => {
       _match_pattern = 5
       _match_end = lexbuf.curr_pos()
       continue match lexbuf.next_as_int() {
