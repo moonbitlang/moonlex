@@ -38,7 +38,7 @@ fn DFA::minimize_tags(self : DFA) -> DFA {
       ops.sort()
     }
   }
-  let groups = @sorted_map.new()
+  let groups = @sorted_map.SortedMap([])
   for tag, state_actions_map in tag_to_state_actions_map {
     groups[state_actions_map] = groups
       .get(state_actions_map)
@@ -63,7 +63,7 @@ fn DFA::minimize_tags(self : DFA) -> DFA {
     }
   }
 
-  DFA::{
+  {
     graph: self.graph,
     start_node: self.start_node,
     tag_actions: Map::from_iter(

@@ -1,8 +1,8 @@
 ///|
 #alias(T)
 pub(open) trait BoundedEnum: Compare {
-  pred(Self) -> Self
-  succ(Self) -> Self
-  lower_bound() -> Self
-  upper_bound() -> Self
+  fn pred(Self) -> Self
+  fn succ(Self) -> Self
+  fn lower_bound() -> Self
+  fn upper_bound() -> Self
 }

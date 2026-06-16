@@ -16,7 +16,7 @@ pub(all) struct DotGraph {
 
 ///|
 pub fn DotGraph::new(name? : String = "graph") -> DotGraph {
-  { edges: [], nodes: Map::new(), name }
+  { edges: [], nodes: Map([]), name }
 }
 
 ///|

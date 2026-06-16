@@ -5,7 +5,7 @@ pub type T = CharSet
 pub struct CharSet(@diet.T[Char]) derive(Compare, Eq, Hash)
 
 ///|
-pub impl Debug for CharSet with to_repr(self) {
+pub impl Debug for CharSet with fn to_repr(self) {
   Repr::literal(self.to_string())
 }
 
@@ -81,22 +81,22 @@ pub fn CharSet::disjoint(self : CharSet, other : CharSet) -> Bool {
 }
 
 ///|
-pub impl Neg for CharSet with neg(self) {
+pub impl Neg for CharSet with fn neg(self) {
   self.complement()
 }
 
 ///|
-pub impl Add for CharSet with add(self, other) {
+pub impl Add for CharSet with fn add(self, other) {
   self.union(other)
 }
 
 ///|
-pub impl Sub for CharSet with sub(self, other) {
+pub impl Sub for CharSet with fn sub(self, other) {
   self.difference(other)
 }
 
 ///|
-pub impl BitAnd for CharSet with land(self : CharSet, other : CharSet) -> CharSet {
+pub impl BitAnd for CharSet with fn land(self : CharSet, other : CharSet) -> CharSet {
   self.intersection(other)
 }
 
@@ -111,7 +111,7 @@ pub fn CharSet::iter(self : CharSet) -> Iter[Char] {
 }
 
 ///|
-pub impl Show for CharSet with output(self, logger) {
+pub impl Show for CharSet with fn output(self, logger) {
   logger.write_iter(
     self
     .iter_ranges()
@@ -126,7 +126,7 @@ pub impl Show for CharSet with output(self, logger) {
 }
 
 ///|
-pub impl ToJson for CharSet with to_json(self) {
+pub impl ToJson for CharSet with fn to_json(self) {
   self
   .iter_ranges()
   .map(it => {

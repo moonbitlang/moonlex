@@ -8,6 +8,7 @@ import {
   "moonbitlang/ulex/lib/util/immut_map",
   "moonbitlang/ulex/lib/util/hashmap2",
   "moonbitlang/core/cmp",
+  "moonbitlang/core/debug",
   "moonbitlang/core/immut/sorted_map" @immut/sorted_map,
   "moonbitlang/core/immut/sorted_set" @immut/sorted_set,
   "moonbitlang/core/queue",

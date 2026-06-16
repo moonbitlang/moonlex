@@ -6,7 +6,7 @@ pub(all) enum Input {
 } derive(Eq, Hash, Debug)
 
 ///|
-pub impl Show for Input with output(self, logger) {
+pub impl Show for Input with fn output(self, logger) {
   logger.write_object(self.to_repr())
 }
 
@@ -20,7 +20,7 @@ pub(all) enum NFACapturePosition {
 } derive(Debug)
 
 ///|
-pub impl Show for NFACapturePosition with output(self, logger) {
+pub impl Show for NFACapturePosition with fn output(self, logger) {
   logger.write_object(self.to_repr())
 }
 
@@ -41,7 +41,7 @@ pub(all) struct NFA {
 } derive(Debug)
 
 ///|
-pub impl Show for NFA with output(self, logger) {
+pub impl Show for NFA with fn output(self, logger) {
   logger.write_object(self.to_repr())
 }
 
@@ -54,22 +54,22 @@ pub(all) struct NFANode {
 } derive(Debug)
 
 ///|
-pub impl Show for NFANode with output(self, logger) {
+pub impl Show for NFANode with fn output(self, logger) {
   logger.write_object(self.to_repr())
 }
 
 ///|
-pub impl Eq for NFANode with equal(self, other) {
+pub impl Eq for NFANode with fn equal(self, other) {
   self.num == other.num
 }
 
 ///|
-pub impl Compare for NFANode with compare(self, other) {
+pub impl Compare for NFANode with fn compare(self, other) {
   self.num.compare(other.num)
 }
 
 ///|
-pub impl Hash for NFANode with hash_combine(self, hasher) {
+pub impl Hash for NFANode with fn hash_combine(self, hasher) {
   hasher.combine_int(self.num)
 }
 
@@ -77,7 +77,7 @@ pub impl Hash for NFANode with hash_combine(self, hasher) {
 fn NFA::new_nfa() -> NFA {
   {
     graph: [],
-    end_nodes: Map::new(),
+    end_nodes: Map([]),
     pattern_captures: [],
     start_node: -1,
     node_count: 0,
