@@ -2,12 +2,11 @@ import {
   "moonbitlang/ulex/lib/type",
   "moonbitlang/ulex/lib/parser",
   "moonbitlang/ulex/lib/codegen",
-  "Yoorkin/ArgParser",
-  "moonbitlang/x/sys",
+  "moonbitlang/core/argparse",
+  "moonbitlang/core/env",
   "moonbitlang/x/fs",
   "moonbitlang/ulex/main/util",
   "moonbitlang/ulex/lib/regex",
-  "moonbitlang/core/ref",
 }
 
 options(
