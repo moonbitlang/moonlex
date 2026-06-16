@@ -143,7 +143,7 @@ pub fn[K : Compare, V] from_iter(iter : Iter[(K, V)]) -> T[K, V] {
 }
 
 ///|
-pub impl[K : Eq, V : Eq] Eq for T[K, V] with equal(self, other) -> Bool {
+pub impl[K : Eq, V : Eq] Eq for T[K, V] with fn equal(self, other) -> Bool {
   let iter = InorderIterator::new(self)
   let iter1 = InorderIterator::new(other)
   for item = iter.next(), item1 = iter1.next() {
@@ -159,7 +159,10 @@ pub impl[K : Eq, V : Eq] Eq for T[K, V] with equal(self, other) -> Bool {
 }
 
 ///|
-pub impl[K : Compare, V : Compare] Compare for T[K, V] with compare(self, other) -> Int {
+pub impl[K : Compare, V : Compare] Compare for T[K, V] with fn compare(
+  self,
+  other,
+) -> Int {
   let iter = InorderIterator::new(self)
   let iter1 = InorderIterator::new(other)
   for item = iter.next(), item1 = iter1.next() {
@@ -177,7 +180,7 @@ pub impl[K : Compare, V : Compare] Compare for T[K, V] with compare(self, other)
 }
 
 ///|
-pub impl[K : Hash, V : Hash] Hash for T[K, V] with hash_combine(self, hasher) {
+pub impl[K : Hash, V : Hash] Hash for T[K, V] with fn hash_combine(self, hasher) {
   for e in self {
     hasher..combine(e.0).combine(e.1)
   }

@@ -1,10 +1,10 @@
 ///|
-pub impl[N] Default for Tree[N] with default() {
+pub impl[N] Default for Tree[N] with fn default() {
   Empty
 }
 
 ///|
-pub impl[N : Eq] Eq for Tree[N] with equal(self : Tree[N], other : Tree[N]) {
+pub impl[N : Eq] Eq for Tree[N] with fn equal(self : Tree[N], other : Tree[N]) {
   let iter = InorderIterator::new(self)
   let iter1 = InorderIterator::new(other)
   for item = iter.next(), item1 = iter1.next() {
@@ -20,7 +20,7 @@ pub impl[N : Eq] Eq for Tree[N] with equal(self : Tree[N], other : Tree[N]) {
 }
 
 ///|
-pub impl[N : Compare] Compare for Tree[N] with compare(
+pub impl[N : Compare] Compare for Tree[N] with fn compare(
   self : Tree[N],
   other : Tree[N],
 ) {
@@ -41,7 +41,7 @@ pub impl[N : Compare] Compare for Tree[N] with compare(
 }
 
 ///|
-pub impl[N : Hash] Hash for Tree[N] with hash_combine(self, hasher) {
+pub impl[N : Hash] Hash for Tree[N] with fn hash_combine(self, hasher) {
   for interval in self.iter_intervals() {
     interval.hash_combine(hasher)
   }

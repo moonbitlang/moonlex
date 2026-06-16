@@ -5,7 +5,7 @@ pub type T = EofCharSet
 struct EofCharSet(@diet.T[EofChar]) derive(Default, Eq, Compare, Hash)
 
 ///|
-pub impl Debug for EofCharSet with to_repr(self) {
+pub impl Debug for EofCharSet with fn to_repr(self) {
   Repr::literal(self.to_string())
 }
 
@@ -125,22 +125,25 @@ pub fn EofCharSet::unsafe_choose(self : EofCharSet) -> EofChar {
 }
 
 ///|
-pub impl Neg for EofCharSet with neg(self) {
+pub impl Neg for EofCharSet with fn neg(self) {
   self.complement()
 }
 
 ///|
-pub impl Add for EofCharSet with add(self, other) {
+pub impl Add for EofCharSet with fn add(self, other) {
   self.union(other)
 }
 
 ///|
-pub impl Sub for EofCharSet with sub(self, other) {
+pub impl Sub for EofCharSet with fn sub(self, other) {
   self.difference(other)
 }
 
 ///|
-pub impl BitAnd for EofCharSet with land(self : EofCharSet, other : EofCharSet) -> EofCharSet {
+pub impl BitAnd for EofCharSet with fn land(
+  self : EofCharSet,
+  other : EofCharSet,
+) -> EofCharSet {
   self.intersection(other)
 }
 
@@ -155,7 +158,7 @@ pub fn EofCharSet::iter(self : EofCharSet) -> Iter[EofChar] {
 }
 
 ///|
-pub impl Show for EofCharSet with output(self, logger) {
+pub impl Show for EofCharSet with fn output(self, logger) {
   logger.write_iter(
     self
     .iter_ranges()
@@ -170,6 +173,6 @@ pub impl Show for EofCharSet with output(self, logger) {
 }
 
 ///|
-pub impl ToJson for EofCharSet with to_json(self) {
+pub impl ToJson for EofCharSet with fn to_json(self) {
   self.iter_ranges().to_array().to_json()
 }

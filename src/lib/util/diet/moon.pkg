@@ -1,3 +1,4 @@
 import {
   "moonbitlang/ulex/lib/util/bounded_enum",
+  "moonbitlang/core/debug",
 }

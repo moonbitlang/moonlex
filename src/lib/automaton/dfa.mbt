@@ -5,7 +5,7 @@
 pub(all) struct TagAction(Array[TagOp]) derive(Debug, Eq, Compare) // sorted
 
 ///|
-pub impl Show for TagAction with output(self, logger) {
+pub impl Show for TagAction with fn output(self, logger) {
   logger.write_object(self.to_repr())
 }
 
@@ -24,7 +24,7 @@ pub(all) enum TagOp {
 } derive(Debug, Eq, Compare)
 
 ///|
-pub impl Show for TagOp with output(self, logger) {
+pub impl Show for TagOp with fn output(self, logger) {
   logger.write_object(self.to_repr())
 }
 
@@ -86,7 +86,7 @@ pub(all) enum DFACapturePosition {
 } derive(Debug, Eq)
 
 ///|
-pub impl Show for DFACapturePosition with output(self, logger) {
+pub impl Show for DFACapturePosition with fn output(self, logger) {
   logger.write_object(self.to_repr())
 }
 
@@ -103,7 +103,7 @@ pub(all) struct DFA {
 } derive(Debug)
 
 ///|
-pub impl Show for DFA with output(self, logger) {
+pub impl Show for DFA with fn output(self, logger) {
   logger.write_object(self.to_repr())
 }
 
@@ -117,7 +117,7 @@ fn DFA::new(captures : Array[(Array[(String, VarType)], String?)]) -> DFA {
     start_node: -1,
     tag_actions: {},
     pattern_captures: captures,
-    end_nodes: Map::new(),
+    end_nodes: Map([]),
     node_count: 0,
   }
 }
@@ -159,7 +159,7 @@ fn state_canonicalize(state : State, tag_count : Int) -> (State, TagAction) {
   let new_state = state
     .iter()
     .map(fn(pair) {
-      let tag_state = pair.1.0.map_with_key(fn(tag, prev_rank) {
+      let tag_state = pair.1.0.map(fn(tag, prev_rank) {
         let ranks = ranks_by_tag[tag]
         guard ranks.search(prev_rank) is Some(rank)
         rank
@@ -291,7 +291,7 @@ fn DFA::from_nfa(nfa : NFA) -> DFA {
     }
 
     // Compute next states
-    let next_states : Map[@eof_char_set.T, State] = Map::new()
+    let next_states : Map[@eof_char_set.T, State] = Map([])
     for tran in nfa_trans {
       let (cset, targets) = tran
       let mut state_map = next_states.get(cset).unwrap_or(@immut_map.empty())
@@ -318,7 +318,7 @@ fn DFA::from_nfa(nfa : NFA) -> DFA {
   let start_node = get_id(initial_state, canonicalized_initial_state)
   dfa.start_node = start_node
   dfa.tag_actions[start_node] = start_action
-  let queue = @queue.new()
+  let queue = @queue.Queue([])
   queue.push((start_node, canonicalized_initial_state))
   let mut visited = @immut/sorted_set.new()
   while queue.pop() is Some((from_n, cur_state)) {

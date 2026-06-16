@@ -121,7 +121,7 @@ fn dfa2dots(dfa : @automaton.DFA, name? : String = "dfa") -> DotGraph {
       let (pattern, tags) = end_node.unwrap()
       let mut label = "\{node}(\{pattern})"
       if !tags.is_empty() {
-        label = label + "/\{tags}"
+        label = label + "/" + to_repr(tags).to_string()
       }
       dots.set_node(node~, nodeType=Accepted, label=to_repr(label).to_string())
     }

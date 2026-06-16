@@ -9,7 +9,7 @@ pub struct Regex {
 } derive(Debug, Eq, ToJson)
 
 ///|
-pub impl Show for Regex with output(self, logger) {
+pub impl Show for Regex with fn output(self, logger) {
   logger.write_object(self.to_repr())
 }
 
@@ -25,7 +25,7 @@ pub enum RegexDesc {
 } derive(Debug, Eq, ToJson(style="legacy"))
 
 ///|
-pub impl Show for RegexDesc with output(self, logger) {
+pub impl Show for RegexDesc with fn output(self, logger) {
   logger.write_object(self.to_repr())
 }
 
@@ -36,7 +36,7 @@ pub enum RegexClass {
 } derive(Debug, Eq, ToJson(style="legacy"))
 
 ///|
-pub impl Show for RegexClass with output(self, logger) {
+pub impl Show for RegexClass with fn output(self, logger) {
   logger.write_object(self.to_repr())
 }
 
@@ -49,7 +49,7 @@ pub(all) enum Encoding {
 } derive(Debug, Eq, ToJson(style="legacy"))
 
 ///|
-pub impl Show for Encoding with output(self, logger) {
+pub impl Show for Encoding with fn output(self, logger) {
   logger.write_object(self.to_repr())
 }
 
