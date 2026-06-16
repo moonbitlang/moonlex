@@ -8,23 +8,23 @@ pub enum EofCharRepr {
 }
 
 ///|
-pub impl @bounded_enum.T for EofChar with lower_bound() {
+pub impl @bounded_enum.T for EofChar with fn lower_bound() {
   EofChar(-1)
 }
 
 ///|
-pub impl @bounded_enum.T for EofChar with upper_bound() {
+pub impl @bounded_enum.T for EofChar with fn upper_bound() {
   EofChar(0x10ffff)
 }
 
 ///|
-pub impl @bounded_enum.T for EofChar with pred(self) {
+pub impl @bounded_enum.T for EofChar with fn pred(self) {
   guard self.0 > -1
   EofChar(self.0 - 1)
 }
 
 ///|
-pub impl @bounded_enum.T for EofChar with succ(self) {
+pub impl @bounded_enum.T for EofChar with fn succ(self) {
   guard self.0 < 0x10ffff
   EofChar(self.0 + 1)
 }

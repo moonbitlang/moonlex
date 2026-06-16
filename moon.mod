@@ -1,0 +1,25 @@
+name = "moonbitlang/ulex"
+
+version = "0.3.27"
+
+import {
+  "Yoorkin/ArgParser@0.2.1",
+  "moonbitlang/x@0.4.38",
+  "moonbitlang/ulex-runtime@0.4.3",
+}
+
+readme = "README.md"
+
+repository = "https://github.com/moonbitlang/moonlex.git"
+
+license = "Apache-2.0"
+
+keywords = [ ]
+
+description = ""
+
+options(
+  source: "src",
+  "include": [ "src", "boot", "LICENSE", "README.md", "moon.mod.json" ],
+  exclude: [ "src/tests" ],
+)

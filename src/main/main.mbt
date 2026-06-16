@@ -26,9 +26,9 @@ fn main {
         "",
         String(fn(code_unit_str) {
           code_unit = match code_unit_str {
-            "1" => @type.CodeUnit1
-            "2" => @type.CodeUnit2
-            "4" => @type.CodeUnit4
+            "1" => CodeUnit1
+            "2" => CodeUnit2
+            "4" => CodeUnit4
             _ => {
               abort("Invalid code unit: \{code_unit_str}")
               return
@@ -43,10 +43,10 @@ fn main {
         String(fn(encoding) {
           default_encoding = Some(
             match encoding {
-              "ascii" => @regex.Ascii
-              "latin1" => @regex.Latin1
-              "utf8" => @regex.Utf8
-              "utf16" => @regex.Utf16
+              "ascii" => Ascii
+              "latin1" => Latin1
+              "utf8" => Utf8
+              "utf16" => Utf16
               _ => {
                 abort("Invalid encoding: \{encoding}")
                 return
@@ -77,7 +77,7 @@ fn main {
   let output = {
     let lexer_spec_src = try! @fs.read_file_to_string(input_file.val)
     let lex_ = @parser.parse_lex_from_string(lexer_spec_src) catch {
-      @parser.UnexpectedToken(token, loc, expected) => {
+      UnexpectedToken(token, loc, expected) => {
         let loc_str = loc_to_string(input_file.val, lexer_spec_src, loc)
         let expected_str = array_to_or_list(expected.map(Show::to_string)[:])
         println_to_stderr(

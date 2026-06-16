@@ -60,7 +60,7 @@ fn DFA::minimize(dfa : DFA) -> DFA {
 
   // target -> symbol -> sources
   let symbolized_invert_map = {
-    let result = @sorted_map.new()
+    let result = @sorted_map.SortedMap([])
     for source, trans in dfa.graph {
       for tran in trans {
         let (input, target) = tran
@@ -190,12 +190,12 @@ priv struct Symbol {
 }
 
 ///|
-impl Compare for Symbol with compare(self, other) {
+impl Compare for Symbol with fn compare(self, other) {
   self.id.compare(other.id)
 }
 
 ///|
-impl Eq for Symbol with equal(self, other) {
+impl Eq for Symbol with fn equal(self, other) {
   self.id == other.id
 }
 

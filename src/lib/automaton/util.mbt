@@ -43,7 +43,7 @@ fn lower_unicode_charclass_to_utf8(
       }
     } else {
       let branches = []
-      let dedup = Set::new()
+      let dedup = Set::Set([])
       fn add_branch(range_cset : @char_set.T, pin_index : Int) {
         if dedup.add_and_check((range_cset, pin_index)) {
           let ranges = range_cset.iter_ranges().to_array()
@@ -235,7 +235,7 @@ test "['\\x00'-'\\u{10ffff}']" {
 
 ///|
 test "['\\xff' '\\uffff']" {
-  assert_eq(
+  @debug.assert_eq(
     lower_unicode_charclass_to_utf8(
       @char_set.singleton('\u{ff}') + @char_set.singleton('\uffff'),
     ),

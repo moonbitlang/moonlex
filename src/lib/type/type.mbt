@@ -23,7 +23,7 @@ pub(all) struct Rule {
 } derive(Debug, ToJson)
 
 ///|
-pub impl Show for Rule with output(self, logger) {
+pub impl Show for Rule with fn output(self, logger) {
   logger.write_object(self.to_repr())
 }
 
@@ -35,6 +35,6 @@ pub(all) struct Lex {
 } derive(Debug, ToJson)
 
 ///|
-pub impl Show for Lex with output(self, logger) {
+pub impl Show for Lex with fn output(self, logger) {
   logger.write_object(self.to_repr())
 }

@@ -5,7 +5,7 @@ pub(all) enum VarType {
 } derive(Debug)
 
 ///|
-pub impl Show for VarType with output(self, logger) {
+pub impl Show for VarType with fn output(self, logger) {
   logger.write_object(self.to_repr())
 }
 
@@ -16,7 +16,7 @@ pub(all) enum StaticKnownTagPosition {
 } derive(Debug, Eq)
 
 ///|
-pub impl Show for StaticKnownTagPosition with output(self, logger) {
+pub impl Show for StaticKnownTagPosition with fn output(self, logger) {
   logger.write_object(self.to_repr())
 }
 

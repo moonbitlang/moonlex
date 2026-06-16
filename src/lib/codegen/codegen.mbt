@@ -127,11 +127,11 @@ pub fn codegen_rule_inner(
       ),
     )
   }
-  let all_tag_actions = @sorted_set.new()
+  let all_tag_actions = @sorted_set.SortedSet([])
   for _, tag_action in dfa.tag_actions {
     all_tag_actions.add(tag_action)
   }
-  let all_tag_vars = @sorted_set.new()
+  let all_tag_vars = @sorted_set.SortedSet([])
   for tag_action in all_tag_actions {
     for op in tag_action.0 {
       match op {
@@ -145,7 +145,7 @@ pub fn codegen_rule_inner(
   }
   fn gen_tag_var(tag_var : @automaton.TagVar) -> String {
     if tag_var.1 < 0 {
-      println(tag_var)
+      println(to_repr(tag_var))
     }
     if tag_var.1 == 0 {
       "_tag_\{tag_var.0}"
@@ -162,7 +162,7 @@ pub fn codegen_rule_inner(
       ),
     )
   }
-  let start_tags = @sorted_set.new()
+  let start_tags = @sorted_set.SortedSet([])
   for tag in start_tags {
     out.write_string(
       (
@@ -412,15 +412,15 @@ fn codegen_rule(
   let (generic_part, other_part) = {
     let signature = rule.signature
     let lparen_index = signature.find("(").unwrap()
-    let left_part = signature[0:lparen_index].to_string()
+    let left_part = signature[0:lparen_index].to_owned()
     let lbracket_index = left_part.find("[")
     if lbracket_index is Some(lbracket_index) && lbracket_index < lparen_index {
       let rbracket_index = left_part.rev_find("]").unwrap()
-      let generic_part = signature[lbracket_index:rbracket_index + 1].to_string()
+      let generic_part = signature[lbracket_index:rbracket_index + 1].to_owned()
       (
         generic_part,
-        signature[0:lbracket_index].to_string() +
-        signature[rbracket_index + 1:].to_string(),
+        signature[0:lbracket_index].to_owned() +
+        signature[rbracket_index + 1:].to_owned(),
       )
     } else {
       ("", signature)
