@@ -5,6 +5,7 @@ version = "0.3.28"
 import {
   "moonbitlang/x@0.4.38",
   "moonbitlang/ulex-runtime@0.4.3",
+  "moonbit-community/miniio@0.2.1",
 }
 
 readme = "README.md"

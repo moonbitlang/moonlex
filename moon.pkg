@@ -3,14 +3,13 @@ import {
   "moonbitlang/ulex/parser",
   "moonbitlang/ulex/codegen",
   "moonbitlang/core/argparse",
-  "moonbitlang/core/env",
-  "moonbitlang/x/fs",
-  "moonbitlang/ulex/main/util",
+  "moonbit-community/miniio",
   "moonbitlang/ulex/regex",
 }
 
+supported_targets = "wasm"
+
 options(
   "bin-name": "moonlex",
-  "bin-target": "js",
   "is-main": true,
 )
