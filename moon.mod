@@ -18,7 +18,5 @@ keywords = [ ]
 description = ""
 
 options(
-  source: "src",
-  "include": [ "src", "boot", "LICENSE", "README.md", "moon.mod.json" ],
-  exclude: [ "src/tests" ],
+  exclude: [ "tests" ],
 )

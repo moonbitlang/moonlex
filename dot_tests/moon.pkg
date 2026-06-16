@@ -1,0 +1,7 @@
+import {
+  "moonbitlang/ulex/type",
+  "moonbitlang/ulex/automaton",
+  "moonbitlang/ulex/parser",
+  "moonbitlang/ulex/util/eof_char_set",
+  "moonbitlang/core/test",
+}
