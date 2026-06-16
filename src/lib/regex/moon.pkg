@@ -1,6 +1,0 @@
-import {
-  "moonbitlang/ulex/lib/util/char_set",
-  "moonbitlang/x/encoding",
-  "moonbitlang/core/debug",
-  "moonbitlang/core/immut/sorted_map" @immut/sorted_map,
-}

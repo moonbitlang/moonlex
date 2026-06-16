@@ -1,0 +1,18 @@
+import {
+  "moonbitlang/ulex/type",
+  "moonbitlang/ulex/util/char_set",
+  "moonbitlang/ulex-runtime/lexbuf",
+  "moonbitlang/ulex/regex",
+  "moonbitlang/core/immut/sorted_map" @immut/sorted_map,
+  "moonbitlang/core/int",
+  "moonbitlang/core/list",
+  "moonbitlang/core/string",
+}
+
+import {
+  "moonbitlang/core/test",
+} for "test"
+
+import {
+  "moonbitlang/core/test",
+} for "wbtest"
