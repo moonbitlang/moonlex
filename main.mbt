@@ -1,7 +1,4 @@
 ///|
-using @util {println_to_stderr, exit}
-
-///|
 priv struct CliOptions {
   output_file : String
   input_file : String
@@ -106,27 +103,41 @@ fn cli_user_args(args : Array[String]) -> ArrayView[String] {
 }
 
 ///|
+fn write_stderr_line(msg : String) -> Unit {
+  @miniio.stderr.write_text(msg + "\n") catch {
+    _ => ()
+  }
+}
+
+///|
+fn[T] exit_with_error(msg : String) -> T {
+  write_stderr_line(msg)
+  @miniio.exit(1)
+  panic()
+}
+
+///|
 fn main {
-  let options = parse_cli_args(cli_user_args(@env.args())) catch {
-    err => {
-      println_to_stderr(err.to_string())
-      exit(1)
-    }
+  let args = @miniio.args_get() catch {
+    err => exit_with_error("Failed to read args: \{err}")
+  }
+  let options = parse_cli_args(cli_user_args(args)) catch {
+    err => exit_with_error(err.to_string())
   }
   guard options.input_file != "" else {
-    println_to_stderr("Input file is required")
-    exit(1)
+    exit_with_error("Input file is required")
   }
   let output = {
-    let lexer_spec_src = try! @fs.read_file_to_string(options.input_file)
+    let lexer_spec_src = @miniio.read_text_file(options.input_file) catch {
+      err => exit_with_error("Failed to read input file: \{err}")
+    }
     let lex_ = @parser.parse_lex_from_string(lexer_spec_src) catch {
       UnexpectedToken(token, loc, expected) => {
         let loc_str = loc_to_string(options.input_file, lexer_spec_src, loc)
         let expected_str = array_to_or_list(expected.map(Show::to_string)[:])
-        println_to_stderr(
+        exit_with_error(
           "SyntaxError: Unexpected token \{token.kind()}, expected \{expected_str}.\n  at \{loc_str}",
         )
-        exit(1)
       }
     }
     @codegen.codegen_lex(
@@ -136,8 +147,12 @@ fn main {
     )
   }
   if options.output_file == "" {
-    println(output)
+    @miniio.stdout.write_text(output + "\n") catch {
+      err => exit_with_error("Failed to write stdout: \{err}")
+    }
   } else {
-    try! @fs.write_string_to_file(options.output_file, output)
+    @miniio.write_text_file(options.output_file, output) catch {
+      err => exit_with_error("Failed to write output file: \{err}")
+    }
   }
 }
