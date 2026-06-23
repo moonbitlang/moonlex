@@ -1,5 +1,5 @@
 // Generated using `moon info`, DON'T EDIT IT
-package "moonbitlang/ulex/tests/bytes_unicode_test/lexbuf"
+package "moonbitlang/ulex_tests/bytes_unicode_test/lexbuf"
 
 // Values
 pub fn from_bytes(Bytes, start? : Int, end? : Int) -> BytesLexbuf

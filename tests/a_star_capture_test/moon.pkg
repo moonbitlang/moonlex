@@ -5,12 +5,10 @@ import {
 
 warnings = "-1"
 
-options(
-  "pre-build": [
-    {
-      "command": "node $mod_dir/boot/snapshot/moonlex.cjs $input -o $output",
-      "input": "a_star_capture.mbtx",
-      "output": "a_star_capture.mbt",
-    },
-  ],
+rule(name: "moonlex", command: "moon runwasm $mod_dir/.. $input -o $output")
+
+dev_build(
+  rule: "moonlex",
+  input: "a_star_capture.mbtx",
+  output: "a_star_capture.mbt",
 )
