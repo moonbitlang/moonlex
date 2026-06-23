@@ -1,9 +1,13 @@
 ///|
 fn utf8_bytes_to_char(bytes : Bytes) -> Char {
-  let decoder = @encoding.decoder(UTF8)
-  let str = decoder.decode_lossy(bytes)
-  guard str is [c]
-  c
+  try @encoding.decode(bytes) catch {
+    _ => '\ufffd'
+  } noraise {
+    str => {
+      guard str is [c]
+      c
+    }
+  }
 }
 
 ///|
@@ -48,8 +52,8 @@ fn lower_unicode_charclass_to_utf8(
           guard ranges.length() <= 1
           guard ranges is [range] else { return }
           guard range.0 is min && range.1 is max
-          let min_bytes = @encoding.encode(UTF8, String::make(1, min))
-          let max_bytes = @encoding.encode(UTF8, String::make(1, max))
+          let min_bytes = @encoding.encode(String::make(1, min))
+          let max_bytes = @encoding.encode(String::make(1, max))
           if pin_index >= num_bytes {
             guard min_bytes == max_bytes
             branches.push(
@@ -89,8 +93,8 @@ fn lower_unicode_charclass_to_utf8(
       for range in cset.iter_ranges() {
         guard range.0 is min && range.1 is max
         let range_cset = @char_set.range(min, max)
-        let min_bytes = @encoding.encode(UTF8, String::make(1, min))
-        let max_bytes = @encoding.encode(UTF8, String::make(1, max))
+        let min_bytes = @encoding.encode(String::make(1, min))
+        let max_bytes = @encoding.encode(String::make(1, max))
         fn process_endpoint(bytes : Bytes) {
           for i = num_bytes; i >= 1; i = i - 1 {
             let sub_range_cset = (
