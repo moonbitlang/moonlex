@@ -10,6 +10,5 @@ import {
 supported_targets = "wasm"
 
 options(
-  "bin-name": "moonlex",
   "is-main": true,
 )
