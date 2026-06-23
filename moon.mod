@@ -15,7 +15,7 @@ license = "Apache-2.0"
 
 keywords = [ ]
 
-description = ""
+description = "Simple lexer generator for MoonBit."
 
 options(
   exclude: [ "tests" ],
