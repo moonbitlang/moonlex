@@ -5,12 +5,10 @@ import {
 
 warnings = "-1-13"
 
-options(
-  "pre-build": [
-    {
-      "command": "node $mod_dir/boot/snapshot/moonlex.cjs $input -o $output",
-      "input": "longest_match.mbtx",
-      "output": "longest_match.mbt",
-    },
-  ],
+rule(name: "moonlex", command: "moon runwasm $mod_dir/.. $input -o $output")
+
+dev_build(
+  rule: "moonlex",
+  input: "longest_match.mbtx",
+  output: "longest_match.mbt",
 )

@@ -1,5 +1,5 @@
 // Generated using `moon info`, DON'T EDIT IT
-package "moonbitlang/ulex/tests/jsonlexer"
+package "moonbitlang/ulex_tests/jsonlexer"
 
 // Values
 

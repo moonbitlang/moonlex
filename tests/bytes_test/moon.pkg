@@ -1,16 +1,10 @@
 import {
-  "moonbitlang/ulex/tests/bytes_test/lexbuf",
+  "moonbitlang/ulex_tests/bytes_test/lexbuf",
   "moonbitlang/core/int",
 }
 
 warnings = "-1"
 
-options(
-  "pre-build": [
-    {
-      "command": "node $mod_dir/boot/snapshot/moonlex.cjs $input -o $output",
-      "input": "bytes.mbtx",
-      "output": "bytes.mbt",
-    },
-  ],
-)
+rule(name: "moonlex", command: "moon runwasm $mod_dir/.. $input -o $output")
+
+dev_build(rule: "moonlex", input: "bytes.mbtx", output: "bytes.mbt")

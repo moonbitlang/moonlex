@@ -1,5 +1,5 @@
 // Generated using `moon info`, DON'T EDIT IT
-package "moonbitlang/ulex/tests/named_regexes"
+package "moonbitlang/ulex_tests/named_regexes"
 
 // Values
 pub fn is_number(String) -> Bool
