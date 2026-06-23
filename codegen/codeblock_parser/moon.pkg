@@ -2,3 +2,14 @@ import {
   "moonbitlang/ulex-runtime/lexbuf",
   "moonbitlang/core/int",
 }
+
+rule(
+  name: "moonlex",
+  command: "moon runwasm moonbitlang/ulex@0.3.29 $input | moonfmt > $output",
+)
+
+dev_build(
+  rule: "moonlex",
+  input: "codeblock_parser.mbtx",
+  output: "codeblock_parser.mbt",
+)

@@ -16,3 +16,24 @@ import {
 import {
   "moonbitlang/core/test",
 } for "wbtest"
+
+rule(
+  name: "moonlex",
+  command: "moon runwasm moonbitlang/ulex@0.3.29 $input | moonfmt > $output",
+)
+
+dev_build(rule: "moonlex", input: "lexer.mbtx", output: "lexer.mbt")
+
+rule(
+  name: "moonyacc",
+  command: "moon runwasm moonbitlang/yacc@0.7.14 --input-mode pull $input | moonfmt > $output",
+)
+
+dev_build(rule: "moonyacc", input: "parser.mbty", output: "parser.mbt")
+
+rule(
+  name: "embed",
+  command: "moon runwasm moonbit-community/embed $input -o $output",
+)
+
+dev_build(rule: "embed", input: "lexer.mbtx", output: "for_parser_wbtest.mbt")
