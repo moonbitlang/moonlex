@@ -5,6 +5,8 @@ import {
 
 warnings = "-1-13"
 
+formatter(ignore: ["longest_match.mbt"])
+
 rule(name: "moonlex", command: "moon runwasm $mod_dir/.. $input -o $output")
 
 dev_build(

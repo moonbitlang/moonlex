@@ -5,6 +5,8 @@ import {
 
 warnings = "-1-13"
 
+formatter(ignore: ["bytes.mbt"])
+
 rule(
   name: "moonlex",
   command: "moon runwasm $mod_dir/.. -- --code-unit 1 --default-encoding utf8 $input -o $output",

@@ -3,9 +3,11 @@ import {
   "moonbitlang/core/int",
 }
 
+formatter(ignore: ["codeblock_parser.mbt"])
+
 rule(
   name: "moonlex",
-  command: "moon runwasm moonbitlang/ulex@0.3.29 $input | moonfmt > $output",
+  command: "moon runwasm moonbitlang/ulex@0.3.29 $input -o $output",
 )
 
 dev_build(
