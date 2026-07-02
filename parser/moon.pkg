@@ -17,7 +17,7 @@ import {
   "moonbitlang/core/test",
 } for "wbtest"
 
-formatter(ignore: ["lexer.mbt", "parser.mbt"])
+formatter(ignore: [ "lexer.mbt", "parser.mbt" ])
 
 rule(
   name: "moonlex",

@@ -5,7 +5,7 @@ import {
 
 warnings = "-1-13"
 
-formatter(ignore: ["bytes.mbt"])
+formatter(ignore: [ "bytes.mbt" ])
 
 rule(
   name: "moonlex",
