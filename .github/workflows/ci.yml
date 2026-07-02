@@ -37,10 +37,17 @@ jobs:
         run: |
           moon update
 
-      # - name: moon fmt
-      #   run: |
-      #     moon fmt
-      #     git diff --exit-code
+      - name: moon info
+        run: |
+          moon info --target all
+          moon -C tests info --target all
+          git diff --exit-code
+
+      - name: moon fmt
+        run: |
+          moon fmt
+          moon -C tests fmt
+          git diff --exit-code
 
       - name: moon check
         run: |

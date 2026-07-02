@@ -3,7 +3,7 @@ import {
   "moonbitlang/core/int",
 }
 
-formatter(ignore: ["codeblock_parser.mbt"])
+formatter(ignore: [ "codeblock_parser.mbt" ])
 
 rule(
   name: "moonlex",
