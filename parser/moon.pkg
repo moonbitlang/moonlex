@@ -35,7 +35,7 @@ dev_build(rule: "moonyacc", input: "parser.mbty", output: "parser.mbt")
 
 rule(
   name: "embed",
-  command: "moon runwasm moonbit-community/embed $input -o $output",
+  command: "moon runwasm moonbit-community/embed@0.1.1 $input -o $output",
 )
 
 dev_build(rule: "embed", input: "lexer.mbtx", output: "for_parser_wbtest.mbt")
