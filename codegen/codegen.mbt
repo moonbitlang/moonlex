@@ -54,7 +54,7 @@ fn rewrite_codeblock(
 fn group_trans(
   trans : Array[(@eof_char_set.T, Int)],
 ) -> Array[((Int, Int), Int)] {
-  let char_set_by_state = {}
+  let char_set_by_state = Map([])
   for tran in trans {
     let (char_set, next_state) = tran
     match char_set_by_state.get(next_state) {
@@ -145,7 +145,7 @@ pub fn codegen_rule_inner(
   }
   fn gen_tag_var(tag_var : @automaton.TagVar) -> String {
     if tag_var.1 < 0 {
-      println(to_repr(tag_var))
+      println(Repr(tag_var))
     }
     if tag_var.1 == 0 {
       "_tag_\{tag_var.0}"

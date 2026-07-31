@@ -37,12 +37,12 @@ fn get_value(matches : @argparse.Matches, name : String) -> String? {
 
 ///|
 fn moonlex_command() -> @argparse.Command {
-  @argparse.Command(
+  Command(
     "moonlex",
     version="moonlex 0.1.0",
     disable_version_flag=true,
     flags=[
-      @argparse.FlagArg(
+      FlagArg(
         "version",
         short='v',
         long="version",
@@ -51,24 +51,24 @@ fn moonlex_command() -> @argparse.Command {
       ),
     ],
     options=[
-      @argparse.OptionArg(
+      OptionArg(
         "output-file",
         short='o',
         long="output-file",
         about="Output file",
       ),
-      @argparse.OptionArg(
+      OptionArg(
         "code-unit",
         long="code-unit",
         about="Set code unit (1, 2, or 4)",
       ),
-      @argparse.OptionArg(
+      OptionArg(
         "default-encoding",
         long="default-encoding",
         about="Set default encoding (ascii, latin1, utf8, or utf16). Only valid when code unit is 1",
       ),
     ],
-    positionals=[@argparse.PositionArg("input-file", allow_hyphen_values=true)],
+    positionals=[PositionArg("input-file", allow_hyphen_values=true)],
   )
 }
 

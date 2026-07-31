@@ -127,14 +127,14 @@ fn DFA::minimize(dfa : DFA) -> DFA {
   // Build the new DFA
   // The new DFA will have one state for each partition
   let new_dfa = DFA::new(dfa.pattern_captures)
-  let state_to_partition = {}
+  let state_to_partition = Map([])
   for partition in partitions {
     for state in partition {
       state_to_partition[state] = partition
     }
   }
-  let partition_to_new_state = {}
-  let state_to_new_state = {}
+  let partition_to_new_state = Map([])
+  let state_to_new_state = Map([])
   fn get_new_state(state : Int) -> Int {
     let partition = state_to_partition.get(state).unwrap()
     match partition_to_new_state.get(partition) {

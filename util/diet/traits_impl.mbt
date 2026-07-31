@@ -43,6 +43,6 @@ pub impl[N : Compare] Compare for Tree[N] with fn compare(
 ///|
 pub impl[N : Hash] Hash for Tree[N] with fn hash_combine(self, hasher) {
   for interval in self.iter_intervals() {
-    interval.hash_combine(hasher)
+    Hash::hash_combine(interval, hasher)
   }
 }

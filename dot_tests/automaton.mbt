@@ -19,7 +19,7 @@ fn nfa2dots(nfa : @automaton.NFA, name? : String = "nfa") -> DotGraph {
       dots.add_edge(
         from=node.num,
         to=target.num,
-        edge_info=to_repr(edge_info).to_string(),
+        edge_info=Repr(edge_info).to_string(),
       )
     }
     for target in node.tagged_eps {
@@ -28,7 +28,7 @@ fn nfa2dots(nfa : @automaton.NFA, name? : String = "nfa") -> DotGraph {
       dots.add_edge(
         from=node.num,
         to=target.0.num,
-        edge_info=to_repr(edge_info).to_string(),
+        edge_info=Repr(edge_info).to_string(),
       )
     }
     for edge in node.trans {
@@ -41,7 +41,7 @@ fn nfa2dots(nfa : @automaton.NFA, name? : String = "nfa") -> DotGraph {
         dots.add_edge(
           from=node.num,
           to=target.num,
-          edge_info=to_repr(edge_info).to_string(),
+          edge_info=Repr(edge_info).to_string(),
         )
       }
     }
@@ -53,7 +53,7 @@ fn nfa2dots(nfa : @automaton.NFA, name? : String = "nfa") -> DotGraph {
       dots.set_node(
         node=node.num,
         nodeType=Accepted,
-        label=to_repr("\{node.num}(\{pattern})").to_string(),
+        label=Repr("\{node.num}(\{pattern})").to_string(),
       )
     }
   }
@@ -110,7 +110,7 @@ fn dfa2dots(dfa : @automaton.DFA, name? : String = "dfa") -> DotGraph {
         dots.add_edge(
           from=node,
           to=target,
-          edge_info=to_repr(edge_info).to_string(),
+          edge_info=Repr(edge_info).to_string(),
         )
       }
     }
@@ -121,9 +121,9 @@ fn dfa2dots(dfa : @automaton.DFA, name? : String = "dfa") -> DotGraph {
       let (pattern, tags) = end_node.unwrap()
       let mut label = "\{node}(\{pattern})"
       if !tags.is_empty() {
-        label = label + "/" + to_repr(tags).to_string()
+        label = label + "/" + Repr(tags).to_string()
       }
-      dots.set_node(node~, nodeType=Accepted, label=to_repr(label).to_string())
+      dots.set_node(node~, nodeType=Accepted, label=Repr(label).to_string())
     }
   }
   dots

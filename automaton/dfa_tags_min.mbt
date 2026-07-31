@@ -3,7 +3,7 @@ fn DFA::minimize_tags(self : DFA) -> DFA {
   let tag_to_state_actions_map : Map[
     Tag,
     @immut/sorted_map.SortedMap[DFANode, Array[TagOp]],
-  ] = {}
+  ] = Map([])
   fn map_op(op : TagOp) -> TagOp {
     match op {
       Set(dest~) => Set(dest=(-1, dest.1))
@@ -45,7 +45,7 @@ fn DFA::minimize_tags(self : DFA) -> DFA {
       .unwrap_or(@immut/sorted_set.new())
       .add(tag)
   }
-  let tag_to_new_tag = {}
+  let tag_to_new_tag = Map([])
   let mut num_tags = 0
   for _, tags in groups {
     let new_tag = num_tags
