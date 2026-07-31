@@ -88,7 +88,7 @@ pub(all) enum TokenKind {
   TK_STRING
 }
 
-pub impl Show for TokenKind with output(self, logger) {
+pub impl Show for TokenKind with fn output(self, logger) {
   logger.write_string(
     match self {
       TK_EOI => "EOI"
@@ -121,34 +121,34 @@ pub impl Show for TokenKind with output(self, logger) {
   )
 }
 
-pub impl Debug for TokenKind with to_repr(self) {
+pub impl Debug for TokenKind with fn to_repr(self) {
     match self {
-      TK_EOI => to_repr("EOI")
-      TK_EOF => to_repr("eof")
-      TK_PARSE_LBRACE => to_repr("parse {")
-      TK_REGEX => to_repr("regex")
-      TK_AS => to_repr("as")
-      TK_UNDERSCORE => to_repr("_")
-      TK_RBRACE => to_repr("}")
-      TK_LPAREN => to_repr("(")
-      TK_RPAREN => to_repr(")")
-      TK_LBRACKET => to_repr("[")
-      TK_RBRACKET => to_repr("]")
-      TK_EQ => to_repr("=")
-      TK_SEMICOLON => to_repr(";")
-      TK_FAT_ARROW => to_repr("=>")
-      TK_BAR => to_repr("|")
-      TK_STAR => to_repr("*")
-      TK_PLUS => to_repr("+")
-      TK_QUESTION => to_repr("?")
-      TK_MINUS => to_repr("-")
-      TK_CARET => to_repr("^")
-      TK_BACKSLASH => to_repr("BACKSLASH")
-      TK_RULE_LC_IDENT_LPAREN_CODE_RPAREN_ARROW_CODE_LBRACE => to_repr("RULE_LC_IDENT_LPAREN_CODE_RPAREN_ARROW_CODE_LBRACE")
-      TK_LBRACE_CODE_RBRACE => to_repr("LBRACE_CODE_RBRACE")
-      TK_LC_IDENT => to_repr("LC_IDENT")
-      TK_CHAR => to_repr("CHAR")
-      TK_STRING => to_repr("STRING")
+      TK_EOI => Repr("EOI")
+      TK_EOF => Repr("eof")
+      TK_PARSE_LBRACE => Repr("parse {")
+      TK_REGEX => Repr("regex")
+      TK_AS => Repr("as")
+      TK_UNDERSCORE => Repr("_")
+      TK_RBRACE => Repr("}")
+      TK_LPAREN => Repr("(")
+      TK_RPAREN => Repr(")")
+      TK_LBRACKET => Repr("[")
+      TK_RBRACKET => Repr("]")
+      TK_EQ => Repr("=")
+      TK_SEMICOLON => Repr(";")
+      TK_FAT_ARROW => Repr("=>")
+      TK_BAR => Repr("|")
+      TK_STAR => Repr("*")
+      TK_PLUS => Repr("+")
+      TK_QUESTION => Repr("?")
+      TK_MINUS => Repr("-")
+      TK_CARET => Repr("^")
+      TK_BACKSLASH => Repr("BACKSLASH")
+      TK_RULE_LC_IDENT_LPAREN_CODE_RPAREN_ARROW_CODE_LBRACE => Repr("RULE_LC_IDENT_LPAREN_CODE_RPAREN_ARROW_CODE_LBRACE")
+      TK_LBRACE_CODE_RBRACE => Repr("LBRACE_CODE_RBRACE")
+      TK_LC_IDENT => Repr("LC_IDENT")
+      TK_CHAR => Repr("CHAR")
+      TK_STRING => Repr("STRING")
     }
 }
 
