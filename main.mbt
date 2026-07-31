@@ -103,32 +103,37 @@ fn cli_user_args(args : Array[String]) -> ArrayView[String] {
 }
 
 ///|
-fn write_stderr_line(msg : String) -> Unit {
-  @miniio.stderr.write_text(msg + "\n") catch {
+#cfg(target="wasm")
+fn proc_exit_ffi(rval : Int) -> Unit = "wasi_snapshot_preview1" "proc_exit"
+
+///|
+#cfg(target="native")
+extern "c" fn proc_exit_ffi(rval : Int) -> Unit = "exit"
+
+///|
+async fn write_stderr_line(msg : String) -> Unit {
+  @stdio.stderr.write(msg + "\n") catch {
     _ => ()
   }
 }
 
 ///|
-fn[T] exit_with_error(msg : String) -> T {
+async fn[T] exit_with_error(msg : String) -> T {
   write_stderr_line(msg)
-  @miniio.exit(1)
+  proc_exit_ffi(1)
   panic()
 }
 
 ///|
-fn main {
-  let args = @miniio.args_get() catch {
-    err => exit_with_error("Failed to read args: \{err}")
-  }
-  let options = parse_cli_args(cli_user_args(args)) catch {
+async fn main {
+  let options = parse_cli_args(cli_user_args(@env.args())) catch {
     err => exit_with_error(err.to_string())
   }
   guard options.input_file != "" else {
     exit_with_error("Input file is required")
   }
   let output = {
-    let lexer_spec_src = @miniio.read_text_file(options.input_file) catch {
+    let lexer_spec_src = @fs.read_file(options.input_file).text() catch {
       err => exit_with_error("Failed to read input file: \{err}")
     }
     let lex_ = @parser.parse_lex_from_string(lexer_spec_src) catch {
@@ -147,11 +152,11 @@ fn main {
     )
   }
   if options.output_file == "" {
-    @miniio.stdout.write_text(output + "\n") catch {
+    @stdio.stdout.write(output + "\n") catch {
       err => exit_with_error("Failed to write stdout: \{err}")
     }
   } else {
-    @miniio.write_text_file(options.output_file, output) catch {
+    @fs.write_file(options.output_file, output, create_mode=CreateOrTruncate) catch {
       err => exit_with_error("Failed to write output file: \{err}")
     }
   }
