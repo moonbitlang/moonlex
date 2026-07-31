@@ -259,7 +259,7 @@ fn DFA::from_nfa(nfa : NFA) -> DFA {
       })
 
     // Merge char_sets by target
-    let char_set_by_nfa_target = {}
+    let char_set_by_nfa_target = Map([])
     for nfa_tran in nfa_trans {
       let (cset, target) = nfa_tran
       match char_set_by_nfa_target.get(target) {

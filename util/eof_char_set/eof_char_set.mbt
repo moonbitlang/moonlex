@@ -164,7 +164,7 @@ pub impl Show for EofCharSet with fn output(self, logger) {
     .iter_ranges()
     .map(it => {
       let (min, max) = it
-      "@eof_char_set.range(\{to_repr(min)}, \{to_repr(max)})"
+      "@eof_char_set.range(\{Repr(min)}, \{Repr(max)})"
     }),
     prefix="@eof_char_set.union(",
     suffix=")",

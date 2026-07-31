@@ -117,7 +117,7 @@ pub impl Show for CharSet with fn output(self, logger) {
     .iter_ranges()
     .map(it => {
       let (min, max) = it
-      "@char_set.range(\{to_repr(min)}, \{to_repr(max)})"
+      "@char_set.range(\{Repr(min)}, \{Repr(max)})"
     }),
     prefix="@char_set.union(",
     suffix=")",
