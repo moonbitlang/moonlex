@@ -3,12 +3,13 @@ import {
   "moonbitlang/ulex/parser",
   "moonbitlang/ulex/codegen",
   "moonbitlang/core/argparse",
-  "moonbit-community/miniio",
+  "moonbitlang/core/env",
+  "moonbitlang/async",
+  "moonbitlang/async/fs",
+  "moonbitlang/async/stdio",
   "moonbitlang/ulex/regex",
 }
 
-supported_targets = "wasm"
+supported_targets = "wasm+native"
 
-options(
-  "is-main": true,
-)
+pkgtype(kind: "executable")
