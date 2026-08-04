@@ -134,7 +134,7 @@ fn NFA::new_node(self : NFA) -> NFANode {
   self.node_count += 1
   let node = NFANode::{ num: new_id, eps: [], tagged_eps: [], trans: [] }
   self.graph.push(node)
-  guard new_id + 1 == self.graph.length()
+  guard! new_id + 1 == self.graph.length()
   node
 }
 

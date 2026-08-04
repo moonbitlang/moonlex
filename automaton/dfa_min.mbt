@@ -172,7 +172,7 @@ fn DFA::minimize(dfa : DFA) -> DFA {
   }
   for end_state, end_state_info in dfa.end_nodes {
     if state_to_new_state.get(end_state) is Some(new_end_state) {
-      guard new_dfa.end_nodes.get(new_end_state) is None ||
+      guard! new_dfa.end_nodes.get(new_end_state) is None ||
         (
           new_dfa.end_nodes.get(new_end_state) is Some(end_state_info2) &&
           end_state_info2 == end_state_info

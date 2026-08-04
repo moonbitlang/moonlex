@@ -27,7 +27,7 @@ fn[N] InorderIterator::move_left(
 ///|
 fn[N] InorderIterator::next(self : InorderIterator[N]) -> (N, N)? {
   guard self.0.pop() is Some(curr) else { return None }
-  guard curr is Node(min~, max~, right~, ..)
+  guard! curr is Node(min~, max~, right~, ..)
   self.move_left(right)
   Some((min, max))
 }

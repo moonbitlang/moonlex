@@ -161,7 +161,7 @@ fn state_canonicalize(state : State, tag_count : Int) -> (State, TagAction) {
     .map(fn(pair) {
       let tag_state = pair.1.0.map(fn(tag, prev_rank) {
         let ranks = ranks_by_tag[tag]
-        guard ranks.search(prev_rank) is Some(rank)
+        guard! ranks.search(prev_rank) is Some(rank)
         rank
       })
       (pair.0, TagState(tag_state))

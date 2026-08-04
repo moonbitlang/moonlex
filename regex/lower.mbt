@@ -28,7 +28,7 @@ fn lower_unicode_charclass(cset : @char_set.T, encoding~ : Encoding) -> Regex {
       panic()
   }
   fn regex_of_branch(branch : Array[@char_set.T]) -> Regex {
-    guard branch.length() >= 1
+    guard! branch.length() >= 1
     let mut regex = char_class(branch[0])
     for cset in branch[1:] {
       regex = seq(regex, char_class(cset))
@@ -36,7 +36,7 @@ fn lower_unicode_charclass(cset : @char_set.T, encoding~ : Encoding) -> Regex {
     regex
   }
 
-  guard branches.length() >= 1
+  guard! branches.length() >= 1
   let mut regex = regex_of_branch(branches[0])
   for branch in branches[1:] {
     regex = alt(regex, regex_of_branch(branch))

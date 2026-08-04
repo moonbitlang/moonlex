@@ -19,13 +19,13 @@ pub impl @bounded_enum.T for EofChar with fn upper_bound() {
 
 ///|
 pub impl @bounded_enum.T for EofChar with fn pred(self) {
-  guard self.0 > -1
+  guard! self.0 > -1
   EofChar(self.0 - 1)
 }
 
 ///|
 pub impl @bounded_enum.T for EofChar with fn succ(self) {
-  guard self.0 < 0x10ffff
+  guard! self.0 < 0x10ffff
   EofChar(self.0 + 1)
 }
 
