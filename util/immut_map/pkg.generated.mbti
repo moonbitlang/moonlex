@@ -11,8 +11,17 @@ pub fn[K : Compare, V] from_iter(Iter[(K, V)]) -> T[K, V]
 // Types and methods
 type T[K, V]
 pub fn[K : Compare, V] T::add(Self[K, V], K, V) -> Self[K, V]
+pub fn[K : Compare, V : Compare] T::compare(Self[K, V], Self[K, V]) -> Int
+pub fn[K : Eq, V : Eq] T::equal(Self[K, V], Self[K, V]) -> Bool
 pub fn[K : Compare, V] T::get(Self[K, V], K) -> V?
+pub fn[K : Hash, V : Hash] T::hash(Self[K, V]) -> Int
+pub fn[K : Hash, V : Hash] T::hash_combine(Self[K, V], Hasher) -> Unit
 pub fn[K, V] T::iter(Self[K, V]) -> Iter[(K, V)]
+pub fn[K : Eq, V : Eq] T::not_equal(Self[K, V], Self[K, V]) -> Bool
+pub fn[K : Compare, V : Compare] T::op_ge(Self[K, V], Self[K, V]) -> Bool
+pub fn[K : Compare, V : Compare] T::op_gt(Self[K, V], Self[K, V]) -> Bool
+pub fn[K : Compare, V : Compare] T::op_le(Self[K, V], Self[K, V]) -> Bool
+pub fn[K : Compare, V : Compare] T::op_lt(Self[K, V], Self[K, V]) -> Bool
 pub impl[K : Compare, V : Compare] Compare for T[K, V]
 pub impl[K : Eq, V : Eq] Eq for T[K, V]
 pub impl[K : Hash, V : Hash] Hash for T[K, V]
@@ -20,4 +29,3 @@ pub impl[K : Hash, V : Hash] Hash for T[K, V]
 // Type aliases
 
 // Traits
-

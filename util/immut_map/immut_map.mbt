@@ -5,7 +5,7 @@ enum T[K, V] {
 }
 
 ///|
-let rand_state : Ref[Int] = { val: 1 }
+let rand_state : Ref[Int] = { val: 1, }
 
 ///|
 fn random_priority() -> Int {
@@ -124,7 +124,7 @@ pub fn[K, V] T::iter(self : T[K, V]) -> Iter[(K, V)] {
         None
       }
       Some(node) => {
-        guard node is Node(key~, value~, right~, ..)
+        guard! node is Node(key~, value~, right~, ..)
         current = right
         Some((key, value))
       }

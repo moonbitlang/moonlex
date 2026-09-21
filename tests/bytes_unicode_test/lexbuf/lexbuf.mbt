@@ -11,7 +11,7 @@ pub type T = BytesLexbuf
 ///|
 pub fn from_bytes(bytes : Bytes, start? : Int = 0, end? : Int) -> BytesLexbuf {
   let end = end.unwrap_or(bytes.length())
-  return { content: bytes, pos: start, end }
+  return { content: bytes, pos: start, end, }
 }
 
 ///|
@@ -68,7 +68,7 @@ pub fn BytesLexbuf::get_string(
 
 ///|
 fn decode_utf8(bytes : BytesView) -> String {
-  let res = StringBuilder::new()
+  let res = StringBuilder()
   let len = bytes.length()
   let mut i = 0
   while i < len {

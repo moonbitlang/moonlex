@@ -20,6 +20,9 @@ pub fn regex_eoi(() -> (Token, Int, Int), Int) -> ((Context) -> @regex.Regex) ra
 pub suberror ParseError {
   UnexpectedToken(Token, (Int, Int), Array[TokenKind])
 } derive(@debug.Debug)
+pub fn ParseError::output(Self, &Logger) -> Unit
+pub fn ParseError::to_repr(Self) -> @debug.Repr
+pub fn ParseError::to_string(Self) -> String
 pub impl Show for ParseError
 
 // Types and methods
@@ -53,7 +56,13 @@ pub(all) enum Token {
   CHAR(Char)
   STRING(String)
 } derive(Eq, ToJson, @debug.Debug)
+pub fn Token::equal(Self, Self) -> Bool
 pub fn Token::kind(Self) -> TokenKind
+pub fn Token::not_equal(Self, Self) -> Bool
+pub fn Token::output(Self, &Logger) -> Unit
+pub fn Token::to_json(Self) -> Json
+pub fn Token::to_repr(Self) -> @debug.Repr
+pub fn Token::to_string(Self) -> String
 pub impl Show for Token
 
 pub(all) enum TokenKind {
@@ -84,10 +93,12 @@ pub(all) enum TokenKind {
   TK_CHAR
   TK_STRING
 }
+pub fn TokenKind::output(Self, &Logger) -> Unit
+pub fn TokenKind::to_repr(Self) -> @debug.Repr
+pub fn TokenKind::to_string(Self) -> String
 pub impl Show for TokenKind
 pub impl @debug.Debug for TokenKind
 
 // Type aliases
 
 // Traits
-

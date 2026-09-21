@@ -1,7 +1,7 @@
 ///|
 pub fn parse_lex_from_string(input : String) -> @type.Lex raise ParseError {
   let lexbuf = @lexbuf.StringLexbuf::from_string(input)
-  lex_eoi(fn() { token(lexbuf) }, 0)({ named_regexes: @immut/sorted_map.new() })
+  lex_eoi(fn() { token(lexbuf) }, 0)({ named_regexes: @immut/sorted_map.new(), })
 }
 
 ///|

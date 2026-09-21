@@ -27,8 +27,23 @@ pub fn singleton(Char) -> EofCharSet
 // Types and methods
 type EofChar derive(Compare, Eq, Hash, ToJson, @debug.Debug)
 pub fn EofChar::char(Char) -> Self
+pub fn EofChar::compare(Self, Self) -> Int
 pub fn EofChar::eof() -> Self
+pub fn EofChar::equal(Self, Self) -> Bool
+pub fn EofChar::hash(Self) -> Int
+pub fn EofChar::hash_combine(Self, Hasher) -> Unit
+pub fn EofChar::lower_bound() -> Self
+pub fn EofChar::not_equal(Self, Self) -> Bool
+pub fn EofChar::op_ge(Self, Self) -> Bool
+pub fn EofChar::op_gt(Self, Self) -> Bool
+pub fn EofChar::op_le(Self, Self) -> Bool
+pub fn EofChar::op_lt(Self, Self) -> Bool
+pub fn EofChar::pred(Self) -> Self
 pub fn EofChar::repr(Self) -> EofCharRepr
+pub fn EofChar::succ(Self) -> Self
+pub fn EofChar::to_json(Self) -> Json
+pub fn EofChar::to_repr(Self) -> @debug.Repr
+pub fn EofChar::upper_bound() -> Self
 pub impl @bounded_enum.BoundedEnum for EofChar
 
 pub enum EofCharRepr {
@@ -38,18 +53,36 @@ pub enum EofCharRepr {
 
 #alias(T)
 type EofCharSet derive(Compare, Default, Eq, Hash)
+pub fn EofCharSet::add(Self, Self) -> Self
+pub fn EofCharSet::compare(Self, Self) -> Int
 pub fn EofCharSet::complement(Self) -> Self
 pub fn EofCharSet::contains(Self, Char) -> Bool
 pub fn EofCharSet::contains2(Self, EofChar) -> Bool
+pub fn EofCharSet::default() -> Self
 pub fn EofCharSet::difference(Self, Self) -> Self
 pub fn EofCharSet::disjoint(Self, Self) -> Bool
+pub fn EofCharSet::equal(Self, Self) -> Bool
+pub fn EofCharSet::hash(Self) -> Int
+pub fn EofCharSet::hash_combine(Self, Hasher) -> Unit
 pub fn EofCharSet::intersection(Self, Self) -> Self
 pub fn EofCharSet::is_empty(Self) -> Bool
 pub fn EofCharSet::iter(Self) -> Iter[EofChar]
 pub fn EofCharSet::iter_ranges(Self) -> Iter[(EofChar, EofChar)]
+pub fn EofCharSet::land(Self, Self) -> Self
+pub fn EofCharSet::neg(Self) -> Self
 pub fn EofCharSet::negated(Self) -> Self
+pub fn EofCharSet::not_equal(Self, Self) -> Bool
+pub fn EofCharSet::op_ge(Self, Self) -> Bool
+pub fn EofCharSet::op_gt(Self, Self) -> Bool
+pub fn EofCharSet::op_le(Self, Self) -> Bool
+pub fn EofCharSet::op_lt(Self, Self) -> Bool
+pub fn EofCharSet::output(Self, &Logger) -> Unit
 pub fn EofCharSet::slice(Self, min? : Char, max? : Char) -> Self
+pub fn EofCharSet::sub(Self, Self) -> Self
 pub fn EofCharSet::subset(Self, Self) -> Bool
+pub fn EofCharSet::to_json(Self) -> Json
+pub fn EofCharSet::to_repr(Self) -> @debug.Repr
+pub fn EofCharSet::to_string(Self) -> String
 pub fn EofCharSet::union(Self, Self) -> Self
 pub fn EofCharSet::unsafe_choose(Self) -> EofChar
 pub impl Add for EofCharSet
@@ -63,4 +96,3 @@ pub impl @debug.Debug for EofCharSet
 // Type aliases
 
 // Traits
-

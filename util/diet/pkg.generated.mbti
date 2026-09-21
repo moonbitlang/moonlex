@@ -25,11 +25,21 @@ pub fn[N : @bounded_enum.BoundedEnum] union(Tree[N], Tree[N]) -> Tree[N]
 // Types and methods
 #alias(T)
 type Tree[T]
+pub fn[N : Compare] Tree::compare(Self[N], Self[N]) -> Int
 pub fn[N : @bounded_enum.BoundedEnum] Tree::complement(Self[N]) -> Self[N]
 pub fn[N : @bounded_enum.BoundedEnum] Tree::contains(Self[N], N) -> Bool
+pub fn[N] Tree::default() -> Self[N]
+pub fn[N : Eq] Tree::equal(Self[N], Self[N]) -> Bool
+pub fn[N : Hash] Tree::hash(Self[N]) -> Int
+pub fn[N : Hash] Tree::hash_combine(Self[N], Hasher) -> Unit
 pub fn[N] Tree::is_empty(Self[N]) -> Bool
 pub fn[N : @bounded_enum.BoundedEnum] Tree::iter(Self[N]) -> Iter[N]
 pub fn[N] Tree::iter_intervals(Self[N]) -> Iter[(N, N)]
+pub fn[N : Eq] Tree::not_equal(Self[N], Self[N]) -> Bool
+pub fn[N : Compare] Tree::op_ge(Self[N], Self[N]) -> Bool
+pub fn[N : Compare] Tree::op_gt(Self[N], Self[N]) -> Bool
+pub fn[N : Compare] Tree::op_le(Self[N], Self[N]) -> Bool
+pub fn[N : Compare] Tree::op_lt(Self[N], Self[N]) -> Bool
 pub fn[N : @bounded_enum.BoundedEnum] Tree::slice(Self[N], min? : N, max? : N) -> Self[N]
 pub fn[N] Tree::unsafe_choose(Self[N]) -> N
 pub impl[N : Compare] Compare for Tree[N]
@@ -40,4 +50,3 @@ pub impl[N : Hash] Hash for Tree[N]
 // Type aliases
 
 // Traits
-

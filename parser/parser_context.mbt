@@ -9,5 +9,5 @@ fn Context::define_regex(
   name : String,
   regex : @regex.T,
 ) -> Context {
-  { named_regexes: self.named_regexes.add(name, regex) }
+  { named_regexes: self.named_regexes.add(name, regex), }
 }
