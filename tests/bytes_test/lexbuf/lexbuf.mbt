@@ -11,7 +11,7 @@ pub type T = BytesLexbuf
 ///|
 pub fn from_bytes(bytes : Bytes, start? : Int = 0, end? : Int) -> BytesLexbuf {
   let end = end.unwrap_or(bytes.length())
-  return { content: bytes, pos: start, end }
+  return { content: bytes, pos: start, end, }
 }
 
 ///|

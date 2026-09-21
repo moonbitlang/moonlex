@@ -230,7 +230,7 @@ fn collect_symbols(dfa : DFA) -> @immut/sorted_set.SortedSet[Symbol] {
   }
   let mut next_symbol_id = 0
   fn new_symbol(char_set : @eof_char_set.T) -> Symbol {
-    let symbol = Symbol::{ id: next_symbol_id, char_set }
+    let symbol = Symbol::{ id: next_symbol_id, char_set, }
     next_symbol_id += 1
     symbol
   }
