@@ -68,7 +68,7 @@ pub fn BytesLexbuf::get_string(
 
 ///|
 fn decode_utf8(bytes : BytesView) -> String {
-  let res = StringBuilder::new()
+  let res = StringBuilder()
   let len = bytes.length()
   let mut i = 0
   while i < len {
