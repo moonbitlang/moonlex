@@ -22,6 +22,10 @@ pub(all) struct Lex {
   rules : Array[Rule]
   trailer : String
 } derive(ToJson, @debug.Debug)
+pub fn Lex::output(Self, &Logger) -> Unit
+pub fn Lex::to_json(Self) -> Json
+pub fn Lex::to_repr(Self) -> @debug.Repr
+pub fn Lex::to_string(Self) -> String
 pub impl Show for Lex
 
 pub(all) struct Rule {
@@ -31,6 +35,10 @@ pub(all) struct Rule {
   patterns : Array[(@regex.Regex, String?)]
   actions : Array[String]
 } derive(ToJson, @debug.Debug)
+pub fn Rule::output(Self, &Logger) -> Unit
+pub fn Rule::to_json(Self) -> Json
+pub fn Rule::to_repr(Self) -> @debug.Repr
+pub fn Rule::to_string(Self) -> String
 pub impl Show for Rule
 
 // Type aliases
@@ -41,4 +49,3 @@ pub using @regex {type Encoding}
 pub using @regex {type Regex}
 
 // Traits
-

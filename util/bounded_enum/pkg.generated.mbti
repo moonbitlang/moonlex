@@ -18,4 +18,3 @@ pub(open) trait BoundedEnum : Compare {
   fn upper_bound() -> Self
 }
 pub impl BoundedEnum for Char
-

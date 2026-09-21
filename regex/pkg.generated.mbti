@@ -41,6 +41,12 @@ pub(all) enum Encoding {
   Utf8
   Utf16
 } derive(Eq, ToJson, @debug.Debug)
+pub fn Encoding::equal(Self, Self) -> Bool
+pub fn Encoding::not_equal(Self, Self) -> Bool
+pub fn Encoding::output(Self, &Logger) -> Unit
+pub fn Encoding::to_json(Self) -> Json
+pub fn Encoding::to_repr(Self) -> @debug.Repr
+pub fn Encoding::to_string(Self) -> String
 pub impl Show for Encoding
 
 #alias(T)
@@ -50,12 +56,24 @@ pub struct Regex {
   len : Int?
 } derive(Eq, ToJson, @debug.Debug)
 pub fn Regex::check_legal(Self) -> Bool
+pub fn Regex::equal(Self, Self) -> Bool
+pub fn Regex::not_equal(Self, Self) -> Bool
+pub fn Regex::output(Self, &Logger) -> Unit
+pub fn Regex::to_json(Self) -> Json
+pub fn Regex::to_repr(Self) -> @debug.Repr
+pub fn Regex::to_string(Self) -> String
 pub impl Show for Regex
 
 pub enum RegexClass {
   Char
   String
 } derive(Eq, ToJson, @debug.Debug)
+pub fn RegexClass::equal(Self, Self) -> Bool
+pub fn RegexClass::not_equal(Self, Self) -> Bool
+pub fn RegexClass::output(Self, &Logger) -> Unit
+pub fn RegexClass::to_json(Self) -> Json
+pub fn RegexClass::to_repr(Self) -> @debug.Repr
+pub fn RegexClass::to_string(Self) -> String
 pub impl Show for RegexClass
 
 pub enum RegexDesc {
@@ -67,9 +85,14 @@ pub enum RegexDesc {
   Concat(Regex, Regex)
   Capture(Regex, String)
 } derive(Eq, ToJson, @debug.Debug)
+pub fn RegexDesc::equal(Self, Self) -> Bool
+pub fn RegexDesc::not_equal(Self, Self) -> Bool
+pub fn RegexDesc::output(Self, &Logger) -> Unit
+pub fn RegexDesc::to_json(Self) -> Json
+pub fn RegexDesc::to_repr(Self) -> @debug.Repr
+pub fn RegexDesc::to_string(Self) -> String
 pub impl Show for RegexDesc
 
 // Type aliases
 
 // Traits
-

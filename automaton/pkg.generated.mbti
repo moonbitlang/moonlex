@@ -22,12 +22,20 @@ pub(all) struct DFA {
   mut node_count : Int
 } derive(@debug.Debug)
 pub fn DFA::from_patterns(Array[(@regex.Regex, String?)], encoding? : @regex.Encoding) -> Self
+pub fn DFA::output(Self, &Logger) -> Unit
+pub fn DFA::to_repr(Self) -> @debug.Repr
+pub fn DFA::to_string(Self) -> String
 pub impl Show for DFA
 
 pub(all) enum DFACapturePosition {
   Dynamic_dfa((Int, Int))
   Static_dfa(StaticKnownTagPosition)
 } derive(Eq, @debug.Debug)
+pub fn DFACapturePosition::equal(Self, Self) -> Bool
+pub fn DFACapturePosition::not_equal(Self, Self) -> Bool
+pub fn DFACapturePosition::output(Self, &Logger) -> Unit
+pub fn DFACapturePosition::to_repr(Self) -> @debug.Repr
+pub fn DFACapturePosition::to_string(Self) -> String
 pub impl Show for DFACapturePosition
 
 pub(all) enum Input {
@@ -35,6 +43,13 @@ pub(all) enum Input {
   EpsWithTag(Int)
   EChar(@eof_char_set.EofCharSet)
 } derive(Eq, Hash, @debug.Debug)
+pub fn Input::equal(Self, Self) -> Bool
+pub fn Input::hash(Self) -> Int
+pub fn Input::hash_combine(Self, Hasher) -> Unit
+pub fn Input::not_equal(Self, Self) -> Bool
+pub fn Input::output(Self, &Logger) -> Unit
+pub fn Input::to_repr(Self) -> @debug.Repr
+pub fn Input::to_string(Self) -> String
 pub impl Show for Input
 
 pub(all) struct NFA {
@@ -46,12 +61,18 @@ pub(all) struct NFA {
   mut tag_count : Int
 } derive(@debug.Debug)
 pub fn NFA::from_patterns(Array[(@regex.Regex, String?)], encoding? : @regex.Encoding) -> Self
+pub fn NFA::output(Self, &Logger) -> Unit
+pub fn NFA::to_repr(Self) -> @debug.Repr
+pub fn NFA::to_string(Self) -> String
 pub impl Show for NFA
 
 pub(all) enum NFACapturePosition {
   Dynamic_nfa(Int)
   Static_nfa(StaticKnownTagPosition)
 } derive(@debug.Debug)
+pub fn NFACapturePosition::output(Self, &Logger) -> Unit
+pub fn NFACapturePosition::to_repr(Self) -> @debug.Repr
+pub fn NFACapturePosition::to_string(Self) -> String
 pub impl Show for NFACapturePosition
 
 pub(all) struct NFANode {
@@ -60,6 +81,18 @@ pub(all) struct NFANode {
   mut tagged_eps : Array[(NFANode, Int)]
   mut trans : Array[(@eof_char_set.EofCharSet, NFANode)]
 } derive(@debug.Debug)
+pub fn NFANode::compare(Self, Self) -> Int
+pub fn NFANode::equal(Self, Self) -> Bool
+pub fn NFANode::hash(Self) -> Int
+pub fn NFANode::hash_combine(Self, Hasher) -> Unit
+pub fn NFANode::not_equal(Self, Self) -> Bool
+pub fn NFANode::op_ge(Self, Self) -> Bool
+pub fn NFANode::op_gt(Self, Self) -> Bool
+pub fn NFANode::op_le(Self, Self) -> Bool
+pub fn NFANode::op_lt(Self, Self) -> Bool
+pub fn NFANode::output(Self, &Logger) -> Unit
+pub fn NFANode::to_repr(Self) -> @debug.Repr
+pub fn NFANode::to_string(Self) -> String
 pub impl Compare for NFANode
 pub impl Eq for NFANode
 pub impl Hash for NFANode
@@ -69,21 +102,49 @@ pub(all) enum StaticKnownTagPosition {
   RelativeToStart(Int)
   RelativeToEnd(Int)
 } derive(Eq, @debug.Debug)
+pub fn StaticKnownTagPosition::equal(Self, Self) -> Bool
+pub fn StaticKnownTagPosition::not_equal(Self, Self) -> Bool
+pub fn StaticKnownTagPosition::output(Self, &Logger) -> Unit
+pub fn StaticKnownTagPosition::to_repr(Self) -> @debug.Repr
+pub fn StaticKnownTagPosition::to_string(Self) -> String
 pub impl Show for StaticKnownTagPosition
 
 pub(all) struct TagAction(Array[TagOp]) derive(Compare, Eq, @debug.Debug)
+pub fn TagAction::compare(Self, Self) -> Int
+pub fn TagAction::equal(Self, Self) -> Bool
+pub fn TagAction::not_equal(Self, Self) -> Bool
+pub fn TagAction::op_ge(Self, Self) -> Bool
+pub fn TagAction::op_gt(Self, Self) -> Bool
+pub fn TagAction::op_le(Self, Self) -> Bool
+pub fn TagAction::op_lt(Self, Self) -> Bool
+pub fn TagAction::output(Self, &Logger) -> Unit
+pub fn TagAction::to_repr(Self) -> @debug.Repr
+pub fn TagAction::to_string(Self) -> String
 pub impl Show for TagAction
 
 pub(all) enum TagOp {
   Set(dest~ : (Int, Int))
   Copy(dest~ : (Int, Int), src~ : (Int, Int))
 } derive(Compare, Eq, @debug.Debug)
+pub fn TagOp::compare(Self, Self) -> Int
+pub fn TagOp::equal(Self, Self) -> Bool
+pub fn TagOp::not_equal(Self, Self) -> Bool
+pub fn TagOp::op_ge(Self, Self) -> Bool
+pub fn TagOp::op_gt(Self, Self) -> Bool
+pub fn TagOp::op_le(Self, Self) -> Bool
+pub fn TagOp::op_lt(Self, Self) -> Bool
+pub fn TagOp::output(Self, &Logger) -> Unit
+pub fn TagOp::to_repr(Self) -> @debug.Repr
+pub fn TagOp::to_string(Self) -> String
 pub impl Show for TagOp
 
 pub(all) enum VarType {
   Char
   String
 } derive(@debug.Debug)
+pub fn VarType::output(Self, &Logger) -> Unit
+pub fn VarType::to_repr(Self) -> @debug.Repr
+pub fn VarType::to_string(Self) -> String
 pub impl Show for VarType
 
 // Type aliases
@@ -94,4 +155,3 @@ pub type TagRank = Int
 pub type TagVar = (Int, Int)
 
 // Traits
-

@@ -11,4 +11,3 @@ pub fn is_number(String) -> Bool
 // Type aliases
 
 // Traits
-

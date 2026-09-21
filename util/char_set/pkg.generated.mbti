@@ -22,17 +22,34 @@ pub fn singleton(Char) -> CharSet
 // Types and methods
 #alias(T)
 pub struct CharSet(@diet.Tree[Char]) derive(Compare, Eq, Hash)
+pub fn CharSet::add(Self, Self) -> Self
+pub fn CharSet::compare(Self, Self) -> Int
 pub fn CharSet::complement(Self) -> Self
 pub fn CharSet::contains(Self, Char) -> Bool
 pub fn CharSet::difference(Self, Self) -> Self
 pub fn CharSet::disjoint(Self, Self) -> Bool
+pub fn CharSet::equal(Self, Self) -> Bool
+pub fn CharSet::hash(Self) -> Int
+pub fn CharSet::hash_combine(Self, Hasher) -> Unit
 pub fn CharSet::intersection(Self, Self) -> Self
 pub fn CharSet::is_empty(Self) -> Bool
 pub fn CharSet::iter(Self) -> Iter[Char]
 pub fn CharSet::iter_ranges(Self) -> Iter[(Char, Char)]
+pub fn CharSet::land(Self, Self) -> Self
+pub fn CharSet::neg(Self) -> Self
 pub fn CharSet::negated(Self) -> Self
+pub fn CharSet::not_equal(Self, Self) -> Bool
+pub fn CharSet::op_ge(Self, Self) -> Bool
+pub fn CharSet::op_gt(Self, Self) -> Bool
+pub fn CharSet::op_le(Self, Self) -> Bool
+pub fn CharSet::op_lt(Self, Self) -> Bool
+pub fn CharSet::output(Self, &Logger) -> Unit
 pub fn CharSet::slice(Self, min? : Char, max? : Char) -> Self
+pub fn CharSet::sub(Self, Self) -> Self
 pub fn CharSet::subset(Self, Self) -> Bool
+pub fn CharSet::to_json(Self) -> Json
+pub fn CharSet::to_repr(Self) -> @debug.Repr
+pub fn CharSet::to_string(Self) -> String
 pub fn CharSet::union(Self, Self) -> Self
 pub impl Add for CharSet
 pub impl BitAnd for CharSet
@@ -45,4 +62,3 @@ pub impl @debug.Debug for CharSet
 // Type aliases
 
 // Traits
-
