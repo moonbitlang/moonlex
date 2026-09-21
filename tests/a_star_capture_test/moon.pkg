@@ -7,7 +7,10 @@ warnings = "-1"
 
 formatter(ignore: [ "a_star_capture.mbt" ])
 
-rule(name: "moonlex", command: "moon runwasm $mod_dir/.. $input -o $output")
+rule(
+  name: "moonlex",
+  command: "moon run --target wasm $mod_dir/.. -- $input -o $output",
+)
 
 dev_build(
   rule: "moonlex",
