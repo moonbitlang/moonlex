@@ -5,7 +5,7 @@ enum T[K, V] {
 }
 
 ///|
-let rand_state : Ref[Int] = { val: 1 }
+let rand_state : Ref[Int] = { val: 1, }
 
 ///|
 fn random_priority() -> Int {

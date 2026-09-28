@@ -23,4 +23,3 @@ pub(all) enum SubstItemDesc {
 // Type aliases
 
 // Traits
-

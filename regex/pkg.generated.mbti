@@ -72,4 +72,3 @@ pub impl Show for RegexDesc
 // Type aliases
 
 // Traits
-

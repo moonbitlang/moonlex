@@ -15,4 +15,3 @@ pub fn BitArray::unsafe_set(Self, Int, Int) -> Unit
 // Type aliases
 
 // Traits
-

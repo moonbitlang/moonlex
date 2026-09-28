@@ -20,4 +20,3 @@ pub impl[K : Hash, V : Hash] Hash for T[K, V]
 // Type aliases
 
 // Traits
-

@@ -18,4 +18,3 @@ pub fn codegen_rule_inner(@type.Rule, code_unit~ : @type.CodeUnit, default_encod
 // Type aliases
 
 // Traits
-

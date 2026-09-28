@@ -40,4 +40,3 @@ pub impl[N : Hash] Hash for Tree[N]
 // Type aliases
 
 // Traits
-
