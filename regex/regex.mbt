@@ -54,15 +54,15 @@ pub impl Show for Encoding with fn output(self, logger) {
 }
 
 ///|
-pub let eof : Regex = { desc: EOF, class_: String, len: None }
+pub let eof : Regex = { desc: EOF, class_: String, len: None, }
 
 ///|
-pub let epsilon : Regex = { desc: Epsilon, class_: String, len: Some(0) }
+pub let epsilon : Regex = { desc: Epsilon, class_: String, len: Some(0), }
 
 ///|
 pub fn char_class(cset : @char_set.T, as_bytes? : Encoding) -> Regex {
   match as_bytes {
-    None => { desc: Character(cset), class_: Char, len: Some(1) }
+    None => { desc: Character(cset), class_: Char, len: Some(1), }
     Some(encoding) => lower_unicode_charclass(cset, encoding~)
   }
 }
@@ -111,7 +111,7 @@ pub fn seq(re1 : Regex, re2 : Regex) -> Regex {
   match (re1, re2) {
     ({ desc: Concat(re1, re2), .. }, re3) => seq(re1, seq(re2, re3))
     ({ desc: Epsilon, .. }, re) | (re, { desc: Epsilon, .. }) =>
-      { ..re, class_: String }
+      { ..re, class_: String, }
     _ =>
       {
         desc: Concat(re1, re2),
@@ -135,7 +135,7 @@ pub fn alt(re1 : Regex, re2 : Regex) -> Regex {
   match (re1, re2) {
     ({ desc: Alter(re1, re2), .. }, re3) => alt(re1, alt(re2, re3))
     ({ desc: Character(cset1), .. }, { desc: Character(cset2), .. }) =>
-      { desc: Character(cset1 + cset2), class_, len: Some(1) }
+      { desc: Character(cset1 + cset2), class_, len: Some(1), }
     _ =>
       {
         desc: Alter(re1, re2),
@@ -151,7 +151,7 @@ pub fn alt(re1 : Regex, re2 : Regex) -> Regex {
 
 ///|
 pub fn bind(re : Regex, name : String) -> Regex {
-  { desc: Capture(re, name), class_: re.class_, len: re.len }
+  { desc: Capture(re, name), class_: re.class_, len: re.len, }
 }
 
 ///|

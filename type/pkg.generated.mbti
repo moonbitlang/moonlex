@@ -41,4 +41,3 @@ pub using @regex {type Encoding}
 pub using @regex {type Regex}
 
 // Traits
-

@@ -63,4 +63,3 @@ pub impl @debug.Debug for EofCharSet
 // Type aliases
 
 // Traits
-
