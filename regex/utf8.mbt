@@ -4,7 +4,7 @@ fn utf8_bytes_to_char(bytes : Bytes) -> Char {
     _ => '\ufffd'
   } noraise {
     str => {
-      guard str is [c]
+      guard! str is [c]
       c
     }
   }
@@ -19,7 +19,7 @@ fn lower_unicode_charclass_to_utf8(
     num_bytes : Int,
     mask_index : Int,
   ) -> @char_set.T {
-    guard mask_index >= 1 && mask_index <= bytes.length()
+    guard! mask_index >= 1 && mask_index <= bytes.length()
     let prefix = bytes[0:mask_index]
     let masked_min_suffix = Bytes::make(num_bytes - mask_index, 0x80)
     let masked_max_suffix = Bytes::make(num_bytes - mask_index, 0xbf)
@@ -49,13 +49,13 @@ fn lower_unicode_charclass_to_utf8(
       fn add_branch(range_cset : @char_set.T, pin_index : Int) {
         if dedup.add_and_check((range_cset, pin_index)) {
           let ranges = range_cset.iter_ranges().to_array()
-          guard ranges.length() <= 1
+          guard! ranges.length() <= 1
           guard ranges is [range] else { return }
           guard range.0 is min && range.1 is max
           let min_bytes = @encoding.encode(String::make(1, min))
           let max_bytes = @encoding.encode(String::make(1, max))
           if pin_index >= num_bytes {
-            guard min_bytes == max_bytes
+            guard! min_bytes == max_bytes
             branches.push(
               [
                 ..min_bytes
@@ -68,7 +68,7 @@ fn lower_unicode_charclass_to_utf8(
           } else {
             let common_prefix = min_bytes[0:pin_index]
             let common_prefix2 = max_bytes[0:pin_index]
-            guard common_prefix == common_prefix2
+            guard! common_prefix == common_prefix2
             branches.push(
               [
                 ..common_prefix

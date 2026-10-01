@@ -26,7 +26,7 @@ rule token[T : @lexbuf.IStringLexbuf](lexbuf : T) -> Token raise LexError {
     [' ' '\t' '\r' '\n'] => { WHITESPACE }
     ('-'? ('0' | ['1'-'9'] ['0'-'9']* ('.' ['0'-'9']+)?) (['E' 'e'] ['+' '-']? ['0'-'9']+)?) as t => { NUMBER(t) }
     '"' as t => {
-      let buf = StringBuilder::new()
+      let buf = StringBuilder()
       buf.write_char(t)
       lex_string(buf, lexbuf)
       STRING(buf.to_string())

@@ -3,6 +3,5 @@ import {
   "moonbitlang/ulex/automaton",
   "moonbitlang/ulex/codegen/codeblock_parser",
   "moonbitlang/ulex/util/eof_char_set",
-  "moonbitlang/core/int",
   "moonbitlang/core/sorted_set",
 }

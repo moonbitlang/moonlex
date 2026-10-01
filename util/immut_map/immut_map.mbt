@@ -124,7 +124,7 @@ pub fn[K, V] T::iter(self : T[K, V]) -> Iter[(K, V)] {
         None
       }
       Some(node) => {
-        guard node is Node(key~, value~, right~, ..)
+        guard! node is Node(key~, value~, right~, ..)
         current = right
         Some((key, value))
       }
