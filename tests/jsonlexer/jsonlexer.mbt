@@ -305,7 +305,7 @@ match _dfa_start_node {    0 => {
       ()
       let t = lexbuf.get_char(_capture_0_start, _capture_0_end)
 
-      let buf = StringBuilder::new()
+      let buf = StringBuilder()
       buf.write_char(t)
       lex_string(buf, lexbuf)
       STRING(buf.to_string())

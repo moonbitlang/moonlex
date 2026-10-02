@@ -6,9 +6,21 @@ pub(all) enum Input {
 } derive(Eq, Hash, Debug)
 
 ///|
+pub extend Input with Eq::{not_equal, equal}
+
+///|
+pub extend Input with Hash::{hash, hash_combine}
+
+///|
+pub extend Input with Debug::{to_repr}
+
+///|
 pub impl Show for Input with fn output(self, logger) {
   logger.write_object(self.to_repr())
 }
+
+///|
+pub extend Input with Show::{to_string, output}
 
 ///|
 type Tag = Int
@@ -20,9 +32,15 @@ pub(all) enum NFACapturePosition {
 } derive(Debug)
 
 ///|
+pub extend NFACapturePosition with Debug::{to_repr}
+
+///|
 pub impl Show for NFACapturePosition with fn output(self, logger) {
   logger.write_object(self.to_repr())
 }
+
+///|
+pub extend NFACapturePosition with Show::{to_string, output}
 
 ///|
 pub(all) struct NFA {
@@ -41,9 +59,15 @@ pub(all) struct NFA {
 } derive(Debug)
 
 ///|
+pub extend NFA with Debug::{to_repr}
+
+///|
 pub impl Show for NFA with fn output(self, logger) {
   logger.write_object(self.to_repr())
 }
+
+///|
+pub extend NFA with Show::{to_string, output}
 
 ///|
 pub(all) struct NFANode {
@@ -54,9 +78,15 @@ pub(all) struct NFANode {
 } derive(Debug)
 
 ///|
+pub extend NFANode with Debug::{to_repr}
+
+///|
 pub impl Show for NFANode with fn output(self, logger) {
   logger.write_object(self.to_repr())
 }
+
+///|
+pub extend NFANode with Show::{to_string, output}
 
 ///|
 pub impl Eq for NFANode with fn equal(self, other) {
@@ -64,14 +94,23 @@ pub impl Eq for NFANode with fn equal(self, other) {
 }
 
 ///|
+pub extend NFANode with Eq::{not_equal, equal}
+
+///|
 pub impl Compare for NFANode with fn compare(self, other) {
   self.num.compare(other.num)
 }
 
 ///|
+pub extend NFANode with Compare::{op_lt, op_le, op_ge, compare, op_gt}
+
+///|
 pub impl Hash for NFANode with fn hash_combine(self, hasher) {
   hasher.combine_int(self.num)
 }
+
+///|
+pub extend NFANode with Hash::{hash, hash_combine}
 
 ///|
 fn NFA::new_nfa() -> NFA {
@@ -134,7 +173,7 @@ fn NFA::new_node(self : NFA) -> NFANode {
   self.node_count += 1
   let node = NFANode::{ num: new_id, eps: [], tagged_eps: [], trans: [], }
   self.graph.push(node)
-  guard new_id + 1 == self.graph.length()
+  guard new_id + 1 == self.graph.length() else { panic() }
   node
 }
 

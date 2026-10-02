@@ -5,9 +5,21 @@
 pub(all) struct TagAction(Array[TagOp]) derive(Debug, Eq, Compare) // sorted
 
 ///|
+pub extend TagAction with Debug::{to_repr}
+
+///|
+pub extend TagAction with Eq::{not_equal, equal}
+
+///|
+pub extend TagAction with Compare::{op_lt, op_le, op_ge, compare, op_gt}
+
+///|
 pub impl Show for TagAction with fn output(self, logger) {
   logger.write_object(self.to_repr())
 }
+
+///|
+pub extend TagAction with Show::{to_string, output}
 
 ///|
 pub type TagRank = Int
@@ -24,9 +36,21 @@ pub(all) enum TagOp {
 } derive(Debug, Eq, Compare)
 
 ///|
+pub extend TagOp with Debug::{to_repr}
+
+///|
+pub extend TagOp with Eq::{not_equal, equal}
+
+///|
+pub extend TagOp with Compare::{op_lt, op_le, op_ge, compare, op_gt}
+
+///|
 pub impl Show for TagOp with fn output(self, logger) {
   logger.write_object(self.to_repr())
 }
+
+///|
+pub extend TagOp with Show::{to_string, output}
 
 ///|
 priv struct TagState(@immut/sorted_map.SortedMap[Tag, TagRank]) derive (
@@ -86,9 +110,18 @@ pub(all) enum DFACapturePosition {
 } derive(Debug, Eq)
 
 ///|
+pub extend DFACapturePosition with Debug::{to_repr}
+
+///|
+pub extend DFACapturePosition with Eq::{not_equal, equal}
+
+///|
 pub impl Show for DFACapturePosition with fn output(self, logger) {
   logger.write_object(self.to_repr())
 }
+
+///|
+pub extend DFACapturePosition with Show::{to_string, output}
 
 ///|
 pub(all) struct DFA {
@@ -103,9 +136,15 @@ pub(all) struct DFA {
 } derive(Debug)
 
 ///|
+pub extend DFA with Debug::{to_repr}
+
+///|
 pub impl Show for DFA with fn output(self, logger) {
   logger.write_object(self.to_repr())
 }
+
+///|
+pub extend DFA with Show::{to_string, output}
 
 ///|
 pub type DFANode = Int
@@ -161,7 +200,7 @@ fn state_canonicalize(state : State, tag_count : Int) -> (State, TagAction) {
     .map(fn(pair) {
       let tag_state = pair.1.0.map(fn(tag, prev_rank) {
         let ranks = ranks_by_tag[tag]
-        guard ranks.search(prev_rank) is Some(rank)
+        guard ranks.search(prev_rank) is Some(rank) else { panic() }
         rank
       })
       (pair.0, TagState(tag_state))

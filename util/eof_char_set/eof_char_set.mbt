@@ -5,9 +5,24 @@ pub type T = EofCharSet
 struct EofCharSet(@diet.T[EofChar]) derive(Default, Eq, Compare, Hash)
 
 ///|
+pub extend EofCharSet with Default::{default}
+
+///|
+pub extend EofCharSet with Eq::{not_equal, equal}
+
+///|
+pub extend EofCharSet with Compare::{op_lt, op_le, op_ge, compare, op_gt}
+
+///|
+pub extend EofCharSet with Hash::{hash, hash_combine}
+
+///|
 pub impl Debug for EofCharSet with fn to_repr(self) {
   Repr::literal(self.to_string())
 }
+
+///|
+pub extend EofCharSet with Debug::{to_repr}
 
 ///|
 pub fn from_char_set(cset : @char_set.T) -> EofCharSet {
@@ -130,14 +145,23 @@ pub impl Neg for EofCharSet with fn neg(self) {
 }
 
 ///|
+pub extend EofCharSet with Neg::{neg}
+
+///|
 pub impl Add for EofCharSet with fn add(self, other) {
   self.union(other)
 }
 
 ///|
+pub extend EofCharSet with Add::{add}
+
+///|
 pub impl Sub for EofCharSet with fn sub(self, other) {
   self.difference(other)
 }
+
+///|
+pub extend EofCharSet with Sub::{sub}
 
 ///|
 pub impl BitAnd for EofCharSet with fn land(
@@ -146,6 +170,9 @@ pub impl BitAnd for EofCharSet with fn land(
 ) -> EofCharSet {
   self.intersection(other)
 }
+
+///|
+pub extend EofCharSet with BitAnd::{land}
 
 ///|
 pub fn EofCharSet::iter_ranges(self : EofCharSet) -> Iter[(EofChar, EofChar)] {
@@ -173,6 +200,12 @@ pub impl Show for EofCharSet with fn output(self, logger) {
 }
 
 ///|
+pub extend EofCharSet with Show::{to_string, output}
+
+///|
 pub impl ToJson for EofCharSet with fn to_json(self) {
   self.iter_ranges().to_array().to_json()
 }
+
+///|
+pub extend EofCharSet with ToJson::{to_json}

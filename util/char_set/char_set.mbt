@@ -5,9 +5,21 @@ pub type T = CharSet
 pub struct CharSet(@diet.T[Char]) derive(Compare, Eq, Hash)
 
 ///|
+pub extend CharSet with Compare::{op_lt, op_le, op_ge, compare, op_gt}
+
+///|
+pub extend CharSet with Eq::{not_equal, equal}
+
+///|
+pub extend CharSet with Hash::{hash, hash_combine}
+
+///|
 pub impl Debug for CharSet with fn to_repr(self) {
   Repr::literal(self.to_string())
 }
+
+///|
+pub extend CharSet with Debug::{to_repr}
 
 ///|
 pub let empty : CharSet = @diet.empty()
@@ -86,9 +98,15 @@ pub impl Neg for CharSet with fn neg(self) {
 }
 
 ///|
+pub extend CharSet with Neg::{neg}
+
+///|
 pub impl Add for CharSet with fn add(self, other) {
   self.union(other)
 }
+
+///|
+pub extend CharSet with Add::{add}
 
 ///|
 pub impl Sub for CharSet with fn sub(self, other) {
@@ -96,9 +114,15 @@ pub impl Sub for CharSet with fn sub(self, other) {
 }
 
 ///|
+pub extend CharSet with Sub::{sub}
+
+///|
 pub impl BitAnd for CharSet with fn land(self : CharSet, other : CharSet) -> CharSet {
   self.intersection(other)
 }
+
+///|
+pub extend CharSet with BitAnd::{land}
 
 ///|
 pub fn CharSet::iter_ranges(self : CharSet) -> Iter[(Char, Char)] {
@@ -126,6 +150,9 @@ pub impl Show for CharSet with fn output(self, logger) {
 }
 
 ///|
+pub extend CharSet with Show::{to_string, output}
+
+///|
 pub impl ToJson for CharSet with fn to_json(self) {
   self
   .iter_ranges()
@@ -136,3 +163,6 @@ pub impl ToJson for CharSet with fn to_json(self) {
   .to_array()
   .to_json()
 }
+
+///|
+pub extend CharSet with ToJson::{to_json}
