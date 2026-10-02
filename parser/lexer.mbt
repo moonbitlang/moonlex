@@ -713,7 +713,7 @@ match _dfa_start_node {    0 => {
     7 => {
       ()
  
-      let buffer = StringBuilder::new()
+      let buffer = StringBuilder()
       let end_pos = code_rbrace(buffer, lexbuf)
       (LBRACE_CODE_RBRACE(buffer.to_string()), _match_start, end_pos)
     
@@ -834,7 +834,7 @@ match _dfa_start_node {    0 => {
     33 => {
       ()
 
-      let buffer = StringBuilder::new()
+      let buffer = StringBuilder()
       let end_pos = string_inner_rquote(buffer, lexbuf)
       (STRING(buffer.to_string()), _match_start, end_pos)
     

@@ -1,4 +1,3 @@
 import {
   "moonbitlang/ulex/util/diet",
-  "moonbitlang/ulex/util/bounded_enum",
 }

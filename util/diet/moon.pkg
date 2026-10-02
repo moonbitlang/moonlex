@@ -1,4 +1,7 @@
 import {
   "moonbitlang/ulex/util/bounded_enum",
-  "moonbitlang/core/debug",
 }
+
+import {
+  "moonbitlang/core/debug",
+} for "test"

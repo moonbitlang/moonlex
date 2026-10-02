@@ -11,10 +11,6 @@ import {
 
 import {
   "moonbitlang/core/test",
-} for "test"
-
-import {
-  "moonbitlang/core/test",
 } for "wbtest"
 
 formatter(ignore: [ "lexer.mbt", "parser.mbt" ])

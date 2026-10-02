@@ -18,7 +18,7 @@ let _embed_lexer_mbtx : String =
   #|    "=>" => { (FAT_ARROW, $startpos, $endpos) }
   #|    "_" => { (UNDERSCORE, $startpos, $endpos) }
   #|    "{" => { 
-  #|      let buffer = StringBuilder::new()
+  #|      let buffer = StringBuilder()
   #|      let end_pos = code_rbrace(buffer, lexbuf)
   #|      (LBRACE_CODE_RBRACE(buffer.to_string()), $startpos, end_pos)
   #|    }
@@ -57,7 +57,7 @@ let _embed_lexer_mbtx : String =
   #|      (CHAR(code.unsafe_to_char()), $startpos, $endpos)
   #|    }
   #|    '"' => {
-  #|      let buffer = StringBuilder::new()
+  #|      let buffer = StringBuilder()
   #|      let end_pos = string_inner_rquote(buffer, lexbuf)
   #|      (STRING(buffer.to_string()), $startpos, end_pos)
   #|    }

@@ -543,7 +543,7 @@ fn yy_action_23(_last_pos : Int, _args : ArrayView[(YYObj, Int, Int)]) -> YYObj 
 // file:///./parser.mbty
 // 126|    differentiation BACKSLASH atom      {
 // 127|                                          fn (ctx) {
-// 128|                                            guard $1(ctx).desc is Character(cset1) && $3(ctx).desc is Character(cset2)
+// 128|                                            guard $1(ctx).desc is Character(cset1) && $3(ctx).desc is Character(cset2) else { panic() }
 // 129|                                            @regex.char_class(cset1.difference(cset2))
 // 130|                                          }
 // 131|                                        }
@@ -552,7 +552,7 @@ fn yy_action_24(_last_pos : Int, _args : ArrayView[(YYObj, Int, Int)]) -> YYObj 
   guard! _args[2].0 is YYObj__Context______type_Regex(_dollar3)
   YYObj__Context______type_Regex({(); 
                                           fn (ctx) {
-                                            guard _dollar1(ctx).desc is Character(cset1) && _dollar3(ctx).desc is Character(cset2)
+                                            guard _dollar1(ctx).desc is Character(cset1) && _dollar3(ctx).desc is Character(cset2) else { panic() }
                                             @regex.char_class(cset1.difference(cset2))
                                           }
                                         })
@@ -570,7 +570,7 @@ fn yy_action_25(_last_pos : Int, _args : ArrayView[(YYObj, Int, Int)]) -> YYObj 
 // file:///./parser.mbty
 // 120|    atom BACKSLASH atom                 {
 // 121|                                          fn (ctx) {
-// 122|                                            guard $1(ctx).desc is Character(cset1) && $3(ctx).desc is Character(cset2)
+// 122|                                            guard $1(ctx).desc is Character(cset1) && $3(ctx).desc is Character(cset2) else { panic() }
 // 123|                                            @regex.char_class(cset1.difference(cset2))
 // 124|                                          }
 // 125|                                        }
@@ -579,7 +579,7 @@ fn yy_action_26(_last_pos : Int, _args : ArrayView[(YYObj, Int, Int)]) -> YYObj 
   guard! _args[2].0 is YYObj__Context______type_Regex(_dollar3)
   YYObj__Context______type_Regex({(); 
                                           fn (ctx) {
-                                            guard _dollar1(ctx).desc is Character(cset1) && _dollar3(ctx).desc is Character(cset2)
+                                            guard _dollar1(ctx).desc is Character(cset1) && _dollar3(ctx).desc is Character(cset2) else { panic() }
                                             @regex.char_class(cset1.difference(cset2))
                                           }
                                         })

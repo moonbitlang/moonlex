@@ -176,7 +176,9 @@ fn DFA::minimize(dfa : DFA) -> DFA {
         (
           new_dfa.end_nodes.get(new_end_state) is Some(end_state_info2) &&
           end_state_info2 == end_state_info
-        )
+        ) else {
+        panic()
+      }
       new_dfa.end_nodes[new_end_state] = end_state_info
     }
   }

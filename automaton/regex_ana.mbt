@@ -5,9 +5,15 @@ pub(all) enum VarType {
 } derive(Debug)
 
 ///|
+pub extend VarType with Debug::{to_repr}
+
+///|
 pub impl Show for VarType with fn output(self, logger) {
   logger.write_object(self.to_repr())
 }
+
+///|
+pub extend VarType with Show::{to_string, output}
 
 ///|
 pub(all) enum StaticKnownTagPosition {
@@ -16,9 +22,18 @@ pub(all) enum StaticKnownTagPosition {
 } derive(Debug, Eq)
 
 ///|
+pub extend StaticKnownTagPosition with Debug::{to_repr}
+
+///|
+pub extend StaticKnownTagPosition with Eq::{not_equal, equal}
+
+///|
 pub impl Show for StaticKnownTagPosition with fn output(self, logger) {
   logger.write_object(self.to_repr())
 }
+
+///|
+pub extend StaticKnownTagPosition with Show::{to_string, output}
 
 ///|
 priv enum CaptureVarEndpoint {

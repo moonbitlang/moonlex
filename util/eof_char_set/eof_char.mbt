@@ -2,6 +2,21 @@
 struct EofChar(Int) derive(Eq, Compare, Hash, Debug, ToJson)
 
 ///|
+pub extend EofChar with Eq::{not_equal, equal}
+
+///|
+pub extend EofChar with Compare::{op_lt, op_le, op_ge, compare, op_gt}
+
+///|
+pub extend EofChar with Hash::{hash, hash_combine}
+
+///|
+pub extend EofChar with Debug::{to_repr}
+
+///|
+pub extend EofChar with ToJson::{to_json}
+
+///|
 pub enum EofCharRepr {
   Eof
   Char(Char)
@@ -13,19 +28,27 @@ pub impl @bounded_enum.T for EofChar with fn lower_bound() {
 }
 
 ///|
+pub extend EofChar with @bounded_enum.BoundedEnum::{
+  lower_bound,
+  pred,
+  succ,
+  upper_bound,
+}
+
+///|
 pub impl @bounded_enum.T for EofChar with fn upper_bound() {
   EofChar(0x10ffff)
 }
 
 ///|
 pub impl @bounded_enum.T for EofChar with fn pred(self) {
-  guard self.0 > -1
+  guard self.0 > -1 else { panic() }
   EofChar(self.0 - 1)
 }
 
 ///|
 pub impl @bounded_enum.T for EofChar with fn succ(self) {
-  guard self.0 < 0x10ffff
+  guard self.0 < 0x10ffff else { panic() }
   EofChar(self.0 + 1)
 }
 
