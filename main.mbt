@@ -104,11 +104,11 @@ fn cli_user_args(args : Array[String]) -> ArrayView[String] {
 
 ///|
 #cfg(target="wasm")
-fn proc_exit_ffi(rval : Int) -> Unit = "wasi_snapshot_preview1" "proc_exit"
+fn proc_exit_ffi(rval : Int32) -> Unit = "wasi_snapshot_preview1" "proc_exit"
 
 ///|
 #cfg(target="native")
-extern "c" fn proc_exit_ffi(rval : Int) -> Unit = "exit"
+extern "c" fn proc_exit_ffi(rval : Int32) -> Unit = "exit"
 
 ///|
 async fn write_stderr_line(msg : String) -> Unit {

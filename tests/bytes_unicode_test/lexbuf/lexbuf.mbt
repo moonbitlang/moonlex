@@ -1,15 +1,19 @@
 ///|
 struct BytesLexbuf {
   content : Bytes
-  mut pos : Int
-  end : Int
+  mut pos : Int32
+  end : Int32
 }
 
 ///|
 pub type T = BytesLexbuf
 
 ///|
-pub fn from_bytes(bytes : Bytes, start? : Int = 0, end? : Int) -> BytesLexbuf {
+pub fn from_bytes(
+  bytes : Bytes,
+  start~ : Int32 = 0,
+  end? : Int32,
+) -> BytesLexbuf {
   let end = end.unwrap_or(bytes.length())
   return { content: bytes, pos: start, end, }
 }
@@ -27,7 +31,7 @@ pub fn BytesLexbuf::next(self : BytesLexbuf) -> Byte? {
 }
 
 ///|
-pub fn BytesLexbuf::next_as_int(self : BytesLexbuf) -> Int {
+pub fn BytesLexbuf::next_as_int(self : BytesLexbuf) -> Int32 {
   let pos = self.pos
   let end = self.end
   if pos < end {
@@ -39,20 +43,20 @@ pub fn BytesLexbuf::next_as_int(self : BytesLexbuf) -> Int {
 }
 
 ///|
-pub fn BytesLexbuf::curr_pos(self : BytesLexbuf) -> Int {
+pub fn BytesLexbuf::curr_pos(self : BytesLexbuf) -> Int32 {
   return self.pos
 }
 
 ///|
-pub fn BytesLexbuf::reset(self : BytesLexbuf, pos~ : Int) -> Unit {
+pub fn BytesLexbuf::reset(self : BytesLexbuf, pos~ : Int32) -> Unit {
   self.pos = pos
 }
 
 ///|
 pub fn BytesLexbuf::get_char(
   self : BytesLexbuf,
-  start : Int,
-  end : Int,
+  start : Int32,
+  end : Int32,
 ) -> Char {
   decode_utf8(self.content[start:end]).get_char(0).unwrap()
 }
@@ -60,15 +64,15 @@ pub fn BytesLexbuf::get_char(
 ///|
 pub fn BytesLexbuf::get_string(
   self : BytesLexbuf,
-  start : Int,
-  end : Int,
+  start : Int32,
+  end : Int32,
 ) -> String {
   decode_utf8(self.content[start:end])
 }
 
 ///|
 fn decode_utf8(bytes : BytesView) -> String {
-  let res = StringBuilder::new()
+  let res = StringBuilder()
   let len = bytes.length()
   let mut i = 0
   while i < len {

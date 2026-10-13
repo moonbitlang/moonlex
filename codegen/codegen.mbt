@@ -21,7 +21,7 @@ fn rewrite_codeblock(
   subst : Array[@codeblock_parser.SubstItem],
   captures : Array[(String, @automaton.VarType)],
 ) -> @type.CodeBlock {
-  fn index_of_name(name : String) -> Int {
+  fn index_of_name(name : String) -> Int32 {
     captures
     .search_by(it => {
       let (n, _) = it
@@ -30,7 +30,7 @@ fn rewrite_codeblock(
     .unwrap()
   }
 
-  let buf = StringBuilder::new()
+  let buf = StringBuilder()
   let mut last_index = 0
   for item in subst {
     // replace `$startpos(t)`/`$endpos(t)` with `_match_start_of_t`/`_match_end_of_t`
@@ -52,8 +52,8 @@ fn rewrite_codeblock(
 
 ///|
 fn group_trans(
-  trans : Array[(@eof_char_set.T, Int)],
-) -> Array[((Int, Int), Int)] {
+  trans : Array[(@eof_char_set.T, Int32)],
+) -> Array[((Int32, Int32), Int32)] {
   let char_set_by_state = Map([])
   for tran in trans {
     let (char_set, next_state) = tran
@@ -97,7 +97,7 @@ pub fn codegen_rule_inner(
   code_unit~ : @type.CodeUnit,
   default_encoding~ : @type.Encoding?,
 ) -> String {
-  let out = StringBuilder::new()
+  let out = StringBuilder()
   let encoding = match code_unit {
     CodeUnit1 => default_encoding
     CodeUnit2 | CodeUnit4 => None

@@ -73,7 +73,7 @@ named_regex                             -> (Context) -> Context
   ;
 
 nonempty_rule_list                      -> (Context) -> @list.List[@type.Rule]
-  : rule                                { ctx => @list.cons($1(ctx), @list.empty()) }
+  : rule                                { ctx => @list.cons($1(ctx), @list.List([])) }
   | rule nonempty_rule_list             { ctx => @list.cons($1(ctx), $2(ctx)) }
   ;
 
@@ -89,7 +89,7 @@ rule                                    -> (Context) -> @type.Rule
 
 rule_item_list                          -> (Context) -> @list.List[(@type.Regex, String?, @type.CodeBlock)]
   : rule_item rule_item_list            { ctx => @list.cons($1(ctx), $2(ctx)) }
-  |                                     { _ctx => @list.empty() }
+  |                                     { _ctx => @list.List([]) }
   ;
 
 rule_item                               -> (Context) -> (@type.Regex, String?, @type.CodeBlock)
@@ -119,13 +119,13 @@ concatenation                           -> (Context) -> @type.Regex
 differentiation                         -> (Context) -> @type.Regex
   : atom BACKSLASH atom                 {
                                           fn (ctx) {
-                                            guard $1(ctx).desc is Character(cset1) && $3(ctx).desc is Character(cset2)
+                                            guard $1(ctx).desc is Character(cset1) && $3(ctx).desc is Character(cset2) else { panic() }
                                             @regex.char_class(cset1.difference(cset2))
                                           }
                                         }
   | differentiation BACKSLASH atom      {
                                           fn (ctx) {
-                                            guard $1(ctx).desc is Character(cset1) && $3(ctx).desc is Character(cset2)
+                                            guard $1(ctx).desc is Character(cset1) && $3(ctx).desc is Character(cset2) else { panic() }
                                             @regex.char_class(cset1.difference(cset2))
                                           }
                                         }

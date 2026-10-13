@@ -51,8 +51,8 @@ jobs:
 
       - name: moon check
         run: |
-          moon check
-          moon -C tests check
+          moon check --deny-warn
+          moon -C tests check --deny-warn
 
       - name: moon test
         run: |

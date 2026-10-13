@@ -24,7 +24,7 @@ fn DFA::minimize(dfa : DFA) -> DFA {
 
   let symbols = collect_symbols(dfa)
   let all_states = @immut/sorted_set.from_iter(
-    Int::until(0, dfa.graph.length() - 1, inclusive=true),
+    Int32::until(0, dfa.graph.length() - 1, inclusive=true),
   )
   let final_states = @immut/sorted_set.from_iter(dfa.end_nodes.keys())
   let mut partitions = @immut/sorted_set.new()
@@ -135,7 +135,7 @@ fn DFA::minimize(dfa : DFA) -> DFA {
   }
   let partition_to_new_state = Map([])
   let state_to_new_state = Map([])
-  fn get_new_state(state : Int) -> Int {
+  fn get_new_state(state : Int32) -> Int32 {
     let partition = state_to_partition.get(state).unwrap()
     match partition_to_new_state.get(partition) {
       Some(new_state) => new_state
@@ -176,7 +176,9 @@ fn DFA::minimize(dfa : DFA) -> DFA {
         (
           new_dfa.end_nodes.get(new_end_state) is Some(end_state_info2) &&
           end_state_info2 == end_state_info
-        )
+        ) else {
+        panic()
+      }
       new_dfa.end_nodes[new_end_state] = end_state_info
     }
   }
@@ -185,7 +187,7 @@ fn DFA::minimize(dfa : DFA) -> DFA {
 
 ///|
 priv struct Symbol {
-  id : Int
+  id : Int32
   char_set : @eof_char_set.T
 }
 

@@ -1,14 +1,20 @@
 ///|
 enum T[K, V] {
   Empty
-  Node(key~ : K, value~ : V, left~ : T[K, V], right~ : T[K, V], priority~ : Int)
+  Node(
+    key~ : K,
+    value~ : V,
+    left~ : T[K, V],
+    right~ : T[K, V],
+    priority~ : Int32
+  )
 }
 
 ///|
-let rand_state : Ref[Int] = { val: 1, }
+let rand_state : Ref[Int32] = { val: 1, }
 
 ///|
-fn random_priority() -> Int {
+fn random_priority() -> Int32 {
   rand_state.val = (rand_state.val * 1103515245 + 12345) & 0x7fffffff
   rand_state.val
 }
@@ -124,7 +130,7 @@ pub fn[K, V] T::iter(self : T[K, V]) -> Iter[(K, V)] {
         None
       }
       Some(node) => {
-        guard node is Node(key~, value~, right~, ..)
+        guard node is Node(key~, value~, right~, ..) else { panic() }
         current = right
         Some((key, value))
       }
@@ -159,10 +165,13 @@ pub impl[K : Eq, V : Eq] Eq for T[K, V] with fn equal(self, other) -> Bool {
 }
 
 ///|
+pub extend T with Eq::{not_equal, equal}
+
+///|
 pub impl[K : Compare, V : Compare] Compare for T[K, V] with fn compare(
   self,
   other,
-) -> Int {
+) -> Int32 {
   let iter = InorderIterator::new(self)
   let iter1 = InorderIterator::new(other)
   for item = iter.next(), item1 = iter1.next() {
@@ -180,8 +189,14 @@ pub impl[K : Compare, V : Compare] Compare for T[K, V] with fn compare(
 }
 
 ///|
+pub extend T with Compare::{op_lt, op_le, op_ge, compare, op_gt}
+
+///|
 pub impl[K : Hash, V : Hash] Hash for T[K, V] with fn hash_combine(self, hasher) {
   for e in self {
     hasher..combine(e.0).combine(e.1)
   }
 }
+
+///|
+pub extend T with Hash::{hash, hash_combine}

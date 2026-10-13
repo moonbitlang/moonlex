@@ -4,7 +4,7 @@ fn utf8_bytes_to_char(bytes : Bytes) -> Char {
     _ => '\ufffd'
   } noraise {
     str => {
-      guard str is [c]
+      guard str is [c] else { panic() }
       c
     }
   }
@@ -13,10 +13,10 @@ fn utf8_bytes_to_char(bytes : Bytes) -> Char {
 ///|
 fn get_masked_range_cset(
   bytes : Bytes,
-  num_bytes : Int,
-  mask_index : Int,
+  num_bytes : Int32,
+  mask_index : Int32,
 ) -> @char_set.T {
-  guard mask_index >= 1 && mask_index <= bytes.length()
+  guard mask_index >= 1 && mask_index <= bytes.length() else { panic() }
   let prefix = bytes[0:mask_index]
   let masked_min_suffix = Bytes::make(num_bytes - mask_index, 0x80)
   let masked_max_suffix = Bytes::make(num_bytes - mask_index, 0xbf)
@@ -48,16 +48,16 @@ fn lower_unicode_charclass_to_utf8(
     } else {
       let branches = []
       let dedup = Set::Set([])
-      fn add_branch(range_cset : @char_set.T, pin_index : Int) {
+      fn add_branch(range_cset : @char_set.T, pin_index : Int32) {
         if dedup.add_and_check((range_cset, pin_index)) {
           let ranges = range_cset.iter_ranges().to_array()
-          guard ranges.length() <= 1
+          guard ranges.length() <= 1 else { panic() }
           guard ranges is [range] else { return }
           let (min, max) = range
           let min_bytes = @encoding.encode(String::make(1, min))
           let max_bytes = @encoding.encode(String::make(1, max))
           if pin_index >= num_bytes {
-            guard min_bytes == max_bytes
+            guard min_bytes == max_bytes else { panic() }
             branches.push(
               [
                 ..min_bytes
@@ -70,7 +70,7 @@ fn lower_unicode_charclass_to_utf8(
           } else {
             let common_prefix = min_bytes[0:pin_index]
             let common_prefix2 = max_bytes[0:pin_index]
-            guard common_prefix == common_prefix2
+            guard common_prefix == common_prefix2 else { panic() }
             branches.push(
               [
                 ..common_prefix

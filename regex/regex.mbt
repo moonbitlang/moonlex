@@ -5,13 +5,25 @@ pub type T = Regex
 pub struct Regex {
   desc : RegexDesc
   class_ : RegexClass
-  len : Int?
+  len : Int32?
 } derive(Debug, Eq, ToJson)
+
+///|
+pub extend Regex with Debug::{to_repr}
+
+///|
+pub extend Regex with Eq::{not_equal, equal}
+
+///|
+pub extend Regex with ToJson::{to_json}
 
 ///|
 pub impl Show for Regex with fn output(self, logger) {
   logger.write_object(self.to_repr())
 }
+
+///|
+pub extend Regex with Show::{to_string, output}
 
 ///|
 pub enum RegexDesc {
@@ -25,9 +37,21 @@ pub enum RegexDesc {
 } derive(Debug, Eq, ToJson(style="legacy"))
 
 ///|
+pub extend RegexDesc with Debug::{to_repr}
+
+///|
+pub extend RegexDesc with Eq::{not_equal, equal}
+
+///|
+pub extend RegexDesc with ToJson::{to_json}
+
+///|
 pub impl Show for RegexDesc with fn output(self, logger) {
   logger.write_object(self.to_repr())
 }
+
+///|
+pub extend RegexDesc with Show::{to_string, output}
 
 ///|
 pub enum RegexClass {
@@ -36,9 +60,21 @@ pub enum RegexClass {
 } derive(Debug, Eq, ToJson(style="legacy"))
 
 ///|
+pub extend RegexClass with Debug::{to_repr}
+
+///|
+pub extend RegexClass with Eq::{not_equal, equal}
+
+///|
+pub extend RegexClass with ToJson::{to_json}
+
+///|
 pub impl Show for RegexClass with fn output(self, logger) {
   logger.write_object(self.to_repr())
 }
+
+///|
+pub extend RegexClass with Show::{to_string, output}
 
 ///|
 pub(all) enum Encoding {
@@ -49,9 +85,21 @@ pub(all) enum Encoding {
 } derive(Debug, Eq, ToJson(style="legacy"))
 
 ///|
+pub extend Encoding with Debug::{to_repr}
+
+///|
+pub extend Encoding with Eq::{not_equal, equal}
+
+///|
+pub extend Encoding with ToJson::{to_json}
+
+///|
 pub impl Show for Encoding with fn output(self, logger) {
   logger.write_object(self.to_repr())
 }
+
+///|
+pub extend Encoding with Show::{to_string, output}
 
 ///|
 pub let eof : Regex = { desc: EOF, class_: String, len: None, }
@@ -91,7 +139,7 @@ pub fn opt(re : Regex) -> Regex {
 }
 
 ///|
-pub fn repeat(re : Regex, min_times~ : Int, max_times? : Int) -> Regex {
+pub fn repeat(re : Regex, min_times~ : Int32, max_times? : Int32) -> Regex {
   let mut re2 = re
   for _ in 0..<min_times {
     re2 = seq(re2, re)
