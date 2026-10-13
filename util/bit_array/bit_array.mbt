@@ -1,19 +1,19 @@
 ///|
-struct BitArray(FixedArray[Int])
+struct BitArray(FixedArray[Int32])
 
 ///|
-pub fn BitArray::new(length : Int) -> BitArray {
+pub fn BitArray::new(length : Int32) -> BitArray {
   let num_words = (length + 31) / 32
   BitArray(FixedArray::make(num_words, 0))
 }
 
 ///|
-pub fn BitArray::unsafe_get(self : Self, index : Int) -> Int {
+pub fn BitArray::unsafe_get(self : Self, index : Int32) -> Int32 {
   (self.0[index / 32] >> (index % 32)) & 1
 }
 
 ///|
-pub fn BitArray::unsafe_set(self : Self, index : Int, value : Int) -> Unit {
+pub fn BitArray::unsafe_set(self : Self, index : Int32, value : Int32) -> Unit {
   let word_index = index / 32
   let bit_index = index % 32
   let word = self.0[word_index]
@@ -26,7 +26,7 @@ pub fn BitArray::unsafe_set(self : Self, index : Int, value : Int) -> Unit {
 }
 
 ///|
-pub fn BitArray::iter(self : Self) -> Iter[Int] {
+pub fn BitArray::iter(self : Self) -> Iter[Int32] {
   let arr = self.0
   let mut word_index = 0
   let mut word = 0

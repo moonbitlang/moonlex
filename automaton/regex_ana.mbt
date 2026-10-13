@@ -17,8 +17,8 @@ pub extend VarType with Show::{to_string, output}
 
 ///|
 pub(all) enum StaticKnownTagPosition {
-  RelativeToStart(Int)
-  RelativeToEnd(Int)
+  RelativeToStart(Int32)
+  RelativeToEnd(Int32)
 } derive(Debug, Eq)
 
 ///|

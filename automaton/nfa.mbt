@@ -23,7 +23,7 @@ pub impl Show for Input with fn output(self, logger) {
 pub extend Input with Show::{to_string, output}
 
 ///|
-type Tag = Int
+type Tag = Int32
 
 ///|
 pub(all) enum NFACapturePosition {
@@ -45,7 +45,7 @@ pub extend NFACapturePosition with Show::{to_string, output}
 ///|
 pub(all) struct NFA {
   graph : Array[NFANode]
-  end_nodes : Map[Int, Int] // from node_id to pattern_id
+  end_nodes : Map[Int32, Int32] // from node_id to pattern_id
   // String? is rest_binder
   pattern_captures : Array[
     (
@@ -53,9 +53,9 @@ pub(all) struct NFA {
       String?,
     ),
   ] // indexed_by pattern_id
-  mut start_node : Int
-  mut node_count : Int
-  mut tag_count : Int
+  mut start_node : Int32
+  mut node_count : Int32
+  mut tag_count : Int32
 } derive(Debug)
 
 ///|
@@ -71,7 +71,7 @@ pub extend NFA with Show::{to_string, output}
 
 ///|
 pub(all) struct NFANode {
-  num : Int
+  num : Int32
   mut eps : Array[NFANode]
   mut tagged_eps : Array[(NFANode, Tag)]
   mut trans : Array[(@eof_char_set.T, NFANode)]

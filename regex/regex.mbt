@@ -5,7 +5,7 @@ pub type T = Regex
 pub struct Regex {
   desc : RegexDesc
   class_ : RegexClass
-  len : Int?
+  len : Int32?
 } derive(Debug, Eq, ToJson)
 
 ///|
@@ -139,7 +139,7 @@ pub fn opt(re : Regex) -> Regex {
 }
 
 ///|
-pub fn repeat(re : Regex, min_times~ : Int, max_times? : Int) -> Regex {
+pub fn repeat(re : Regex, min_times~ : Int32, max_times? : Int32) -> Regex {
   let mut re2 = re
   for _ in 0..<min_times {
     re2 = seq(re2, re)

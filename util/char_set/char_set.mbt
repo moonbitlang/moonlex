@@ -154,14 +154,15 @@ pub extend CharSet with Show::{to_string, output}
 
 ///|
 pub impl ToJson for CharSet with fn to_json(self) {
-  self
-  .iter_ranges()
-  .map(it => {
-    let (min, max) = it
-    (min.to_int(), max.to_int())
-  })
-  .to_array()
-  .to_json()
+  Json(
+    self
+    .iter_ranges()
+    .map(it => {
+      let (min, max) = it
+      (min.to_int(), max.to_int())
+    })
+    .to_array(),
+  )
 }
 
 ///|

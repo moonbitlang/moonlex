@@ -204,7 +204,7 @@ pub extend EofCharSet with Show::{to_string, output}
 
 ///|
 pub impl ToJson for EofCharSet with fn to_json(self) {
-  self.iter_ranges().to_array().to_json()
+  Json(self.iter_ranges().to_array())
 }
 
 ///|

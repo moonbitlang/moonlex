@@ -374,10 +374,10 @@ fn yy_action_4(_last_pos : Int, _args : ArrayView[(YYObj, Int, Int)]) -> YYObj {
 
 ///|
 // file:///./parser.mbty
-// 76|    rule                                { ctx => @list.cons($1(ctx), @list.empty()) }
+// 76|    rule                                { ctx => @list.cons($1(ctx), @list.List([])) }
 fn yy_action_5(_last_pos : Int, _args : ArrayView[(YYObj, Int, Int)]) -> YYObj {
   guard! _args[0].0 is YYObj__Context______type_Rule(_dollar1)
-  YYObj__Context______list_List__type_Rule_({();  ctx => @list.cons(_dollar1(ctx), @list.empty()) })
+  YYObj__Context______list_List__type_Rule_({();  ctx => @list.cons(_dollar1(ctx), @list.List([])) })
 }
 
 ///|
@@ -420,9 +420,9 @@ fn yy_action_8(_last_pos : Int, _args : ArrayView[(YYObj, Int, Int)]) -> YYObj {
 
 ///|
 // file:///./parser.mbty
-// 92|                                        { _ctx => @list.empty() }
+// 92|                                        { _ctx => @list.List([]) }
 fn yy_action_9(_last_pos : Int, _args : ArrayView[(YYObj, Int, Int)]) -> YYObj {
-  YYObj__Context______list_List___type_Regex__String____type_CodeBlock__({();  _ctx => @list.empty() })
+  YYObj__Context______list_List___type_Regex__String____type_CodeBlock__({();  _ctx => @list.List([]) })
 }
 
 ///|
