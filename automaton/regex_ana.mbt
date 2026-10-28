@@ -11,8 +11,8 @@ pub impl Show for VarType with fn output(self, logger) {
 
 ///|
 pub(all) enum StaticKnownTagPosition {
-  RelativeToStart(Int)
-  RelativeToEnd(Int)
+  RelativeToStart(Int32)
+  RelativeToEnd(Int32)
 } derive(Debug, Eq)
 
 ///|

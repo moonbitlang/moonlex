@@ -1,14 +1,20 @@
 ///|
 enum T[K, V] {
   Empty
-  Node(key~ : K, value~ : V, left~ : T[K, V], right~ : T[K, V], priority~ : Int)
+  Node(
+    key~ : K,
+    value~ : V,
+    left~ : T[K, V],
+    right~ : T[K, V],
+    priority~ : Int32
+  )
 }
 
 ///|
-let rand_state : Ref[Int] = { val: 1, }
+let rand_state : Ref[Int32] = { val: 1, }
 
 ///|
-fn random_priority() -> Int {
+fn random_priority() -> Int32 {
   rand_state.val = (rand_state.val * 1103515245 + 12345) & 0x7fffffff
   rand_state.val
 }
@@ -162,7 +168,7 @@ pub impl[K : Eq, V : Eq] Eq for T[K, V] with fn equal(self, other) -> Bool {
 pub impl[K : Compare, V : Compare] Compare for T[K, V] with fn compare(
   self,
   other,
-) -> Int {
+) -> Int32 {
   let iter = InorderIterator::new(self)
   let iter1 = InorderIterator::new(other)
   for item = iter.next(), item1 = iter1.next() {

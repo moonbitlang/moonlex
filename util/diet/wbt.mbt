@@ -5,7 +5,7 @@ const DELTA = 3
 const RATIO = 2
 
 ///|
-fn[N] Tree::size(self : Tree[N]) -> Int {
+fn[N] Tree::size(self : Tree[N]) -> Int32 {
   match self {
     Empty => 0
     Node(size~, ..) => size

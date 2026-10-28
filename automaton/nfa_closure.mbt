@@ -23,7 +23,7 @@ fn NFAEpsClosure::new(nfa : NFA) -> NFAEpsClosure {
 fn NFAEpsClosure::add(
   self : Self,
   node : NFANode,
-  tags? : @immut/sorted_set.SortedSet[Tag] = @immut/sorted_set.new(),
+  tags~ : @immut/sorted_set.SortedSet[Tag] = @immut/sorted_set.new(),
 ) -> Bool {
   if self.eps.unsafe_get(node.num) != 0 {
     let prev_tags = self.tags.get(node).unwrap_or(@immut/sorted_set.new())

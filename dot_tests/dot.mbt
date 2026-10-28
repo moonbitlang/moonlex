@@ -1,5 +1,5 @@
 ///|
-struct Edge((Int, Int, String?)) // from, to, edge_info
+struct Edge((Int32, Int32, String?)) // from, to, edge_info
 
 ///|
 enum NodeType {
@@ -10,20 +10,20 @@ enum NodeType {
 ///|
 pub(all) struct DotGraph {
   edges : Array[Edge]
-  nodes : Map[Int, (NodeType, String?)]
+  nodes : Map[Int32, (NodeType, String?)]
   name : String
 }
 
 ///|
-pub fn DotGraph::new(name? : String = "graph") -> DotGraph {
+pub fn DotGraph::new(name~ : String = "graph") -> DotGraph {
   { edges: [], nodes: Map([]), name, }
 }
 
 ///|
 pub fn DotGraph::add_edge(
   self : DotGraph,
-  from~ : Int,
-  to~ : Int,
+  from~ : Int32,
+  to~ : Int32,
   edge_info? : String,
 ) -> Unit {
   self.edges.push((from, to, edge_info))
@@ -32,7 +32,7 @@ pub fn DotGraph::add_edge(
 ///|
 fn DotGraph::set_node(
   self : DotGraph,
-  node~ : Int,
+  node~ : Int32,
   nodeType~ : NodeType,
   label? : String,
 ) -> Unit {
