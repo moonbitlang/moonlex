@@ -8,8 +8,8 @@ pub fn parse_codeblock(String) -> Array[SubstItem]
 
 // Types and methods
 pub(all) struct SubstItem {
-  start : Int
-  end : Int
+  start : Int32
+  end : Int32
   desc : SubstItemDesc
 }
 

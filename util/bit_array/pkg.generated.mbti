@@ -7,10 +7,10 @@ package "moonbitlang/ulex/util/bit_array"
 
 // Types and methods
 type BitArray
-pub fn BitArray::iter(Self) -> Iter[Int]
-pub fn BitArray::new(Int) -> Self
-pub fn BitArray::unsafe_get(Self, Int) -> Int
-pub fn BitArray::unsafe_set(Self, Int, Int) -> Unit
+pub fn BitArray::iter(Self) -> Iter[Int32]
+pub fn BitArray::new(Int32) -> Self
+pub fn BitArray::unsafe_get(Self, Int32) -> Int32
+pub fn BitArray::unsafe_set(Self, Int32, Int32) -> Unit
 
 // Type aliases
 
