@@ -3,7 +3,7 @@ name = "moonbitlang/ulex_tests"
 version = "0.3.28"
 
 import {
-  "moonbitlang/ulex-runtime@0.4.3",
+  "moonbitlang/ulex-runtime@0.4.4",
 }
 
 readme = "README.md"

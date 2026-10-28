@@ -3,7 +3,7 @@ name = "moonbitlang/ulex"
 version = "0.3.30"
 
 import {
-  "moonbitlang/ulex-runtime@0.4.3",
+  "moonbitlang/ulex-runtime@0.4.4",
   "moonbitlang/async@0.22.4",
 }
 
