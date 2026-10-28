@@ -2,19 +2,19 @@
 package "moonbitlang/ulex_tests/bytes_test/lexbuf"
 
 // Values
-pub fn from_bytes(Bytes, start? : Int, end? : Int) -> BytesLexbuf
+pub fn from_bytes(Bytes, start? : Int32, end? : Int32) -> BytesLexbuf
 
 // Errors
 
 // Types and methods
 #alias(T)
 type BytesLexbuf
-pub fn BytesLexbuf::curr_pos(Self) -> Int
-pub fn BytesLexbuf::get_char(Self, Int, Int) -> Byte
-pub fn BytesLexbuf::get_string(Self, Int, Int) -> BytesView
+pub fn BytesLexbuf::curr_pos(Self) -> Int32
+pub fn BytesLexbuf::get_char(Self, Int32, Int32) -> Byte
+pub fn BytesLexbuf::get_string(Self, Int32, Int32) -> BytesView
 pub fn BytesLexbuf::next(Self) -> Byte?
-pub fn BytesLexbuf::next_as_int(Self) -> Int
-pub fn BytesLexbuf::reset(Self, pos~ : Int) -> Unit
+pub fn BytesLexbuf::next_as_int(Self) -> Int32
+pub fn BytesLexbuf::reset(Self, pos~ : Int32) -> Unit
 
 // Type aliases
 

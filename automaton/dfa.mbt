@@ -10,7 +10,7 @@ pub impl Show for TagAction with fn output(self, logger) {
 }
 
 ///|
-pub type TagRank = Int
+pub type TagRank = Int32
 
 ///|
 pub type TagVar = (Tag, TagRank)
@@ -41,7 +41,11 @@ fn TagState::new() -> TagState {
 }
 
 ///|
-fn TagState::update_by_tag(self : TagState, tag : Tag, rank : Int) -> TagState {
+fn TagState::update_by_tag(
+  self : TagState,
+  tag : Tag,
+  rank : Int32,
+) -> TagState {
   match self.0.get(tag) {
     None => self.0.add(tag, rank)
     Some(old_rank) => if old_rank > rank { self.0.add(tag, rank) } else { self }
@@ -92,14 +96,17 @@ pub impl Show for DFACapturePosition with fn output(self, logger) {
 
 ///|
 pub(all) struct DFA {
-  graph : Array[Array[(@eof_char_set.T, Int)]] // indexed by node_id
-  mut start_node : Int
-  tag_actions : Map[Int, TagAction] // indexed by node_id
+  graph : Array[Array[(@eof_char_set.T, Int32)]] // indexed by node_id
+  mut start_node : Int32
+  tag_actions : Map[Int32, TagAction] // indexed by node_id
   // // indexed by pattern_id
-  end_nodes : Map[Int, (Int, Array[(DFACapturePosition, DFACapturePosition)])]
+  end_nodes : Map[
+    Int32,
+    (Int32, Array[(DFACapturePosition, DFACapturePosition)]),
+  ]
   // String? is rest_binder
   pattern_captures : Array[(Array[(String, VarType)], String?)] // indexed by pattern_id
-  mut node_count : Int
+  mut node_count : Int32
 } derive(Debug)
 
 ///|
@@ -108,7 +115,7 @@ pub impl Show for DFA with fn output(self, logger) {
 }
 
 ///|
-pub type DFANode = Int
+pub type DFANode = Int32
 
 ///|
 fn DFA::new(captures : Array[(Array[(String, VarType)], String?)]) -> DFA {
@@ -123,7 +130,7 @@ fn DFA::new(captures : Array[(Array[(String, VarType)], String?)]) -> DFA {
 }
 
 ///|
-fn DFA::new_node(self : DFA) -> Int {
+fn DFA::new_node(self : DFA) -> Int32 {
   let id = self.node_count
   self.node_count += 1
   self.graph.push([])
@@ -131,7 +138,12 @@ fn DFA::new_node(self : DFA) -> Int {
 }
 
 ///|
-fn DFA::add_edge(self : DFA, from : Int, e : @eof_char_set.T, to : Int) -> Unit {
+fn DFA::add_edge(
+  self : DFA,
+  from : Int32,
+  e : @eof_char_set.T,
+  to : Int32,
+) -> Unit {
   for tran in self.graph[from] {
     if tran.0 == e && tran.1 == to {
       return
@@ -147,7 +159,7 @@ fn DFA::add_edge(self : DFA, from : Int, e : @eof_char_set.T, to : Int) -> Unit 
 type State = @immut_map.T[NFANode, TagState]
 
 ///|
-fn state_canonicalize(state : State, tag_count : Int) -> (State, TagAction) {
+fn state_canonicalize(state : State, tag_count : Int32) -> (State, TagAction) {
   let ranks_by_tag = Array::makei(tag_count, fn(_i) { [] })
   for pair in state.iter() {
     let tags = pair.1
@@ -185,7 +197,7 @@ fn state_canonicalize(state : State, tag_count : Int) -> (State, TagAction) {
 }
 
 ///|
-fn DFA::register_node(self : DFA, nfa : NFA, node : Int, os : State) -> Unit {
+fn DFA::register_node(self : DFA, nfa : NFA, node : Int32, os : State) -> Unit {
   let code_blocks = os
     .iter()
     .filter_map(fn(x) { nfa.end_nodes.get(x.0.num) })
@@ -236,8 +248,8 @@ fn DFA::from_nfa(nfa : NFA) -> DFA {
     (x.0.map(fn(y) { y.0 }), x.1)
   })
   let dfa = DFA::new(captures)
-  let node_map : @hashmap2.T[State, Int] = @hashmap2.new(capacity=64)
-  fn get_id(state : State, canonicalized_state : State) -> Int {
+  let node_map : @hashmap2.T[State, Int32] = @hashmap2.new(capacity=64)
+  fn get_id(state : State, canonicalized_state : State) -> Int32 {
     node_map.get_or_init(state, fn(_key) {
       let node = dfa.new_node()
       dfa.register_node(nfa, node, canonicalized_state)

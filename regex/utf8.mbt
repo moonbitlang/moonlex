@@ -16,8 +16,8 @@ fn lower_unicode_charclass_to_utf8(
 ) -> Array[Array[@char_set.T]] {
   fn get_masked_range_cset(
     bytes : Bytes,
-    num_bytes : Int,
-    mask_index : Int,
+    num_bytes : Int32,
+    mask_index : Int32,
   ) -> @char_set.T {
     guard mask_index >= 1 && mask_index <= bytes.length()
     let prefix = bytes[0:mask_index]
@@ -46,7 +46,7 @@ fn lower_unicode_charclass_to_utf8(
     } else {
       let branches = []
       let dedup = Set::Set([])
-      fn add_branch(range_cset : @char_set.T, pin_index : Int) {
+      fn add_branch(range_cset : @char_set.T, pin_index : Int32) {
         if dedup.add_and_check((range_cset, pin_index)) {
           let ranges = range_cset.iter_ranges().to_array()
           guard ranges.length() <= 1
