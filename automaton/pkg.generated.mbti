@@ -14,50 +14,50 @@ pub fn get_regex_captures(@regex.Regex, @regex.Regex) -> Array[(String, (VarType
 
 // Types and methods
 pub(all) struct DFA {
-  graph : Array[Array[(@eof_char_set.EofCharSet, Int)]]
-  mut start_node : Int
-  tag_actions : Map[Int, TagAction]
-  end_nodes : Map[Int, (Int, Array[(DFACapturePosition, DFACapturePosition)])]
+  graph : Array[Array[(@eof_char_set.EofCharSet, Int32)]]
+  mut start_node : Int32
+  tag_actions : Map[Int32, TagAction]
+  end_nodes : Map[Int32, (Int32, Array[(DFACapturePosition, DFACapturePosition)])]
   pattern_captures : Array[(Array[(String, VarType)], String?)]
-  mut node_count : Int
+  mut node_count : Int32
 } derive(@debug.Debug)
 pub fn DFA::from_patterns(Array[(@regex.Regex, String?)], encoding? : @regex.Encoding) -> Self
 pub impl Show for DFA
 
 pub(all) enum DFACapturePosition {
-  Dynamic_dfa((Int, Int))
+  Dynamic_dfa((Int32, Int32))
   Static_dfa(StaticKnownTagPosition)
 } derive(Eq, @debug.Debug)
 pub impl Show for DFACapturePosition
 
 pub(all) enum Input {
   Eps
-  EpsWithTag(Int)
+  EpsWithTag(Int32)
   EChar(@eof_char_set.EofCharSet)
 } derive(Eq, Hash, @debug.Debug)
 pub impl Show for Input
 
 pub(all) struct NFA {
   graph : Array[NFANode]
-  end_nodes : Map[Int, Int]
+  end_nodes : Map[Int32, Int32]
   pattern_captures : Array[(Array[((String, VarType), (NFACapturePosition, NFACapturePosition))], String?)]
-  mut start_node : Int
-  mut node_count : Int
-  mut tag_count : Int
+  mut start_node : Int32
+  mut node_count : Int32
+  mut tag_count : Int32
 } derive(@debug.Debug)
 pub fn NFA::from_patterns(Array[(@regex.Regex, String?)], encoding? : @regex.Encoding) -> Self
 pub impl Show for NFA
 
 pub(all) enum NFACapturePosition {
-  Dynamic_nfa(Int)
+  Dynamic_nfa(Int32)
   Static_nfa(StaticKnownTagPosition)
 } derive(@debug.Debug)
 pub impl Show for NFACapturePosition
 
 pub(all) struct NFANode {
-  num : Int
+  num : Int32
   mut eps : Array[NFANode]
-  mut tagged_eps : Array[(NFANode, Int)]
+  mut tagged_eps : Array[(NFANode, Int32)]
   mut trans : Array[(@eof_char_set.EofCharSet, NFANode)]
 } derive(@debug.Debug)
 pub impl Compare for NFANode
@@ -66,8 +66,8 @@ pub impl Hash for NFANode
 pub impl Show for NFANode
 
 pub(all) enum StaticKnownTagPosition {
-  RelativeToStart(Int)
-  RelativeToEnd(Int)
+  RelativeToStart(Int32)
+  RelativeToEnd(Int32)
 } derive(Eq, @debug.Debug)
 pub impl Show for StaticKnownTagPosition
 
@@ -75,8 +75,8 @@ pub(all) struct TagAction(Array[TagOp]) derive(Compare, Eq, @debug.Debug)
 pub impl Show for TagAction
 
 pub(all) enum TagOp {
-  Set(dest~ : (Int, Int))
-  Copy(dest~ : (Int, Int), src~ : (Int, Int))
+  Set(dest~ : (Int32, Int32))
+  Copy(dest~ : (Int32, Int32), src~ : (Int32, Int32))
 } derive(Compare, Eq, @debug.Debug)
 pub impl Show for TagOp
 
@@ -87,10 +87,10 @@ pub(all) enum VarType {
 pub impl Show for VarType
 
 // Type aliases
-pub type DFANode = Int
+pub type DFANode = Int32
 
-pub type TagRank = Int
+pub type TagRank = Int32
 
-pub type TagVar = (Int, Int)
+pub type TagVar = (Int32, Int32)
 
 // Traits
