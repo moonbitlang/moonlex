@@ -1,6 +1,6 @@
 name = "moonbitlang/ulex"
 
-version = "0.3.30"
+version = "0.3.31"
 
 import {
   "moonbitlang/ulex-runtime@0.4.4",
