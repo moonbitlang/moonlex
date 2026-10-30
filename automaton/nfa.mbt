@@ -134,7 +134,7 @@ fn NFA::new_node(self : NFA) -> NFANode {
   self.node_count += 1
   let node = NFANode::{ num: new_id, eps: [], tagged_eps: [], trans: [], }
   self.graph.push(node)
-  guard new_id + 1 == self.graph.length()
+  guard! new_id + 1 == self.graph.length()
   node
 }
 
@@ -237,3 +237,42 @@ fn NFA::register_regex_rec(
   self.add_edge(final_, Eps, new_final)
   new_final
 }
+
+///|
+pub extend Input with Debug::{to_repr}
+
+///|
+pub extend Input with Eq::{not_equal, equal}
+
+///|
+pub extend Input with Hash::{hash, hash_combine}
+
+///|
+pub extend Input with Show::{to_string, output}
+
+///|
+pub extend NFA with Debug::{to_repr}
+
+///|
+pub extend NFA with Show::{to_string, output}
+
+///|
+pub extend NFACapturePosition with Debug::{to_repr}
+
+///|
+pub extend NFACapturePosition with Show::{to_string, output}
+
+///|
+pub extend NFANode with Compare::{op_lt, op_le, op_ge, compare, op_gt}
+
+///|
+pub extend NFANode with Debug::{to_repr}
+
+///|
+pub extend NFANode with Eq::{not_equal, equal}
+
+///|
+pub extend NFANode with Hash::{hash, hash_combine}
+
+///|
+pub extend NFANode with Show::{to_string, output}

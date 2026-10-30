@@ -125,3 +125,18 @@ pub fn get_regex_captures(
     .to_array()
   result
 }
+
+///|
+pub extend StaticKnownTagPosition with Debug::{to_repr}
+
+///|
+pub extend StaticKnownTagPosition with Eq::{not_equal, equal}
+
+///|
+pub extend StaticKnownTagPosition with Show::{to_string, output}
+
+///|
+pub extend VarType with Debug::{to_repr}
+
+///|
+pub extend VarType with Show::{to_string, output}

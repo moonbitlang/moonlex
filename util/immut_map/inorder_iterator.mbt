@@ -29,7 +29,7 @@ fn[K, V] InorderIterator::move_left(
 fn[K, V] InorderIterator::next(self : InorderIterator[K, V]) -> (K, V)? {
   let InorderIterator(s) = self
   guard s.pop() is Some(curr) else { return None }
-  guard curr is (Node(..) as curr)
+  guard! curr is (Node(..) as curr)
   self.move_left(curr.right)
   Some((curr.key, curr.value))
 }

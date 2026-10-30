@@ -30,7 +30,7 @@ fn rewrite_codeblock(
     .unwrap()
   }
 
-  let buf = StringBuilder::new()
+  let buf = StringBuilder()
   let mut last_index = 0
   for item in subst {
     // replace `$startpos(t)`/`$endpos(t)` with `_match_start_of_t`/`_match_end_of_t`
@@ -97,7 +97,7 @@ pub fn codegen_rule_inner(
   code_unit~ : @type.CodeUnit,
   default_encoding~ : @type.Encoding?,
 ) -> String {
-  let out = StringBuilder::new()
+  let out = StringBuilder()
   let encoding = match code_unit {
     CodeUnit1 => default_encoding
     CodeUnit2 | CodeUnit4 => None

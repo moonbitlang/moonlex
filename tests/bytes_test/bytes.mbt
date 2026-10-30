@@ -191,7 +191,7 @@ match _dfa_start_node {    0 => {
 
 
 fn utf8_decode(bytes : Bytes) -> String raise MalformedUtf8Error {
-  let buf = StringBuilder::new()
+  let buf = StringBuilder()
   let lexbuf = @lexbuf.from_bytes(bytes)
   lex_utf8(lexbuf, buf)
   buf.to_string()
