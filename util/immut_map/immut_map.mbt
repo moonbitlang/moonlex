@@ -130,7 +130,7 @@ pub fn[K, V] T::iter(self : T[K, V]) -> Iter[(K, V)] {
         None
       }
       Some(node) => {
-        guard node is Node(key~, value~, right~, ..)
+        guard! node is Node(key~, value~, right~, ..)
         current = right
         Some((key, value))
       }
@@ -191,3 +191,12 @@ pub impl[K : Hash, V : Hash] Hash for T[K, V] with fn hash_combine(self, hasher)
     hasher..combine(e.0).combine(e.1)
   }
 }
+
+///|
+pub extend T with Compare::{op_lt, op_le, op_ge, compare, op_gt}
+
+///|
+pub extend T with Eq::{not_equal, equal}
+
+///|
+pub extend T with Hash::{hash, hash_combine}

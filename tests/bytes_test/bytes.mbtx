@@ -31,7 +31,7 @@ rule lex_utf8(lexbuf : @lexbuf.T, buf : StringBuilder) -> Unit raise MalformedUt
 
 {
 fn utf8_decode(bytes : Bytes) -> String raise MalformedUtf8Error {
-  let buf = StringBuilder::new()
+  let buf = StringBuilder()
   let lexbuf = @lexbuf.from_bytes(bytes)
   lex_utf8(lexbuf, buf)
   buf.to_string()

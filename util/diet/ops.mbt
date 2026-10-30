@@ -35,8 +35,8 @@ pub fn[N : @bounded_enum.T] union(t1 : Tree[N], t2 : Tree[N]) -> Tree[N] {
 
 ///|
 fn[N : @bounded_enum.T] union_aux(t1 : Tree[N], t2 : Tree[N]) -> Tree[N] {
-  guard t1 is (Node(..) as t1)
-  guard t2 is (Node(..) as t2)
+  guard! t1 is (Node(..) as t1)
+  guard! t2 is (Node(..) as t2)
   let l1 = t1.left
   let r1 = t1.right
   let l2 = t2.slice_before(t1.min)
@@ -89,8 +89,8 @@ pub fn[N : @bounded_enum.T] intersection(t1 : Tree[N], t2 : Tree[N]) -> Tree[N] 
 
 ///|
 fn[N : @bounded_enum.T] intersection_aux(t1 : Tree[N], t2 : Tree[N]) -> Tree[N] {
-  guard t1 is (Node(..) as t1)
-  guard t2 is (Node(..) as t2)
+  guard! t1 is (Node(..) as t1)
+  guard! t2 is (Node(..) as t2)
   let l1 = t1.left
   let r1 = t1.right
   let l2 = t2.slice_before(t1.min)

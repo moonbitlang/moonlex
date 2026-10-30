@@ -19,13 +19,13 @@ pub impl @bounded_enum.T for EofChar with fn upper_bound() {
 
 ///|
 pub impl @bounded_enum.T for EofChar with fn pred(self) {
-  guard self.0 > -1
+  guard! self.0 > -1
   EofChar(self.0 - 1)
 }
 
 ///|
 pub impl @bounded_enum.T for EofChar with fn succ(self) {
-  guard self.0 < 0x10ffff
+  guard! self.0 < 0x10ffff
   EofChar(self.0 + 1)
 }
 
@@ -47,3 +47,26 @@ pub fn EofChar::repr(self : EofChar) -> EofCharRepr {
     Char(self.0.unsafe_to_char())
   }
 }
+
+///|
+pub extend EofChar with @moonbitlang/ulex/util/bounded_enum.BoundedEnum::{
+  lower_bound,
+  pred,
+  succ,
+  upper_bound,
+}
+
+///|
+pub extend EofChar with Compare::{op_lt, op_le, op_ge, compare, op_gt}
+
+///|
+pub extend EofChar with Debug::{to_repr}
+
+///|
+pub extend EofChar with Eq::{not_equal, equal}
+
+///|
+pub extend EofChar with Hash::{hash, hash_combine}
+
+///|
+pub extend EofChar with ToJson::{to_json}

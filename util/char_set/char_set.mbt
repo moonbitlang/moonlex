@@ -127,12 +127,43 @@ pub impl Show for CharSet with fn output(self, logger) {
 
 ///|
 pub impl ToJson for CharSet with fn to_json(self) {
-  self
-  .iter_ranges()
-  .map(it => {
-    let (min, max) = it
-    (min.to_int(), max.to_int())
-  })
-  .to_array()
-  .to_json()
+  Json(
+    self
+    .iter_ranges()
+    .map(it => {
+      let (min, max) = it
+      (min.to_int(), max.to_int())
+    })
+    .to_array(),
+  )
 }
+
+///|
+pub extend CharSet with Add::{add}
+
+///|
+pub extend CharSet with BitAnd::{land}
+
+///|
+pub extend CharSet with Compare::{op_lt, op_le, op_ge, compare, op_gt}
+
+///|
+pub extend CharSet with Debug::{to_repr}
+
+///|
+pub extend CharSet with Eq::{not_equal, equal}
+
+///|
+pub extend CharSet with Hash::{hash, hash_combine}
+
+///|
+pub extend CharSet with Neg::{neg}
+
+///|
+pub extend CharSet with Show::{to_string, output}
+
+///|
+pub extend CharSet with Sub::{sub}
+
+///|
+pub extend CharSet with ToJson::{to_json}
